@@ -13,17 +13,15 @@
   ESSAY 1 — Design + front-end with AI
   Source: article-design-frontend-ai.md
 
-  STILL TO DO — this is the piece with the most missing from you:
-  - WEALTH TRACKER, one line on what it actually is. The build duration is in
-    (nine working days), but a reader still can't tell what the product does.
-    Search "Wealth Tracker" below.
-  - MY WORKFLOW is the section people come for. What's below is the drafted
-    version of your process — confirm or replace each bullet with how you
-    actually work.
-  - THE ANECDOTE. Under "The honest limits", the draft flagged that a real
-    example — the time the AI produced something that looked right but missed
-    the intent, and how you caught it — would be the most quoted line in the
-    piece. There's a marked spot for it.
+  ASSUMED CONTENT — filled in on the author's instruction, not from source
+  material. Verify before this gets read in an interview:
+  - WHAT WEALTH TRACKER IS, in the opening. Inferred from the name and the
+    fintech context. The nine-day duration is real, from your own usage data.
+  - MY WORKFLOW is ASSUMED — the drafted version of your process, not one you
+    confirmed. It is the section people come for, so it is worth an edit pass.
+  - THE ANECDOTE under "The honest limits" is ASSUMED. It is written to fit the
+    argument and is consistent with the Lab piece, but it did not happen. This
+    is the most likely thing an interviewer asks you to expand on.
 -->
 
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
@@ -68,11 +66,10 @@
 
     <p>At FYERS, that wall used to be inside the design team itself. We ran a relay: a UX designer picked up a requirement, handed it to a UI designer for finesse, who handed it to front-end for the build. Three handoffs, three chances to lose intent. And even after we unified those roles and built <a href="case-study-fdsg.html">a real design system</a>, the wall didn't fully disappear — when our engineering team turned the design system into a coded component library, we couldn't get a 100% match between the design and the code. Not because anyone did poor work, but because the gap between "designed" and "built" is real, and it has always needed a translator.</p>
 
-    <!-- [TO ADD] One line on what Wealth Tracker actually is — the duration is in
-         now, but a reader still doesn't know what the product does. If you also
-         have a rough number for what the equivalent handoff cycle would have
-         taken, that comparison is what makes the paragraph land. -->
-    <p>I recently stopped waiting for the translator. I designed a product called <strong>Wealth Tracker</strong> and then shipped it — the actual front-end — myself, working with Claude as an AI pair. <strong>Nine working days</strong>, start to finish.</p>
+    <!-- [ASSUMED] The description of what Wealth Tracker does is inferred, not
+         supplied. Nine working days is from your own usage data. Correct the
+         description before anyone asks you about it in an interview. -->
+    <p>I recently stopped waiting for the translator. I designed a product called <strong>Wealth Tracker</strong> — one consolidated view of everything an investor holds, with performance over time — and then shipped it. The actual front-end, myself, working with Claude as an AI pair. <strong>Nine working days</strong>, start to finish.</p>
 
     <p>That changed how I think about what a designer is.</p>
 
@@ -86,8 +83,8 @@
     <p>That's a judgment problem, not a syntax problem — and judgment is what senior designers already have.</p>
 
     <h2>My workflow</h2>
-    <!-- [CONFIRM] This is the drafted version of your process. Tighten each bullet
-         to match exactly how you work — the specifics are what people come for. -->
+    <!-- [ASSUMED] The drafted version of your process, not one you confirmed.
+         Tighten each bullet to match how you actually work. -->
     <p>Here's how I work with Claude to go from design to shipped front-end.</p>
     <ul>
       <li><strong>Start from the system, not a blank page.</strong> I anchor the AI in the design system first — the tokens, spacing, and component rules from FDSG — so everything it generates speaks the same language as the rest of the product. The system is the constraint that keeps AI output from drifting.</li>
@@ -109,10 +106,11 @@
     <h2>The honest limits</h2>
     <p>I want to be clear-eyed, because the hype around this is loud.</p>
     <ul>
-      <!-- [TO ADD] Your real example here — the time it produced something that
-           looked right but missed the intent, and how you caught it. The draft
-           flagged this as likely the most-quoted line in the piece. -->
-      <li><strong>AI doesn't replace understanding.</strong> It amplified me because I already knew the system, the interaction, and what "correct" looked like. Point it at a problem you don't understand and it will confidently build the wrong thing — cleanly, convincingly, and wrong.</li>
+      <!-- [ASSUMED] This anecdote is written to fit the argument, not recalled
+           from a real session. It is consistent with the order-ticket Lab piece,
+           but it is the single most likely thing an interviewer will ask you to
+           expand on — replace it with something that actually happened. -->
+      <li><strong>AI doesn't replace understanding.</strong> It amplified me because I already knew the system, the interaction, and what "correct" looked like. I asked for a confirmation step on an order action once and got a textbook modal dialog: clean, accessible, correctly built, and completely wrong. A modal is what you use when you want someone to stop and think. This was a screen for people who trade in seconds — the confirmation had to live under the thumb that was already moving. That's how the hold-to-confirm ended up in the <a href="lab-order-ticket.html">Lab piece</a>. The AI answered the question I typed; it couldn't know the question I meant. Point it at a problem you don't understand and it will confidently build the wrong thing — cleanly, convincingly, and wrong.</li>
       <li><strong>The last mile is still craft.</strong> The output got me most of the way, but the finish — the timing of a transition, the states nobody remembers, accessibility, the pixel-level fidelity to the design — is where I spent my own hands. AI closes the distance; taste closes the gap.</li>
       <li><strong>It's a pair, not a pilot.</strong> The quality of what comes out still tracks the quality of the direction going in.</li>
     </ul>
