@@ -1,0 +1,228 @@
+/*
+  READING.CSS — shared styles for the long-form pages (case studies + writing).
+
+  Tokens, typefaces and devices are inherited from index.html on purpose, so a
+  case study feels like the same site rather than a separate blog. The one
+  layout change: a single reading column at ~68ch, since these pages are read
+  top to bottom instead of scanned.
+
+  Used by:
+    case-study-fdsg.html
+    case-study-options-scalper.html
+    article-design-frontend-ai.html
+    article-scaling-design-system.html
+    article-ux-to-ui-ownership.html
+*/
+
+:root{
+  --paper:#F0EFE9;
+  --paper-2:#E9E8E0;
+  --ink:#14161B;
+  --graphite:#4A505B;
+  --muted:#6E7480;
+  --line:#D8D6CC;
+  --line-2:#C9C7BB;
+  --signal:#2B4FE0;
+  --up:#1C8F5F;
+  --down:#CE4550;
+  --panel:#0C0E13;
+  --panel-line:#262C39;
+  --panel-text:#E6E9EF;
+  --panel-muted:#8A93A6;
+  --maxw:1080px;
+  --readw:68ch;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:"Hanken Grotesk",system-ui,sans-serif;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--signal);color:#fff}
+.mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,44px)}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted)}
+
+/* ---------- nav (matches index.html, plus a reading-progress hairline) ---------- */
+nav{position:sticky;top:0;z-index:50;background:rgba(240,239,233,.82);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:13px clamp(20px,5vw,44px);
+  display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Bricolage Grotesque",sans-serif;
+  font-weight:700;letter-spacing:-.01em}
+.brand .mk{width:10px;height:10px;border-radius:50%;background:var(--signal)}
+.nav-links{display:flex;gap:4px}
+.nav-links a{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);padding:7px 11px;border-radius:7px;
+  transition:color .2s,background .2s}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--ink);background:var(--paper-2)}
+.nav-cta{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.06em;
+  border:1px solid var(--ink);padding:7px 13px;border-radius:999px;transition:all .2s}
+.nav-cta:hover,.nav-cta:focus-visible{background:var(--ink);color:var(--paper)}
+@media(max-width:720px){.nav-links{display:none}}
+
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--signal);z-index:60;
+  transition:width .1s linear}
+
+a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:4px}
+
+/* ---------- masthead ---------- */
+.masthead{padding:clamp(40px,8vh,84px) 0 clamp(24px,4vh,40px)}
+.masthead .kicker{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--signal)}
+.masthead h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;letter-spacing:-.028em;
+  line-height:1.02;font-size:clamp(2rem,5vw,3.5rem);margin-top:16px;max-width:20ch;text-wrap:balance}
+.masthead .standfirst{margin-top:22px;max-width:56ch;font-size:clamp(1.05rem,1.8vw,1.24rem);
+  color:var(--graphite)}
+.masthead .byline{margin-top:26px;padding-top:18px;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:8px 20px;font-family:"IBM Plex Mono",monospace;
+  font-size:.72rem;letter-spacing:.06em;color:var(--muted)}
+
+/* ---------- at-a-glance spec panel (the site's instrument-readout device) ---------- */
+.glance{background:var(--panel);border-radius:14px;padding:22px 24px;color:var(--panel-text);
+  font-family:"IBM Plex Mono",monospace;font-size:.8rem;
+  box-shadow:0 26px 60px -34px rgba(0,0,0,.55);margin-bottom:clamp(32px,6vh,56px)}
+.glance .sh{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-bottom:16px;padding-bottom:13px;border-bottom:1px solid var(--panel-line)}
+.glance .sh .t{letter-spacing:.16em;font-size:.64rem;text-transform:uppercase;color:var(--panel-muted)}
+.glance .sh .live{display:inline-flex;align-items:center;gap:6px;font-size:.6rem;
+  letter-spacing:.14em;color:var(--panel-muted)}
+.glance .sh .live .pip{width:6px;height:6px;border-radius:50%;background:var(--up);
+  box-shadow:0 0 8px var(--up);animation:pip 2s ease-in-out infinite}
+@keyframes pip{50%{opacity:.3}}
+.glance dl{display:grid;grid-template-columns:auto 1fr;gap:11px 20px}
+.glance dt{color:var(--panel-muted);letter-spacing:.04em}
+.glance dd{text-align:right;color:var(--panel-text);font-variant-numeric:tabular-nums}
+.glance dd .g{color:var(--up)}
+@media(max-width:560px){
+  .glance dl{grid-template-columns:1fr;gap:2px}
+  .glance dd{text-align:left;margin-bottom:10px}
+}
+
+/* ---------- reading column ---------- */
+.read{max-width:var(--readw);padding-bottom:clamp(40px,8vh,80px)}
+.read h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;letter-spacing:-.018em;
+  font-size:clamp(1.35rem,2.8vw,1.85rem);line-height:1.15;margin:clamp(36px,6vh,56px) 0 14px;
+  text-wrap:balance}
+.read h2:first-child{margin-top:0}
+.read h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:1.1rem;
+  margin:30px 0 10px}
+.read p{color:var(--graphite);font-size:1.04rem;line-height:1.75;margin-bottom:18px}
+.read p strong,.read li strong{color:var(--ink);font-weight:600}
+.read em{font-style:italic}
+.read a:not(.btn){color:var(--signal);border-bottom:1px solid rgba(43,79,224,.32);
+  transition:border-color .2s}
+.read a:not(.btn):hover{border-bottom-color:var(--signal)}
+.read ul{list-style:none;margin:0 0 22px}
+.read ul li{color:var(--graphite);font-size:1.04rem;line-height:1.72;position:relative;
+  padding-left:22px;margin-bottom:13px}
+.read ul li::before{content:"";position:absolute;left:2px;top:.68em;width:7px;height:1px;
+  background:var(--line-2)}
+.read ol{margin:0 0 22px 20px}
+.read ol li{color:var(--graphite);font-size:1.04rem;line-height:1.72;margin-bottom:13px;padding-left:4px}
+
+/* opening paragraph gets a touch more presence */
+.read .lede{font-size:clamp(1.1rem,1.9vw,1.22rem);line-height:1.62;color:var(--ink)}
+
+/* ---------- devices ---------- */
+.pull{margin:clamp(30px,5vh,44px) 0;padding-left:22px;border-left:2px solid var(--signal)}
+.pull p{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:clamp(1.15rem,2.2vw,1.42rem);
+  line-height:1.28;letter-spacing:-.012em;color:var(--ink);margin:0;text-wrap:balance}
+
+.callout{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;
+  padding:22px 24px;margin:clamp(28px,5vh,40px) 0}
+.callout .eyebrow{display:block;margin-bottom:10px}
+.callout p:last-child{margin-bottom:0}
+
+/* outcome list — numbers set in the display face, like the case-study metrics on the home page */
+.outcomes{display:flex;flex-direction:column;gap:0;margin:26px 0 8px}
+.outcomes .o{display:grid;grid-template-columns:minmax(88px,auto) 1fr;gap:20px;padding:16px 0;
+  border-top:1px solid var(--line);align-items:baseline}
+.outcomes .o:last-child{border-bottom:1px solid var(--line)}
+.outcomes .v{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.4rem;
+  line-height:1.1;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.outcomes .v.up{color:var(--up)}
+.outcomes .v.sig{color:var(--signal)}
+.outcomes .d{color:var(--graphite);font-size:.97rem;line-height:1.6}
+@media(max-width:520px){.outcomes .o{grid-template-columns:1fr;gap:6px}}
+
+/* Diagrams and figures break out past the reading measure — they're looked at,
+   not read, so they get the width the page can spare. Capped so they stay
+   inside .wrap's content box at any viewport. */
+.pipeline,.fig{width:min(920px, calc(100vw - 2 * clamp(20px,5vw,44px)))}
+
+/* governance pipeline diagram — process, drawn rather than screenshotted */
+.pipeline{margin:clamp(28px,5vh,42px) 0;display:grid;grid-template-columns:1fr auto 1fr auto 1fr;
+  gap:12px;align-items:stretch}
+.pipeline .step{border:1px solid var(--line-2);border-radius:12px;padding:16px 18px;background:var(--paper)}
+.pipeline .step .s{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--signal)}
+.pipeline .step .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.02rem;
+  margin:8px 0 5px;letter-spacing:-.01em}
+.pipeline .step .w{font-size:.83rem;color:var(--muted);line-height:1.45}
+.pipeline .arrow{display:flex;align-items:center;color:var(--line-2);font-size:1.1rem}
+@media(max-width:720px){
+  .pipeline{grid-template-columns:1fr;gap:8px}
+  .pipeline .arrow{justify-content:center;transform:rotate(90deg);padding:2px 0}
+}
+
+/* figure slot — a labelled placeholder until the real asset drops in.
+   Swap the whole <figure> for <figure class="fig"><img …><figcaption>…</figcaption></figure>. */
+.fig{margin:clamp(28px,5vh,42px) 0}
+.fig img{width:100%;height:auto;display:block;border:1px solid var(--line-2);border-radius:12px}
+.fig figcaption{margin-top:10px;font-size:.83rem;color:var(--muted);line-height:1.5}
+.fig .slot{border:1px dashed var(--line-2);border-radius:12px;background:var(--paper-2);
+  padding:clamp(24px,4vw,34px) 24px;text-align:center}
+.fig .slot .k{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted)}
+.fig .slot .w{margin-top:9px;color:var(--graphite);font-size:.95rem;max-width:44ch;
+  margin-left:auto;margin-right:auto}
+
+/* ---------- next / prev ---------- */
+.next{border-top:1px solid var(--line);padding:clamp(36px,6vh,56px) 0}
+.next .lbl{display:block;margin-bottom:16px}
+.next-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ncard{border:1px solid var(--line-2);border-radius:14px;padding:22px;background:var(--paper);
+  transition:border-color .25s,transform .25s var(--ease)}
+.ncard:hover{border-color:var(--signal);transform:translateY(-3px)}
+.ncard .tag{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--signal)}
+.ncard h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.12rem;
+  line-height:1.16;letter-spacing:-.01em;margin:11px 0 8px}
+.ncard p{color:var(--muted);font-size:.88rem;line-height:1.5}
+.ncard .go{margin-top:14px;font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--signal);
+  display:inline-flex;gap:7px}
+.ncard .go::after{content:"→";transition:transform .25s}
+.ncard:hover .go::after{transform:translateX(4px)}
+@media(max-width:640px){.next-grid{grid-template-columns:1fr}}
+
+/* ---------- footer (matches index.html) ---------- */
+footer{background:var(--panel);color:var(--panel-text);border-top:1px solid var(--panel-line)}
+.foot{max-width:var(--maxw);margin:0 auto;padding:clamp(52px,9vh,92px) clamp(20px,5vw,44px)}
+.foot h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;
+  font-size:clamp(1.9rem,4.6vw,3.2rem);letter-spacing:-.02em;line-height:1.02;text-wrap:balance}
+.foot h2 .sig{color:#8FA6FF}
+.foot .st{font-family:"IBM Plex Mono",monospace;font-size:.76rem;letter-spacing:.06em;
+  color:var(--panel-muted);margin-top:18px}
+.foot .st .g{color:var(--up)}
+.contacts{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.contacts a{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--panel-line);
+  border-radius:999px;padding:10px 17px;font-size:.9rem;transition:border-color .2s,color .2s}
+.contacts a:hover{border-color:#8FA6FF;color:#8FA6FF}
+.foot .fine{margin-top:38px;padding-top:22px;border-top:1px solid var(--panel-line);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--panel-muted)}
+
+/* ---------- motion ---------- */
+.reveal{opacity:0;transform:translateY(16px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
