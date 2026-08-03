@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The handoff is dead. I designed and shipped the front-end myself — with AI. · Sujith Kumar Anand</title>
+<meta name="description" content="Design used to end at a handoff. Working with Claude as an AI pair, I designed Wealth Tracker and shipped its front-end myself. The workflow, what it means for design teams, and the honest limits." />
+<meta property="og:title" content="The handoff is dead. I designed and shipped the front-end myself — with AI." />
+<meta property="og:description" content="AI collapsed the translation step between designing something and building it. What that changes about what a designer is." />
+<meta property="og:type" content="article" />
+
+<!--
+  ESSAY 1 — Design + front-end with AI
+  Source: article-design-frontend-ai.md
+
+  STILL TO DO — this is the piece with the most missing from you:
+  - WEALTH TRACKER, one line. The draft had a placeholder asking what it is and
+    roughly how long it took versus a handoff cycle. The sentence has been
+    rewritten to stand without that detail, but a concrete line here is what
+    makes the whole piece land. Search "Wealth Tracker" below.
+  - MY WORKFLOW is the section people come for. What's below is the drafted
+    version of your process — confirm or replace each bullet with how you
+    actually work.
+  - THE ANECDOTE. Under "The honest limits", the draft flagged that a real
+    example — the time the AI produced something that looked right but missed
+    the intent, and how you caught it — would be the most quoted line in the
+    piece. There's a marked spot for it.
+-->
+
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/reading.css" />
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="index.html"><span class="mk"></span>Sujith Kumar Anand</a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#lab">Lab</a>
+      <a href="index.html#writing">Writing</a>
+      <a href="index.html#about">About</a>
+    </div>
+    <a class="nav-cta" href="index.html#contact">Get in touch</a>
+  </div>
+</nav>
+
+<header class="masthead">
+  <div class="wrap">
+    <span class="kicker">Essay · Design + AI</span>
+    <h1>The handoff is dead</h1>
+    <p class="standfirst">I designed a product and then shipped the front-end myself, working with AI as a pair. It changed how I think about what a designer is.</p>
+    <div class="byline">
+      <span>Sujith Kumar Anand</span>
+      <span>~6 min read</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="read">
+
+    <p class="lede">For most of my career, design ended at a line. You did the thinking, built the screens, wrote the spec — and then you handed it across a wall to engineering and hoped what came back resembled what you drew.</p>
+
+    <p>At FYERS, that wall used to be inside the design team itself. We ran a relay: a UX designer picked up a requirement, handed it to a UI designer for finesse, who handed it to front-end for the build. Three handoffs, three chances to lose intent. And even after we unified those roles and built <a href="case-study-fdsg.html">a real design system</a>, the wall didn't fully disappear — when our engineering team turned the design system into a coded component library, we couldn't get a 100% match between the design and the code. Not because anyone did poor work, but because the gap between "designed" and "built" is real, and it has always needed a translator.</p>
+
+    <!-- [TO ADD] One line on what Wealth Tracker is, and roughly how long it took
+         versus a normal handoff cycle. The sentence below works without it, but
+         the specifics are what make this paragraph persuasive. -->
+    <p>I recently stopped waiting for the translator. I designed a product called <strong>Wealth Tracker</strong> and then shipped it — the actual front-end — myself, working with Claude as an AI pair.</p>
+
+    <p>That changed how I think about what a designer is.</p>
+
+    <h2>What actually changed</h2>
+    <p>The old constraint was never imagination — it was translation. I could always picture the interaction; I couldn't always produce the production code, and the moment my design left my hands, some of the intent leaked out. AI collapses that translation step. The thing I designed and the thing that ships can now be the same thing, made by the same person, because the hardest part of writing front-end — the syntax, the boilerplate, the "how do I do this in my stack" — is exactly what an AI pair is good at.</p>
+
+    <div class="pull reveal">
+      <p>The question stops being "can a designer code?" and becomes "does the designer understand the system well enough to direct the build?"</p>
+    </div>
+
+    <p>That's a judgment problem, not a syntax problem — and judgment is what senior designers already have.</p>
+
+    <h2>My workflow</h2>
+    <!-- [CONFIRM] This is the drafted version of your process. Tighten each bullet
+         to match exactly how you work — the specifics are what people come for. -->
+    <p>Here's how I work with Claude to go from design to shipped front-end.</p>
+    <ul>
+      <li><strong>Start from the system, not a blank page.</strong> I anchor the AI in the design system first — the tokens, spacing, and component rules from FDSG — so everything it generates speaks the same language as the rest of the product. The system is the constraint that keeps AI output from drifting.</li>
+      <li><strong>Work in components, then compose.</strong> I build the smallest pieces first and get each one right — an order row, a price cell, a button state — then assemble screens from parts I trust, rather than asking for a whole page in one shot.</li>
+      <li><strong>Describe intent, not just appearance.</strong> I tell the AI what an interaction is <em>for</em> — "this confirms an order, so it must be impossible to trigger by accident" — not just how it should look. Intent is where design judgment lives, and it's what keeps the behaviour faithful, not just the pixels.</li>
+      <li><strong>Stay in the loop on the hard parts.</strong> I let the AI carry the boilerplate and syntax, and I step in by hand on the things that need taste and judgment: timing, spacing, edge cases, and the states most people forget.</li>
+      <li><strong>Review like a designer, test like an engineer.</strong> Every pass gets checked against the design intent <em>and</em> run in the browser — real states, real edge cases — before it's anywhere near done.</li>
+    </ul>
+
+    <div class="callout reveal">
+      <span class="eyebrow">The output, not the description</span>
+      <p>The <a href="lab-order-ticket.html">order ticket in the Lab</a> was built this way: system first, components before screens, intent described rather than just appearance. It runs in your browser — poke at it.</p>
+    </div>
+
+    <h2>What it means for design teams</h2>
+    <p>If one person can carry a problem from user need to shipped screen, the org chart should stop pretending those are separate jobs. This is the same conviction that led me to push for <a href="article-ux-to-ui-ownership.html">"Product Designer" as a role</a> at FYERS instead of a split between UX and UI: fewer handoffs, less lost intent, more ownership. AI extends that logic one step further — the handoff to front-end becomes one more seam a single owner can close.</p>
+    <p>I don't think this makes engineers redundant; it makes the boundary negotiable. The interesting work — architecture, performance, the genuinely hard systems problems — still belongs to engineering. But the long tail of "design it, then wait weeks to see it built roughly right" is going away, and designers who can direct an AI to build their own work will move faster and lose less of themselves in translation.</p>
+
+    <h2>The honest limits</h2>
+    <p>I want to be clear-eyed, because the hype around this is loud.</p>
+    <ul>
+      <!-- [TO ADD] Your real example here — the time it produced something that
+           looked right but missed the intent, and how you caught it. The draft
+           flagged this as likely the most-quoted line in the piece. -->
+      <li><strong>AI doesn't replace understanding.</strong> It amplified me because I already knew the system, the interaction, and what "correct" looked like. Point it at a problem you don't understand and it will confidently build the wrong thing — cleanly, convincingly, and wrong.</li>
+      <li><strong>The last mile is still craft.</strong> The output got me most of the way, but the finish — the timing of a transition, the states nobody remembers, accessibility, the pixel-level fidelity to the design — is where I spent my own hands. AI closes the distance; taste closes the gap.</li>
+      <li><strong>It's a pair, not a pilot.</strong> The quality of what comes out still tracks the quality of the direction going in.</li>
+    </ul>
+
+    <p>Design has spent years arguing about whether designers should code. I think AI quietly ended the argument — not by making everyone an engineer, but by making the wall between designing something and shipping it low enough to step over. I stepped over it with Wealth Tracker. I don't plan to step back.</p>
+
+  </article>
+
+  <section class="next">
+    <span class="eyebrow lbl">Keep reading</span>
+    <div class="next-grid">
+      <a class="ncard" href="article-ux-to-ui-ownership.html">
+        <span class="tag">Essay · Team &amp; craft</span>
+        <h3>One designer, whole problem</h3>
+        <p>Why I killed the UX/UI split — and the objections, answered.</p>
+        <span class="go">Read the essay</span>
+      </a>
+      <a class="ncard" href="case-study-fdsg.html">
+        <span class="tag">Case study · Strategy</span>
+        <h3>FDSG — one design language for FYERS</h3>
+        <p>The design system this workflow is anchored in, and the org change that made it stick.</p>
+        <span class="go">Read the case study</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="foot">
+    <h2>Let's build something <span class="sig">worth using.</span></h2>
+    <p class="st"><span class="g">●</span> Open to Director / Head of Design roles · Bengaluru or remote</p>
+    <div class="contacts">
+      <a href="mailto:suj009@gmail.com">✉ suj009@gmail.com</a>
+      <a href="https://www.linkedin.com/in/suj009" target="_blank" rel="noopener">in · LinkedIn</a>
+      <a href="https://medium.com/@suj009" target="_blank" rel="noopener">✎ Medium</a>
+      <a href="cv.html">◆ CV</a>
+    </div>
+    <div class="fine">
+      <span>© <span id="yr"></span> Sujith Kumar Anand</span>
+      <span>Designed &amp; built by me — with AI.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/reading.js"></script>
+</body>
+</html>
