@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>What I learned scaling a design system across a fintech platform · Sujith Kumar Anand</title>
+<meta name="description" content="Design systems don't fail because the components are bad. They fail because a system is an organizational problem wearing a component costume. Four lessons from scaling one across a fintech platform." />
+<meta property="og:title" content="What I learned scaling a design system across a fintech platform" />
+<meta property="og:description" content="Governance before library, the design-to-code gap named out loud, adoption as a people problem, and measuring the promise you actually made." />
+<meta property="og:type" content="article" />
+
+<!--
+  ESSAY 2 — Scaling a design system
+  Source: article-scaling-design-system.md
+
+  STILL TO DO:
+  - "What I'd do differently" is ASSUMED — the draft's suggested candidate
+    (start governance before the library grows), written up in your voice.
+    It's the most credible part of any lessons piece, so replace it with your
+    real answer when you have one.
+-->
+
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/reading.css" />
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="index.html"><span class="mk"></span>Sujith Kumar Anand</a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#lab">Lab</a>
+      <a href="index.html#writing">Writing</a>
+      <a href="index.html#about">About</a>
+    </div>
+    <a class="nav-cta" href="index.html#contact">Get in touch</a>
+  </div>
+</nav>
+
+<header class="masthead">
+  <div class="wrap">
+    <span class="kicker">Essay · Design systems</span>
+    <h1>What I learned scaling a design system</h1>
+    <p class="standfirst">The case study is what happened. This is what it taught me — and almost none of it is about components.</p>
+    <div class="byline">
+      <span>Sujith Kumar Anand</span>
+      <span>~5 min read</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="read">
+
+    <p class="lede">Most design systems don't fail because the components are bad. They fail because a design system isn't really a component problem — it's an organizational one.</p>
+
+    <p>I learned that scaling one across a fintech platform with many product verticals, where the real work turned out to be everything <em>around</em> the Figma library. Here's what stuck.</p>
+
+    <h2>A system is a decision about how you work, not a folder of components</h2>
+    <p>Before we had one system, we had several half-finished ones — scattered guides that each team had grown on its own. The instinct, when that happens, is to build a better folder: more components, tidier files. That instinct is wrong. The scattered guides weren't a file problem; they were a symptom of teams making the same decisions independently, over and over.</p>
+    <p>The fix wasn't a bigger library. It was a single source of truth with a governance model behind it — a Design Review Board where patterns get proposed, critiqued, and ratified before they spread.</p>
+
+    <div class="pull reveal">
+      <p>The library is just the artifact. The agreement is the system.</p>
+    </div>
+
+    <h2>The design–engineering gap is real, and pretending it isn't makes it worse</h2>
+    <p>When our engineering team built the system into a coded component library, we did not get a 100% match between the design and the code. For a while that's uncomfortable to admit — it feels like a failure of the system. It isn't. The gap between "designed" and "built" is structural: tokens, states, and spacing rules don't always map cleanly onto what the front-end can do.</p>
+    <p>What matters is whether you <em>name</em> the gap or hide it. Naming it — being specific about which component, which state, which token diverged — turns a vague sense of "the system isn't working" into a punch list. The teams that pretend the gap doesn't exist are the ones whose systems quietly rot.</p>
+
+    <h2>Adoption is a people problem, and end-to-end owners solve it</h2>
+    <p>A system nobody adopts is a very expensive PDF. The thing that actually drove adoption for us wasn't a mandate — it was who was doing the work. When the people using the system are the same people who understand it end to end, from UX through UI to the front-end, adoption stops being something you enforce and becomes something people <em>want</em>, because the system makes their own job faster.</p>
+    <p>That's the quiet argument for <a href="article-ux-to-ui-ownership.html">collapsing the old UX/UI split</a> into a single product-design role: end-to-end owners don't just use a system, they trust it, because they can see the whole path it's serving.</p>
+
+    <h2>Measure the thing you promised</h2>
+    <p>We claimed the system reduced design effort by around 30% — and the only reason that number means anything is that we measured it against reality: the same kind of live project, delivered with the system versus without.</p>
+    <p>A design system's value is easy to assert and hard to prove, so pick the promise you're making — speed, consistency, fewer handoffs — and measure <em>that</em>, on real work, not in the abstract.</p>
+
+    <h2>What I'd do differently</h2>
+    <!-- [ASSUMED] The draft's suggested candidate, not your stated answer. -->
+    <p>Start the governance model earlier — before the library grows, not after. We built a lot of the agreement while the artifact was already spreading, which meant some of the early work was retrofitting consensus onto decisions that had already escaped. The agreement should precede the artifact rather than chase it.</p>
+
+    <div class="callout reveal">
+      <span class="eyebrow">The short version</span>
+      <p>Treat a design system as an operating standard and an organizational agreement, close the design-to-code gap out loud instead of quietly, put end-to-end owners at the centre, and measure the promise you actually made. The components are the easy part.</p>
+    </div>
+
+  </article>
+
+  <section class="next">
+    <span class="eyebrow lbl">Keep reading</span>
+    <div class="next-grid">
+      <a class="ncard" href="case-study-fdsg.html">
+        <span class="tag">Case study · Strategy</span>
+        <h3>FDSG — one design language for FYERS</h3>
+        <p>The system this essay is drawn from: what happened, version by version, and what it cost.</p>
+        <span class="go">Read the case study</span>
+      </a>
+      <a class="ncard" href="article-design-frontend-ai.html">
+        <span class="tag">Essay · Design + AI</span>
+        <h3>The handoff is dead</h3>
+        <p>Closing the design-to-code gap from the other side — by shipping the front-end myself.</p>
+        <span class="go">Read the essay</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="foot">
+    <h2>Let's build something <span class="sig">worth using.</span></h2>
+    <p class="st"><span class="g">●</span> Open to Director / Head of Design roles · Bengaluru or remote</p>
+    <div class="contacts">
+      <a href="mailto:suj009@gmail.com">✉ suj009@gmail.com</a>
+      <a href="https://www.linkedin.com/in/suj009" target="_blank" rel="noopener">in · LinkedIn</a>
+      <a href="https://medium.com/@suj009" target="_blank" rel="noopener">✎ Medium</a>
+      <a href="cv.html">◆ CV</a>
+    </div>
+    <div class="fine">
+      <span>© <span id="yr"></span> Sujith Kumar Anand</span>
+      <span>Designed &amp; built by me — with AI.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/reading.js"></script>
+</body>
+</html>

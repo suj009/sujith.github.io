@@ -1,124 +1,481 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sujith Kumar Anand — Design leader who ships</title>
+<meta name="description" content="Senior Design Manager at FYERS. A design leader who leads the team, delivers as an IC, and ships front-end with AI. Fintech, design systems, HCI." />
+<meta property="og:title" content="Sujith Kumar Anand — Design leader who ships" />
+<meta property="og:description" content="Leads the team, delivers as an IC, ships front-end with AI. Fintech · design systems · HCI." />
+<meta property="og:type" content="website" />
 
-	<link rel="shortcut icon" href="img/favicon1.ico">
-	<link rel="stylesheet" href="css/vendor/fluidbox.min.css">
-	<link rel="stylesheet" href="css/main.css">
+<!--
+  SUJITH KUMAR ANAND — PORTFOLIO
+  One self-contained file. Host anywhere (Vercel / Netlify / GitHub Pages) as index.html.
+  Keep lab-order-ticket.html in the same folder so the Lab embed loads.
 
-	<title>Sujith Anand</title>
+  Editing:
+  - Text is inline in the HTML, grouped by section. Search the section comment.
+  - Metrics use safe/relative framings for public use (per the confidentiality note
+    in your backbone). Raw internal numbers are intentionally NOT on the public page.
+  - [EDIT] marks the few spots to personalise (esp. the "what it's like to work
+    with me" paragraph and the Options Scalper design specifics).
+-->
 
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --paper:#F0EFE9;
+    --paper-2:#E9E8E0;
+    --ink:#14161B;
+    --graphite:#4A505B;
+    --muted:#6E7480;
+    --line:#D8D6CC;
+    --line-2:#C9C7BB;
+    --signal:#2B4FE0;
+    --up:#1C8F5F;
+    --down:#CE4550;
+    --panel:#0C0E13;
+    --panel-line:#262C39;
+    --panel-text:#E6E9EF;
+    --panel-muted:#8A93A6;
+    --maxw:1080px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:"Hanken Grotesk",system-ui,sans-serif;line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  .mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,44px)}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--signal);color:#fff}
+
+  /* eyebrow / section label */
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--muted)}
+
+  /* ---------- nav ---------- */
+  nav{position:sticky;top:0;z-index:50;background:rgba(240,239,233,.82);
+    backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:13px clamp(20px,5vw,44px);
+    display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;letter-spacing:-.01em}
+  .brand .mk{width:10px;height:10px;border-radius:50%;background:var(--signal)}
+  .nav-links{display:flex;gap:4px}
+  .nav-links a{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);padding:7px 11px;border-radius:7px;transition:color .2s,background .2s}
+  .nav-links a:hover{color:var(--ink);background:var(--paper-2)}
+  .nav-cta{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.06em;
+    border:1px solid var(--ink);padding:7px 13px;border-radius:999px;transition:all .2s}
+  .nav-cta:hover{background:var(--ink);color:var(--paper)}
+  @media(max-width:720px){.nav-links{display:none}}
+
+  /* ---------- hero ---------- */
+  header.hero{padding:clamp(56px,11vh,120px) 0 clamp(40px,7vh,72px)}
+  .hero-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:clamp(28px,5vw,64px);align-items:end}
+  .hero h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;letter-spacing:-.03em;
+    line-height:.96;font-size:clamp(2.6rem,6.6vw,5.4rem)}
+  .hero h1 .b{display:block}
+  .hero h1 .sig{color:var(--signal)}
+  .hero .lede{margin-top:26px;max-width:46ch;font-size:clamp(1.05rem,1.9vw,1.28rem);color:var(--graphite)}
+  .hero .lede b{color:var(--ink);font-weight:600}
+
+  /* spec readout — the signature (echoes the Lab instrument panel) */
+  .spec{background:var(--panel);border-radius:14px;padding:20px 22px;color:var(--panel-text);
+    font-family:"IBM Plex Mono",monospace;font-size:.8rem;box-shadow:0 26px 60px -34px rgba(0,0,0,.55)}
+  .spec .sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;
+    padding-bottom:12px;border-bottom:1px solid var(--panel-line)}
+  .spec .sh .t{letter-spacing:.16em;font-size:.64rem;text-transform:uppercase;color:var(--panel-muted)}
+  .spec .sh .live{display:inline-flex;align-items:center;gap:6px;font-size:.6rem;letter-spacing:.14em;color:var(--panel-muted)}
+  .spec .sh .live .pip{width:6px;height:6px;border-radius:50%;background:var(--up);box-shadow:0 0 8px var(--up);animation:pip 2s ease-in-out infinite}
+  @keyframes pip{50%{opacity:.3}}
+  .spec dl{display:grid;grid-template-columns:auto 1fr;gap:9px 16px}
+  .spec dt{color:var(--panel-muted);letter-spacing:.04em}
+  .spec dd{text-align:right;color:var(--panel-text)}
+  .spec dd .g{color:var(--up)}
+
+  /* ---------- section scaffold ---------- */
+  section{padding:clamp(48px,8vh,90px) 0;border-top:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:36px;flex-wrap:wrap}
+  .sec-head .n{font-family:"IBM Plex Mono",monospace;color:var(--signal);font-size:.8rem}
+  .sec-head h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;letter-spacing:-.02em;
+    font-size:clamp(1.7rem,3.6vw,2.6rem)}
+  .sec-head .sub{color:var(--muted);font-size:.95rem;margin-left:auto;max-width:34ch;text-align:right}
+  @media(max-width:640px){.sec-head .sub{margin-left:0;text-align:left}}
+
+  /* ---------- work ---------- */
+  .case{border:1px solid var(--line-2);border-radius:16px;overflow:hidden;margin-bottom:20px;
+    background:var(--paper);transition:border-color .25s}
+  .case:hover{border-color:var(--signal)}
+  .case-top{padding:26px clamp(20px,3vw,30px) 8px}
+  .case .tag{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--signal)}
+  .case h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:clamp(1.35rem,2.6vw,1.9rem);letter-spacing:-.015em;margin:10px 0 6px;max-width:22ch}
+  .case .role{color:var(--muted);font-size:.9rem}
+  .case-body{padding:14px clamp(20px,3vw,30px) 26px;display:grid;grid-template-columns:1.5fr 1fr;gap:28px}
+  .case-body p{color:var(--graphite);font-size:.97rem;margin-bottom:14px}
+  .case-body p:last-child{margin-bottom:0}
+  .case-body .k strong{color:var(--ink)}
+  .metrics{display:flex;flex-direction:column;gap:14px;border-left:1px solid var(--line);padding-left:22px}
+  .metric .v{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.55rem;line-height:1;letter-spacing:-.01em}
+  .metric .v.up{color:var(--up)} .metric .v.sig{color:var(--signal)}
+  .metric .l{font-size:.8rem;color:var(--muted);margin-top:4px}
+  .case-go{display:inline-flex;gap:8px;align-items:center;margin-top:18px;
+    font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.05em;color:var(--signal)}
+  .case-go::after{content:"→";transition:transform .25s var(--ease)}
+  .case:hover .case-go::after{transform:translateX(4px)}
+  @media(max-width:640px){.case-body{grid-template-columns:1fr}.metrics{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:18px}}
+
+  .sampler{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
+  .samp{border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--paper)}
+  .samp .v{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.15rem;letter-spacing:-.01em}
+  .samp .t{font-weight:600;font-size:.9rem;margin:8px 0 3px}
+  .samp .d{font-size:.82rem;color:var(--muted);line-height:1.4}
+  @media(max-width:860px){.sampler{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:460px){.sampler{grid-template-columns:1fr}}
+
+  /* ---------- lab ---------- */
+  #lab{background:var(--panel);color:var(--panel-text);border-top:1px solid var(--panel-line)}
+  #lab .sec-head h2{color:var(--panel-text)}
+  #lab .sec-head .n{color:#8FA6FF}
+  #lab .sec-head .sub{color:var(--panel-muted)}
+  .lab-frame{border:1px solid var(--panel-line);border-radius:16px;overflow:hidden;background:#0A0C10;position:relative}
+  .lab-frame .bar{display:flex;align-items:center;gap:8px;padding:11px 15px;border-bottom:1px solid var(--panel-line)}
+  .lab-frame .bar .dot{width:10px;height:10px;border-radius:50%;background:#2A3140}
+  .lab-frame .bar .lbl{margin-left:8px;font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.1em;color:var(--panel-muted)}
+  .lab-frame iframe{width:100%;height:560px;border:0;display:block;background:#0C0E13}
+  @media(max-width:620px){.lab-frame iframe{height:820px}}
+  .lab-note{margin-top:16px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  .lab-note p{color:var(--panel-muted);font-size:.88rem;max-width:52ch}
+  .lab-open{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.06em;
+    border:1px solid var(--panel-line);color:var(--panel-text);padding:9px 15px;border-radius:999px;transition:all .2s}
+  .lab-open:hover{background:var(--panel-text);color:var(--panel)}
+  .lab-more{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+  .lab-card{border:1px dashed var(--panel-line);border-radius:12px;padding:18px}
+  .lab-card .s{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--panel-muted)}
+  .lab-card h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:1.05rem;margin:10px 0 6px}
+  .lab-card p{color:var(--panel-muted);font-size:.85rem}
+  @media(max-width:760px){.lab-more{grid-template-columns:1fr}}
+
+  /* ---------- writing ---------- */
+  .writing{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .wcard{border:1px solid var(--line-2);border-radius:14px;padding:26px;background:var(--paper);transition:border-color .25s,transform .25s var(--ease)}
+  .wcard:hover{border-color:var(--signal);transform:translateY(-3px)}
+  .wcard .tag{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--signal)}
+  .wcard h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em;margin:12px 0 10px}
+  .wcard p{color:var(--graphite);font-size:.92rem}
+  .wcard .go{margin-top:16px;font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--signal);display:inline-flex;gap:7px}
+  .wcard .go::after{content:"→";transition:transform .25s}
+  .wcard:hover .go::after{transform:translateX(4px)}
+  .wcard.lead{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+  .wcard.lead h3{font-size:clamp(1.5rem,3vw,2.1rem)}
+  @media(max-width:640px){.writing{grid-template-columns:1fr}.wcard.lead{grid-template-columns:1fr}}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid;grid-template-columns:1.25fr .95fr;gap:clamp(28px,5vw,56px)}
+  .about-grid p{color:var(--graphite);margin-bottom:16px;font-size:1.02rem}
+  .about-grid p b{color:var(--ink);font-weight:600}
+  .about h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:1.15rem;margin:26px 0 10px}
+  .work-me{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:22px;margin-top:8px}
+  .work-me .eyebrow{margin-bottom:10px;display:block}
+  .career{display:flex;flex-direction:column}
+  .career .row{display:grid;grid-template-columns:92px 1fr;gap:16px;padding:13px 0;border-top:1px solid var(--line)}
+  .career .row:first-child{border-top:none}
+  .career .yr{font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--muted);padding-top:2px}
+  .career .org{font-weight:600;font-size:.95rem}
+  .career .r{color:var(--muted);font-size:.86rem}
+  .creds{font-size:.92rem;color:var(--graphite)}
+  .creds div{padding:7px 0;border-top:1px solid var(--line)}
+  .creds div:first-child{border-top:none}
+  .creds b{color:var(--ink)}
+  .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .skills span{font-family:"IBM Plex Mono",monospace;font-size:.72rem;border:1px solid var(--line-2);border-radius:999px;padding:6px 12px;color:var(--graphite)}
+  .cv{display:inline-flex;margin-top:22px;font-family:"IBM Plex Mono",monospace;font-size:.76rem;letter-spacing:.05em;
+    background:var(--ink);color:var(--paper);padding:11px 18px;border-radius:999px;transition:opacity .2s}
+  .cv:hover{opacity:.85}
+  @media(max-width:760px){.about-grid{grid-template-columns:1fr}}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--panel);color:var(--panel-text);border-top:1px solid var(--panel-line)}
+  .foot{max-width:var(--maxw);margin:0 auto;padding:clamp(52px,9vh,92px) clamp(20px,5vw,44px)}
+  .foot h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:clamp(1.9rem,4.6vw,3.2rem);letter-spacing:-.02em;line-height:1.02}
+  .foot h2 .sig{color:#8FA6FF}
+  .foot .st{font-family:"IBM Plex Mono",monospace;font-size:.76rem;letter-spacing:.06em;color:var(--panel-muted);margin-top:18px}
+  .foot .st .g{color:var(--up)}
+  .contacts{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .contacts a{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--panel-line);border-radius:999px;padding:10px 17px;font-size:.9rem;transition:border-color .2s,color .2s}
+  .contacts a:hover{border-color:#8FA6FF;color:#8FA6FF}
+  .foot .fine{margin-top:38px;padding-top:22px;border-top:1px solid var(--panel-line);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--panel-muted)}
+
+  .reveal{opacity:0;transform:translateY(16px)}
+  .reveal.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
 </head>
 <body>
-	<header>
 
-		<div id="logo-container">
-			<div id="logo"><a href="/">Sujith Anand</a></div>
-			<div id="subtitle">UX Design and Researcher</div>
-		</div>
-<!-- 		<nav>
-			<ul>
-				<li><a href="#">Link 1</a></li>
-				<li><a href="#">Link 2</a></li>
-				<li><a href="#">Link 3</a></li>
-				<li><a href="mailto:your@address.com" class="bordered">Contact</a></li>
-			</ul>
-		</nav> -->
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#top"><span class="mk"></span>Sujith Kumar Anand</a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#lab">Lab</a>
+      <a href="#writing">Writing</a>
+      <a href="#about">About</a>
+    </div>
+    <a class="nav-cta" href="#contact">Get in touch</a>
+  </div>
+</nav>
 
-	</header>
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Product Design Leader · Bengaluru</span>
+      <h1 style="margin-top:18px">
+        <span class="b">A design leader</span>
+        <span class="b">who <span class="sig">still ships.</span></span>
+      </h1>
+      <p class="lede">I lead the team, deliver as an IC, and turn design into working front-end with AI. <b>Ten years turning complex fintech into products people trust</b> — across trading, DeFi, and HCI research.</p>
+    </div>
 
-	<div id="content">
+    <!-- spec readout : signature element -->
+    <aside class="spec" aria-label="Profile at a glance">
+      <div class="sh"><span class="t">sujith.spec</span><span class="live"><span class="pip"></span>Open to roles</span></div>
+      <dl>
+        <dt>role</dt><dd>Sr Design Manager, FYERS</dd>
+        <dt>exp</dt><dd>10+ yrs</dd>
+        <dt>domains</dt><dd>fintech · DeFi · HCI</dd>
+        <dt>ships</dt><dd><span class="g">front-end, with AI</span></dd>
+        <dt>stack</dt><dd>Figma · Flutter · FE · AI</dd>
+        <dt>seeking</dt><dd>Director / Head of Design</dd>
+      </dl>
+    </aside>
+  </div>
+</header>
 
-		<section class="intro"></br>
-			<h1>I am looking for full time UX Design & Research oppurtunities.</h1>
-		</section>
+<!-- ============ WORK ============ -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="n">01</span>
+      <h2>Work</h2>
+      <span class="sub">Two anchor stories — one on strategy and scale, one on execution under pressure.</span>
+    </div>
 
-		<section class="row">
-			<div class="col-full">
-				<h2>About Me</h2></br>
-					<p>
-						I am a digital native person with more than two years of work experience
-						in researching and designing digital applications in both start-up and
-						multinational organisation environments.<br>
-						<br>At the moment, I am currently working in Onetech Ventures India Pvt Ltd
-						(Bangalore, India) for past 4 months as UX specialist. Before that, I was
-						working in IBM Studios (Boeblingen, Germany) Microsoft (London, UK) and
-						Emocial Ltd (London, UK).<br>
-						<br>Besides my working experience, I have a long education history. This is
-						due to my change of career from Computer Science to Human Computer Interaction.
-						As a result, I have two graduate degrees in Advanced Computer Science and
-						Human-Computer Interaction & Design from University of Newcastle Upon Tyne
-						(Newcastle, UK), KTH-Royal Institute of Technology (Stockholm, Sweden) and
-						University College London  (London, UK) respectively. <br>
-						<br>My motto is to create a good experience for end users. <br>
+    <!-- CASE A -->
+    <article class="case reveal" id="case-fdsg">
+      <div class="case-top">
+        <span class="tag">Strategy &amp; Leadership · Design systems</span>
+        <h3>FDSG — one design language across a fintech platform</h3>
+        <div class="role">Design Review Board member → owner of v2.0 &amp; v2.1 · web + mobile · 8-person team</div>
+      </div>
+      <div class="case-body">
+        <div class="k">
+          <p>When I joined FYERS, design didn't have one language — it had several dialects. Style guides were scattered, half-finished, or duplicated, so the same element existed in different ways across web, iOS, and Android. That cost the business twice: designers rebuilt instead of designed, and users met a product that felt subtly inconsistent — costly in a product built on trust.</p>
+          <p>I became one of the louder voices for <strong>a single, versioned source of truth</strong> rather than more scattered guides. After v1.0, I took over and drove <strong>FDSG 2.0 and 2.1</strong> across web and mobile — a visual reset from gradient-heavy to clean and minimal, then a pass that tightened spacing and density. The deeper change was organizational: I helped move FYERS from a split <strong>UX/UI relay</strong> to end-to-end <strong>Product Designers</strong>, which made adoption fast because the people using the system understood it top to bottom.</p>
+          <p>When engineering built it into code, we were honest that design-to-code was never a 100% match — naming the gap is what kept the system improving instead of quietly rotting.</p>
+          <a class="case-go" href="case-study-fdsg.html">Read the full case study</a>
+        </div>
+        <div class="metrics">
+          <div class="metric"><div class="v up">~30%</div><div class="l">less design effort, measured on live projects with vs. without the system</div></div>
+          <div class="metric"><div class="v sig">1</div><div class="l">source of truth, replacing scattered guides</div></div>
+          <div class="metric"><div class="v">UX/UI → PD</div><div class="l">org shift to end-to-end product designers</div></div>
+        </div>
+      </div>
+    </article>
 
-				    <br>That's my story.
-					</p>
-			</div>
-		</section>
+    <!-- CASE B -->
+    <article class="case reveal" id="case-options-scalper">
+      <div class="case-top">
+        <span class="tag">Execution &amp; Impact · Real-time trading</span>
+        <h3>Options Scalper Terminal — designing for the hardest user in the building</h3>
+        <div class="role">Design lead &amp; oversight · Options vertical · Q2 2024, ~3 months</div>
+      </div>
+      <div class="case-body">
+        <div class="k">
+          <p>Most fintech design makes the complex feel simple. This was the opposite: the user <em>wants</em> complexity, at speed, with zero margin for error. High-frequency options traders live in seconds — a slow interaction or an ambiguous state isn't an annoyance, it's money.</p>
+          <p>I set the direction and defended the standard: a <strong>fixed layout</strong> that becomes muscle memory, deeper analytics behind progressive disclosure so the default view stays scannable, live state read through colour and motion rather than full redraws, and <strong>error-prevention at speed</strong> — a deliberate confirm step and guardrails against fat-finger mistakes. The principle I held against pressure to show everything: the terminal should disappear into muscle memory.</p>
+          <p>The result showed up in the behaviour of the most demanding traders on the platform — they leaned in, spending more time in the tool and placing more through it.</p>
+          <a class="case-go" href="case-study-options-scalper.html">Read the full case study</a>
+        </div>
+        <div class="metrics">
+          <div class="metric"><div class="v up">↑ engagement</div><div class="l">session duration up; MAU grew steadily among active traders</div></div>
+          <div class="metric"><div class="v sig">high</div><div class="l">daily order volume per user — a tool people live in</div></div>
+          <div class="metric"><div class="v">↑ orders</div><div class="l">order volume through the terminal grew at scale</div></div>
+        </div>
+      </div>
+    </article>
 
-		<section class="row">
-			<div class="col-full">
-				<h2>CV & Portfolio</h2></br>
-				<p>
-					CV: <a href="cv.pdf"> http://sujithanand.com/cv.pdf</a>
-				</p>
-				<p>
-					Portfolio: <a href="portfolio.pdf"> http://sujithanand.com/portfolio.pdf</a>
-				</p>
-			</div>
+    <!-- SAMPLER -->
+    <div class="sampler reveal">
+      <div class="samp"><div class="v">↑ conversion</div><div class="t">NRI Onboarding</div><div class="d">Led the redesign; conversion improved month-on-month.</div></div>
+      <div class="samp"><div class="v">↑ MAU</div><div class="t">Markets · Screeners</div><div class="d">Screeners usage grew substantially after the revamp.</div></div>
+      <div class="samp"><div class="v">0 → 1</div><div class="t">FIA</div><div class="d">Built and launched from scratch; grew into a key analytical layer.</div></div>
+      <div class="samp"><div class="v">high</div><div class="t">Profile on FDSG</div><div class="d">Strong adoption among existing users; complaints trending down.</div></div>
+    </div>
+  </div>
+</section>
 
-		<section class="row">
-			<div class="col">
-				<h2>Contact Me</h2><br/>
-				<p>
-					If you want to know more about me? Just send me a <a href="mailto:contact@sujithanand.com">email</a><br>
-					(info@sujithanand.com)
-				</p>
-			</div>
-			<div class="col">
-				<h2>Follow me</h2><br/>
-				<p>
-					I am in <a href="https://www.linkedin.com/in/suj009">LinkedIn</a>, <a href="https://twitter.com/suj009">Twitter</a> and <a href="https://www.behance.net/sujithanand">Behance</a>.
-				</p>
-			</div>
-		</section>
+<!-- ============ LAB ============ -->
+<section id="lab">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="n">02</span>
+      <h2>Lab</h2>
+      <span class="sub">Small, real things I build. Where "I still ship" stops being a claim and becomes something you can click.</span>
+    </div>
 
+    <div class="lab-frame reveal">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="lbl">order-ticket · live component</span></div>
+      <iframe src="lab-order-ticket.html" title="Live order ticket component" loading="lazy"></iframe>
+    </div>
+    <div class="lab-note">
+      <p>A real-time order ticket — density, speed, live state, and hold-to-confirm error prevention. The same ideas as the Options Scalper story, built and running in your browser. <em>(Simulated data; nothing confidential.)</em></p>
+      <a class="lab-open" href="lab-order-ticket.html" target="_blank" rel="noopener">Open full component ↗</a>
+    </div>
 
-		<section class="row">
-			<div class="col-full">
-				<p>
-					© Sujith Anand 2017
-				</p>
-			</div>
-		</section>
+    <div class="lab-more reveal">
+      <div class="lab-card"><span class="s">In progress</span><h4>Figma → front-end, with AI</h4><p>A teardown of the workflow I used to ship Wealth Tracker end to end — one screen, from design file to working code.</p></div>
+      <div class="lab-card"><span class="s">In progress</span><h4>A small fintech tool</h4><p>An options payoff visualizer — useful, shareable, and built to prove domain fluency plus the ability to ship it.</p></div>
+      <div class="lab-card"><span class="s">In progress</span><h4>Micro-interaction study</h4><p>A single interaction done properly — the craft at the detail level, shipped rather than described.</p></div>
+    </div>
+  </div>
+</section>
 
-	</div>
+<!-- ============ WRITING ============ -->
+<section id="writing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="n">03</span>
+      <h2>Writing</h2>
+      <span class="sub">How I think, not just what I've shipped. Three pieces on design, systems, and AI.</span>
+    </div>
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script>
-	if (!window.jQuery)
-	{
-	    document.write('<script src="js/vendor/jquery.1.11.min.js"><\/script>');
-	}
-	</script>
+    <div class="writing">
+      <a class="wcard lead reveal" href="article-design-frontend-ai.html">
+        <div>
+          <span class="tag">Essay · Design + AI</span>
+          <h3>The handoff is dead. I designed and shipped the front-end myself — with AI.</h3>
+        </div>
+        <div>
+          <p>Design used to end at a handoff. Working with AI as a pair, I designed Wealth Tracker and shipped its front-end myself — and it changed how I think about what a designer is. The workflow, and the honest limits.</p>
+          <span class="go">Read the piece</span>
+        </div>
+      </a>
 
-	<script src="js/vendor/jquery.fluidbox.min.js"></script>
-	<script src="js/main.js"></script>
+      <a class="wcard reveal" href="article-scaling-design-system.html">
+        <span class="tag">Essay · Design systems</span>
+        <h3>What I learned scaling a design system across a fintech platform</h3>
+        <p>A system isn't a folder of components — it's an organizational agreement. On governance, the design-to-code gap, and measuring the promise you actually made.</p>
+        <span class="go">Read the piece</span>
+      </a>
 
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      <a class="wcard reveal" href="article-ux-to-ui-ownership.html">
+        <span class="tag">Essay · Team &amp; craft</span>
+        <h3>One designer, whole problem: why I killed the UX/UI split</h3>
+        <p>Handoffs are where intent dies. The case for one Product Designer owning a problem from user need to shipped screen — and the objections, answered.</p>
+        <span class="go">Read the piece</span>
+      </a>
+    </div>
+  </div>
+</section>
 
-	  ga('create', 'YOUR_GOOGLE_ANALYTICS_ID', 'auto');
-	  ga('send', 'pageview');
+<!-- ============ ABOUT ============ -->
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="n">04</span>
+      <h2>About</h2>
+      <span class="sub">The human, the credentials, and what it's actually like to work with me.</span>
+    </div>
 
-	</script>
+    <div class="about-grid reveal">
+      <div>
+        <p>I'm a product design leader with over ten years turning complex problems into products people enjoy — most of it in fintech, where the stakes and the trust are both high. I came into design from an <b>engineering foundation</b> (a master's in Advanced Computer Science before one in Human-Computer Interaction), which is exactly why "a design leader who ships front-end" isn't a stretch for me — it's where I started.</p>
+        <p>Today I lead product design at <b>FYERS</b> across six verticals. Before that, DeFi and fintech at Qplum, Datami, Nexter, and Oddz; and before design was my job, I was the person running the interviews and diary studies as an HCI researcher at <b>Microsoft</b> and <b>IBM</b>.</p>
 
+        <div class="work-me">
+          <span class="eyebrow">What it's like to work with me</span>
+          <p style="margin:0;color:var(--graphite)">I optimize for clarity and ownership. I'd rather my team own a problem end to end — from user need to shipped screen — than pass it down a relay, and I try to lead the way I wish I'd been led: a clear direction, room to do the best work of your career, and systems that make the next project easier. I push for craft, I'll get into the code when it helps, and I care more about the team getting sharper than about being the smartest person in the room.</p>
+        </div>
+
+        <h3>Career</h3>
+        <div class="career">
+          <div class="row"><span class="yr">2024 — Now</span><div><div class="org">FYERS</div><div class="r">Senior Design Manager, Product Design · 6 verticals</div></div></div>
+          <div class="row"><span class="yr">2022 — 24</span><div><div class="org">Nexter Finance</div><div class="r">Design Lead · web3 / DeFi</div></div></div>
+          <div class="row"><span class="yr">2021 — 22</span><div><div class="org">Oddz Finance</div><div class="r">Design Lead · DeFi</div></div></div>
+          <div class="row"><span class="yr">2018 — 21</span><div><div class="org">Datami</div><div class="r">Lead Product Designer → Product Designer · Airtel TV Africa, Reach Mobile</div></div></div>
+          <div class="row"><span class="yr">Oct 2017 — Mar 18</span><div><div class="org">Two Roads Tech</div><div class="r">Product Designer · Bengaluru</div></div></div>
+          <div class="row"><span class="yr">2017</span><div><div class="org">Qplum</div><div class="r">Product Designer · AI portfolio-investment platform (US)</div></div></div>
+          <div class="row"><span class="yr">Oct 2016 — Apr 17</span><div><div class="org">Onetech Ventures</div><div class="r">UX Specialist · Bengaluru</div></div></div>
+          <div class="row"><span class="yr">Feb — Jun 2016</span><div><div class="org">IBM Studios, Böblingen</div><div class="r">UX design &amp; research — IBM BPM Process Portal</div></div></div>
+          <div class="row"><span class="yr">2015 — 16</span><div><div class="org">emocial Ltd · freelance</div><div class="r">UX design · London</div></div></div>
+          <div class="row"><span class="yr">2014 — 15</span><div><div class="org">Microsoft</div><div class="r">UX research — care technology, with UCL &amp; Kent County Council</div></div></div>
+          
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-top:0">Credentials</h3>
+        <div class="creds">
+          <div><b>MSc, Human-Computer Interaction &amp; Design</b> — EIT Digital · KTH, then UCL · 2013 — 15</div>
+          <div><b>MSc, Advanced Computer Science</b> — Newcastle University · 2011 — 12</div>
+          <div><b>BE, Information Science &amp; Engineering</b> — BMS College of Engineering · 2006 — 10</div>
+          <div><b>NISM Series 7</b> — certified · Series 8 in progress</div>
+        </div>
+
+        <h3>What I do</h3>
+        <div class="skills">
+          <span>Design leadership</span><span>Team scaling</span><span>Design systems</span>
+          <span>Product design</span><span>Figma</span><span>Flutter</span>
+          <span>Front-end</span><span>AI-assisted build</span><span>Research</span>
+        </div>
+
+        <a class="cv" href="cv.html">↗ View / print CV</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT / FOOTER ============ -->
+<footer id="contact">
+  <div class="foot">
+    <h2>Let's build something <span class="sig">worth using.</span></h2>
+    <p class="st"><span class="g">●</span> Open to Director / Head of Design roles · Bengaluru or remote</p>
+    <div class="contacts">
+      <a href="mailto:suj009@gmail.com">✉ suj009@gmail.com</a>
+      <a href="https://www.linkedin.com/in/suj009" target="_blank" rel="noopener">in · LinkedIn</a>
+      <a href="https://medium.com/@suj009" target="_blank" rel="noopener">✎ Medium</a>
+      <a href="https://sujith.design" target="_blank" rel="noopener">◆ sujith.design</a>
+    </div>
+    <div class="fine">
+      <span>© <span id="yr"></span> Sujith Kumar Anand</span>
+      <span>Designed &amp; built by me — with AI.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+  // live "spec" pip already animated in CSS; small touch: nudge the "seeking" line on load
+  // (kept minimal on purpose — restraint over motion)
+</script>
 </body>
 </html>

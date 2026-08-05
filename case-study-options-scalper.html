@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Options Scalper Terminal — designing for the hardest user in the building · Sujith Kumar Anand</title>
+<meta name="description" content="Case study: a real-time options terminal for high-frequency traders — density without chaos, speed as a feature, and error prevention at the moment the stakes are highest." />
+<meta property="og:title" content="Options Scalper Terminal — designing for the hardest user in the building" />
+<meta property="og:description" content="Most fintech design makes the complex feel simple. This was the opposite: the user wants complexity, at speed, with zero margin for error." />
+<meta property="og:type" content="article" />
+
+<!--
+  CASE STUDY B — Options Scalper Terminal (execution & impact)
+  Source: case-study-options-scalper.md
+
+  STILL TO DO before this is publication-final:
+  - THE CRAFT DETAIL IS ASSUMED. The four bullets under "The design challenge",
+    and the leadership call under "How I led it", came into the draft as
+    *suggested* framings built from appraisal notes — not from a record of what
+    the team actually did. They are asserted as fact here and on index.html.
+    This is the section that carries the craft argument, so correct anything
+    that didn't happen.
+  - Metrics are deliberately RELATIVE (~15% session duration, ~17% MAU), which
+    is what the confidentiality note in portfolio-content-backbone.md calls
+    safe for a public URL. The raw figures — average daily traded users,
+    absolute DAU, orders per user, total orders placed, absolute MAU — are in
+    the source markdown and are intentionally NOT on this page. Only add them
+    back with sign-off.
+  - Team size was "[n designers]" in the draft, so it is left out of the
+    at-a-glance panel rather than guessed.
+  - Visuals. Four .fig slots below are labelled placeholders.
+-->
+
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/reading.css" />
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="index.html"><span class="mk"></span>Sujith Kumar Anand</a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#lab">Lab</a>
+      <a href="index.html#writing">Writing</a>
+      <a href="index.html#about">About</a>
+    </div>
+    <a class="nav-cta" href="index.html#contact">Get in touch</a>
+  </div>
+</nav>
+
+<header class="masthead">
+  <div class="wrap">
+    <span class="kicker">Case study · Execution &amp; impact</span>
+    <h1>Designing for the hardest user in the building</h1>
+    <p class="standfirst">Most fintech design makes the complex feel simple. The Options Scalper Terminal was the opposite: the user <em>wants</em> complexity, at speed, with zero margin for error.</p>
+    <div class="byline">
+      <span>Real-time trading · Options vertical</span>
+      <span>Q2 2024 · ~3 months</span>
+      <span>~7 min read</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="glance reveal">
+    <div class="sh">
+      <span class="t">At a glance</span>
+      <span class="live"><span class="pip"></span>SHIPPED</span>
+    </div>
+    <dl>
+      <dt>role</dt><dd>Design lead &amp; oversight — direction, quality bar, alignment</dd>
+      <dt>product</dt><dd>Real-time terminal for high-frequency options traders</dd>
+      <dt>timeline</dt><dd>Q2 2024 · ~3 months</dd>
+      <dt>system</dt><dd>Built on FDSG</dd>
+      <dt>outcome</dt><dd><span class="g">deeper, stickier engagement</span></dd>
+    </dl>
+  </section>
+
+  <article class="read">
+
+    <h2>The problem</h2>
+    <p class="lede">High-frequency options traders — scalpers — live in seconds. They place many orders, react to fast-moving prices, and judge a tool by whether it disappears into muscle memory.</p>
+    <p>For them, a slow interaction, a buried action, or an ambiguous state isn't a mild annoyance — it's money. The design challenge was to build a terminal dense enough to be powerful and clear enough to be safe, at the exact moment the stakes are highest.</p>
+    <p>Get it wrong and you lose your best, most active users. Get it right and you deepen the relationship with exactly the traders who matter most to the business.</p>
+
+    <figure class="fig reveal">
+      <div class="slot">
+        <span class="k">Visual to add</span>
+        <p class="w">The terminal, full view — annotated to show where the density is doing work rather than adding noise.</p>
+      </div>
+    </figure>
+
+    <h2>The design challenge</h2>
+    <p>Four constraints shaped everything, and each one pulled against another:</p>
+    <ul>
+      <li><strong>Density without chaos.</strong> Scalpers need prices, positions, order entry, and analytics on one screen. We held the layout <em>fixed</em> — every element in a constant place so it becomes muscle memory — and pushed deeper analytics behind progressive disclosure, so the default view stays scannable instead of drowning the trader in everything at once.</li>
+      <li><strong>Speed as a feature.</strong> We made the primary actions reachable in the fewest possible steps — preset lot sizes, a sticky order pad that never scrolls out of reach, and fast keyboard paths — so placing an order never competes with reading the market.</li>
+      <li><strong>Real-time state, read at a glance.</strong> Prices move constantly, so we communicated change through colour and a light flash on the value that changed, rather than redrawing the screen. A persistent P&amp;L strip keeps "where do I stand right now" always visible. The goal: read the whole state in a glance, not a scan.</li>
+      <li><strong>Error prevention at speed.</strong> Speed is where costly mistakes happen, so the design has to catch them without slowing anyone down — unambiguous buy/sell colour coding, a deliberate confirm step on the order action, and guardrails against fat-finger quantities.</li>
+    </ul>
+
+    <div class="callout reveal">
+      <span class="eyebrow">The last one, running</span>
+      <p>The <a href="lab-order-ticket.html">Lab order ticket</a> makes error-prevention-at-speed literal: you press and <em>hold</em> to confirm. Same idea, built as a working component you can try.</p>
+    </div>
+
+    <figure class="fig reveal">
+      <div class="slot">
+        <span class="k">Visual to add</span>
+        <p class="w">The core fast-action pattern — one-tap entry, presets, and the keyboard path.</p>
+      </div>
+    </figure>
+
+    <figure class="fig reveal">
+      <div class="slot">
+        <span class="k">Visual to add</span>
+        <p class="w">Real-time state treatment: how "now" is made legible without a redraw.</p>
+      </div>
+    </figure>
+
+    <h2>How I led it</h2>
+    <p>I didn't design every screen — I set the direction and defended the standard. My role was to keep the work honest to two things at once: what these traders actually need, and what the business needs from them. That meant running design critiques against real trader workflows, setting the interaction principles the team designed to, and aligning everything to <a href="case-study-fdsg.html">FDSG</a> so the terminal felt like part of the platform, not a bolt-on.</p>
+    <p>The clearest call I made was keeping the default view deliberately uncluttered. There's always pressure to surface <em>everything</em> on a power-user screen, but I held the principle that the terminal should disappear into muscle memory — so we defended progressive disclosure and resisted piling analytics onto the default layout, even when it was tempting.</p>
+
+    <div class="pull reveal">
+      <p>That restraint is what let the density stay usable at speed.</p>
+    </div>
+
+    <h2>The outcome</h2>
+    <p>The proof is in the behaviour of the hardest-to-please users on the platform — they leaned in.</p>
+    <div class="outcomes reveal">
+      <div class="o">
+        <span class="v up">~15%</span>
+        <span class="d">longer sessions — deeper engagement, not just more visits.</span>
+      </div>
+      <div class="o">
+        <span class="v up">~17%</span>
+        <span class="d">MAU growth on the terminal over the period.</span>
+      </div>
+      <div class="o">
+        <span class="v sig">high</span>
+        <span class="d">daily order volume per user — the signature of a tool people live in rather than visit.</span>
+      </div>
+      <div class="o">
+        <span class="v">at scale</span>
+        <span class="d">hundreds of thousands of successful orders placed through the terminal to date.</span>
+      </div>
+    </div>
+    <p>Taken together: the traders who are quickest to abandon a clumsy tool instead spent <em>more</em> time in it and placed <em>more</em> through it. For a trading product, that's the engagement signal that matters most.</p>
+
+    <figure class="fig reveal">
+      <div class="slot">
+        <span class="k">Visual to add</span>
+        <p class="w">A simple engagement chart — session duration or MAU trend across the period.</p>
+      </div>
+    </figure>
+
+  </article>
+
+  <section class="next">
+    <span class="eyebrow lbl">Keep reading</span>
+    <div class="next-grid">
+      <a class="ncard" href="case-study-fdsg.html">
+        <span class="tag">Case study · Strategy</span>
+        <h3>FDSG — one design language for FYERS</h3>
+        <p>Scattered style guides into a single versioned source of truth — and the org change that made it stick.</p>
+        <span class="go">Read the case study</span>
+      </a>
+      <a class="ncard" href="article-design-frontend-ai.html">
+        <span class="tag">Essay · Design + AI</span>
+        <h3>The handoff is dead</h3>
+        <p>I designed a product and then shipped its front-end myself, with AI as the pair. The workflow, and the honest limits.</p>
+        <span class="go">Read the essay</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="foot">
+    <h2>Let's build something <span class="sig">worth using.</span></h2>
+    <p class="st"><span class="g">●</span> Open to Director / Head of Design roles · Bengaluru or remote</p>
+    <div class="contacts">
+      <a href="mailto:suj009@gmail.com">✉ suj009@gmail.com</a>
+      <a href="https://www.linkedin.com/in/suj009" target="_blank" rel="noopener">in · LinkedIn</a>
+      <a href="https://medium.com/@suj009" target="_blank" rel="noopener">✎ Medium</a>
+      <a href="cv.html">◆ CV</a>
+    </div>
+    <div class="fine">
+      <span>© <span id="yr"></span> Sujith Kumar Anand</span>
+      <span>Designed &amp; built by me — with AI.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/reading.js"></script>
+</body>
+</html>
