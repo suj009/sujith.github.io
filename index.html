@@ -76,7 +76,35 @@
   .nav-cta{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.06em;
     border:1px solid var(--ink);padding:7px 13px;border-radius:999px;transition:all .2s}
   .nav-cta:hover{background:var(--ink);color:var(--paper)}
-  @media(max-width:720px){.nav-links{display:none}}
+
+  /* The nav is paper-coloured, so over the dark Lab section and the footer it read
+     as a light slab sitting on top of the page. .on-dark is toggled from the script
+     whenever a dark section is behind the bar. */
+  nav.on-dark{background:rgba(12,14,19,.86);border-bottom-color:var(--panel-line)}
+  nav.on-dark .brand{color:var(--panel-text)}
+  nav.on-dark .nav-links a{color:var(--panel-muted)}
+  nav.on-dark .nav-links a:hover,nav.on-dark .nav-links a:focus-visible{color:var(--panel-text);background:rgba(255,255,255,.07)}
+  nav.on-dark .nav-cta{border-color:var(--panel-text);color:var(--panel-text)}
+  nav.on-dark .nav-cta:hover{background:var(--panel-text);color:var(--panel)}
+
+  /* Below 720px the links used to be display:none with nothing replacing them,
+     which left a 10,000px page with no way to jump. They now wrap to their own
+     scrollable row instead of disappearing. */
+  @media(max-width:720px){
+    .nav-in{flex-wrap:wrap;row-gap:2px}
+    .brand{flex:1 1 auto;min-width:0}
+    .nav-cta{flex:0 0 auto}
+    .nav-links{order:3;flex:1 0 100%;gap:2px;overflow-x:auto;scrollbar-width:none;
+      -webkit-overflow-scrolling:touch;padding-bottom:7px;margin-top:2px}
+    .nav-links::-webkit-scrollbar{display:none}
+    .nav-links a{white-space:nowrap;padding:9px 10px}
+  }
+  /* Touch ergonomics keyed to the input device rather than the viewport, so a
+     tablet above the 720px breakpoint gets proper targets too. A mouse keeps
+     the tighter proportions. */
+  @media(pointer:coarse){
+    .nav-links a,.nav-cta,.brand{display:inline-flex;align-items:center;min-height:44px}
+  }
 
   /* ---------- hero ---------- */
   header.hero{padding:clamp(56px,11vh,120px) 0 clamp(40px,7vh,72px)}
@@ -151,7 +179,11 @@
   .metric .v{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.55rem;line-height:1;letter-spacing:-.01em}
   .metric .v.up{color:var(--up)} .metric .v.sig{color:var(--signal)}
   .metric .l{font-size:.8rem;color:var(--muted);margin-top:4px}
-  .case-go{display:inline-flex;gap:8px;align-items:center;margin-top:18px;
+  /* Was 200x19 — the primary route into each case study, and too small to hit
+     comfortably on a phone. Padding takes it past the 44px guideline without
+     changing how it looks. */
+  .case-go{display:inline-flex;gap:8px;align-items:center;margin-top:10px;
+    padding:13px 2px;min-height:44px;
     font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.05em;color:var(--signal)}
   .case-go::after{content:"→";transition:transform .25s var(--ease)}
   .case:hover .case-go::after{transform:translateX(4px)}
@@ -174,12 +206,16 @@
   .lab-frame .bar{display:flex;align-items:center;gap:8px;padding:11px 15px;border-bottom:1px solid var(--panel-line)}
   .lab-frame .bar .dot{width:10px;height:10px;border-radius:50%;background:#2A3140}
   .lab-frame .bar .lbl{margin-left:8px;font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.1em;color:var(--panel-muted)}
-  .lab-frame iframe{width:100%;height:560px;border:0;display:block;background:#0C0E13}
-  @media(max-width:620px){.lab-frame iframe{height:820px}}
+  /* Heights are measured, not guessed: the terminal fills the frame and squeezes
+     its contents when the frame is too short, which was clipping the hold-to-confirm
+     button. Minimum that clears it is 650px two-column and 920px single-column. */
+  .lab-frame iframe{width:100%;height:660px;border:0;display:block;background:#0C0E13}
+  @media(max-width:620px){.lab-frame iframe{height:930px}}
   .lab-note{margin-top:16px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
   .lab-note p{color:var(--panel-muted);font-size:.88rem;max-width:52ch}
   .lab-open{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.06em;
-    border:1px solid var(--panel-line);color:var(--panel-text);padding:9px 15px;border-radius:999px;transition:all .2s}
+    display:inline-flex;align-items:center;min-height:44px;
+    border:1px solid var(--panel-line);color:var(--panel-text);padding:9px 17px;border-radius:999px;transition:all .2s}
   .lab-open:hover{background:var(--panel-text);color:var(--panel)}
   .lab-more{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
   .lab-card{border:1px dashed var(--panel-line);border-radius:12px;padding:18px}
@@ -221,7 +257,8 @@
   .creds b{color:var(--ink)}
   .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
   .skills span{font-family:"IBM Plex Mono",monospace;font-size:.72rem;border:1px solid var(--line-2);border-radius:999px;padding:6px 12px;color:var(--graphite)}
-  .cv{display:inline-flex;margin-top:22px;font-family:"IBM Plex Mono",monospace;font-size:.76rem;letter-spacing:.05em;
+  .cv{display:inline-flex;align-items:center;min-height:44px;margin-top:22px;
+    font-family:"IBM Plex Mono",monospace;font-size:.76rem;letter-spacing:.05em;
     background:var(--ink);color:var(--paper);padding:11px 18px;border-radius:999px;transition:opacity .2s}
   .cv:hover{opacity:.85}
   @media(max-width:760px){.about-grid{grid-template-columns:1fr}}
@@ -491,6 +528,26 @@
 
 <script>
   document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // Flip the nav to its dark palette whenever a dark section sits behind it,
+  // so the paper-coloured bar stops reading as a slab over the Lab and footer.
+  (function () {
+    var bar = document.querySelector("nav");
+    if (!bar) return;
+    var dark = [document.getElementById("lab"), document.getElementById("contact")].filter(Boolean);
+    if (!dark.length) return;
+    var tick = function () {
+      var edge = bar.getBoundingClientRect().bottom;
+      var over = dark.some(function (s) {
+        var r = s.getBoundingClientRect();
+        return r.top <= edge && r.bottom >= edge;
+      });
+      bar.classList.toggle("on-dark", over);
+    };
+    addEventListener("scroll", tick, { passive: true });
+    addEventListener("resize", tick);
+    tick();
+  })();
 
   // scroll reveal
   const io = new IntersectionObserver((entries)=>{
