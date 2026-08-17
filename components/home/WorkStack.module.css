@@ -99,6 +99,47 @@
   background: linear-gradient(to top, var(--panel) 12%, transparent 62%);
 }
 
+/* ---------- full-bleed artwork ---------- */
+
+.cover {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* Held back so it reads as the panel's ground rather than competing with
+     the copy sitting on top of it. */
+  opacity: 0.7;
+}
+
+/* The stripes exist to give an empty panel some texture. Over artwork they
+   are just noise, so they come off. */
+.hasCover::before {
+  background-image: none;
+}
+
+/*
+  A much deeper scrim than the plain panel needs. The copy sits bottom-left,
+  so this darkens along both of those edges: the vertical pass carries the
+  metrics and CTA, the horizontal pass carries the heading and lede. Without
+  it the type lands on screenshots and loses its contrast.
+*/
+.hasCover::after {
+  background:
+    linear-gradient(
+      to top,
+      var(--panel) 24%,
+      rgba(12, 14, 19, 0.58) 54%,
+      rgba(12, 14, 19, 0.12) 86%
+    ),
+    linear-gradient(
+      to right,
+      var(--panel) 0%,
+      rgba(12, 14, 19, 0.62) 30%,
+      transparent 62%
+    );
+}
+
 /*
   Placeholder label for the product screenshots that still need shooting —
   the same convention as the "Visual to add" slots on the case-study pages.
@@ -212,5 +253,23 @@
 
   .caption {
     display: none;
+  }
+
+  /*
+    The copy takes up far more of a phone-sized panel, so the artwork needs to
+    give way to it — a horizontal scrim is pointless at this width, and the
+    vertical one has to start higher.
+  */
+  .cover {
+    opacity: 0.5;
+  }
+
+  .hasCover::after {
+    background: linear-gradient(
+      to top,
+      var(--panel) 40%,
+      rgba(12, 14, 19, 0.7) 70%,
+      rgba(12, 14, 19, 0.25) 100%
+    );
   }
 }

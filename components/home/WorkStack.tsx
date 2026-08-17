@@ -13,7 +13,10 @@ type Panel = {
   lede: string;
   metrics: { value: string; label: string; up?: boolean }[];
   href: string;
-  caption: string;
+  /** Full-bleed artwork behind the panel. Falls back to the stripe treatment. */
+  cover?: { src: string; position?: string };
+  /** Placeholder note, shown only while `cover` is still missing. */
+  caption?: string;
 };
 
 const PANELS: Panel[] = [
@@ -27,6 +30,21 @@ const PANELS: Panel[] = [
       { value: "8", label: "designers on it" },
     ],
     href: "/work/fdsg/",
+    /*
+      Artwork goes here once public/img/fdsg-cover.png exists. Left unset until
+      then: pointing at a missing file costs a 404 on every home-page load and
+      drops the stripe texture for nothing.
+
+      When switching it on, anchor it right —
+
+        cover: { src: "/img/fdsg-cover.png", position: "right center" },
+
+      — because the poster carries its own large FDSG wordmark down its left
+      edge and the panel already sets "FDSG" as its heading in the display
+      face. Anchored right, that title block sits off-canvas and the frame
+      fills with the tokens/components/product side, which is the half that
+      actually shows the system.
+    */
     caption: "FDSG — full-bleed capture, to add",
   },
   {
@@ -77,11 +95,27 @@ function StackPanel({ panel, index }: { panel: Panel; index: number }) {
   return (
     <div className={styles.track} ref={track}>
       <motion.article
-        className={styles.panel}
+        className={`${styles.panel} ${panel.cover ? styles.hasCover : ""}`}
         id={panel.id}
         style={{ ...depth, zIndex: index + 1 }}
       >
-        <span className={styles.caption}>{panel.caption}</span>
+        {/*
+          A background layer rather than an <img>: it is decoration, so it
+          should stay out of the accessibility tree, and a missing file
+          degrades silently to the stripe treatment instead of leaving a
+          broken-image box across the panel.
+        */}
+        {panel.cover && (
+          <div
+            className={styles.cover}
+            style={{
+              backgroundImage: `url(${panel.cover.src})`,
+              backgroundPosition: panel.cover.position ?? "center",
+            }}
+          />
+        )}
+
+        {panel.caption && <span className={styles.caption}>{panel.caption}</span>}
 
         <div className={`wrap ${styles.panelInner}`}>
           <Reveal>
