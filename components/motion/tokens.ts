@@ -27,17 +27,31 @@ export const SPRING_SOFT = {
   mass: 1,
 } as const;
 
-/** Entrances and reveals, where a predictable duration reads better than physics. */
+/**
+ * Entrances and reveals, where a predictable duration reads better than
+ * physics.
+ *
+ * Deliberately unhurried. This governs decorative choreography only — content
+ * arriving as you reach it — so it can take its time. Interaction feedback
+ * (SPRING below) must not: a hover or tap that takes this long reads as lag,
+ * not as polish.
+ */
 export const GLIDE = {
-  duration: 0.7,
+  duration: 1.2,
   ease: EASE,
 } as const;
 
-/** How far reveal/entrance elements travel, in px. */
-export const RISE = 16;
+/**
+ * How far reveal/entrance elements travel, in px.
+ *
+ * Scaled up with the longer duration. Holding the old 16px over nearly twice
+ * the time gave a slow crawl over a short distance, which reads as sluggish
+ * rather than graceful; more travel keeps the movement legible.
+ */
+export const RISE = 24;
 
 /** Gap between staggered siblings, in seconds. */
-export const STAGGER = 0.09;
+export const STAGGER = 0.18;
 
 /** Fraction of an element that must be visible before its reveal fires. */
 export const VIEWPORT = { once: true, amount: 0.25 } as const;

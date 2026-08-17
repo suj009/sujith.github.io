@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { Entrance, EntranceItem } from "@/components/motion/Entrance";
-import { EASE } from "@/components/motion/tokens";
+import { EASE, GLIDE, STAGGER } from "@/components/motion/tokens";
 import styles from "./Hero.module.css";
 
 const SPEC = [
@@ -75,12 +75,18 @@ export function Hero() {
           className={styles.cue}
           href="#work"
           aria-label="Scroll to Work"
+          /*
+            Arrives after the staggered sequence has finished, not during it —
+            it is the invitation to leave the hero, so it should not compete
+            with the hero still assembling. The delay tracks the sequence
+            length: delayChildren + (items - 1) × STAGGER + GLIDE.
+          */
           {...(reduced
             ? {}
             : {
                 initial: { opacity: 0 },
                 animate: { opacity: 1 },
-                transition: { delay: 0.75, duration: 0.6, ease: EASE },
+                transition: { delay: 0.05 + 4 * STAGGER + GLIDE.duration, duration: 0.9, ease: EASE },
               })}
         >
           <span>Scroll</span>
