@@ -1,0 +1,12 @@
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 60;
+  background: var(--signal);
+  /* useScroll reports 0 at the top, so the bar has to grow from the left edge
+     rather than from its centre. */
+  transform-origin: 0 50%;
+}

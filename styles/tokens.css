@@ -1,0 +1,59 @@
+/*
+  Design tokens — the single source of truth.
+
+  These values previously lived in a duplicated :root block inside index.html
+  AND inside assets/reading.css, which meant any palette change had to be made
+  twice and kept in sync by hand. Everything now reads from here.
+
+  This site is deliberately single-theme: a warm paper ground with near-black
+  instrument panels cut into it. That contrast IS the design (the panels read as
+  terminals embedded in a document), so it does not invert for a dark OS —
+  the colours are painted explicitly instead of inheriting anything.
+*/
+
+:root {
+  /* ground */
+  --paper: #F0EFE9;
+  --paper-2: #E9E8E0;
+
+  /* text on paper */
+  --ink: #14161B;
+  --graphite: #4A505B;
+  --muted: #6E7480;
+
+  /* rules on paper */
+  --line: #D8D6CC;
+  --line-2: #C9C7BB;
+
+  /* accents */
+  --signal: #2B4FE0;
+  --up: #1C8F5F;
+  --down: #CE4550;
+
+  /* The blue above is tuned for contrast on paper and goes muddy on the dark
+     panels, so dark surfaces use this lighter tint of the same hue instead. */
+  --signal-on-dark: #8FA6FF;
+
+  /* instrument panels (hero spec readout, Work panels, Lab, footer) */
+  --panel: #0C0E13;
+  --panel-line: #262C39;
+  --panel-text: #E6E9EF;
+  --panel-muted: #8A93A6;
+
+  /* measure */
+  --maxw: 1080px;
+  --herow: 1320px;
+  --navh: 63px;
+
+  /* The one easing curve the whole site shares. Motion re-declares it as a
+     JS array in components/motion/tokens.ts — keep the two in step. */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* The nav wraps to a second row here, so everything keyed to its height
+   (hero centring, sticky offsets, scroll-padding) has to know it got taller. */
+@media (max-width: 720px) {
+  :root {
+    --navh: 126px;
+  }
+}
