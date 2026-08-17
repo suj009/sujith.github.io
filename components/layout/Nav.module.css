@@ -6,6 +6,22 @@
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
   transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+
+  /*
+    --nav-hide runs 0 → 1 while the Work panels own the screen; see
+    useImmersiveWork in WorkStack.tsx. It is driven from scroll position, so
+    the bar tracks the gesture rather than playing a fixed-length animation —
+    and being a transform, it composites instead of forcing layout.
+  */
+  transform: translateY(calc(var(--nav-hide, 0) * -102%));
+}
+
+/*
+  A hidden bar is still in the tab order, so a keyboard user could focus a
+  link they cannot see. Focus brings it back.
+*/
+.nav:focus-within {
+  transform: none;
 }
 
 /*

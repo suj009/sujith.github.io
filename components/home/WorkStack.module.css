@@ -1,8 +1,13 @@
 /* ---------- the pinned section header ---------- */
 
+/*
+  Pinned to the very top, not below the nav. While the nav is up it simply
+  covers this; once it slides away Work is already sitting flush against the
+  top edge, so nothing has to move into place.
+*/
 .topbar {
   position: sticky;
-  top: var(--navh);
+  top: 0;
   z-index: 20;
   background: var(--panel);
   color: var(--panel-text);
@@ -60,8 +65,10 @@
 
 .panel {
   position: sticky;
-  top: calc(var(--navh) + 53px);
-  height: calc(100vh - var(--navh) - 53px);
+  /* 53px is the Work topbar's height — the panel sits directly under it, and
+     both are measured from the top of the viewport rather than from the nav. */
+  top: 53px;
+  height: calc(100vh - 53px);
   overflow: hidden;
   display: flex;
   align-items: flex-end;

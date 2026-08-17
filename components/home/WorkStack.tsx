@@ -1,8 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { useEffect, useRef } from "react";
+import {
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "motion/react";
 import { Reveal } from "@/components/motion/Reveal";
 import styles from "./WorkStack.module.css";
 
@@ -138,9 +144,63 @@ function StackPanel({ panel, index }: { panel: Panel; index: number }) {
   );
 }
 
+/**
+ * Hides the site nav while the pinned panels own the screen, so Work runs
+ * edge to edge from the very top.
+ *
+ * Only the nav actually moves. The Work topbar and the panels are pinned at
+ * the top of the viewport permanently, sitting *underneath* the nav — which
+ * covers them until it slides away. Animating their sticky offsets instead
+ * would mean writing `top` and `height` on every scroll frame, which is layout
+ * on the main thread; a transform on one element composites.
+ *
+ * The value is published as a CSS variable rather than passed down, because
+ * the nav lives in the layout and this lives on the page — there is no props
+ * path between them, and a context would re-render the nav on every frame.
+ */
+function useImmersiveWork(target: React.RefObject<HTMLDivElement | null>) {
+  const reduced = useReducedMotion();
+
+  // Travel of the stack's top edge from the bottom of the viewport to the top.
+  const { scrollYProgress: arriving } = useScroll({
+    target,
+    offset: ["start end", "start start"],
+  });
+  // Travel of its bottom edge, for handing the nav back on the way out.
+  const { scrollYProgress: leaving } = useScroll({
+    target,
+    offset: ["end end", "end start"],
+  });
+
+  // Hide over the last stretch of the approach, so it reads as a response to
+  // arriving at Work rather than something that happens in the hero.
+  const hideIn = useTransform(arriving, [0.86, 1], [0, 1], { clamp: true });
+  // Give it back before the stack is fully gone, so the nav is already in
+  // place by the time the sampler below it is being read.
+  const hideOut = useTransform(leaving, [0.5, 0.78], [1, 0], { clamp: true });
+  const hidden = useTransform([hideIn, hideOut] as const, ([a, b]: number[]) =>
+    Math.min(a, b),
+  );
+
+  useMotionValueEvent(hidden, "change", (v) => {
+    document.documentElement.style.setProperty("--nav-hide", reduced ? "0" : String(v));
+  });
+
+  // The variable is global, so it has to be cleared when leaving the home
+  // route — otherwise the nav stays hidden on whatever page comes next.
+  useEffect(() => {
+    return () => {
+      document.documentElement.style.removeProperty("--nav-hide");
+    };
+  }, []);
+}
+
 export function WorkStack() {
+  const stack = useRef<HTMLDivElement>(null);
+  useImmersiveWork(stack);
+
   return (
-    <>
+    <div ref={stack}>
       <div className={styles.topbar}>
         <div className={styles.topbarInner}>
           <span className={styles.n}>01</span>
@@ -149,11 +209,9 @@ export function WorkStack() {
         </div>
       </div>
 
-      <div>
-        {PANELS.map((panel, index) => (
-          <StackPanel key={panel.id} panel={panel} index={index} />
-        ))}
-      </div>
-    </>
+      {PANELS.map((panel, index) => (
+        <StackPanel key={panel.id} panel={panel} index={index} />
+      ))}
+    </div>
   );
 }
