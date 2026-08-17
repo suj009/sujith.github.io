@@ -411,7 +411,14 @@
   background: var(--side);
   opacity: 0.9;
   transform-origin: 0 50%;
-  scale: 0 1;
+  /*
+    Must be `transform`, not the standalone `scale` property. `scale` composes
+    with `transform` rather than being overridden by it, so a `scale: 0 1` here
+    multiplied Motion's animated scaleX to zero and the bar never appeared.
+    Motion writes inline transform, which wins over this — this only sets the
+    pre-hydration state so the bar does not flash full-width on first paint.
+  */
+  transform: scaleX(0);
 }
 
 .placeLabel {
