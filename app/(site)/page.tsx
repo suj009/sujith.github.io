@@ -1,6 +1,6 @@
 import { Hero } from "@/components/home/Hero";
 import { WorkStack } from "@/components/home/WorkStack";
-import { Sampler } from "@/components/home/Sampler";
+import { WorkTiers } from "@/components/home/WorkTiers";
 import { LabSection } from "@/components/home/LabSection";
 import { Writing } from "@/components/home/Writing";
 import { About } from "@/components/home/About";
@@ -21,7 +21,7 @@ export default function HomePage() {
       */}
       <section id="work" className={styles.work}>
         <WorkStack />
-        <Sampler />
+        <WorkTiers />
       </section>
 
       <Section id="lab" dark>
