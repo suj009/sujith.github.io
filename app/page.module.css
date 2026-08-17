@@ -1,0 +1,8 @@
+/*
+  No min-height here, unlike the other sections: Work is already far taller
+  than the viewport because each pinned panel needs its own scroll track.
+*/
+.work {
+  border-top: 1px solid var(--line);
+  padding-bottom: clamp(48px, 8vh, 90px);
+}

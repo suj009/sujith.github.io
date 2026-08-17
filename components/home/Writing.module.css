@@ -1,0 +1,90 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.leadCell {
+  grid-column: 1 / -1;
+}
+
+.cardWrap {
+  height: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  border: 1px solid var(--line-2);
+  border-radius: 14px;
+  padding: 26px;
+  background: var(--paper);
+  transition: border-color 0.25s;
+}
+
+.card:hover {
+  border-color: var(--signal);
+}
+
+/* The lead piece runs the full width, so it splits into title | blurb rather
+   than stacking — otherwise its two short blocks leave a wide empty gutter. */
+.lead {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.tag {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal);
+}
+
+.title {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 12px 0 10px;
+  text-wrap: balance;
+}
+
+.lead .title {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+}
+
+.blurb {
+  color: var(--graphite);
+  font-size: 0.92rem;
+}
+
+.go {
+  margin-top: 16px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  color: var(--signal);
+  display: inline-flex;
+  gap: 7px;
+}
+
+.go::after {
+  content: "→";
+  transition: transform 0.25s var(--ease);
+}
+
+.card:hover .go::after {
+  transform: translateX(4px);
+}
+
+@media (max-width: 640px) {
+  .grid,
+  .lead {
+    grid-template-columns: 1fr;
+  }
+}

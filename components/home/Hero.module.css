@@ -1,0 +1,239 @@
+/*
+  Two things used to pull the visible centre of the hero downward: min-height
+  was a FULL viewport even though the hero starts --navh below the top of the
+  screen (so its box ran that far past the fold), and the padding was
+  asymmetric. Subtracting the nav height and keeping the padding symmetric
+  centres the content against what is actually visible on load.
+*/
+.hero {
+  padding: clamp(40px, 7vh, 72px) 0;
+  min-height: calc(100vh - var(--navh));
+  display: flex;
+  align-items: safe center;
+  position: relative;
+}
+
+/*
+  Wider than the site's standard --maxw column. The hero is the one section
+  that should spend the extra room on a large screen rather than leave it as
+  margin on both sides.
+*/
+.grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.9fr;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: end;
+  max-width: var(--herow);
+}
+
+.eyebrow {
+  display: block;
+}
+
+.headline {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  font-size: clamp(2.6rem, 7.2vw, 5.6rem);
+  margin-top: 18px;
+}
+
+.line {
+  display: block;
+}
+
+.sig {
+  color: var(--signal);
+}
+
+.lede {
+  margin-top: 30px;
+  max-width: 50ch;
+  font-size: clamp(1.08rem, 2vw, 1.4rem);
+  color: var(--graphite);
+}
+
+.lede b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ---------- spec readout ---------- */
+
+.spec {
+  background: var(--panel);
+  border-radius: 16px;
+  padding: 28px 30px;
+  color: var(--panel-text);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.88rem;
+  box-shadow: 0 26px 60px -34px rgba(0, 0, 0, 0.55);
+}
+
+.specHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--panel-line);
+}
+
+.specTitle {
+  letter-spacing: 0.16em;
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  color: var(--panel-muted);
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  color: var(--panel-muted);
+}
+
+.pip {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--up);
+  box-shadow: 0 0 8px var(--up);
+  animation: pip 2s ease-in-out infinite;
+}
+
+@keyframes pip {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.specList {
+  display: grid;
+  gap: 14px 18px;
+  font-size: 1.02em;
+}
+
+.specRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+}
+
+.specRow dt {
+  color: var(--panel-muted);
+  letter-spacing: 0.04em;
+}
+
+.specRow dd {
+  text-align: right;
+  color: var(--panel-text);
+}
+
+.good {
+  color: var(--up);
+}
+
+/* The label/value pair cannot hold two columns this narrow — stack it left. */
+@media (max-width: 560px) {
+  .specHead {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .specList {
+    gap: 10px;
+  }
+
+  .specRow {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .specRow dd {
+    text-align: left;
+  }
+}
+
+/* ---------- scroll cue ---------- */
+
+/*
+  The wrapper owns the centring transform so the anchor's own transform is free
+  for Motion to animate — the two used to fight, and the cue jumped half a
+  viewport sideways as it faded in.
+*/
+.cueWrap {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(20px, 4vh, 40px);
+  transform: translateX(-50%);
+}
+
+.cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.cue:hover,
+.cue:focus-visible {
+  color: var(--ink);
+}
+
+.cue svg {
+  animation: cueBounce 1.8s ease-in-out infinite;
+}
+
+@keyframes cueBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@media (max-width: 640px) {
+  .cueWrap {
+    display: none;
+  }
+}
+
+/*
+  Below ~860px the two columns starve each other: the headline loses its
+  measure and the spec panel wraps every value. Stacked, the column runs taller
+  than one screen on most phones, so it is top-aligned — centring it inside a
+  full-viewport box would push the top of the content up behind the nav.
+*/
+@media (max-width: 860px) {
+  .hero {
+    padding-top: clamp(34px, 6vh, 64px);
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 34px;
+  }
+
+  .headline {
+    font-size: clamp(2.05rem, 9.5vw, 3.6rem);
+  }
+
+  .lede {
+    max-width: 52ch;
+  }
+}

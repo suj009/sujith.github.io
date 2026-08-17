@@ -1,0 +1,145 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.95fr;
+  gap: clamp(28px, 5vw, 56px);
+}
+
+.body {
+  color: var(--graphite);
+  margin-bottom: 16px;
+  font-size: 1.02rem;
+}
+
+.body b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.h3 {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin: 26px 0 10px;
+}
+
+.workMe {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px;
+  margin-top: 8px;
+}
+
+.workMe p {
+  margin-top: 10px;
+  color: var(--graphite);
+}
+
+.career {
+  display: flex;
+  flex-direction: column;
+}
+
+.careerRow {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 16px;
+  padding: 13px 0;
+  border-top: 1px solid var(--line);
+}
+
+.careerRow:first-child {
+  border-top: none;
+}
+
+.years {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.74rem;
+  color: var(--muted);
+  padding-top: 2px;
+}
+
+.org {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.role {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.portrait {
+  width: 168px;
+  height: 168px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  margin-bottom: 26px;
+  box-shadow: 0 20px 40px -28px rgba(0, 0, 0, 0.35);
+}
+
+.portraitImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.creds {
+  font-size: 0.92rem;
+  color: var(--graphite);
+}
+
+.creds div {
+  padding: 7px 0;
+  border-top: 1px solid var(--line);
+}
+
+.creds div:first-child {
+  border-top: none;
+}
+
+.creds b {
+  color: var(--ink);
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.skills span {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  padding: 6px 12px;
+  color: var(--graphite);
+}
+
+.cvWrap {
+  display: inline-block;
+  margin-top: 22px;
+}
+
+.cv {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 11px 18px;
+  border-radius: 999px;
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
