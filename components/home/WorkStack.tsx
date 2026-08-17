@@ -31,21 +31,13 @@ const PANELS: Panel[] = [
     ],
     href: "/work/fdsg/",
     /*
-      Artwork goes here once public/img/fdsg-cover.png exists. Left unset until
-      then: pointing at a missing file costs a 404 on every home-page load and
-      drops the stripe texture for nothing.
-
-      When switching it on, anchor it right —
-
-        cover: { src: "/img/fdsg-cover.png", position: "right center" },
-
-      — because the poster carries its own large FDSG wordmark down its left
-      edge and the panel already sets "FDSG" as its heading in the display
-      face. Anchored right, that title block sits off-canvas and the frame
-      fills with the tokens/components/product side, which is the half that
-      actually shows the system.
+      Centred rather than anchored to an edge: the artwork's left quarter is
+      already near-empty, which is exactly where the heading and metrics sit,
+      and its subject sits centre-right. On a phone, where the panel crops to a
+      narrow vertical strip, centring keeps the layered stack in frame instead
+      of a bare corner.
     */
-    caption: "FDSG — full-bleed capture, to add",
+    cover: { src: "/img/fdsg-cover.webp", position: "center" },
   },
   {
     id: "case-options-scalper",

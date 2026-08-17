@@ -107,9 +107,9 @@
   z-index: 0;
   background-size: cover;
   background-repeat: no-repeat;
-  /* Held back so it reads as the panel's ground rather than competing with
-     the copy sitting on top of it. */
-  opacity: 0.7;
+  /* The artwork is already near-black — most of it sits around 6% luminance —
+     so it needs almost no holding back. Dimming it further just erased it. */
+  opacity: 0.92;
 }
 
 /* The stripes exist to give an empty panel some texture. Over artwork they
@@ -119,24 +119,26 @@
 }
 
 /*
-  A much deeper scrim than the plain panel needs. The copy sits bottom-left,
-  so this darkens along both of those edges: the vertical pass carries the
-  metrics and CTA, the horizontal pass carries the heading and lede. Without
-  it the type lands on screenshots and loses its contrast.
+  Lighter than it looks like it should be. The copy sits bottom-left, and the
+  artwork is already darkest exactly there — the only thing bright enough to
+  disturb the type is the glow at centre-bottom, at roughly 20% luminance.
+  A heavy scrim flattened the whole panel to black and threw the artwork away,
+  so this does just enough: a vertical pass to seat the metrics and CTA, and a
+  soft left pass to keep the glow off the lede.
 */
 .hasCover::after {
   background:
     linear-gradient(
       to top,
-      var(--panel) 24%,
-      rgba(12, 14, 19, 0.58) 54%,
-      rgba(12, 14, 19, 0.12) 86%
+      var(--panel) 15%,
+      rgba(12, 14, 19, 0.42) 48%,
+      transparent 82%
     ),
     linear-gradient(
       to right,
-      var(--panel) 0%,
-      rgba(12, 14, 19, 0.62) 30%,
-      transparent 62%
+      rgba(12, 14, 19, 0.72) 0%,
+      rgba(12, 14, 19, 0.3) 26%,
+      transparent 58%
     );
 }
 
