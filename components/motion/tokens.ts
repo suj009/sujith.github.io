@@ -55,5 +55,21 @@ export const RISE = 24;
 /** Gap between staggered siblings, in seconds. */
 export const STAGGER = 0.216;
 
-/** Fraction of an element that must be visible before its reveal fires. */
-export const VIEWPORT = { once: true, amount: 0.25 } as const;
+/**
+ * When a scroll reveal fires.
+ *
+ * `amount` is a fraction of the *element*, which makes a value like 0.25 a
+ * trap: anything taller than four viewports can never show that much of itself
+ * at once, so it would sit at its hidden initial state permanently. The About
+ * column is one Reveal wrapping many paragraphs and is genuinely that tall on
+ * a small phone.
+ *
+ * "some" fires as soon as any part crosses the boundary, which is safe at any
+ * height; the negative bottom margin lifts that boundary off the fold so the
+ * reveal still reads as a response to scrolling rather than firing early.
+ */
+export const VIEWPORT = {
+  once: true,
+  amount: "some",
+  margin: "0px 0px -12% 0px",
+} as const;

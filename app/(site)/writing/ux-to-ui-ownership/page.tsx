@@ -24,7 +24,7 @@ export default function UxToUiOwnershipPage() {
         byline={["Sujith Kumar Anand", "~5 min read"]}
       />
 
-      <main className="wrap">
+      <div className="wrap">
         <article className="read">
           <p className="lede">
             When I joined FYERS, design ran like a relay race. A requirement came in. A UX designer
@@ -145,7 +145,7 @@ export default function UxToUiOwnershipPage() {
             },
           ]}
         />
-      </main>
+      </div>
     </ReadingPage>
   );
 }

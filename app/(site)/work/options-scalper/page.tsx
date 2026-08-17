@@ -33,7 +33,7 @@ export default function OptionsScalperPage() {
         byline={["Real-time trading · Options vertical", "Q2 2024 · ~3 months", "~7 min read"]}
       />
 
-      <main className="wrap">
+      <div className="wrap">
         <Glance
           status="SHIPPED"
           rows={[
@@ -190,7 +190,7 @@ export default function OptionsScalperPage() {
             },
           ]}
         />
-      </main>
+      </div>
     </ReadingPage>
   );
 }

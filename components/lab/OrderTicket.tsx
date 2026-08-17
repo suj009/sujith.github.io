@@ -403,15 +403,18 @@ export function OrderTicket() {
               data-holding={holding}
               disabled={disabled}
               aria-label="Hold to place order"
-              onMouseDown={beginHold}
-              onMouseUp={cancelHold}
-              onMouseLeave={cancelHold}
-              onTouchStart={(e) => {
-                e.preventDefault();
-                beginHold();
-              }}
-              onTouchEnd={cancelHold}
-              onTouchCancel={cancelHold}
+              /*
+                Pointer events rather than separate mouse and touch handlers.
+                React attaches touchstart passively, so the preventDefault that
+                used to sit here never ran — the browser then synthesised mouse
+                events after the touch ones, and the emulated mousedown
+                restarted the hold that touchend had just cancelled. One set of
+                events for every input device has no such gap.
+              */
+              onPointerDown={beginHold}
+              onPointerUp={cancelHold}
+              onPointerLeave={cancelHold}
+              onPointerCancel={cancelHold}
               onBlur={() => {
                 if (armed) {
                   setArmed(false);

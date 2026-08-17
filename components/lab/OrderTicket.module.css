@@ -388,6 +388,9 @@
   transition: opacity 0.2s, border-color 0.2s, background 0.2s, color 0.2s;
   user-select: none;
   -webkit-user-select: none;
+  /* Holding the button is the gesture; without this the same press also
+     scrolls the page out from under it on touch. */
+  touch-action: none;
 }
 
 .place:disabled {

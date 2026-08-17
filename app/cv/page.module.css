@@ -173,6 +173,13 @@
   color: var(--muted);
 }
 
+/* The sidebar column. Referenced from the page but never defined, so the
+   attribute was dropped silently. */
+.side {
+  display: flex;
+  flex-direction: column;
+}
+
 .block {
   margin-bottom: 18px;
   break-inside: avoid;

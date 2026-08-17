@@ -34,7 +34,7 @@ export default function FdsgPage() {
         byline={["Design system · Web, iOS, Android", "Q3 2024 → present", "~9 min read"]}
       />
 
-      <main className="wrap">
+      <div className="wrap">
         <Glance
           status="ONGOING"
           rows={[
@@ -266,7 +266,7 @@ export default function FdsgPage() {
             },
           ]}
         />
-      </main>
+      </div>
     </ReadingPage>
   );
 }

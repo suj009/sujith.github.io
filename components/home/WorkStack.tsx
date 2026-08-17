@@ -95,6 +95,9 @@ function StackPanel({ panel, index }: { panel: Panel; index: number }) {
       <motion.article
         className={`${styles.panel} ${panel.cover ? styles.hasCover : ""}`}
         id={panel.id}
+        /* Marks this as a dark surface so the global focus ring switches to
+           the lighter accent — the paper-tuned blue is ~2.2:1 on this ground. */
+        data-dark
         style={{ ...depth, zIndex: index + 1 }}
       >
         {/*

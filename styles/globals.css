@@ -44,8 +44,17 @@ img {
   border-radius: 3px;
 }
 
-.panel :focus-visible,
-.on-panel :focus-visible {
+/*
+  Dark surfaces need the lighter accent — #2B4FE0 on #0C0E13 is about 2.2:1,
+  which is not a visible focus ring.
+
+  Matched on data attributes, not class names: every dark surface here is
+  styled by a CSS Module, so its class is hashed at build time and a global
+  `.panel` selector silently matches nothing.
+*/
+[data-nav-dark] :focus-visible,
+[data-dark] :focus-visible,
+[data-dark]:focus-visible {
   outline-color: var(--signal-on-dark);
 }
 
@@ -80,6 +89,28 @@ img {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/*
+  The skip link has to become visible when focused, or it is useless to the
+  keyboard user it exists for — it was staying clipped to 1×1px.
+*/
+.srOnly:focus,
+.srOnly:focus-visible {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+  width: auto;
+  height: auto;
+  clip: auto;
+  overflow: visible;
+  padding: 11px 18px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.76rem;
 }
 
 /*

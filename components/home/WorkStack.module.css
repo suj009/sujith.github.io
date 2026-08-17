@@ -209,6 +209,13 @@
   flex-wrap: wrap;
 }
 
+/* Keeps a metric from being squeezed when the row wraps on narrow screens.
+   Was referenced from the component but never defined, so the attribute was
+   dropped and the wrapper rendered with no class at all. */
+.metric {
+  flex: none;
+}
+
 .value {
   font-family: var(--font-display), sans-serif;
   font-weight: 700;

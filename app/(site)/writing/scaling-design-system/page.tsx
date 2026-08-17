@@ -24,7 +24,7 @@ export default function ScalingDesignSystemPage() {
         byline={["Sujith Kumar Anand", "~5 min read"]}
       />
 
-      <main className="wrap">
+      <div className="wrap">
         <article className="read">
           <p className="lede">
             Most design systems don&rsquo;t fail because the components are bad. They fail because
@@ -131,7 +131,7 @@ export default function ScalingDesignSystemPage() {
             },
           ]}
         />
-      </main>
+      </div>
     </ReadingPage>
   );
 }

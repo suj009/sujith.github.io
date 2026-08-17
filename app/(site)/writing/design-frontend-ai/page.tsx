@@ -24,7 +24,7 @@ export default function DesignFrontendAiPage() {
         byline={["Sujith Kumar Anand", "~6 min read"]}
       />
 
-      <main className="wrap">
+      <div className="wrap">
         <article className="read">
           <p className="lede">
             For most of my career, design ended at a line. You did the thinking, built the screens,
@@ -186,7 +186,7 @@ export default function DesignFrontendAiPage() {
             },
           ]}
         />
-      </main>
+      </div>
     </ReadingPage>
   );
 }
