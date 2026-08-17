@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Nav } from "@/components/layout/Nav";
-import { Footer } from "@/components/layout/Footer";
 import { PageTransition } from "@/components/motion/PageTransition";
 import { fontVariables } from "./fonts";
 import "@/styles/globals.css";
@@ -31,18 +29,17 @@ export const metadata: Metadata = {
   },
 };
 
+/*
+  Deliberately thin: fonts, global CSS and the route transition, and nothing
+  else. The site nav and footer live in the (site) group's layout instead,
+  because /cv is a self-contained sheet with its own chrome and print
+  stylesheet and must not inherit them.
+*/
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={fontVariables}>
       <body>
-        <a className="srOnly" href="#main">
-          Skip to content
-        </a>
-        <Nav />
-        <PageTransition>
-          <main id="main">{children}</main>
-        </PageTransition>
-        <Footer />
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   );
