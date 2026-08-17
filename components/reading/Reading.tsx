@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { Reveal } from "@/components/motion/Reveal";
+import { Entrance, EntranceItem } from "@/components/motion/Entrance";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import "@/styles/reading.css";
 
@@ -33,16 +34,26 @@ export function Masthead({
 }) {
   return (
     <header className="masthead">
-      <div className="wrap">
-        <span className="kicker">{kicker}</span>
-        <h1>{title}</h1>
-        <p className="standfirst">{standfirst}</p>
-        <div className="byline">
+      {/*
+        Runs on mount rather than on scroll. The masthead is the first thing on
+        the page, so a whileInView reveal would resolve the instant it mounted
+        and read as a flicker instead of an entrance — the same reason the home
+        hero animates this way.
+      */}
+      <Entrance className="wrap">
+        <EntranceItem as="span" className="kicker">
+          {kicker}
+        </EntranceItem>
+        <EntranceItem as="h1">{title}</EntranceItem>
+        <EntranceItem as="p" className="standfirst">
+          {standfirst}
+        </EntranceItem>
+        <EntranceItem className="byline">
           {byline.map((item) => (
             <span key={item}>{item}</span>
           ))}
-        </div>
-      </div>
+        </EntranceItem>
+      </Entrance>
     </header>
   );
 }

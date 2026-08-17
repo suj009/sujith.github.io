@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { EASE, RISE } from "@/components/motion/tokens";
+import { Entrance, EntranceItem } from "@/components/motion/Entrance";
+import { EASE } from "@/components/motion/tokens";
 import styles from "./Hero.module.css";
 
 const SPEC = [
@@ -18,54 +19,39 @@ const SPEC = [
   animation-delays (0.05s → 0.68s) that had to be renumbered by hand whenever
   an element was added or reordered. As variants, the order in the DOM is the
   order of the sequence, and staggerChildren derives the delays.
+
+  The variants themselves live in <Entrance>, shared with the case-study
+  mastheads so the two cannot drift apart.
 */
-const container = {
-  hidden: {},
-  shown: { transition: { staggerChildren: 0.11, delayChildren: 0.05 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: RISE },
-  shown: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
-};
-
 export function Hero() {
   const reduced = useReducedMotion();
 
-  // With reduced motion the whole sequence collapses to "already there" — no
-  // hidden initial state at all, so nothing can be stranded invisible.
-  const motionProps = reduced
-    ? {}
-    : { initial: "hidden" as const, animate: "shown" as const, variants: container };
-
-  const itemProps = reduced ? {} : { variants: item };
-
   return (
     <header className={styles.hero} id="top">
-      <motion.div className={`wrap ${styles.grid}`} {...motionProps}>
+      <Entrance className={`wrap ${styles.grid}`}>
         <div>
-          <motion.span className={`eyebrow ${styles.eyebrow}`} {...itemProps}>
+          <EntranceItem as="span" className={`eyebrow ${styles.eyebrow}`}>
             Product Design Leader · Bengaluru
-          </motion.span>
+          </EntranceItem>
 
           <h1 className={styles.headline}>
-            <motion.span className={styles.line} {...itemProps}>
+            <EntranceItem as="span" className={styles.line}>
               A design leader
-            </motion.span>
-            <motion.span className={styles.line} {...itemProps}>
+            </EntranceItem>
+            <EntranceItem as="span" className={styles.line}>
               who <span className={styles.sig}>still ships.</span>
-            </motion.span>
+            </EntranceItem>
           </h1>
 
-          <motion.p className={styles.lede} {...itemProps}>
+          <EntranceItem as="p" className={styles.lede}>
             I lead the team, deliver as an IC, and turn design into working front-end with AI.{" "}
             <b>Eleven years turning complex fintech into products people trust</b> — across
             trading, DeFi, and HCI research.
-          </motion.p>
+          </EntranceItem>
         </div>
 
         {/* The signature element — it rhymes with the Lab's instrument panel. */}
-        <motion.aside className={styles.spec} aria-label="Profile at a glance" {...itemProps}>
+        <EntranceItem as="aside" className={styles.spec} aria-label="Profile at a glance">
           <div className={styles.specHead}>
             <span className={styles.specTitle}>sujith.spec</span>
             <span className={styles.live}>
@@ -81,8 +67,8 @@ export function Hero() {
               </div>
             ))}
           </dl>
-        </motion.aside>
-      </motion.div>
+        </EntranceItem>
+      </Entrance>
 
       <div className={styles.cueWrap}>
         <motion.a
