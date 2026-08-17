@@ -37,21 +37,23 @@ export const SPRING_SOFT = {
  * not as polish.
  */
 export const GLIDE = {
-  duration: 1.2,
+  duration: 1.44,
   ease: EASE,
 } as const;
 
 /**
  * How far reveal/entrance elements travel, in px.
  *
- * Scaled up with the longer duration. Holding the old 16px over nearly twice
- * the time gave a slow crawl over a short distance, which reads as sluggish
- * rather than graceful; more travel keeps the movement legible.
+ * Scaled up when the duration roughly doubled: holding the original 16px over
+ * that much longer gave a slow crawl across a short gap, which reads as
+ * sluggish rather than graceful. Left alone through the 20% adjustment above,
+ * which was a request about speed — moving the amplitude again would change
+ * how the entrance looks, not just how long it takes.
  */
 export const RISE = 24;
 
 /** Gap between staggered siblings, in seconds. */
-export const STAGGER = 0.18;
+export const STAGGER = 0.216;
 
 /** Fraction of an element that must be visible before its reveal fires. */
 export const VIEWPORT = { once: true, amount: 0.25 } as const;
