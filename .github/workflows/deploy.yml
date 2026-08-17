@@ -7,6 +7,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master]
+  # Build pull requests too, so a change that breaks the build is caught before
+  # it reaches master. Only the build job runs for them — see the `if` on deploy.
+  pull_request:
+    branches: [master]
   workflow_dispatch:
 
 permissions:
@@ -35,14 +39,24 @@ jobs:
 
       - run: npm run build
 
+      # Both steps talk to the Pages API, which errors while Pages is still set
+      # to serve a branch rather than Actions. Skipping them on pull requests
+      # keeps a PR check reporting on the thing it is meant to report on — the
+      # build — instead of failing on deployment plumbing it never uses.
       - uses: actions/configure-pages@v5
+        if: github.event_name != 'pull_request'
 
       - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
         with:
           path: ./out
 
   deploy:
     needs: build
+    # Publishing only ever happens from master. A pull request builds to prove
+    # it compiles and stops there — it must not be able to overwrite the live
+    # site before it is merged.
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
