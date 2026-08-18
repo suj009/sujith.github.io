@@ -1,11 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { Reveal } from "@/components/motion/Reveal";
 import { EASE } from "@/components/motion/tokens";
 import {
   DIRECTED,
+  DIRECTED_PANELS,
   DIRECTED_SHIPPED,
   DIRECTED_TOTAL,
   STATUS_LABEL,
@@ -63,6 +65,23 @@ export function DirectedIndex() {
             </div>
           </div>
         </header>
+
+        {/*
+          The two efforts with a case study written up. They used to be pinned
+          panels ahead of this card; with Directed leading the section they
+          would otherwise have no route in from the home page at all, so they
+          surface here as the way into the long-form pieces. Deliberately not
+          counted in the tally above — that figure is the post-March delivery
+          record and should keep meaning exactly that.
+        */}
+        <div className={styles.studies}>
+          <span className={styles.studiesLabel}>Case studies</span>
+          {DIRECTED_PANELS.map((study) => (
+            <Link key={study.id} className={styles.study} href={study.href ?? "/"}>
+              {study.title} <span aria-hidden="true">→</span>
+            </Link>
+          ))}
+        </div>
 
         <div className={styles.filters} role="group" aria-label="Filter by status">
           {FILTERS.map((f) => (

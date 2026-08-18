@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 import {
   motion,
@@ -10,32 +9,25 @@ import {
   useTransform,
 } from "motion/react";
 import { Reveal } from "@/components/motion/Reveal";
-import { DIRECTED_PANELS, IC_PANELS, type PanelSpec } from "./work-data";
+import { IC_PANELS, type PanelSpec } from "./work-data";
 import { DirectedIndex } from "./DirectedIndex";
 import styles from "./WorkStack.module.css";
 
 /**
- * One case-study panel, pinned while its (taller than viewport) track scrolls.
+ * One project screen, pinned while its (taller than viewport) track scrolls.
  *
- * The pinning itself is still position:sticky. Nothing in JS pins as cheaply,
- * and the browser keeps it on the compositor. What sticky could not express is
- * depth: the outgoing panel used to sit at full size and full contrast right up
- * until the next one covered it, so the transition read as one flat card
- * abruptly replacing another.
+ * The pinning is position:sticky — nothing in JS pins as cheaply, and the
+ * browser keeps it on the compositor. What sticky cannot express on its own is
+ * depth: without help the outgoing screen sits at full contrast right until the
+ * next one covers it, and the change reads as one flat card replacing another.
  *
- * useScroll reports this track's own progress, and the panel recedes across it
- * — scaling down and dimming — so the incoming panel reads as passing in front
- * of something still there rather than swapping with it.
+ * So the outgoing screen dims and its content drifts upward as the next climbs
+ * over it. It deliberately does *not* scale: shrinking a full-bleed panel pulls
+ * its edges away from the viewport and exposes the page behind it at the
+ * corners, which is what made the earlier version look wrong. Dimming plus a
+ * little parallax reads as depth while the panel stays edge to edge.
  */
-function StackPanel({
-  panel,
-  index,
-  short,
-}: {
-  panel: PanelSpec;
-  index: number;
-  short?: boolean;
-}) {
+function StackPanel({ panel, index }: { panel: PanelSpec; index: number }) {
   const track = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
 
@@ -46,22 +38,19 @@ function StackPanel({
     offset: ["start start", "end start"],
   });
 
-  // Hold at full presence for the first half (the panel is being read), then
-  // recede as the next one arrives.
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0.93]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0.4]);
-
-  const depth = reduced ? undefined : { scale, opacity };
+  // Hold at full presence while the screen is being read, then recede.
+  const opacity = useTransform(scrollYProgress, [0, 0.55, 1], [1, 1, 0.45]);
+  const shift = useTransform(scrollYProgress, [0, 0.55, 1], [0, 0, -56]);
 
   return (
-    <div className={`${styles.track} ${short ? styles.trackShort : ""}`} ref={track}>
+    <div className={styles.track} ref={track}>
       <motion.article
         className={`${styles.panel} ${panel.cover ? styles.hasCover : ""}`}
         id={panel.id}
         /* Marks this as a dark surface so the global focus ring switches to
            the lighter accent — the paper-tuned blue is ~2.2:1 on this ground. */
         data-dark
-        style={{ ...depth, zIndex: index + 1 }}
+        style={{ zIndex: index + 1, ...(reduced ? {} : { opacity }) }}
       >
         {/*
           A background layer rather than an <img>: it is decoration, so it
@@ -81,7 +70,12 @@ function StackPanel({
 
         {panel.caption && <span className={styles.caption}>{panel.caption}</span>}
 
-        <div className={`wrap ${styles.panelInner}`}>
+        {/* Only the content parallaxes, never the panel box — the box has to
+            stay flush to the viewport edges. */}
+        <motion.div
+          className={`wrap ${styles.panelInner}`}
+          style={reduced ? undefined : { y: shift }}
+        >
           <Reveal>
             <span className={styles.tag}>{panel.tag}</span>
             <h3 className={styles.title}>{panel.title}</h3>
@@ -97,40 +91,35 @@ function StackPanel({
                 </div>
               ))}
 
-              {panel.href ? (
-                <motion.span whileHover={{ x: 3 }} whileTap={{ scale: 0.97 }}>
-                  <Link className={styles.cta} href={panel.href}>
-                    Read the case study →
-                  </Link>
-                </motion.span>
-              ) : (
-                /* No case study yet, so the panel states its access rather
-                   than offering a link that goes nowhere. */
-                <span className={styles.access}>Not shown publicly</span>
-              )}
+              {/* No case study yet, so the panel states its access rather than
+                  offering a link that goes nowhere. */}
+              <span className={styles.access}>Not shown publicly</span>
             </div>
           </Reveal>
-        </div>
+        </motion.div>
       </motion.article>
     </div>
   );
 }
 
 /**
- * Hides the site nav while Work owns the screen, so it runs edge to edge from
- * the very top.
+ * Hides the site nav while the pinned screens own the viewport.
  *
- * Only the nav actually moves. The Work topbar and the panels are pinned at
- * the top of the viewport permanently, sitting *underneath* the nav — which
- * covers them until it slides away. Animating their sticky offsets instead
- * would mean writing `top` and `height` on every scroll frame, which is layout
- * on the main thread; a transform on one element composites.
+ * Only the nav moves. The screens and their topbar are pinned at the top
+ * permanently, sitting under the bar, which covers them until it slides away.
+ * Animating their sticky offsets instead would mean writing `top` and `height`
+ * on every scroll frame — layout on the main thread; a transform on one element
+ * composites.
  *
- * The value is published as a CSS variable rather than passed down, because
- * the nav lives in the layout and this lives on the page — there is no props
- * path between them, and a context would re-render the nav on every frame.
+ * Scoped to the screens alone, not the whole Work section: Directed now leads
+ * the section and is a long read, and there is no reason to withhold navigation
+ * through it.
+ *
+ * The value is published as a CSS variable rather than passed down, because the
+ * nav lives in the layout and this lives on the page — there is no props path
+ * between them, and a context would re-render the nav on every frame.
  */
-function useImmersiveWork(target: React.RefObject<HTMLDivElement | null>) {
+function useImmersiveScreens(target: React.RefObject<HTMLDivElement | null>) {
   const reduced = useReducedMotion();
 
   const { scrollYProgress: arriving } = useScroll({
@@ -162,36 +151,34 @@ function useImmersiveWork(target: React.RefObject<HTMLDivElement | null>) {
 }
 
 export function WorkStack() {
-  const section = useRef<HTMLDivElement>(null);
-  useImmersiveWork(section);
+  const screens = useRef<HTMLDivElement>(null);
+  useImmersiveScreens(screens);
 
   return (
-    <div ref={section}>
-      <div className={styles.topbar}>
-        <div className={styles.topbarInner}>
-          <span className={styles.n}>01</span>
-          <h2 className={styles.h2}>Work</h2>
-          <span className={styles.sub}>Eleven years · fintech software</span>
-        </div>
-      </div>
+    <>
+      <Reveal className={`wrap ${styles.sectionHead}`}>
+        <span className={styles.n}>01</span>
+        <h2 className={styles.h2}>Work</h2>
+        <span className={styles.sub}>Eleven years · fintech software</span>
+      </Reveal>
 
       {/* Directed leads: the scope of what was run, before the detail of what
           was made by hand. */}
-      {DIRECTED_PANELS.map((panel, index) => (
-        <StackPanel key={panel.id} panel={panel} index={index} />
-      ))}
-
       <DirectedIndex />
 
-      {/*
-        Hands-on gets the same full-bleed treatment rather than a card grid —
-        it is the work that answers "what did you personally make?" and should
-        not read as a footnote to what was supervised. Shorter tracks, though:
-        six panels at the case studies' dwell time would make Work a marathon.
-      */}
-      {IC_PANELS.map((panel, index) => (
-        <StackPanel key={panel.id} panel={panel} index={index} short />
-      ))}
-    </div>
+      <div ref={screens}>
+        <div className={styles.topbar}>
+          <div className={styles.topbarInner}>
+            <span className={styles.topbarN}>Hands-on</span>
+            <h3 className={styles.topbarTitle}>What I made myself</h3>
+            <span className={styles.topbarSub}>{IC_PANELS.length} projects</span>
+          </div>
+        </div>
+
+        {IC_PANELS.map((panel, index) => (
+          <StackPanel key={panel.id} panel={panel} index={index} />
+        ))}
+      </div>
+    </>
   );
 }

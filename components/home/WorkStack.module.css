@@ -24,9 +24,47 @@
   flex-wrap: wrap;
 }
 
-.n {
+.topbarN {
   font-family: var(--font-mono), monospace;
   color: var(--signal-on-dark);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.topbarTitle {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: 1.25rem;
+}
+
+.topbarSub {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--panel-muted);
+}
+
+/* ---------- the section's own head ---------- */
+
+/*
+  On paper, above the Directed card. Not sticky: the pinned bar below belongs
+  to the screens, and two stacked sticky bars would eat a third of a phone.
+*/
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: clamp(40px, 7vh, 80px);
+}
+
+.n {
+  font-family: var(--font-mono), monospace;
+  color: var(--signal);
   font-size: 0.8rem;
 }
 
@@ -34,16 +72,19 @@
   font-family: var(--font-display), sans-serif;
   font-weight: 700;
   letter-spacing: -0.02em;
-  font-size: 1.25rem;
+  font-size: clamp(1.7rem, 3.6vw, 2.6rem);
 }
 
 .sub {
   margin-left: auto;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.66rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--panel-muted);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 640px) {
+  .sub {
+    margin-left: 0;
+  }
 }
 
 /* ---------- the stack ---------- */
@@ -54,23 +95,18 @@
   panel's dwell time — and as the input range for the scroll-linked recede in
   WorkStack.tsx.
 */
+/*
+  Four screens now, so the dwell per screen is shorter than the old two-panel
+  stack: at 190vh each this would run past nine screens of scrolling before
+  the reader ever reached the Lab.
+*/
 .track {
   position: relative;
-  height: 190vh;
+  height: 150vh;
 }
 
 .track:last-of-type {
-  height: 170vh;
-}
-
-/*
-  The hands-on panels get a shorter track. There are four of them against the
-  case studies' two, and they carry a single metric rather than a full story —
-  six panels at the same dwell would turn Work into a marathon before the
-  reader ever reaches the Lab.
-*/
-.trackShort {
-  height: 130vh;
+  height: 135vh;
 }
 
 .panel {
@@ -84,16 +120,9 @@
   align-items: flex-end;
   background: var(--panel);
   color: var(--panel-text);
-  /* The recede animates scale, so the panel gets its own compositor layer
-     rather than being re-rasterised against the page on every frame. */
-  will-change: transform, opacity;
-  /*
-    The panel's content is bottom-aligned, so scaling from the centre pulled it
-    up under the sticky Work topbar and clipped the heading mid-recede. Anchored
-    to the bottom edge instead, the copy stays put and the panel shrinks away
-    from the top — which reads as receding anyway.
-  */
-  transform-origin: 50% 100%;
+  /* Only the panel's opacity animates now — the content inside does the
+     travelling — so this is the only hint the compositor needs. */
+  will-change: opacity;
 }
 
 .panel::before,
