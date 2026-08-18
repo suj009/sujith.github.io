@@ -2,24 +2,16 @@
   The Work section's content, kept apart from its presentation because it is
   the part that changes — new projects ship, statuses move, links appear.
 
-  Two rules govern what may appear here, both from the confidentiality note in
-  the content backbone:
-
-  1. Only shipped work is named. Everything unreleased is a count, never a
-     title — naming it would publish FYERS' roadmap.
-  2. No teammate names. Scale is expressed as counts, not as a roster.
+  Teammates are never named. Scale is expressed as counts and outcomes, not as
+  a roster.
 */
 
 /** How deeply Sujith was involved. This is the spine of the whole section. */
 export type Role = "IC" | "Co-led" | "Directed";
 
 /**
- * What happens when you click. Shown on the card *before* the click, so a
+ * What happens when you click. Shown on the panel *before* the click, so a
  * protected item never reads as a broken link.
- *
- * `protected` points at a page whose body is encrypted at build time and
- * decrypted in the browser with a password — the bundle only ever holds
- * ciphertext. `none` is for work that can be named but not shown.
  */
 export type Access =
   | { kind: "live"; href: string }
@@ -27,107 +19,214 @@ export type Access =
   | { kind: "protected"; href: string }
   | { kind: "none" };
 
-export type Project = {
-  name: string;
-  role: Role;
-  access: Access;
-  note?: string;
+/** A full-bleed pinned panel in the Work stack. */
+export type PanelSpec = {
+  id: string;
+  tag: string;
+  title: string;
+  lede: string;
+  metrics: { value: string; label: string; up?: boolean }[];
+  /** Present when there is a case study to read. */
+  href?: string;
+  /** Shown when there is not. */
+  access?: Access;
+  cover?: { src: string; position?: string };
+  caption?: string;
 };
 
 /**
- * Hands-on work — the pieces that answer "what did you personally make?".
- *
- * Deliberately short. A director's portfolio is read for evidence of judgment,
- * and four things explained beat forty listed.
+ * Directed — the two efforts with enough written up to carry a case study.
+ * These lead the section: the scope of what was run comes before the detail
+ * of what was made by hand.
  */
-export const SELECTED: Project[] = [
+export const DIRECTED_PANELS: PanelSpec[] = [
   {
-    name: "Wealth View",
-    role: "IC",
-    note: "Designed it, then shipped the front-end myself with AI — Flutter handed to the front-end team.",
-    access: { kind: "none" },
+    id: "case-fdsg",
+    tag: "Directed · Design systems",
+    title: "FDSG",
+    lede: "Several scattered style guides became one versioned language — then I changed how the team worked, so it would hold.",
+    metrics: [
+      { value: "~30%", label: "less design effort", up: true },
+      { value: "8", label: "designers on it" },
+    ],
+    href: "/work/fdsg/",
+    /*
+      Centred rather than anchored to an edge: the artwork's left quarter is
+      already near-empty, which is exactly where the heading and metrics sit,
+      and its subject sits centre-right. On a phone, where the panel crops to a
+      narrow vertical strip, centring keeps the layered stack in frame instead
+      of a bare corner.
+    */
+    cover: { src: "/img/fdsg-cover.webp", position: "center" },
   },
   {
-    name: "Orders",
-    role: "IC",
-    note: "Redesigned trade management for active traders: a more structured, more predictable flow.",
-    access: { kind: "none" },
-  },
-  {
-    name: "NRI Onboarding",
-    role: "IC",
-    note: "Led the redesign end to end, cutting friction across the flow.",
-    access: { kind: "none" },
-  },
-  {
-    name: "FDSG v1.0",
-    role: "Co-led",
-    note: "One of eight on the Design Review Board that ratified the first version of the system.",
-    access: { kind: "none" },
+    id: "case-options-scalper",
+    tag: "Directed · Real-time trading · Q2 2024",
+    title: "Options Scalper Terminal",
+    lede: "Traders wanted every number on screen. Every number on screen is what kills a trade at speed.",
+    metrics: [
+      { value: "↑ orders", label: "volume + session time", up: true },
+      { value: "3 mo", label: "concept to live" },
+    ],
+    href: "/work/options-scalper/",
+    caption: "Scalper Terminal — full-bleed capture, to add",
   },
 ];
 
-/** A shipped project, grouped by the product area it belongs to. */
-export type Vertical = { area: string; shipped: string[] };
+/**
+ * Hands-on — the same full-bleed treatment as the case studies above, because
+ * this is the work that answers "what did you personally make?" and it should
+ * not read as a footnote to what was supervised.
+ *
+ * None of these has a case study yet, so each carries an access state instead
+ * of a "read more" link.
+ */
+export const IC_PANELS: PanelSpec[] = [
+  {
+    id: "ic-wealth-view",
+    tag: "IC · Design + front-end",
+    title: "Wealth View",
+    lede: "One consolidated view of everything an investor holds, with performance over time. I designed it, then shipped the front-end myself with AI as the pair.",
+    metrics: [
+      { value: "9 days", label: "design file to running interface" },
+      { value: "Flutter", label: "handed to the front-end team" },
+    ],
+    access: { kind: "none" },
+    caption: "Wealth View — capture to add",
+  },
+  {
+    id: "ic-orders",
+    tag: "IC · Trade management",
+    title: "Orders",
+    lede: "Redesigned the Orders experience for active traders — a more structured, more predictable flow through the moment that matters most.",
+    metrics: [{ value: "IC", label: "end to end" }],
+    access: { kind: "none" },
+    caption: "Orders — capture to add",
+  },
+  {
+    id: "ic-nri",
+    tag: "IC · Onboarding",
+    title: "NRI Onboarding",
+    lede: "Led the redesign end to end, cutting friction out of a flow where every extra step costs a customer.",
+    metrics: [{ value: "↑ ~19%", label: "lead-to-PAN, against baseline", up: true }],
+    access: { kind: "none" },
+    caption: "NRI Onboarding — capture to add",
+  },
+  {
+    id: "ic-fdsg-v1",
+    tag: "Co-led · Design Review Board",
+    title: "FDSG v1.0",
+    lede: "Contributed as one of eight on the board that proposed, critiqued and ratified the first version of the system — before I owned the versions that followed.",
+    metrics: [{ value: "1 of 8", label: "on the DRB" }],
+    access: { kind: "none" },
+    caption: "FDSG v1.0 — capture to add",
+  },
+];
+
+/* ---------------------------------------------------------------- directed */
 
 /**
- * Live work delivered by the team under supervision. Every name here is
- * already public in the product, which is why it can be named at all.
+ * Where a directed project stands.
+ *
+ * Four states, matching the filter chips. The team's own labels collapse into
+ * these: "With Engg", "Dev WIP" and "PRB done" are all `build`; "WIP in
+ * design", "to be picked" and "handed to PO" are all `design`; "Scrapped" is
+ * `sunset` — the honest word for work that was stopped, and worth showing
+ * rather than quietly dropping.
  */
+export type Status = "shipped" | "build" | "design" | "sunset";
+
+export const STATUS_LABEL: Record<Status, string> = {
+  shipped: "Live",
+  build: "In build",
+  design: "In design",
+  sunset: "Sunset",
+};
+
+export type DirectedItem = {
+  name: string;
+  status: Status;
+  /** Public URL, when the shipped thing can be linked to. */
+  href?: string;
+};
+
+export type Vertical = { area: string; items: DirectedItem[] };
+
 export const DIRECTED: Vertical[] = [
   {
     area: "Options",
-    shipped: [
-      "Strategy Builder",
-      "Option Analytics",
-      "Options Overview",
-      "Options Overview revamp",
-      "MOW from Option Chain",
-      "Option Chain → Positions",
+    items: [
+      { name: "Strategy Builder", status: "shipped" },
+      { name: "Option Analytics", status: "shipped" },
+      { name: "Options Overview", status: "shipped" },
+      { name: "Options Overview revamp", status: "shipped" },
+      { name: "MOW from Option Chain", status: "shipped" },
+      { name: "Option Chain → Positions", status: "shipped" },
+      { name: "Option Chain → Scalper", status: "build" },
+      { name: "Option Chain → Charts", status: "build" },
+      { name: "Additional option analytics", status: "build" },
+      { name: "OSB mobile enhancements", status: "build" },
+      { name: "Historical Replay", status: "design" },
     ],
   },
   {
     area: "Trading & orders",
-    shipped: [
-      "Web Scalper",
-      "All Orders & Holdings",
-      "Bar Replay",
-      "Buy Average",
-      "Pledge Summary",
+    items: [
+      { name: "Web Scalper", status: "shipped" },
+      { name: "All Orders & Holdings", status: "shipped" },
+      { name: "Bar Replay", status: "shipped" },
+      { name: "Buy Average", status: "shipped" },
+      { name: "Pledge Summary", status: "shipped" },
+      { name: "Web Terminal", status: "build" },
+      { name: "SOW enhancements", status: "build" },
+      { name: "Ticker & QuickView", status: "build" },
+      { name: "Grouping positions", status: "build" },
+      { name: "TradeFlow", status: "build" },
+      { name: "Trade analytics", status: "design" },
     ],
   },
   {
     area: "Markets & research",
-    shipped: ["Home", "Markets Overview", "Symbol Details enhancements", "Seasonality Insights"],
+    items: [
+      { name: "Home", status: "shipped" },
+      { name: "Markets Overview", status: "shipped" },
+      { name: "Symbol Details enhancements", status: "shipped" },
+      { name: "Seasonality Insights", status: "shipped" },
+      { name: "Query Builder", status: "build" },
+      { name: "Commodities About", status: "design" },
+      { name: "Watchlist grouping", status: "sunset" },
+    ],
   },
   {
     area: "Onboarding & growth",
-    shipped: [
-      "Login & Signup revamp",
-      "Welcome Screen",
-      "What's New",
-      "Prime Partners Dashboard",
-      "Keyboard Shortcuts",
+    items: [
+      { name: "Login & Signup revamp", status: "shipped" },
+      { name: "Welcome Screen", status: "shipped" },
+      { name: "What's New", status: "shipped" },
+      { name: "Prime Partners Dashboard", status: "shipped" },
+      { name: "Keyboard Shortcuts", status: "shipped" },
+      { name: "Generic & contextual banners", status: "design" },
     ],
   },
   {
     area: "Automation & platform",
-    shipped: ["Automate", "Backtesting", "API Dashboard"],
+    items: [
+      { name: "Automate", status: "shipped" },
+      { name: "Backtesting", status: "shipped" },
+      { name: "API Dashboard", status: "shipped" },
+      { name: "FIA with Automate", status: "build" },
+      // Partly live, partly still going — counted as build so the shipped
+      // figure stays one that can be defended item by item.
+      { name: "FIA integration — IPO, Symbol Details, OA", status: "build" },
+      { name: "FIA Doc Analysis", status: "design" },
+      { name: "Algo-marketplace in Automate", status: "design" },
+      { name: "Automate overview revamp", status: "design" },
+    ],
   },
 ];
 
-/**
- * Everything not yet shipped, as counts only.
- *
- * Stated rather than hidden: a delivery record that shows only successes reads
- * as a highlight reel. The pipeline is the honest picture of a team's load.
- */
-export const PIPELINE = [
-  { label: "in engineering build", count: 11 },
-  { label: "in design", count: 5 },
-  { label: "queued or handed off", count: 3 },
-  { label: "discontinued", count: 1 },
-];
-
-export const DIRECTED_TOTAL = 43;
-export const DIRECTED_SHIPPED = DIRECTED.reduce((n, v) => n + v.shipped.length, 0);
+export const DIRECTED_TOTAL = DIRECTED.reduce((n, v) => n + v.items.length, 0);
+export const DIRECTED_SHIPPED = DIRECTED.reduce(
+  (n, v) => n + v.items.filter((i) => i.status === "shipped").length,
+  0,
+);

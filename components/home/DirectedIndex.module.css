@@ -1,0 +1,214 @@
+.outer {
+  padding-top: clamp(48px, 8vh, 96px);
+  padding-bottom: clamp(24px, 4vh, 48px);
+}
+
+.card {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: clamp(24px, 4vw, 48px);
+}
+
+/* ---------- head ---------- */
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(20px, 4vw, 56px);
+  flex-wrap: wrap;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line-2);
+}
+
+.title {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.blurb {
+  margin-top: 12px;
+  max-width: 46ch;
+  color: var(--graphite);
+  font-size: 0.95rem;
+}
+
+.tally {
+  display: flex;
+  gap: clamp(18px, 3vw, 34px);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.statValue {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.up {
+  color: var(--up);
+}
+
+.statLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* On a phone the tally stacking to the right of a wrapped heading looks
+   accidental; put it back on the left, under the blurb. */
+@media (max-width: 620px) {
+  .stat {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+/* ---------- filters ---------- */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 22px 0 28px;
+}
+
+.chip {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+  padding: 9px 18px;
+  min-height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  background: none;
+  color: var(--graphite);
+  cursor: pointer;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease),
+    border-color 0.2s var(--ease);
+}
+
+.chip:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.chip[data-on="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+/* ---------- groups ---------- */
+
+/*
+  CSS columns, not grid: the five groups are different lengths, and columns
+  let a short group flow under a tall one rather than leaving a hole in the
+  layout. break-inside stops a group being split across a column boundary.
+*/
+.columns {
+  columns: 3;
+  column-gap: clamp(24px, 4vw, 56px);
+}
+
+.group {
+  break-inside: avoid;
+  margin-bottom: 30px;
+}
+
+.area {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--graphite);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line-2);
+}
+
+.count {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.items {
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 9px 0;
+}
+
+.name {
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.link {
+  font-size: 0.95rem;
+  color: var(--signal);
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/*
+  Status is set quieter than the project name deliberately — the name is what
+  is being scanned for; the status is the qualifier you read second.
+*/
+.status {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  flex: none;
+}
+
+.status[data-status="shipped"] {
+  color: var(--up);
+}
+
+.status[data-status="sunset"] {
+  /* Stopped work is stated, not hidden — but it should not draw the eye
+     before the things that shipped. */
+  opacity: 0.65;
+}
+
+@media (max-width: 900px) {
+  .columns {
+    columns: 2;
+  }
+}
+
+@media (max-width: 620px) {
+  .columns {
+    columns: 1;
+  }
+}

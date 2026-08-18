@@ -63,6 +63,16 @@
   height: 170vh;
 }
 
+/*
+  The hands-on panels get a shorter track. There are four of them against the
+  case studies' two, and they carry a single metric rather than a full story —
+  six panels at the same dwell would turn Work into a marathon before the
+  reader ever reaches the Lab.
+*/
+.trackShort {
+  height: 130vh;
+}
+
 .panel {
   position: sticky;
   /* 53px is the Work topbar's height — the panel sits directly under it, and
@@ -252,6 +262,15 @@
   background: var(--panel-text);
   color: var(--panel);
   border-color: var(--panel-text);
+}
+
+/* Stated where a case-study link would otherwise sit, so a panel without one
+   reads as deliberate rather than unfinished. */
+.access {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--panel-muted);
 }
 
 @media (max-width: 640px) {
