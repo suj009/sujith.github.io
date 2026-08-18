@@ -156,14 +156,10 @@ export function WorkStack() {
 
   return (
     <>
-      <Reveal className={`wrap ${styles.sectionHead}`}>
-        <span className={styles.n}>01</span>
-        <h2 className={styles.h2}>Work</h2>
-        <span className={styles.sub}>Eleven years · fintech software</span>
-      </Reveal>
-
       {/* Directed leads: the scope of what was run, before the detail of what
-          was made by hand. */}
+          was made by hand. It carries the section's own "01 — Work" eyebrow,
+          so there is no separate head on paper above it — Work runs as one
+          unbroken dark stretch from the hero down to the Lab. */}
       <DirectedIndex />
 
       <div ref={screens}>

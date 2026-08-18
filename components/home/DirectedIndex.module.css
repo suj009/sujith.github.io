@@ -1,13 +1,32 @@
-.outer {
-  padding-top: clamp(48px, 8vh, 96px);
-  padding-bottom: clamp(24px, 4vh, 48px);
+/*
+  Full-bleed dark band. Work now reads as one continuous dark stretch — this
+  record, then the pinned screens — rather than a card on paper sitting above
+  a dark stack.
+*/
+.band {
+  background: var(--panel);
+  color: var(--panel-text);
+  padding: clamp(48px, 7vh, 88px) clamp(20px, 4vw, 56px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* The site's own stripe texture, so the band has depth without another
+   image to load. */
+.band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.045) 0 2px,
+    transparent 2px 26px
+  );
+  pointer-events: none;
 }
 
 .card {
-  background: var(--paper-2);
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  padding: clamp(24px, 4vw, 48px);
+  position: relative;
 }
 
 /* ---------- head ---------- */
@@ -16,30 +35,37 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: clamp(20px, 4vw, 56px);
+  gap: clamp(24px, 5vw, 64px);
   flex-wrap: wrap;
-  padding-bottom: 22px;
-  border-bottom: 1px solid var(--line-2);
+}
+
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--signal-on-dark);
 }
 
 .title {
   font-family: var(--font-display), sans-serif;
   font-weight: 800;
-  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
-  letter-spacing: -0.025em;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  letter-spacing: -0.03em;
   line-height: 1;
+  margin-top: 14px;
 }
 
 .blurb {
-  margin-top: 12px;
+  margin-top: 16px;
   max-width: 46ch;
-  color: var(--graphite);
-  font-size: 0.95rem;
+  color: var(--panel-muted);
+  font-size: 1.02rem;
 }
 
 .tally {
   display: flex;
-  gap: clamp(18px, 3vw, 34px);
+  gap: clamp(24px, 4vw, 48px);
 }
 
 .stat {
@@ -52,14 +78,16 @@
 .statValue {
   font-family: var(--font-display), sans-serif;
   font-weight: 800;
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
   font-variant-numeric: tabular-nums;
 }
 
+/* The paper green is too dark to read on this ground; this is the same hue
+   lifted for the panel palette, matching the Lab's live pip. */
 .up {
-  color: var(--up);
+  color: #35c08a;
 }
 
 .statLabel {
@@ -67,12 +95,10 @@
   font-size: 0.62rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
-  margin-top: 8px;
+  color: var(--panel-muted);
+  margin-top: 10px;
 }
 
-/* On a phone the tally stacking to the right of a wrapped heading looks
-   accidental; put it back on the left, under the blurb. */
 @media (max-width: 620px) {
   .stat {
     align-items: flex-start;
@@ -85,9 +111,9 @@
 .studies {
   display: flex;
   align-items: center;
-  gap: 10px 20px;
+  gap: 10px 22px;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 32px;
 }
 
 .studiesLabel {
@@ -95,14 +121,14 @@
   font-size: 0.62rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--panel-muted);
 }
 
 .study {
   font-family: var(--font-display), sans-serif;
   font-weight: 600;
   font-size: 1.02rem;
-  color: var(--signal);
+  color: var(--signal-on-dark);
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -123,7 +149,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 22px 0 28px;
+  margin: 26px 0 32px;
 }
 
 .chip {
@@ -133,40 +159,41 @@
   padding: 9px 18px;
   min-height: 40px;
   border-radius: 999px;
-  border: 1px solid var(--line-2);
+  border: 1px solid var(--panel-line);
   background: none;
-  color: var(--graphite);
+  color: var(--panel-muted);
   cursor: pointer;
   transition: background 0.2s var(--ease), color 0.2s var(--ease),
     border-color 0.2s var(--ease);
 }
 
 .chip:hover {
-  border-color: var(--ink);
-  color: var(--ink);
+  border-color: var(--panel-text);
+  color: var(--panel-text);
 }
 
 .chip[data-on="true"] {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper);
+  background: var(--panel-text);
+  border-color: var(--panel-text);
+  color: var(--panel);
 }
 
 /* ---------- groups ---------- */
 
 /*
-  CSS columns, not grid: the five groups are different lengths, and columns
-  let a short group flow under a tall one rather than leaving a hole in the
-  layout. break-inside stops a group being split across a column boundary.
+  CSS columns, not grid: the groups are wildly different lengths — eleven
+  projects against three — and columns let a short one flow under a tall one
+  rather than leaving a hole. break-inside stops a group splitting across a
+  column boundary.
 */
 .columns {
-  columns: 3;
-  column-gap: clamp(24px, 4vw, 56px);
+  columns: 4;
+  column-gap: clamp(24px, 3vw, 48px);
 }
 
 .group {
   break-inside: avoid;
-  margin-bottom: 30px;
+  margin-bottom: 32px;
 }
 
 .area {
@@ -175,16 +202,16 @@
   justify-content: space-between;
   gap: 12px;
   font-family: var(--font-mono), monospace;
-  font-size: 0.68rem;
+  font-size: 0.64rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--graphite);
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--line-2);
+  color: var(--panel-text);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--panel-line);
 }
 
 .count {
-  color: var(--muted);
+  color: var(--panel-muted);
   font-variant-numeric: tabular-nums;
 }
 
@@ -198,16 +225,17 @@
   justify-content: space-between;
   gap: 14px;
   padding: 9px 0;
+  border-bottom: 1px solid rgba(38, 44, 57, 0.55);
 }
 
 .name {
-  font-size: 0.95rem;
-  color: var(--ink);
+  font-size: 0.92rem;
+  color: var(--panel-text);
 }
 
 .link {
-  font-size: 0.95rem;
-  color: var(--signal);
+  font-size: 0.92rem;
+  color: var(--signal-on-dark);
 }
 
 .link:hover {
@@ -220,22 +248,28 @@
 */
 .status {
   font-family: var(--font-mono), monospace;
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--panel-muted);
   white-space: nowrap;
   flex: none;
 }
 
 .status[data-status="shipped"] {
-  color: var(--up);
+  color: #35c08a;
 }
 
 .status[data-status="sunset"] {
   /* Stopped work is stated, not hidden — but it should not draw the eye
      before the things that shipped. */
-  opacity: 0.65;
+  opacity: 0.6;
+}
+
+@media (max-width: 1200px) {
+  .columns {
+    columns: 3;
+  }
 }
 
 @media (max-width: 900px) {

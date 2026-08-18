@@ -43,13 +43,16 @@ export function DirectedIndex() {
   })).filter((v) => v.items.length > 0);
 
   return (
-    <div className={`wrap ${styles.outer}`}>
+    /* Full-bleed, and dark like the screens below it: Work reads as one band
+       from here down rather than a card sitting on paper above a dark stack. */
+    <div className={styles.band} data-dark data-nav-dark>
       <Reveal className={styles.card}>
         <header className={styles.head}>
           <div>
+            <span className={styles.eyebrow}>01 — Work · Directed</span>
             <h3 className={styles.title}>Directed</h3>
             <p className={styles.blurb}>
-              Delivered by the team under my direction across six verticals. I set the
+              Delivered by the team under my direction across seven verticals. I set the
               direction, reviewed the work, and owned the outcome.
             </p>
           </div>

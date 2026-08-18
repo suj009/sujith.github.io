@@ -152,9 +152,21 @@ export type DirectedItem = {
 
 export type Vertical = { area: string; items: DirectedItem[] };
 
+/*
+  Grouped by the verticals owned this financial year. Two of them — Reports
+  and Institution — carry nothing yet: no project in the delivery lists maps
+  to either with any confidence, and inventing an assignment would put a wrong
+  claim on a public page. Groups with no items simply do not render, so adding
+  work here is all it takes to bring them in.
+
+  "Platform & onboarding" is not one of the seven. It exists because six
+  delivered projects are genuinely cross-product — sign-in, the welcome screen,
+  shortcuts — and dropping them to force a clean seven would understate the
+  record by six.
+*/
 export const DIRECTED: Vertical[] = [
   {
-    area: "Options",
+    area: "Options & Option Chain",
     items: [
       { name: "Strategy Builder", status: "shipped" },
       { name: "Option Analytics", status: "shipped" },
@@ -170,7 +182,7 @@ export const DIRECTED: Vertical[] = [
     ],
   },
   {
-    area: "Trading & orders",
+    area: "Trading",
     items: [
       { name: "Web Scalper", status: "shipped" },
       { name: "All Orders & Holdings", status: "shipped" },
@@ -182,11 +194,10 @@ export const DIRECTED: Vertical[] = [
       { name: "Ticker & QuickView", status: "build" },
       { name: "Grouping positions", status: "build" },
       { name: "TradeFlow", status: "build" },
-      { name: "Trade analytics", status: "design" },
     ],
   },
   {
-    area: "Markets & research",
+    area: "Markets",
     items: [
       { name: "Home", status: "shipped" },
       { name: "Markets Overview", status: "shipped" },
@@ -198,29 +209,42 @@ export const DIRECTED: Vertical[] = [
     ],
   },
   {
-    area: "Onboarding & growth",
+    area: "Automation",
+    items: [
+      { name: "Automate", status: "shipped" },
+      { name: "Backtesting", status: "shipped" },
+      { name: "Algo-marketplace in Automate", status: "design" },
+      { name: "Automate overview revamp", status: "design" },
+    ],
+  },
+  {
+    area: "FIA",
+    items: [
+      { name: "FIA with Automate", status: "build" },
+      // Partly live, partly still going — counted as build so the shipped
+      // figure stays one that can be defended item by item.
+      { name: "FIA integration — IPO, Symbol Details, OA", status: "build" },
+      { name: "FIA Doc Analysis", status: "design" },
+    ],
+  },
+  {
+    area: "Reports",
+    items: [{ name: "Trade analytics", status: "design" }],
+  },
+  {
+    area: "Institution",
+    items: [],
+  },
+  {
+    area: "Platform & onboarding",
     items: [
       { name: "Login & Signup revamp", status: "shipped" },
       { name: "Welcome Screen", status: "shipped" },
       { name: "What's New", status: "shipped" },
       { name: "Prime Partners Dashboard", status: "shipped" },
       { name: "Keyboard Shortcuts", status: "shipped" },
-      { name: "Generic & contextual banners", status: "design" },
-    ],
-  },
-  {
-    area: "Automation & platform",
-    items: [
-      { name: "Automate", status: "shipped" },
-      { name: "Backtesting", status: "shipped" },
       { name: "API Dashboard", status: "shipped" },
-      { name: "FIA with Automate", status: "build" },
-      // Partly live, partly still going — counted as build so the shipped
-      // figure stays one that can be defended item by item.
-      { name: "FIA integration — IPO, Symbol Details, OA", status: "build" },
-      { name: "FIA Doc Analysis", status: "design" },
-      { name: "Algo-marketplace in Automate", status: "design" },
-      { name: "Automate overview revamp", status: "design" },
+      { name: "Generic & contextual banners", status: "design" },
     ],
   },
 ];
