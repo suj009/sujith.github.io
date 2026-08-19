@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { Entrance, EntranceItem } from "@/components/motion/Entrance";
-import { EASE, GLIDE, STAGGER } from "@/components/motion/tokens";
+import { EASE, GLIDE, RISE, SPRING, STAGGER } from "@/components/motion/tokens";
 import styles from "./Hero.module.css";
 
 const SPEC = [
@@ -13,6 +13,117 @@ const SPEC = [
   { term: "stack", value: "Figma · Flutter · FE · AI" },
   { term: "seeking", value: "Director / Head of Design" },
 ];
+
+/*
+  The portrait plate.
+
+  Everything around the photograph — the ring, the dot field, the dashed
+  connectors, the accent squares — is drawn in CSS and SVG rather than baked
+  into the image. Three reasons: it stays crisp at any density, it can be
+  animated piece by piece (a flat JPEG can only fade), and it is made of the
+  site's own tokens, so it cannot drift out of palette the way a supplied
+  raster would.
+
+  The plate is one variant child of the hero sequence, so it rises with
+  everything else; its own children then stagger inside it, which is what makes
+  the frame read as assembling around the photo rather than arriving with it.
+*/
+const plate = {
+  hidden: { opacity: 0, y: RISE },
+  shown: {
+    opacity: 1,
+    y: 0,
+    transition: { ...GLIDE, staggerChildren: STAGGER * 0.34, delayChildren: 0.18 },
+  },
+};
+
+const ring = {
+  hidden: { opacity: 0, scale: 0.82 },
+  shown: { opacity: 1, scale: 1, transition: { duration: GLIDE.duration, ease: EASE } },
+};
+
+const draw = {
+  hidden: { pathLength: 0, opacity: 0 },
+  shown: {
+    pathLength: 1,
+    opacity: 1,
+    transition: { duration: GLIDE.duration * 0.9, ease: EASE },
+  },
+};
+
+const pop = {
+  hidden: { opacity: 0, scale: 0.4 },
+  shown: { opacity: 1, scale: 1, transition: SPRING },
+};
+
+/** Accent squares. Deliberately only site colours — a fourth hue introduced
+    here would appear once on the whole site and never again. */
+const MARKS = [
+  { className: "markA", tone: "signal" },
+  { className: "markB", tone: "up" },
+  { className: "markC", tone: "line" },
+] as const;
+
+function Plate({ reduced }: { reduced: boolean | null }) {
+  const body = (
+    <>
+      {/* Decoration only — none of it belongs in the accessibility tree. */}
+      <motion.span
+        className={styles.ring}
+        variants={reduced ? undefined : ring}
+        aria-hidden="true"
+      />
+      <span className={styles.dots} aria-hidden="true" />
+
+      <svg className={styles.wires} viewBox="0 0 400 420" fill="none" aria-hidden="true">
+        <motion.path
+          d="M18 96 H150"
+          stroke="var(--line-2)"
+          strokeWidth="1"
+          strokeDasharray="5 6"
+          variants={reduced ? undefined : draw}
+        />
+        <motion.path
+          d="M382 250 H300 V330"
+          stroke="var(--line-2)"
+          strokeWidth="1"
+          strokeDasharray="5 6"
+          variants={reduced ? undefined : draw}
+        />
+      </svg>
+
+      {MARKS.map((mark) => (
+        <motion.span
+          key={mark.className}
+          className={`${styles.mark} ${styles[mark.className]}`}
+          data-tone={mark.tone}
+          variants={reduced ? undefined : pop}
+          aria-hidden="true"
+        />
+      ))}
+
+      {/*
+        A background layer, not an <img>: it is a portrait of the page's
+        author, which the h1 and the spec panel already state in text, and a
+        missing file should degrade to an empty medallion rather than a broken
+        image box in the middle of the hero.
+      */}
+      <motion.span
+        className={styles.portrait}
+        variants={reduced ? undefined : ring}
+        role="img"
+        aria-label="Sujith Kumar"
+      />
+    </>
+  );
+
+  if (reduced) return <div className={styles.plate}>{body}</div>;
+  return (
+    <motion.div className={styles.plate} variants={plate}>
+      {body}
+    </motion.div>
+  );
+}
 
 /*
   The entrance was previously six @keyframes rules with hand-tuned
@@ -29,7 +140,7 @@ export function Hero() {
   return (
     <header className={styles.hero} id="top">
       <Entrance className={`wrap ${styles.grid}`}>
-        <div>
+        <div className={styles.copy}>
           <EntranceItem as="span" className={`eyebrow ${styles.eyebrow}`}>
             Product Design Leader · Bengaluru
           </EntranceItem>
@@ -50,24 +161,31 @@ export function Hero() {
           </EntranceItem>
         </div>
 
-        {/* The signature element — it rhymes with the Lab's instrument panel. */}
-        <EntranceItem as="aside" className={styles.spec} aria-label="Profile at a glance">
-          <div className={styles.specHead}>
-            <span className={styles.specTitle}>sujith.spec</span>
-            <span className={styles.live}>
-              <span className={styles.pip} />
-              Open to roles
-            </span>
-          </div>
-          <dl className={styles.specList}>
-            {SPEC.map((row) => (
-              <div key={row.term} className={styles.specRow}>
-                <dt>{row.term}</dt>
-                <dd className={row.good ? styles.good : undefined}>{row.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </EntranceItem>
+        {/* Portrait and readout share the right column: the face answers "who",
+            the panel answers "what", and stacking them keeps the headline's
+            measure intact on the left. */}
+        <div className={styles.side}>
+          <Plate reduced={reduced} />
+
+          {/* The signature element — it rhymes with the Lab's instrument panel. */}
+          <EntranceItem as="aside" className={styles.spec} aria-label="Profile at a glance">
+            <div className={styles.specHead}>
+              <span className={styles.specTitle}>sujith.spec</span>
+              <span className={styles.live}>
+                <span className={styles.pip} />
+                Open to roles
+              </span>
+            </div>
+            <dl className={styles.specList}>
+              {SPEC.map((row) => (
+                <div key={row.term} className={styles.specRow}>
+                  <dt>{row.term}</dt>
+                  <dd className={row.good ? styles.good : undefined}>{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </EntranceItem>
+        </div>
       </Entrance>
 
       <div className={styles.cueWrap}>
@@ -86,7 +204,7 @@ export function Hero() {
             : {
                 initial: { opacity: 0 },
                 animate: { opacity: 1 },
-                transition: { delay: 0.05 + 4 * STAGGER + GLIDE.duration, duration: 0.9, ease: EASE },
+                transition: { delay: 0.05 + 5 * STAGGER + GLIDE.duration, duration: 0.9, ease: EASE },
               })}
         >
           <span>Scroll</span>
