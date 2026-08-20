@@ -125,132 +125,100 @@ export const IC_PANELS: PanelSpec[] = [
 
 /* ---------------------------------------------------------------- directed */
 
-/**
- * Where a directed project stands.
- *
- * Four states, matching the filter chips. The team's own labels collapse into
- * these: "With Engg", "Dev WIP" and "PRB done" are all `build`; "WIP in
- * design", "to be picked" and "handed to PO" are all `design`; "Scrapped" is
- * `sunset` — the honest word for work that was stopped, and worth showing
- * rather than quietly dropping.
- */
-export type Status = "shipped" | "build" | "design" | "sunset";
+/*
+  SHIPPED WORK ONLY. Nothing in build, in design, or stopped belongs in this
+  file.
 
-export const STATUS_LABEL: Record<Status, string> = {
-  shipped: "Live",
-  build: "In build",
-  design: "In design",
-  sunset: "Sunset",
-};
+  An earlier version listed all 43 projects with a status against each, which
+  put roughly twenty unreleased FYERS product names on a public page — and,
+  because this repository is public, into a public git history as well. The
+  status column is gone with them: every row here is live, so a per-row label
+  saying so 23 times is noise. The count states it once.
+
+  The bar for adding a row: a customer can use it today. If it is not out yet,
+  it is not in this file. Wait until it ships.
+*/
 
 export type DirectedItem = {
   name: string;
-  status: Status;
   /** Public URL, when the shipped thing can be linked to. */
   href?: string;
 };
 
 export type Vertical = { area: string; items: DirectedItem[] };
 
-/*
-  Grouped by the verticals owned this financial year. Two of them — Reports
-  and Institution — carry nothing yet: no project in the delivery lists maps
-  to either with any confidence, and inventing an assignment would put a wrong
-  claim on a public page. Groups with no items simply do not render, so adding
-  work here is all it takes to bring them in.
+/**
+ * The verticals owned this financial year.
+ *
+ * Named separately from the delivery list on purpose. This is scope of
+ * responsibility — a job description, not a roadmap — so it can be stated in
+ * full even where the shipped work in a vertical cannot be. Three of the seven
+ * have nothing released to name yet; they still belong here, because they are
+ * still owned.
+ */
+export const VERTICALS = [
+  "Trading",
+  "Options & Option Chain",
+  "Automation",
+  "Markets",
+  "Reports",
+  "FIA",
+  "Institution",
+];
 
-  "Platform & onboarding" is not one of the seven. It exists because six
-  delivered projects are genuinely cross-product — sign-in, the welcome screen,
-  shortcuts — and dropping them to force a clean seven would understate the
-  record by six.
+/*
+  "Platform & onboarding" is deliberately not one of the seven. It exists
+  because six delivered projects are genuinely cross-product — sign-in, the
+  welcome screen, shortcuts — and dropping them to force a clean seven would
+  understate the record by six.
 */
 export const DIRECTED: Vertical[] = [
   {
     area: "Options & Option Chain",
     items: [
-      { name: "Strategy Builder", status: "shipped" },
-      { name: "Option Analytics", status: "shipped" },
-      { name: "Options Overview", status: "shipped" },
-      { name: "Options Overview revamp", status: "shipped" },
-      { name: "MOW from Option Chain", status: "shipped" },
-      { name: "Option Chain → Positions", status: "shipped" },
-      { name: "Option Chain → Scalper", status: "build" },
-      { name: "Option Chain → Charts", status: "build" },
-      { name: "Additional option analytics", status: "build" },
-      { name: "OSB mobile enhancements", status: "build" },
-      { name: "Historical Replay", status: "design" },
+      { name: "Strategy Builder" },
+      { name: "Option Analytics" },
+      { name: "Options Overview" },
+      { name: "Options Overview revamp" },
+      { name: "MOW from Option Chain" },
+      { name: "Option Chain → Positions" },
     ],
   },
   {
     area: "Trading",
     items: [
-      { name: "Web Scalper", status: "shipped" },
-      { name: "All Orders & Holdings", status: "shipped" },
-      { name: "Bar Replay", status: "shipped" },
-      { name: "Buy Average", status: "shipped" },
-      { name: "Pledge Summary", status: "shipped" },
-      { name: "Web Terminal", status: "build" },
-      { name: "SOW enhancements", status: "build" },
-      { name: "Ticker & QuickView", status: "build" },
-      { name: "Grouping positions", status: "build" },
-      { name: "TradeFlow", status: "build" },
+      { name: "Web Scalper" },
+      { name: "All Orders & Holdings" },
+      { name: "Bar Replay" },
+      { name: "Buy Average" },
+      { name: "Pledge Summary" },
     ],
   },
   {
     area: "Markets",
     items: [
-      { name: "Home", status: "shipped" },
-      { name: "Markets Overview", status: "shipped" },
-      { name: "Symbol Details enhancements", status: "shipped" },
-      { name: "Seasonality Insights", status: "shipped" },
-      { name: "Query Builder", status: "build" },
-      { name: "Commodities About", status: "design" },
-      { name: "Watchlist grouping", status: "sunset" },
+      { name: "Home" },
+      { name: "Markets Overview" },
+      { name: "Symbol Details enhancements" },
+      { name: "Seasonality Insights" },
     ],
   },
   {
     area: "Automation",
-    items: [
-      { name: "Automate", status: "shipped" },
-      { name: "Backtesting", status: "shipped" },
-      { name: "Algo-marketplace in Automate", status: "design" },
-      { name: "Automate overview revamp", status: "design" },
-    ],
-  },
-  {
-    area: "FIA",
-    items: [
-      { name: "FIA with Automate", status: "build" },
-      // Partly live, partly still going — counted as build so the shipped
-      // figure stays one that can be defended item by item.
-      { name: "FIA integration — IPO, Symbol Details, OA", status: "build" },
-      { name: "FIA Doc Analysis", status: "design" },
-    ],
-  },
-  {
-    area: "Reports",
-    items: [{ name: "Trade analytics", status: "design" }],
-  },
-  {
-    area: "Institution",
-    items: [],
+    items: [{ name: "Automate" }, { name: "Backtesting" }],
   },
   {
     area: "Platform & onboarding",
     items: [
-      { name: "Login & Signup revamp", status: "shipped" },
-      { name: "Welcome Screen", status: "shipped" },
-      { name: "What's New", status: "shipped" },
-      { name: "Prime Partners Dashboard", status: "shipped" },
-      { name: "Keyboard Shortcuts", status: "shipped" },
-      { name: "API Dashboard", status: "shipped" },
-      { name: "Generic & contextual banners", status: "design" },
+      { name: "Login & Signup revamp" },
+      { name: "Welcome Screen" },
+      { name: "What's New" },
+      { name: "Prime Partners Dashboard" },
+      { name: "Keyboard Shortcuts" },
+      { name: "API Dashboard" },
     ],
   },
 ];
 
-export const DIRECTED_TOTAL = DIRECTED.reduce((n, v) => n + v.items.length, 0);
-export const DIRECTED_SHIPPED = DIRECTED.reduce(
-  (n, v) => n + v.items.filter((i) => i.status === "shipped").length,
-  0,
-);
+export const DIRECTED_SHIPPED = DIRECTED.reduce((n, v) => n + v.items.length, 0);
+export const VERTICAL_COUNT = VERTICALS.length;

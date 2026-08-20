@@ -1,40 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { Reveal } from "@/components/motion/Reveal";
-import { EASE } from "@/components/motion/tokens";
 import {
   DIRECTED,
   DIRECTED_PANELS,
   DIRECTED_SHIPPED,
-  DIRECTED_TOTAL,
-  STATUS_LABEL,
-  type Status,
+  VERTICAL_COUNT,
+  VERTICALS,
 } from "./work-data";
 import styles from "./DirectedIndex.module.css";
 
-type Filter = Status | "all";
-
-const FILTERS: { key: Filter; label: string }[] = [
-  { key: "all", label: "everything" },
-  { key: "shipped", label: "shipped" },
-  { key: "build", label: "in build" },
-  { key: "design", label: "in design" },
-  { key: "sunset", label: "sunset" },
-];
-
 /**
- * The delivery record: everything the team shipped under direction.
+ * The delivery record: what the team shipped under direction.
  *
- * Filtering is the whole point of the interaction — a reader who wants only
- * what is live can get to it in one click, rather than scanning 43 rows for
- * the word. Counts per group update with the filter so the numbers never
- * contradict what is on screen.
+ * Live work only. There used to be a status column and a row of filter chips
+ * to sort by it, which stopped earning their place the moment unreleased work
+ * came off the page — every row is live now, so the count says it once instead
+ * of 23 identical labels saying it again.
  */
 export function DirectedIndex() {
-  const [filter, setFilter] = useState<Filter>("all");
   const reduced = useReducedMotion();
   const band = useRef<HTMLDivElement>(null);
 
@@ -48,10 +35,9 @@ export function DirectedIndex() {
       heading   +20 → -20px
       tally     +44 → -44px  more than twice the heading's rate
 
-    The item list is deliberately left still. It is 43 rows of dense reading
-    and a filter people click through; moving it would make it harder to use
-    to no end, and parallax on the thing you are trying to read is the usual
-    way this effect goes wrong.
+    The item list is deliberately left still. It is the part people are
+    actually reading, and parallax on the thing you are trying to read is the
+    usual way this effect goes wrong.
   */
   const { scrollYProgress } = useScroll({
     target: band,
@@ -61,11 +47,6 @@ export function DirectedIndex() {
   const textureY = useTransform(scrollYProgress, [0, 1], ["-7%", "7%"]);
   const headY = useTransform(scrollYProgress, [0, 1], [20, -20]);
   const tallyY = useTransform(scrollYProgress, [0, 1], [44, -44]);
-
-  const groups = DIRECTED.map((v) => ({
-    area: v.area,
-    items: filter === "all" ? v.items : v.items.filter((i) => i.status === filter),
-  })).filter((v) => v.items.length > 0);
 
   return (
     /* Full-bleed, and dark like the screens below it: Work reads as one band
@@ -85,7 +66,7 @@ export function DirectedIndex() {
             <span className={styles.eyebrow}>01 — Work · Directed</span>
             <h3 className={styles.title}>Directed</h3>
             <p className={styles.blurb}>
-              Delivered by the team under my direction across seven verticals. I set the
+              Live products delivered by the team under my direction. I set the
               direction, reviewed the work, and owned the outcome.
             </p>
           </motion.div>
@@ -95,12 +76,12 @@ export function DirectedIndex() {
             style={reduced ? undefined : { y: tallyY }}
           >
             <div className={styles.stat}>
-              <span className={styles.statValue}>{DIRECTED_TOTAL}</span>
-              <span className={styles.statLabel}>directed</span>
-            </div>
-            <div className={styles.stat}>
               <span className={`${styles.statValue} ${styles.up}`}>{DIRECTED_SHIPPED}</span>
               <span className={styles.statLabel}>shipped</span>
+            </div>
+            <div className={styles.stat}>
+              <span className={styles.statValue}>{VERTICAL_COUNT}</span>
+              <span className={styles.statLabel}>verticals</span>
             </div>
           </motion.div>
         </header>
@@ -122,19 +103,14 @@ export function DirectedIndex() {
           ))}
         </div>
 
-        <div className={styles.filters} role="group" aria-label="Filter by status">
-          {FILTERS.map((f) => (
-            <button
-              key={f.key}
-              type="button"
-              className={styles.chip}
-              data-on={filter === f.key}
-              aria-pressed={filter === f.key}
-              onClick={() => setFilter(f.key)}
-            >
-              {f.label}
-            </button>
-          ))}
+        {/*
+          Scope of ownership, stated in full. Three of the seven have nothing
+          released to name yet, so they never appear as a group below — naming
+          them here is what keeps the seven from silently becoming four.
+        */}
+        <div className={styles.verticals}>
+          <span className={styles.verticalsLabel}>Verticals owned</span>
+          <p className={styles.verticalsList}>{VERTICALS.join(" · ")}</p>
         </div>
 
         {/*
@@ -143,7 +119,7 @@ export function DirectedIndex() {
           of leaving a hole. break-inside keeps a group whole.
         */}
         <div className={styles.columns}>
-          {groups.map((group) => (
+          {DIRECTED.map((group) => (
             <section key={group.area} className={styles.group}>
               <h4 className={styles.area}>
                 <span>{group.area}</span>
@@ -152,19 +128,7 @@ export function DirectedIndex() {
 
               <ul className={styles.items}>
                 {group.items.map((item) => (
-                  <motion.li
-                    key={item.name}
-                    className={styles.item}
-                    /* Filtering swaps the list contents; a short fade keeps
-                       that from reading as a flicker. */
-                    {...(reduced
-                      ? {}
-                      : {
-                          initial: { opacity: 0 },
-                          animate: { opacity: 1 },
-                          transition: { duration: 0.32, ease: EASE },
-                        })}
-                  >
+                  <li key={item.name} className={styles.item}>
                     {item.href ? (
                       <a className={styles.link} href={item.href} target="_blank" rel="noopener">
                         {item.name} ↗
@@ -172,10 +136,7 @@ export function DirectedIndex() {
                     ) : (
                       <span className={styles.name}>{item.name}</span>
                     )}
-                    <span className={styles.status} data-status={item.status}>
-                      {STATUS_LABEL[item.status]}
-                    </span>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
             </section>

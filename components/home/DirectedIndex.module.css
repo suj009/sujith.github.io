@@ -146,39 +146,36 @@
   transform: translateX(4px);
 }
 
-/* ---------- filters ---------- */
+/* ---------- verticals owned ---------- */
 
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+/*
+  Set as a quiet rule rather than as chips. It replaced the filter row, and a
+  row of pill shapes here would still read as buttons — this is a statement of
+  scope, and nothing about it is clickable.
+*/
+.verticals {
   margin: 26px 0 32px;
+  padding: 18px 0;
+  border-top: 1px solid var(--panel-line);
+  border-bottom: 1px solid var(--panel-line);
+  display: flex;
+  align-items: baseline;
+  gap: 10px 24px;
+  flex-wrap: wrap;
 }
 
-.chip {
+.verticalsLabel {
   font-family: var(--font-mono), monospace;
-  font-size: 0.76rem;
-  letter-spacing: 0.02em;
-  padding: 9px 18px;
-  min-height: 40px;
-  border-radius: 999px;
-  border: 1px solid var(--panel-line);
-  background: none;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--panel-muted);
-  cursor: pointer;
-  transition: background 0.2s var(--ease), color 0.2s var(--ease),
-    border-color 0.2s var(--ease);
+  flex: none;
 }
 
-.chip:hover {
-  border-color: var(--panel-text);
+.verticalsList {
   color: var(--panel-text);
-}
-
-.chip[data-on="true"] {
-  background: var(--panel-text);
-  border-color: var(--panel-text);
-  color: var(--panel);
+  font-size: 1.02rem;
 }
 
 /* ---------- groups ---------- */
@@ -243,30 +240,6 @@
 
 .link:hover {
   text-decoration: underline;
-}
-
-/*
-  Status is set quieter than the project name deliberately — the name is what
-  is being scanned for; the status is the qualifier you read second.
-*/
-.status {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--panel-muted);
-  white-space: nowrap;
-  flex: none;
-}
-
-.status[data-status="shipped"] {
-  color: #35c08a;
-}
-
-.status[data-status="sunset"] {
-  /* Stopped work is stated, not hidden — but it should not draw the eye
-     before the things that shipped. */
-  opacity: 0.6;
 }
 
 @media (max-width: 1200px) {
