@@ -120,48 +120,56 @@
   align-items: flex-end;
   background: var(--panel);
   color: var(--panel-text);
-  /* Only the panel's opacity animates now — the content inside does the
-     travelling — so this is the only hint the compositor needs. */
   will-change: opacity;
 }
 
-.panel::before,
-.panel::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
+/* ---------- the furthest plane ---------- */
 
-.panel::before {
+/*
+  Was .panel::before plus a separate .cover element. Both are now this one
+  layer, because it has to be transformable and a pseudo-element cannot be
+  driven by Motion.
+
+  Oversized on purpose: it travels ±5% of its own height, so inset:0 would pull
+  a bare strip of panel into view at whichever edge it is moving away from.
+  Bleeding it 8% past the panel on both sides keeps the ground covered through
+  the whole range, and the panel's overflow:hidden trims the surplus.
+*/
+.ground {
+  position: absolute;
+  inset: -8% 0;
+  z-index: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
   background-image: repeating-linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.05) 0 2px,
     transparent 2px 26px
   );
+  /* The one layer worth a compositor hint: it is panel-sized and it moves on
+     every frame the panel is pinned. */
+  will-change: transform;
 }
 
-.panel::after {
-  background: linear-gradient(to top, var(--panel) 12%, transparent 62%);
-}
-
-/* ---------- full-bleed artwork ---------- */
-
-.cover {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-size: cover;
-  background-repeat: no-repeat;
+/* The stripes exist to give an empty panel some texture. Over artwork they are
+   just noise, so artwork replaces them outright rather than sitting under
+   them — the inline background-image wins on specificity. */
+.groundCover {
   /* The artwork is already near-black — most of it sits around 6% luminance —
      so it needs almost no holding back. Dimming it further just erased it. */
   opacity: 0.92;
 }
 
-/* The stripes exist to give an empty panel some texture. Over artwork they
-   are just noise, so they come off. */
-.hasCover::before {
-  background-image: none;
+/*
+  The scrim is deliberately NOT part of the ground: it exists to seat the type
+  against the bottom edge of the panel, so it has to stay locked to that edge
+  while the ground slides underneath it.
+*/
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(to top, var(--panel) 12%, transparent 62%);
 }
 
 /*
@@ -172,7 +180,7 @@
   so this does just enough: a vertical pass to seat the metrics and CTA, and a
   soft left pass to keep the glow off the lede.
 */
-.hasCover::after {
+.scrimCover {
   background:
     linear-gradient(
       to top,
@@ -206,12 +214,18 @@
   opacity: 0.4;
 }
 
+/*
+  The bottom padding is larger than the type needs. The copy sits +28px low at
+  the moment its panel pins and rises from there, so that surplus is the room
+  it travels down into — at the old value the metrics row started clipped by
+  the panel's overflow:hidden.
+*/
 .panelInner {
   position: relative;
   z-index: 1;
   width: 100%;
   padding-top: 40px;
-  padding-bottom: clamp(40px, 7vh, 64px);
+  padding-bottom: clamp(50px, 7.5vh, 76px);
 }
 
 .tag {
@@ -324,11 +338,11 @@
     give way to it — a horizontal scrim is pointless at this width, and the
     vertical one has to start higher.
   */
-  .cover {
+  .groundCover {
     opacity: 0.5;
   }
 
-  .hasCover::after {
+  .scrimCover {
     background: linear-gradient(
       to top,
       var(--panel) 40%,

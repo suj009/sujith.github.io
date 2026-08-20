@@ -21,31 +21,69 @@ import styles from "./WorkStack.module.css";
  * depth: without help the outgoing screen sits at full contrast right until the
  * next one covers it, and the change reads as one flat card replacing another.
  *
- * So the outgoing screen dims and its content drifts upward as the next climbs
- * over it. It deliberately does *not* scale: shrinking a full-bleed panel pulls
- * its edges away from the viewport and exposes the page behind it at the
- * corners, which is what made the earlier version look wrong. Dimming plus a
- * little parallax reads as depth while the panel stays edge to edge.
+ * Depth comes from parallax. While a panel is pinned its own box cannot move —
+ * it has to stay flush to the viewport edges, and shrinking it would expose the
+ * page behind it at the corners. So the movement happens *between the layers
+ * inside it*, each running at its own rate against the same scroll:
+ *
+ *   ground    -5% →  +5%   drifts down, slowest, furthest away
+ *   caption     0  →  -40px
+ *   copy      +28  →  -52px   rises through the frame, fastest
+ *     └ heading  extra -18px   (leads the block)
+ *     └ metrics  extra +14px   (trails it)
+ *
+ * The two extra rates inside the copy are what stop it reading as one slab
+ * sliding: the heading pulls away from the numbers as you scroll, which is the
+ * whole illusion. Opacity fades the screen out only in the last 45%, so nothing
+ * dims while it is still being read.
  */
 function StackPanel({ panel, index }: { panel: PanelSpec; index: number }) {
   const track = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
 
-  const { scrollYProgress } = useScroll({
+  /*
+    Two ranges over the same track, because the panel has two distinct phases
+    and one progress value cannot describe both.
+
+    `pinned` ends where the track's bottom edge reaches the viewport's bottom
+    edge — which is exactly the moment sticky lets go. That is a third of the
+    track, not all of it: the track is 150vh and the panel is a viewport tall,
+    so the panel holds still for 50vh and then scrolls away for the remaining
+    100vh. Mapping the parallax across the whole track (the obvious thing, and
+    what this did at first) spent two thirds of the movement on a panel that
+    was already leaving, so almost none of it was visible while the screen was
+    being read.
+  */
+  const { scrollYProgress: pinned } = useScroll({
     target: track,
-    // From the track's top meeting the viewport top, to its bottom doing the
-    // same — i.e. exactly the span over which this panel is pinned.
+    offset: ["start start", "end end"],
+  });
+
+  // The full pass, still the right range for the fade — the screen should keep
+  // dimming as it slides away, not finish the moment it unpins.
+  const { scrollYProgress: whole } = useScroll({
+    target: track,
     offset: ["start start", "end start"],
   });
 
+  // Percentages, not pixels: the ground is sized relative to the panel, so a
+  // proportional drift covers a phone and a 27" display with one number.
+  const groundY = useTransform(pinned, [0, 1], ["-5%", "5%"]);
+  const groundScale = useTransform(pinned, [0, 1], [1, 1.06]);
+
+  const captionY = useTransform(pinned, [0, 1], [0, -40]);
+
+  const copyY = useTransform(pinned, [0, 1], [28, -52]);
+  const headY = useTransform(pinned, [0, 1], [0, -18]);
+  const rowY = useTransform(pinned, [0, 1], [0, 14]);
+
   // Hold at full presence while the screen is being read, then recede.
-  const opacity = useTransform(scrollYProgress, [0, 0.55, 1], [1, 1, 0.45]);
-  const shift = useTransform(scrollYProgress, [0, 0.55, 1], [0, 0, -56]);
+  const opacity = useTransform(whole, [0, 0.55, 1], [1, 1, 0.45]);
 
   return (
     <div className={styles.track} ref={track}>
       <motion.article
-        className={`${styles.panel} ${panel.cover ? styles.hasCover : ""}`}
+        className={styles.panel}
         id={panel.id}
         /* Marks this as a dark surface so the global focus ring switches to
            the lighter accent — the paper-tuned blue is ~2.2:1 on this ground. */
@@ -53,35 +91,52 @@ function StackPanel({ panel, index }: { panel: PanelSpec; index: number }) {
         style={{ zIndex: index + 1, ...(reduced ? {} : { opacity }) }}
       >
         {/*
-          A background layer rather than an <img>: it is decoration, so it
-          should stay out of the accessibility tree, and a missing file
-          degrades silently to the stripe treatment instead of leaving a
-          broken-image box across the panel.
+          The furthest plane. It carries the artwork when there is any and the
+          stripe texture when there is not, so there is exactly one thing to
+          move rather than two layers that have to be kept in step.
+
+          A background layer rather than an <img>: it is decoration, so it stays
+          out of the accessibility tree, and a missing file degrades to the
+          stripes instead of a broken-image box across the panel.
         */}
-        {panel.cover && (
-          <div
-            className={styles.cover}
-            style={{
-              backgroundImage: `url(${panel.cover.src})`,
-              backgroundPosition: panel.cover.position ?? "center",
-            }}
-          />
+        <motion.div
+          className={`${styles.ground} ${panel.cover ? styles.groundCover : ""}`}
+          style={{
+            ...(panel.cover
+              ? {
+                  backgroundImage: `url(${panel.cover.src})`,
+                  backgroundPosition: panel.cover.position ?? "center",
+                }
+              : {}),
+            ...(reduced ? {} : { y: groundY, scale: groundScale }),
+          }}
+        />
+
+        {/* Sits above the ground so the scrim reads against artwork, and below
+            the copy so it never competes with it. */}
+        <div className={`${styles.scrim} ${panel.cover ? styles.scrimCover : ""}`} />
+
+        {panel.caption && (
+          <motion.span
+            className={styles.caption}
+            style={reduced ? undefined : { y: captionY }}
+          >
+            {panel.caption}
+          </motion.span>
         )}
 
-        {panel.caption && <span className={styles.caption}>{panel.caption}</span>}
-
-        {/* Only the content parallaxes, never the panel box — the box has to
-            stay flush to the viewport edges. */}
         <motion.div
           className={`wrap ${styles.panelInner}`}
-          style={reduced ? undefined : { y: shift }}
+          style={reduced ? undefined : { y: copyY }}
         >
           <Reveal>
-            <span className={styles.tag}>{panel.tag}</span>
-            <h3 className={styles.title}>{panel.title}</h3>
-            <p className={styles.lede}>{panel.lede}</p>
+            <motion.div style={reduced ? undefined : { y: headY }}>
+              <span className={styles.tag}>{panel.tag}</span>
+              <h3 className={styles.title}>{panel.title}</h3>
+              <p className={styles.lede}>{panel.lede}</p>
+            </motion.div>
 
-            <div className={styles.row}>
+            <motion.div className={styles.row} style={reduced ? undefined : { y: rowY }}>
               {panel.metrics.map((metric) => (
                 <div key={metric.label} className={styles.metric}>
                   <div className={`${styles.value} ${metric.up ? styles.up : ""}`}>
@@ -94,7 +149,7 @@ function StackPanel({ panel, index }: { panel: PanelSpec; index: number }) {
               {/* No case study yet, so the panel states its access rather than
                   offering a link that goes nowhere. */}
               <span className={styles.access}>Not shown publicly</span>
-            </div>
+            </motion.div>
           </Reveal>
         </motion.div>
       </motion.article>

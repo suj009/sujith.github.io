@@ -11,18 +11,21 @@
   overflow: hidden;
 }
 
-/* The site's own stripe texture, so the band has depth without another
-   image to load. */
-.band::before {
-  content: "";
+/*
+  The site's own stripe texture, so the band has depth without another image to
+  load. Bled 10% past the band top and bottom because it drifts ±7% of its own
+  height — at inset:0 that would drag a bare edge into view.
+*/
+.texture {
   position: absolute;
-  inset: 0;
+  inset: -10% 0;
   background-image: repeating-linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.045) 0 2px,
     transparent 2px 26px
   );
   pointer-events: none;
+  will-change: transform;
 }
 
 .card {

@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { useRef, useState } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { Reveal } from "@/components/motion/Reveal";
 import { EASE } from "@/components/motion/tokens";
 import {
@@ -36,6 +36,31 @@ const FILTERS: { key: Filter; label: string }[] = [
 export function DirectedIndex() {
   const [filter, setFilter] = useState<Filter>("all");
   const reduced = useReducedMotion();
+  const band = useRef<HTMLDivElement>(null);
+
+  /*
+    Parallax across the band's whole pass through the viewport — from its top
+    edge entering at the bottom of the screen to its bottom edge leaving at the
+    top. Unlike the pinned screens below, this band scrolls normally, so the
+    depth has to come from its layers outrunning each other against that pass.
+
+      texture   -7% → +7%   drifts down behind everything
+      heading   +20 → -20px
+      tally     +44 → -44px  more than twice the heading's rate
+
+    The item list is deliberately left still. It is 43 rows of dense reading
+    and a filter people click through; moving it would make it harder to use
+    to no end, and parallax on the thing you are trying to read is the usual
+    way this effect goes wrong.
+  */
+  const { scrollYProgress } = useScroll({
+    target: band,
+    offset: ["start end", "end start"],
+  });
+
+  const textureY = useTransform(scrollYProgress, [0, 1], ["-7%", "7%"]);
+  const headY = useTransform(scrollYProgress, [0, 1], [20, -20]);
+  const tallyY = useTransform(scrollYProgress, [0, 1], [44, -44]);
 
   const groups = DIRECTED.map((v) => ({
     area: v.area,
@@ -45,19 +70,30 @@ export function DirectedIndex() {
   return (
     /* Full-bleed, and dark like the screens below it: Work reads as one band
        from here down rather than a card sitting on paper above a dark stack. */
-    <div className={styles.band} data-dark data-nav-dark>
+    <div className={styles.band} data-dark data-nav-dark ref={band}>
+      {/* Was .band::before. A real element now, because Motion cannot drive a
+          pseudo-element and this is the band's furthest plane. */}
+      <motion.div
+        className={styles.texture}
+        style={reduced ? undefined : { y: textureY }}
+        aria-hidden="true"
+      />
+
       <Reveal className={styles.card}>
         <header className={styles.head}>
-          <div>
+          <motion.div style={reduced ? undefined : { y: headY }}>
             <span className={styles.eyebrow}>01 — Work · Directed</span>
             <h3 className={styles.title}>Directed</h3>
             <p className={styles.blurb}>
               Delivered by the team under my direction across seven verticals. I set the
               direction, reviewed the work, and owned the outcome.
             </p>
-          </div>
+          </motion.div>
 
-          <div className={styles.tally}>
+          <motion.div
+            className={styles.tally}
+            style={reduced ? undefined : { y: tallyY }}
+          >
             <div className={styles.stat}>
               <span className={styles.statValue}>{DIRECTED_TOTAL}</span>
               <span className={styles.statLabel}>directed</span>
@@ -66,7 +102,7 @@ export function DirectedIndex() {
               <span className={`${styles.statValue} ${styles.up}`}>{DIRECTED_SHIPPED}</span>
               <span className={styles.statLabel}>shipped</span>
             </div>
-          </div>
+          </motion.div>
         </header>
 
         {/*
