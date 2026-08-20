@@ -20,17 +20,10 @@
 */
 .grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: 1.35fr 0.9fr;
   gap: clamp(28px, 5vw, 64px);
-  align-items: center;
+  align-items: end;
   max-width: var(--herow);
-}
-
-.side {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(20px, 3vh, 34px);
 }
 
 .eyebrow {
@@ -66,113 +59,9 @@
   font-weight: 600;
 }
 
-/* ---------- portrait plate ---------- */
-
-/*
-  A square stage the decoration is positioned against. Sizing it from the
-  viewport rather than the photograph means the ring, the dot field and the
-  marks all scale together — a plate laid out in pixels would keep its
-  decoration at desktop scale while the photo shrank under it.
-*/
-.plate {
-  position: relative;
-  width: min(100%, 400px);
-  aspect-ratio: 1;
-  flex: none;
-}
-
-/* The large circle motif. A hairline, not a fill: filled, it competes with
-   the dark spec panel directly below for the eye. */
-.ring {
-  position: absolute;
-  inset: 4%;
-  border-radius: 50%;
-  border: 1px solid var(--line-2);
-  background: var(--paper-2);
-}
-
-/*
-  The dot field, clipped to the top-left quadrant so it reads as a plate the
-  composition sits on rather than a texture over the whole hero.
-*/
-.dots {
-  position: absolute;
-  left: 0;
-  top: 8%;
-  width: 46%;
-  height: 40%;
-  background-image: radial-gradient(var(--line-2) 1.1px, transparent 1.1px);
-  background-size: 13px 13px;
-  opacity: 0.85;
-  -webkit-mask-image: linear-gradient(115deg, #000 35%, transparent 78%);
-  mask-image: linear-gradient(115deg, #000 35%, transparent 78%);
-}
-
-.wires {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.mark {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-radius: 2px;
-}
-
-.mark[data-tone="signal"] {
-  background: var(--signal);
-}
-
-.mark[data-tone="up"] {
-  background: var(--up);
-}
-
-.mark[data-tone="line"] {
-  background: none;
-  border: 1px solid var(--line-2);
-}
-
-.markA {
-  left: 0;
-  top: 20%;
-}
-
-.markB {
-  right: 6%;
-  top: 76%;
-}
-
-.markC {
-  right: 0;
-  top: 57%;
-}
-
-/*
-  A background layer rather than an <img>, so a missing file degrades to an
-  empty medallion instead of a broken-image box. background-size: cover keeps
-  the crop stable as the plate scales.
-*/
-.portrait {
-  position: absolute;
-  inset: 12%;
-  border-radius: 50%;
-  background-color: var(--paper-2);
-  background-image: url("/img/sujith-hero.webp");
-  background-size: cover;
-  background-position: center 22%;
-  box-shadow: 0 30px 60px -38px rgba(20, 22, 27, 0.6);
-}
-
 /* ---------- spec readout ---------- */
 
 .spec {
-  /* The side column centres its children so the plate stays optically
-     centred; the panel is the one child that should still fill the track. */
-  width: 100%;
   background: var(--panel);
   border-radius: 16px;
   padding: 28px 30px;
@@ -346,34 +235,5 @@
 
   .lede {
     max-width: 52ch;
-  }
-
-  /*
-    Stacked, a 400px plate sits between the lede and the spec panel and pushes
-    the panel most of a screen down — the readout is the hero's payload and it
-    should not cost a scroll to reach. Shrunk to a medallion it costs a fifth
-    of that, and it still introduces the person before the spec does.
-
-    Moving it above the headline was the other option and is worse: it buys
-    the panel the same room but spends it pushing the h1 — the one thing that
-    has to land first — nearly half a screen down.
-
-    display:contents dissolves the side column so the medallion and the panel
-    become rows of the hero grid rather than a nested stack.
-  */
-  .side {
-    display: contents;
-  }
-
-  .plate {
-    width: 148px;
-  }
-
-  /* At medallion scale the frame is noise — 14px marks and a 13px dot grid
-     around a 148px circle read as dirt, not structure. */
-  .dots,
-  .wires,
-  .mark {
-    display: none;
   }
 }
