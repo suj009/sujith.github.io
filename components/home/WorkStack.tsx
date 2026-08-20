@@ -100,17 +100,25 @@ function StackPanel({ panel, index }: { panel: PanelSpec; index: number }) {
           stripes instead of a broken-image box across the panel.
         */}
         <motion.div
-          className={`${styles.ground} ${panel.cover ? styles.groundCover : ""}`}
-          style={{
-            ...(panel.cover
-              ? {
-                  backgroundImage: `url(${panel.cover.src})`,
-                  backgroundPosition: panel.cover.position ?? "center",
-                }
-              : {}),
-            ...(reduced ? {} : { y: groundY, scale: groundScale }),
-          }}
-        />
+          className={styles.ground}
+          style={reduced ? undefined : { y: groundY, scale: groundScale }}
+        >
+          {/*
+            The artwork rides on top of the stripes rather than replacing them,
+            so a capture that has not been shot yet — or a path that is wrong —
+            leaves the panel looking exactly as it does today instead of flat
+            black. Both layers share the ground's single transform.
+          */}
+          {panel.cover && (
+            <div
+              className={styles.art}
+              style={{
+                backgroundImage: `url(${panel.cover.src})`,
+                backgroundPosition: panel.cover.position ?? "center",
+              }}
+            />
+          )}
+        </motion.div>
 
         {/* Sits above the ground so the scrim reads against artwork, and below
             the copy so it never competes with it. */}

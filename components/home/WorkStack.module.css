@@ -126,21 +126,22 @@
 /* ---------- the furthest plane ---------- */
 
 /*
-  Was .panel::before plus a separate .cover element. Both are now this one
-  layer, because it has to be transformable and a pseudo-element cannot be
-  driven by Motion.
+  Was .panel::before plus a separate .cover element. They are one movable layer
+  now, because a pseudo-element cannot be driven by Motion.
 
   Oversized on purpose: it travels ±5% of its own height, so inset:0 would pull
   a bare strip of panel into view at whichever edge it is moving away from.
   Bleeding it 8% past the panel on both sides keeps the ground covered through
   the whole range, and the panel's overflow:hidden trims the surplus.
+
+  It carries the stripe texture. Artwork, when there is any, sits on top as a
+  child — so a capture that has not been shot yet leaves the panel looking as
+  it does today rather than flat black, and only one transform drives both.
 */
 .ground {
   position: absolute;
   inset: -8% 0;
   z-index: 0;
-  background-size: cover;
-  background-repeat: no-repeat;
   background-image: repeating-linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.05) 0 2px,
@@ -151,13 +152,15 @@
   will-change: transform;
 }
 
-/* The stripes exist to give an empty panel some texture. Over artwork they are
-   just noise, so artwork replaces them outright rather than sitting under
-   them — the inline background-image wins on specificity. */
-.groundCover {
-  /* The artwork is already near-black — most of it sits around 6% luminance —
-     so it needs almost no holding back. Dimming it further just erased it. */
-  opacity: 0.92;
+.art {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* Product captures are far brighter than the FDSG artwork this started with.
+     Held back here so the panel keeps its ground, with the scrim below doing
+     the rest of the work where the type sits. */
+  opacity: 0.82;
 }
 
 /*
@@ -338,8 +341,8 @@
     give way to it — a horizontal scrim is pointless at this width, and the
     vertical one has to start higher.
   */
-  .groundCover {
-    opacity: 0.5;
+  .art {
+    opacity: 0.42;
   }
 
   .scrimCover {
