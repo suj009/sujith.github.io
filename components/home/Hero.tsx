@@ -28,8 +28,16 @@ export function Hero() {
 
   return (
     <header className={styles.hero} id="top">
+      {/*
+        Decoration, so it stays out of the accessibility tree: the portrait
+        repeats what the h1 and the spec panel already say in text, and a
+        missing file should leave the sand ground rather than a broken image
+        across the top of the site.
+      */}
+      <div className={styles.art} aria-hidden="true" />
+
       <Entrance className={`wrap ${styles.grid}`}>
-        <div>
+        <div className={styles.copy}>
           <EntranceItem as="span" className={`eyebrow ${styles.eyebrow}`}>
             Product Design Leader · Bengaluru
           </EntranceItem>
@@ -48,26 +56,29 @@ export function Hero() {
             <b>Eleven years turning complex fintech into products people trust</b> — across
             trading, DeFi, and HCI research.
           </EntranceItem>
-        </div>
 
-        {/* The signature element — it rhymes with the Lab's instrument panel. */}
-        <EntranceItem as="aside" className={styles.spec} aria-label="Profile at a glance">
-          <div className={styles.specHead}>
-            <span className={styles.specTitle}>sujith.spec</span>
-            <span className={styles.live}>
-              <span className={styles.pip} />
-              Open to roles
-            </span>
-          </div>
-          <dl className={styles.specList}>
-            {SPEC.map((row) => (
-              <div key={row.term} className={styles.specRow}>
-                <dt>{row.term}</dt>
-                <dd className={row.good ? styles.good : undefined}>{row.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </EntranceItem>
+          {/* The signature element — it rhymes with the Lab's instrument
+              panel. It sits under the copy now rather than beside it: the
+              artwork owns the right of the frame, and a panel there would
+              cover the portrait. */}
+          <EntranceItem as="aside" className={styles.spec} aria-label="Profile at a glance">
+            <div className={styles.specHead}>
+              <span className={styles.specTitle}>sujith.spec</span>
+              <span className={styles.live}>
+                <span className={styles.pip} />
+                Open to roles
+              </span>
+            </div>
+            <dl className={styles.specList}>
+              {SPEC.map((row) => (
+                <div key={row.term} className={styles.specRow}>
+                  <dt>{row.term}</dt>
+                  <dd className={row.good ? styles.good : undefined}>{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </EntranceItem>
+        </div>
       </Entrance>
 
       <div className={styles.cueWrap}>

@@ -1,9 +1,8 @@
 /*
-  Two things used to pull the visible centre of the hero downward: min-height
-  was a FULL viewport even though the hero starts --navh below the top of the
-  screen (so its box ran that far past the fold), and the padding was
-  asymmetric. Subtracting the nav height and keeping the padding symmetric
-  centres the content against what is actually visible on load.
+  The hero is the one full-bleed section on paper, because the banner is the
+  section. Its ground colour is sampled from the artwork itself, so the image's
+  edges and the surface behind them are the same value and no seam can appear
+  where the artwork stops.
 */
 .hero {
   padding: clamp(40px, 7vh, 72px) 0;
@@ -11,19 +10,60 @@
   display: flex;
   align-items: safe center;
   position: relative;
+  background-color: var(--sand);
+  isolation: isolate;
 }
 
 /*
-  Wider than the site's standard --maxw column. The hero is the one section
-  that should spend the extra room on a large screen rather than leave it as
-  margin on both sides.
+  The artwork, as a background layer rather than an <img>: it is decoration
+  that repeats what the h1 already says, so it stays out of the accessibility
+  tree, and a missing file degrades to the sand ground instead of a broken
+  image across the top of the site.
+
+  Anchored right. The subject sits in the artwork's right third and the left
+  half is empty ground — which is exactly the arrangement the copy needs, and
+  it means narrowing the viewport eats the empty side first.
+*/
+.art {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url("/img/hero-bg.webp");
+  background-size: cover;
+  background-position: 78% center;
+  background-repeat: no-repeat;
+}
+
+/*
+  The nav is translucent paper and sits over this section at rest, so without
+  help there is a visible cool band across the top of a warm one. Fading the
+  page's own paper into the artwork over the nav's height hides the join; the
+  artwork has nothing but empty ground up there, so nothing is lost to it.
+*/
+.art::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: calc(var(--navh) + 40px);
+  background: linear-gradient(to bottom, var(--paper) 0%, transparent 100%);
+}
+
+/*
+  One column, not two. The artwork owns the right side of the frame, so a
+  second column there would sit on top of the portrait.
+
+  width:100% is load-bearing. .hero is a flex container, and a flex item sizes
+  to its content unless told otherwise — while this was a grid with fr tracks
+  that never showed, but as a plain block the column collapsed to the width of
+  the longest unbreakable word and the headline ran to eight lines.
 */
 .grid {
-  display: grid;
-  grid-template-columns: 1.35fr 0.9fr;
-  gap: clamp(28px, 5vw, 64px);
-  align-items: end;
+  width: 100%;
   max-width: var(--herow);
+}
+
+.copy {
+  max-width: min(52%, 620px);
 }
 
 .eyebrow {
@@ -35,7 +75,7 @@
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.08;
-  font-size: clamp(2.6rem, 7.2vw, 5.6rem);
+  font-size: clamp(2.6rem, 5.6vw, 4.6rem);
   margin-top: 18px;
 }
 
@@ -48,9 +88,9 @@
 }
 
 .lede {
-  margin-top: 30px;
-  max-width: 50ch;
-  font-size: clamp(1.08rem, 2vw, 1.4rem);
+  margin-top: 26px;
+  max-width: 46ch;
+  font-size: clamp(1.02rem, 1.5vw, 1.22rem);
   color: var(--graphite);
 }
 
@@ -61,13 +101,20 @@
 
 /* ---------- spec readout ---------- */
 
+/*
+  Two columns rather than the six-row stack it used to be. It has moved from
+  the right of the hero to underneath the copy, where the height it can spend
+  is what the headline and lede leave over — about half what it had.
+*/
 .spec {
+  margin-top: 34px;
+  max-width: 620px;
   background: var(--panel);
   border-radius: 16px;
-  padding: 28px 30px;
+  padding: 22px 24px;
   color: var(--panel-text);
   font-family: var(--font-mono), monospace;
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   box-shadow: 0 26px 60px -34px rgba(0, 0, 0, 0.55);
 }
 
@@ -75,14 +122,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
-  padding-bottom: 16px;
+  margin-bottom: 15px;
+  padding-bottom: 13px;
   border-bottom: 1px solid var(--panel-line);
 }
 
 .specTitle {
   letter-spacing: 0.16em;
-  font-size: 0.64rem;
+  font-size: 0.62rem;
   text-transform: uppercase;
   color: var(--panel-muted);
 }
@@ -91,7 +138,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   letter-spacing: 0.14em;
   color: var(--panel-muted);
 }
@@ -113,49 +160,31 @@
 
 .specList {
   display: grid;
-  gap: 14px 18px;
-  font-size: 1.02em;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px 28px;
 }
 
 .specRow {
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 18px;
+  gap: 1px;
+  min-width: 0;
 }
 
 .specRow dt {
   color: var(--panel-muted);
   letter-spacing: 0.04em;
+  font-size: 0.92em;
 }
 
 .specRow dd {
-  text-align: right;
   color: var(--panel-text);
+  /* Two columns is a tight measure for "Sr Design Manager, FYERS"; wrapping is
+     better here than the ellipsis a single line would need. */
+  overflow-wrap: anywhere;
 }
 
 .good {
   color: var(--up);
-}
-
-/* The label/value pair cannot hold two columns this narrow — stack it left. */
-@media (max-width: 560px) {
-  .specHead {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .specList {
-    gap: 10px;
-  }
-
-  .specRow {
-    grid-template-columns: 1fr;
-    gap: 2px;
-  }
-
-  .specRow dd {
-    text-align: left;
-  }
 }
 
 /* ---------- scroll cue ---------- */
@@ -164,19 +193,20 @@
   The wrapper owns the centring transform so the anchor's own transform is free
   for Motion to animate — the two used to fight, and the cue jumped half a
   viewport sideways as it faded in.
+
+  Left-aligned to the copy rather than centred on the viewport: centred, it
+  landed on the portrait's chest.
 */
 .cueWrap {
   position: absolute;
-  left: 50%;
+  left: max(calc((100vw - var(--herow)) / 2), clamp(20px, 5vw, 44px));
   bottom: clamp(20px, 4vh, 40px);
-  transform: translateX(-50%);
 }
 
 .cue {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 9px;
+  gap: 10px;
   font-family: var(--font-mono), monospace;
   font-size: 0.68rem;
   letter-spacing: 0.16em;
@@ -200,7 +230,7 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(6px);
+    transform: translateY(4px);
   }
 }
 
@@ -211,22 +241,42 @@
 }
 
 /*
-  Below ~860px the two columns starve each other: the headline loses its
-  measure and the spec panel wraps every value. Stacked, the column runs taller
-  than one screen on most phones, so it is top-aligned — centring it inside a
-  full-viewport box would push the top of the content up behind the nav.
+  Below ~860px the copy cannot hold half the frame and leave the portrait
+  anything, so the two stop sharing the width and share the height instead:
+  the artwork becomes a band across the top and the copy runs underneath it.
+
+  Behind the copy the artwork would be invisible anyway — the spec panel is
+  opaque and covers the bottom two thirds of a phone screen, which is exactly
+  where a full-bleed crop put the portrait. A band at least shows it.
 */
 @media (max-width: 860px) {
   .hero {
-    padding-top: clamp(34px, 6vh, 64px);
+    /* Room for the band, plus the section's own top padding under it. */
+    padding-top: calc(34vh + clamp(26px, 4vh, 44px));
+    padding-bottom: clamp(40px, 6vh, 64px);
     align-items: flex-start;
-    min-height: 100vh;
+    min-height: auto;
   }
 
-  .grid {
-    grid-template-columns: 1fr;
-    align-items: start;
-    gap: 34px;
+  .art {
+    bottom: auto;
+    height: 34vh;
+    background-size: cover;
+    background-position: 72% center;
+  }
+
+  /* The band ends on sand rather than on a cut edge, so the copy underneath
+     reads as continuing the same surface instead of butting against a photo. */
+  .art::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 38%;
+    background: linear-gradient(to bottom, transparent 0%, var(--sand) 92%);
+  }
+
+  .copy {
+    max-width: none;
   }
 
   .headline {
@@ -235,5 +285,24 @@
 
   .lede {
     max-width: 52ch;
+  }
+
+  .spec {
+    max-width: none;
+    font-size: 0.78rem;
+  }
+
+  /* Kept at two columns. Stacked, six rows run 380px — taller than the copy
+     above it, and it pushed everything else off a phone screen. */
+  .specList {
+    gap: 10px 18px;
+  }
+}
+
+/* The label/value pair cannot hold two columns this narrow — stack it left. */
+@media (max-width: 560px) {
+  .specHead {
+    flex-wrap: wrap;
+    gap: 8px;
   }
 }
