@@ -1,8 +1,8 @@
 /*
-  The hero is the one full-bleed section on paper, because the banner is the
-  section. Its ground colour is sampled from the artwork itself, so the image's
-  edges and the surface behind them are the same value and no seam can appear
-  where the artwork stops.
+  Full-bleed, because the banner is the section. The artwork's own ground was
+  recoloured to --paper rather than the page being recoloured to the artwork's,
+  so the image's edges and the surface behind them are the same value and no
+  seam can appear where the artwork stops.
 */
 .hero {
   padding: clamp(40px, 7vh, 72px) 0;
@@ -10,14 +10,14 @@
   display: flex;
   align-items: safe center;
   position: relative;
-  background-color: var(--sand);
+  background-color: var(--paper);
   isolation: isolate;
 }
 
 /*
   The artwork, as a background layer rather than an <img>: it is decoration
   that repeats what the h1 already says, so it stays out of the accessibility
-  tree, and a missing file degrades to the sand ground instead of a broken
+  tree, and a missing file degrades to the page ground instead of a broken
   image across the top of the site.
 
   Anchored right. The subject sits in the artwork's right third and the left
@@ -252,14 +252,15 @@
     background-position: 72% center;
   }
 
-  /* The band ends on sand rather than on a cut edge, so the copy underneath
-     reads as continuing the same surface instead of butting against a photo. */
+  /* The band ends on the page's own ground rather than on a cut edge, so the
+     copy underneath reads as continuing the same surface instead of butting
+     against a photo. */
   .art::after {
     content: "";
     position: absolute;
     inset: auto 0 0 0;
     height: 38%;
-    background: linear-gradient(to bottom, transparent 0%, var(--sand) 92%);
+    background: linear-gradient(to bottom, transparent 0%, var(--paper) 92%);
   }
 
   .copy {

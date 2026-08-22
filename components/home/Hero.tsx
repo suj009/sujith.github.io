@@ -27,14 +27,11 @@ export function Hero() {
   const reduced = useReducedMotion();
 
   return (
-    /* data-nav-sand tells the top bar to take this section's ground while it
-       sits over it, so the hero is one flat colour from the top of the page
-       down rather than a gradient hiding a mismatched bar. */
-    <header className={styles.hero} id="top" data-nav-sand>
+    <header className={styles.hero} id="top">
       {/*
         Decoration, so it stays out of the accessibility tree: the portrait
         repeats what the h1 and the spec panel already say in text, and a
-        missing file should leave the sand ground rather than a broken image
+        missing file should leave the page ground rather than a broken image
         across the top of the site.
       */}
       <div className={styles.art} aria-hidden="true" />

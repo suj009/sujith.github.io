@@ -24,24 +24,6 @@
   transform: none;
 }
 
-/*
-  Over the hero the bar takes the hero's own ground, so the two read as one
-  surface and the section is a single flat colour from the top of the page
-  down.
-
-  This replaced a gradient in the hero that faded paper into sand across the
-  bar's height. That hid the join but announced itself as a wash across the top
-  of the site — hiding a seam that only existed because the bar was the wrong
-  colour, rather than making the bar the right one.
-
-  The rule is the same translucency as the default: content still passes under
-  it, it is just warm now.
-*/
-.onSand {
-  background: rgba(242, 222, 202, 0.82);
-  /* The paper hairline is cool and reads as a grey line on this ground. */
-  border-bottom-color: rgba(20, 22, 27, 0.09);
-}
 
 /*
   Matches the hero's own wider column (--herow), not the site's normal --maxw.

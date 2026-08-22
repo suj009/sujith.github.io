@@ -15,10 +15,6 @@
   /* ground */
   --paper: #F0EFE9;
   --paper-2: #E9E8E0;
-  /* Sampled from the hero banner's own ground, so the artwork's edges and the
-     surface behind it are the same colour and the seam cannot show. Used by
-     the hero alone — the rest of the site stays on paper. */
-  --sand: #F2DECA;
 
   /* text on paper */
   --ink: #14161B;
