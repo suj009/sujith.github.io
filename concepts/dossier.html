@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Sujith Spec</title>
+<meta name="description" content="Portfolio concept for Sujith Kumar Anand — a design leader documented the way he documents a design system." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..500,0..100,0..1&family=Karla:ital,wght@0,300..700;1,400&display=swap" />
+<style>
+/* ============================================================
+   THE SUJITH SPEC — committed single-theme (documentation paper).
+   The register is a design system's own docs site: the thing the
+   subject actually builds. Ground and every colour are painted
+   explicitly so the page holds on either host theme.
+   ============================================================ */
+:root{
+  --paper:#E7E8E3;
+  --paper-2:#DEDFD8;
+  --card:#F4F4F0;
+  --ink:#16181A;
+  --ink-2:#4A5054;
+  --ink-3:#797F84;
+  --rule:#C9CBC2;
+  --rule-2:#B4B7AC;
+  --accent:#8C2F39;
+  --accent-2:#A9414B;
+  --accent-tint:#EFE0E1;
+  --ok:#40694E;
+  --maxw:1200px;
+  --ease:cubic-bezier(.2,.6,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Karla","Helvetica Neue",Arial,sans-serif;
+  font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+::selection{background:var(--accent);color:var(--card)}
+
+.display{
+  font-family:"Fraunces",Georgia,serif;
+  font-variation-settings:"SOFT" 20,"WONK" 1;
+  font-weight:500;letter-spacing:-.018em;
+}
+
+/* small caps label — the docs vernacular */
+.lbl{
+  font-family:"Karla",Arial,sans-serif;font-size:.68rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+}
+
+/* ======================= TOP BAR ======================= */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  background:rgba(231,232,227,.9);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule);
+}
+.topbar-in{
+  max-width:var(--maxw);margin:0 auto;padding:10px clamp(16px,3.5vw,32px);
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.brand{font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 20,"WONK" 1;font-weight:600;font-size:1.02rem;letter-spacing:-.02em}
+.ver{
+  font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);background:var(--accent-tint);
+  border:1px solid rgba(140,47,57,.26);border-radius:2px;padding:3px 7px;
+}
+.topbar .right{margin-left:auto;display:flex;gap:14px;flex-wrap:wrap}
+.topbar .right a{font-size:.8rem;color:var(--ink-2);border-bottom:1px solid transparent;transition:color .16s var(--ease),border-color .16s var(--ease)}
+.topbar .right a:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ======================= DOC SHELL ======================= */
+.doc{max-width:var(--maxw);margin:0 auto;padding:0 clamp(16px,3.5vw,32px);
+  display:grid;gap:clamp(24px,4vw,52px);grid-template-columns:1fr}
+@media (min-width:1040px){.doc{grid-template-columns:196px minmax(0,1fr)}}
+
+/* left contents rail */
+.toc{display:none}
+@media (min-width:1040px){
+  .toc{
+    display:block;position:sticky;top:78px;align-self:start;
+    padding-top:clamp(40px,6vw,72px);
+  }
+}
+.toc ol{list-style:none;margin-top:12px;border-left:1px solid var(--rule)}
+.toc li a{
+  display:block;padding:6px 0 6px 13px;margin-left:-1px;
+  border-left:1px solid transparent;
+  font-size:.83rem;color:var(--ink-3);
+  transition:color .16s var(--ease),border-color .16s var(--ease);
+}
+.toc li a:hover{color:var(--accent);border-left-color:var(--accent)}
+.toc .foot{margin-top:22px;font-size:.72rem;color:var(--ink-3);line-height:1.5}
+
+.main{min-width:0;padding-bottom:clamp(40px,6vw,80px)}
+
+/* ======================= MASTHEAD ======================= */
+.mast{padding:clamp(44px,7vw,86px) 0 clamp(28px,4vw,44px);border-bottom:1px solid var(--rule)}
+.mast h1{
+  font-family:"Fraunces",Georgia,serif;
+  font-variation-settings:"SOFT" 30,"WONK" 1;
+  font-weight:600;
+  font-size:clamp(2.5rem,6.4vw,4.4rem);
+  line-height:1.02;letter-spacing:-.03em;text-wrap:balance;
+  max-width:16ch;
+}
+.mast h1 i{
+  font-style:italic;font-weight:400;color:var(--accent);
+  font-variation-settings:"SOFT" 60,"WONK" 1;
+}
+.mast .kicker{margin-bottom:18px}
+.mast .lede{
+  margin-top:22px;max-width:58ch;font-size:clamp(1.02rem,1.7vw,1.16rem);
+  line-height:1.62;color:var(--ink-2);
+}
+.mast .lede b{color:var(--ink);font-weight:600}
+
+.status{
+  margin-top:26px;display:inline-flex;align-items:center;gap:9px;
+  border:1px solid var(--rule-2);background:var(--card);border-radius:2px;
+  padding:8px 13px;font-size:.79rem;color:var(--ink-2);
+}
+.status i{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none}
+
+/* ======================= SECTION ======================= */
+section{padding:clamp(44px,6.5vw,80px) 0;border-bottom:1px solid var(--rule)}
+.sechead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.sechead h2{
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 20,"WONK" 1;
+  font-weight:600;font-size:clamp(1.5rem,3.2vw,2.05rem);letter-spacing:-.024em;
+}
+.secnote{max-width:62ch;color:var(--ink-2);font-size:.97rem;margin-bottom:30px}
+
+/* ---------- principles as tokens ---------- */
+.tokens{border:1px solid var(--rule-2);border-radius:3px;overflow:hidden;background:var(--card)}
+.tok{
+  display:grid;grid-template-columns:1fr;gap:4px;
+  padding:16px 18px;border-bottom:1px solid var(--rule);
+  transition:background .16s var(--ease);
+}
+@media (min-width:760px){
+  .tok{grid-template-columns:250px minmax(0,1fr);gap:24px;align-items:baseline}
+}
+.tok:last-child{border-bottom:0}
+.tok:hover{background:var(--paper-2)}
+.tok .name{
+  font-family:"Karla",monospace;font-size:.83rem;font-weight:700;color:var(--accent);
+  letter-spacing:-.01em;
+}
+.tok .val{color:var(--ink-2);font-size:.95rem;line-height:1.58}
+.tok .val b{color:var(--ink);font-weight:600}
+
+/* ---------- component (case study) ---------- */
+.comp{
+  border:1px solid var(--rule-2);border-radius:3px;background:var(--card);
+  margin-bottom:26px;overflow:hidden;
+}
+.comp-head{
+  padding:16px 20px;border-bottom:1px solid var(--rule);
+  display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;
+}
+.pill{
+  font-size:.64rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  padding:3px 8px;border-radius:2px;border:1px solid;
+}
+.pill.stable{color:var(--ok);border-color:rgba(64,105,78,.35);background:rgba(64,105,78,.08)}
+.pill.crit{color:var(--accent);border-color:rgba(140,47,57,.3);background:var(--accent-tint)}
+.comp-head .scope{margin-left:auto;font-size:.74rem;color:var(--ink-3)}
+.comp h3{
+  padding:22px 20px 0;
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 25,"WONK" 1;
+  font-weight:600;font-size:clamp(1.24rem,2.6vw,1.6rem);
+  line-height:1.2;letter-spacing:-.024em;max-width:28ch;text-wrap:balance;
+}
+.comp .role{padding:8px 20px 0;font-size:.78rem;color:var(--ink-3)}
+
+.field{padding:22px 20px 0;display:grid;gap:8px}
+@media (min-width:820px){.field{grid-template-columns:120px minmax(0,1fr);gap:22px;align-items:start}}
+.field .k{padding-top:3px}
+.field .v{max-width:66ch;color:var(--ink-2);font-size:.99rem;line-height:1.68;display:flex;flex-direction:column;gap:12px}
+.field .v b{color:var(--ink);font-weight:600}
+
+.result{margin:26px 20px 22px;border-top:1px solid var(--rule);padding-top:18px}
+.result-grid{display:grid;gap:14px;margin-top:14px}
+@media (min-width:640px){.result-grid{grid-template-columns:repeat(3,1fr)}}
+.res .v{
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 20,"WONK" 1;
+  font-weight:600;font-size:1.55rem;letter-spacing:-.028em;color:var(--accent);
+  font-variant-numeric:tabular-nums;line-height:1.1;
+}
+.res .d{margin-top:6px;font-size:.84rem;color:var(--ink-2);line-height:1.5}
+
+.more{
+  display:inline-flex;align-items:center;gap:8px;margin:0 20px 22px;
+  font-size:.83rem;font-weight:600;color:var(--accent);
+  border-bottom:1px solid rgba(140,47,57,.35);padding-bottom:2px;
+  transition:gap .18s var(--ease),border-color .18s var(--ease);
+}
+.more:hover{gap:13px;border-color:var(--accent)}
+
+/* ---------- shipped log (secondary work) ---------- */
+.log{border:1px solid var(--rule-2);border-radius:3px;overflow:hidden;background:var(--card)}
+.log-row{
+  display:grid;grid-template-columns:1fr auto;gap:16px;align-items:baseline;
+  padding:14px 18px;border-bottom:1px solid var(--rule);
+  transition:background .16s var(--ease);
+}
+.log-row:last-child{border-bottom:0}
+.log-row:hover{background:var(--paper-2)}
+.log-row .n{font-weight:600;font-size:.94rem}
+.log-row .n span{display:block;font-weight:400;font-size:.85rem;color:var(--ink-2);margin-top:3px}
+.log-row .m{
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 20,"WONK" 1;
+  font-weight:600;font-size:1rem;color:var(--accent);white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+
+/* ---------- specimens (lab + writing) ---------- */
+.spec-grid{display:grid;gap:16px}
+@media (min-width:720px){.spec-grid{grid-template-columns:repeat(3,1fr)}}
+.spec{
+  border:1px solid var(--rule-2);border-radius:3px;background:var(--card);
+  padding:18px;display:flex;flex-direction:column;gap:9px;
+  transition:border-color .18s var(--ease),transform .18s var(--ease);
+}
+a.spec:hover{border-color:var(--accent);transform:translateY(-2px)}
+.spec h4{
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 25,"WONK" 1;
+  font-weight:600;font-size:1.02rem;line-height:1.28;letter-spacing:-.018em;text-wrap:balance;
+}
+.spec p{font-size:.87rem;color:var(--ink-2);line-height:1.55}
+.spec .foot{margin-top:auto;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.foot.live{color:var(--ok)}
+.foot.draft{color:var(--ink-3)}
+.foot.read{color:var(--accent)}
+
+/* ---------- changelog (career) ---------- */
+.chg{border-left:1px solid var(--rule-2);margin-left:6px}
+.chg-entry{position:relative;padding:0 0 26px 24px}
+.chg-entry::before{
+  content:"";position:absolute;left:-4px;top:8px;width:7px;height:7px;border-radius:50%;
+  background:var(--rule-2);border:2px solid var(--paper);
+}
+.chg-entry.current::before{background:var(--accent)}
+.chg-entry .v{
+  font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+  font-variant-numeric:tabular-nums;
+}
+.chg-entry.current .v{color:var(--accent)}
+.chg-entry .co{margin-top:4px;font-weight:700;font-size:1rem}
+.chg-entry .ti{font-size:.89rem;color:var(--ink-2);line-height:1.5;margin-top:2px}
+
+.edu{display:grid;gap:14px;margin-top:8px}
+@media (min-width:760px){.edu{grid-template-columns:repeat(3,1fr)}}
+.edu div{border-top:2px solid var(--ink);padding-top:12px}
+.edu b{display:block;font-size:.92rem;font-weight:700;line-height:1.35}
+.edu span{display:block;margin-top:5px;font-size:.79rem;color:var(--ink-3);line-height:1.5}
+
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:26px}
+.chips span{
+  font-size:.76rem;padding:5px 11px;border:1px solid var(--rule-2);
+  border-radius:100px;color:var(--ink-2);background:var(--card);
+}
+
+/* ---------- prose ---------- */
+.prose{max-width:64ch;display:flex;flex-direction:column;gap:15px;color:var(--ink-2);font-size:1rem;line-height:1.7}
+.prose b{color:var(--ink);font-weight:600}
+.prose .pull{
+  border-left:2px solid var(--accent);padding:2px 0 2px 18px;
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 40,"WONK" 1;
+  font-style:italic;font-weight:400;font-size:1.12rem;color:var(--ink);line-height:1.5;
+}
+
+/* ---------- close ---------- */
+.close{border-bottom:0;padding-bottom:clamp(30px,5vw,56px)}
+.close h2{
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 35,"WONK" 1;
+  font-weight:600;font-size:clamp(2rem,5.2vw,3.3rem);letter-spacing:-.032em;
+  line-height:1.04;max-width:15ch;text-wrap:balance;
+}
+.close h2 i{font-style:italic;font-weight:400;color:var(--accent)}
+.contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.contact a{
+  padding:10px 16px;border:1px solid var(--rule-2);border-radius:2px;background:var(--card);
+  font-size:.85rem;font-weight:600;
+  transition:border-color .18s var(--ease),color .18s var(--ease),background .18s var(--ease);
+}
+.contact a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-tint)}
+.colophon{
+  margin-top:clamp(34px,5vw,60px);padding-top:16px;border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <span class="brand">Sujith Kumar Anand</span>
+    <span class="ver">Spec v10.0</span>
+    <span class="right">
+      <a href="#principles">Principles</a>
+      <a href="#components">Work</a>
+      <a href="#specimens">Lab &amp; writing</a>
+      <a href="#changelog">Changelog</a>
+      <a href="#contact">Contact</a>
+    </span>
+  </div>
+</header>
+
+<div class="doc">
+  <!-- ===================== CONTENTS RAIL ===================== -->
+  <aside class="toc">
+    <span class="lbl">Contents</span>
+    <ol>
+      <li><a href="#principles">Principles</a></li>
+      <li><a href="#components">Work in production</a></li>
+      <li><a href="#shipped">Also shipped</a></li>
+      <li><a href="#specimens">Lab &amp; writing</a></li>
+      <li><a href="#changelog">Changelog</a></li>
+      <li><a href="#about">Notes on the author</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+    <p class="foot">Documented the way I document a design system: principles first, then the components that prove them.</p>
+  </aside>
+
+  <main class="main">
+    <!-- ===================== MASTHEAD ===================== -->
+    <div class="mast">
+      <div class="kicker lbl">Product design leader · Bengaluru · 10+ years</div>
+      <h1 class="display">A design leader who <i>still ships.</i></h1>
+      <p class="lede">
+        I lead the team, deliver as an IC, and turn design into working front-end with AI.
+        <b>Ten years turning complex fintech into products people trust</b> — across trading,
+        DeFi, and HCI research.
+      </p>
+      <div class="status"><i></i>Open to Director / Head of Design roles · Bengaluru or remote</div>
+    </div>
+
+    <!-- ===================== PRINCIPLES ===================== -->
+    <section id="principles">
+      <div class="sechead">
+        <h2>Principles</h2>
+        <span class="lbl">The tokens everything else derives from</span>
+      </div>
+      <p class="secnote">
+        A system isn't a folder of components — it's an organizational agreement. Same is true of a
+        design leader. These are the values every decision below resolves to.
+      </p>
+      <div class="tokens">
+        <div class="tok">
+          <span class="name">ownership.scope</span>
+          <span class="val"><b>One designer, whole problem.</b> From user need to shipped screen. Handoffs are where intent dies, so I killed the UX/UI relay and moved the org to end-to-end product designers.</span>
+        </div>
+        <div class="tok">
+          <span class="name">leadership.mode</span>
+          <span class="val"><b>Player-coach, not spectator.</b> I set direction and defend the standard — and I'll get into the code when it helps. Being hands-on is what makes the direction credible.</span>
+        </div>
+        <div class="tok">
+          <span class="name">truth.sources</span>
+          <span class="val"><b>One, versioned.</b> Not several dialects. Scattered guides cost twice: designers rebuild instead of design, and users meet a product that feels subtly inconsistent.</span>
+        </div>
+        <div class="tok">
+          <span class="name">gap.designToCode</span>
+          <span class="val"><b>Name it, don't hide it.</b> Design-to-code was never a 100% match. Saying so out loud is what kept the system improving instead of quietly rotting.</span>
+        </div>
+        <div class="tok">
+          <span class="name">team.growth</span>
+          <span class="val"><b>Sharper beats smartest.</b> Clear direction, room to do the best work of your career, and systems that make the next project easier. I care more about the team getting sharper than about being the smartest person in the room.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== COMPONENTS / WORK ===================== -->
+    <section id="components">
+      <div class="sechead">
+        <h2>Work in production</h2>
+        <span class="lbl">Two anchor stories</span>
+      </div>
+      <p class="secnote">
+        One on strategy and scale, one on execution under pressure. Documented like components:
+        the problem it solves, the decision I made, and what changed as a result.
+      </p>
+
+      <!-- FDSG -->
+      <article class="comp">
+        <div class="comp-head">
+          <span class="pill stable">Strategy &amp; leadership</span>
+          <span class="lbl">Design systems</span>
+          <span class="scope">web + mobile · 8-person team</span>
+        </div>
+        <h3>FDSG — one design language across a fintech platform</h3>
+        <div class="role">Design Review Board member → owner of v2.0 &amp; v2.1</div>
+
+        <div class="field">
+          <span class="k lbl">Problem</span>
+          <div class="v">
+            <p>When I joined FYERS, design didn't have one language — it had several dialects. Style guides were scattered, half-finished, or duplicated, so the same element existed in different ways across web, iOS, and Android. That cost the business twice: designers rebuilt instead of designed, and users met a product that felt subtly inconsistent — <b>costly in a product built on trust</b>.</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="k lbl">Decision</span>
+          <div class="v">
+            <p>I became one of the louder voices for a single, versioned source of truth rather than more scattered guides. After v1.0, I took over and drove <b>FDSG 2.0 and 2.1</b> across web and mobile — a visual reset from gradient-heavy to clean and minimal, then a pass that tightened spacing and density.</p>
+            <p>The deeper change was organizational: I helped move FYERS from a split UX/UI relay to end-to-end <b>Product Designers</b>. Adoption was fast because the people using the system understood it top to bottom.</p>
+          </div>
+        </div>
+
+        <div class="result">
+          <span class="lbl">Result</span>
+          <div class="result-grid">
+            <div class="res"><div class="v">~30%</div><div class="d">Less design effort, measured on live projects with vs. without the system</div></div>
+            <div class="res"><div class="v">1</div><div class="d">Source of truth, replacing scattered guides</div></div>
+            <div class="res"><div class="v">UX/UI → PD</div><div class="d">Org shift to end-to-end product designers</div></div>
+          </div>
+        </div>
+        <a class="more" href="../case-study-fdsg.html">Read the full case study →</a>
+      </article>
+
+      <!-- Options Scalper -->
+      <article class="comp">
+        <div class="comp-head">
+          <span class="pill crit">Execution &amp; impact</span>
+          <span class="lbl">Real-time trading</span>
+          <span class="scope">Options vertical · Q2 2024 · ~3 months</span>
+        </div>
+        <h3>Options Scalper Terminal — designing for the hardest user in the building</h3>
+        <div class="role">Design lead &amp; oversight</div>
+
+        <div class="field">
+          <span class="k lbl">Problem</span>
+          <div class="v">
+            <p>Most fintech design makes the complex feel simple. This was the opposite: the user <b>wants</b> complexity, at speed, with zero margin for error. High-frequency options traders live in seconds — a slow interaction or an ambiguous state isn't an annoyance, it's money.</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="k lbl">Decision</span>
+          <div class="v">
+            <p>A <b>fixed layout</b> that becomes muscle memory. Deeper analytics behind progressive disclosure so the default view stays scannable. Live state read through colour and motion rather than full redraws. And <b>error-prevention at speed</b> — a deliberate confirm step and guardrails against fat-finger mistakes.</p>
+            <p class="pull">The principle I held against pressure to show everything: the terminal should disappear into muscle memory.</p>
+          </div>
+        </div>
+
+        <div class="result">
+          <span class="lbl">Result</span>
+          <div class="result-grid">
+            <div class="res"><div class="v">↑ engagement</div><div class="d">Session duration up; MAU grew steadily among active traders</div></div>
+            <div class="res"><div class="v">high</div><div class="d">Daily order volume per user — a tool people live in</div></div>
+            <div class="res"><div class="v">↑ orders</div><div class="d">Order volume through the terminal grew at scale</div></div>
+          </div>
+        </div>
+        <a class="more" href="../case-study-options-scalper.html">Read the full case study →</a>
+      </article>
+    </section>
+
+    <!-- ===================== ALSO SHIPPED ===================== -->
+    <section id="shipped">
+      <div class="sechead">
+        <h2>Also shipped</h2>
+        <span class="lbl">Led, redesigned, or built 0 → 1</span>
+      </div>
+      <div class="log">
+        <div class="log-row">
+          <span class="n">NRI Onboarding<span>Led the redesign; conversion improved month-on-month.</span></span>
+          <span class="m">↑ conversion</span>
+        </div>
+        <div class="log-row">
+          <span class="n">Markets · Screeners<span>Screeners usage grew substantially after the revamp.</span></span>
+          <span class="m">↑ MAU</span>
+        </div>
+        <div class="log-row">
+          <span class="n">FIA<span>Built and launched from scratch; grew into a key analytical layer.</span></span>
+          <span class="m">0 → 1</span>
+        </div>
+        <div class="log-row">
+          <span class="n">Profile on FDSG<span>Strong adoption among existing users; complaints trending down.</span></span>
+          <span class="m">high adoption</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SPECIMENS ===================== -->
+    <section id="specimens">
+      <div class="sechead">
+        <h2>Lab &amp; writing</h2>
+        <span class="lbl">Where "I still ship" becomes something you can click</span>
+      </div>
+      <p class="secnote">
+        Small, real things I build, and the thinking behind them. The order ticket below is running
+        code — the same ideas as the Options Scalper story, built rather than described.
+      </p>
+
+      <div class="spec-grid" style="margin-bottom:16px">
+        <a class="spec" href="../lab-order-ticket.html">
+          <span class="lbl">Live component</span>
+          <h4>Real-time order ticket</h4>
+          <p>Density, speed, live state, and hold-to-confirm error prevention. Simulated data; nothing confidential.</p>
+          <span class="foot live">Open ↗</span>
+        </a>
+        <div class="spec">
+          <span class="lbl">Teardown</span>
+          <h4>Figma → front-end, with AI</h4>
+          <p>The workflow I used to ship Wealth Tracker end to end — one screen, design file to working code.</p>
+          <span class="foot draft">In progress</span>
+        </div>
+        <div class="spec">
+          <span class="lbl">Tool</span>
+          <h4>Options payoff visualizer</h4>
+          <p>A small fintech tool — useful, shareable, built to prove domain fluency plus the ability to ship it.</p>
+          <span class="foot draft">In progress</span>
+        </div>
+      </div>
+
+      <div class="spec-grid">
+        <a class="spec" href="../article-design-frontend-ai.html">
+          <span class="lbl">Essay · Design + AI</span>
+          <h4>The handoff is dead</h4>
+          <p>I designed Wealth Tracker and shipped its front-end myself, with AI as a pair. The workflow, and the honest limits.</p>
+          <span class="foot read">Read →</span>
+        </a>
+        <a class="spec" href="../article-scaling-design-system.html">
+          <span class="lbl">Essay · Design systems</span>
+          <h4>Scaling a design system across a fintech platform</h4>
+          <p>On governance, the design-to-code gap, and measuring the promise you actually made.</p>
+          <span class="foot read">Read →</span>
+        </a>
+        <a class="spec" href="../article-ux-to-ui-ownership.html">
+          <span class="lbl">Essay · Team &amp; craft</span>
+          <h4>One designer, whole problem</h4>
+          <p>Why I killed the UX/UI split — and the objections, answered.</p>
+          <span class="foot read">Read →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================== CHANGELOG ===================== -->
+    <section id="changelog">
+      <div class="sechead">
+        <h2>Changelog</h2>
+        <span class="lbl">Ten years, newest first</span>
+      </div>
+      <div class="chg">
+        <div class="chg-entry current">
+          <div class="v">2024 — Now</div>
+          <div class="co">FYERS</div>
+          <div class="ti">Senior Design Manager, Product Design · 6 verticals</div>
+        </div>
+        <div class="chg-entry">
+          <div class="v">2022 — 24</div>
+          <div class="co">Nexter Finance</div>
+          <div class="ti">Design Lead · web3 / DeFi</div>
+        </div>
+        <div class="chg-entry">
+          <div class="v">2021 — 22</div>
+          <div class="co">Oddz Finance</div>
+          <div class="ti">Design Lead · DeFi</div>
+        </div>
+        <div class="chg-entry">
+          <div class="v">2018 — 21</div>
+          <div class="co">Datami</div>
+          <div class="ti">Lead Product Designer → Product Designer · Airtel TV Africa, Reach Mobile</div>
+        </div>
+        <div class="chg-entry">
+          <div class="v">2017 — 18</div>
+          <div class="co">Two Roads Tech</div>
+          <div class="ti">Product Designer · Bengaluru</div>
+        </div>
+        <div class="chg-entry">
+          <div class="v">2017</div>
+          <div class="co">Qplum</div>
+          <div class="ti">Product Designer · AI portfolio-investment platform (US)</div>
+        </div>
+        <div class="chg-entry">
+          <div class="v">2016 — 17</div>
+          <div class="co">Onetech Ventures</div>
+          <div class="ti">UX Specialist · Bengaluru</div>
+        </div>
+        <div class="chg-entry">
+          <div class="v">2016</div>
+          <div class="co">IBM Studios, Böblingen</div>
+          <div class="ti">UX design &amp; research · IBM BPM Process Portal</div>
+        </div>
+        <div class="chg-entry">
+          <div class="v">2015 — 16</div>
+          <div class="co">emocial Ltd · freelance</div>
+          <div class="ti">UX design · London</div>
+        </div>
+        <div class="chg-entry">
+          <div class="v">2014 — 15</div>
+          <div class="co">Microsoft</div>
+          <div class="ti">UX research · care technology, with UCL &amp; Kent County Council</div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px">
+        <span class="lbl">Credentials</span>
+        <div class="edu" style="margin-top:14px">
+          <div>
+            <b>MSc, Human-Computer Interaction &amp; Design</b>
+            <span>EIT Digital · KTH, then UCL · 2013 — 15</span>
+          </div>
+          <div>
+            <b>MSc, Advanced Computer Science</b>
+            <span>Newcastle University · 2011 — 12</span>
+          </div>
+          <div>
+            <b>BE, Information Science &amp; Engineering</b>
+            <span>BMS College of Engineering · 2006 — 10 · NISM Series 7 certified, Series 8 in progress</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about">
+      <div class="sechead">
+        <h2>Notes on the author</h2>
+        <span class="lbl">What it's like to work with me</span>
+      </div>
+      <div class="prose">
+        <p>I came into design from an <b>engineering foundation</b> — a master's in Advanced Computer Science before one in Human-Computer Interaction — which is exactly why "a design leader who ships front-end" isn't a stretch for me. It's where I started.</p>
+        <p>Today I lead product design at <b>FYERS</b> across six verticals. Before that, DeFi and fintech at Qplum, Datami, Nexter, and Oddz; and before design was my job, I was the person running the interviews and diary studies as an HCI researcher at <b>Microsoft</b> and <b>IBM</b>.</p>
+        <p class="pull">I try to lead the way I wish I'd been led: a clear direction, room to do the best work of your career, and systems that make the next project easier.</p>
+        <p>I push for craft, I'll get into the code when it helps, and I'd rather my team own a problem end to end than pass it down a relay.</p>
+      </div>
+      <div class="chips">
+        <span>Design leadership</span><span>Team scaling</span><span>Design systems</span>
+        <span>Product design</span><span>Figma</span><span>Flutter</span>
+        <span>Front-end</span><span>AI-assisted build</span><span>Research</span>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="close" id="contact">
+      <h2>Let's build something <i>worth using.</i></h2>
+      <div class="status" style="margin-top:22px"><i></i>Open to Director / Head of Design roles · Bengaluru or remote</div>
+      <div class="contact">
+        <a href="mailto:suj009@gmail.com">✉ suj009@gmail.com</a>
+        <a href="https://www.linkedin.com/">in · LinkedIn</a>
+        <a href="https://medium.com/">✎ Medium</a>
+        <a href="../cv.html">↗ View / print CV</a>
+      </div>
+      <div class="colophon">
+        <span class="lbl">© Sujith Kumar Anand</span>
+        <span class="lbl">Concept B · The Spec</span>
+      </div>
+    </section>
+  </main>
+</div>
+
+</body>
+</html>

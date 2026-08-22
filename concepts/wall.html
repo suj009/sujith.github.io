@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Still Ships</title>
+<meta name="description" content="Portfolio concept for Sujith Kumar Anand — a type-first wall of statements, with headline width driven by scroll." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,300..900&family=Archivo:wdth,wght@62..125,400..700&display=swap" />
+<style>
+/* ============================================================
+   STILL SHIPS — committed single-theme (concrete).
+   A deliberately mid-tone ground: neither the white page nor the
+   black one. Every colour is painted explicitly so the page holds
+   on either host theme. The risk is spent in one place — type at
+   display scale, width driven by scroll.
+   ============================================================ */
+:root{
+  --concrete:#D9D9D4;
+  --concrete-2:#D0D0CA;
+  --slab:#C5C5BE;
+  --ink:#0D0D0C;
+  --ink-2:#45453F;
+  --ink-3:#6F6F68;
+  --rule:#B2B2AA;
+  --hot:#FF3B12;
+  --maxw:1240px;
+  --ease:cubic-bezier(.2,.6,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--concrete);color:var(--ink);
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
+  font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--hot);outline-offset:2px}
+::selection{background:var(--hot);color:var(--concrete)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(14px,3.5vw,36px)}
+
+/* the kinetic display face — width axis is driven by scroll in JS */
+.kin{
+  font-family:"Anybody","Arial Narrow",Arial,sans-serif;
+  font-variation-settings:"wdth" 100,"wght" 800;
+  text-transform:uppercase;
+  line-height:.84;letter-spacing:-.035em;
+  overflow-wrap:break-word;
+}
+.tag{
+  font-family:"Archivo",Arial,sans-serif;font-weight:700;font-size:.68rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);
+}
+.tag.hot{color:var(--hot)}
+
+/* ======================= BAR ======================= */
+.bar{
+  position:sticky;top:0;z-index:70;background:var(--concrete);
+  border-bottom:2px solid var(--ink);
+}
+.bar-in{
+  max-width:var(--maxw);margin:0 auto;padding:9px clamp(14px,3.5vw,36px);
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.bar .id{
+  font-family:"Anybody",Arial,sans-serif;font-variation-settings:"wdth" 85,"wght" 800;
+  text-transform:uppercase;font-size:.86rem;letter-spacing:-.01em;
+}
+.bar nav{margin-left:auto;display:flex;gap:2px;flex-wrap:wrap}
+.bar nav a{
+  font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 9px;color:var(--ink-2);
+  transition:background .14s var(--ease),color .14s var(--ease);
+}
+.bar nav a:hover{background:var(--ink);color:var(--concrete)}
+
+/* ======================= HERO ======================= */
+.hero{padding:clamp(30px,6vw,70px) 0 clamp(26px,4vw,46px)}
+.hero .meta{
+  display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;
+  padding-bottom:14px;border-bottom:1px solid var(--rule);margin-bottom:clamp(18px,3vw,32px);
+}
+.hero h1{margin:0}
+.hero h1 .l{display:block;font-size:clamp(3.1rem,15.5vw,13rem)}
+.hero h1 .l.o{color:var(--hot)}
+.hero .under{
+  margin-top:clamp(22px,3.5vw,38px);
+  display:grid;gap:clamp(16px,3vw,40px);grid-template-columns:1fr;
+}
+@media (min-width:820px){.hero .under{grid-template-columns:1.25fr .75fr;align-items:start}}
+.hero .under p{max-width:50ch;font-size:clamp(1rem,1.7vw,1.16rem);line-height:1.6;color:var(--ink-2)}
+.hero .under p b{color:var(--ink);font-weight:700}
+
+.facts{border-top:2px solid var(--ink)}
+.facts div{
+  display:flex;justify-content:space-between;gap:14px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--rule);
+}
+.facts dt{font-weight:700;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.facts dd{
+  font-family:"Anybody",Arial,sans-serif;font-variation-settings:"wdth" 88,"wght" 700;
+  text-transform:uppercase;font-size:.86rem;text-align:right;
+}
+.facts dd.o{color:var(--hot)}
+
+/* ======================= STATEMENT ROWS ======================= */
+.strip{
+  border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+  background:var(--slab);overflow:hidden;
+}
+.strip-in{
+  display:flex;gap:44px;width:max-content;padding:10px 0;
+  animation:slide 38s linear infinite;
+}
+.strip span{
+  font-family:"Anybody",Arial,sans-serif;font-variation-settings:"wdth" 78,"wght" 800;
+  text-transform:uppercase;font-size:.92rem;letter-spacing:.02em;white-space:nowrap;
+}
+.strip span i{font-style:normal;color:var(--hot)}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ======================= WORK ======================= */
+.work{padding:clamp(40px,6vw,84px) 0 0}
+.case{padding:clamp(28px,4.5vw,56px) 0;border-bottom:2px solid var(--ink)}
+.case:first-of-type{border-top:2px solid var(--ink)}
+.case-top{display:flex;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:clamp(14px,2.5vw,24px)}
+.case-top .scope{margin-left:auto;font-size:.74rem;color:var(--ink-3)}
+.case h2{font-size:clamp(1.85rem,7vw,4.6rem);max-width:15ch}
+.case h2 em{font-style:normal;color:var(--hot)}
+.case-body{
+  margin-top:clamp(20px,3vw,36px);
+  display:grid;gap:clamp(18px,3vw,42px);grid-template-columns:1fr;
+}
+@media (min-width:880px){.case-body{grid-template-columns:1.2fr .8fr;align-items:start}}
+.case-body p{max-width:56ch;color:var(--ink-2);font-size:1rem;line-height:1.65;margin-bottom:13px}
+.case-body p:last-child{margin-bottom:0}
+.case-body p b{color:var(--ink);font-weight:700}
+
+.numbers{border-top:2px solid var(--ink)}
+.numbers .n{padding:14px 0;border-bottom:1px solid var(--rule)}
+.numbers .v{
+  font-family:"Anybody",Arial,sans-serif;font-variation-settings:"wdth" 92,"wght" 800;
+  text-transform:uppercase;font-size:clamp(1.5rem,3.4vw,2.15rem);
+  line-height:1;letter-spacing:-.03em;color:var(--hot);font-variant-numeric:tabular-nums;
+}
+.numbers .d{margin-top:7px;font-size:.85rem;color:var(--ink-2);line-height:1.5;max-width:34ch}
+
+.go{
+  display:inline-flex;align-items:center;gap:9px;margin-top:20px;
+  font-weight:700;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+  border-bottom:2px solid var(--hot);padding-bottom:3px;
+  transition:gap .16s var(--ease),color .16s var(--ease);
+}
+.go:hover{gap:15px;color:var(--hot)}
+
+/* ======================= INDEX ======================= */
+.index{padding:clamp(40px,6vw,84px) 0 0}
+.ix{border-top:2px solid var(--ink)}
+.ix a,.ix div.row{
+  display:grid;grid-template-columns:1fr auto;gap:14px;align-items:baseline;
+  padding:14px 0;border-bottom:1px solid var(--rule);
+  transition:padding-left .16s var(--ease),background .16s var(--ease);
+}
+.ix a:hover{padding-left:12px;background:var(--concrete-2)}
+.ix .t{
+  font-family:"Anybody",Arial,sans-serif;font-variation-settings:"wdth" 88,"wght" 700;
+  text-transform:uppercase;font-size:clamp(.95rem,2vw,1.2rem);letter-spacing:-.015em;
+}
+.ix .t span{display:block;font-family:"Archivo",Arial,sans-serif;font-variation-settings:normal;
+  text-transform:none;font-weight:400;font-size:.86rem;color:var(--ink-2);margin-top:4px;letter-spacing:0;line-height:1.45}
+.ix .s{font-weight:700;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--hot);white-space:nowrap}
+.ix .s.q{color:var(--ink-3)}
+
+/* ======================= LEDGER ======================= */
+.ledger{padding:clamp(40px,6vw,84px) 0 0}
+.lg{border-top:2px solid var(--ink)}
+.lg .r{
+  display:grid;grid-template-columns:92px 1fr;gap:12px;align-items:baseline;
+  padding:11px 0;border-bottom:1px solid var(--rule);
+}
+@media (min-width:720px){.lg .r{grid-template-columns:118px 200px 1fr}}
+.lg .y{font-weight:700;font-size:.72rem;letter-spacing:.1em;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.lg .c{
+  font-family:"Anybody",Arial,sans-serif;font-variation-settings:"wdth" 88,"wght" 700;
+  text-transform:uppercase;font-size:.94rem;letter-spacing:-.01em;
+}
+.lg .r.now .c{color:var(--hot)}
+.lg .p{font-size:.88rem;color:var(--ink-2);line-height:1.45}
+
+.creds{display:grid;gap:14px;margin-top:22px}
+@media (min-width:760px){.creds{grid-template-columns:repeat(3,1fr)}}
+.creds div{border-top:2px solid var(--ink);padding-top:11px}
+.creds b{display:block;font-weight:700;font-size:.9rem;line-height:1.35}
+.creds span{display:block;margin-top:5px;font-size:.78rem;color:var(--ink-3);line-height:1.5}
+
+/* ======================= CLOSE ======================= */
+.close{padding:clamp(46px,7vw,96px) 0 clamp(26px,4vw,48px);border-top:2px solid var(--ink);margin-top:clamp(40px,6vw,84px)}
+.close h2 .l{display:block;font-size:clamp(2.5rem,12vw,9.5rem)}
+.close h2 .l.o{color:var(--hot)}
+.close .now{
+  margin-top:clamp(20px,3vw,34px);display:inline-flex;align-items:center;gap:10px;
+  font-weight:700;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--ink);color:var(--concrete);padding:9px 15px;
+}
+.close .now i{width:7px;height:7px;border-radius:50%;background:var(--hot);flex:none}
+.hits{display:flex;flex-wrap:wrap;gap:0;margin-top:26px;border-top:2px solid var(--ink)}
+.hits a{
+  flex:1 1 200px;padding:15px 4px;border-bottom:1px solid var(--rule);
+  font-family:"Anybody",Arial,sans-serif;font-variation-settings:"wdth" 85,"wght" 700;
+  text-transform:uppercase;font-size:.9rem;letter-spacing:-.01em;
+  transition:color .16s var(--ease),padding-left .16s var(--ease);
+}
+.hits a:hover{color:var(--hot);padding-left:12px}
+.foot{margin-top:clamp(28px,4vw,52px);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (prefers-reduced-motion:reduce){
+  .strip-in{animation:none}
+  .strip{overflow-x:auto}
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <span class="id">Sujith Kumar Anand</span>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#index">Lab &amp; writing</a>
+      <a href="#ledger">Ledger</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ================= HERO ================= -->
+  <section class="hero wrap">
+    <div class="meta">
+      <span class="tag">Product design leader · Bengaluru</span>
+      <span class="tag hot">Open to Director / Head of Design</span>
+    </div>
+    <h1 class="kin" data-kin>
+      <span class="l">Leads</span>
+      <span class="l">the team</span>
+      <span class="l o">still ships</span>
+    </h1>
+    <div class="under">
+      <p>
+        I lead the team, deliver as an IC, and turn design into working front-end with AI.
+        <b>Ten years turning complex fintech into products people trust</b> — across trading,
+        DeFi, and HCI research. Most portfolios show the output and hide the responsibility.
+        This one leads with what I owned.
+      </p>
+      <dl class="facts">
+        <div><dt>Now</dt><dd>Sr Design Manager · FYERS</dd></div>
+        <div><dt>Scope</dt><dd>6 verticals · 8 designers</dd></div>
+        <div><dt>Experience</dt><dd>10+ years</dd></div>
+        <div><dt>Domains</dt><dd>Fintech · DeFi · HCI</dd></div>
+        <div><dt>Ships</dt><dd class="o">Front-end, with AI</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ================= STRIP ================= -->
+  <div class="strip" aria-label="Highlights">
+    <div class="strip-in">
+      <span>FDSG 2.0 — design effort <i>−30%</i></span>
+      <span>Scalper — order volume <i>up</i></span>
+      <span>NRI onboarding — conversion <i>up MoM</i></span>
+      <span>Screeners — MAU <i>up</i></span>
+      <span>FIA — built <i>0 → 1</i></span>
+      <span>UX/UI relay — <i>retired</i></span>
+      <span aria-hidden="true">FDSG 2.0 — design effort <i>−30%</i></span>
+      <span aria-hidden="true">Scalper — order volume <i>up</i></span>
+      <span aria-hidden="true">NRI onboarding — conversion <i>up MoM</i></span>
+      <span aria-hidden="true">Screeners — MAU <i>up</i></span>
+      <span aria-hidden="true">FIA — built <i>0 → 1</i></span>
+      <span aria-hidden="true">UX/UI relay — <i>retired</i></span>
+    </div>
+  </div>
+
+  <!-- ================= WORK ================= -->
+  <section class="work wrap" id="work">
+    <span class="tag">Two anchor stories</span>
+
+    <article class="case" style="margin-top:18px">
+      <div class="case-top">
+        <span class="tag hot">Strategy &amp; scale</span>
+        <span class="tag">Design systems</span>
+        <span class="scope">Web + mobile · 8-person team · owner of v2.0 &amp; v2.1</span>
+      </div>
+      <h2 class="kin" data-kin>One language, <em>not six dialects</em></h2>
+      <div class="case-body">
+        <div>
+          <p>When I joined FYERS, design didn't have one language — it had several. Style guides were scattered, half-finished, or duplicated, so the same element existed in different ways across web, iOS, and Android. That cost the business twice: designers rebuilt instead of designed, and users met a product that felt subtly inconsistent — <b>costly in a product built on trust</b>.</p>
+          <p>I argued for a single, versioned source of truth. After v1.0 I took over and drove FDSG 2.0 and 2.1 — a visual reset from gradient-heavy to clean and minimal, then a pass that tightened spacing and density.</p>
+          <p>The system wasn't the real change. <b>The org was.</b> I helped move FYERS from a split UX/UI relay to end-to-end Product Designers, which made adoption fast because the people using the system understood it top to bottom.</p>
+          <a class="go" href="../case-study-fdsg.html">Full case study →</a>
+        </div>
+        <div class="numbers">
+          <div class="n"><div class="v">~30%</div><div class="d">Less design effort, measured on live projects with vs. without the system</div></div>
+          <div class="n"><div class="v">1</div><div class="d">Source of truth, replacing scattered guides</div></div>
+          <div class="n"><div class="v">UX/UI → PD</div><div class="d">Org shift to end-to-end product designers</div></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="case">
+      <div class="case-top">
+        <span class="tag hot">Execution</span>
+        <span class="tag">Real-time trading</span>
+        <span class="scope">Options vertical · Q2 2024 · ~3 months · design lead</span>
+      </div>
+      <h2 class="kin" data-kin>The terminal should <em>disappear</em></h2>
+      <div class="case-body">
+        <div>
+          <p>Most fintech design makes the complex feel simple. This was the opposite: the user <b>wants</b> complexity, at speed, with zero margin for error. High-frequency options traders live in seconds — a slow interaction or an ambiguous state isn't an annoyance, it's money.</p>
+          <p>A fixed layout that becomes muscle memory. Deeper analytics behind progressive disclosure so the default view stays scannable. Live state read through colour and motion rather than full redraws. Error-prevention at speed — a deliberate confirm step and guardrails against fat-finger mistakes.</p>
+          <p>That was the standard I held against pressure to show everything. It showed up in the behaviour of the most demanding traders on the platform: <b>they leaned in.</b></p>
+          <a class="go" href="../case-study-options-scalper.html">Full case study →</a>
+        </div>
+        <div class="numbers">
+          <div class="n"><div class="v">↑ engagement</div><div class="d">Session duration up; MAU grew steadily among active traders</div></div>
+          <div class="n"><div class="v">high</div><div class="d">Daily order volume per user — a tool people live in</div></div>
+          <div class="n"><div class="v">↑ orders</div><div class="d">Order volume through the terminal grew at scale</div></div>
+        </div>
+      </div>
+    </article>
+
+    <div style="padding-top:clamp(28px,4vw,48px)">
+      <span class="tag">Also shipped</span>
+      <div class="ix" style="margin-top:14px">
+        <div class="row"><span class="t">NRI Onboarding<span>Led the redesign; conversion improved month-on-month.</span></span><span class="s">↑ conversion</span></div>
+        <div class="row"><span class="t">Markets · Screeners<span>Usage grew substantially after the revamp.</span></span><span class="s">↑ MAU</span></div>
+        <div class="row"><span class="t">FIA<span>Built and launched from scratch; now a key analytical layer.</span></span><span class="s">0 → 1</span></div>
+        <div class="row"><span class="t">Profile on FDSG<span>Strong adoption among existing users; complaints trending down.</span></span><span class="s">high adoption</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INDEX ================= -->
+  <section class="index wrap" id="index">
+    <span class="tag">Lab &amp; writing — where "still ships" becomes clickable</span>
+    <div class="ix" style="margin-top:14px">
+      <a href="../lab-order-ticket.html"><span class="t">Real-time order ticket<span>A live component running in your browser — density, speed, live state, hold-to-confirm. Simulated data.</span></span><span class="s">Open ↗</span></a>
+      <a href="../article-design-frontend-ai.html"><span class="t">The handoff is dead<span>I designed Wealth Tracker and shipped its front-end myself, with AI as a pair. The workflow and the honest limits.</span></span><span class="s">Read →</span></a>
+      <a href="../article-scaling-design-system.html"><span class="t">Scaling a design system<span>A system isn't a folder of components — it's an organizational agreement.</span></span><span class="s">Read →</span></a>
+      <a href="../article-ux-to-ui-ownership.html"><span class="t">One designer, whole problem<span>Why I killed the UX/UI split — and the objections, answered.</span></span><span class="s">Read →</span></a>
+      <div class="row"><span class="t">Options payoff visualizer<span>A small fintech tool — domain fluency plus the ability to ship it.</span></span><span class="s q">In progress</span></div>
+      <div class="row"><span class="t">Micro-interaction study<span>A single interaction done properly — craft at the detail level.</span></span><span class="s q">In progress</span></div>
+    </div>
+  </section>
+
+  <!-- ================= LEDGER ================= -->
+  <section class="ledger wrap" id="ledger">
+    <span class="tag">Ten years</span>
+    <div class="lg" style="margin-top:14px">
+      <div class="r now"><span class="y">2024 — Now</span><span class="c">FYERS</span><span class="p">Senior Design Manager, Product Design · 6 verticals</span></div>
+      <div class="r"><span class="y">2022 — 24</span><span class="c">Nexter Finance</span><span class="p">Design Lead · web3 / DeFi</span></div>
+      <div class="r"><span class="y">2021 — 22</span><span class="c">Oddz Finance</span><span class="p">Design Lead · DeFi</span></div>
+      <div class="r"><span class="y">2018 — 21</span><span class="c">Datami</span><span class="p">Lead Product Designer → Product Designer · Airtel TV Africa, Reach Mobile</span></div>
+      <div class="r"><span class="y">2017 — 18</span><span class="c">Two Roads Tech</span><span class="p">Product Designer · Bengaluru</span></div>
+      <div class="r"><span class="y">2017</span><span class="c">Qplum</span><span class="p">Product Designer · AI portfolio-investment platform (US)</span></div>
+      <div class="r"><span class="y">2016 — 17</span><span class="c">Onetech Ventures</span><span class="p">UX Specialist · Bengaluru</span></div>
+      <div class="r"><span class="y">2016</span><span class="c">IBM Studios</span><span class="p">UX design &amp; research · IBM BPM Process Portal · Böblingen</span></div>
+      <div class="r"><span class="y">2015 — 16</span><span class="c">emocial Ltd</span><span class="p">UX design · freelance · London</span></div>
+      <div class="r"><span class="y">2014 — 15</span><span class="c">Microsoft</span><span class="p">UX research · care technology, with UCL &amp; Kent County Council</span></div>
+    </div>
+    <div class="creds">
+      <div><b>MSc, Human-Computer Interaction &amp; Design</b><span>EIT Digital · KTH, then UCL · 2013 — 15</span></div>
+      <div><b>MSc, Advanced Computer Science</b><span>Newcastle University · 2011 — 12</span></div>
+      <div><b>BE, Information Science &amp; Engineering</b><span>BMS College of Engineering · 2006 — 10 · NISM Series 7 certified, Series 8 in progress</span></div>
+    </div>
+  </section>
+
+  <!-- ================= CLOSE ================= -->
+  <section class="close wrap" id="contact">
+    <h2 class="kin" data-kin>
+      <span class="l">Build</span>
+      <span class="l">something</span>
+      <span class="l o">worth using</span>
+    </h2>
+    <div class="now"><i></i>Open to Director / Head of Design · Bengaluru or remote</div>
+    <div class="hits">
+      <a href="mailto:suj009@gmail.com">✉ suj009@gmail.com</a>
+      <a href="https://www.linkedin.com/">in · LinkedIn</a>
+      <a href="https://medium.com/">✎ Medium</a>
+      <a href="../cv.html">↗ View / print CV</a>
+    </div>
+    <div class="foot">
+      <span class="tag">© Sujith Kumar Anand</span>
+      <span class="tag">Concept D · Wall of Type</span>
+    </div>
+  </section>
+</main>
+
+<script>
+/* Scroll-driven width: each display block's wdth axis is mapped to how far
+   it has travelled through the viewport. Condenses as it rises. */
+(function(){
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (reduce.matches) return;
+  var els = Array.prototype.slice.call(document.querySelectorAll("[data-kin]"));
+  if (!els.length) return;
+  var visible = [], ticking = false;
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var i = visible.indexOf(e.target);
+      if (e.isIntersecting && i === -1) visible.push(e.target);
+      else if (!e.isIntersecting && i > -1) visible.splice(i,1);
+    });
+    if (visible.length) request();
+  }, {rootMargin:"20% 0px 20% 0px"});
+  els.forEach(function(el){ io.observe(el); });
+
+  function apply(){
+    var vh = window.innerHeight || 1;
+    visible.forEach(function(el){
+      var r = el.getBoundingClientRect();
+      /* 1 at the bottom of the viewport, 0 as it leaves the top */
+      var p = 1 - Math.min(Math.max((r.top + r.height * 0.5) / vh, 0), 1);
+      var wdth = 118 - p * 46;          /* 118 → 72 */
+      var wght = 900 - p * 130;         /* 900 → 770 */
+      el.style.fontVariationSettings = '"wdth" ' + wdth.toFixed(1) + ', "wght" ' + wght.toFixed(0);
+    });
+    ticking = false;
+  }
+  function request(){ if (!ticking){ ticking = true; requestAnimationFrame(apply); } }
+
+  window.addEventListener("scroll", request, {passive:true});
+  window.addEventListener("resize", request);
+  request();
+})();
+</script>
+
+</body>
+</html>

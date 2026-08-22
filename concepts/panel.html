@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Panel</title>
+<meta name="description" content="Portfolio concept for Sujith Kumar Anand — structured as the interview itself: the questions a Head of Design panel actually asks, answered with evidence." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300..600;1,7..72,300..400&family=Syne:wght@500;600;700;800&display=swap" />
+<style>
+/* ============================================================
+   THE PANEL — committed single-theme (interview on paper).
+   A hiring panel reads this in daylight; the page commits to a
+   paper-white world and paints every colour explicitly, so it
+   holds on either host theme.
+   ============================================================ */
+:root{
+  --paper:#FAFAF7;
+  --paper-2:#F1F1EC;
+  --card:#FFFFFF;
+  --ink:#111214;
+  --ink-2:#494C52;
+  --ink-3:#7B7F86;
+  --rule:#DEDED7;
+  --rule-2:#C6C6BE;
+  --cobalt:#1B3BC4;
+  --cobalt-tint:#E4E8FA;
+  --marker:#D8E84A;
+  --maxw:1080px;
+  --ease:cubic-bezier(.2,.6,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:"Literata",Georgia,serif;
+  font-size:16px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px}
+::selection{background:var(--marker);color:var(--ink)}
+
+.syne{font-family:"Syne","Helvetica Neue",Arial,sans-serif;font-weight:700;letter-spacing:-.02em}
+.lbl{
+  font-family:"Syne",Arial,sans-serif;font-weight:700;font-size:.68rem;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,4.5vw,40px)}
+
+/* the marker: used once per answer, on the sentence that answers the question */
+mark{
+  background:linear-gradient(transparent 56%,var(--marker) 56%,var(--marker) 94%,transparent 94%);
+  color:inherit;padding:0 1px;
+}
+
+/* ======================= TOP ======================= */
+.top{
+  position:sticky;top:0;z-index:60;background:rgba(250,250,247,.92);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);
+}
+.top-in{
+  max-width:var(--maxw);margin:0 auto;padding:11px clamp(18px,4.5vw,40px);
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.top .who{font-family:"Syne",Arial,sans-serif;font-weight:800;font-size:1rem;letter-spacing:-.025em}
+.top .nav{margin-left:auto;display:flex;gap:3px;flex-wrap:wrap}
+.top .nav a{
+  font-family:"Syne",Arial,sans-serif;font-weight:600;font-size:.72rem;
+  letter-spacing:.04em;padding:5px 9px;border-radius:2px;color:var(--ink-2);
+  transition:background .16s var(--ease),color .16s var(--ease);
+}
+.top .nav a:hover{background:var(--cobalt-tint);color:var(--cobalt)}
+
+/* ======================= OPENING (the 5-second fold) ======================= */
+.open{padding:clamp(46px,8vw,96px) 0 clamp(34px,5vw,58px)}
+.open .kicker{margin-bottom:20px}
+.open h1{
+  font-family:"Syne",Arial,sans-serif;font-weight:800;
+  font-size:clamp(2.3rem,6.2vw,4.15rem);line-height:1.02;letter-spacing:-.038em;
+  max-width:17ch;text-wrap:balance;
+}
+.open h1 span{color:var(--cobalt)}
+.open .lede{
+  margin-top:24px;max-width:56ch;font-size:clamp(1.03rem,1.75vw,1.18rem);
+  line-height:1.68;color:var(--ink-2);
+}
+.open .lede b{color:var(--ink);font-weight:600}
+
+/* the fold answers the four things a panel screens for, immediately */
+.screen{
+  margin-top:clamp(30px,4.5vw,46px);
+  display:grid;gap:1px;background:var(--rule-2);
+  border:1px solid var(--rule-2);border-radius:3px;overflow:hidden;
+}
+@media (min-width:680px){.screen{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:960px){.screen{grid-template-columns:repeat(4,1fr)}}
+.screen div{background:var(--card);padding:16px 17px}
+.screen .k{font-family:"Syne",Arial,sans-serif;font-weight:700;font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.screen .v{margin-top:7px;font-family:"Syne",Arial,sans-serif;font-weight:700;font-size:1.02rem;letter-spacing:-.02em;line-height:1.28}
+.screen .v em{font-style:normal;color:var(--cobalt)}
+
+.avail{
+  margin-top:24px;display:inline-flex;align-items:center;gap:9px;
+  font-family:"Syne",Arial,sans-serif;font-weight:600;font-size:.8rem;
+  color:var(--cobalt);background:var(--cobalt-tint);
+  border:1px solid rgba(27,59,196,.2);border-radius:100px;padding:7px 15px;
+}
+.avail i{width:7px;height:7px;border-radius:50%;background:var(--cobalt);flex:none}
+
+/* ======================= THE Q&A ======================= */
+.qa{border-top:2px solid var(--ink);padding-top:clamp(30px,4.5vw,48px)}
+.q{
+  padding:clamp(30px,5vw,56px) 0;border-bottom:1px solid var(--rule);
+  display:grid;gap:clamp(16px,3vw,38px);grid-template-columns:1fr;
+}
+@media (min-width:900px){.q{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);align-items:start}}
+.q:last-child{border-bottom:0}
+
+.q-ask{position:relative}
+@media (min-width:900px){.q-ask{position:sticky;top:74px}}
+.q-ask .from{margin-bottom:12px}
+.q-ask h2{
+  font-family:"Syne",Arial,sans-serif;font-weight:700;
+  font-size:clamp(1.35rem,3vw,1.92rem);line-height:1.14;letter-spacing:-.03em;
+  text-wrap:balance;
+}
+.q-ask h2::before{
+  content:"“";font-size:1.4em;line-height:0;color:var(--cobalt);
+  margin-right:.06em;vertical-align:-.12em;
+}
+.q-ask h2::after{content:"”";color:var(--cobalt);margin-left:.04em}
+
+.q-ans{min-width:0}
+.q-ans .me{
+  display:flex;align-items:center;gap:9px;margin-bottom:14px;
+}
+.q-ans .me b{
+  font-family:"Syne",Arial,sans-serif;font-weight:800;font-size:.72rem;
+  letter-spacing:.14em;text-transform:uppercase;
+}
+.q-ans .me span{height:1px;flex:1;background:var(--rule-2)}
+.q-ans p{max-width:60ch;color:var(--ink-2);font-size:1.02rem;line-height:1.72;margin-bottom:14px}
+.q-ans p:last-of-type{margin-bottom:0}
+.q-ans p b{color:var(--ink);font-weight:600}
+
+/* evidence attached to an answer */
+.ev{
+  margin-top:22px;border:1px solid var(--rule-2);border-radius:3px;
+  background:var(--card);overflow:hidden;
+}
+.ev-head{
+  padding:9px 14px;background:var(--paper-2);border-bottom:1px solid var(--rule);
+  display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;
+}
+.ev-head .src{margin-left:auto;font-size:.72rem;color:var(--ink-3)}
+.ev-row{
+  display:grid;grid-template-columns:1fr auto;gap:16px;align-items:baseline;
+  padding:11px 14px;border-bottom:1px solid var(--rule);
+  transition:background .16s var(--ease);
+}
+.ev-row:last-child{border-bottom:0}
+.ev-row:hover{background:var(--paper-2)}
+.ev-row .t{font-size:.9rem;color:var(--ink-2);line-height:1.5}
+.ev-row .n{
+  font-family:"Syne",Arial,sans-serif;font-weight:700;font-size:1rem;
+  color:var(--cobalt);white-space:nowrap;font-variant-numeric:tabular-nums;letter-spacing:-.02em;
+}
+.ev-link{
+  display:inline-flex;align-items:center;gap:7px;margin-top:14px;
+  font-family:"Syne",Arial,sans-serif;font-weight:700;font-size:.76rem;
+  letter-spacing:.02em;color:var(--cobalt);
+  border-bottom:1px solid rgba(27,59,196,.35);padding-bottom:2px;
+  transition:gap .18s var(--ease),border-color .18s var(--ease);
+}
+.ev-link:hover{gap:12px;border-color:var(--cobalt)}
+
+/* role clarity strip — "what I actually did" */
+.did{
+  margin-top:20px;border-left:2px solid var(--cobalt);padding:2px 0 2px 16px;
+  font-size:.92rem;color:var(--ink-2);line-height:1.6;max-width:58ch;
+}
+.did b{font-family:"Syne",Arial,sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:5px}
+
+/* proof cards (lab + writing) */
+.proof{display:grid;gap:14px;margin-top:22px}
+@media (min-width:620px){.proof{grid-template-columns:repeat(3,1fr)}}
+.pc{
+  border:1px solid var(--rule-2);border-radius:3px;background:var(--card);
+  padding:15px;display:flex;flex-direction:column;gap:8px;
+  transition:border-color .18s var(--ease),transform .18s var(--ease);
+}
+a.pc:hover{border-color:var(--cobalt);transform:translateY(-2px)}
+.pc h4{font-family:"Syne",Arial,sans-serif;font-weight:700;font-size:.94rem;line-height:1.28;letter-spacing:-.02em;text-wrap:balance}
+.pc p{font-size:.84rem;color:var(--ink-2);line-height:1.5}
+.pc .st{margin-top:auto;font-family:"Syne",Arial,sans-serif;font-weight:700;font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;color:var(--cobalt)}
+.pc .st.wip{color:var(--ink-3)}
+
+/* career, compact — the panel already has the CV */
+.cv{margin-top:20px;border:1px solid var(--rule-2);border-radius:3px;background:var(--card);overflow:hidden}
+.cv-row{
+  display:grid;grid-template-columns:98px 1fr;gap:12px;align-items:baseline;
+  padding:11px 14px;border-bottom:1px solid var(--rule);font-size:.89rem;
+}
+@media (min-width:700px){.cv-row{grid-template-columns:110px 180px 1fr}}
+.cv-row:last-child{border-bottom:0}
+.cv-row .y{font-family:"Syne",Arial,sans-serif;font-weight:600;font-size:.74rem;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.cv-row .c{font-family:"Syne",Arial,sans-serif;font-weight:700;letter-spacing:-.015em}
+.cv-row .r{color:var(--ink-2);line-height:1.45}
+.cv-row.now .c{color:var(--cobalt)}
+
+/* ======================= CLOSE ======================= */
+.close{padding:clamp(46px,7vw,86px) 0 clamp(30px,5vw,54px);border-top:2px solid var(--ink)}
+.close h2{
+  font-family:"Syne",Arial,sans-serif;font-weight:800;
+  font-size:clamp(1.9rem,5vw,3.2rem);line-height:1.04;letter-spacing:-.036em;
+  max-width:16ch;text-wrap:balance;
+}
+.close h2 span{color:var(--cobalt)}
+.reach{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
+.reach a{
+  font-family:"Syne",Arial,sans-serif;font-weight:600;font-size:.83rem;
+  padding:10px 16px;border:1px solid var(--rule-2);border-radius:2px;background:var(--card);
+  transition:border-color .18s var(--ease),color .18s var(--ease),background .18s var(--ease);
+}
+.reach a:hover{border-color:var(--cobalt);color:var(--cobalt);background:var(--cobalt-tint)}
+.colo{
+  margin-top:clamp(32px,5vw,56px);padding-top:15px;border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <span class="who">Sujith Kumar Anand</span>
+    <nav class="nav">
+      <a href="#craft">Craft</a>
+      <a href="#org">Org</a>
+      <a href="#business">Business</a>
+      <a href="#handson">Hands-on</a>
+      <a href="#people">People</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ================= THE FOLD ================= -->
+  <section class="open wrap">
+    <div class="kicker lbl">Product design leader · Bengaluru · 10+ years</div>
+    <h1>You have five seconds. Here's <span>what I actually did.</span></h1>
+    <p class="lede">
+      Most portfolios show the output and hide the responsibility. This one is built the other way
+      round: the questions a Head of Design panel actually asks, answered plainly, with the
+      evidence attached. <b>Ten years turning complex fintech into products people trust</b> —
+      trading, DeFi, and HCI research.
+    </p>
+
+    <div class="screen">
+      <div>
+        <div class="k">Currently</div>
+        <div class="v">Sr Design Manager, <em>FYERS</em></div>
+      </div>
+      <div>
+        <div class="k">Scope</div>
+        <div class="v">6 verticals, <em>8-person team</em></div>
+      </div>
+      <div>
+        <div class="k">Still hands-on</div>
+        <div class="v">Ships <em>front-end</em>, with AI</div>
+      </div>
+      <div>
+        <div class="k">Looking for</div>
+        <div class="v"><em>Director / Head</em> of Design</div>
+      </div>
+    </div>
+
+    <div class="avail"><i></i>Open to roles · Bengaluru or remote</div>
+  </section>
+
+  <!-- ================= Q&A ================= -->
+  <div class="wrap">
+    <div class="qa">
+
+      <!-- Q1 — craft standard -->
+      <article class="q" id="craft">
+        <div class="q-ask">
+          <div class="from lbl">The panel asks</div>
+          <h2>How do you define the standard for craft — and how do you hold it when there's pressure?</h2>
+        </div>
+        <div class="q-ans">
+          <div class="me"><b>Sujith</b><span></span></div>
+          <p>The clearest example is the Options Scalper Terminal. Most fintech design makes the complex feel simple. This was the opposite: the user <b>wants</b> complexity, at speed, with zero margin for error. High-frequency options traders live in seconds — a slow interaction or an ambiguous state isn't an annoyance, it's money.</p>
+          <p>I set the direction and defended it: a <b>fixed layout</b> that becomes muscle memory, deeper analytics behind progressive disclosure so the default view stays scannable, live state read through colour and motion rather than full redraws, and error-prevention at speed — a deliberate confirm step and guardrails against fat-finger mistakes.</p>
+          <p><mark>The standard I held against pressure to show everything: the terminal should disappear into muscle memory.</mark> That's a design standard you can argue for in a room full of stakeholders, because it's about the trader's hands, not my taste.</p>
+
+          <div class="did">
+            <b>What I actually did</b>
+            Design lead and oversight for the options vertical, ~3 months in Q2 2024. I owned the interaction direction and the call on what stayed out of the default view — not the visual production alone.
+          </div>
+
+          <div class="ev">
+            <div class="ev-head"><span class="lbl">Evidence</span><span class="src">Options Scalper Terminal · Q2 2024</span></div>
+            <div class="ev-row"><span class="t">Session duration up; MAU grew steadily among active traders</span><span class="n">↑ engagement</span></div>
+            <div class="ev-row"><span class="t">Daily order volume per user — a tool people live in</span><span class="n">high</span></div>
+            <div class="ev-row"><span class="t">Order volume through the terminal grew at scale</span><span class="n">↑ orders</span></div>
+          </div>
+          <a class="ev-link" href="../case-study-options-scalper.html">Read the full case study →</a>
+        </div>
+      </article>
+
+      <!-- Q2 — changing how an org works -->
+      <article class="q" id="org">
+        <div class="q-ask">
+          <div class="from lbl">The panel asks</div>
+          <h2>Tell me about a time you changed how a design organisation works.</h2>
+        </div>
+        <div class="q-ans">
+          <div class="me"><b>Sujith</b><span></span></div>
+          <p>When I joined FYERS, design didn't have one language — it had several dialects. Style guides were scattered, half-finished, or duplicated, so the same element existed in different ways across web, iOS, and Android. That cost the business twice: designers rebuilt instead of designed, and users met a product that felt subtly inconsistent — costly in a product built on trust.</p>
+          <p>I argued for a single, versioned source of truth rather than more scattered guides. After v1.0 I took over and drove <b>FDSG 2.0 and 2.1</b> across web and mobile — a visual reset from gradient-heavy to clean and minimal, then a pass that tightened spacing and density.</p>
+          <p><mark>But the system wasn't the real change — the org was.</mark> I helped move FYERS from a split UX/UI relay to end-to-end Product Designers. Adoption was fast because the people using the system understood it top to bottom. And when engineering built it into code, we were honest that design-to-code was never a 100% match — naming the gap is what kept the system improving instead of quietly rotting.</p>
+
+          <div class="did">
+            <b>What I actually did</b>
+            Design Review Board member under v1.0, then owner of v2.0 and v2.1 across web and mobile with an 8-person team. I drove the org change alongside the system, not as a side effect of it.
+          </div>
+
+          <div class="ev">
+            <div class="ev-head"><span class="lbl">Evidence</span><span class="src">FDSG · FYERS design system</span></div>
+            <div class="ev-row"><span class="t">Less design effort, measured on live projects with vs. without the system</span><span class="n">~30%</span></div>
+            <div class="ev-row"><span class="t">Sources of truth, replacing scattered guides</span><span class="n">1</span></div>
+            <div class="ev-row"><span class="t">Org shift to end-to-end product designers</span><span class="n">UX/UI → PD</span></div>
+          </div>
+          <a class="ev-link" href="../case-study-fdsg.html">Read the full case study →</a>
+        </div>
+      </article>
+
+      <!-- Q3 — business case -->
+      <article class="q" id="business">
+        <div class="q-ask">
+          <div class="from lbl">The panel asks</div>
+          <h2>What's the business case for your team? Where has design moved a number?</h2>
+        </div>
+        <div class="q-ans">
+          <div class="me"><b>Sujith</b><span></span></div>
+          <p>Across six verticals, four places where the work is visible in the product's numbers rather than in a deck. <mark>I'd rather be measured on adoption and conversion than on how the screens look in a case study.</mark></p>
+          <p>These are framed in relative terms deliberately — the raw internal figures aren't mine to publish, and I'd expect a candidate who leaks them to leak yours too.</p>
+
+          <div class="ev">
+            <div class="ev-head"><span class="lbl">Evidence</span><span class="src">FYERS · 2024 — now</span></div>
+            <div class="ev-row"><span class="t"><b>NRI Onboarding</b> — led the redesign; conversion improved month-on-month</span><span class="n">↑ conversion</span></div>
+            <div class="ev-row"><span class="t"><b>Markets · Screeners</b> — usage grew substantially after the revamp</span><span class="n">↑ MAU</span></div>
+            <div class="ev-row"><span class="t"><b>FIA</b> — built and launched from scratch; now a key analytical layer</span><span class="n">0 → 1</span></div>
+            <div class="ev-row"><span class="t"><b>Profile on FDSG</b> — strong adoption; complaints trending down</span><span class="n">high adoption</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q4 — hands on -->
+      <article class="q" id="handson">
+        <div class="q-ask">
+          <div class="from lbl">The panel asks</div>
+          <h2>You've been managing for a while. Are you still hands-on?</h2>
+        </div>
+        <div class="q-ans">
+          <div class="me"><b>Sujith</b><span></span></div>
+          <p>Yes, and I'd rather show it than claim it. I came into design from an <b>engineering foundation</b> — a master's in Advanced Computer Science before one in Human-Computer Interaction — so "a design leader who ships front-end" isn't a stretch for me. It's where I started.</p>
+          <p><mark>I designed Wealth Tracker and shipped its front-end myself, with AI as a pair.</mark> The order ticket below is running code, not a screenshot: density, speed, live state, and hold-to-confirm error prevention — the same ideas as the Scalper answer, built rather than described.</p>
+
+          <div class="proof">
+            <a class="pc" href="../lab-order-ticket.html">
+              <h4>Real-time order ticket</h4>
+              <p>A live component in your browser. Simulated data; nothing confidential.</p>
+              <span class="st">Open ↗</span>
+            </a>
+            <a class="pc" href="../article-design-frontend-ai.html">
+              <h4>The handoff is dead</h4>
+              <p>How the design-and-ship workflow with AI actually went — including the honest limits.</p>
+              <span class="st">Read →</span>
+            </a>
+            <div class="pc">
+              <h4>Options payoff visualizer</h4>
+              <p>A small fintech tool — domain fluency plus the ability to ship it.</p>
+              <span class="st wip">In progress</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q5 — people -->
+      <article class="q" id="people">
+        <div class="q-ask">
+          <div class="from lbl">The panel asks</div>
+          <h2>How do you grow designers — and what's it like to work for you?</h2>
+        </div>
+        <div class="q-ans">
+          <div class="me"><b>Sujith</b><span></span></div>
+          <p>I optimize for clarity and ownership. I'd rather a designer own a problem end to end — from user need to shipped screen — than pass it down a relay, because handoffs are where intent dies. That's the same conviction that drove the UX/UI change, applied to individual careers instead of process diagrams.</p>
+          <p><mark>I try to lead the way I wish I'd been led: a clear direction, room to do the best work of your career, and systems that make the next project easier.</mark> I push for craft, I'll get into the code when it helps, and I care more about the team getting sharper than about being the smartest person in the room.</p>
+          <p>Before design was my job I was the person running the interviews and diary studies as an HCI researcher at <b>Microsoft</b> and <b>IBM</b> — which is mostly why I'd rather ask a user than win an argument.</p>
+
+          <div class="cv">
+            <div class="cv-row now"><span class="y">2024 — Now</span><span class="c">FYERS</span><span class="r">Senior Design Manager, Product Design · 6 verticals</span></div>
+            <div class="cv-row"><span class="y">2022 — 24</span><span class="c">Nexter Finance</span><span class="r">Design Lead · web3 / DeFi</span></div>
+            <div class="cv-row"><span class="y">2021 — 22</span><span class="c">Oddz Finance</span><span class="r">Design Lead · DeFi</span></div>
+            <div class="cv-row"><span class="y">2018 — 21</span><span class="c">Datami</span><span class="r">Lead Product Designer → Product Designer · Airtel TV Africa, Reach Mobile</span></div>
+            <div class="cv-row"><span class="y">2016 — 18</span><span class="c">Qplum · Two Roads · Onetech</span><span class="r">Product Designer / UX Specialist · US &amp; Bengaluru</span></div>
+            <div class="cv-row"><span class="y">2014 — 16</span><span class="c">Microsoft · IBM</span><span class="r">HCI research — care technology with UCL &amp; Kent County Council; IBM BPM Process Portal, Böblingen</span></div>
+          </div>
+          <a class="ev-link" href="../cv.html">Full CV, with credentials →</a>
+        </div>
+      </article>
+
+      <!-- Q6 — reverse -->
+      <article class="q" id="ask">
+        <div class="q-ask">
+          <div class="from lbl">And the one I ask back</div>
+          <h2>What would I need from you to do this job properly?</h2>
+        </div>
+        <div class="q-ans">
+          <div class="me"><b>Sujith</b><span></span></div>
+          <p>A seat where design decisions are made rather than reviewed, a mandate that covers the system as well as the screens, and a business honest about what it's actually optimising for. <mark>Give me those and I'll take responsibility for the number, not just the interface.</mark></p>
+          <p>I'm looking for Director or Head of Design — Bengaluru or remote. The rest of my thinking is in the writing: on <a class="ev-link" style="margin:0" href="../article-scaling-design-system.html">scaling a design system</a> and on <a class="ev-link" style="margin:0" href="../article-ux-to-ui-ownership.html">killing the UX/UI split</a>.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- ================= CLOSE ================= -->
+  <section class="close wrap" id="contact">
+    <h2>Next question's <span>yours.</span></h2>
+    <div class="reach">
+      <a href="mailto:suj009@gmail.com">✉ suj009@gmail.com</a>
+      <a href="https://www.linkedin.com/">in · LinkedIn</a>
+      <a href="https://medium.com/">✎ Medium</a>
+      <a href="../cv.html">↗ View / print CV</a>
+    </div>
+    <div class="colo">
+      <span class="lbl">© Sujith Kumar Anand</span>
+      <span class="lbl">Concept C · The Panel</span>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>
