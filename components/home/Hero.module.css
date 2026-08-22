@@ -193,20 +193,21 @@
   The wrapper owns the centring transform so the anchor's own transform is free
   for Motion to animate — the two used to fight, and the cue jumped half a
   viewport sideways as it faded in.
-
-  Left-aligned to the copy rather than centred on the viewport: centred, it
-  landed on the portrait's chest.
 */
 .cueWrap {
   position: absolute;
-  left: max(calc((100vw - var(--herow)) / 2), clamp(20px, 5vw, 44px));
+  left: 50%;
+  transform: translateX(-50%);
   bottom: clamp(20px, 4vh, 40px);
 }
 
+/* Label above, arrow beneath it — the stack reads as one downward gesture,
+   which a horizontal pair does not. */
 .cue {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   font-family: var(--font-mono), monospace;
   font-size: 0.68rem;
   letter-spacing: 0.16em;
