@@ -27,7 +27,10 @@ export function Hero() {
   const reduced = useReducedMotion();
 
   return (
-    <header className={styles.hero} id="top">
+    /* data-nav-sand tells the top bar to take this section's ground while it
+       sits over it, so the hero is one flat colour from the top of the page
+       down rather than a gradient hiding a mismatched bar. */
+    <header className={styles.hero} id="top" data-nav-sand>
       {/*
         Decoration, so it stays out of the accessibility tree: the portrait
         repeats what the h1 and the spec panel already say in text, and a

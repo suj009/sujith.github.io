@@ -14,13 +14,14 @@ const LINKS = [
 /**
  * Sticky top bar.
  *
- * The bar is paper-coloured, so wherever a dark section sits behind it (the Lab
- * on the home page, the footer everywhere) it used to read as a light slab
- * dropped on top of the page. It flips to a dark palette in those places.
+ * The bar is paper by default, so wherever a section of another colour sits
+ * behind it (the dark Work band and the footer; the sand hero) it would read
+ * as a slab of the wrong colour dropped on top of the page. It re-tints to
+ * match instead.
  *
- * Rather than hard-coding which sections are dark — which broke the moment a
- * page had a different set — any element can opt in by carrying
- * `data-nav-dark`. Nav just asks which of those currently intersects its own
+ * Rather than hard-coding which sections are which — that broke the moment a
+ * page had a different set — an element opts in by carrying `data-nav-dark`
+ * or `data-nav-sand`, and Nav asks which of those currently intersects its own
  * bottom edge.
  *
  * The measurement is rAF-throttled: scroll fires far more often than the
@@ -28,7 +29,7 @@ const LINKS = [
  * every event was the one real jank source in the original implementation.
  */
 export function Nav() {
-  const [onDark, setOnDark] = useState(false);
+  const [surface, setSurface] = useState<"paper" | "dark" | "sand">("paper");
 
   useEffect(() => {
     let frame = 0;
@@ -36,11 +37,15 @@ export function Nav() {
     const measure = () => {
       frame = 0;
       const edge = document.querySelector("nav")?.getBoundingClientRect().bottom ?? 0;
-      const over = Array.from(document.querySelectorAll("[data-nav-dark]")).some((section) => {
-        const rect = section.getBoundingClientRect();
-        return rect.top <= edge && rect.bottom >= edge;
-      });
-      setOnDark(over);
+      const under = (marker: string) =>
+        Array.from(document.querySelectorAll(`[${marker}]`)).some((section) => {
+          const rect = section.getBoundingClientRect();
+          return rect.top <= edge && rect.bottom >= edge;
+        });
+
+      // Dark wins: a dark section behind a paper bar is the case that actually
+      // breaks legibility, where sand behind it is only a tint mismatch.
+      setSurface(under("data-nav-dark") ? "dark" : under("data-nav-sand") ? "sand" : "paper");
     };
 
     const schedule = () => {
@@ -58,7 +63,11 @@ export function Nav() {
   }, []);
 
   return (
-    <nav className={`${styles.nav} ${onDark ? styles.onDark : ""}`}>
+    <nav
+      className={`${styles.nav} ${surface === "dark" ? styles.onDark : ""} ${
+        surface === "sand" ? styles.onSand : ""
+      }`}
+    >
       <div className={styles.inner}>
         <Link className={styles.brand} href="/">
           <span className={styles.mark} aria-hidden="true" />

@@ -35,20 +35,6 @@
 }
 
 /*
-  The nav is translucent paper and sits over this section at rest, so without
-  help there is a visible cool band across the top of a warm one. Fading the
-  page's own paper into the artwork over the nav's height hides the join; the
-  artwork has nothing but empty ground up there, so nothing is lost to it.
-*/
-.art::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: calc(var(--navh) + 40px);
-  background: linear-gradient(to bottom, var(--paper) 0%, transparent 100%);
-}
-
-/*
   One column, not two. The artwork owns the right side of the frame, so a
   second column there would sit on top of the portrait.
 
