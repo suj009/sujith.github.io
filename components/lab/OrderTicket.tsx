@@ -35,8 +35,49 @@ type Instrument = {
   hist: number[];
 };
 
+/*
+  A tiny deterministic PRNG, seeded from the symbol.
+
+  The seed history cannot use Math.random: this component server-renders, and a
+  history that differs between the server pass and hydration is a mismatch. An
+  LCG over the symbol's char codes gives each instrument its own fixed shape
+  that both passes agree on.
+*/
+function rng(seed: string) {
+  let s = 0;
+  for (let i = 0; i < seed.length; i++) s = (s * 31 + seed.charCodeAt(i)) >>> 0;
+  return () => {
+    s = (s * 1664525 + 1013904223) >>> 0;
+    return s / 4294967296;
+  };
+}
+
+/*
+  Seed the history with a walk that already happened, not with 24 copies of the
+  opening price.
+
+  A flat fill looked correct in code and was broken on screen. The simulation
+  replaces one point per tick, so a flat seed stays flat for 24 ticks — nearly
+  thirty seconds — and worse, sparkPath scales to the range it is given: with 23
+  identical values and one new one, that lone point stretched to the full height
+  of the box. The chart on the site's one live component rendered as a
+  horizontal line with a spike on the end, for the whole time most visitors
+  looked at it.
+*/
 const seedState = (): Instrument[] =>
-  SEED.map((i) => ({ ...i, base: i.px, prev: i.px, hist: Array(HIST).fill(i.px) }));
+  SEED.map((i) => {
+    const rand = rng(i.sym);
+    const hist: number[] = [];
+    let px = i.px;
+    for (let n = 0; n < HIST; n++) {
+      px = px + i.px * 0.0009 * (rand() - 0.5) + (i.px - px) * 0.03;
+      hist.push(px);
+    }
+    // End the walk exactly on the quoted price so the sparkline's last point
+    // and the number beside it agree.
+    hist[HIST - 1] = i.px;
+    return { ...i, base: i.px, prev: i.px, hist };
+  });
 
 const fmt = (n: number) =>
   n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -141,9 +182,14 @@ function Row({
         {fmt(inst.px)}
       </motion.div>
 
+      {/* Rounded before the sign is chosen, because a change of -0.001 formats
+          as "-0.00%" — a negative zero, which reads as a broken number to the
+          exact audience this component is for. */}
       <div className={`${styles.chg} mono ${up ? styles.up : styles.down}`}>
-        {up ? "+" : ""}
-        {change.toFixed(2)}%
+        {(() => {
+          const shown = Math.abs(change) < 0.005 ? 0 : change;
+          return `${shown > 0 ? "+" : ""}${shown.toFixed(2)}%`;
+        })()}
       </div>
 
       <div className={styles.spark}>
