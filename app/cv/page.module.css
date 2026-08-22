@@ -211,7 +211,7 @@
 
 .chips span {
   font-family: var(--font-mono), monospace;
-  font-size: 0.68rem;
+  font-size: 0.74rem;
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 5px 10px;
@@ -229,7 +229,7 @@
   padding-top: 14px;
   border-top: 1px solid var(--line);
   font-family: var(--font-mono), monospace;
-  font-size: 0.66rem;
+  font-size: 0.74rem;
   color: var(--muted);
   display: flex;
   justify-content: space-between;

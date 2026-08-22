@@ -8,7 +8,7 @@
     body    — Hanken Grotesk      : running text
     mono    — IBM Plex Mono       : eyebrows, labels, metrics, the spec readout
 */
-import { Azeret_Mono, Bricolage_Grotesque, Hanken_Grotesk } from "next/font/google";
+import { Bricolage_Grotesque, Hanken_Grotesk, IBM_Plex_Mono } from "next/font/google";
 
 export const display = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -22,23 +22,10 @@ export const body = Hanken_Grotesk({
   display: "swap",
 });
 
-/*
-  Azeret Mono, not IBM Plex Mono.
-
-  The mono is load-bearing on this site — every eyebrow, the whole spec panel,
-  the entire Lab — and Plex is the default technical mono, 63rd most used on
-  Google Fonts and the face that turns up in every "engineering" layout. It was
-  doing nothing here that a hundred other sites were not also doing.
-
-  Azeret sits at 390. It is geometric with distinctive terminals, its figures
-  are even enough to hold the Lab's tabular columns, and it is not so wide that
-  the spec panel's two columns have to be re-cut — which is what ruled out
-  Martian Mono, the other face with real character.
-
-  Variable, so one file covers 400/500/600 where Plex needed three statics.
-*/
-export const mono = Azeret_Mono({
+// Not a variable font, so the weights actually used have to be named.
+export const mono = IBM_Plex_Mono({
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
   variable: "--font-mono",
   display: "swap",
 });

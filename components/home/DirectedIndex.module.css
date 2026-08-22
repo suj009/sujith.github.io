@@ -44,7 +44,7 @@
 
 .eyebrow {
   font-family: var(--font-mono), monospace;
-  font-size: 0.68rem;
+  font-size: 0.74rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--signal-on-dark);
@@ -95,7 +95,7 @@
 
 .statLabel {
   font-family: var(--font-mono), monospace;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--panel-muted);
@@ -121,7 +121,7 @@
 
 .studiesLabel {
   font-family: var(--font-mono), monospace;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--panel-muted);
@@ -166,7 +166,7 @@
 
 .verticalsLabel {
   font-family: var(--font-mono), monospace;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--panel-muted);
@@ -202,7 +202,7 @@
   justify-content: space-between;
   gap: 12px;
   font-family: var(--font-mono), monospace;
-  font-size: 0.64rem;
+  font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--panel-text);
