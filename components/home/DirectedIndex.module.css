@@ -1,0 +1,261 @@
+/*
+  Full-bleed dark band. Work now reads as one continuous dark stretch — this
+  record, then the pinned screens — rather than a card on paper sitting above
+  a dark stack.
+*/
+.band {
+  background: var(--panel);
+  color: var(--panel-text);
+  padding: clamp(48px, 7vh, 88px) clamp(20px, 4vw, 56px);
+  position: relative;
+  overflow: hidden;
+}
+
+/*
+  The site's own stripe texture, so the band has depth without another image to
+  load. Bled 10% past the band top and bottom because it drifts ±7% of its own
+  height — at inset:0 that would drag a bare edge into view.
+*/
+.texture {
+  position: absolute;
+  inset: -10% 0;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.045) 0 2px,
+    transparent 2px 26px
+  );
+  pointer-events: none;
+  will-change: transform;
+}
+
+.card {
+  position: relative;
+}
+
+/* ---------- head ---------- */
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(24px, 5vw, 64px);
+  flex-wrap: wrap;
+}
+
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--signal-on-dark);
+}
+
+.title {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-top: 14px;
+}
+
+.blurb {
+  margin-top: 16px;
+  max-width: 46ch;
+  color: var(--panel-muted);
+  font-size: 1.02rem;
+}
+
+.tally {
+  display: flex;
+  gap: clamp(24px, 4vw, 48px);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.statValue {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The paper green is too dark to read on this ground; this is the same hue
+   lifted for the panel palette, matching the Lab's live pip. */
+.up {
+  color: #35c08a;
+}
+
+.statLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--panel-muted);
+  margin-top: 10px;
+}
+
+@media (max-width: 620px) {
+  .stat {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+/* ---------- case studies ---------- */
+
+.studies {
+  display: flex;
+  align-items: center;
+  gap: 10px 22px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.studiesLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--panel-muted);
+}
+
+.study {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: var(--signal-on-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+}
+
+.study span {
+  transition: transform 0.25s var(--ease);
+}
+
+.study:hover span {
+  transform: translateX(4px);
+}
+
+/* ---------- verticals owned ---------- */
+
+/*
+  Set as a quiet rule rather than as chips. It replaced the filter row, and a
+  row of pill shapes here would still read as buttons — this is a statement of
+  scope, and nothing about it is clickable.
+*/
+.verticals {
+  margin: 26px 0 32px;
+  padding: 18px 0;
+  border-top: 1px solid var(--panel-line);
+  border-bottom: 1px solid var(--panel-line);
+  display: flex;
+  align-items: baseline;
+  gap: 10px 24px;
+  flex-wrap: wrap;
+}
+
+.verticalsLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--panel-muted);
+  flex: none;
+}
+
+.verticalsList {
+  color: var(--panel-text);
+  font-size: 1.02rem;
+}
+
+/* ---------- groups ---------- */
+
+/*
+  CSS columns, not grid: the groups are wildly different lengths — eleven
+  projects against three — and columns let a short one flow under a tall one
+  rather than leaving a hole. break-inside stops a group splitting across a
+  column boundary.
+*/
+.columns {
+  columns: 4;
+  column-gap: clamp(24px, 3vw, 48px);
+}
+
+.group {
+  break-inside: avoid;
+  margin-bottom: 32px;
+}
+
+.area {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--panel-text);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--panel-line);
+}
+
+.count {
+  color: var(--panel-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.items {
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(38, 44, 57, 0.55);
+}
+
+.name {
+  font-size: 0.92rem;
+  color: var(--panel-text);
+}
+
+.link {
+  font-size: 0.92rem;
+  color: var(--signal-on-dark);
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 1200px) {
+  .columns {
+    columns: 3;
+  }
+}
+
+@media (max-width: 900px) {
+  .columns {
+    columns: 2;
+  }
+}
+
+@media (max-width: 620px) {
+  .columns {
+    columns: 1;
+  }
+}

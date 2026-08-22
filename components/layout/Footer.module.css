@@ -1,0 +1,78 @@
+.footer {
+  background: var(--panel);
+  color: var(--panel-text);
+  border-top: 1px solid var(--panel-line);
+  min-height: 100vh;
+  display: flex;
+  align-items: safe center;
+}
+
+.inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(52px, 9vh, 92px) clamp(20px, 5vw, 44px);
+  width: 100%;
+}
+
+.headline {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4.6vw, 3.2rem);
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+/* The paper-tuned --signal goes muddy on this ground; the lighter tint holds. */
+.sig {
+  color: var(--signal-on-dark);
+}
+
+.status {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  color: var(--panel-muted);
+  margin-top: 18px;
+}
+
+.pip {
+  color: var(--up);
+}
+
+.contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.contacts a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  border: 1px solid var(--panel-line);
+  border-radius: 999px;
+  padding: 10px 17px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.contacts a:hover {
+  border-color: var(--signal-on-dark);
+  color: var(--signal-on-dark);
+}
+
+.fine {
+  margin-top: 38px;
+  padding-top: 22px;
+  border-top: 1px solid var(--panel-line);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  color: var(--panel-muted);
+}

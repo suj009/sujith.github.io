@@ -1,0 +1,15 @@
+/*
+  No min-height here, unlike the other sections: Work is already far taller
+  than the viewport because each pinned panel needs its own scroll track.
+*/
+.work {
+  border-top: 1px solid var(--line);
+  padding-bottom: clamp(48px, 8vh, 90px);
+
+  /*
+    Cancels the document's scroll-padding-top for this section only. Every
+    other anchor wants to clear the nav, but Work hides it — landing 63px down
+    left the bar stranded half-retracted, mid-transition, at rest.
+  */
+  scroll-margin-top: calc(var(--navh) * -1);
+}

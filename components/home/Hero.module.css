@@ -1,0 +1,310 @@
+/*
+  Full-bleed, because the banner is the section. The artwork's own ground was
+  recoloured to --paper rather than the page being recoloured to the artwork's,
+  so the image's edges and the surface behind them are the same value and no
+  seam can appear where the artwork stops.
+*/
+.hero {
+  padding: clamp(40px, 7vh, 72px) 0;
+  min-height: calc(100vh - var(--navh));
+  display: flex;
+  align-items: safe center;
+  position: relative;
+  background-color: var(--paper);
+  isolation: isolate;
+}
+
+/*
+  The artwork, as a background layer rather than an <img>: it is decoration
+  that repeats what the h1 already says, so it stays out of the accessibility
+  tree, and a missing file degrades to the page ground instead of a broken
+  image across the top of the site.
+
+  Anchored right. The subject sits in the artwork's right third and the left
+  half is empty ground — which is exactly the arrangement the copy needs, and
+  it means narrowing the viewport eats the empty side first.
+*/
+.art {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url("/img/hero-bg.webp");
+  background-size: cover;
+  background-position: 78% center;
+  background-repeat: no-repeat;
+}
+
+/*
+  One column, not two. The artwork owns the right side of the frame, so a
+  second column there would sit on top of the portrait.
+
+  width:100% is load-bearing. .hero is a flex container, and a flex item sizes
+  to its content unless told otherwise — while this was a grid with fr tracks
+  that never showed, but as a plain block the column collapsed to the width of
+  the longest unbreakable word and the headline ran to eight lines.
+*/
+.grid {
+  width: 100%;
+  max-width: var(--herow);
+}
+
+.copy {
+  max-width: min(52%, 620px);
+}
+
+.eyebrow {
+  display: block;
+}
+
+.headline {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  font-size: clamp(2.6rem, 5.6vw, 4.6rem);
+  margin-top: 18px;
+}
+
+.line {
+  display: block;
+}
+
+.sig {
+  color: var(--signal);
+}
+
+.lede {
+  margin-top: 26px;
+  max-width: 46ch;
+  font-size: clamp(1.02rem, 1.5vw, 1.22rem);
+  color: var(--graphite);
+}
+
+.lede b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ---------- spec readout ---------- */
+
+/*
+  The panel's labels get their own value rather than borrowing --panel-muted.
+  That token is tuned for de-emphasised prose on the dark ground; at 13px in a
+  mono face it is the element that disappears first. This is the same hue two
+  steps lighter — 8.84:1 against the panel rather than 6.26:1 — which keeps the
+  labels quieter than the values (15.87:1) without making them hard work.
+*/
+
+/*
+  Two columns rather than the six-row stack it used to be. It has moved from
+  the right of the hero to underneath the copy, where the height it can spend
+  is what the headline and lede leave over — about half what it had.
+
+  The base size was cut to 0.82rem during that move and it made the panel hard
+  to read: mono at 13px with the labels a further 8% down is below what this
+  face carries comfortably. Back up to 0.9rem — the panel is 620px wide and was
+  never short of room, only of attention.
+*/
+.spec {
+  margin-top: 34px;
+  max-width: 620px;
+  background: var(--panel);
+  border-radius: 16px;
+  padding: 22px 24px;
+  color: var(--panel-text);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.95rem;
+  --spec-label: #a8b0be;
+  box-shadow: 0 26px 60px -34px rgba(0, 0, 0, 0.55);
+}
+
+.specHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid var(--panel-line);
+}
+
+.specTitle {
+  letter-spacing: 0.14em;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  color: var(--spec-label);
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  color: var(--spec-label);
+}
+
+.pip {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--up);
+  box-shadow: 0 0 8px var(--up);
+  animation: pip 2s ease-in-out infinite;
+}
+
+@keyframes pip {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.specList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px 28px;
+}
+
+.specRow {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.specRow dt {
+  color: var(--spec-label);
+  letter-spacing: 0.03em;
+  font-size: 0.9em;
+}
+
+.specRow dd {
+  color: var(--panel-text);
+  /* Two columns is a tight measure for "Sr Design Manager, FYERS"; wrapping is
+     better here than the ellipsis a single line would need. */
+  overflow-wrap: anywhere;
+}
+
+.good {
+  color: var(--up);
+}
+
+/* ---------- scroll cue ---------- */
+
+/*
+  The wrapper owns the centring transform so the anchor's own transform is free
+  for Motion to animate — the two used to fight, and the cue jumped half a
+  viewport sideways as it faded in.
+*/
+.cueWrap {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: clamp(20px, 4vh, 40px);
+}
+
+/* Label above, arrow beneath it — the stack reads as one downward gesture,
+   which a horizontal pair does not. */
+.cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.cue:hover,
+.cue:focus-visible {
+  color: var(--ink);
+}
+
+.cue svg {
+  animation: cueBounce 1.8s ease-in-out infinite;
+}
+
+@keyframes cueBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@media (max-width: 640px) {
+  .cueWrap {
+    display: none;
+  }
+}
+
+/*
+  Below ~860px the copy cannot hold half the frame and leave the portrait
+  anything, so the two stop sharing the width and share the height instead:
+  the artwork becomes a band across the top and the copy runs underneath it.
+
+  Behind the copy the artwork would be invisible anyway — the spec panel is
+  opaque and covers the bottom two thirds of a phone screen, which is exactly
+  where a full-bleed crop put the portrait. A band at least shows it.
+*/
+@media (max-width: 860px) {
+  .hero {
+    /* Room for the band, plus the section's own top padding under it. */
+    padding-top: calc(34vh + clamp(26px, 4vh, 44px));
+    padding-bottom: clamp(40px, 6vh, 64px);
+    align-items: flex-start;
+    min-height: auto;
+  }
+
+  .art {
+    bottom: auto;
+    height: 34vh;
+    background-size: cover;
+    background-position: 72% center;
+  }
+
+  /* The band ends on the page's own ground rather than on a cut edge, so the
+     copy underneath reads as continuing the same surface instead of butting
+     against a photo. */
+  .art::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 38%;
+    background: linear-gradient(to bottom, transparent 0%, var(--paper) 92%);
+  }
+
+  .copy {
+    max-width: none;
+  }
+
+  .headline {
+    font-size: clamp(2.05rem, 9.5vw, 3.6rem);
+  }
+
+  .lede {
+    max-width: 52ch;
+  }
+
+  .spec {
+    max-width: none;
+    font-size: 0.88rem;
+  }
+
+  /* Kept at two columns. Stacked, six rows run 380px — taller than the copy
+     above it, and it pushed everything else off a phone screen. */
+  .specList {
+    gap: 10px 18px;
+  }
+}
+
+/* The label/value pair cannot hold two columns this narrow — stack it left. */
+@media (max-width: 560px) {
+  .specHead {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}

@@ -1,0 +1,508 @@
+/*
+  The order ticket keeps its own palette rather than inheriting the site's.
+  It is meant to read as a trading terminal embedded in the page — a different
+  surface with its own conventions (green/red semantics, a darker ground than
+  the site's panels) — and that contrast is the point of the Lab section.
+*/
+.shell {
+  --lab-bg: #0c0e13;
+  --lab-panel: #141821;
+  --lab-panel-2: #1a1f2a;
+  --lab-line: #262c39;
+  --lab-line-soft: #1e232e;
+  --lab-text: #e6e9ef;
+  --lab-muted: #8a93a6;
+  --lab-faint: #5b6478;
+  --lab-up: #35c08a;
+  --lab-up-dim: rgba(53, 192, 138, 0.14);
+  --lab-down: #ef5f6b;
+  --lab-down-dim: rgba(239, 95, 107, 0.14);
+  --lab-focus: #5e8bff;
+
+  width: 100%;
+  color: var(--lab-text);
+  /* Anchors the toast, which is positioned against the component rather than
+     the viewport — it is embedded in a page now, not alone on its own. */
+  position: relative;
+}
+
+.terminal {
+  width: 100%;
+  background: var(--lab-panel);
+  border: 1px solid var(--lab-line);
+  border-radius: 14px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.7);
+}
+
+/* ---------- shared head ---------- */
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--lab-line-soft);
+}
+
+.headTitle {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--lab-muted);
+  letter-spacing: 0.02em;
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--lab-faint);
+  text-transform: uppercase;
+}
+
+.pip {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--lab-up);
+  box-shadow: 0 0 8px var(--lab-up);
+  animation: pip 2s ease-in-out infinite;
+}
+
+@keyframes pip {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* ---------- watchlist ---------- */
+
+.watch {
+  border-right: 1px solid var(--lab-line);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 10px;
+  align-items: center;
+  padding: 9px 10px;
+  border-radius: 9px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.18s var(--ease), border-color 0.18s var(--ease);
+}
+
+.row:hover {
+  background: var(--lab-panel-2);
+}
+
+.row[aria-selected="true"] {
+  background: var(--lab-panel-2);
+  border-color: var(--lab-line);
+}
+
+.row:focus-visible {
+  outline: none;
+  border-color: var(--lab-focus);
+  box-shadow: 0 0 0 3px rgba(94, 139, 255, 0.22);
+}
+
+.sym {
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+}
+
+.ex {
+  font-size: 0.74rem;
+  color: var(--lab-faint);
+  margin-top: 1px;
+}
+
+.px {
+  text-align: right;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 0 3px;
+}
+
+.chg {
+  grid-column: 2;
+  text-align: right;
+  font-size: 0.72rem;
+}
+
+.up {
+  color: var(--lab-up);
+}
+
+.down {
+  color: var(--lab-down);
+}
+
+/* Collapsed to zero height until its row is selected, so only the instrument
+   being traded spends vertical space on a chart. */
+.spark {
+  grid-column: 1 / -1;
+  height: 0;
+  opacity: 0;
+  transition: height 0.3s var(--ease), opacity 0.3s var(--ease), margin 0.3s var(--ease);
+  overflow: hidden;
+}
+
+.row[aria-selected="true"] .spark {
+  height: 26px;
+  opacity: 1;
+  margin-top: 6px;
+}
+
+.spark svg {
+  width: 100%;
+  height: 26px;
+  display: block;
+}
+
+/* ---------- ticket ---------- */
+
+.ticket {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sel {
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.body {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.side {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  background: var(--lab-bg);
+  border: 1px solid var(--lab-line);
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.side button {
+  appearance: none;
+  border: none;
+  background: none;
+  color: var(--lab-muted);
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.86rem;
+  padding: 9px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.18s var(--ease);
+}
+
+.side button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(94, 139, 255, 0.25);
+}
+
+.side button[data-on="true"][data-side="buy"] {
+  background: var(--lab-up-dim);
+  color: var(--lab-up);
+}
+
+.side button[data-on="true"][data-side="sell"] {
+  background: var(--lab-down-dim);
+  color: var(--lab-down);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field > label {
+  font-size: 0.72rem;
+  color: var(--lab-muted);
+  letter-spacing: 0.02em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hint {
+  color: var(--lab-faint);
+}
+
+.stepper,
+.seg,
+.priceWrap {
+  display: flex;
+  align-items: stretch;
+  background: var(--lab-bg);
+  border: 1px solid var(--lab-line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.stepper button {
+  width: 42px;
+  border: none;
+  background: none;
+  color: var(--lab-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.stepper button:hover {
+  background: var(--lab-panel-2);
+  color: var(--lab-text);
+}
+
+.stepper input,
+.priceWrap input {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: none;
+  color: var(--lab-text);
+  text-align: center;
+  font-size: 0.95rem;
+  padding: 11px 8px;
+}
+
+.stepper input:focus,
+.priceWrap input:focus {
+  outline: none;
+}
+
+.stepper:focus-within,
+.priceWrap:focus-within,
+.seg:focus-within {
+  border-color: var(--lab-focus);
+  box-shadow: 0 0 0 3px rgba(94, 139, 255, 0.18);
+}
+
+.priceWrap {
+  padding-left: 12px;
+  align-items: center;
+}
+
+.priceWrap input {
+  text-align: left;
+  padding-left: 6px;
+}
+
+.priceWrap[data-disabled="true"] {
+  opacity: 0.5;
+}
+
+.cur {
+  color: var(--lab-faint);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.9rem;
+}
+
+.seg {
+  padding: 4px;
+}
+
+.seg button {
+  flex: 1;
+  border: none;
+  background: none;
+  color: var(--lab-muted);
+  font: inherit;
+  font-weight: 500;
+  font-size: 0.82rem;
+  padding: 8px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.seg button[data-on="true"] {
+  background: var(--lab-panel-2);
+  color: var(--lab-text);
+}
+
+.seg button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(94, 139, 255, 0.25);
+}
+
+.estimate {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 2px 2px 0;
+}
+
+.estLabel {
+  font-size: 0.76rem;
+  color: var(--lab-muted);
+}
+
+.estValue {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* ---------- hold to confirm ---------- */
+
+.place {
+  position: relative;
+  border: 1px solid var(--side);
+  background: var(--side-dim);
+  color: var(--side);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  padding: 14px;
+  border-radius: 11px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: opacity 0.2s, border-color 0.2s, background 0.2s, color 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+  /* Holding the button is the gesture; without this the same press also
+     scrolls the page out from under it on touch. */
+  touch-action: none;
+}
+
+.place:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.place:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(94, 139, 255, 0.3);
+}
+
+/*
+  Animated with scaleX rather than width, so the fill runs on the compositor.
+  transform-origin pins it to the left edge — scale grows from the centre by
+  default, which would make the bar spread outward from the middle.
+*/
+.fill {
+  position: absolute;
+  inset: 0;
+  background: var(--side);
+  opacity: 0.9;
+  transform-origin: 0 50%;
+  /*
+    Must be `transform`, not the standalone `scale` property. `scale` composes
+    with `transform` rather than being overridden by it, so a `scale: 0 1` here
+    multiplied Motion's animated scaleX to zero and the bar never appeared.
+    Motion writes inline transform, which wins over this — this only sets the
+    pre-hydration state so the bar does not flash full-width on first paint.
+  */
+  transform: scaleX(0);
+}
+
+.placeLabel {
+  position: relative;
+  z-index: 2;
+  transition: color 0.1s;
+}
+
+.placeHint {
+  position: relative;
+  z-index: 2;
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-top: 3px;
+}
+
+.place[data-holding="true"] .placeLabel,
+.place[data-holding="true"] .placeHint {
+  color: var(--lab-bg);
+}
+
+/* ---------- toast ---------- */
+
+.toast {
+  position: absolute;
+  left: 50%;
+  bottom: 26px;
+  translate: -50% 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--lab-panel-2);
+  border: 1px solid var(--lab-line);
+  border-left: 3px solid var(--side);
+  border-radius: 11px;
+  padding: 12px 16px;
+  min-width: 280px;
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.7);
+}
+
+.toastDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--side);
+  flex: none;
+}
+
+.toastMsg {
+  font-size: 0.86rem;
+}
+
+.toastMsg b {
+  font-weight: 600;
+}
+
+.toastSub {
+  display: block;
+  color: var(--lab-muted);
+  font-size: 0.74rem;
+  margin-top: 1px;
+}
+
+@media (max-width: 620px) {
+  .terminal {
+    grid-template-columns: 1fr;
+  }
+
+  .watch {
+    border-right: none;
+    border-bottom: 1px solid var(--lab-line);
+  }
+
+  .rows {
+    max-height: 210px;
+    overflow-y: auto;
+  }
+}

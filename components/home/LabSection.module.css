@@ -1,0 +1,104 @@
+.frame {
+  border: 1px solid var(--panel-line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #0a0c10;
+}
+
+/* Chrome for the embedded component — reads as a window without pretending to
+   be a browser (no URL bar, no fake controls that do nothing). */
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 15px;
+  border-bottom: 1px solid var(--panel-line);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2a3140;
+}
+
+.label {
+  margin-left: 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--panel-muted);
+}
+
+.stage {
+  padding: clamp(16px, 3vw, 28px);
+  display: flex;
+  justify-content: center;
+}
+
+.stage > * {
+  max-width: 720px;
+}
+
+.note {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.note p {
+  color: var(--panel-muted);
+  font-size: 0.88rem;
+  max-width: 52ch;
+}
+
+.open {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  border: 1px solid var(--panel-line);
+  color: var(--panel-text);
+  padding: 9px 17px;
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.open:hover {
+  background: var(--panel-text);
+  color: var(--panel);
+}
+
+.next {
+  margin-top: 24px;
+  max-width: 420px;
+  border: 1px dashed var(--panel-line);
+  border-radius: 12px;
+  padding: 20px 22px;
+}
+
+.nextLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--panel-muted);
+}
+
+.nextTitle {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin: 10px 0 6px;
+  color: var(--panel-text);
+}
+
+.nextBody {
+  color: var(--panel-muted);
+  font-size: 0.85rem;
+}
