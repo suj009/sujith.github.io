@@ -33,6 +33,10 @@ Claims on this site are checkable by the people being persuaded, so:
 - **Rankings decay.** "Top-20 Indian retail brokerage" was verified against the
   NSE active-client table — rank 18, 10,65,788 active clients — but #19 and #20
   sit within ~15%. Re-check periodically.
+- **Confirmed by Sujith:** three products launched 0→1 — FIA (FYERS), Nexter
+  Finance, and Airtel TV Africa (Datami). Only FIA is labelled `0 → 1` on the
+  page; the other two read as scope, so the hero's count is under-evidenced
+  on the page itself.
 - **A disputed claim is currently live.** The design-system claim — *owns FDSG,
   cut design effort by roughly a third, drove the UX/UI → Product Designer org
   shift* — was pulled from the hero as not true. It still appears in `cv.html`
