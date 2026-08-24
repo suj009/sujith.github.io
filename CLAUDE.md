@@ -32,7 +32,11 @@ Claims on this site are checkable by the people being persuaded, so:
   invent one to fill a sentence. Ask instead.
 - **Rankings decay.** "Top-20 Indian retail brokerage" was verified against the
   NSE active-client table — rank 18, 10,65,788 active clients — but #19 and #20
-  sit within ~15%. Re-check periodically.
+  sit within ~15%. Re-check periodically. The hero's "over a million active
+  clients" comes from that same figure, so both claims move together.
+- **Write numbers for a global reader.** Lakh and crore do not parse outside
+  India, and the site is written for both Indian and international readers:
+  10L → "over a million".
 - **Confirmed by Sujith:** at least three products launched 0→1 — FIA (FYERS),
   Nexter Finance, and Airtel TV Africa (Datami). The hero says "multiple"
   rather than a count, by his choice. Only FIA is labelled `0 → 1` on the page;
