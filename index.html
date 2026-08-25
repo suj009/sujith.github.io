@@ -111,13 +111,10 @@
   /* ---------- hero ---------- */
   header.hero{padding:clamp(56px,11vh,120px) 0 clamp(40px,7vh,72px);
     position:relative;isolation:isolate;background-color:var(--paper)}
-  /* Art layer. The portrait is composed with the subject on the right and open
-     ground on the left, so it is offset right and veiled from the left — the
-     lede and the spec card keep a clean field to sit on. */
-  .hero .art{position:absolute;inset:0;z-index:-1;overflow:hidden;
-    background:url(img/sujith-portrait.png) 85% center/cover no-repeat}
-  .hero .art::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(100deg,var(--paper) 0 36%,rgba(240,239,233,.74) 58%,rgba(240,239,233,.30) 100%)}
+  /* The art layer is mobile-only. On desktop the hero keeps its plain paper
+     field — the two-column grid already fills the width, and a portrait behind
+     it would sit under the spec card. */
+  .hero .art{display:none}
   .hero-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:clamp(28px,5vw,64px);align-items:end}
   /* Cap is 4.8rem, not 5.4: the size tracks the viewport but the column is a
      fraction of .wrap's max-width, so past ~1160px the type outgrew its column
@@ -140,10 +137,12 @@
        almost exactly where the desktop curve leaves it. */
     header.hero{padding-top:clamp(34px,6vh,64px)}
     .hero h1{font-size:clamp(2.05rem,9.5vw,3.6rem)}
-    /* Portrait crop for phones; the copy stacks over it, so it sits lower and
-       carries a heavier veil. */
-    .hero .art{background-image:url(img/hero-mobile.png);background-position:center 78%}
-    .hero .art::after{background:linear-gradient(180deg,var(--paper) 0 30%,rgba(240,239,233,.82) 62%,rgba(240,239,233,.55) 100%)}
+    /* Phones: the vertical crop sits behind the stacked copy, pushed down so the
+       face clears the headline, with a top-down veil keeping the text readable. */
+    .hero .art{display:block;position:absolute;inset:0;z-index:-1;overflow:hidden;
+      background:url(img/hero-mobile.png) center 78%/cover no-repeat}
+    .hero .art::after{content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,var(--paper) 0 30%,rgba(240,239,233,.82) 62%,rgba(240,239,233,.55) 100%)}
   }
 
   /* spec readout — the signature (echoes the Lab instrument panel) */
