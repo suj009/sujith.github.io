@@ -306,12 +306,6 @@
   @media(max-width:640px){.writing{grid-template-columns:1fr}.wcard.lead{grid-template-columns:1fr}}
 
   /* ---------- about ---------- */
-  /* Portrait band. The image is composed wide with the subject on the right and
-     open space on the left, so it is cropped to a letterbox rather than shown
-     whole — object-position keeps the face in frame as the viewport narrows. */
-  .portrait{width:100%;aspect-ratio:16/6;object-fit:cover;object-position:72% 30%;
-    border-radius:16px;border:1px solid var(--line-2);margin-bottom:clamp(24px,4vh,40px);display:block}
-  @media(max-width:760px){.portrait{aspect-ratio:16/9;object-position:78% 28%}}
   .about-grid{display:grid;grid-template-columns:1.25fr .95fr;gap:clamp(28px,5vw,56px)}
   .about-grid p{color:var(--graphite);margin-bottom:16px;font-size:1.02rem}
   .about-grid p b{color:var(--ink);font-weight:600}
@@ -615,9 +609,6 @@
       <h2>About</h2>
       <span class="sub">The human, the credentials, and what it's actually like to work with me.</span>
     </div>
-
-    <img class="portrait reveal" src="img/sujith-portrait.png" width="1656" height="931"
-         alt="Sujith Kumar Anand" loading="lazy" decoding="async" />
 
     <div class="about-grid reveal">
       <div>
