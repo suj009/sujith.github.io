@@ -192,6 +192,59 @@
   .case:hover .case-go::after{transform:translateX(4px)}
   @media(max-width:640px){.case-body{grid-template-columns:1fr}.metrics{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:18px}}
 
+  /* ---------- case anatomy: product band → surface row → glimpse + numbers ----------
+     The band carries the product itself; the surface row answers "which platforms"
+     for anyone who skims the picture; the body puts the story on the left and the
+     outcome on the right. Same structure for every case, whatever it shipped on. */
+  .band{background:var(--panel);padding:26px clamp(20px,3vw,30px) 28px}
+  .band-grid{display:grid;grid-template-columns:1.62fr .5fr;gap:22px;align-items:end}
+  .band .lbl{font-family:"IBM Plex Mono",monospace;font-size:.6rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--panel-muted);display:block;margin-bottom:9px}
+  .shot{background:#141821;border:1px solid var(--panel-line);border-radius:10px;overflow:hidden}
+  .shot .chrome{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--panel-line)}
+  .shot .chrome i{width:8px;height:8px;border-radius:50%;background:#2A3140;display:block}
+  .shot .in{padding:16px;display:flex;flex-direction:column;gap:12px}
+  /* No fake status bar: on a real phone the OS draws its own, and a painted one doubles up. */
+  .phone{background:#141821;border:1px solid var(--panel-line);border-radius:22px;
+    padding:14px 12px;display:flex;flex-direction:column;gap:11px}
+  .ln{border-radius:4px;background:#1E232E;display:block}
+  .tile{border:1px solid var(--panel-line);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:8px}
+  .chain{font-family:"IBM Plex Mono",monospace;font-size:.72rem}
+  .chain .hd,.chain .r{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:9px 14px}
+  .chain .hd{border-bottom:1px solid var(--panel-line);color:#5B6478;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase}
+  .chain .r{border-bottom:1px solid #1E232E;color:var(--panel-text)}
+  .chain .r:last-child{border-bottom:none}
+  .chain .r.sel{background:rgba(94,139,255,.10);border-left:2px solid #5E8BFF}
+  .chain .r span+span{text-align:right}
+  .chain .g{color:#35C08A} .chain .d{color:#EF5F6B} .chain .m{color:var(--panel-muted)}
+  .ticket{padding:14px;display:flex;flex-direction:column;gap:10px;font-family:"IBM Plex Mono",monospace;font-size:.72rem}
+  .ticket .row{display:flex;justify-content:space-between;color:var(--panel-muted)}
+  .ticket .row b{color:var(--panel-text);font-weight:400}
+  .hold{position:relative;border-radius:6px;background:#1E232E;overflow:hidden;height:38px;
+    display:flex;align-items:center;justify-content:center}
+  .hold i{position:absolute;left:0;top:0;bottom:0;width:62%;background:#35C08A;display:block}
+  .hold span{position:relative;color:var(--panel);font-weight:600;letter-spacing:.08em}
+  .surface{background:var(--paper-2);border-bottom:1px solid var(--line);padding:11px clamp(20px,3vw,30px);
+    display:flex;gap:26px;flex-wrap:wrap;align-items:center;
+    font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--graphite)}
+  .surface .k{color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-size:.6rem}
+  .surface .s{display:inline-flex;align-items:center;gap:7px}
+  .surface .note{margin-left:auto;color:var(--up)}
+  .case-b2{padding:28px clamp(20px,3vw,30px) 30px;display:grid;grid-template-columns:1.5fr 1fr;gap:34px}
+  .case-b2 .k p{color:var(--graphite);font-size:.96rem;margin-bottom:0}
+  .nums{display:flex;flex-direction:column}
+  .nums .n{padding:16px 0;border-top:1px solid var(--line)}
+  .nums .n:first-child{padding-top:0;border-top:none}
+  .nums .v{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:2.1rem;line-height:1;letter-spacing:-.02em}
+  .nums .v.up{color:var(--up)} .nums .v.sig{color:var(--signal)}
+  .nums .l{font-size:.8rem;color:var(--muted);margin-top:6px}
+  @media(max-width:860px){
+    .band-grid{grid-template-columns:1fr}
+    .case-b2{grid-template-columns:1fr}
+    .surface{gap:14px}
+    .surface .note{margin-left:0;flex:1 0 100%}
+  }
+
   .sampler{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
   .samp{border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--paper)}
   .samp .v{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.15rem;letter-spacing:-.01em}
@@ -342,46 +395,128 @@
       <span class="sub">Two anchor stories — one on strategy and scale, one on execution under pressure.</span>
     </div>
 
-    <!-- CASE A -->
+    <!-- CASE A — FDSG. Band shows web and mobile together: the platform breadth
+         IS the achievement here, so it is drawn rather than described. -->
     <article class="case reveal" id="case-fdsg">
-      <div class="case-top">
-        <span class="tag">Strategy &amp; Leadership · Design systems</span>
-        <h3>FDSG — one design language across a fintech platform</h3>
-        <div class="role">Design Review Board member → owner of v2.0 &amp; v2.1 · web + mobile · 8-person team</div>
+      <div class="band">
+        <div class="band-grid">
+          <div>
+            <span class="lbl">web</span>
+            <div class="shot">
+              <div class="chrome"><i></i><i></i><i></i></div>
+              <div class="in">
+                <div style="display:flex;gap:10px;align-items:center">
+                  <span class="ln" style="height:30px;width:116px;border-radius:7px;background:var(--signal)"></span>
+                  <span class="ln" style="height:30px;width:96px;border-radius:7px;background:none;border:1px solid var(--panel-line)"></span>
+                  <span class="ln" style="height:10px;flex:1"></span>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+                  <div class="tile"><span class="ln" style="height:8px;width:54px;background:var(--panel-line)"></span><span class="ln" style="height:20px;width:78px"></span></div>
+                  <div class="tile"><span class="ln" style="height:8px;width:54px;background:var(--panel-line)"></span><span class="ln" style="height:20px;width:64px"></span></div>
+                  <div class="tile"><span class="ln" style="height:8px;width:54px;background:var(--panel-line)"></span><span class="ln" style="height:20px;width:72px"></span></div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:7px">
+                  <span class="ln" style="height:9px;width:100%"></span>
+                  <span class="ln" style="height:9px;width:82%"></span>
+                  <span class="ln" style="height:9px;width:91%"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span class="lbl">mobile</span>
+            <div class="phone">
+              <span class="ln" style="height:28px;border-radius:7px;background:var(--signal)"></span>
+              <span class="ln" style="height:28px;border-radius:7px;background:none;border:1px solid var(--panel-line)"></span>
+              <div class="tile" style="padding:11px;gap:7px"><span class="ln" style="height:7px;width:46px;background:var(--panel-line)"></span><span class="ln" style="height:16px;width:66px"></span></div>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <span class="ln" style="height:8px;width:100%"></span>
+                <span class="ln" style="height:8px;width:78%"></span>
+                <span class="ln" style="height:8px;width:88%"></span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="case-body">
+
+      <div class="surface">
+        <span class="k">surface</span>
+        <span class="s"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"></rect><path d="M8 21h8"></path><path d="M12 17v4"></path></svg> web</span>
+        <span class="s"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"></rect><path d="M11 18.5h2"></path></svg> iOS &middot; Android</span>
+        <span class="note">one system, three surfaces</span>
+      </div>
+
+      <div class="case-b2">
         <div class="k">
-          <p>When I joined FYERS, design didn't have one language — it had several dialects. Style guides were scattered, half-finished, or duplicated, so the same element existed in different ways across web, iOS, and Android. That cost the business twice: designers rebuilt instead of designed, and users met a product that felt subtly inconsistent — costly in a product built on trust.</p>
-          <p>I became one of the louder voices for <strong>a single, versioned source of truth</strong> rather than more scattered guides. After v1.0, I took over and drove <strong>FDSG 2.0 and 2.1</strong> across web and mobile — a visual reset from gradient-heavy to clean and minimal, then a pass that tightened spacing and density. The deeper change was organizational: I helped move FYERS from a split <strong>UX/UI relay</strong> to end-to-end <strong>Product Designers</strong>, which made adoption fast because the people using the system understood it top to bottom.</p>
-          <p>When engineering built it into code, we were honest that design-to-code was never a 100% match — naming the gap is what kept the system improving instead of quietly rotting.</p>
+          <span class="tag">Strategy &amp; Leadership &middot; Design systems</span>
+          <h3>FDSG — one design language across a fintech platform</h3>
+          <div class="role">Design Review Board member → owner of v2.0 &amp; v2.1 &middot; web + mobile &middot; 8-person team</div>
+          <p style="margin-top:14px">When I joined FYERS, design didn't have one language — it had several dialects. The same element existed in different ways across web, iOS and Android, which cost the business twice: designers rebuilt instead of designed, and users met a product that felt subtly inconsistent.</p>
+          <p style="margin-top:14px">I pushed for <strong>a single, versioned source of truth</strong>. After v1.0 I took over and drove <strong>FDSG 2.0 and 2.1</strong> — a visual reset from gradient-heavy to clean and minimal, then a pass that tightened spacing and density until the components stopped fighting each other.</p>
           <a class="case-go" href="case-study-fdsg.html">Read the full case study</a>
         </div>
-        <div class="metrics">
-          <div class="metric"><div class="v up">~30%</div><div class="l">less design effort, measured on live projects with vs. without the system</div></div>
-          <div class="metric"><div class="v sig">1</div><div class="l">source of truth, replacing scattered guides</div></div>
-          <div class="metric"><div class="v">UX/UI → PD</div><div class="l">org shift to end-to-end product designers</div></div>
+        <div class="nums">
+          <div class="n"><div class="v up">~30%</div><div class="l">less design effort, measured on live projects with vs. without the system</div></div>
+          <div class="n"><div class="v sig">1</div><div class="l">source of truth, replacing scattered guides</div></div>
+          <div class="n"><div class="v">8</div><div class="l">designers on the system across web and mobile</div></div>
         </div>
       </div>
     </article>
 
-    <!-- CASE B -->
+    <!-- CASE B — Options Scalper. Same anatomy; the band carries the terminal,
+         and the surface row narrows to the one platform it shipped on. -->
     <article class="case reveal" id="case-options-scalper">
-      <div class="case-top">
-        <span class="tag">Execution &amp; Impact · Real-time trading</span>
-        <h3>Options Scalper Terminal — designing for the hardest user in the building</h3>
-        <div class="role">Design lead &amp; oversight · Options vertical · Q2 2024, ~3 months</div>
+      <div class="band">
+        <div class="band-grid" style="grid-template-columns:1.5fr 1fr">
+          <div>
+            <span class="lbl">option chain</span>
+            <div class="shot chain">
+              <div class="hd"><span>strike</span><span>ltp</span><span>chg</span><span>oi</span></div>
+              <div class="r"><span>22400</span><span>184.25</span><span class="g">+2.41</span><span class="m">1.2M</span></div>
+              <div class="r sel"><span>22450</span><span>161.80</span><span class="g">+1.07</span><span class="m">2.8M</span></div>
+              <div class="r"><span>22500</span><span>139.05</span><span class="d">−0.84</span><span class="m">4.1M</span></div>
+              <div class="r"><span>22550</span><span>118.60</span><span class="d">−1.92</span><span class="m">3.4M</span></div>
+              <div class="r"><span>22600</span><span>99.15</span><span class="g">+0.36</span><span class="m">2.1M</span></div>
+            </div>
+          </div>
+          <div>
+            <span class="lbl">order ticket</span>
+            <div class="shot">
+              <div class="ticket">
+                <div style="display:flex;gap:6px">
+                  <span style="flex:1;text-align:center;padding:7px 0;border-radius:6px;background:#35C08A;color:var(--panel);font-weight:600">BUY</span>
+                  <span style="flex:1;text-align:center;padding:7px 0;border-radius:6px;border:1px solid var(--panel-line);color:var(--panel-muted)">SELL</span>
+                </div>
+                <div class="row"><span>qty</span><b>75 × 1</b></div>
+                <div class="row"><span>price</span><b>161.80</b></div>
+                <div class="row" style="padding-bottom:10px;border-bottom:1px solid var(--panel-line)"><span>margin</span><b>₹ 18,420</b></div>
+                <div class="hold"><i></i><span>HOLD TO CONFIRM</span></div>
+                <div style="color:#5B6478;font-size:.6rem;text-align:center">release to cancel</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="case-body">
+
+      <div class="surface">
+        <span class="k">surface</span>
+        <span class="s"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"></rect><path d="M8 21h8"></path><path d="M12 17v4"></path></svg> web &middot; desktop terminal</span>
+        <span class="note">built for one screen, used all day</span>
+      </div>
+
+      <div class="case-b2">
         <div class="k">
-          <p>Most fintech design makes the complex feel simple. This was the opposite: the user <em>wants</em> complexity, at speed, with zero margin for error. High-frequency options traders live in seconds — a slow interaction or an ambiguous state isn't an annoyance, it's money.</p>
-          <p>I set the direction and defended the standard: a <strong>fixed layout</strong> that becomes muscle memory, deeper analytics behind progressive disclosure so the default view stays scannable, live state read through colour and motion rather than full redraws, and <strong>error-prevention at speed</strong> — a deliberate confirm step and guardrails against fat-finger mistakes. The principle I held against pressure to show everything: the terminal should disappear into muscle memory.</p>
-          <p>The result showed up in the behaviour of the most demanding traders on the platform — they leaned in, spending more time in the tool and placing more through it.</p>
+          <span class="tag">Execution &amp; Impact &middot; Real-time trading</span>
+          <h3>Options Scalper Terminal — designing for the hardest user in the building</h3>
+          <div class="role">Design lead &amp; oversight &middot; Options vertical &middot; Q2 2024, ~3 months</div>
+          <p style="margin-top:14px">Most fintech design makes the complex feel simple. This was the opposite: the user <em>wants</em> complexity, at speed, with zero margin for error. High-frequency options traders live in seconds — a slow interaction or an ambiguous state isn't an annoyance, it's money.</p>
+          <p style="margin-top:14px">I set the direction and defended the standard: a <strong>fixed layout</strong> that becomes muscle memory, analytics behind progressive disclosure so the default view stays scannable, live state read through colour and motion rather than full redraws, and <strong>error-prevention at speed</strong> — a deliberate confirm step and guardrails against fat-finger mistakes.</p>
           <a class="case-go" href="case-study-options-scalper.html">Read the full case study</a>
         </div>
-        <div class="metrics">
-          <div class="metric"><div class="v up">↑ engagement</div><div class="l">session duration up; MAU grew steadily among active traders</div></div>
-          <div class="metric"><div class="v sig">high</div><div class="l">daily order volume per user — a tool people live in</div></div>
-          <div class="metric"><div class="v">↑ orders</div><div class="l">order volume through the terminal grew at scale</div></div>
+        <div class="nums">
+          <div class="n"><div class="v up">↑ engagement</div><div class="l">session duration up; MAU grew steadily among active traders</div></div>
+          <div class="n"><div class="v sig">↑ orders</div><div class="l">order volume through the terminal grew at scale</div></div>
+          <div class="n"><div class="v">high</div><div class="l">daily order volume per user — a tool people live in</div></div>
         </div>
       </div>
     </article>
