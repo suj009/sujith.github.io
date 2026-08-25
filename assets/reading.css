@@ -55,7 +55,7 @@ nav{position:sticky;top:0;z-index:50;background:rgba(240,239,233,.82);
   display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brand{display:flex;align-items:center;gap:10px;font-family:"Bricolage Grotesque",sans-serif;
   font-weight:700;letter-spacing:-.01em}
-.brand .mk{width:22px;height:22px;border-radius:6px;background:url(../img/favicon-32.png) center/cover no-repeat;flex:none}
+.brand .mk{width:22px;height:22px;background:url(../img/logo-s.svg) center/contain no-repeat;flex:none}
 .nav-links{display:flex;gap:4px}
 .nav-links a{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.08em;
   text-transform:uppercase;color:var(--muted);padding:7px 11px;border-radius:7px;
