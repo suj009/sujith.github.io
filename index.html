@@ -109,7 +109,7 @@
   }
 
   /* ---------- hero ---------- */
-  header.hero{padding:clamp(56px,11vh,120px) 0 clamp(40px,7vh,72px);
+  header.hero{padding:clamp(56px,11vh,120px) 0 clamp(84px,12vh,124px);
     position:relative;isolation:isolate;background-color:var(--paper)}
   /* Art layer. The portrait is composed with the subject on the right and open
      ground on the left, so it is offset right and veiled from the left — the
@@ -162,6 +162,17 @@
   .hero h1 .b:nth-of-type(2){animation:heroIn .7s var(--ease) both .22s}
   .hero .lede{animation:heroIn .7s var(--ease) both .32s}
   .hero .spec{animation:heroIn .7s var(--ease) both .42s}
+
+  /* Scroll cue — centred on the band, arrow bouncing. */
+  .cue{position:absolute;left:50%;transform:translateX(-50%);bottom:clamp(20px,4vh,40px);
+    display:flex;flex-direction:column;align-items:center;gap:9px;
+    font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);transition:color .2s;
+    animation:heroIn .7s var(--ease) both .6s}
+  .cue:hover,.cue:focus-visible{color:var(--ink)}
+  .cue svg{animation:cueBounce 1.8s ease-in-out infinite}
+  @keyframes cueBounce{50%{transform:translateY(5px)}}
+  @media(max-width:860px){.cue{display:none}}
 
   /* spec readout — the signature (echoes the Lab instrument panel) */
   .spec{background:var(--panel);border-radius:14px;padding:20px 22px;color:var(--panel-text);
@@ -407,6 +418,14 @@
       </aside>
     </div>
   </div>
+
+  <a class="cue" href="#work" aria-label="Scroll to Work">
+    Scroll
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path>
+    </svg>
+  </a>
 </header>
 
 <!-- ============ WORK ============ -->
