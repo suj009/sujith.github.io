@@ -115,10 +115,15 @@
      ground on the left, so it is offset right and veiled from the left — the
      lede and the spec card keep a clean field to sit on. */
   .hero .art{position:absolute;inset:0;z-index:-1;overflow:hidden;
-    background:url(img/sujith-portrait.png) 85% center/cover no-repeat}
+    background:url(img/sujith-portrait.png) 78% center/cover no-repeat}
+  /* Lighter veil than a two-column hero needs: the image runs the full width
+     here, so it only has to clear a reading field on the left. */
   .hero .art::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(100deg,var(--paper) 0 36%,rgba(240,239,233,.74) 58%,rgba(240,239,233,.30) 100%)}
-  .hero-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:clamp(28px,5vw,64px);align-items:end}
+    background:linear-gradient(100deg,var(--paper) 0 30%,rgba(240,239,233,.58) 56%,rgba(240,239,233,.12) 100%)}
+  /* One column. Copy, lede and the spec readout stack down the left; the art
+     keeps the right half of the band. */
+  .hero-grid{display:block}
+  .hero-copy{max-width:min(52%,620px)}
   /* Cap is 4.8rem, not 5.4: the size tracks the viewport but the column is a
      fraction of .wrap's max-width, so past ~1160px the type outgrew its column
      and each .b span broke in two — four ragged lines instead of the two the
@@ -130,10 +135,11 @@
   .hero h1 .sig{color:var(--signal)}
   .hero .lede{margin-top:26px;max-width:46ch;font-size:clamp(1.05rem,1.9vw,1.28rem);color:var(--graphite)}
   .hero .lede b{color:var(--ink);font-weight:600}
+  .hero .spec{margin-top:34px;max-width:620px}
   /* Below ~860px the two hero columns starve each other — the h1 loses its
      measure and the spec panel wraps every value. Stack them instead. */
   @media(max-width:860px){
-    .hero-grid{grid-template-columns:1fr;align-items:start;gap:34px}
+    .hero-copy{max-width:100%}
     .hero .lede{max-width:52ch}
     /* The desktop clamp bottoms out at 2.6rem, which is wider than a 320px
        phone can hold — track the viewport instead. 3.6rem at 860px hands off
@@ -368,17 +374,16 @@
 <header class="hero" id="top">
   <div class="art" aria-hidden="true"></div>
   <div class="wrap hero-grid">
-    <div>
+    <div class="hero-copy">
       <span class="eyebrow">Product Design Leader · Bengaluru</span>
       <h1 style="margin-top:18px">
         <span class="b">A design leader</span>
         <span class="b">who <span class="sig">still ships.</span></span>
       </h1>
       <p class="lede">Eleven years in product design, with multiple products launched 0→1. Today I lead five designers across six verticals at a top-20 Indian retail brokerage serving over a million active clients. <b>I still ship the front-end myself, with AI.</b></p>
-    </div>
 
-    <!-- spec readout : signature element -->
-    <aside class="spec" aria-label="Profile at a glance">
+      <!-- spec readout : signature element -->
+      <aside class="spec" aria-label="Profile at a glance">
       <div class="sh"><span class="t">sujith.spec</span><span class="live"><span class="pip"></span>Open to roles</span></div>
       <dl>
         <dt>role</dt><dd>Sr Design Manager, FYERS</dd>
@@ -388,7 +393,8 @@
         <dt>stack</dt><dd>Figma · Flutter · FE · AI</dd>
         <dt>seeking</dt><dd>Head of Design / Sr Design Manager</dd>
       </dl>
-    </aside>
+      </aside>
+    </div>
   </div>
 </header>
 
