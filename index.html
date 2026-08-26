@@ -116,10 +116,8 @@
      lede and the spec card keep a clean field to sit on. */
   .hero .art{position:absolute;inset:0;z-index:-1;overflow:hidden;
     background:url(img/sujith-portrait.png) 78% center/cover no-repeat}
-  /* Lighter veil than a two-column hero needs: the image runs the full width
-     here, so it only has to clear a reading field on the left. */
-  .hero .art::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(100deg,var(--paper) 0 26%,rgba(240,239,233,.52) 48%,rgba(240,239,233,0) 74%)}
+  /* No veil on desktop — the photograph's own left side is open off-white
+     ground, so the copy already has a clean field and the image stays as shot. */
   /* One column. Copy, lede and the spec readout stack down the left; the art
      keeps the right half of the band. */
   .hero-grid{display:block}
@@ -149,7 +147,9 @@
     /* Portrait crop for phones; the copy stacks over it, so it sits lower and
        carries a heavier veil. */
     .hero .art{background-image:url(img/hero-mobile.png);background-position:center 78%}
-    .hero .art::after{background:linear-gradient(180deg,var(--paper) 0 18%,rgba(240,239,233,.56) 46%,rgba(240,239,233,.24) 100%)}
+    /* Phones only: the copy stacks over the subject, so it needs a wash. */
+    .hero .art::after{content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,var(--paper) 0 18%,rgba(240,239,233,.56) 46%,rgba(240,239,233,.24) 100%)}
   }
 
   /* Hero entrance. Above the fold, so it plays on load rather than on scroll —
