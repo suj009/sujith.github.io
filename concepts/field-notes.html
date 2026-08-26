@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Field Notes</title>
+<meta name="description" content="Portfolio concept for Sujith Kumar Anand — ten years of design practice written up the way he was trained to write up a study." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" />
+<style>
+/* ============================================================
+   FIELD NOTES — committed single-theme (a notebook under lamp).
+   Before design was his job he ran diary studies and interviews
+   as an HCI researcher. This writes the last ten years up the way
+   he was trained to write up a study. Ground and every colour are
+   painted explicitly so the page holds on either host theme.
+
+   Deliberately no charts: the metrics here are directional by
+   design (confidentiality), and drawing bars would invent
+   magnitudes that were never published. Magnitude that isn't
+   known gets a stat tile, not a plot.
+   ============================================================ */
+:root{
+  --field:#E9ECEE;
+  --grid:#D8DFE3;
+  --grid-2:#CBD4D9;
+  --card:#F6F8F9;
+  --ink:#12181C;
+  --ink-2:#454F56;
+  --ink-3:#77828A;
+  --rule:#C5CFD4;
+  --rule-2:#AEBAC1;
+  --teal:#0E7C86;
+  --teal-tint:#DCEAEC;
+  --maxw:1120px;
+  --ease:cubic-bezier(.2,.6,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  color:var(--ink);
+  background-color:var(--field);
+  /* graph paper: 4 hairlines then a heavier one, both axes */
+  background-image:
+    repeating-linear-gradient(0deg, var(--grid) 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(90deg, var(--grid) 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(0deg, var(--grid-2) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(90deg, var(--grid-2) 0 1px, transparent 1px 120px);
+  font-family:"Spectral",Georgia,serif;
+  font-size:16px;line-height:1.66;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+::selection{background:var(--teal);color:var(--card)}
+
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+.lbl{
+  font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.66rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+}
+.lbl.t{color:var(--teal)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+
+/* ================= HEADER ================= */
+.tab{
+  position:sticky;top:0;z-index:70;
+  background:rgba(233,236,238,.93);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule-2);
+}
+.tab-in{
+  max-width:var(--maxw);margin:0 auto;padding:9px clamp(16px,4vw,40px);
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.tab .who{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.84rem;letter-spacing:-.01em}
+.tab .jump{margin-left:auto;display:flex;gap:2px;flex-wrap:wrap}
+.tab .jump a{
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.06em;
+  padding:5px 8px;color:var(--ink-2);
+  transition:color .16s var(--ease),background .16s var(--ease);
+}
+.tab .jump a:hover{color:var(--teal);background:var(--teal-tint)}
+
+/* ================= STUDY HEAD ================= */
+.head{padding:clamp(44px,7vw,92px) 0 clamp(26px,4vw,44px)}
+.head h1{
+  font-family:"Spectral",Georgia,serif;font-weight:600;
+  font-size:clamp(2.2rem,5.8vw,3.9rem);line-height:1.06;letter-spacing:-.024em;
+  max-width:19ch;text-wrap:balance;
+}
+.head h1 em{font-style:italic;font-weight:400;color:var(--teal)}
+.head .abstract{
+  margin-top:22px;max-width:60ch;font-size:clamp(1.02rem,1.7vw,1.15rem);
+  line-height:1.7;color:var(--ink-2);
+}
+.head .abstract b{color:var(--ink);font-weight:600}
+
+/* the study header block — subject, site, period, role */
+.meta{
+  margin-top:clamp(26px,4vw,42px);
+  border:1px solid var(--rule-2);background:var(--card);border-radius:2px;
+}
+.meta-bar{
+  padding:8px 14px;border-bottom:1px solid var(--rule);
+  display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;
+}
+.meta-bar .st{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--teal)}
+.meta-rows{display:grid;gap:0}
+@media (min-width:700px){.meta-rows{grid-template-columns:repeat(2,1fr)}}
+.meta-rows div{
+  display:flex;justify-content:space-between;gap:14px;align-items:baseline;
+  padding:10px 14px;border-bottom:1px solid var(--rule);
+}
+@media (min-width:700px){.meta-rows div:nth-child(odd){border-right:1px solid var(--rule)}}
+.meta-rows dt{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.meta-rows dd{font-family:"IBM Plex Mono",monospace;font-size:.8rem;text-align:right;font-weight:500}
+.meta-rows dd.t{color:var(--teal)}
+
+/* ================= SECTIONS ================= */
+section{padding:clamp(40px,6vw,80px) 0;border-top:1px solid var(--rule-2)}
+.sechead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+.sechead h2{
+  font-family:"Spectral",Georgia,serif;font-weight:600;
+  font-size:clamp(1.4rem,3vw,1.95rem);letter-spacing:-.02em;
+}
+.secnote{max-width:62ch;color:var(--ink-2);font-size:.98rem;margin-bottom:clamp(20px,3vw,32px)}
+
+/* ---------- observation (case study) ---------- */
+.obs{
+  border:1px solid var(--rule-2);background:var(--card);border-radius:2px;
+  margin-bottom:24px;overflow:hidden;
+}
+.obs-bar{
+  padding:9px 16px;border-bottom:1px solid var(--rule);
+  display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;background:var(--field);
+}
+.obs-bar .site{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--ink-3)}
+.obs-in{padding:clamp(18px,3vw,30px)}
+.obs h3{
+  font-family:"Spectral",Georgia,serif;font-weight:600;
+  font-size:clamp(1.2rem,2.6vw,1.62rem);line-height:1.22;letter-spacing:-.02em;
+  max-width:28ch;text-wrap:balance;
+}
+.obs .role{
+  margin-top:9px;font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--teal);
+}
+
+/* a two-column note layout: body + margin annotations */
+.notes{margin-top:22px;display:grid;gap:clamp(16px,2.5vw,30px);grid-template-columns:1fr}
+@media (min-width:920px){.notes{grid-template-columns:minmax(0,1fr) 230px}}
+.notes .body{max-width:62ch;display:flex;flex-direction:column;gap:14px}
+.notes .body p{color:var(--ink-2);font-size:1.01rem;line-height:1.72}
+.notes .body p b{color:var(--ink);font-weight:600}
+.notes .body .step{
+  font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:-8px;
+}
+
+.margin{display:flex;flex-direction:column;gap:16px}
+.mnote{
+  border-left:2px solid var(--teal);padding:2px 0 2px 13px;
+  font-family:"IBM Plex Mono",monospace;font-size:.74rem;line-height:1.6;color:var(--ink-2);
+}
+.mnote b{display:block;color:var(--teal);font-weight:600;font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;margin-bottom:5px}
+
+/* results: stat tiles, not plots — see note at top of stylesheet */
+.results{margin-top:24px;border-top:1px solid var(--rule);padding-top:18px}
+.tiles{display:grid;gap:14px;margin-top:14px}
+@media (min-width:620px){.tiles{grid-template-columns:repeat(3,1fr)}}
+.tile{border:1px solid var(--rule);background:var(--field);border-radius:2px;padding:14px}
+.tile .v{
+  font-family:"Spectral",Georgia,serif;font-weight:600;font-size:1.65rem;
+  line-height:1;letter-spacing:-.028em;color:var(--ink);font-variant-numeric:tabular-nums;
+}
+/* directional marks carry the sign; the number itself stays in ink */
+.tile .v i{font-style:normal;color:var(--teal)}
+.tile .d{margin-top:9px;font-size:.84rem;color:var(--ink-2);line-height:1.5}
+.tile .q{
+  margin-top:9px;font-family:"IBM Plex Mono",monospace;font-size:.62rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+}
+
+.more{
+  display:inline-flex;align-items:center;gap:8px;margin-top:18px;
+  font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--teal);
+  border-bottom:1px solid rgba(14,124,134,.35);padding-bottom:2px;
+  transition:gap .18s var(--ease),border-color .18s var(--ease);
+}
+.more:hover{gap:13px;border-color:var(--teal)}
+
+/* ---------- findings ---------- */
+.findings{border:1px solid var(--rule-2);background:var(--card);border-radius:2px;overflow:hidden}
+.finding{
+  display:grid;gap:6px;padding:16px 18px;border-bottom:1px solid var(--rule);
+  transition:background .16s var(--ease);
+}
+@media (min-width:800px){.finding{grid-template-columns:56px minmax(0,1fr);gap:20px;align-items:start}}
+.finding:last-child{border-bottom:0}
+.finding:hover{background:var(--field)}
+.finding .n{
+  font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--teal);
+  font-variant-numeric:tabular-nums;padding-top:3px;
+}
+.finding .txt{max-width:66ch;color:var(--ink-2);font-size:.99rem;line-height:1.66}
+.finding .txt b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px}
+
+/* ---------- instruments ---------- */
+.instr{display:grid;gap:14px}
+@media (min-width:720px){.instr{grid-template-columns:repeat(3,1fr)}}
+.ins{
+  border:1px solid var(--rule-2);background:var(--card);border-radius:2px;
+  padding:16px;display:flex;flex-direction:column;gap:9px;
+  transition:border-color .18s var(--ease),transform .18s var(--ease);
+}
+a.ins:hover{border-color:var(--teal);transform:translateY(-2px)}
+.ins h4{font-family:"Spectral",Georgia,serif;font-weight:600;font-size:1.03rem;line-height:1.28;text-wrap:balance}
+.ins p{font-size:.86rem;color:var(--ink-2);line-height:1.55}
+.ins .s{margin-top:auto;font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;color:var(--teal)}
+.ins .s.q{color:var(--ink-3)}
+
+/* ---------- log ---------- */
+.log{border:1px solid var(--rule-2);background:var(--card);border-radius:2px;overflow:hidden}
+.log .r{
+  display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:baseline;
+  padding:11px 16px;border-bottom:1px solid var(--rule);
+}
+@media (min-width:740px){.log .r{grid-template-columns:116px 190px 1fr}}
+.log .r:last-child{border-bottom:0}
+.log .y{font-family:"IBM Plex Mono",monospace;font-size:.71rem;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.log .c{font-weight:600;font-size:.94rem}
+.log .r.now .c{color:var(--teal)}
+.log .p{font-size:.88rem;color:var(--ink-2);line-height:1.45}
+
+.appendix{display:grid;gap:14px;margin-top:18px}
+@media (min-width:760px){.appendix{grid-template-columns:repeat(3,1fr)}}
+.appendix div{border-top:1px solid var(--rule-2);padding-top:12px}
+.appendix b{display:block;font-weight:600;font-size:.9rem;line-height:1.35}
+.appendix span{display:block;margin-top:5px;font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--ink-3);line-height:1.55}
+
+/* ---------- close ---------- */
+.close h2{
+  font-family:"Spectral",Georgia,serif;font-weight:600;
+  font-size:clamp(1.9rem,5vw,3.1rem);line-height:1.08;letter-spacing:-.028em;
+  max-width:16ch;text-wrap:balance;
+}
+.close h2 em{font-style:italic;font-weight:400;color:var(--teal)}
+.close .p{max-width:60ch;margin-top:18px;color:var(--ink-2);font-size:1.02rem;line-height:1.7}
+.status{
+  margin-top:22px;display:inline-flex;align-items:center;gap:9px;
+  font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--teal);
+  background:var(--teal-tint);border:1px solid rgba(14,124,134,.25);
+  border-radius:2px;padding:8px 14px;
+}
+.status i{width:7px;height:7px;border-radius:50%;background:var(--teal);flex:none}
+.reach{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}
+.reach a{
+  font-family:"IBM Plex Mono",monospace;font-size:.79rem;
+  padding:10px 15px;border:1px solid var(--rule-2);background:var(--card);border-radius:2px;
+  transition:border-color .18s var(--ease),color .18s var(--ease),background .18s var(--ease);
+}
+.reach a:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-tint)}
+.colo{
+  margin-top:clamp(30px,5vw,54px);padding-top:15px;border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="tab">
+  <div class="tab-in">
+    <span class="who">Sujith Kumar Anand</span>
+    <nav class="jump">
+      <a href="#obs">Observations</a>
+      <a href="#findings">Findings</a>
+      <a href="#instruments">Instruments</a>
+      <a href="#log">Log</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ================= STUDY HEAD ================= -->
+  <div class="head">
+    <div class="lbl" style="margin-bottom:18px">Field notes · product design leadership · Bengaluru</div>
+    <h1>Ten years in fintech, written up the way I was <em>trained to write up a study.</em></h1>
+    <p class="abstract">
+      Before design was my job, I ran the interviews and diary studies as an HCI researcher at
+      Microsoft and IBM. So here is the practice observed rather than advertised:
+      <b>two settings watched closely, what I changed, what happened, and what I'd note for next
+      time.</b> I lead the team, deliver as an IC, and turn design into working front-end with AI.
+    </p>
+
+    <div class="meta">
+      <div class="meta-bar">
+        <span class="lbl">Study header</span>
+        <span class="st">● Open to Director / Head of Design</span>
+      </div>
+      <dl class="meta-rows">
+        <div><dt>Subject</dt><dd>Sujith Kumar Anand</dd></div>
+        <div><dt>Present site</dt><dd>FYERS · 6 verticals</dd></div>
+        <div><dt>Role</dt><dd class="t">Senior Design Manager</dd></div>
+        <div><dt>Period</dt><dd>2014 — 2026 · 10+ yrs</dd></div>
+        <div><dt>Domains</dt><dd>Fintech · DeFi · HCI</dd></div>
+        <div><dt>Team</dt><dd>8 product designers</dd></div>
+        <div><dt>Methods</dt><dd>Figma · Flutter · FE · AI</dd></div>
+        <div><dt>Prior sites</dt><dd>Microsoft · IBM · Nexter · Oddz</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <!-- ================= OBSERVATIONS ================= -->
+  <section id="obs">
+    <div class="sechead">
+      <h2>Observations</h2>
+      <span class="lbl">Two settings, watched closely</span>
+    </div>
+    <p class="secnote">
+      One on strategy and scale, one on execution under pressure. Margin notes are the things I
+      actually wrote down at the time — including the ones that didn't flatter the plan.
+    </p>
+
+    <!-- OBS 1 -->
+    <article class="obs">
+      <div class="obs-bar">
+        <span class="lbl t">Observation 1</span>
+        <span class="lbl">Design systems · strategy</span>
+        <span class="site">FYERS · web + mobile · 8-person team · 2024 — ongoing</span>
+      </div>
+      <div class="obs-in">
+        <h3>FDSG — one design language across a fintech platform</h3>
+        <div class="role">Role: Design Review Board member → owner of v2.0 and v2.1</div>
+
+        <div class="notes">
+          <div class="body">
+            <div class="step">Setting</div>
+            <p>Design didn't have one language — it had several dialects. Style guides were scattered, half-finished, or duplicated, so the same element existed in different ways across web, iOS, and Android. That cost the business twice: designers rebuilt instead of designed, and users met a product that felt subtly inconsistent — <b>costly in a product built on trust</b>.</p>
+
+            <div class="step">Intervention</div>
+            <p>I argued for a single, versioned source of truth rather than another guide. After v1.0 I took over and drove <b>FDSG 2.0 and 2.1</b> across web and mobile — a visual reset from gradient-heavy to clean and minimal, then a pass that tightened spacing and density.</p>
+            <p>The deeper intervention was organizational: I helped move FYERS from a split UX/UI relay to end-to-end <b>Product Designers</b>, so the people using the system understood it top to bottom.</p>
+          </div>
+          <aside class="margin">
+            <div class="mnote">
+              <b>Note to self</b>
+              Adoption moved with the org change, not the component count. The system was the artefact; the ownership model was the cause.
+            </div>
+            <div class="mnote">
+              <b>Contradiction</b>
+              Design-to-code was never a 100% match. Naming that out loud is what kept the system improving instead of quietly rotting.
+            </div>
+            <div class="mnote">
+              <b>Next time</b>
+              Capture a baseline before shipping v2.0. The effort saving is real but was measured after the fact.
+            </div>
+          </aside>
+        </div>
+
+        <div class="results">
+          <span class="lbl">Result</span>
+          <div class="tiles">
+            <div class="tile">
+              <div class="v">~30%</div>
+              <div class="d">Less design effort, measured on live projects with vs. without the system</div>
+              <div class="q">Measured, post hoc</div>
+            </div>
+            <div class="tile">
+              <div class="v">1</div>
+              <div class="d">Source of truth, replacing scattered guides</div>
+              <div class="q">Count</div>
+            </div>
+            <div class="tile">
+              <div class="v">UX/UI <i>→</i> PD</div>
+              <div class="d">Org shift to end-to-end product designers</div>
+              <div class="q">Structural</div>
+            </div>
+          </div>
+          <a class="more" href="../case-study-fdsg.html">Full write-up →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- OBS 2 -->
+    <article class="obs">
+      <div class="obs-bar">
+        <span class="lbl t">Observation 2</span>
+        <span class="lbl">Real-time trading · execution</span>
+        <span class="site">FYERS · options vertical · Q2 2024 · ~3 months</span>
+      </div>
+      <div class="obs-in">
+        <h3>Options Scalper Terminal — designing for the hardest user in the building</h3>
+        <div class="role">Role: Design lead and oversight</div>
+
+        <div class="notes">
+          <div class="body">
+            <div class="step">Setting</div>
+            <p>Most fintech design makes the complex feel simple. This was the opposite: the user <b>wants</b> complexity, at speed, with zero margin for error. High-frequency options traders live in seconds — a slow interaction or an ambiguous state isn't an annoyance, it's money.</p>
+
+            <div class="step">Intervention</div>
+            <p>A <b>fixed layout</b> that becomes muscle memory. Deeper analytics behind progressive disclosure so the default view stays scannable. Live state read through colour and motion rather than full redraws. And error-prevention at speed — a deliberate confirm step and guardrails against fat-finger mistakes.</p>
+            <p>I set the direction and defended the standard against pressure to surface everything on the default screen.</p>
+          </div>
+          <aside class="margin">
+            <div class="mnote">
+              <b>Principle held</b>
+              The terminal should disappear into muscle memory. Arguable in a stakeholder room because it's a claim about the trader's hands, not my taste.
+            </div>
+            <div class="mnote">
+              <b>Sampling bias</b>
+              We validated with the traders we could reach fastest — already the most expert. Muscle memory is a promise to the one who hasn't built it yet.
+            </div>
+            <div class="mnote">
+              <b>Not measured</b>
+              Perceived latency. For this user it <em>is</em> the design, and we captured the behaviour it produced rather than the thing itself.
+            </div>
+          </aside>
+        </div>
+
+        <div class="results">
+          <span class="lbl">Result</span>
+          <div class="tiles">
+            <div class="tile">
+              <div class="v"><i>↑</i> engagement</div>
+              <div class="d">Session duration up; MAU grew steadily among active traders</div>
+              <div class="q">Direction only</div>
+            </div>
+            <div class="tile">
+              <div class="v">high</div>
+              <div class="d">Daily order volume per user — a tool people live in</div>
+              <div class="q">Direction only</div>
+            </div>
+            <div class="tile">
+              <div class="v"><i>↑</i> orders</div>
+              <div class="d">Order volume through the terminal grew at scale</div>
+              <div class="q">Direction only</div>
+            </div>
+          </div>
+          <a class="more" href="../case-study-options-scalper.html">Full write-up →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- secondary -->
+    <div style="margin-top:26px">
+      <span class="lbl">Additional sites · led, redesigned, or built 0 → 1</span>
+      <div class="tiles" style="margin-top:14px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <div class="tile"><div class="v"><i>↑</i> conversion</div><div class="d">NRI Onboarding — led the redesign; conversion improved month-on-month.</div><div class="q">Direction only</div></div>
+        <div class="tile"><div class="v"><i>↑</i> MAU</div><div class="d">Markets · Screeners — usage grew substantially after the revamp.</div><div class="q">Direction only</div></div>
+        <div class="tile"><div class="v">0 <i>→</i> 1</div><div class="d">FIA — built and launched from scratch; now a key analytical layer.</div><div class="q">Milestone</div></div>
+        <div class="tile"><div class="v">high</div><div class="d">Profile on FDSG — strong adoption; complaints trending down.</div><div class="q">Direction only</div></div>
+      </div>
+      <p class="secnote mono" style="margin-top:14px;font-size:.74rem;color:var(--ink-3);max-width:66ch">
+        Note on reporting: these are relative by choice. The raw internal figures aren't mine to
+        publish, and a candidate who leaks them would leak yours too.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= FINDINGS ================= -->
+  <section id="findings">
+    <div class="sechead">
+      <h2>Findings</h2>
+      <span class="lbl">What held across every site</span>
+    </div>
+    <p class="secnote">
+      Enumerated because they're a findings list, not a ranking — each one earned across more than
+      one setting.
+    </p>
+    <div class="findings">
+      <div class="finding">
+        <span class="n">F1</span>
+        <span class="txt"><b>Handoffs are where intent dies.</b> One designer should own a problem end to end, from user need to shipped screen. That conviction retired the UX/UI relay at FYERS, and it's how I'd structure any team I lead.</span>
+      </div>
+      <div class="finding">
+        <span class="n">F2</span>
+        <span class="txt"><b>A system is an organizational agreement, not a folder of components.</b> Adoption tracked the ownership model far more closely than it tracked the library.</span>
+      </div>
+      <div class="finding">
+        <span class="n">F3</span>
+        <span class="txt"><b>Name the gap or it rots.</b> Design-to-code was never a 100% match. Saying so kept the system honest; pretending otherwise is how systems quietly decay.</span>
+      </div>
+      <div class="finding">
+        <span class="n">F4</span>
+        <span class="txt"><b>A defensible standard is a claim about the user, not about taste.</b> "The terminal should disappear into muscle memory" survived the stakeholder room precisely because it was about the trader's hands.</span>
+      </div>
+      <div class="finding">
+        <span class="n">F5</span>
+        <span class="txt"><b>Credibility comes from still building.</b> I came in from an engineering foundation — a master's in Advanced Computer Science before one in HCI — and I still ship front-end with AI. It's why the direction I set is arguable in engineering terms too.</span>
+      </div>
+      <div class="finding">
+        <span class="n">F6</span>
+        <span class="txt"><b>Lead the way you wish you'd been led.</b> A clear direction, room to do the best work of your career, and systems that make the next project easier. I care more about the team getting sharper than about being the smartest person in the room.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INSTRUMENTS ================= -->
+  <section id="instruments">
+    <div class="sechead">
+      <h2>Instruments</h2>
+      <span class="lbl">Things I built to test the findings</span>
+    </div>
+    <p class="secnote">
+      Running code and written thinking. The order ticket is the same argument as Observation 2,
+      built rather than described.
+    </p>
+    <div class="instr">
+      <a class="ins" href="../lab-order-ticket.html">
+        <span class="lbl">Live component</span>
+        <h4>Real-time order ticket</h4>
+        <p>Density, speed, live state, and hold-to-confirm error prevention, in your browser. Simulated data; nothing confidential.</p>
+        <span class="s">Open ↗</span>
+      </a>
+      <a class="ins" href="../article-design-frontend-ai.html">
+        <span class="lbl">Write-up</span>
+        <h4>The handoff is dead</h4>
+        <p>I designed Wealth Tracker and shipped its front-end myself, with AI as a pair — the workflow and the honest limits.</p>
+        <span class="s">Read →</span>
+      </a>
+      <a class="ins" href="../article-scaling-design-system.html">
+        <span class="lbl">Write-up</span>
+        <h4>Scaling a design system</h4>
+        <p>Governance, the design-to-code gap, and measuring the promise you actually made.</p>
+        <span class="s">Read →</span>
+      </a>
+      <a class="ins" href="../article-ux-to-ui-ownership.html">
+        <span class="lbl">Write-up</span>
+        <h4>One designer, whole problem</h4>
+        <p>The case for end-to-end ownership — and the objections, answered.</p>
+        <span class="s">Read →</span>
+      </a>
+      <div class="ins">
+        <span class="lbl">In build</span>
+        <h4>Options payoff visualizer</h4>
+        <p>A small fintech tool — useful, shareable, and proof of domain fluency plus the ability to ship it.</p>
+        <span class="s q">In progress</span>
+      </div>
+      <div class="ins">
+        <span class="lbl">In build</span>
+        <h4>Micro-interaction study</h4>
+        <p>A single interaction done properly — craft at the detail level, shipped rather than described.</p>
+        <span class="s q">In progress</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LOG ================= -->
+  <section id="log">
+    <div class="sechead">
+      <h2>Log</h2>
+      <span class="lbl">Sites and periods, newest first</span>
+    </div>
+    <div class="log">
+      <div class="r now"><span class="y">2024 — Now</span><span class="c">FYERS</span><span class="p">Senior Design Manager, Product Design · 6 verticals</span></div>
+      <div class="r"><span class="y">2022 — 24</span><span class="c">Nexter Finance</span><span class="p">Design Lead · web3 / DeFi</span></div>
+      <div class="r"><span class="y">2021 — 22</span><span class="c">Oddz Finance</span><span class="p">Design Lead · DeFi</span></div>
+      <div class="r"><span class="y">2018 — 21</span><span class="c">Datami</span><span class="p">Lead Product Designer → Product Designer · Airtel TV Africa, Reach Mobile</span></div>
+      <div class="r"><span class="y">2017 — 18</span><span class="c">Two Roads Tech</span><span class="p">Product Designer · Bengaluru</span></div>
+      <div class="r"><span class="y">2017</span><span class="c">Qplum</span><span class="p">Product Designer · AI portfolio-investment platform (US)</span></div>
+      <div class="r"><span class="y">2016 — 17</span><span class="c">Onetech Ventures</span><span class="p">UX Specialist · Bengaluru</span></div>
+      <div class="r"><span class="y">2016</span><span class="c">IBM Studios</span><span class="p">UX design &amp; research · IBM BPM Process Portal · Böblingen</span></div>
+      <div class="r"><span class="y">2015 — 16</span><span class="c">emocial Ltd</span><span class="p">UX design · freelance · London</span></div>
+      <div class="r"><span class="y">2014 — 15</span><span class="c">Microsoft</span><span class="p">UX research · care technology, with UCL &amp; Kent County Council</span></div>
+    </div>
+    <div class="appendix">
+      <div><b>MSc, Human-Computer Interaction &amp; Design</b><span>EIT Digital · KTH, then UCL · 2013 — 15</span></div>
+      <div><b>MSc, Advanced Computer Science</b><span>Newcastle University · 2011 — 12</span></div>
+      <div><b>BE, Information Science &amp; Engineering</b><span>BMS College of Engineering · 2006 — 10 · NISM Series 7 certified, Series 8 in progress</span></div>
+    </div>
+  </section>
+
+  <!-- ================= CLOSE ================= -->
+  <section class="close" id="contact">
+    <h2>The next observation is <em>somewhere else.</em></h2>
+    <p class="p">
+      I'm looking for Director or Head of Design — Bengaluru or remote. What I'd need: a seat where
+      design decisions are made rather than reviewed, a mandate that covers the system as well as
+      the screens, and a business honest about what it's actually optimising for.
+    </p>
+    <div class="status"><i></i>Open to roles · Bengaluru or remote</div>
+    <div class="reach">
+      <a href="mailto:suj009@gmail.com">✉ suj009@gmail.com</a>
+      <a href="https://www.linkedin.com/">in · LinkedIn</a>
+      <a href="https://medium.com/">✎ Medium</a>
+      <a href="../cv.html">↗ View / print CV</a>
+    </div>
+    <div class="colo">
+      <span class="lbl">© Sujith Kumar Anand</span>
+      <span class="lbl">Concept F · Field Notes</span>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>
