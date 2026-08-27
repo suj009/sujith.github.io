@@ -24,6 +24,29 @@ Practical consequences:
   to enterprise C-suite, so scope always precedes it in the hero.
 - Recheck every word against this audience before shipping copy.
 
+## FROZEN: the hero section
+
+**Sujith froze the hero at `14db5ea`. Do not change any part of it — copy, layout,
+CSS or markup — unless he names the change explicitly.** "Improve the page",
+"fix the site" or work on any other section is NOT permission to touch it.
+
+What that covers, in `index.html`:
+
+- `header.hero` and everything inside it: `.art`, `.hero-grid`, `.hero-copy`,
+  the eyebrow, `h1`, `p.lede`, `aside.spec` and the `.cue`.
+- The CSS for all of the above, including the `heroIn` / `artIn` / `cueBounce`
+  keyframes and their timings, and the hero rules inside the 860px media query.
+- `img/sujith-portrait.webp` and `img/hero-mobile.webp`.
+
+Shared things the hero depends on — `:root` tokens, `--maxw`, `.wrap`, `.spec`
+base styles, `nav` — are used by other sections too. Changing them changes the
+hero, so treat an edit to any of them as a hero edit and ask first.
+
+The frozen state: full-viewport band (`min-height:calc(100svh - 57px)`), copy
+and spec stacked down the left inside the shared 1320px container, portrait
+full-bleed behind with no veil on desktop and a wash below 860px, staggered
+entrance on load, centred scroll cue.
+
 ## Accuracy rules
 
 Claims on this site are checkable by the people being persuaded, so:
