@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Collapsing the handoff — spec to Flutter via an agentic pipeline · Sujith Kumar Anand</title>
+<meta name="description" content="Case study: an agentic design-to-code pipeline that turns product requirements into clickable layouts and approved layouts into production Flutter for web and mobile — built solo at FYERS, now scaling across squads." />
+<meta property="og:title" content="Collapsing the handoff — spec to Flutter via an agentic pipeline" />
+<meta property="og:description" content="Requirements into clickable layouts, approved layouts into production Flutter. The pipeline, the guardrails, and the honest limits." />
+<meta property="og:type" content="article" />
+
+<!--
+  CASE STUDY C — Agentic design-to-code pipeline (innovation & velocity)
+
+  STILL TO DO before this is publication-final:
+  - Visuals. The .fig slots below are labelled placeholders. Replace each
+    <figure class="fig"> block's <div class="slot">…</div> with an <img> +
+    <figcaption>. The pipeline diagram is real and needs no asset.
+  - Numbers. Deliberately relative, per the confidentiality note. If you want
+    cycle-time figures or squad-adoption counts in here, get sign-off first.
+  - "Now being scaled across squads" is a live status. Re-check at publish time
+    and again each time this page is touched.
+-->
+
+<link rel="icon" href="img/logo-sk-monogram.svg" type="image/svg+xml" />
+<link rel="icon" href="img/favicon-32.png" type="image/png" sizes="32x32" />
+<link rel="icon" href="img/favicon-16.png" type="image/png" sizes="16x16" />
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/reading.css" />
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="index.html"><span class="mk"></span>Sujith Kumar Anand</a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#lab">Lab</a>
+      <a href="index.html#writing">Writing</a>
+      <a href="index.html#about">About</a>
+    </div>
+    <a class="nav-cta" href="index.html#contact">Get in touch</a>
+  </div>
+</nav>
+
+<header class="masthead">
+  <div class="wrap">
+    <span class="kicker">Case study · Innovation &amp; velocity</span>
+    <h1>Collapsing the handoff</h1>
+    <p class="standfirst">The same intent gets re-typed three times between a product spec and a shipped screen. I built a pipeline that types it once — requirements into clickable layouts, approved layouts into production Flutter — and this is how it works, where it stops, and why the limits are the point.</p>
+    <div class="byline">
+      <span>Design-to-code infrastructure · Web + mobile</span>
+      <span>FYERS · pilot → scaling</span>
+      <span>~8 min read</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="glance reveal">
+    <div class="sh">
+      <span class="t">At a glance</span>
+      <span class="live"><span class="pip"></span>SCALING</span>
+    </div>
+    <dl>
+      <dt>role</dt><dd>Built it myself — design, pipeline, and front-end output</dd>
+      <dt>input</dt><dd>Product-owner requirements, in plain language</dd>
+      <dt>output</dt><dd>Clickable layouts → Flutter for web and mobile</dd>
+      <dt>guardrail</dt><dd>Structure only — design review and FDSG still gate it</dd>
+      <dt>status</dt><dd><span class="g">solo pilot → scaling to other squads</span></dd>
+    </dl>
+  </section>
+
+  <article class="read">
+
+    <h2>The friction</h2>
+    <p class="lede">In a retail brokerage, speed-to-market is most of the competition. New instruments, regulatory changes and competitor features all arrive on someone else's schedule, and the product that responds first tends to keep the customer.</p>
+    <p>The slow part is not the thinking. It's the relay.</p>
+    <p>A product owner writes a requirement. A designer reads it and redraws it on a vector canvas. A developer reads the canvas and rebuilds it in code. The same intent is expressed three times, in three languages, by three people — and each translation is a place where something quietly changes. Spacing drifts. A state gets missed. An edge case that was obvious in the spec never made it onto the artboard.</p>
+    <p>The cost isn't only the drift; it's the calendar. Weeks of review cycles go into re-agreeing things that were already agreed, and the front-end ends up carrying layout debt that nobody scheduled time to repay.</p>
+
+    <figure class="fig reveal">
+      <div class="slot">
+        <span class="k">Visual to add</span>
+        <p class="w">The old relay drawn honestly: spec → canvas → handoff → rebuild, with the places intent leaks marked.</p>
+      </div>
+    </figure>
+
+    <h2>The bet</h2>
+    <p>My bet was narrow and specific: <strong>the canvas is a translation step, not a thinking step.</strong></p>
+    <p>Real design decisions — what the user is trying to do, what to show and what to hide, where the risk of an expensive mistake sits — happen before any pixel is placed. What happens on the canvas afterwards is mostly transcription: turning a decision into a layout, then turning that layout into something a developer can read.</p>
+    <p>If transcription is the bulk of the work, it's the part worth automating. Not the judgement. The typing.</p>
+
+    <div class="pull reveal">
+      <p>Automate the transcription. Never the judgement.</p>
+    </div>
+
+    <h2>The pipeline</h2>
+    <p>Three stages, each with a human decision at the end of it.</p>
+
+    <div class="pipeline reveal">
+      <div class="step">
+        <span class="s">Ingest</span>
+        <div class="n">Spec → structure</div>
+        <p class="w">Requirements are parsed into a structured layout intent: screens, hierarchy, states, and the data each element needs.</p>
+      </div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step">
+        <span class="s">Align</span>
+        <div class="n">Clickable low-fi</div>
+        <p class="w">That structure becomes an interactive low-fidelity layout. Stakeholders click it, not imagine it — approval in a sitting rather than a sprint.</p>
+      </div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step">
+        <span class="s">Compile</span>
+        <div class="n">Flutter, web + mobile</div>
+        <p class="w">The approved structure compiles to production-shaped Flutter for both platforms — the same layout, not two interpretations of it.</p>
+      </div>
+    </div>
+
+    <p><strong>Ingest.</strong> The valuable output here isn't a picture, it's a structure — a machine-readable description of screens, hierarchy, states and data needs. Getting that structure explicit early is what surfaces the questions a spec left vague, and it surfaces them while they're still cheap to answer.</p>
+    <p><strong>Align.</strong> Low fidelity is a deliberate choice, not a shortcut. A clickable grey layout invites argument about flow and hierarchy; a polished mockup invites argument about the shade of blue. I want the first conversation, and I want it before anyone has spent a week earning the right to be defensive about the work.</p>
+    <p><strong>Compile.</strong> Once the structure is agreed, generating Flutter for web and mobile from that single source removes the interpretation gap between platforms. Engineering opens a pull request with clean layout code instead of a redlined PNG.</p>
+
+    <figure class="fig reveal">
+      <div class="slot">
+        <span class="k">Visual to add</span>
+        <p class="w">One feature moving through all three stages: the spec paragraph, the clickable low-fi, and the running Flutter build side by side.</p>
+      </div>
+    </figure>
+
+    <h2>What it gave engineering</h2>
+    <p>This is the part I'd defend hardest, because it's the part people assume is a threat.</p>
+    <p>The pipeline outputs <em>layout</em>. It doesn't output the things that make a trading app hard: state management, data contracts, live market streams, error and reconnection behaviour, the performance work that keeps a price grid smooth. Those are engineering problems, and they're where engineering time is actually worth spending.</p>
+    <p>So the effect wasn't fewer developers. It was developers spending less of the week rebuilding a layout somebody had already decided, and more of it on the systems only they can build. That's why the reception from the engineering side was good rather than defensive — the pipeline took the chore, not the craft.</p>
+
+    <div class="callout reveal">
+      <span class="eyebrow">The same argument, smaller</span>
+      <p>The <a href="lab-order-ticket.html">order ticket in the Lab</a> is one person designing and building a component in a single pass, in the browser. This pipeline is that instinct turned into infrastructure other people can use.</p>
+    </div>
+
+    <h2>The guardrails</h2>
+    <p>A tool that produces production code fast is a tool that produces mistakes fast. Three constraints keep it honest:</p>
+    <ul>
+      <li><strong>It generates structure, not decisions.</strong> Nothing in the pipeline chooses what to build or who it's for. Fed a bad requirement, it produces a fast, well-formed version of a bad idea — so the requirement is still the thing to argue about.</li>
+      <li><strong>The design system is the ceiling, not the floor.</strong> Output is expected to conform to <a href="case-study-fdsg.html">FDSG</a> and still passes the same Design Review Board that hand-built work does. A shortcut around review would have made this a liability the first time it shipped something inconsistent.</li>
+      <li><strong>Regulated surfaces stay slow on purpose.</strong> Order placement, funds movement and anything with a compliance obligation get the same scrutiny they always did. Speed is worth having on the eighty percent of screens where nobody's money is one tap away.</li>
+    </ul>
+
+    <h2>The honest limits</h2>
+    <p>Three things it doesn't do, which I'd rather say here than in an interview.</p>
+    <p>It is <strong>weakest on novel interaction</strong>. When a screen has no precedent — the Options Scalper terminal is the obvious example — the pipeline has nothing to pattern-match against, and the work goes back to being hand-designed as it should be. It's strong on the well-understood eighty percent and no help at all on the interesting twenty.</p>
+    <p>The output is <strong>production-shaped, not production-final</strong>. Layout code lands clean; it still gets reviewed, wired and hardened like anything else. Anyone claiming an unattended path from spec to shipped feature is selling something.</p>
+    <p>And it <strong>requires someone who can read the code it writes</strong>. The reason I can run this is that I came into design from an engineering degree and have shipped front-end myself. Handing this to a designer who can't evaluate the output would replace a slow relay with a fast one that nobody can audit — which is exactly the problem to solve as it scales.</p>
+
+    <h2>From pilot to framework</h2>
+    <p>I built and ran this as an individual pilot first, on real features with real deadlines, because a demo proves nothing and a shipped feature proves everything. The delivery speed is what got it noticed by leadership, and the mandate that followed was to turn a personal workflow into something the organization can use.</p>
+    <p>That's the current work, and it's a different problem from building the thing. A tool one person can drive is not a framework — a framework needs defaults that fail safely, output other squads can trust without reading every line, and a review path that catches what the pipeline gets wrong. Making it institutional means making it boring, which is the part I'm building now.</p>
+
+    <h2>The outcome</h2>
+    <div class="outcomes reveal">
+      <div class="o">
+        <span class="v sig">spec → code</span>
+        <span class="d">one pipeline in place of a three-step relay, with the intent typed once instead of three times.</span>
+      </div>
+      <div class="o">
+        <span class="v up">↓ drift</span>
+        <span class="d">layout debt removed at the source — the approved layout is the build input, not a reference for a rebuild.</span>
+      </div>
+      <div class="o">
+        <span class="v">web + mobile</span>
+        <span class="d">both platforms compiled from one structure, so they stop diverging by interpretation.</span>
+      </div>
+      <div class="o">
+        <span class="v">eng focus</span>
+        <span class="d">developer time moved off layout rebuilds and onto state, data contracts and live market streams.</span>
+      </div>
+      <div class="o">
+        <span class="v">pilot → org</span>
+        <span class="d">recognised by leadership on delivered work; now being scaled into a framework other squads can use.</span>
+      </div>
+    </div>
+
+    <p class="ndanote"><span class="eyebrow">On the numbers</span> Cycle-time figures, internal specs and the pipeline's implementation details are covered by broker-dealer confidentiality and stay off a public page. Everything here is framed in terms I can stand behind publicly; a full walkthrough is available under NDA during an interview process.</p>
+
+    <p>The interesting claim here isn't that AI can generate a screen — plenty of things generate screens. It's that a designer who understands both the product and the code can own the whole path, and that the handoff was never a law of nature. It was just the place we'd agreed to stop.</p>
+
+  </article>
+
+  <section class="next">
+    <span class="eyebrow lbl">Keep reading</span>
+    <div class="next-grid">
+      <a class="ncard" href="article-design-frontend-ai.html">
+        <span class="tag">Essay · Design + AI</span>
+        <h3>The handoff is dead</h3>
+        <p>The case study is the system. This is the argument behind it — what changed about the job when I started shipping the front-end myself.</p>
+        <span class="go">Read the essay</span>
+      </a>
+      <a class="ncard" href="case-study-fdsg.html">
+        <span class="tag">Case study · Strategy</span>
+        <h3>FDSG — one design language</h3>
+        <p>The system the pipeline has to conform to: from scattered style guides to one versioned source of truth across web and mobile.</p>
+        <span class="go">Read the case study</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="foot">
+    <h2>Let's build something <span class="sig">worth using.</span></h2>
+    <p class="st"><span class="g">●</span> Open to Director / Head of Design roles · Bengaluru or remote</p>
+    <div class="contacts">
+      <a href="mailto:suj009@gmail.com">✉ suj009@gmail.com</a>
+      <a href="https://www.linkedin.com/in/suj009" target="_blank" rel="noopener">in · LinkedIn</a>
+      <a href="https://medium.com/@suj009" target="_blank" rel="noopener">✎ Medium</a>
+      <a href="cv.html">◆ CV</a>
+    </div>
+    <div class="fine">
+      <span>© <span id="yr"></span> Sujith Kumar Anand</span>
+      <span>Designed &amp; built by me — with AI.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/reading.js"></script>
+</body>
+</html>
