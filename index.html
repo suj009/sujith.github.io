@@ -109,8 +109,14 @@
   }
 
   /* ---------- hero ---------- */
+  /* Full-viewport band. min-height, not height, so a short window or a long
+     translation grows the section instead of clipping it; svh so mobile
+     browsers measure the visible area rather than the URL-bar-expanded one. */
   header.hero{padding:clamp(40px,7vh,64px) 0 clamp(64px,9vh,88px);
+    min-height:calc(100vh - 57px);min-height:calc(100svh - 57px);
+    display:flex;align-items:center;
     position:relative;isolation:isolate;background-color:var(--paper)}
+  .hero .wrap{width:100%}
   /* Art layer. The portrait is composed with the subject on the right and open
      ground on the left, so it is offset right and veiled from the left — the
      lede and the spec card keep a clean field to sit on. */
