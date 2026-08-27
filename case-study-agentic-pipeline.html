@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Collapsing the handoff — spec to Flutter via an agentic pipeline · Sujith Kumar Anand</title>
-<meta name="description" content="Case study: an agentic design-to-code pipeline that turns product requirements into clickable layouts and approved layouts into production Flutter for web and mobile — built solo at FYERS, now scaling across squads." />
+<meta name="description" content="Case study: an agentic design-to-code pipeline that turns product requirements into clickable layouts and approved layouts into production Flutter for web and mobile — built and run solo at FYERS on live features." />
 <meta property="og:title" content="Collapsing the handoff — spec to Flutter via an agentic pipeline" />
 <meta property="og:description" content="Requirements into clickable layouts, approved layouts into production Flutter. The pipeline, the guardrails, and the honest limits." />
 <meta property="og:type" content="article" />
@@ -18,8 +18,9 @@
     <figcaption>. The pipeline diagram is real and needs no asset.
   - Numbers. Deliberately relative, per the confidentiality note. If you want
     cycle-time figures or squad-adoption counts in here, get sign-off first.
-  - "Now being scaled across squads" is a live status. Re-check at publish time
-    and again each time this page is touched.
+  - Wider rollout is described as work in progress, not as an announced mandate.
+    If it becomes formal, "From pilot to framework" is the section to firm up —
+    and the glance status and card metric on index.html move with it.
 -->
 
 <link rel="icon" href="img/logo-sk-monogram.svg" type="image/svg+xml" />
@@ -55,7 +56,7 @@
     <p class="standfirst">The same intent gets re-typed three times between a product spec and a shipped screen. I built a pipeline that types it once — requirements into clickable layouts, approved layouts into production Flutter — and this is how it works, where it stops, and why the limits are the point.</p>
     <div class="byline">
       <span>Design-to-code infrastructure · Web + mobile</span>
-      <span>FYERS · pilot → scaling</span>
+      <span>FYERS · built and run solo</span>
       <span>~8 min read</span>
     </div>
   </div>
@@ -66,14 +67,14 @@
   <section class="glance reveal">
     <div class="sh">
       <span class="t">At a glance</span>
-      <span class="live"><span class="pip"></span>SCALING</span>
+      <span class="live"><span class="pip"></span>IN USE</span>
     </div>
     <dl>
       <dt>role</dt><dd>Built it myself — design, pipeline, and front-end output</dd>
       <dt>input</dt><dd>Product-owner requirements, in plain language</dd>
       <dt>output</dt><dd>Clickable layouts → Flutter for web and mobile</dd>
       <dt>guardrail</dt><dd>Structure only — design review and FDSG still gate it</dd>
-      <dt>status</dt><dd><span class="g">solo pilot → scaling to other squads</span></dd>
+      <dt>status</dt><dd><span class="g">running on live features</span></dd>
     </dl>
   </section>
 
@@ -160,8 +161,8 @@
     <p>And it <strong>requires someone who can read the code it writes</strong>. The reason I can run this is that I came into design from an engineering degree and have shipped front-end myself. Handing this to a designer who can't evaluate the output would replace a slow relay with a fast one that nobody can audit — which is exactly the problem to solve as it scales.</p>
 
     <h2>From pilot to framework</h2>
-    <p>I built and ran this as an individual pilot first, on real features with real deadlines, because a demo proves nothing and a shipped feature proves everything. The delivery speed is what got it noticed by leadership, and the mandate that followed was to turn a personal workflow into something the organization can use.</p>
-    <p>That's the current work, and it's a different problem from building the thing. A tool one person can drive is not a framework — a framework needs defaults that fail safely, output other squads can trust without reading every line, and a review path that catches what the pipeline gets wrong. Making it institutional means making it boring, which is the part I'm building now.</p>
+    <p>I built and ran this on real features with real deadlines, because a demo proves nothing and a shipped feature proves everything. The delivery speed is what got it noticed by leadership — which is the right way round: I'd rather argue for a way of working from delivered work than from a slide.</p>
+    <p>Making it usable by other people is a different problem from building it, and it's the one I'm on now. A tool one person can drive is not a framework — a framework needs defaults that fail safely, output a squad can trust without reading every line, and a review path that catches what the pipeline gets wrong. Making it institutional means making it boring, and that's the unglamorous half still ahead.</p>
 
     <h2>The outcome</h2>
     <div class="outcomes reveal">
@@ -182,8 +183,8 @@
         <span class="d">developer time moved off layout rebuilds and onto state, data contracts and live market streams.</span>
       </div>
       <div class="o">
-        <span class="v">pilot → org</span>
-        <span class="d">recognised by leadership on delivered work; now being scaled into a framework other squads can use.</span>
+        <span class="v">shipped</span>
+        <span class="d">recognised by leadership on delivered work rather than on a demo — the basis for making it usable beyond me.</span>
       </div>
     </div>
 
