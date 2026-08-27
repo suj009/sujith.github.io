@@ -138,6 +138,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
   padding:22px 24px;margin:clamp(28px,5vh,40px) 0}
 .callout .eyebrow{display:block;margin-bottom:10px}
 .callout p:last-child{margin-bottom:0}
+/* Confidentiality framing that sits inside the reading column — quieter than a
+   callout, because it's a caveat rather than a point. */
+.read .ndanote{margin:clamp(26px,4vh,38px) 0;padding:16px 18px;border:1px dashed var(--line-2);
+  border-radius:12px;color:var(--muted);font-size:.88rem}
+.read .ndanote .eyebrow{display:block;margin-bottom:6px}
 
 /* outcome list — numbers set in the display face, like the case-study metrics on the home page */
 .outcomes{display:flex;flex-direction:column;gap:0;margin:26px 0 8px}
