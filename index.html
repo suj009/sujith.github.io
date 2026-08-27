@@ -139,9 +139,9 @@
     line-height:.96;font-size:clamp(2.4rem,5.4vw,4.1rem)}
   .hero h1 .b{display:block}
   .hero h1 .sig{color:var(--signal)}
-  .hero .lede{margin-top:22px;max-width:62ch;font-size:clamp(1.02rem,1.4vw,1.18rem);color:var(--graphite)}
+  .hero .lede{margin-top:22px;max-width:52ch;font-size:clamp(1.02rem,1.4vw,1.18rem);color:var(--graphite)}
   .hero .lede b{color:var(--ink);font-weight:600}
-  .hero .spec{margin-top:26px;max-width:660px;padding:16px 18px;font-size:.76rem}
+  .hero .spec{margin-top:26px;max-width:520px;padding:16px 18px;font-size:.76rem}
   /* Below ~860px the two hero columns starve each other — the h1 loses its
      measure and the spec panel wraps every value. Stack them instead. */
   @media(max-width:860px){
@@ -188,7 +188,7 @@
   .spec .sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;
     padding-bottom:12px;border-bottom:1px solid var(--panel-line)}
   .spec .sh .t{letter-spacing:.16em;font-size:.64rem;text-transform:uppercase;color:var(--panel-muted)}
-  .spec .sh .live{display:inline-flex;align-items:center;gap:6px;font-size:.6rem;letter-spacing:.14em;color:var(--panel-muted)}
+  .spec .sh .live{display:inline-flex;align-items:center;gap:6px;font-size:.6rem;letter-spacing:.14em;color:var(--up)}
   .spec .sh .live .pip{width:6px;height:6px;border-radius:50%;background:var(--up);box-shadow:0 0 8px var(--up);animation:pip 2s ease-in-out infinite}
   @keyframes pip{50%{opacity:.3}}
   .spec dl{display:grid;grid-template-columns:auto 1fr;gap:9px 16px}
@@ -406,7 +406,7 @@
         <span class="b">A design leader</span>
         <span class="b">who <span class="sig">still ships.</span></span>
       </h1>
-      <p class="lede">Eleven years in product design, with multiple products launched 0→1. Today I lead five designers across six verticals at a top-20 Indian retail brokerage serving over a million active clients. <b>I still ship the front-end myself, with AI.</b></p>
+      <p class="lede">Eleven years in product design, with multiple products launched 0→1. Today I lead five designers across six verticals at a top-20 Indian retail brokerage serving over a million active clients.</p>
 
       <!-- spec readout : signature element -->
       <aside class="spec" aria-label="Profile at a glance">
@@ -416,7 +416,7 @@
         <dt>exp</dt><dd>11+ yrs</dd>
         <dt>domains</dt><dd>fintech · crypto · telecom · streaming · recruitment</dd>
         <dt>ships</dt><dd><span class="g">front-end, with AI</span></dd>
-        <dt>stack</dt><dd>Figma · Flutter · FE · AI</dd>
+        <dt>stack</dt><dd>Figma · Flutter</dd>
         <dt>seeking</dt><dd>Head of Design / Sr Design Manager</dd>
       </dl>
       </aside>
