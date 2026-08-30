@@ -47,6 +47,52 @@ and spec stacked down the left inside the shared 1320px container, portrait
 full-bleed behind with no veil on desktop and a wash below 860px, staggered
 entrance on load, centred scroll cue.
 
+## FROZEN: the Work section design
+
+**Sujith froze the Work section design on the canvas. Do not redesign it — its
+anatomy, its control, or what each view contains — unless he names the change
+explicitly.** "Improve the work section" or "try more mocks" is NOT permission
+to change the settled structure; it means variations *within* it.
+
+The design lives as `Main.dc.html` on the design canvas
+(https://claude.ai/code/artifact/41f13c7a-c67f-4869-98ab-cdcfdf2013c8, page
+"The build"), reached after ~20 discarded options. Working files are in the
+session scratchpad under `design/`; they are not in the repo.
+
+The frozen anatomy, top to bottom:
+
+1. **The statement.** A two-line display headline at `5.6rem`, second line in
+   `--signal`, with an uppercase mono kicker above it and two figures in a fixed
+   250px column to its right, over a 2px `--ink` rule. The grid is
+   `minmax(0,1fr) 250px` — `1fr` alone lets the headline push the figures off
+   the edge, which was a real shipped bug.
+2. **The toggle** — two pills, `As a manager` / `As an IC`. Not "IC" alone as a
+   button label anywhere user-facing: that is design-internal vocabulary.
+3. **The toggle drives the whole section**, not just the body. Switching also
+   rewrites the kicker, both headline lines, the second line's colour
+   (`--signal` → `--up`) and both side figures. This is the point of the design
+   and the reason W1 was chosen over the alternatives.
+4. **Manager view** — the count (`20+`), then a wall of feature tiles, four
+   columns, each tile carrying its vertical. **Managed work only: no
+   built-by-me marking of any kind on the wall.** Five columns overflows a
+   1240px frame; four does not.
+5. **IC view** — the case-study cards with their dark product bands. The
+   hands-on claim lives here and only here.
+
+Removed on request and not to be reinstated without asking: the "Talks &
+writing" list that sat under the manager wall.
+
+**Still unresolved, and blocking the build into `index.html`:** the FYERS
+project list. `cv.html` supports five projects there; the design claims `20+`
+features. Nothing in the repo or the conversation history has ever carried a
+fuller list — it must come from Sujith. Do not invent feature names to fill the
+wall.
+
+Also unresolved: whether Options Scalper belongs in the IC view at all. The CV
+says he *directed* it. `cv.html` names **Wealth Tracker** ("shipped end to end
+in the front-end, working with AI") as the clearest IC project, and it is not
+in the design yet.
+
 ## Accuracy rules
 
 Claims on this site are checkable by the people being persuaded, so:
