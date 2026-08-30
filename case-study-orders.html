@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Orders — reducing the cost of iteration · Sujith Kumar Anand</title>
+<meta name="description" content="Case study: how a component-driven, high-fidelity working model made a multi-screen Orders redesign cheaper to change — hands-on work alongside a design management role at FYERS." />
+<meta property="og:title" content="Orders — reducing the cost of iteration" />
+<meta property="og:description" content="Case study: how a component-driven, high-fidelity working model made a multi-screen Orders redesign cheaper to change — hands-on work alongside a design management role at FYERS." />
+<meta property="og:type" content="article" />
+
+<!--
+  Orders — reducing the cost of iteration
+  Source: the case-study markdown Sujith supplied. Every claim here traces to
+  that document; nothing is inferred. Placeholders below are his to fill.
+-->
+
+<link rel="icon" href="img/logo-s.svg" type="image/svg+xml" />
+<link rel="icon" href="img/logo-s-512.png" type="image/png" sizes="512x512" />
+<link rel="apple-touch-icon" href="img/logo-s-512.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/reading.css" />
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="index.html"><span class="mk"></span>Sujith Kumar Anand</a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#lab">Lab</a>
+      <a href="index.html#writing">Writing</a>
+      <a href="index.html#about">About</a>
+    </div>
+    <a class="nav-cta" href="index.html#contact">Get in touch</a>
+  </div>
+</nav>
+
+<header class="masthead" style="view-transition-name:case-orders">
+  <div class="wrap">
+    <span class="kicker">Case study · Hands-on</span>
+    <h1>Orders — reducing the cost of iteration</h1>
+    <p class="standfirst">A multi-screen product area where every piece of feedback used to cost a sweep across screens. I moved straight into a high-fidelity model built on reusable local components, so the unit of iteration became the pattern instead of the screen.</p>
+    <div class="byline">
+      <span>FYERS · Trading</span>
+      <span>Design Manager – UX · individual contributor</span>
+      <span>2024, during the FDSG transformation</span>
+    </div>
+  </div>
+</header>
+
+<main class="read">
+
+  <section class="glance reveal">
+      <div class="k">Role</div>
+      <div class="d">Individual contributor and design manager</div>
+      <div class="k">Vertical</div>
+      <div class="d">Trading</div>
+      <div class="k">Built on</div>
+      <div class="d">FDSG, plus local components inside the project</div>
+      <div class="k">The shift</div>
+      <div class="d">Unit of iteration moved from screen to pattern</div>
+  </section>
+
+  <h2>The problem was the cost of changing my mind</h2>
+  <p>Orders is a core product experience at FYERS — users need to understand, monitor and manage orders across
+    many states and scenarios. It spans multiple screens with heavily repeated UI patterns, and that is what made
+    it interesting to me as a design problem rather than a drawing problem.</p>
+  <p>Even after FDSG gave us a shared foundation, the project workflow still generally ran low fidelity → review →
+    high-fidelity UI → more review. For a connected, multi-screen experience, that made a single piece of feedback
+    expensive: find every affected screen, update each one, review the lot, and repeat the next time a shared
+    pattern moved.</p>
+
+  <p class="pull reveal">The challenge was not creating the screens. It was reducing the effort required to
+    iterate across a connected product experience.</p>
+
+  <h2>The hypothesis</h2>
+  <p>I was not trying to skip exploration, and I was not trying to jump straight to visual design. I wanted to
+    test something narrower: <strong>if repeated patterns were structured as reusable local components, could I
+    work at higher fidelity while reducing the cost of iteration?</strong></p>
+
+  <h2>What I did</h2>
+  <p>For Orders I moved directly into a high-fidelity working model, and I did not treat any screen as an isolated
+    design. I built reusable local components inside the project and assembled the connected experience from them.
+    A change to a shared pattern became one edit to a component instead of a sweep across screens.</p>
+  <p>The unit of iteration changed from the screen to the pattern. That is the whole idea, and everything else
+    followed from it.</p>
+
+  <figure class="fig reveal">
+    <div class="slot">[ORDERS — the local component set inside the project]</div>
+    <figcaption>Placeholder. Replace with a Figma capture of the local components used across Orders.</figcaption>
+  </figure>
+
+  <h2>What it changed</h2>
+  <p>Working in high fidelity earlier also narrowed a gap I had lived with for years: the distance between what we
+    discussed at wireframe stage and what the UI eventually became. Stakeholders were reviewing decisions in a
+    representation much closer to the real product, so the feedback was about the real thing.</p>
+  <ul>
+    <li>Faster iteration, with less repetitive screen-level work</li>
+    <li>Stronger consistency across the connected experience</li>
+    <li>Feedback that was easier to absorb, because it landed on patterns</li>
+  </ul>
+
+  <figure class="fig reveal">
+    <div class="slot">[ORDERS — final experience, web]</div>
+    <figcaption>Placeholder. Replace with the final Orders screens.</figcaption>
+  </figure>
+
+  <h2>What I took from it</h2>
+  <p>I had thought of fidelity as a way to control how much detail a conversation carried. Orders changed that:
+    for a complex experience with repeated patterns, <strong>fidelity is also an operational decision</strong>. A
+    well-structured high-fidelity model can be the cheaper place to iterate.</p>
+  <p>That is not a rule to apply everywhere. The right fidelity depends on the problem's complexity, the maturity
+    of the system underneath it, how much UI repeats, and whether stakeholders need to judge the final experience
+    to give useful feedback. For Orders, FDSG plus local components plus high-fidelity working designs was the
+    right combination.</p>
+
+  <p class="pull reveal">I wasn't trying to skip wireframing. I was trying to reduce the cost of iteration.</p>
+
+  <p>It was also a reminder that managing and making are not in tension. Working directly on a complex product
+    experience is how I understood what the systems and processes we were building actually cost the people using
+    them every day.</p>
+
+
+  <section class="next">
+    <h2>Next</h2>
+    <div class="next-grid">
+      <a class="ncard" href="case-study-wealth-tracker.html">
+        <span class="tag">Case study · Hands-on</span>
+        <h3>Wealth Tracker</h3>
+        <p>Where this method went next: PRD and an AI-generated concept in, Flutter-ready web and mobile out.</p>
+        <span class="go">Read the case study</span>
+      </a>
+      <a class="ncard" href="index.html#work">
+        <span class="tag">Back</span>
+        <h3>All the work</h3>
+        <p>The seven verticals delivered by the team, and the three things I built myself.</p>
+        <span class="go">Back to Work</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="foot">
+    <h2>Let's build something <span class="sig">worth using.</span></h2>
+    <p class="st"><span class="g">●</span> Open to Head of Design / Sr Design Manager roles · Bengaluru or remote</p>
+    <div class="contacts">
+      <a href="mailto:suj009@gmail.com">✉ suj009@gmail.com</a>
+      <a href="https://www.linkedin.com/in/suj009" target="_blank" rel="noopener">in · LinkedIn</a>
+      <a href="https://medium.com/@suj009" target="_blank" rel="noopener">✎ Medium</a>
+      <a href="cv.html">◆ CV</a>
+    </div>
+    <div class="fine">
+      <span>© <span id="yr"></span> Sujith Kumar Anand</span>
+      <span>Designed &amp; built by me — with AI.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/reading.js"></script>
+</body>
+</html>
