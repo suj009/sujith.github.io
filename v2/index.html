@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sujith Kumar Anand — Product design leadership</title>
+<meta name="description" content="Senior Design Manager at FYERS. Seven verticals, a team of five, and work I still take to the pixel myself." />
+
+<!--
+  v2 — a second option, built alongside the live site. Nothing here is wired
+  into index.html. Structure follows a multi-page shell (homepage as a table of
+  contents); the visual language stays Sujith's own paper identity, now with a
+  dark counterpart rather than a borrowed one.
+-->
+
+<link rel="icon" href="../img/logo-s.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* ---------------------------------------------------------------- tokens
+   Light is Sujith's existing paper identity, unchanged. Dark is derived from
+   the panel colours the Lab and footer already use, so the two themes are one
+   system rather than an inversion. */
+:root{
+  --paper:#F0EFE9; --paper-2:#E9E7DF; --raise:#FFFFFF;
+  --ink:#14161B; --graphite:#4A505B; --muted:#6E7480;
+  --line:#D8D6CC; --line-2:#C9C7BB;
+  --signal:#2B4FE0; --up:#1C8F5F;
+  --shadow:0 30px 70px -52px rgba(0,0,0,.5);
+  --maxw:1180px; --ease:cubic-bezier(.22,.61,.36,1);
+  --display:"Bricolage Grotesque",Georgia,serif;
+  --body:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0B0D11; --paper-2:#121620; --raise:#151A24;
+    --ink:#E9ECF2; --graphite:#B6BDCB; --muted:#8A93A6;
+    --line:#222834; --line-2:#2E3644;
+    --signal:#8FA6FF; --up:#35C08A;
+    --shadow:0 30px 70px -52px rgba(0,0,0,.9);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0B0D11; --paper-2:#121620; --raise:#151A24;
+  --ink:#E9ECF2; --graphite:#B6BDCB; --muted:#8A93A6;
+  --line:#222834; --line-2:#2E3644;
+  --signal:#8FA6FF; --up:#35C08A;
+  --shadow:0 30px 70px -52px rgba(0,0,0,.9);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+  transition:background .3s var(--ease),color .3s var(--ease)}
+h1,h2,h3,h4{margin:0;font-family:var(--display);letter-spacing:-.025em;text-wrap:balance}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:6px}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+
+/* ---------------------------------------------------------------- nav */
+.bar{position:sticky;top:clamp(10px,2vw,18px);z-index:40;padding:0 clamp(12px,3vw,24px);margin-top:clamp(10px,2vw,18px)}
+.pill{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:14px;
+  padding:8px 8px 8px 20px;border:1px solid var(--line-2);border-radius:999px;
+  background:color-mix(in srgb,var(--paper) 82%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow)}
+.pill .me{font-weight:600;font-size:.95rem;letter-spacing:-.01em;white-space:nowrap}
+.pill nav{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
+.pill nav a{padding:8px 14px;border-radius:999px;font-size:.88rem;color:var(--muted);
+  transition:color .2s var(--ease),background .2s var(--ease)}
+.pill nav a:hover{color:var(--ink);background:var(--paper-2)}
+.pill nav a[aria-current]{color:var(--ink);background:var(--paper-2)}
+.tt{width:52px;height:30px;border:1px solid var(--line-2);border-radius:999px;
+  position:relative;flex-shrink:0;background:var(--paper-2);transition:background .25s var(--ease)}
+.tt::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;
+  background:var(--ink);transition:transform .3s var(--ease)}
+:root[data-theme="dark"] .tt::after{transform:translateX(22px)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tt::after{transform:translateX(22px)}}
+/* Mobile: the section nav leaves the top bar and becomes a thumb-reachable
+   pill at the bottom that names the section you are actually in. */
+.dock{display:none}
+@media(max-width:760px){
+  .pill{padding:9px 9px 9px 18px}
+  .pill nav{display:none}
+  .tt{margin-left:auto}
+
+  .dock{display:block;position:fixed;right:14px;bottom:14px;z-index:50}
+  .dock .now{display:flex;align-items:center;gap:10px;padding:11px 16px;
+    border:1px solid var(--line-2);border-radius:999px;min-height:46px;
+    background:color-mix(in srgb,var(--paper) 88%,transparent);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow);
+    font-size:.88rem;font-weight:500}
+  .dock .now svg{flex-shrink:0}
+  .dock .sheet{position:absolute;right:0;bottom:calc(100% + 10px);min-width:190px;
+    border:1px solid var(--line-2);border-radius:16px;overflow:hidden;
+    background:var(--raise);box-shadow:var(--shadow);
+    transform-origin:100% 100%;transition:opacity .2s var(--ease),transform .2s var(--ease)}
+  .dock .sheet[hidden]{display:block;opacity:0;transform:scale(.94) translateY(6px);pointer-events:none}
+  .dock .sheet a{display:block;padding:13px 18px;font-size:.92rem;min-height:46px}
+  .dock .sheet a+a{border-top:1px solid var(--line)}
+  .dock .sheet a[aria-current]{color:var(--signal);font-weight:500}
+  body{padding-bottom:80px}
+}
+
+/* ---------------------------------------------------------------- hero */
+.hero{padding:clamp(56px,12vh,120px) 0 clamp(36px,6vh,56px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 200px;gap:clamp(24px,5vw,60px);align-items:start}
+.greet{font-family:var(--mono);font-size:.9rem;color:var(--muted);letter-spacing:.02em}
+.greet b{color:var(--up);font-weight:400}
+.hero h1{margin-top:18px;font-weight:700;font-size:clamp(1.9rem,4.6vw,3.05rem);line-height:1.1;max-width:19ch}
+.hero h1 u{text-decoration:none;border-bottom:2px solid var(--signal);padding-bottom:2px}
+.portrait{border-radius:16px;overflow:hidden;border:1px solid var(--line-2);background:var(--paper-2);aspect-ratio:1/1}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.clock{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);margin-top:12px;text-align:right;font-variant-numeric:tabular-nums}
+@media(max-width:760px){
+  .hero-grid{grid-template-columns:1fr}
+  .portrait{max-width:140px;order:-1}
+  .clock{text-align:left}
+}
+
+/* where I've built — typographic wordmarks, no logo assets needed */
+.orgs{padding:0 0 clamp(44px,8vh,72px)}
+.orgs .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:16px}
+.orgs .row{display:flex;flex-wrap:wrap;gap:10px}
+.orgs .row span{border:1px solid var(--line-2);border-radius:999px;padding:9px 18px;
+  font-family:var(--display);font-weight:600;font-size:.94rem;letter-spacing:-.01em;
+  background:var(--raise);transition:border-color .2s var(--ease)}
+.orgs .row span:first-child{border-color:var(--ink)}
+
+/* ---------------------------------------------------------------- sections */
+section{border-top:1px solid var(--line);padding:clamp(44px,8vh,84px) 0}
+.sec-h{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+.sec-h h2{font-weight:700;font-size:clamp(1.5rem,3vw,2rem)}
+.sec-h .all{margin-left:auto;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--muted);
+  transition:color .2s var(--ease);white-space:nowrap}
+.sec-h .all::after{content:" ↗"}
+.sec-h .all:hover{color:var(--signal)}
+.sec-sub{color:var(--muted);font-size:.92rem;max-width:56ch;margin-bottom:28px}
+
+/* about */
+.about p.bio{font-size:clamp(1.02rem,1.5vw,1.16rem);color:var(--graphite);max-width:62ch;line-height:1.62}
+.about p.bio b{color:var(--ink);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,3vw,34px);margin-top:clamp(28px,5vh,44px)}
+.stats .v{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1;
+  letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stats .l{font-size:.78rem;color:var(--muted);margin-top:8px;line-height:1.4}
+@media(max-width:740px){.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}}
+
+/* work — the toggle he approved, carried across */
+.seg{display:inline-flex;padding:3px;gap:3px;border:1px solid var(--line-2);border-radius:999px;
+  background:var(--paper-2);margin-bottom:26px}
+.seg button{padding:9px 18px;border-radius:999px;min-height:40px;font-family:var(--mono);
+  font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  transition:background .22s var(--ease),color .22s var(--ease)}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.view[hidden]{display:none}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2.4vw,20px)}
+@media(max-width:740px){.cards{grid-template-columns:1fr}}
+.card{border:1px solid var(--line-2);border-radius:16px;overflow:hidden;background:var(--raise);
+  display:flex;flex-direction:column;transition:border-color .25s var(--ease),transform .25s var(--ease)}
+.card:hover{border-color:var(--signal);transform:translateY(-2px)}
+/* no product photography yet, so the cards draw their own surface */
+.shot{aspect-ratio:16/10;background:#0C0E13;padding:clamp(18px,3vw,28px);display:flex;
+  flex-direction:column;justify-content:center;gap:10px}
+.shot .ln{border-radius:5px;background:#1E232E;display:block}
+.shot .frame{background:#141821;border:1px solid #262C39;border-radius:10px;padding:14px;
+  display:flex;flex-direction:column;gap:10px}
+.shot .row{display:grid;grid-template-columns:1fr auto auto;gap:12px;font-family:var(--mono);
+  font-size:.66rem;color:#E6E9EF;font-variant-numeric:tabular-nums;padding:5px 0}
+.shot .row+.row{border-top:1px solid #1E232E}
+.shot .g{color:#35C08A} .shot .d{color:#EF5F6B}
+.card .body{padding:clamp(18px,2.6vw,24px);display:flex;flex-direction:column;gap:9px;flex:1}
+.card .tag{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--up)}
+.card h3{font-weight:700;font-size:1.18rem}
+.card p{color:var(--muted);font-size:.9rem;line-height:1.5}
+.card .go{margin-top:auto;padding-top:14px;font-family:var(--mono);font-size:.71rem;
+  letter-spacing:.05em;color:var(--signal)}
+.card .go::after{content:" →";display:inline-block;transition:transform .25s var(--ease)}
+.card:hover .go::after{transform:translateX(4px)}
+
+/* the managed inventory reads as a list, not as cards it has no images for */
+.inv{display:grid;grid-template-columns:132px 1fr;gap:22px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
+.inv .vt{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em}
+.inv .ct{font-family:var(--mono);font-size:.6rem;color:var(--muted);margin-left:8px;font-variant-numeric:tabular-nums}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{border:1px solid var(--line-2);border-radius:999px;padding:6px 13px;font-size:.78rem;line-height:1.2}
+@media(max-width:620px){.inv{grid-template-columns:1fr;gap:8px}}
+
+/* the ask band — the reference's best idea: turn shallow public work into a reason to write */
+.ask{margin-top:22px;border:1px solid var(--line-2);border-radius:14px;background:var(--paper-2);
+  padding:20px clamp(18px,3vw,26px);display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.ask .t{font-weight:600;font-size:.96rem}
+.ask .s{color:var(--muted);font-size:.85rem;margin-top:3px}
+.ask a{margin-left:auto;border:1px solid var(--ink);border-radius:999px;padding:11px 22px;
+  font-size:.86rem;font-weight:500;white-space:nowrap;
+  transition:background .2s var(--ease),color .2s var(--ease)}
+.ask a:hover{background:var(--ink);color:var(--paper)}
+
+/* writing */
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.4vw,20px)}
+@media(max-width:860px){.posts{grid-template-columns:1fr}}
+.post{border:1px solid var(--line-2);border-radius:14px;padding:20px 22px;background:var(--raise);
+  display:flex;flex-direction:column;gap:9px;transition:border-color .25s var(--ease)}
+.post:hover{border-color:var(--signal)}
+.post .k{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.post h3{font-weight:700;font-size:1.04rem;line-height:1.3}
+.post p{color:var(--muted);font-size:.86rem;line-height:1.5}
+.post .go{margin-top:auto;padding-top:12px;font-family:var(--mono);font-size:.69rem;color:var(--signal)}
+.post .go::after{content:" ↗"}
+
+/* lab */
+.lab{border:1px solid var(--line-2);border-radius:16px;overflow:hidden;background:#0A0C10}
+.lab .top{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid #222834}
+.lab .top i{width:8px;height:8px;border-radius:50%;background:#2A3140;display:block}
+.lab .top span{margin-left:8px;font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;color:#8A93A6}
+.lab iframe{width:100%;height:430px;border:0;display:block}
+
+/* contact */
+.contact{border-top:1px solid var(--line)}
+.contact h2{font-weight:700;font-size:clamp(1.8rem,4.4vw,2.8rem);max-width:16ch}
+.contact .sub{color:var(--muted);margin-top:14px;max-width:52ch}
+.mail{display:inline-flex;align-items:center;gap:12px;margin-top:26px;font-family:var(--mono);
+  font-size:clamp(.9rem,2vw,1.05rem);border-bottom:1px solid var(--line-2);padding-bottom:6px}
+.mail:hover{border-color:var(--signal);color:var(--signal)}
+.more{margin-top:34px}
+.more .lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.more .row{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:12px}
+.more a{font-size:.92rem;border-bottom:1px solid var(--line-2);padding-bottom:2px}
+.more a:hover{color:var(--signal);border-color:var(--signal)}
+.fine{margin-top:clamp(40px,7vh,64px);padding-top:20px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:.66rem;color:var(--muted)}
+.fine .g{color:var(--up)}
+
+.reveal{opacity:0;transform:translateY(14px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .6s var(--ease),transform .6s var(--ease)}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="pill">
+    <span class="me">Sujith Kumar Anand</span>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#lab">Lab</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="tt" id="tt" type="button" aria-label="Switch between light and dark"></button>
+  </div>
+</div>
+
+<div class="dock">
+  <div class="sheet" id="sheet" hidden>
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#lab">Lab</a>
+    <a href="#writing">Writing</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="now" id="dock" type="button" aria-expanded="false" aria-controls="sheet">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+      <rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+      <rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+    </svg>
+    <span id="dock-label">Work</span>
+  </button>
+</div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="greet"><b id="greet">Hello</b> — I lead product design at FYERS.</p>
+      <h1>I build <u>design teams</u> and the <u>products</u> they ship — and I still ship some myself.</h1>
+    </div>
+    <div>
+      <div class="portrait"><img src="../img/sujith-portrait.webp" alt="Sujith Kumar Anand" /></div>
+      <p class="clock" id="clock">BLR, IND</p>
+    </div>
+  </div>
+</header>
+
+<div class="wrap orgs">
+  <p class="lbl">Presently with, and before</p>
+  <div class="row">
+    <span>FYERS</span><span>Nexter Finance</span><span>Oddz Finance</span>
+    <span>Datami</span><span>Qplum</span><span>IBM</span><span>Microsoft</span>
+  </div>
+</div>
+
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="sec-h"><h2>About</h2><a class="all" href="../cv.html">View CV</a></div>
+    <p class="bio">Eleven years in product design, with multiple products launched 0→1. Today I lead
+      <b>five designers across seven verticals</b> at a top-20 Indian retail brokerage serving over a million
+      active clients. I care about the work getting better and the people getting better — and I have not
+      stopped making the thing itself, which is how I know what I am asking for when I ask for it.</p>
+    <div class="stats">
+      <div><div class="v">11+ Yrs</div><div class="l">Product design and leadership</div></div>
+      <div><div class="v">1M+</div><div class="l">Active clients on the platform</div></div>
+      <div><div class="v">7</div><div class="l">Verticals under one design bar</div></div>
+      <div><div class="v">19</div><div class="l">Product areas shipped since 2024</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-h"><h2>Work</h2><a class="all" href="../index.html#work">View all</a></div>
+    <p class="sec-sub">Two readings of the same job: the portfolio I answer for, and the work I took to the
+      pixel myself.</p>
+
+    <div class="seg" role="group" aria-label="Switch between managed and hands-on work">
+      <button type="button" data-view="manager" aria-pressed="true">As a manager</button>
+      <button type="button" data-view="ic" aria-pressed="false">As an IC</button>
+    </div>
+
+    <div class="view" id="v-manager">
+      <div class="inv"><div><span class="vt">Trading</span><span class="ct">2</span></div>
+        <div class="chips"><span class="chip">Orders &amp; order management</span><span class="chip">Trading workflow improvements</span></div></div>
+      <div class="inv"><div><span class="vt">Options</span><span class="ct">4</span></div>
+        <div class="chips"><span class="chip">Options Scalper Terminal</span><span class="chip">Strategy Builder</span><span class="chip">Options Analytics</span><span class="chip">Option Chain</span></div></div>
+      <div class="inv"><div><span class="vt">Markets</span><span class="ct">4</span></div>
+        <div class="chips"><span class="chip">Market Analytics</span><span class="chip">Screeners</span><span class="chip">Watchlists</span><span class="chip">Market discovery</span></div></div>
+      <div class="inv"><div><span class="vt">FIA</span><span class="ct">2</span></div>
+        <div class="chips"><span class="chip">FIA product experiences</span><span class="chip">AI-assisted analysis</span></div></div>
+      <div class="inv"><div><span class="vt">Automate</span><span class="ct">1</span></div>
+        <div class="chips"><span class="chip">Automation &amp; strategy building</span></div></div>
+      <div class="inv"><div><span class="vt">Reports</span><span class="ct">2</span></div>
+        <div class="chips"><span class="chip">Reports &amp; portfolio</span><span class="chip">Wealth Tracker</span></div></div>
+      <div class="inv"><div><span class="vt">Institutional</span><span class="ct">1</span></div>
+        <div class="chips"><span class="chip">FYERS Professional</span></div></div>
+
+      <div class="ask">
+        <div>
+          <div class="t">Want the parts I can't put on a public page?</div>
+          <div class="s">Confidential artefacts, design-system teardowns, and how each of these actually went.</div>
+        </div>
+        <a href="#contact">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="view" id="v-ic" hidden>
+      <div class="cards">
+        <article class="card">
+          <div class="shot">
+            <div class="frame">
+              <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
+                <span class="ln" style="height:28px;background:#2B4FE0"></span>
+                <span class="ln" style="height:28px;background:none;border:1px solid #262C39"></span>
+                <span class="ln" style="height:28px"></span>
+                <span class="ln" style="height:28px;border-radius:14px;background:none;border:1px solid #262C39"></span>
+                <span class="ln" style="height:28px"></span>
+                <span class="ln" style="height:28px;background:none;border:1px solid #262C39"></span>
+              </div>
+              <span class="ln" style="height:9px;width:72%"></span>
+              <span class="ln" style="height:9px;width:54%"></span>
+            </div>
+          </div>
+          <div class="body">
+            <span class="tag">01 · 2024 · Trading</span>
+            <h3>Orders</h3>
+            <p>I delivered the Orders section on FDSG myself, and used it to make the unit of iteration a
+              reusable pattern rather than a screen.</p>
+            <a class="go" href="../case-study-orders.html">Read the case study</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="shot">
+            <div class="frame">
+              <div style="display:flex;gap:6px">
+                <span style="flex:1;text-align:center;padding:7px 0;border-radius:6px;background:#35C08A;color:#0C0E13;font-family:var(--mono);font-size:.62rem;font-weight:600">BUY</span>
+                <span style="flex:1;text-align:center;padding:7px 0;border-radius:6px;border:1px solid #262C39;color:#8A93A6;font-family:var(--mono);font-size:.62rem">SELL</span>
+              </div>
+              <div class="row"><span>qty</span><span>75 × 1</span><span class="g">+1.07</span></div>
+              <div class="row"><span>margin</span><span>₹ 18,420</span><span class="d">−0.84</span></div>
+              <div style="position:relative;border-radius:6px;background:#1E232E;overflow:hidden;height:32px;display:flex;align-items:center;justify-content:center">
+                <span style="position:absolute;left:0;top:0;bottom:0;width:62%;background:#35C08A"></span>
+                <span style="position:relative;color:#0C0E13;font-family:var(--mono);font-weight:600;font-size:.6rem;letter-spacing:.08em">HOLD TO CONFIRM</span>
+              </div>
+            </div>
+          </div>
+          <div class="body">
+            <span class="tag">02 · 2026 · Reports</span>
+            <h3>Wealth Tracker</h3>
+            <p>A PRD and an AI-generated concept in; Flutter-ready web and mobile out. The front-end team
+              estimated roughly 70% less implementation effort.</p>
+            <a class="go" href="../case-study-wealth-tracker.html">Read the case study</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="ask">
+        <div>
+          <div class="t">Agentic Design Framework — in progress</div>
+          <div class="s">Wealth Tracker was the proof point. I'm now leading the framework it justified. No
+            claims until it ships and is measured.</div>
+        </div>
+        <a href="#contact">Ask me about it</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="wrap">
+    <div class="sec-h"><h2>Lab</h2></div>
+    <p class="sec-sub">Where "I still ship" stops being a claim and becomes something you can click. This is
+      the confirm interaction from the Options Scalper terminal, running live.</p>
+    <div class="lab">
+      <div class="top"><i></i><i></i><i></i><span>order-ticket · live component</span></div>
+      <iframe src="../lab-order-ticket.html" title="Live order ticket component" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<section id="writing">
+  <div class="wrap">
+    <div class="sec-h"><h2>Writing</h2></div>
+    <p class="sec-sub">Arguments I've had to make more than once, written down properly.</p>
+    <div class="posts">
+      <a class="post" href="../article-scaling-design-system.html">
+        <span class="k">Design systems</span>
+        <h3>What I learned scaling a design system across a fintech platform</h3>
+        <p>On holding one language across web, iOS and Android — and why the hard half is organisational.</p>
+        <span class="go">Read</span>
+      </a>
+      <a class="post" href="../article-design-frontend-ai.html">
+        <span class="k">Design &amp; code</span>
+        <h3>The handoff is dead — I designed and shipped the front-end myself, with AI</h3>
+        <p>What changes when the person setting the bar can also build to it.</p>
+        <span class="go">Read</span>
+      </a>
+      <a class="post" href="../article-ux-to-ui-ownership.html">
+        <span class="k">Team &amp; craft</span>
+        <h3>One designer, whole problem: the case for closing the UX/UI split</h3>
+        <p>Handoffs are where intent dies. The case for one designer owning a problem end to end.</p>
+        <span class="go">Read</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Let's build something worth using.</h2>
+    <p class="sub">Open to Head of Design and Senior Design Manager roles — Bengaluru or remote.</p>
+    <a class="mail" href="mailto:suj009@gmail.com">suj009@gmail.com</a>
+    <div class="more">
+      <div class="lbl">Elsewhere</div>
+      <div class="row">
+        <a href="https://www.linkedin.com/in/suj009" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://medium.com/@suj009" target="_blank" rel="noopener">Medium</a>
+        <a href="../cv.html">CV</a>
+      </div>
+    </div>
+    <div class="fine">
+      <span>© <span id="yr"></span> Sujith Kumar Anand</span>
+      <span><span class="g">●</span> Designed &amp; built by me — with AI</span>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // Theme. Respects the OS until the viewer chooses, then remembers the choice.
+  (function () {
+    var root = document.documentElement, btn = document.getElementById("tt");
+    try { var saved = localStorage.getItem("theme"); if (saved) root.dataset.theme = saved; } catch (e) {}
+    btn.addEventListener("click", function () {
+      var dark = root.dataset.theme
+        ? root.dataset.theme === "dark"
+        : matchMedia("(prefers-color-scheme: dark)").matches;
+      root.dataset.theme = dark ? "light" : "dark";
+      try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+    });
+  })();
+
+  // Greeting and the local clock — small, but they say someone is actually here.
+  (function () {
+    var hr = Number(new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Kolkata", hour: "numeric", hour12: false }).format(new Date()));
+    document.getElementById("greet").textContent =
+      hr < 5 ? "Still up" : hr < 12 ? "Good morning" : hr < 17 ? "Good afternoon" : "Good evening";
+    var clock = document.getElementById("clock");
+    var tick = function () {
+      var t = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit", hour12: false
+      }).format(new Date());
+      clock.textContent = "Bengaluru, IN · IST " + t;
+    };
+    tick(); setInterval(tick, 30000);
+  })();
+
+  // Work: one control, two readings.
+  (function () {
+    var seg = document.querySelector(".seg");
+    var views = { manager: document.getElementById("v-manager"), ic: document.getElementById("v-ic") };
+    function show(v) {
+      views.manager.hidden = v !== "manager";
+      views.ic.hidden = v !== "ic";
+      seg.querySelectorAll("button").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.dataset.view === v));
+      });
+    }
+    seg.addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (b) show(b.dataset.view);
+    });
+    seg.addEventListener("keydown", function (e) {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      var bs = [].slice.call(seg.querySelectorAll("button"));
+      var i = bs.indexOf(document.activeElement); if (i === -1) return;
+      e.preventDefault();
+      var n = bs[(i + (e.key === "ArrowRight" ? 1 : -1) + bs.length) % bs.length];
+      n.focus(); show(n.dataset.view);
+    });
+  })();
+
+  // The bottom dock: names the section in view, and opens the list on tap.
+  (function () {
+    var btn = document.getElementById("dock"), sheet = document.getElementById("sheet"),
+        label = document.getElementById("dock-label");
+    if (!btn) return;
+
+    function close() { sheet.hidden = true; btn.setAttribute("aria-expanded", "false"); }
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var open = sheet.hidden;
+      sheet.hidden = !open;
+      btn.setAttribute("aria-expanded", String(open));
+    });
+    document.addEventListener("click", close);
+    sheet.addEventListener("click", close);
+    addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+
+    var names = { about: "About", work: "Work", lab: "Lab", writing: "Writing", contact: "Contact" };
+    var spy = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var id = e.target.id;
+        label.textContent = names[id] || "Work";
+        sheet.querySelectorAll("a").forEach(function (a) {
+          if (a.getAttribute("href") === "#" + id) a.setAttribute("aria-current", "true");
+          else a.removeAttribute("aria-current");
+        });
+      });
+    }, { rootMargin: "-45% 0px -45% 0px" });
+    Object.keys(names).forEach(function (id) {
+      var el = document.getElementById(id); if (el) spy.observe(el);
+    });
+  })();
+
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: .1 });
+  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+</script>
+</body>
+</html>
