@@ -1,0 +1,300 @@
+/* ---------------------------------------------------------------- tokens
+   Light is Sujith's existing paper identity, unchanged. Dark is derived from
+   the panel colours the Lab and footer already use, so the two themes are one
+   system rather than an inversion. */
+:root{
+  --paper:#F0EFE9; --paper-2:#E9E7DF; --raise:#FFFFFF;
+  --ink:#14161B; --graphite:#4A505B; --muted:#6E7480;
+  --line:#D8D6CC; --line-2:#C9C7BB;
+  --signal:#2B4FE0; --up:#1C8F5F;
+  --shadow:0 30px 70px -52px rgba(0,0,0,.5);
+  --maxw:1180px; --ease:cubic-bezier(.22,.61,.36,1);
+  --display:"Bricolage Grotesque",Georgia,serif;
+  --body:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0B0D11; --paper-2:#121620; --raise:#151A24;
+    --ink:#E9ECF2; --graphite:#B6BDCB; --muted:#8A93A6;
+    --line:#222834; --line-2:#2E3644;
+    --signal:#8FA6FF; --up:#35C08A;
+    --shadow:0 30px 70px -52px rgba(0,0,0,.9);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0B0D11; --paper-2:#121620; --raise:#151A24;
+  --ink:#E9ECF2; --graphite:#B6BDCB; --muted:#8A93A6;
+  --line:#222834; --line-2:#2E3644;
+  --signal:#8FA6FF; --up:#35C08A;
+  --shadow:0 30px 70px -52px rgba(0,0,0,.9);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+  transition:background .3s var(--ease),color .3s var(--ease)}
+h1,h2,h3,h4{margin:0;font-family:var(--display);letter-spacing:-.025em;text-wrap:balance}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:6px}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+
+/* ---------------------------------------------------------------- nav */
+.bar{position:sticky;top:clamp(10px,2vw,18px);z-index:40;padding:0 clamp(12px,3vw,24px);margin-top:clamp(10px,2vw,18px)}
+.pill{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:14px;
+  padding:8px 8px 8px 20px;border:1px solid var(--line-2);border-radius:999px;
+  background:color-mix(in srgb,var(--paper) 82%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow)}
+.pill .me{font-weight:600;font-size:.95rem;letter-spacing:-.01em;white-space:nowrap}
+.pill nav{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
+.pill nav a{padding:8px 14px;border-radius:999px;font-size:.88rem;color:var(--muted);
+  transition:color .2s var(--ease),background .2s var(--ease)}
+.pill nav a:hover{color:var(--ink);background:var(--paper-2)}
+.pill nav a[aria-current]{color:var(--ink);background:var(--paper-2)}
+.tt{width:52px;height:30px;border:1px solid var(--line-2);border-radius:999px;
+  position:relative;flex-shrink:0;background:var(--paper-2);transition:background .25s var(--ease)}
+.tt::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;
+  background:var(--ink);transition:transform .3s var(--ease)}
+:root[data-theme="dark"] .tt::after{transform:translateX(22px)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tt::after{transform:translateX(22px)}}
+/* Mobile: the section nav leaves the top bar and becomes a thumb-reachable
+   pill at the bottom that names the section you are actually in. */
+.dock{display:none}
+@media(max-width:760px){
+  .pill{padding:9px 9px 9px 18px}
+  .pill nav{display:none}
+  .tt{margin-left:auto}
+
+  .dock{display:block;position:fixed;right:14px;bottom:14px;z-index:50}
+  .dock .now{display:flex;align-items:center;gap:10px;padding:11px 16px;
+    border:1px solid var(--line-2);border-radius:999px;min-height:46px;
+    background:color-mix(in srgb,var(--paper) 88%,transparent);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow);
+    font-size:.88rem;font-weight:500}
+  .dock .now svg{flex-shrink:0}
+  .dock .sheet{position:absolute;right:0;bottom:calc(100% + 10px);min-width:190px;
+    border:1px solid var(--line-2);border-radius:16px;overflow:hidden;
+    background:var(--raise);box-shadow:var(--shadow);
+    transform-origin:100% 100%;transition:opacity .2s var(--ease),transform .2s var(--ease)}
+  .dock .sheet[hidden]{display:block;opacity:0;transform:scale(.94) translateY(6px);pointer-events:none}
+  .dock .sheet a{display:block;padding:13px 18px;font-size:.92rem;min-height:46px}
+  .dock .sheet a+a{border-top:1px solid var(--line)}
+  .dock .sheet a[aria-current]{color:var(--signal);font-weight:500}
+  body{padding-bottom:80px}
+}
+
+/* ---------------------------------------------------------------- hero */
+.hero{padding:clamp(56px,12vh,120px) 0 clamp(36px,6vh,56px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 200px;gap:clamp(24px,5vw,60px);align-items:start}
+.greet{font-family:var(--mono);font-size:.9rem;color:var(--muted);letter-spacing:.02em}
+.greet b{color:var(--up);font-weight:400}
+.hero h1{margin-top:18px;font-weight:700;font-size:clamp(1.9rem,4.6vw,3.05rem);line-height:1.1;max-width:19ch}
+.hero h1 u{text-decoration:none;border-bottom:2px solid var(--signal);padding-bottom:2px}
+/* The portrait tilts toward the cursor and swaps to a second frame on hover.
+   Built for an illustrated avatar with two states; it degrades to a plain tilt
+   while only one image exists. */
+.portrait{border-radius:16px;border:1px solid var(--line-2);background:var(--paper-2);
+  aspect-ratio:1/1;perspective:700px;position:relative;overflow:hidden}
+.portrait .tilt{position:absolute;inset:0;transition:transform .35s var(--ease);
+  transform-style:preserve-3d;will-change:transform}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 22%;transition:opacity .28s var(--ease),transform .5s var(--ease)}
+.portrait img.alt{opacity:0}
+.portrait:hover img.base{opacity:0}
+.portrait:hover img.alt{opacity:1}
+.portrait:hover img{transform:scale(1.04)}
+/* a light that follows the cursor, so the tilt reads as a surface not a flat card */
+.portrait .gloss{position:absolute;inset:0;pointer-events:none;opacity:0;
+  transition:opacity .3s var(--ease);
+  background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),
+    color-mix(in srgb,var(--signal) 26%,transparent), transparent 62%)}
+.portrait:hover .gloss{opacity:1}
+@media(prefers-reduced-motion:reduce){
+  .portrait .tilt{transform:none!important}
+  .portrait .gloss{display:none}
+}
+.clock{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-top:12px;text-align:right;font-variant-numeric:tabular-nums;
+  display:flex;flex-direction:column;gap:5px;align-items:flex-end}
+/* A market-hours readout, because he designs for a brokerage — the one piece of
+   chrome on this page that no other portfolio has a reason to carry. */
+.clock .mkt{display:inline-flex;align-items:center;gap:6px}
+.clock .pip{width:6px;height:6px;border-radius:50%;background:var(--muted);display:block}
+.clock .pip.live{background:var(--up);box-shadow:0 0 8px var(--up);animation:pip 2.4s ease-in-out infinite}
+@keyframes pip{50%{opacity:.35}}
+@media(max-width:760px){
+  .hero-grid{grid-template-columns:1fr}
+  .portrait{max-width:140px;order:-1}
+  .clock{text-align:left;align-items:flex-start}
+}
+
+/* where I've built — typographic wordmarks, no logo assets needed */
+.orgs{padding:0 0 clamp(44px,8vh,72px)}
+.orgs .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:16px}
+.orgs .row{display:flex;flex-wrap:wrap;gap:10px}
+.orgs .row span{border:1px solid var(--line-2);border-radius:999px;padding:9px 18px;
+  font-family:var(--display);font-weight:600;font-size:.94rem;letter-spacing:-.01em;
+  background:var(--raise);transition:border-color .2s var(--ease)}
+.orgs .row span:first-child{border-color:var(--ink)}
+
+/* ---------------------------------------------------------------- sections */
+section{border-top:1px solid var(--line);padding:clamp(44px,8vh,84px) 0}
+.sec-h{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+.sec-h h2{font-weight:700;font-size:clamp(1.5rem,3vw,2rem)}
+.sec-h .all{margin-left:auto;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--muted);
+  transition:color .2s var(--ease);white-space:nowrap}
+.sec-h .all::after{content:" ↗"}
+.sec-h .all:hover{color:var(--signal)}
+.sec-sub{color:var(--muted);font-size:.92rem;max-width:56ch;margin-bottom:28px}
+
+/* about */
+/* The bio sweeps from muted to ink as it crosses the viewport. Done with a
+   clipped gradient rather than per-word spans: one element, no layout thrash,
+   and it re-colours correctly when the theme changes. */
+.about p.bio{font-size:clamp(1.15rem,2.1vw,1.6rem);max-width:26ch;line-height:1.45;
+  font-family:var(--display);font-weight:600;letter-spacing:-.02em;color:var(--ink);
+  max-width:22ch}
+.about .bio-wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);
+  gap:clamp(24px,5vw,56px);align-items:start}
+.about p.note{color:var(--graphite);font-size:.98rem;line-height:1.6;max-width:46ch}
+.about p.note b{color:var(--ink);font-weight:600}
+@media(max-width:800px){.about .bio-wrap{grid-template-columns:1fr}.about p.bio{max-width:100%}}
+
+@supports (animation-timeline: view()){
+  @media(prefers-reduced-motion:no-preference){
+    .sweep{
+      background-image:linear-gradient(90deg,var(--ink) 0 50%,var(--muted) 50% 100%);
+      background-size:220% 100%;background-position:100% 0;
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      animation:sweep linear both;animation-timeline:view();
+      animation-range:entry 25% cover 60%;
+    }
+    @keyframes sweep{to{background-position:0 0}}
+  }
+}
+/* The figures read as an instrument panel rather than four marketing tiles —
+   the same language as the spec readout and the Lab, which is what makes this
+   page his and not a layout borrowed from someone else. */
+.panel{margin-top:clamp(30px,5vh,48px);border:1px solid var(--line-2);border-radius:14px;
+  background:var(--raise);overflow:hidden}
+.panel .head{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 18px;border-bottom:1px solid var(--line);
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.panel .head .g{color:var(--up);display:inline-flex;align-items:center;gap:6px}
+.panel .head .g i{width:5px;height:5px;border-radius:50%;background:var(--up);display:block;
+  box-shadow:0 0 7px var(--up);animation:pip 2.4s ease-in-out infinite}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.stats div{padding:20px clamp(14px,2vw,22px)}
+.stats div+div{border-left:1px solid var(--line)}
+.stats .v{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,3.4vw,2.05rem);line-height:1;
+  letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stats .l{font-family:var(--mono);font-size:.63rem;letter-spacing:.08em;color:var(--muted);
+  margin-top:9px;line-height:1.5}
+@media(max-width:740px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats div:nth-child(odd){border-left:0}
+  .stats div:nth-child(n+3){border-top:1px solid var(--line)}
+}
+
+/* work — the toggle he approved, carried across */
+.seg{display:inline-flex;padding:3px;gap:3px;border:1px solid var(--line-2);border-radius:999px;
+  background:var(--paper-2);margin-bottom:26px}
+.seg button{padding:9px 18px;border-radius:999px;min-height:40px;font-family:var(--mono);
+  font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  transition:background .22s var(--ease),color .22s var(--ease)}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.view[hidden]{display:none}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2.4vw,20px)}
+@media(max-width:740px){.cards{grid-template-columns:1fr}}
+.card{border:1px solid var(--line-2);border-radius:16px;overflow:hidden;background:var(--raise);
+  display:flex;flex-direction:column;transition:border-color .25s var(--ease),transform .25s var(--ease)}
+.card:hover{border-color:var(--signal);transform:translateY(-2px)}
+/* no product photography yet, so the cards draw their own surface */
+.shot{aspect-ratio:16/10;background:#0C0E13;padding:clamp(18px,3vw,28px);display:flex;
+  flex-direction:column;justify-content:center;gap:10px}
+.shot .ln{border-radius:5px;background:#1E232E;display:block}
+.shot .frame{background:#141821;border:1px solid #262C39;border-radius:10px;padding:14px;
+  display:flex;flex-direction:column;gap:10px}
+.shot .row{display:grid;grid-template-columns:1fr auto auto;gap:12px;font-family:var(--mono);
+  font-size:.66rem;color:#E6E9EF;font-variant-numeric:tabular-nums;padding:5px 0}
+.shot .row+.row{border-top:1px solid #1E232E}
+.shot .g{color:#35C08A} .shot .d{color:#EF5F6B}
+.card .body{padding:clamp(18px,2.6vw,24px);display:flex;flex-direction:column;gap:9px;flex:1}
+.card .tag{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--up)}
+.card h3{font-weight:700;font-size:1.18rem}
+.card p{color:var(--muted);font-size:.9rem;line-height:1.5}
+.card .go{margin-top:auto;padding-top:14px;font-family:var(--mono);font-size:.71rem;
+  letter-spacing:.05em;color:var(--signal)}
+.card .go::after{content:" →";display:inline-block;transition:transform .25s var(--ease)}
+.card:hover .go::after{transform:translateX(4px)}
+
+/* the managed inventory reads as a list, not as cards it has no images for */
+.inv{display:grid;grid-template-columns:132px 1fr;gap:22px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
+.inv .vt{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em}
+.inv .ct{font-family:var(--mono);font-size:.6rem;color:var(--muted);margin-left:8px;font-variant-numeric:tabular-nums}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{border:1px solid var(--line-2);border-radius:999px;padding:6px 13px;font-size:.78rem;line-height:1.2}
+@media(max-width:620px){.inv{grid-template-columns:1fr;gap:8px}}
+
+/* the ask band — the reference's best idea: turn shallow public work into a reason to write */
+.ask{margin-top:22px;border:1px solid var(--line-2);border-radius:14px;background:var(--paper-2);
+  padding:20px clamp(18px,3vw,26px);display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.ask .t{font-weight:600;font-size:.96rem}
+.ask .s{color:var(--muted);font-size:.85rem;margin-top:3px}
+.ask a{margin-left:auto;border:1px solid var(--ink);border-radius:999px;padding:11px 22px;
+  font-size:.86rem;font-weight:500;white-space:nowrap;
+  transition:background .2s var(--ease),color .2s var(--ease)}
+.ask a:hover{background:var(--ink);color:var(--paper)}
+
+/* writing */
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.4vw,20px)}
+@media(max-width:860px){.posts{grid-template-columns:1fr}}
+.post{border:1px solid var(--line-2);border-radius:14px;padding:20px 22px;background:var(--raise);
+  display:flex;flex-direction:column;gap:9px;transition:border-color .25s var(--ease)}
+.post:hover{border-color:var(--signal)}
+.post .k{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.post h3{font-weight:700;font-size:1.04rem;line-height:1.3}
+.post p{color:var(--muted);font-size:.86rem;line-height:1.5}
+.post .go{margin-top:auto;padding-top:12px;font-family:var(--mono);font-size:.69rem;color:var(--signal)}
+.post .go::after{content:" ↗"}
+
+/* lab */
+.lab{border:1px solid var(--line-2);border-radius:16px;overflow:hidden;background:#0A0C10}
+.lab .top{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid #222834}
+.lab .top i{width:8px;height:8px;border-radius:50%;background:#2A3140;display:block}
+.lab .top span{margin-left:8px;font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;color:#8A93A6}
+.lab iframe{width:100%;height:430px;border:0;display:block}
+
+/* contact */
+.contact{border-top:1px solid var(--line)}
+.contact h2{font-weight:700;font-size:clamp(1.8rem,4.4vw,2.8rem);max-width:16ch}
+.contact .sub{color:var(--muted);margin-top:14px;max-width:52ch}
+.mail{display:inline-flex;align-items:center;gap:12px;margin-top:26px;font-family:var(--mono);
+  font-size:clamp(.9rem,2vw,1.05rem);border-bottom:1px solid var(--line-2);padding-bottom:6px}
+.mail:hover{border-color:var(--signal);color:var(--signal)}
+.more{margin-top:34px}
+.more .lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.more .row{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:12px}
+.more a{font-size:.92rem;border-bottom:1px solid var(--line-2);padding-bottom:2px}
+.more a:hover{color:var(--signal);border-color:var(--signal)}
+.fine{margin-top:clamp(40px,7vh,64px);padding-top:20px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:.66rem;color:var(--muted)}
+.fine .g{color:var(--up)}
+
+.reveal{opacity:0;transform:translateY(14px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .6s var(--ease),transform .6s var(--ease)}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
