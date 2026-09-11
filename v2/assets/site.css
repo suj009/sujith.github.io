@@ -218,16 +218,19 @@ section{border-top:1px solid var(--line);padding:clamp(44px,8vh,84px) 0}
 .card{border:1px solid var(--line-2);border-radius:16px;overflow:hidden;background:var(--raise);
   display:flex;flex-direction:column;transition:border-color .25s var(--ease),transform .25s var(--ease)}
 .card:hover{border-color:var(--signal);transform:translateY(-2px)}
-/* no product photography yet, so the cards draw their own surface */
-.shot{aspect-ratio:16/10;background:#0C0E13;padding:clamp(18px,3vw,28px);display:flex;
-  flex-direction:column;justify-content:center;gap:10px}
-.shot .ln{border-radius:5px;background:#1E232E;display:block}
-.shot .frame{background:#141821;border:1px solid #262C39;border-radius:10px;padding:14px;
-  display:flex;flex-direction:column;gap:10px}
-.shot .row{display:grid;grid-template-columns:1fr auto auto;gap:12px;font-family:var(--mono);
-  font-size:.66rem;color:#E6E9EF;font-variant-numeric:tabular-nums;padding:5px 0}
-.shot .row+.row{border-top:1px solid #1E232E}
-.shot .g{color:#35C08A} .shot .d{color:#EF5F6B}
+/* Cover art. Placeholder illustrations until real product shots exist — drawn
+   rather than photographed, so they stay sharp, weigh nothing, and read as
+   deliberate artwork instead of an empty frame. They keep their own light
+   ground in both themes, the way printed cover art would. */
+.cover{aspect-ratio:16/10;position:relative;overflow:hidden;display:grid;place-items:center;
+  padding:clamp(20px,3.4vw,34px)}
+.cover svg{width:100%;height:auto;max-height:100%;display:block;
+  filter:drop-shadow(0 18px 30px rgba(16,20,34,.22));
+  transition:transform .5s var(--ease)}
+.card:hover .cover svg{transform:translateY(-4px) scale(1.015)}
+.cover[data-art="orders"]{background:linear-gradient(148deg,#E8E9FB 0%,#D9DDF6 52%,#C9D2F2 100%)}
+.cover[data-art="wealth"]{background:linear-gradient(148deg,#FBEBE6 0%,#F6DCD8 52%,#EFCFD2 100%)}
+.cover[data-art="agentic"]{background:linear-gradient(148deg,#E4F1EA 0%,#D5E9DF 52%,#C6E0D6 100%)}
 .card .body{padding:clamp(18px,2.6vw,24px);display:flex;flex-direction:column;gap:9px;flex:1}
 .card .tag{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--up)}
 .card h3{font-weight:700;font-size:1.18rem}
