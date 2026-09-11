@@ -118,14 +118,42 @@ img{max-width:100%;display:block}
 .greet b{color:var(--up);font-weight:400}
 .hero h1{margin-top:18px;font-weight:700;font-size:clamp(1.9rem,4.6vw,3.05rem);line-height:1.1;max-width:19ch}
 .hero h1 u{text-decoration:none;border-bottom:2px solid var(--signal);padding-bottom:2px}
-.portrait{border-radius:16px;overflow:hidden;border:1px solid var(--line-2);background:var(--paper-2);aspect-ratio:1/1}
-.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
-.clock{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--muted);margin-top:12px;text-align:right;font-variant-numeric:tabular-nums}
+/* The portrait tilts toward the cursor and swaps to a second frame on hover.
+   Built for an illustrated avatar with two states; it degrades to a plain tilt
+   while only one image exists. */
+.portrait{border-radius:16px;border:1px solid var(--line-2);background:var(--paper-2);
+  aspect-ratio:1/1;perspective:700px;position:relative;overflow:hidden}
+.portrait .tilt{position:absolute;inset:0;transition:transform .35s var(--ease);
+  transform-style:preserve-3d;will-change:transform}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 22%;transition:opacity .28s var(--ease),transform .5s var(--ease)}
+.portrait img.alt{opacity:0}
+.portrait:hover img.base{opacity:0}
+.portrait:hover img.alt{opacity:1}
+.portrait:hover img{transform:scale(1.04)}
+/* a light that follows the cursor, so the tilt reads as a surface not a flat card */
+.portrait .gloss{position:absolute;inset:0;pointer-events:none;opacity:0;
+  transition:opacity .3s var(--ease);
+  background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),
+    color-mix(in srgb,var(--signal) 26%,transparent), transparent 62%)}
+.portrait:hover .gloss{opacity:1}
+@media(prefers-reduced-motion:reduce){
+  .portrait .tilt{transform:none!important}
+  .portrait .gloss{display:none}
+}
+.clock{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-top:12px;text-align:right;font-variant-numeric:tabular-nums;
+  display:flex;flex-direction:column;gap:5px;align-items:flex-end}
+/* A market-hours readout, because he designs for a brokerage — the one piece of
+   chrome on this page that no other portfolio has a reason to carry. */
+.clock .mkt{display:inline-flex;align-items:center;gap:6px}
+.clock .pip{width:6px;height:6px;border-radius:50%;background:var(--muted);display:block}
+.clock .pip.live{background:var(--up);box-shadow:0 0 8px var(--up);animation:pip 2.4s ease-in-out infinite}
+@keyframes pip{50%{opacity:.35}}
 @media(max-width:760px){
   .hero-grid{grid-template-columns:1fr}
   .portrait{max-width:140px;order:-1}
-  .clock{text-align:left}
+  .clock{text-align:left;align-items:flex-start}
 }
 
 /* where I've built — typographic wordmarks, no logo assets needed */
@@ -149,8 +177,30 @@ section{border-top:1px solid var(--line);padding:clamp(44px,8vh,84px) 0}
 .sec-sub{color:var(--muted);font-size:.92rem;max-width:56ch;margin-bottom:28px}
 
 /* about */
-.about p.bio{font-size:clamp(1.02rem,1.5vw,1.16rem);color:var(--graphite);max-width:62ch;line-height:1.62}
-.about p.bio b{color:var(--ink);font-weight:600}
+/* The bio sweeps from muted to ink as it crosses the viewport. Done with a
+   clipped gradient rather than per-word spans: one element, no layout thrash,
+   and it re-colours correctly when the theme changes. */
+.about p.bio{font-size:clamp(1.15rem,2.1vw,1.6rem);max-width:26ch;line-height:1.45;
+  font-family:var(--display);font-weight:600;letter-spacing:-.02em;color:var(--ink);
+  max-width:22ch}
+.about .bio-wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);
+  gap:clamp(24px,5vw,56px);align-items:start}
+.about p.note{color:var(--graphite);font-size:.98rem;line-height:1.6;max-width:46ch}
+.about p.note b{color:var(--ink);font-weight:600}
+@media(max-width:800px){.about .bio-wrap{grid-template-columns:1fr}.about p.bio{max-width:100%}}
+
+@supports (animation-timeline: view()){
+  @media(prefers-reduced-motion:no-preference){
+    .sweep{
+      background-image:linear-gradient(90deg,var(--ink) 0 50%,var(--muted) 50% 100%);
+      background-size:220% 100%;background-position:100% 0;
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      animation:sweep linear both;animation-timeline:view();
+      animation-range:entry 25% cover 60%;
+    }
+    @keyframes sweep{to{background-position:0 0}}
+  }
+}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,3vw,34px);margin-top:clamp(28px,5vh,44px)}
 .stats .v{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1;
   letter-spacing:-.03em;font-variant-numeric:tabular-nums}
@@ -293,8 +343,20 @@ section{border-top:1px solid var(--line);padding:clamp(44px,8vh,84px) 0}
       <h1>I build <u>design teams</u> and the <u>products</u> they ship — and I still ship some myself.</h1>
     </div>
     <div>
-      <div class="portrait"><img src="../img/sujith-portrait.webp" alt="Sujith Kumar Anand" /></div>
-      <p class="clock" id="clock">BLR, IND</p>
+      <div class="portrait" id="portrait">
+        <div class="tilt">
+          <img class="base" src="../img/sujith-portrait.webp" alt="Sujith Kumar Anand" />
+          <!-- Second frame for the hover state. Point this at the avatar's
+               "reacting" pose once it exists; until then it reuses the photo,
+               so the swap is a no-op rather than a broken image. -->
+          <img class="alt" src="../img/sujith-portrait.webp" alt="" aria-hidden="true" />
+        </div>
+        <div class="gloss"></div>
+      </div>
+      <div class="clock">
+        <span class="mkt"><span class="pip" id="pip"></span><span id="mkt">NSE</span></span>
+        <span id="clock">Bengaluru, IN</span>
+      </div>
     </div>
   </div>
 </header>
@@ -310,10 +372,13 @@ section{border-top:1px solid var(--line);padding:clamp(44px,8vh,84px) 0}
 <section id="about" class="about">
   <div class="wrap">
     <div class="sec-h"><h2>About</h2><a class="all" href="../cv.html">View CV</a></div>
-    <p class="bio">Eleven years in product design, with multiple products launched 0→1. Today I lead
-      <b>five designers across seven verticals</b> at a top-20 Indian retail brokerage serving over a million
-      active clients. I care about the work getting better and the people getting better — and I have not
-      stopped making the thing itself, which is how I know what I am asking for when I ask for it.</p>
+    <div class="bio-wrap">
+      <p class="bio sweep">I lead five designers across seven verticals at a brokerage a million people
+        trade on — and I still take work to the pixel myself.</p>
+      <p class="note">Eleven years in product design, with multiple products launched 0→1. I care about the
+        work getting better <b>and</b> the people getting better. Not having stopped making the thing itself
+        is how I know what I am asking for when I ask for it.</p>
+    </div>
     <div class="stats">
       <div><div class="v">11+ Yrs</div><div class="l">Product design and leadership</div></div>
       <div><div class="v">1M+</div><div class="l">Active clients on the platform</div></div>
@@ -502,14 +567,53 @@ section{border-top:1px solid var(--line);padding:clamp(44px,8vh,84px) 0}
     var hr = Number(new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Kolkata", hour: "numeric", hour12: false }).format(new Date()));
     document.getElementById("greet").textContent =
       hr < 5 ? "Still up" : hr < 12 ? "Good morning" : hr < 17 ? "Good afternoon" : "Good evening";
-    var clock = document.getElementById("clock");
+    var clock = document.getElementById("clock"),
+        mkt = document.getElementById("mkt"), pip = document.getElementById("pip");
+
+    // NSE trades 09:15–15:30 IST, Monday to Friday.
     var tick = function () {
-      var t = new Intl.DateTimeFormat("en-GB", {
-        timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit", hour12: false
-      }).format(new Date());
-      clock.textContent = "Bengaluru, IN · IST " + t;
+      var now = new Date(),
+          f = new Intl.DateTimeFormat("en-GB", {
+            timeZone: "Asia/Kolkata", weekday: "short", hour: "2-digit",
+            minute: "2-digit", hour12: false
+          }).formatToParts(now),
+          get = function (t) { return (f.find(function (x) { return x.type === t; }) || {}).value; },
+          hh = Number(get("hour")), mm = Number(get("minute")), day = get("weekday");
+
+      clock.textContent = "Bengaluru, IN · IST " + get("hour") + ":" + get("minute");
+
+      var weekday = ["Mon", "Tue", "Wed", "Thu", "Fri"].indexOf(day) > -1,
+          mins = hh * 60 + mm, open = 555, close = 930,
+          live = weekday && mins >= open && mins < close;
+
+      pip.classList.toggle("live", live);
+      mkt.textContent = live
+        ? "NSE open · " + Math.floor((close - mins) / 60) + "h " + ((close - mins) % 60) + "m to close"
+        : "NSE closed";
     };
     tick(); setInterval(tick, 30000);
+  })();
+
+  // Portrait: tilt toward the cursor, and move the gloss with it.
+  (function () {
+    var box = document.getElementById("portrait");
+    if (!box || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var tilt = box.querySelector(".tilt"), frame = null;
+
+    box.addEventListener("pointermove", function (e) {
+      if (frame) return;
+      frame = requestAnimationFrame(function () {
+        frame = null;
+        var r = box.getBoundingClientRect(),
+            x = (e.clientX - r.left) / r.width,
+            y = (e.clientY - r.top) / r.height;
+        tilt.style.transform =
+          "rotateY(" + ((x - .5) * 14).toFixed(2) + "deg) rotateX(" + ((.5 - y) * 14).toFixed(2) + "deg)";
+        box.style.setProperty("--mx", (x * 100).toFixed(1) + "%");
+        box.style.setProperty("--my", (y * 100).toFixed(1) + "%");
+      });
+    });
+    box.addEventListener("pointerleave", function () { tilt.style.transform = ""; });
   })();
 
   // Work: one control, two readings.
