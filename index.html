@@ -89,6 +89,21 @@
   nav.on-dark .nav-cta{border-color:var(--panel-text);color:var(--panel-text)}
   nav.on-dark .nav-cta:hover{background:var(--panel-text);color:var(--panel)}
 
+  /* Over the hero the bar is not a slab at all — no background, no border, no
+     blur, so the band's own gradient runs unbroken from the top of the page.
+     The Lab section and the footer keep .on-dark, which is a different job: the
+     bar has to hold itself apart from those, because they are flat panels the
+     page scrolls past. The hero is the page's first surface, so the bar belongs
+     to it. Colours are the hero's own, not the panel tokens. */
+  nav.on-hero{background:transparent;border-bottom-color:transparent;
+    backdrop-filter:none;-webkit-backdrop-filter:none}
+  nav.on-hero .brand{color:#F2F2F2}
+  nav.on-hero .nav-links a{color:#B5B5B5}
+  nav.on-hero .nav-links a:hover,nav.on-hero .nav-links a:focus-visible{
+    color:#F2F2F2;background:rgba(255,255,255,.07)}
+  nav.on-hero .nav-cta{border-color:rgba(242,242,242,.62);color:#F2F2F2}
+  nav.on-hero .nav-cta:hover{background:#F2F2F2;color:#0A0A0A;border-color:#F2F2F2}
+
   /* Below 720px the links used to be display:none with nothing replacing them,
      which left a 10,000px page with no way to jump. They now wrap to their own
      scrollable row instead of disappearing. */
@@ -118,9 +133,15 @@
        drop to their own row — subtracting a single hardcoded figure put the
        scroll cue below the fold on phones. */
     --navh:62px;
-    min-height:calc(100vh - var(--navh));min-height:calc(100svh - var(--navh));
+    /* The band runs UNDER the sticky nav rather than starting below it. That is
+       what lets the bar go transparent over the hero: with the hero starting at
+       the nav's lower edge, a transparent bar reveals the page's paper, not the
+       band. Negative margin slides it up; padding-top keeps the content clear of
+       the bar while the art and the gradient run the full height. */
+    margin-top:calc(-1 * var(--navh));
+    min-height:100vh;min-height:100svh;
     display:flex;flex-direction:column;justify-content:flex-end;
-    padding:0 clamp(40px,8.4vw,120px) clamp(32px,4.4vh,40px)}
+    padding:var(--navh) clamp(40px,8.4vw,120px) clamp(32px,4.4vh,40px)}
 
   /* One light source, high and to the right. An ambient radial establishes it;
      the shaft rakes across; the last layer drops the lower-left away so the
@@ -132,7 +153,9 @@
     background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.07) 32%,
       rgba(255,255,255,.15) 52%,rgba(255,255,255,.04) 78%,rgba(255,255,255,0) 100%)}
   .hero .art::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(196deg,rgba(10,10,10,0) 40%,rgba(10,10,10,.44) 76%,rgba(10,10,10,.84) 100%)}
+    background:
+      linear-gradient(180deg,rgba(10,10,10,.42) 0,rgba(10,10,10,0) 168px),
+      linear-gradient(196deg,rgba(10,10,10,0) 40%,rgba(10,10,10,.44) 76%,rgba(10,10,10,.84) 100%)}
 
   /* The figure is anchored to the right edge and hangs below the fold, so at
      every width the face stays in frame while the body leaves it. Anchoring
@@ -189,7 +212,7 @@
   @media(max-width:1100px){
     .hero-block{flex-direction:column;align-items:flex-start;gap:18px}
     .hero .lede{max-width:none;margin-top:14px}
-    .hero .fig{width:min(520px,62vw);right:-58px;bottom:auto;top:24px}
+    .hero .fig{width:min(520px,62vw);right:-58px;bottom:auto;top:calc(var(--navh) + 24px)}
   }
 
   /* Below 860 the row starves: the cue and the headline fight for the same
@@ -201,7 +224,7 @@
      and the larger figure. At 860 the tablet was being given phone treatment. */
   @media(max-width:809px){
     header.hero{padding-bottom:clamp(26px,4vh,36px)}
-    .hero .fig{width:min(330px,84vw);right:-44px;bottom:auto;top:24px}
+    .hero .fig{width:min(330px,84vw);right:-44px;bottom:auto;top:calc(var(--navh) + 16px)}
     .hero .art::after{background:linear-gradient(196deg,rgba(10,10,10,0) 26%,rgba(10,10,10,.56) 62%,rgba(10,10,10,.9) 100%)}
   }
 
@@ -744,15 +767,19 @@
   (function () {
     var bar = document.querySelector("nav");
     if (!bar) return;
-    var dark = [document.getElementById("top"), document.getElementById("lab"), document.getElementById("contact")].filter(Boolean);
-    if (!dark.length) return;
-    var tick = function () {
+    var dark = [document.getElementById("lab"), document.getElementById("contact")].filter(Boolean);
+    var hero = document.getElementById("top");
+    if (!dark.length && !hero) return;
+    var behind = function (s) {
       var edge = bar.getBoundingClientRect().bottom;
-      var over = dark.some(function (s) {
-        var r = s.getBoundingClientRect();
-        return r.top <= edge && r.bottom >= edge;
-      });
-      bar.classList.toggle("on-dark", over);
+      var r = s.getBoundingClientRect();
+      return r.top <= edge && r.bottom >= edge;
+    };
+    var tick = function () {
+      // At >=1600px the hero is an inset band and the bar sits over paper, so the
+      // overlap test turns .on-hero off on its own — no breakpoint needed here.
+      bar.classList.toggle("on-hero", !!hero && behind(hero));
+      bar.classList.toggle("on-dark", dark.some(behind));
     };
     addEventListener("scroll", tick, { passive: true });
     addEventListener("resize", tick);
