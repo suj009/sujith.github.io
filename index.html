@@ -214,10 +214,13 @@
      dark all the way to the viewport edge. */
   @media(min-width:1600px){
     header.hero{max-width:none;margin-top:calc(-1 * var(--navh));border-radius:0;
-      min-height:0;height:calc(760px + var(--navh));padding:var(--navh) 0 56px}
+      min-height:100vh;min-height:100svh;padding:var(--navh) 0 clamp(40px,5vh,64px)}
     .hero-block{max-width:1600px;margin:0 auto;padding:0 120px;width:100%}
     /* the figure hangs off the right edge of that column, not the viewport */
-    .hero .fig{right:calc(50% - 800px)}
+    /* a 100vh band on a tall screen strands a 760px figure at the bottom, so it
+       grows with viewport height — never below today's size at 1080. */
+    .hero .fig{right:calc(50% - 800px);width:min(clamp(760px,60vh,940px),52vw);
+      bottom:clamp(57px,6vh,110px)}
     .hero h1{font-size:3.625rem}
   }
 
