@@ -138,7 +138,12 @@
      every width the face stays in frame while the body leaves it. Anchoring
      beats scaling here: a uniform scale-down puts his shoulders behind the
      headline on narrow screens. */
-  .hero .fig{position:absolute;right:0;bottom:-40px;width:min(760px,52vw);z-index:-1;
+  /* height:auto is load-bearing. The width/height attributes on the img become
+     presentational hints, and aspect-ratio only applies while height is auto —
+     without this the element takes a flat 620px height at every width and the
+     portrait is stretched vertically rather than scaled. It passes unnoticed at
+     desktop, where 760x620 is close to the true 720x620, and is obvious by 390. */
+  .hero .fig{position:absolute;right:0;bottom:-40px;width:min(760px,52vw);height:auto;z-index:-1;
     filter:contrast(1.08) brightness(.98) saturate(.82);pointer-events:none}
 
   /* Statement block: kicker over headline, cue on the far side, baseline-aligned. */
@@ -178,8 +183,13 @@
      line. Stack them and let the figure sit higher. */
   /* Portrait-ish and narrow desktops: the band gets taller than it is wide, so
      the figure is lifted clear of the statement rather than shrunk into it. */
+  /* The statement and the cue stop sharing a line here. With a lede in the block
+     the row squeezes it to a ~275px column — six lines in a gutter — so the block
+     stacks from tablet down and the lede takes the full measure. */
   @media(max-width:1100px){
-    .hero .fig{width:min(620px,72vw);right:-70px;bottom:130px}
+    .hero-block{flex-direction:column;align-items:flex-start;gap:18px}
+    .hero .lede{max-width:none;margin-top:14px}
+    .hero .fig{width:min(520px,62vw);right:-58px;bottom:auto;top:24px}
   }
 
   /* Below 860 the row starves: the cue and the headline fight for the same
@@ -187,11 +197,11 @@
   /* Matches the nav's own wrap breakpoint. */
   @media(max-width:720px){ header.hero{--navh:110px} }
 
-  @media(max-width:860px){
+  /* 809, not 860: 810 is the reference's tablet width and keeps the row layout
+     and the larger figure. At 860 the tablet was being given phone treatment. */
+  @media(max-width:809px){
     header.hero{padding-bottom:clamp(26px,4vh,36px)}
-    .hero-block{flex-direction:column;align-items:flex-start;gap:18px}
-    .hero .lede{max-width:none;margin-top:14px}
-    .hero .fig{width:min(360px,92vw);right:-52px;bottom:160px}
+    .hero .fig{width:min(330px,84vw);right:-44px;bottom:auto;top:24px}
     .hero .art::after{background:linear-gradient(196deg,rgba(10,10,10,0) 26%,rgba(10,10,10,.56) 62%,rgba(10,10,10,.9) 100%)}
   }
 
@@ -450,9 +460,10 @@
     <div class="hero-copy">
       <span class="hero-kicker">Senior Design Manager · Bengaluru</span>
       <h1>Designing fintech<br>people trust with money</h1>
-      <p class="lede">Eleven years in product design. Today I lead five designers across six
-        verticals at a <b>top-20 Indian retail brokerage serving over a million active
-        clients</b>, and I still ship front-end.</p>
+      <p class="lede">Eleven years in product design, with multiple products launched
+        <b>0&thinsp;&rarr;&thinsp;1</b>. Today I lead five designers across six verticals at a
+        <b>top-20 Indian retail brokerage serving over a million active clients</b>, and I
+        still ship front-end.</p>
     </div>
 
     <a class="cue" href="#work" aria-label="Scroll to Work">
