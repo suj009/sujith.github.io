@@ -27,7 +27,7 @@
 <link rel="apple-touch-icon" href="img/logo-s-512.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <style>
   :root{
@@ -109,78 +109,96 @@
   }
 
   /* ---------- hero ---------- */
-  /* Full-viewport band. min-height, not height, so a short window or a long
-     translation grows the section instead of clipping it; svh so mobile
-     browsers measure the visible area rather than the URL-bar-expanded one. */
-  header.hero{padding:clamp(40px,7vh,64px) 0 clamp(64px,9vh,88px);
-    min-height:calc(100vh - 57px);min-height:calc(100svh - 57px);
-    display:flex;align-items:center;
-    position:relative;isolation:isolate;background-color:var(--paper)}
-  .hero .wrap{width:100%}
-  /* Art layer. The portrait is composed with the subject on the right and open
-     ground on the left, so it is offset right and veiled from the left — the
-     lede and the spec card keep a clean field to sit on. */
-  .hero .art{position:absolute;inset:0;z-index:-1;overflow:hidden;
-    background:url(img/sujith-portrait.webp) 78% center/cover no-repeat}
-  /* No veil on desktop — the photograph's own left side is open off-white
-     ground, so the copy already has a clean field and the image stays as shot. */
-  /* One column. Copy, lede and the spec readout stack down the left; the art
-     keeps the right half of the band. The hero breaks out of .wrap's 1080px
-     measure and runs the full viewport, so the copy sits near the left edge
-     rather than floating in a centred column. */
-  .hero-grid{display:block}
-  .hero-copy{max-width:min(56%,660px)}
-  /* Cap is 4.8rem, not 5.4: the size tracks the viewport but the column is a
-     fraction of .wrap's max-width, so past ~1160px the type outgrew its column
-     and each .b span broke in two — four ragged lines instead of the two the
-     block spans exist to enforce. 4.8rem fits with the webfont and the
-     fallback, so it holds while Bricolage is still loading. */
-  .hero h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;letter-spacing:-.03em;
-    line-height:.96;font-size:clamp(2.4rem,5.4vw,4.1rem)}
-  .hero h1 .b{display:block}
-  .hero h1 .sig{color:var(--signal)}
-  .hero .lede{margin-top:22px;max-width:52ch;font-size:clamp(1.02rem,1.4vw,1.18rem);color:var(--graphite)}
-  .hero .lede b{color:var(--ink);font-weight:600}
-  .hero .spec{margin-top:26px;max-width:520px;padding:16px 18px;font-size:.76rem}
-  /* Below ~860px the two hero columns starve each other — the h1 loses its
-     measure and the spec panel wraps every value. Stack them instead. */
-  @media(max-width:860px){
-    .hero-copy{max-width:100%}
-    .hero .lede{max-width:52ch}
-    /* The desktop clamp bottoms out at 2.6rem, which is wider than a 320px
-       phone can hold — track the viewport instead. 3.6rem at 860px hands off
-       almost exactly where the desktop curve leaves it. */
-    header.hero{padding-top:clamp(34px,6vh,64px)}
-    .hero h1{font-size:clamp(2.05rem,9.5vw,3.6rem)}
-    /* Portrait crop for phones; the copy stacks over it, so it sits lower and
-       carries a heavier veil. */
-    .hero .art{background-image:url(img/hero-mobile.webp);background-position:center 78%}
-    /* Phones only: the copy stacks over the subject, so it needs a wash. */
-    .hero .art::after{content:"";position:absolute;inset:0;
-      background:linear-gradient(180deg,var(--paper) 0 18%,rgba(240,239,233,.56) 46%,rgba(240,239,233,.24) 100%)}
+  /* Full-bleed editorial band. The hero is its own dark field: the page's paper
+     tokens do not apply inside it, so the colours below are literal rather than
+     var()-driven — they are the band's palette, not the site's. */
+  header.hero{position:relative;isolation:isolate;overflow:hidden;
+    background:#0A0A0A;color:#F2F2F2;
+    /* The nav is sticky and measures 62px, and wraps to 110px once the links
+       drop to their own row — subtracting a single hardcoded figure put the
+       scroll cue below the fold on phones. */
+    --navh:62px;
+    min-height:calc(100vh - var(--navh));min-height:calc(100svh - var(--navh));
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:0 clamp(40px,8.4vw,120px) clamp(32px,4.4vh,40px)}
+
+  /* One light source, high and to the right. An ambient radial establishes it;
+     the shaft rakes across; the last layer drops the lower-left away so the
+     type has a field to sit on. */
+  .hero .art{position:absolute;inset:0;z-index:-2;
+    background:radial-gradient(1500px 1050px at 72% -14%,#4B4F57 0%,#2E3138 24%,#1A1C20 50%,#101113 74%,#0A0A0A 100%)}
+  .hero .art::before{content:"";position:absolute;left:24%;top:-42%;width:62%;height:186%;
+    transform:rotate(-16deg);filter:blur(52px);
+    background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.07) 32%,
+      rgba(255,255,255,.15) 52%,rgba(255,255,255,.04) 78%,rgba(255,255,255,0) 100%)}
+  .hero .art::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(196deg,rgba(10,10,10,0) 40%,rgba(10,10,10,.44) 76%,rgba(10,10,10,.84) 100%)}
+
+  /* The figure is anchored to the right edge and hangs below the fold, so at
+     every width the face stays in frame while the body leaves it. Anchoring
+     beats scaling here: a uniform scale-down puts his shoulders behind the
+     headline on narrow screens. */
+  .hero .fig{position:absolute;right:0;bottom:-40px;width:min(760px,52vw);z-index:-1;
+    filter:contrast(1.08) brightness(.98) saturate(.82);pointer-events:none}
+
+  /* Statement block: kicker over headline, cue on the far side, baseline-aligned. */
+  .hero-block{display:flex;align-items:flex-end;justify-content:space-between;
+    gap:24px;width:100%}
+  .hero-copy{display:flex;flex-direction:column;align-items:flex-start;gap:11px}
+  .hero .hero-kicker{font-family:"Schibsted Grotesk",sans-serif;font-weight:400;
+    font-size:clamp(.625rem,1.1vw,1rem);line-height:1.4;letter-spacing:0;
+    text-transform:uppercase;color:#F2F2F2}
+  /* 400, not bold, at every size. The weight in this setting comes from scale
+     and uppercase; bolding it to compensate for a smaller viewport is what
+     makes this kind of hero look shouty on phones. */
+  .hero h1{font-family:"Schibsted Grotesk",sans-serif;font-weight:400;
+    font-size:clamp(1.625rem,3.9vw,3.25rem);line-height:1.2;letter-spacing:0;
+    text-transform:uppercase;color:#F2F2F2;margin:0}
+
+  /* Widescreen: the hero stops being the page and becomes a band with gutters,
+     and it stops short of the fold so the next section announces itself. */
+  @media(min-width:1600px){
+    header.hero{max-width:1600px;margin:26px auto 0;border-radius:3px;
+      min-height:760px;height:760px;padding:0 120px 56px}
+    .hero h1{font-size:3.625rem}
   }
 
-  /* Hero entrance. Above the fold, so it plays on load rather than on scroll —
-     staggered in reading order, with the art settling behind it. */
-  @keyframes heroIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-  @keyframes artIn{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:none}}
-  .hero .art{animation:artIn 2s var(--ease) both}
-  .hero .eyebrow{animation:heroIn 1.15s var(--ease) both .12s}
-  .hero h1 .b:nth-of-type(1){animation:heroIn 1.15s var(--ease) both .3s}
-  .hero h1 .b:nth-of-type(2){animation:heroIn 1.15s var(--ease) both .48s}
-  .hero .lede{animation:heroIn 1.15s var(--ease) both .72s}
-  .hero .spec{animation:heroIn 1.15s var(--ease) both .96s}
+  /* Below 860 the row starves: the cue and the headline fight for the same
+     line. Stack them and let the figure sit higher. */
+  /* Portrait-ish and narrow desktops: the band gets taller than it is wide, so
+     the figure is lifted clear of the statement rather than shrunk into it. */
+  @media(max-width:1100px){
+    .hero .fig{width:min(620px,72vw);right:-70px;bottom:130px}
+  }
 
-  /* Scroll cue — centred on the band, arrow bouncing. */
-  .cue{position:absolute;left:50%;transform:translateX(-50%);bottom:clamp(20px,4vh,40px);
-    display:flex;flex-direction:column;align-items:center;gap:9px;
-    font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.16em;
-    text-transform:uppercase;color:var(--muted);transition:color .2s;
-    animation:heroIn 1.15s var(--ease) both 1.3s}
-  .cue:hover,.cue:focus-visible{color:var(--ink)}
-  .cue svg{animation:cueBounce 2.6s ease-in-out infinite}
-  @keyframes cueBounce{50%{transform:translateY(5px)}}
-  @media(max-width:860px){.cue{display:none}}
+  /* Below 860 the row starves: the cue and the headline fight for the same
+     line. Stack them, and park the figure well above the copy. */
+  /* Matches the nav's own wrap breakpoint. */
+  @media(max-width:720px){ header.hero{--navh:110px} }
+
+  @media(max-width:860px){
+    header.hero{padding-bottom:clamp(26px,4vh,36px)}
+    .hero-block{flex-direction:column;align-items:flex-start;gap:18px}
+    .hero .fig{width:min(360px,92vw);right:-52px;bottom:160px}
+    .hero .art::after{background:linear-gradient(196deg,rgba(10,10,10,0) 26%,rgba(10,10,10,.56) 62%,rgba(10,10,10,.9) 100%)}
+  }
+
+  /* Hero entrance. Above the fold, so it plays on load rather than on scroll. */
+  @keyframes heroIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes artIn{from{opacity:0;transform:scale(1.05)}to{opacity:1;transform:none}}
+  .hero .fig{animation:artIn 6s var(--ease) both}
+  .hero .hero-kicker{animation:heroIn .9s var(--ease) both .5s}
+  .hero h1{animation:heroIn .9s var(--ease) both .64s}
+
+  /* Scroll cue — sits with the statement, not centred on the band. */
+  .cue{display:inline-flex;align-items:center;gap:10px;flex:none;
+    font-family:"Schibsted Grotesk",sans-serif;font-weight:600;
+    font-size:clamp(.625rem,1vw,.875rem);line-height:1.4;letter-spacing:0;
+    text-transform:uppercase;color:#F2F2F2;transition:color .2s;
+    animation:heroIn .9s var(--ease) both .8s}
+  .cue:hover,.cue:focus-visible{color:#B5B5B5}
+  .cue svg{animation:cueBounce 2.2s ease-in-out infinite}
+  @keyframes cueBounce{50%{transform:translateY(4px)}}
 
   /* spec readout — the signature (echoes the Lab instrument panel) */
   .spec{background:var(--panel);border-radius:14px;padding:20px 22px;color:var(--panel-text);
@@ -192,8 +210,6 @@
   .spec .sh .live .pip{width:6px;height:6px;border-radius:50%;background:var(--up);box-shadow:0 0 8px var(--up);animation:pip 2s ease-in-out infinite}
   @keyframes pip{50%{opacity:.3}}
   .spec dl{display:grid;grid-template-columns:auto 1fr;gap:9px 16px}
-  .hero .spec dl{gap:6px 16px}
-  .hero .spec .sh{margin-bottom:11px;padding-bottom:9px}
   .spec dt{color:var(--panel-muted);letter-spacing:.04em}
   .spec dd{text-align:right;color:var(--panel-text)}
   .spec dd .g{color:var(--up)}
@@ -415,37 +431,22 @@
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
   <div class="art" aria-hidden="true"></div>
-  <div class="wrap hero-grid">
+  <img class="fig" src="img/sujith-cut.webp" alt="Sujith Kumar Anand" width="720" height="620" fetchpriority="high" decoding="async">
+
+  <div class="hero-block">
     <div class="hero-copy">
-      <span class="eyebrow">Product Design Leader · Bengaluru</span>
-      <h1 style="margin-top:18px">
-        <span class="b">A design leader</span>
-        <span class="b">who <span class="sig">still ships.</span></span>
-      </h1>
-      <p class="lede">Eleven years in product design, with multiple products launched 0→1. Today I lead five designers across six verticals at a top-20 Indian retail brokerage serving over a million active clients.</p>
-
-      <!-- spec readout : signature element -->
-      <aside class="spec" aria-label="Profile at a glance">
-      <div class="sh"><span class="t">sujith.spec</span><span class="live"><span class="pip"></span>Open to roles</span></div>
-      <dl>
-        <dt>role</dt><dd>Sr Design Manager, FYERS</dd>
-        <dt>exp</dt><dd>11+ yrs</dd>
-        <dt>domains</dt><dd>fintech · crypto · telecom · streaming · recruitment</dd>
-        <dt>ships</dt><dd><span class="g">front-end, with AI</span></dd>
-        <dt>stack</dt><dd>Figma · Flutter</dd>
-        <dt>seeking</dt><dd>Head of Design / Sr Design Manager</dd>
-      </dl>
-      </aside>
+      <span class="hero-kicker">Senior Design Manager · Bengaluru</span>
+      <h1>Designing fintech<br>people trust with money</h1>
     </div>
-  </div>
 
-  <a class="cue" href="#work" aria-label="Scroll to Work">
-    Scroll
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-         stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path>
-    </svg>
-  </a>
+    <a class="cue" href="#work" aria-label="Scroll to Work">
+      Scroll for more
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path>
+      </svg>
+    </a>
+  </div>
 </header>
 
 <!-- ============ WORK ============ -->
@@ -716,7 +717,7 @@
   (function () {
     var bar = document.querySelector("nav");
     if (!bar) return;
-    var dark = [document.getElementById("lab"), document.getElementById("contact")].filter(Boolean);
+    var dark = [document.getElementById("top"), document.getElementById("lab"), document.getElementById("contact")].filter(Boolean);
     if (!dark.length) return;
     var tick = function () {
       var edge = bar.getBoundingClientRect().bottom;
