@@ -155,6 +155,17 @@
     font-size:clamp(1.625rem,3.9vw,3.25rem);line-height:1.2;letter-spacing:0;
     text-transform:uppercase;color:#F2F2F2;margin:0}
 
+  /* The statement says what he does; the lede is the only place on the page
+     that says what happened because he was there. Scope precedes the
+     still-ships claim deliberately — reversed, it reads as under-delegating
+     to enterprise readers. Measure is capped so it never runs under the
+     portrait. */
+  .hero .lede{margin:18px 0 0;max-width:min(60ch,52%);
+    font-family:"Schibsted Grotesk",sans-serif;font-weight:400;
+    font-size:clamp(.92rem,1.05vw,1.05rem);line-height:1.6;
+    letter-spacing:0;text-transform:none;color:#B5B5B5}
+  .hero .lede b{color:#F2F2F2;font-weight:400}
+
   /* Widescreen: the hero stops being the page and becomes a band with gutters,
      and it stops short of the fold so the next section announces itself. */
   @media(min-width:1600px){
@@ -179,6 +190,7 @@
   @media(max-width:860px){
     header.hero{padding-bottom:clamp(26px,4vh,36px)}
     .hero-block{flex-direction:column;align-items:flex-start;gap:18px}
+    .hero .lede{max-width:none;margin-top:14px}
     .hero .fig{width:min(360px,92vw);right:-52px;bottom:160px}
     .hero .art::after{background:linear-gradient(196deg,rgba(10,10,10,0) 26%,rgba(10,10,10,.56) 62%,rgba(10,10,10,.9) 100%)}
   }
@@ -189,13 +201,14 @@
   .hero .fig{animation:artIn 6s var(--ease) both}
   .hero .hero-kicker{animation:heroIn .9s var(--ease) both .5s}
   .hero h1{animation:heroIn .9s var(--ease) both .64s}
+  .hero .lede{animation:heroIn .9s var(--ease) both .78s}
 
   /* Scroll cue — sits with the statement, not centred on the band. */
   .cue{display:inline-flex;align-items:center;gap:10px;flex:none;
     font-family:"Schibsted Grotesk",sans-serif;font-weight:600;
     font-size:clamp(.625rem,1vw,.875rem);line-height:1.4;letter-spacing:0;
     text-transform:uppercase;color:#F2F2F2;transition:color .2s;
-    animation:heroIn .9s var(--ease) both .8s}
+    animation:heroIn .9s var(--ease) both .92s}
   .cue:hover,.cue:focus-visible{color:#B5B5B5}
   .cue svg{animation:cueBounce 2.2s ease-in-out infinite}
   @keyframes cueBounce{50%{transform:translateY(4px)}}
@@ -437,6 +450,9 @@
     <div class="hero-copy">
       <span class="hero-kicker">Senior Design Manager · Bengaluru</span>
       <h1>Designing fintech<br>people trust with money</h1>
+      <p class="lede">Eleven years in product design. Today I lead five designers across six
+        verticals at a <b>top-20 Indian retail brokerage serving over a million active
+        clients</b>, and I still ship front-end.</p>
     </div>
 
     <a class="cue" href="#work" aria-label="Scroll to Work">
