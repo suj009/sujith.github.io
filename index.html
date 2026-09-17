@@ -175,7 +175,7 @@
      without this the element takes a flat 620px height at every width and the
      portrait is stretched vertically rather than scaled. It passes unnoticed at
      desktop, where 760x620 is close to the true 720x620, and is obvious by 390. */
-  .hero .fig{position:absolute;right:0;bottom:57px;width:min(760px,52vw);height:auto;z-index:-1;
+  .hero .fig{position:absolute;right:0;bottom:57px;width:min(874px,60vw);height:auto;z-index:-1;
     filter:contrast(1.08) brightness(.98) saturate(.82);pointer-events:none}
 
   /* Statement block: kicker over headline, cue on the far side, baseline-aligned. */
@@ -219,7 +219,7 @@
     /* the figure hangs off the right edge of that column, not the viewport */
     /* a 100vh band on a tall screen strands a 760px figure at the bottom, so it
        grows with viewport height — never below today's size at 1080. */
-    .hero .fig{right:calc(50% - 800px);width:min(clamp(760px,60vh,940px),52vw);
+    .hero .fig{right:calc(50% - 800px);width:min(clamp(874px,69vh,1081px),60vw);
       bottom:clamp(57px,6vh,110px)}
     .hero h1{font-size:3.625rem}
   }
@@ -234,7 +234,7 @@
   @media(max-width:1100px){
     .hero-block{flex-direction:column;align-items:flex-start;gap:18px}
     .hero .lede{max-width:none;margin-top:14px}
-    .hero .fig{width:min(520px,62vw);right:-58px;bottom:auto;top:calc(var(--navh) + 8px)}
+    .hero .fig{width:min(598px,71vw);right:-58px;bottom:auto;top:calc(var(--navh) + 8px)}
   }
 
   /* Below 860 the row starves: the cue and the headline fight for the same
@@ -246,7 +246,7 @@
      and the larger figure. At 860 the tablet was being given phone treatment. */
   @media(max-width:809px){
     header.hero{padding-bottom:clamp(26px,4vh,36px)}
-    .hero .fig{width:min(330px,84vw);right:-44px;bottom:auto;top:calc(var(--navh) + 8px)}
+    .hero .fig{width:min(380px,96vw);right:-44px;bottom:auto;top:calc(var(--navh) + 8px)}
     .hero .art::after{background:linear-gradient(196deg,rgba(10,10,10,0) 26%,rgba(10,10,10,.56) 62%,rgba(10,10,10,.9) 100%)}
   }
 
