@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wealth Tracker — from PRD to Flutter-ready · Sujith Kumar Anand</title>
+<meta name="description" content="Case study: taking Wealth Tracker end to end at FYERS — from a PRD and an AI-generated HTML concept through stakeholder approval to Flutter-ready web and mobile output, with an estimated 70% reduction in front-end effort." />
+<meta property="og:title" content="Wealth Tracker — from PRD to Flutter-ready" />
+<meta property="og:description" content="Case study: taking Wealth Tracker end to end at FYERS — from a PRD and an AI-generated HTML concept through stakeholder approval to Flutter-ready web and mobile output, with an estimated 70% reduction in front-end effort." />
+<meta property="og:type" content="article" />
+
+<!--
+  Wealth Tracker — from PRD to Flutter-ready
+  Source: the case-study markdown Sujith supplied. Every claim here traces to
+  that document; nothing is inferred. Placeholders below are his to fill.
+-->
+
+<link rel="icon" href="img/logo-s.svg" type="image/svg+xml" />
+<link rel="icon" href="img/logo-s-512.png" type="image/png" sizes="512x512" />
+<link rel="apple-touch-icon" href="img/logo-s-512.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/reading.css" />
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="index.html"><span class="mk"></span>Sujith Kumar Anand</a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#lab">Lab</a>
+      <a href="index.html#writing">Writing</a>
+      <a href="index.html#about">About</a>
+    </div>
+    <a class="nav-cta" href="index.html#contact">Get in touch</a>
+  </div>
+</nav>
+
+<header class="masthead" style="view-transition-name:case-wealth">
+  <div class="wrap">
+    <span class="kicker">Case study · Hands-on</span>
+    <h1>Wealth Tracker — from PRD to Flutter-ready</h1>
+    <p class="standfirst">A PRD and an AI-generated HTML concept in; approved, Flutter-ready web and mobile out. I took it end to end, including the repository and the environment, because the interesting part was closing the gap between what design intends and what ships.</p>
+    <div class="byline">
+      <span>FYERS · Reports</span>
+      <span>Product Design Manager · end-to-end ownership</span>
+      <span>2026</span>
+    </div>
+  </div>
+</header>
+
+<main class="read">
+
+  <section class="glance reveal">
+      <div class="k">Role</div>
+      <div class="d">End-to-end product and implementation ownership</div>
+      <div class="k">Platforms</div>
+      <div class="d">Web and mobile, Flutter-ready</div>
+      <div class="k">Front-end effort</div>
+      <div class="d">~70% less — the front-end team's estimate</div>
+      <div class="k">What it led to</div>
+      <div class="d">The Agentic Design Framework, now in progress</div>
+  </section>
+
+  <h2>The starting point was not a blank canvas</h2>
+  <p>Wealth Tracker came from FYERS product leadership. The Product Owner shared a PRD and an early concept that
+    already existed as an HTML output generated with Claude. So my starting point was an AI-generated
+    representation that needed to be evaluated, challenged and turned into a coherent FYERS product.</p>
+  <p>The product itself was meant to consolidate a user's investment picture — overall wealth, asset allocation,
+    portfolio performance, holdings, and the opportunities and insights that sit on top of them.</p>
+
+  <p class="pull reveal">AI generated a starting point. Product and design judgement determined what happened
+    next.</p>
+
+  <h2>Review, challenge, refine</h2>
+  <p>I read the PRD against the HTML and asked the ordinary questions: did it meet the requirement, were there UX
+    or UI gaps, did the hierarchy and the interactions hold, what needed clarifying with the PO, and where did it
+    diverge from FYERS patterns. Then I worked the loop — identify a gap, resolve the decision with the PO, direct
+    the change, review the output, repeat.</p>
+  <p>I used <strong>Claude Cowork</strong> for the early iterations and brought in <strong>Claude Design</strong>
+    once it launched. The tool is not the interesting part. What mattered was that execution got fast enough that
+    judgement became the bottleneck — which is the right bottleneck.</p>
+
+  <h2>Approval</h2>
+  <p>The refined experience went through PRB review with the AVP – Product, the CPO and the CTO, and through
+    another round of iteration before approval.</p>
+
+  <h2>Then I changed my role in the delivery process</h2>
+  <p>A normal workflow ends at Figma handoff and picks up again at design review. After approval I went the other
+    way: I connected with the development team, got access to the development GitHub environment, met the
+    developers who owned the UI system, set up a separate repository for the implementation work, and did the
+    local environment setup myself.</p>
+  <p>I was no longer writing instructions for implementation. I was working in the implementation environment.</p>
+
+  <h2>Flutter-ready output, web then mobile</h2>
+  <p>I delivered the web experience first. Running it locally meant I was reviewing a rendered product rather than
+    static screens — design intent, implementation-oriented output, run it, look at the real thing, fix what was
+    wrong, go again. After the web workflow was complete and I had analysed how it went, I did the mobile
+    experience the same way.</p>
+
+  <figure class="fig reveal">
+    <div class="slot">[WEALTH TRACKER — web output]</div>
+    <figcaption>Placeholder. Replace with the delivered web experience.</figcaption>
+  </figure>
+
+  <figure class="fig reveal">
+    <div class="slot">[WEALTH TRACKER — mobile output]</div>
+    <figcaption>Placeholder. Replace with the delivered mobile experience.</figcaption>
+  </figure>
+
+  <h2>The outcome</h2>
+  <p><strong>Based on feedback from the front-end team, the approach was estimated to reduce around 70% of the
+    front-end implementation effort for this work.</strong> That figure is their estimate, not a measured
+    benchmark, and I state it that way deliberately.</p>
+  <p>The saving was not only hours. The previous process ran repeated design and implementation reviews on roughly
+    a bi-weekly cadence, and each round carried the risk of interpretation drift. Working closer to
+    implementation cut the number of places where design intent could change on its way to the user.</p>
+
+  <div class="callout reveal">
+    <p>The goal was not to save effort. It was to reduce the distance between design intent and the final user
+      experience.</p>
+  </div>
+
+  <h2>Why it mattered beyond the feature</h2>
+  <p>Taking one product from requirement to Flutter-ready output myself gave stakeholders enough confidence to
+    ask a bigger question. It moved from <em>can a designer use AI to produce implementation-oriented output</em>
+    to <em>can we make that repeatable</em>.</p>
+  <p>I am now leading an internal <strong>Agentic Design Framework</strong> to answer it — taking product teams
+    from requirement toward implementation-ready output while keeping product, design and engineering review in
+    the loop. It is a work in progress, and I am making no impact claims for it until it ships and is measured.</p>
+
+  <h2>What I learned</h2>
+  <p>The hard part was never generating an interface. It was deciding what should change, what should stay, what
+    was missing, what needed product clarification, and what met the bar. AI output is a starting point; the
+    judgement is the job.</p>
+  <p>The other lesson was about proof. I did not open by proposing a framework. I did the work myself first, and
+    the work made the argument.</p>
+
+
+  <section class="next">
+    <h2>Next</h2>
+    <div class="next-grid">
+      <a class="ncard" href="case-study-orders.html">
+        <span class="tag">Case study · Hands-on</span>
+        <h3>Orders</h3>
+        <p>The method this built on: reusable local components, and iteration priced by pattern rather than by screen.</p>
+        <span class="go">Read the case study</span>
+      </a>
+      <a class="ncard" href="index.html#work">
+        <span class="tag">Back</span>
+        <h3>All the work</h3>
+        <p>The seven verticals delivered by the team, and the three things I built myself.</p>
+        <span class="go">Back to Work</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="foot">
+    <h2>Let's build something <span class="sig">worth using.</span></h2>
+    <p class="st"><span class="g">●</span> Open to Head of Design / Sr Design Manager roles · Bengaluru or remote</p>
+    <div class="contacts">
+      <a href="mailto:suj009@gmail.com">✉ suj009@gmail.com</a>
+      <a href="https://www.linkedin.com/in/suj009" target="_blank" rel="noopener">in · LinkedIn</a>
+      <a href="https://medium.com/@suj009" target="_blank" rel="noopener">✎ Medium</a>
+      <a href="cv.html">◆ CV</a>
+    </div>
+    <div class="fine">
+      <span>© <span id="yr"></span> Sujith Kumar Anand</span>
+      <span>Designed &amp; built by me — with AI.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/reading.js"></script>
+</body>
+</html>
