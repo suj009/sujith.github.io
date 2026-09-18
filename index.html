@@ -92,7 +92,9 @@
   html{scroll-behavior:smooth}
   body{
     background:var(--paper);color:var(--ink);
-    font-family:"Schibsted Grotesk",system-ui,sans-serif;line-height:1.6;
+    /* 16 / 1.4, the reference's reading setting. The 1.6 leading it had was
+       for a different typeface and left Schibsted looking airy. */
+    font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:16px;line-height:1.4;
     -webkit-font-smoothing:antialiased;overflow-x:hidden;
   }
   .mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
@@ -353,9 +355,14 @@
   section{padding:clamp(48px,8vh,90px) 0;border-top:1px solid var(--line)}
   .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:36px;flex-wrap:wrap}
   .sec-head .n{font-family:"IBM Plex Mono",monospace;color:var(--signal);font-size:.8rem}
-  .sec-head h2{font-family:"Schibsted Grotesk",sans-serif;font-weight:700;letter-spacing:-.02em;
-    font-size:clamp(1.7rem,3.6vw,2.6rem)}
-  .sec-head .sub{color:var(--muted);font-size:.95rem;margin-left:auto;max-width:34ch;text-align:right}
+  /* Measured off the reference: display sizes run at WEIGHT 400, uppercase,
+     letter-spacing 0 and a 1.2 leading — the weight comes from scale, not from
+     the stroke. The 700/-.02em setting here was a habit carried over from the
+     old display face and is what made the page look unlike its own hero. */
+  .sec-head h2{font-family:"Schibsted Grotesk",sans-serif;font-weight:400;letter-spacing:0;
+    text-transform:uppercase;line-height:1.2;font-size:clamp(1.75rem,3.2vw,2.5rem)}
+  .sec-head .sub{color:var(--muted);font-size:.875rem;line-height:1.4;margin-left:auto;
+    max-width:34ch;text-align:right}
   @media(max-width:640px){.sec-head .sub{margin-left:0;text-align:left}}
 
   /* ---------- intro (About, first section under the hero) ---------- */
@@ -369,15 +376,15 @@
   .intro .go-x{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.82rem;
     letter-spacing:.04em;color:var(--muted);transition:color .2s}
   .intro .go-x:hover,.intro .go-x:focus-visible{color:var(--ink)}
-  .intro p.say{font-size:clamp(1.12rem,1.7vw,1.5rem);line-height:1.55;color:var(--ink);
-    max-width:56ch;margin:0}
+  .intro p.say{font-size:clamp(1.05rem,1.35vw,1.25rem);line-height:1.45;color:var(--ink);
+    font-weight:400;max-width:58ch;margin:0}
   /* Four figures on one row down to tablet, two up on phones. auto-fit would
      reflow to three at some widths and break the rhythm against the copy. */
   .figs{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,40px);
     margin-top:clamp(40px,6vh,72px)}
-  .figs .fig-n{font-family:"Schibsted Grotesk",sans-serif;font-weight:700;
-    letter-spacing:-.02em;font-size:clamp(1.6rem,2.6vw,2.1rem);line-height:1.1}
-  .figs .fig-l{color:var(--muted);font-size:.92rem;margin-top:6px}
+  .figs .fig-n{font-family:"Schibsted Grotesk",sans-serif;font-weight:400;
+    letter-spacing:0;text-transform:uppercase;font-size:clamp(1.5rem,2.2vw,2rem);line-height:1.2}
+  .figs .fig-l{color:var(--muted);font-size:.875rem;line-height:1.4;margin-top:8px}
   @media(max-width:760px){.figs{grid-template-columns:repeat(2,1fr);row-gap:28px}}
   /* At phone width the link crowds the heading on the same flex line, so it
      takes a row of its own. */
@@ -496,7 +503,8 @@
   .about-grid{display:grid;grid-template-columns:1.25fr .95fr;gap:clamp(28px,5vw,56px)}
   .about-grid p{color:var(--graphite);margin-bottom:16px;font-size:1.02rem}
   .about-grid p b{color:var(--ink);font-weight:600}
-  .about h3{font-family:"Schibsted Grotesk",sans-serif;font-weight:600;font-size:1.15rem;margin:26px 0 10px}
+  .about h3{font-family:"Schibsted Grotesk",sans-serif;font-weight:600;font-size:1.5rem;
+    text-transform:uppercase;line-height:1.4;margin:26px 0 10px}
   .work-me{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:22px;margin-top:8px}
   .work-me .eyebrow{margin-bottom:10px;display:block}
   .career{display:flex;flex-direction:column}
@@ -523,7 +531,7 @@
      the only thing separating it — it has to be visible. */
   :root:not([data-theme="light"]) footer{border-top-color:var(--line-2)}
   .foot{max-width:var(--maxw);margin:0 auto;padding:clamp(52px,9vh,92px) clamp(24px,5vw,72px)}
-  .foot h2{font-family:"Schibsted Grotesk",sans-serif;font-weight:700;font-size:clamp(1.9rem,4.6vw,3.2rem);letter-spacing:-.02em;line-height:1.02}
+  .foot h2{font-family:"Schibsted Grotesk",sans-serif;font-weight:400;font-size:clamp(1.9rem,4vw,3rem);letter-spacing:0;text-transform:uppercase;line-height:1.2}
   .foot h2 .sig{color:#8FA6FF}
   .foot .st{font-family:"IBM Plex Mono",monospace;font-size:.76rem;letter-spacing:.06em;color:var(--panel-muted);margin-top:18px}
   .foot .st .g{color:var(--up)}
