@@ -29,8 +29,44 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
+<script>
+  /* Dark is the default. This runs before the stylesheet so a returning
+     visitor who chose light never sees a frame of the other theme. */
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "light") document.documentElement.setAttribute("data-theme", "light");
+    } catch (e) {}
+  })();
+</script>
+
 <style>
+  /* DARK IS THE DEFAULT. The tokens keep their names — --paper is the page
+     surface and --ink is the text on it, whichever way round that is — so
+     every rule below is written once and both themes fall out of these two
+     blocks. The hero band and the footer are literal dark colours either way;
+     they are the same in both themes by design. */
   :root{
+    --paper:#0D0E11;
+    --paper-2:#14161A;
+    --ink:#F2F2F2;
+    --graphite:#B7BAC1;
+    --muted:#8A8F99;
+    --line:#22252C;
+    --line-2:#2D313A;
+    --signal:#7B93FF;
+    --up:#35C08A;
+    --down:#EF5F6B;
+    --panel:#08090C;
+    --panel-line:#1E212A;
+    --panel-text:#E6E9EF;
+    --panel-muted:#8A93A6;
+    --nav-bg:rgba(13,14,17,.78);
+    --maxw:1600px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  /* The light theme is the site's original paper palette, opt-in. */
+  :root[data-theme="light"]{
     --paper:#F0EFE9;
     --paper-2:#E9E8E0;
     --ink:#14161B;
@@ -45,8 +81,7 @@
     --panel-line:#262C39;
     --panel-text:#E6E9EF;
     --panel-muted:#8A93A6;
-    --maxw:1600px;
-    --ease:cubic-bezier(.22,.61,.36,1);
+    --nav-bg:rgba(240,239,233,.82);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -69,7 +104,7 @@
     text-transform:uppercase;color:var(--muted)}
 
   /* ---------- nav ---------- */
-  nav{position:sticky;top:0;z-index:50;background:rgba(240,239,233,.82);
+  nav{position:sticky;top:0;z-index:50;background:var(--nav-bg);
     backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
   /* The bar is the one from the hero board: wordmark left, four links right
      separated by 4px dots. No pill — Contact is the fourth link. Its padding
@@ -93,6 +128,18 @@
   nav.on-dark .nav-links a[aria-current="true"]{color:#8FA6FF}
   .nav-dot{width:4px;height:4px;border-radius:50%;background:currentColor;flex:none;
     opacity:.55}
+  /* Theme switch. It carries the same type as the links and only swaps its
+     glyph, so it reads as one of them rather than as a control bolted on. */
+  .theme{display:inline-flex;align-items:center;justify-content:center;
+    width:34px;height:34px;border-radius:999px;border:1px solid transparent;
+    background:none;cursor:pointer;color:inherit;transition:background .2s,border-color .2s}
+  .theme:hover,.theme:focus-visible{border-color:currentColor}
+  .theme svg{width:17px;height:17px;display:block}
+  /* One button, two glyphs: the sun shows in dark (what you would switch to),
+     the moon in light. */
+  .theme .moon{display:none}
+  :root[data-theme="light"] .theme .sun{display:none}
+  :root[data-theme="light"] .theme .moon{display:block}
 
   /* The nav is paper-coloured, so over the dark Lab section and the footer it read
      as a light slab sitting on top of the page. .on-dark is toggled from the script
@@ -145,7 +192,8 @@
     /* The nav is sticky and measures 67px, and wraps to 97px once the links
        drop to their own row. Subtracting a single hardcoded figure put the
        scroll cue below the fold on phones; these two track the bar's real
-       height and must be re-measured if its type or padding changes. */
+       height and must be re-measured if its type, padding or contents change
+       — adding the theme switch moved the wrapped bar from 97 to 100. */
     --navh:67px;
     /* The band runs UNDER the sticky nav rather than starting below it. That is
        what lets the bar go transparent over the hero: with the hero starting at
@@ -245,7 +293,7 @@
   /* Below 860 the row starves: the cue and the headline fight for the same
      line. Stack them, and park the figure well above the copy. */
   /* Matches the nav's own wrap breakpoint. */
-  @media(max-width:720px){ header.hero{--navh:97px} }
+  @media(max-width:720px){ header.hero{--navh:100px} }
 
   /* 809, not 860: 810 is the reference's tablet width and keeps the row layout
      and the larger figure. At 860 the tablet was being given phone treatment. */
@@ -465,6 +513,9 @@
 
   /* ---------- footer ---------- */
   footer{background:var(--panel);color:var(--panel-text);border-top:1px solid var(--panel-line)}
+  /* In dark the footer sits a shade below the page rather than against it, so
+     the rule above the fold does the separating. */
+  :root:not([data-theme="light"]) footer{border-top-color:var(--line-2)}
   .foot{max-width:var(--maxw);margin:0 auto;padding:clamp(52px,9vh,92px) clamp(24px,5vw,72px)}
   .foot h2{font-family:"Schibsted Grotesk",sans-serif;font-weight:700;font-size:clamp(1.9rem,4.6vw,3.2rem);letter-spacing:-.02em;line-height:1.02}
   .foot h2 .sig{color:#8FA6FF}
@@ -520,6 +571,17 @@
       <a href="#about">About</a>
       <span class="nav-dot" aria-hidden="true"></span>
       <a href="#contact">Contact</a>
+      <button class="theme" type="button" id="theme" aria-label="Switch to light theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+             stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+        </svg>
+      </button>
     </div>
   </div>
 </nav>
@@ -640,6 +702,25 @@
     addEventListener("scroll", tick, { passive: true });
     addEventListener("resize", tick);
     tick();
+
+    // Theme switch. The choice is remembered; with nothing remembered the page
+    // is dark, whatever the OS asks for — that is the design, not a default.
+    var btn = document.getElementById("theme");
+    if (btn) {
+      var label = function () {
+        var light = document.documentElement.getAttribute("data-theme") === "light";
+        btn.setAttribute("aria-label", light ? "Switch to dark theme" : "Switch to light theme");
+      };
+      label();
+      btn.addEventListener("click", function () {
+        var light = document.documentElement.getAttribute("data-theme") === "light";
+        if (light) document.documentElement.removeAttribute("data-theme");
+        else document.documentElement.setAttribute("data-theme", "light");
+        try { localStorage.setItem("theme", light ? "dark" : "light"); } catch (e) {}
+        label();
+        tick();
+      });
+    }
   })();
 
   // scroll reveal
