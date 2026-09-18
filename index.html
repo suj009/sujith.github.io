@@ -44,24 +44,29 @@
   /* DARK IS THE DEFAULT. The tokens keep their names — --paper is the page
      surface and --ink is the text on it, whichever way round that is — so
      every rule below is written once and both themes fall out of these two
-     blocks. The hero band and the footer are literal dark colours either way;
-     they are the same in both themes by design. */
+     blocks.
+
+     These ARE the hero's colours: #0A0A0A for the surface, #F2F2F2 for text on
+     it, #B5B5B5 for the secondary voice. The band is settled, so the rest of
+     the page takes its palette rather than a neighbouring one — greys stay
+     neutral here, with no blue in them, or the sections read as a slightly
+     different black to the hero above them. */
   :root{
-    --paper:#0D0E11;
-    --paper-2:#14161A;
+    --paper:#0A0A0A;
+    --paper-2:#101010;
     --ink:#F2F2F2;
-    --graphite:#B7BAC1;
-    --muted:#8A8F99;
-    --line:#22252C;
-    --line-2:#2D313A;
+    --graphite:#B5B5B5;
+    --muted:#8A8A8A;
+    --line:#1C1C1C;
+    --line-2:#2A2A2A;
     --signal:#7B93FF;
     --up:#35C08A;
     --down:#EF5F6B;
-    --panel:#08090C;
-    --panel-line:#1E212A;
-    --panel-text:#E6E9EF;
-    --panel-muted:#8A93A6;
-    --nav-bg:rgba(13,14,17,.78);
+    --panel:#0A0A0A;
+    --panel-line:#242424;
+    --panel-text:#F2F2F2;
+    --panel-muted:#8A8A8A;
+    --nav-bg:rgba(10,10,10,.78);
     --maxw:1600px;
     --ease:cubic-bezier(.22,.61,.36,1);
   }
@@ -144,7 +149,8 @@
   /* The nav is paper-coloured, so over the dark Lab section and the footer it read
      as a light slab sitting on top of the page. .on-dark is toggled from the script
      whenever a dark section is behind the bar. */
-  nav.on-dark{background:rgba(12,14,19,.86);border-bottom-color:var(--panel-line)}
+  nav.on-dark{background:rgba(10,10,10,.86);border-bottom-color:var(--panel-line)}
+  :root[data-theme="light"] nav.on-dark{background:rgba(12,14,19,.86)}
   nav.on-dark .brand{color:var(--panel-text)}
   nav.on-dark .nav-links a{color:var(--panel-text)}
   nav.on-dark .nav-links a:hover,nav.on-dark .nav-links a:focus-visible{color:var(--panel-muted)}
@@ -513,8 +519,8 @@
 
   /* ---------- footer ---------- */
   footer{background:var(--panel);color:var(--panel-text);border-top:1px solid var(--panel-line)}
-  /* In dark the footer sits a shade below the page rather than against it, so
-     the rule above the fold does the separating. */
+  /* The footer is the same #0A0A0A as everything else in dark, so the rule is
+     the only thing separating it — it has to be visible. */
   :root:not([data-theme="light"]) footer{border-top-color:var(--line-2)}
   .foot{max-width:var(--maxw);margin:0 auto;padding:clamp(52px,9vh,92px) clamp(24px,5vw,72px)}
   .foot h2{font-family:"Schibsted Grotesk",sans-serif;font-weight:700;font-size:clamp(1.9rem,4.6vw,3.2rem);letter-spacing:-.02em;line-height:1.02}
