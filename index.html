@@ -60,7 +60,7 @@
      nav (.nav-in) and the hero use, so a section's left and right edges line up
      with the bar above it at every width. They were 1320/clamp(24,5vw,80), which
      put every section 100px further in than the hero at 1920 and 12px at 1440. */
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(40px,8.4vw,120px)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(24px,5vw,72px)}
   a{color:inherit;text-decoration:none}
   ::selection{background:var(--signal);color:#fff}
 
@@ -76,7 +76,7 @@
      tracks the hero's gutter rather than .wrap's, so the wordmark sits on the
      same vertical as the statement below it; that costs ~12px of alignment
      against the Work section, and the hero is what the bar sits over. */
-  .nav-in{max-width:1600px;margin:0 auto;padding:16px clamp(40px,8.4vw,120px);
+  .nav-in{max-width:1600px;margin:0 auto;padding:16px clamp(24px,5vw,72px);
     display:flex;align-items:center;justify-content:space-between;gap:16px}
   .brand{display:flex;align-items:center;gap:10px;
     font-family:"Schibsted Grotesk",sans-serif;font-weight:600;font-size:1.5rem;
@@ -150,7 +150,7 @@
     margin-top:calc(-1 * var(--navh));
     min-height:100vh;min-height:100svh;
     display:flex;flex-direction:column;justify-content:flex-end;
-    padding:var(--navh) clamp(40px,8.4vw,120px) clamp(32px,4.4vh,40px)}
+    padding:var(--navh) clamp(24px,5vw,72px) clamp(32px,4.4vh,40px)}
 
   /* One light source, high and to the right. An ambient radial establishes it;
      the shaft rakes across; the last layer drops the lower-left away so the
@@ -215,7 +215,7 @@
   @media(min-width:1600px){
     header.hero{max-width:none;margin-top:calc(-1 * var(--navh));border-radius:0;
       min-height:100vh;min-height:100svh;padding:var(--navh) 0 clamp(40px,5vh,64px)}
-    .hero-block{max-width:1600px;margin:0 auto;padding:0 120px;width:100%}
+    .hero-block{max-width:1600px;margin:0 auto;padding:0 72px;width:100%}
     /* the figure hangs off the right edge of that column, not the viewport */
     /* a 100vh band on a tall screen strands a 760px figure at the bottom, so it
        grows with viewport height — never below today's size at 1080. */
@@ -435,7 +435,7 @@
 
   /* ---------- footer ---------- */
   footer{background:var(--panel);color:var(--panel-text);border-top:1px solid var(--panel-line)}
-  .foot{max-width:var(--maxw);margin:0 auto;padding:clamp(52px,9vh,92px) clamp(40px,8.4vw,120px)}
+  .foot{max-width:var(--maxw);margin:0 auto;padding:clamp(52px,9vh,92px) clamp(24px,5vw,72px)}
   .foot h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:clamp(1.9rem,4.6vw,3.2rem);letter-spacing:-.02em;line-height:1.02}
   .foot h2 .sig{color:#8FA6FF}
   .foot .st{font-family:"IBM Plex Mono",monospace;font-size:.76rem;letter-spacing:.06em;color:var(--panel-muted);margin-top:18px}
