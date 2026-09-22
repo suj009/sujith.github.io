@@ -210,7 +210,7 @@
        the bar while the art and the gradient run the full height. */
     margin-top:calc(-1 * var(--navh));
     min-height:100vh;min-height:100svh;
-    display:flex;flex-direction:column;justify-content:flex-end;
+    display:flex;flex-direction:column;justify-content:center;
     padding:var(--navh) clamp(24px,5vw,72px) clamp(32px,4.4vh,40px)}
 
   /* No light source. The band is flat #0A0A0A and the only brightness in it is
@@ -234,15 +234,21 @@
      portrait is stretched vertically rather than scaled. It passes unnoticed at
      desktop, where 760x620 is close to the true 720x620, and is obvious by 390. */
   .hero .fig{position:absolute;right:0;bottom:22px;width:min(874px,60vw);height:auto;z-index:-1;
-    filter:contrast(1.02) brightness(1.24) saturate(.82);pointer-events:none}
+    filter:contrast(1.02) brightness(1.24) saturate(.82)
+      /* A soft shadow cast down and to the left, so the cutout sits in the band
+         rather than on it. drop-shadow follows the alpha of the PNG, so it
+         traces the head rather than a box. */
+      drop-shadow(-16px 22px 34px rgba(0,0,0,.9));pointer-events:none}
 
   /* Statement block: kicker over headline, cue on the far side, baseline-aligned. */
   .hero-block{display:flex;align-items:flex-end;justify-content:space-between;
     gap:24px;width:100%}
   .hero-copy{display:flex;flex-direction:column;align-items:flex-start;gap:11px}
+  /* The kicker is the band's secondary voice, not a second headline, so it sits
+     at #B5B5B5 with the lede rather than at the headline's #F2F2F2. */
   .hero .hero-kicker{font-family:"Schibsted Grotesk",sans-serif;font-weight:400;
     font-size:clamp(.625rem,1.1vw,1rem);line-height:1.4;letter-spacing:0;
-    text-transform:uppercase;color:#F2F2F2}
+    text-transform:uppercase;color:#B5B5B5}
   /* 400, not bold, at every size. The weight in this setting comes from scale
      and uppercase; bolding it to compensate for a smaller viewport is what
      makes this kind of hero look shouty on phones. */
@@ -290,6 +296,10 @@
      the row squeezes it to a ~275px column — six lines in a gutter — so the block
      stacks from tablet down and the lede takes the full measure. */
   @media(max-width:1100px){
+    /* Centring is a widescreen move. Here the figure is top-anchored, so a
+       centred block runs over his chin and leaves the lower third empty — the
+       copy goes back to the bottom edge. */
+    header.hero{justify-content:flex-end}
     .hero-block{flex-direction:column;align-items:flex-start;gap:18px}
     .hero .lede{max-width:none;margin-top:14px}
     .hero .fig{width:min(598px,71vw);right:-58px;bottom:auto;top:calc(var(--navh) + 34px)}
@@ -317,6 +327,16 @@
   .hero .lede{animation:heroIn .9s var(--ease) both .78s}
 
   /* Scroll cue — sits with the statement, not centred on the band. */
+  /* The statement is centred in the band, but the cue belongs to the band's
+     bottom edge, not to the copy — riding up with the block left it floating in
+     mid-air. It is taken out of the flow and parked on the lower right at the
+     hero's own gutter; below 1100 the block stacks and it goes back in flow. */
+  @media(min-width:1101px){
+    .cue{position:absolute;right:clamp(24px,5vw,72px);bottom:clamp(32px,4.4vh,40px);z-index:1}
+  }
+  @media(min-width:1600px){
+    .cue{right:calc(50% - 800px + 72px);bottom:clamp(40px,5vh,64px)}
+  }
   .cue{display:inline-flex;align-items:center;gap:10px;flex:none;
     font-family:"Schibsted Grotesk",sans-serif;font-weight:600;
     font-size:clamp(.625rem,1vw,.875rem);line-height:1.4;letter-spacing:0;
