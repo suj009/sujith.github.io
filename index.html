@@ -329,13 +329,15 @@
   /* Scroll cue — sits with the statement, not centred on the band. */
   /* The statement is centred in the band, but the cue belongs to the band's
      bottom edge, not to the copy — riding up with the block left it floating in
-     mid-air. It is taken out of the flow and parked on the lower right at the
-     hero's own gutter; below 1100 the block stacks and it goes back in flow. */
+     mid-air. It is taken out of the flow and parked at the bottom LEFT, on the
+     same vertical as the wordmark, the kicker and the headline, so the band has
+     one left edge rather than two anchors; below 1100 the block stacks and it
+     goes back in flow (already left-aligned there). */
   @media(min-width:1101px){
-    .cue{position:absolute;right:clamp(24px,5vw,72px);bottom:clamp(32px,4.4vh,40px);z-index:1}
+    .cue{position:absolute;left:clamp(24px,5vw,72px);bottom:clamp(32px,4.4vh,40px);z-index:1}
   }
   @media(min-width:1600px){
-    .cue{right:calc(50% - 800px + 72px);bottom:clamp(40px,5vh,64px)}
+    .cue{left:calc(50% - 800px + 72px);bottom:clamp(40px,5vh,64px)}
   }
   .cue{display:inline-flex;align-items:center;gap:10px;flex:none;
     font-family:"Schibsted Grotesk",sans-serif;font-weight:600;
