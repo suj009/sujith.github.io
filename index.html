@@ -164,7 +164,7 @@
      .on-dark state is a different job — those are flat panels the page scrolls
      past and the bar has to hold itself apart from them. Colours here are the
      hero's own, not the panel tokens. */
-  nav.on-hero{background:rgba(10,10,10,.42);border-bottom-color:transparent;
+  nav.on-hero{background:rgba(10,10,10,.22);border-bottom-color:transparent;
     backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
   nav.on-hero .brand{color:#F2F2F2}
   nav.on-hero .nav-links a{color:#F2F2F2}
@@ -226,13 +226,13 @@
      cycle, which is what gives the slow wave. Kept faint on purpose — the face
      stays the brightest thing in the hero. */
   .hero .art::before{content:"";position:absolute;left:-16%;top:-70%;
-    width:62%;height:230%;transform-origin:0 0;
-    filter:blur(44px);pointer-events:none;
+    width:78%;height:240%;transform-origin:0 0;
+    filter:blur(52px);pointer-events:none;
     background:linear-gradient(90deg,
       rgba(255,255,255,0) 0%,
-      rgba(255,255,255,.05) 28%,
-      rgba(255,255,255,.13) 50%,
-      rgba(255,255,255,.045) 74%,
+      rgba(255,255,255,.075) 26%,
+      rgba(255,255,255,.2) 50%,
+      rgba(255,255,255,.07) 76%,
       rgba(255,255,255,0) 100%);
     animation:beamDrift 17s cubic-bezier(.45,0,.55,1) infinite alternate}
   @keyframes beamDrift{
@@ -245,7 +245,7 @@
   }
   .hero .art::after{content:"";position:absolute;inset:0;
     background:
-      linear-gradient(180deg,rgba(10,10,10,.42) 0,rgba(10,10,10,0) 168px),
+      linear-gradient(180deg,rgba(10,10,10,.3) 0,rgba(10,10,10,0) 168px),
       linear-gradient(196deg,rgba(10,10,10,0) 40%,rgba(10,10,10,.44) 76%,rgba(10,10,10,.84) 100%)}
 
   /* The figure is anchored to the right edge and hangs below the fold, so at
