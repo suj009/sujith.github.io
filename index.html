@@ -158,14 +158,15 @@
   nav.on-dark .nav-links a:hover,nav.on-dark .nav-links a:focus-visible{color:var(--panel-muted)}
   nav.on-dark .nav-dot{color:var(--panel-text)}
 
-  /* Over the hero the bar is a wash of the band's own colour rather than a
-     slab: enough to hold the links against the portrait, not enough to cut a
-     line across the gradient, and no border so the band reads unbroken. The
+  /* Over the hero the bar has NO surface at all — no wash, no blur, no border.
+     The band is flat black and the light beam runs through the nav row, so any
+     tint would show as a lid across it. The bar's own background only appears
+     once the hero has scrolled past, which is the default state above. The
      .on-dark state is a different job — those are flat panels the page scrolls
      past and the bar has to hold itself apart from them. Colours here are the
      hero's own, not the panel tokens. */
-  nav.on-hero{background:rgba(10,10,10,.22);border-bottom-color:transparent;
-    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  nav.on-hero{background:transparent;border-bottom-color:transparent;
+    backdrop-filter:none;-webkit-backdrop-filter:none}
   nav.on-hero .brand{color:#F2F2F2}
   nav.on-hero .nav-links a{color:#F2F2F2}
   nav.on-hero .nav-links a:hover,nav.on-hero .nav-links a:focus-visible{color:#B5B5B5}
@@ -234,7 +235,7 @@
       rgba(255,255,255,.2) 50%,
       rgba(255,255,255,.07) 76%,
       rgba(255,255,255,0) 100%);
-    animation:beamDrift 17s cubic-bezier(.45,0,.55,1) infinite alternate}
+    animation:beamDrift 38s cubic-bezier(.45,0,.55,1) infinite alternate}
   @keyframes beamDrift{
     0%  {transform:rotate(19deg) translate3d(-3%,0,0) scaleX(.94);opacity:.85}
     50% {transform:rotate(25deg) translate3d(4%,0,0)  scaleX(1.06);opacity:1}
