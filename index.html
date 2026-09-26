@@ -226,53 +226,72 @@
       #666767 0%, #525353 14%, #3A3B3C 30%, #242525 48%,
       #141515 66%, #0C0C0C 82%, #090909 100%)}
 
-  /* The rays, also measured: de-rotating the reference and taking its
-     luminance profile puts the shafts at 26.5deg from vertical, spaced
-     105-195px apart perpendicular, and — the part I kept getting wrong — only
-     about +3/255 above their surroundings. They are very soft, very wide
-     bands, not stripes. These run at roughly twice the reference's modulation
-     so they read on a screen, which is still far below where they were. */
-  .hero .art::before{content:"";position:absolute;left:-60%;top:-60%;
-    width:220%;height:220%;transform-origin:50% 50%;
-    transform:rotate(26.5deg);
-    filter:blur(30px);pointer-events:none;
-    background:
-      repeating-linear-gradient(90deg,
-        rgba(255,255,255,0)    0px,
-        rgba(255,255,255,0)    24px,
-        rgba(255,255,255,.105) 62px,
-        rgba(255,255,255,.105) 104px,
-        rgba(255,255,255,0)    142px,
-        rgba(255,255,255,0)    168px,
-        rgba(255,255,255,.09)  196px,
-        rgba(255,255,255,.09)  244px,
-        rgba(255,255,255,0)    276px,
-        rgba(255,255,255,0)    312px,
-        rgba(255,255,255,.058) 336px,
-        rgba(255,255,255,.058) 372px,
-        rgba(255,255,255,0)    404px,
-        rgba(255,255,255,0)    436px,
-        rgba(255,255,255,.115) 468px,
-        rgba(255,255,255,.115) 512px,
-        rgba(255,255,255,0)    548px,
-        rgba(255,255,255,0)    576px);
-    /* anchored on the hero's top-left corner, at 26%/26% inside this
-       oversized box, and dying before it reaches the portrait */
-    -webkit-mask-image:radial-gradient(62% 58% at 25% 24%,
-      #000 0%, #000 30%, rgba(0,0,0,.55) 52%, rgba(0,0,0,.18) 70%, transparent 88%);
-    mask-image:radial-gradient(62% 58% at 25% 24%,
-      #000 0%, #000 30%, rgba(0,0,0,.55) 52%, rgba(0,0,0,.18) 70%, transparent 88%);
-    animation:rayDrift 26s ease-in-out infinite}
-  /* The wave: the bands travel along their own axis while the fan sways a
-     degree and a half either side of 26.5. */
-  @keyframes rayDrift{
-    0%  {background-position:0 0;     transform:rotate(25deg);opacity:.75}
-    30% {                             transform:rotate(28deg);opacity:1}
-    62% {                             transform:rotate(26deg);opacity:.85}
-    100%{background-position:576px 0; transform:rotate(25deg);opacity:.75}
+  /* The rays come from a point, not a direction: a bulb in the top-left
+     corner throwing shafts down across the copy and the face. Parallel
+     stripes could never do that — these are conic gradients whose centre sits
+     exactly on the hero's corner, so every wedge genuinely fans out from it
+     and widens as it travels.
+
+     Two fans are layered, one of four shafts and one of five, at different
+     angles and on cycles that do not divide into each other (23s and 37s).
+     They cross-fade independently, so the count on screen drifts — four, then
+     three as one fades, five, and briefly more where the two interleave —
+     without any of them ever popping in. Each fan also swings a couple of
+     degrees about the corner, which is the wave. */
+  .hero .art::before,
+  .hero .art::after{content:"";position:absolute;left:-10%;top:-12%;
+    width:150%;height:150%;pointer-events:none;
+    filter:blur(13px);transform-origin:-1% -4%;
+    -webkit-mask-image:radial-gradient(78% 82% at -1% -4%,
+      #000 0%, #000 30%, rgba(0,0,0,.62) 52%, rgba(0,0,0,.22) 72%, transparent 92%);
+    mask-image:radial-gradient(78% 82% at -1% -4%,
+      #000 0%, #000 30%, rgba(0,0,0,.62) 52%, rgba(0,0,0,.22) 72%, transparent 92%)}
+
+  /* four shafts */
+  .hero .art::before{
+    background:conic-gradient(from 0deg at -1% -4%,
+      transparent 0deg,      transparent 99deg,
+      rgba(255,255,255,.15)  105deg, rgba(255,255,255,.15) 112deg,
+      transparent            119deg, transparent 125deg,
+      rgba(255,255,255,.11)  130deg, rgba(255,255,255,.11)  135deg,
+      transparent            141deg, transparent 146deg,
+      rgba(255,255,255,.16)  151deg, rgba(255,255,255,.16)  158deg,
+      transparent            164deg, transparent 168deg,
+      rgba(255,255,255,.09)  172deg, rgba(255,255,255,.09)  176deg,
+      transparent            181deg, transparent 360deg);
+    animation:fanA 23s ease-in-out infinite}
+
+  /* five shafts, slotted between the first four */
+  .hero .art::after{
+    background:conic-gradient(from 0deg at -1% -4%,
+      transparent 0deg,      transparent 95deg,
+      rgba(255,255,255,.1)   100deg, rgba(255,255,255,.1)   103deg,
+      transparent            108deg, transparent 114deg,
+      rgba(255,255,255,.13)  118deg, rgba(255,255,255,.13)  124deg,
+      transparent            129deg, transparent 136deg,
+      rgba(255,255,255,.085) 140deg, rgba(255,255,255,.085) 144deg,
+      transparent            149deg, transparent 159deg,
+      rgba(255,255,255,.12)  163deg, rgba(255,255,255,.12)  169deg,
+      transparent            174deg, transparent 178deg,
+      rgba(255,255,255,.075) 182deg, rgba(255,255,255,.075) 186deg,
+      transparent            191deg, transparent 360deg);
+    animation:fanB 37s ease-in-out infinite}
+
+  @keyframes fanA{
+    0%  {opacity:.95;transform:rotate(-1.6deg)}
+    38% {opacity:.35;transform:rotate(1.2deg)}
+    66% {opacity:1;  transform:rotate(-.4deg)}
+    100%{opacity:.95;transform:rotate(-1.6deg)}
+  }
+  @keyframes fanB{
+    0%  {opacity:.3; transform:rotate(1.4deg)}
+    30% {opacity:.95;transform:rotate(-1deg)}
+    72% {opacity:.5; transform:rotate(.8deg)}
+    100%{opacity:.3; transform:rotate(1.4deg)}
   }
   @media(prefers-reduced-motion:reduce){
-    .hero .art::before{animation:none;transform:rotate(26.5deg)}
+    .hero .art::before{animation:none;opacity:.95}
+    .hero .art::after{animation:none;opacity:.55}
   }
 
   /* The figure is anchored to the right edge and hangs below the fold, so at
