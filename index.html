@@ -242,10 +242,10 @@
   .hero .art::after{content:"";position:absolute;left:-10%;top:-12%;
     width:150%;height:150%;pointer-events:none;
     filter:blur(11px);transform-origin:-1% -4%;
-    -webkit-mask-image:radial-gradient(78% 82% at -1% -4%,
-      #000 0%, #000 30%, rgba(0,0,0,.62) 52%, rgba(0,0,0,.22) 72%, transparent 92%);
-    mask-image:radial-gradient(78% 82% at -1% -4%,
-      #000 0%, #000 30%, rgba(0,0,0,.62) 52%, rgba(0,0,0,.22) 72%, transparent 92%)}
+    -webkit-mask-image:radial-gradient(38% 52% at -1% -4%,
+      #000 0%, #000 34%, rgba(0,0,0,.55) 58%, rgba(0,0,0,.18) 78%, transparent 94%);
+    mask-image:radial-gradient(38% 52% at -1% -4%,
+      #000 0%, #000 34%, rgba(0,0,0,.55) 58%, rgba(0,0,0,.18) 78%, transparent 94%)}
 
   /* four shafts */
   .hero .art::before{
@@ -259,7 +259,7 @@
       transparent            161deg, transparent 170deg,
       rgba(255,255,255,.12)  173deg, rgba(255,255,255,.12) 175deg,
       transparent            179deg, transparent 360deg);
-    animation:fanA 15s ease-in-out infinite}
+    animation:fanA 11s ease-in-out infinite}
 
   /* five shafts, slotted between the first four */
   .hero .art::after{
@@ -275,19 +275,23 @@
       transparent            171deg, transparent 181deg,
       rgba(255,255,255,.1)   183deg, rgba(255,255,255,.1)   185deg,
       transparent            188deg, transparent 360deg);
-    animation:fanB 24s ease-in-out infinite}
+    animation:fanB 17s ease-in-out infinite}
 
+  /* The sway is now wide enough to see: each fan swings about the bulb itself,
+     so the shafts sweep across the band like a searchlight rather than sitting
+     still and fading. The two swing opposite ways on cycles that do not divide
+     into each other, which keeps the pattern from repeating visibly. */
   @keyframes fanA{
-    0%  {opacity:.95;transform:rotate(-1.6deg)}
-    38% {opacity:.35;transform:rotate(1.2deg)}
-    66% {opacity:1;  transform:rotate(-.4deg)}
-    100%{opacity:.95;transform:rotate(-1.6deg)}
+    0%  {opacity:1;  transform:rotate(-4.5deg)}
+    34% {opacity:.45;transform:rotate(2.5deg)}
+    67% {opacity:1;  transform:rotate(-1deg)}
+    100%{opacity:1;  transform:rotate(-4.5deg)}
   }
   @keyframes fanB{
-    0%  {opacity:.3; transform:rotate(1.4deg)}
-    30% {opacity:.95;transform:rotate(-1deg)}
-    72% {opacity:.5; transform:rotate(.8deg)}
-    100%{opacity:.3; transform:rotate(1.4deg)}
+    0%  {opacity:.4; transform:rotate(3.5deg)}
+    30% {opacity:1;  transform:rotate(-3deg)}
+    70% {opacity:.55;transform:rotate(1.5deg)}
+    100%{opacity:.4; transform:rotate(3.5deg)}
   }
   @media(prefers-reduced-motion:reduce){
     .hero .art::before{animation:none;opacity:.95}
