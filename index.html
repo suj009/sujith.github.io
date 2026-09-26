@@ -240,29 +240,30 @@
       repeating-linear-gradient(90deg,
         rgba(255,255,255,0)    0px,
         rgba(255,255,255,0)    54px,
-        rgba(255,255,255,.075) 72px,
-        rgba(255,255,255,.075) 104px,
+        rgba(255,255,255,.11) 72px,
+        rgba(255,255,255,.11) 104px,
         rgba(255,255,255,0)    126px,
         rgba(255,255,255,0)    168px,
-        rgba(255,255,255,.17) 190px,
-        rgba(255,255,255,.17) 246px,
+        rgba(255,255,255,.26) 190px,
+        rgba(255,255,255,.26) 246px,
         rgba(255,255,255,0)    272px,
         rgba(255,255,255,0)    300px,
-        rgba(255,255,255,.12) 316px,
-        rgba(255,255,255,.12) 350px,
+        rgba(255,255,255,.18) 316px,
+        rgba(255,255,255,.18) 350px,
         rgba(255,255,255,0)    372px,
         rgba(255,255,255,0)    430px);
     /* the rays are strongest at the corner they come from and die out across
        the band, so the stripes never reach the right side as hard edges */
     -webkit-mask-image:radial-gradient(115% 95% at 4% -2%,
-      #000 0%, #000 22%, rgba(0,0,0,.6) 48%, rgba(0,0,0,.22) 68%, transparent 88%);
+      #000 0%, #000 34%, rgba(0,0,0,.55) 56%, rgba(0,0,0,.2) 72%, transparent 90%);
     mask-image:radial-gradient(115% 95% at 4% -2%,
-      #000 0%, #000 22%, rgba(0,0,0,.6) 48%, rgba(0,0,0,.22) 68%, transparent 88%);
-    animation:rayDrift 70s linear infinite}
+      #000 0%, #000 34%, rgba(0,0,0,.55) 56%, rgba(0,0,0,.2) 72%, transparent 90%);
+    animation:rayDrift 42s linear infinite}
   @keyframes rayDrift{
-    0%  {background-position:0 0;   opacity:.82}
-    50% {background-position:215px 0; opacity:1}
-    100%{background-position:430px 0; opacity:.82}
+    0%  {background-position:0 0;     opacity:.7}
+    35% {                             opacity:1}
+    70% {                             opacity:.78}
+    100%{background-position:430px 0; opacity:.7}
   }
   @media(prefers-reduced-motion:reduce){
     .hero .art::before{animation:none}
