@@ -214,12 +214,14 @@
     display:flex;flex-direction:column;justify-content:center;
     padding:var(--navh) clamp(24px,5vw,72px) clamp(32px,4.4vh,40px)}
 
-  /* No light source. The band is flat #0A0A0A and the only brightness in it is
-     the portrait's own — the radial and the raking shaft that used to sit here
-     were removed on request. The one gradient left is not a light: it darkens
-     the lower left so the type has a field to sit on, and the top edge so the
-     sticky bar holds. */
-  .hero .art{position:absolute;inset:0;z-index:-2;background:#0A0A0A}
+  /* The band is a charcoal room, not flat black: an ambient lift in the
+     top-left quadrant falling to near-black by the lower right, which is what
+     gives the rays something to travel through. The falloff is deliberately
+     asymmetric — the right side, where the portrait sits, stays at #0A0A0A so
+     his cutout has nothing to halo against and the face keeps its separation. */
+  .hero .art{position:absolute;inset:0;z-index:-2;
+    background:radial-gradient(135% 115% at 6% -12%,
+      #3B3E41 0%, #2C2F32 17%, #1C1E21 38%, #111214 62%, #0B0B0C 82%, #0A0A0A 100%)}
   /* GOD RAYS, not one beam. The reference is several parallel shafts of
      different widths fanning out of the top-left corner, with dark air between
      them — a single blurred band reads as a smudge instead. So this is a
@@ -233,21 +235,21 @@
   .hero .art::before{content:"";position:absolute;left:-30%;top:-85%;
     width:130%;height:250%;transform-origin:0 0;
     transform:rotate(21deg);
-    filter:blur(22px);pointer-events:none;opacity:1;
+    filter:blur(34px);pointer-events:none;opacity:1;
     background:
       repeating-linear-gradient(90deg,
         rgba(255,255,255,0)    0px,
         rgba(255,255,255,0)    54px,
-        rgba(255,255,255,.1) 78px,
-        rgba(255,255,255,.1) 96px,
+        rgba(255,255,255,.075) 72px,
+        rgba(255,255,255,.075) 104px,
         rgba(255,255,255,0)    126px,
         rgba(255,255,255,0)    168px,
-        rgba(255,255,255,.24) 196px,
-        rgba(255,255,255,.24) 232px,
+        rgba(255,255,255,.17) 190px,
+        rgba(255,255,255,.17) 246px,
         rgba(255,255,255,0)    272px,
         rgba(255,255,255,0)    300px,
-        rgba(255,255,255,.155) 322px,
-        rgba(255,255,255,.155) 338px,
+        rgba(255,255,255,.12) 316px,
+        rgba(255,255,255,.12) 350px,
         rgba(255,255,255,0)    372px,
         rgba(255,255,255,0)    430px);
     /* the rays are strongest at the corner they come from and die out across
