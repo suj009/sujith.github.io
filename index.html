@@ -214,67 +214,65 @@
     display:flex;flex-direction:column;justify-content:center;
     padding:var(--navh) clamp(24px,5vw,72px) clamp(32px,4.4vh,40px)}
 
-  /* The band is a charcoal room, not flat black: an ambient lift in the
-     top-left quadrant falling to near-black by the lower right, which is what
-     gives the rays something to travel through. The falloff is deliberately
-     asymmetric — the right side, where the portrait sits, stays at #0A0A0A so
-     his cutout has nothing to halo against and the face keeps its separation. */
+  /* Measured off the reference rather than eyeballed. Sampling its luminance:
+     the top-left corner sits around 100/255 (#646464), falls to ~47 by a third
+     of the way down or half way across, and reaches #090909 at the bottom and
+     far right. So the band is a bright corner glow with a fast, elliptical
+     falloff — not the slow dark wash I had, which is why the rays had nothing
+     to sit in. The right side still bottoms out at near-black, so the portrait
+     keeps its separation. */
   .hero .art{position:absolute;inset:0;z-index:-2;
-    background:radial-gradient(135% 115% at 6% -12%,
-      #3B3E41 0%, #2C2F32 17%, #1C1E21 38%, #111214 62%, #0B0B0C 82%, #0A0A0A 100%)}
-  /* GOD RAYS, not one beam. The reference is several parallel shafts of
-     different widths fanning out of the top-left corner, with dark air between
-     them — a single blurred band reads as a smudge instead. So this is a
-     repeating set of uneven stripes, rotated to rake down-right, blurred just
-     enough to soften their edges while keeping them separate, and masked so
-     they fade out as they travel away from the corner.
+    background:radial-gradient(58% 78% at 8% -4%,
+      #666767 0%, #525353 14%, #3A3B3C 30%, #242525 48%,
+      #141515 66%, #0C0C0C 82%, #090909 100%)}
 
-     The motion is the light shifting in the air, not the box moving: the
-     stripes slide along their own axis (background-position) while the whole
-     fan breathes very slightly. One pass takes 70s. */
-  /* The box is oversized and rotates about its own centre, so no matter what
-     angle the sway reaches its edges stay off-screen — rotating about the
-     corner dragged the element's own boundary into frame as a hard diagonal. */
+  /* The rays, also measured: de-rotating the reference and taking its
+     luminance profile puts the shafts at 26.5deg from vertical, spaced
+     105-195px apart perpendicular, and — the part I kept getting wrong — only
+     about +3/255 above their surroundings. They are very soft, very wide
+     bands, not stripes. These run at roughly twice the reference's modulation
+     so they read on a screen, which is still far below where they were. */
   .hero .art::before{content:"";position:absolute;left:-60%;top:-60%;
     width:220%;height:220%;transform-origin:50% 50%;
-    transform:rotate(38deg);
-    filter:blur(34px);pointer-events:none;opacity:1;
+    transform:rotate(26.5deg);
+    filter:blur(30px);pointer-events:none;
     background:
       repeating-linear-gradient(90deg,
         rgba(255,255,255,0)    0px,
-        rgba(255,255,255,0)    54px,
-        rgba(255,255,255,.11) 72px,
-        rgba(255,255,255,.11) 104px,
-        rgba(255,255,255,0)    126px,
+        rgba(255,255,255,0)    24px,
+        rgba(255,255,255,.105) 62px,
+        rgba(255,255,255,.105) 104px,
+        rgba(255,255,255,0)    142px,
         rgba(255,255,255,0)    168px,
-        rgba(255,255,255,.26) 190px,
-        rgba(255,255,255,.26) 246px,
-        rgba(255,255,255,0)    272px,
-        rgba(255,255,255,0)    300px,
-        rgba(255,255,255,.18) 316px,
-        rgba(255,255,255,.18) 350px,
-        rgba(255,255,255,0)    372px,
-        rgba(255,255,255,0)    430px);
-    /* the rays are strongest at the corner they come from and die out across
-       the band, so the stripes never reach the right side as hard edges */
-    /* anchored on the hero's top-left corner, which sits at 27%/27% inside
-       this oversized box */
-    -webkit-mask-image:radial-gradient(52% 50% at 26% 26%,
-      #000 0%, #000 24%, rgba(0,0,0,.5) 48%, rgba(0,0,0,.16) 68%, transparent 84%);
-    mask-image:radial-gradient(52% 50% at 26% 26%,
-      #000 0%, #000 24%, rgba(0,0,0,.5) 48%, rgba(0,0,0,.16) 68%, transparent 84%);
+        rgba(255,255,255,.09)  196px,
+        rgba(255,255,255,.09)  244px,
+        rgba(255,255,255,0)    276px,
+        rgba(255,255,255,0)    312px,
+        rgba(255,255,255,.058) 336px,
+        rgba(255,255,255,.058) 372px,
+        rgba(255,255,255,0)    404px,
+        rgba(255,255,255,0)    436px,
+        rgba(255,255,255,.115) 468px,
+        rgba(255,255,255,.115) 512px,
+        rgba(255,255,255,0)    548px,
+        rgba(255,255,255,0)    576px);
+    /* anchored on the hero's top-left corner, at 26%/26% inside this
+       oversized box, and dying before it reaches the portrait */
+    -webkit-mask-image:radial-gradient(62% 58% at 25% 24%,
+      #000 0%, #000 30%, rgba(0,0,0,.55) 52%, rgba(0,0,0,.18) 70%, transparent 88%);
+    mask-image:radial-gradient(62% 58% at 25% 24%,
+      #000 0%, #000 30%, rgba(0,0,0,.55) 52%, rgba(0,0,0,.18) 70%, transparent 88%);
     animation:rayDrift 26s ease-in-out infinite}
-  /* The wave: the stripes travel along their own axis while the whole fan
-     sways a couple of degrees either side of 38. The two together are what
-     makes the light look like it is moving through air rather than sliding. */
+  /* The wave: the bands travel along their own axis while the fan sways a
+     degree and a half either side of 26.5. */
   @keyframes rayDrift{
-    0%  {background-position:0 0;     transform:rotate(36.5deg);opacity:.72}
-    30% {                             transform:rotate(39.5deg);opacity:1}
-    62% {                             transform:rotate(37.5deg);opacity:.82}
-    100%{background-position:430px 0; transform:rotate(36.5deg);opacity:.72}
+    0%  {background-position:0 0;     transform:rotate(25deg);opacity:.75}
+    30% {                             transform:rotate(28deg);opacity:1}
+    62% {                             transform:rotate(26deg);opacity:.85}
+    100%{background-position:576px 0; transform:rotate(25deg);opacity:.75}
   }
   @media(prefers-reduced-motion:reduce){
-    .hero .art::before{animation:none;transform:rotate(38deg)}
+    .hero .art::before{animation:none;transform:rotate(26.5deg)}
   }
 
   /* The figure is anchored to the right edge and hangs below the fold, so at
@@ -368,7 +366,6 @@
   @media(max-width:809px){
     header.hero{padding-bottom:clamp(26px,4vh,36px)}
     .hero .fig{width:min(380px,96vw);right:-44px;bottom:auto;top:calc(var(--navh) + 24px)}
-    .hero .art::after{background:linear-gradient(196deg,rgba(10,10,10,0) 26%,rgba(10,10,10,.56) 62%,rgba(10,10,10,.9) 100%)}
   }
 
   /* Hero entrance. Above the fold, so it plays on load rather than on scroll. */
