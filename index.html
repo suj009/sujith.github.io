@@ -22,16 +22,56 @@
     with me" paragraph and the Options Scalper design specifics).
 -->
 
-<link rel="icon" href="img/logo-sk-monogram.svg" type="image/svg+xml" />
-<link rel="icon" href="img/favicon-32.png" type="image/png" sizes="32x32" />
-<link rel="icon" href="img/favicon-16.png" type="image/png" sizes="16x16" />
-<link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+<link rel="icon" href="img/logo-s.svg" type="image/svg+xml" />
+<link rel="icon" href="img/logo-s-512.png" type="image/png" sizes="512x512" />
+<link rel="apple-touch-icon" href="img/logo-s-512.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<script>
+  /* Dark is the default. This runs before the stylesheet so a returning
+     visitor who chose light never sees a frame of the other theme. */
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "light") document.documentElement.setAttribute("data-theme", "light");
+    } catch (e) {}
+  })();
+</script>
 
 <style>
+  /* DARK IS THE DEFAULT. The tokens keep their names — --paper is the page
+     surface and --ink is the text on it, whichever way round that is — so
+     every rule below is written once and both themes fall out of these two
+     blocks.
+
+     These ARE the hero's colours: #0A0A0A for the surface, #F2F2F2 for text on
+     it, #B5B5B5 for the secondary voice. The band is settled, so the rest of
+     the page takes its palette rather than a neighbouring one — greys stay
+     neutral here, with no blue in them, or the sections read as a slightly
+     different black to the hero above them. */
   :root{
+    --paper:#0A0A0A;
+    --paper-2:#101010;
+    --ink:#F2F2F2;
+    --graphite:#B5B5B5;
+    --muted:#8A8A8A;
+    --line:#1C1C1C;
+    --line-2:#2A2A2A;
+    --signal:#7B93FF;
+    --up:#35C08A;
+    --down:#EF5F6B;
+    --panel:#0A0A0A;
+    --panel-line:#242424;
+    --panel-text:#F2F2F2;
+    --panel-muted:#8A8A8A;
+    --nav-bg:rgba(10,10,10,.78);
+    --maxw:1600px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  /* The light theme is the site's original paper palette, opt-in. */
+  :root[data-theme="light"]{
     --paper:#F0EFE9;
     --paper-2:#E9E8E0;
     --ink:#14161B;
@@ -46,18 +86,23 @@
     --panel-line:#262C39;
     --panel-text:#E6E9EF;
     --panel-muted:#8A93A6;
-    --maxw:1080px;
-    --ease:cubic-bezier(.22,.61,.36,1);
+    --nav-bg:rgba(240,239,233,.82);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
     background:var(--paper);color:var(--ink);
-    font-family:"Hanken Grotesk",system-ui,sans-serif;line-height:1.6;
+    /* 16 / 1.4, the reference's reading setting. The 1.6 leading it had was
+       for a different typeface and left Schibsted looking airy. */
+    font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:16px;line-height:1.4;
     -webkit-font-smoothing:antialiased;overflow-x:hidden;
   }
   .mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,44px)}
+  /* The page has ONE column. --maxw and this gutter ramp are the same values the
+     nav (.nav-in) and the hero use, so a section's left and right edges line up
+     with the bar above it at every width. They were 1320/clamp(24,5vw,80), which
+     put every section 100px further in than the hero at 1920 and 12px at 1440. */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(24px,5vw,72px)}
   a{color:inherit;text-decoration:none}
   ::selection{background:var(--signal);color:#fff}
 
@@ -66,74 +111,306 @@
     text-transform:uppercase;color:var(--muted)}
 
   /* ---------- nav ---------- */
-  nav{position:sticky;top:0;z-index:50;background:rgba(240,239,233,.82);
+  nav{position:sticky;top:0;z-index:50;background:var(--nav-bg);
     backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-  .nav-in{max-width:var(--maxw);margin:0 auto;padding:13px clamp(20px,5vw,44px);
+  /* The bar is the one from the hero board: wordmark left, four links right
+     separated by 4px dots. No pill — Contact is the fourth link. Its padding
+     tracks the hero's gutter rather than .wrap's, so the wordmark sits on the
+     same vertical as the statement below it; that costs ~12px of alignment
+     against the Work section, and the hero is what the bar sits over. */
+  .nav-in{max-width:1600px;margin:0 auto;padding:16px clamp(24px,5vw,72px);
     display:flex;align-items:center;justify-content:space-between;gap:16px}
-  .brand{display:flex;align-items:center;gap:10px;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;letter-spacing:-.01em}
-  .brand .mk{width:22px;height:22px;border-radius:6px;background:url(img/favicon-32.png) center/cover no-repeat;flex:none}
-  .nav-links{display:flex;gap:4px}
-  .nav-links a{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.08em;
-    text-transform:uppercase;color:var(--muted);padding:7px 11px;border-radius:7px;transition:color .2s,background .2s}
-  .nav-links a:hover{color:var(--ink);background:var(--paper-2)}
-  .nav-cta{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.06em;
-    border:1px solid var(--ink);padding:7px 13px;border-radius:999px;transition:all .2s}
-  .nav-cta:hover{background:var(--ink);color:var(--paper)}
+  .brand{display:flex;align-items:center;gap:10px;
+    font-family:"Schibsted Grotesk",sans-serif;font-weight:600;font-size:1.5rem;
+    line-height:1.4;letter-spacing:0;text-transform:uppercase}
+  .nav-links{display:flex;align-items:center;gap:32px}
+  .nav-links a{font-family:"Schibsted Grotesk",sans-serif;font-weight:400;font-size:.875rem;
+    line-height:1.4;letter-spacing:0;text-transform:uppercase;color:var(--ink);
+    transition:color .2s}
+  .nav-links a:hover{color:var(--muted)}
+  /* Scroll spy: the link for the section under the bar is marked, so the bar
+     says where you are rather than only where you can go. */
+  .nav-links a[aria-current="true"]{color:var(--signal)}
+  nav.on-hero .nav-links a[aria-current="true"],
+  nav.on-dark .nav-links a[aria-current="true"]{color:#8FA6FF}
+  .nav-dot{width:4px;height:4px;border-radius:50%;background:currentColor;flex:none;
+    opacity:.55}
+  /* Theme switch. It carries the same type as the links and only swaps its
+     glyph, so it reads as one of them rather than as a control bolted on. */
+  .theme{display:inline-flex;align-items:center;justify-content:center;
+    width:34px;height:34px;border-radius:999px;border:1px solid transparent;
+    background:none;cursor:pointer;color:inherit;transition:background .2s,border-color .2s}
+  .theme:hover,.theme:focus-visible{border-color:currentColor}
+  .theme svg{width:17px;height:17px;display:block}
+  /* One button, two glyphs: the sun shows in dark (what you would switch to),
+     the moon in light. */
+  .theme .moon{display:none}
+  :root[data-theme="light"] .theme .sun{display:none}
+  :root[data-theme="light"] .theme .moon{display:block}
 
   /* The nav is paper-coloured, so over the dark Lab section and the footer it read
      as a light slab sitting on top of the page. .on-dark is toggled from the script
      whenever a dark section is behind the bar. */
-  nav.on-dark{background:rgba(12,14,19,.86);border-bottom-color:var(--panel-line)}
+  nav.on-dark{background:rgba(10,10,10,.86);border-bottom-color:var(--panel-line)}
+  :root[data-theme="light"] nav.on-dark{background:rgba(12,14,19,.86)}
   nav.on-dark .brand{color:var(--panel-text)}
-  nav.on-dark .nav-links a{color:var(--panel-muted)}
-  nav.on-dark .nav-links a:hover,nav.on-dark .nav-links a:focus-visible{color:var(--panel-text);background:rgba(255,255,255,.07)}
-  nav.on-dark .nav-cta{border-color:var(--panel-text);color:var(--panel-text)}
-  nav.on-dark .nav-cta:hover{background:var(--panel-text);color:var(--panel)}
+  nav.on-dark .nav-links a{color:var(--panel-text)}
+  nav.on-dark .nav-links a:hover,nav.on-dark .nav-links a:focus-visible{color:var(--panel-muted)}
+  nav.on-dark .nav-dot{color:var(--panel-text)}
+
+  /* Over the hero the bar has NO surface at all — no wash, no blur, no border.
+     The band is flat black and the light beam runs through the nav row, so any
+     tint would show as a lid across it. The bar's own background only appears
+     once the hero has scrolled past, which is the default state above. The
+     .on-dark state is a different job — those are flat panels the page scrolls
+     past and the bar has to hold itself apart from them. Colours here are the
+     hero's own, not the panel tokens. */
+  nav.on-hero{background:transparent;border-bottom-color:transparent;
+    backdrop-filter:none;-webkit-backdrop-filter:none}
+  nav.on-hero .brand{color:#F2F2F2}
+  nav.on-hero .nav-links a{color:#F2F2F2}
+  nav.on-hero .nav-links a:hover,nav.on-hero .nav-links a:focus-visible{color:#B5B5B5}
+  nav.on-hero .nav-dot{color:#F2F2F2}
 
   /* Below 720px the links used to be display:none with nothing replacing them,
      which left a 10,000px page with no way to jump. They now wrap to their own
      scrollable row instead of disappearing. */
   @media(max-width:720px){
-    .nav-in{flex-wrap:wrap;row-gap:2px}
+    .nav-in{flex-wrap:wrap;row-gap:6px;padding-top:12px;padding-bottom:12px}
+    .brand{font-size:1.15rem}
+    .nav-dot{display:none}
     .brand{flex:1 1 auto;min-width:0}
-    .nav-cta{flex:0 0 auto}
-    .nav-links{order:3;flex:1 0 100%;gap:2px;overflow-x:auto;scrollbar-width:none;
+    .nav-links{order:3;flex:1 0 100%;gap:20px;overflow-x:auto;scrollbar-width:none;
       -webkit-overflow-scrolling:touch;padding-bottom:7px;margin-top:2px}
     .nav-links::-webkit-scrollbar{display:none}
-    .nav-links a{white-space:nowrap;padding:9px 10px}
+    .nav-links a{white-space:nowrap;padding:6px 0}
   }
   /* Touch ergonomics keyed to the input device rather than the viewport, so a
      tablet above the 720px breakpoint gets proper targets too. A mouse keeps
      the tighter proportions. */
   @media(pointer:coarse){
-    .nav-links a,.nav-cta,.brand{display:inline-flex;align-items:center;min-height:44px}
+    .nav-links a,.brand{display:inline-flex;align-items:center;min-height:44px}
   }
 
   /* ---------- hero ---------- */
-  header.hero{padding:clamp(56px,11vh,120px) 0 clamp(40px,7vh,72px)}
-  .hero-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:clamp(28px,5vw,64px);align-items:end}
-  /* Cap is 4.8rem, not 5.4: the size tracks the viewport but the column is a
-     fraction of .wrap's max-width, so past ~1160px the type outgrew its column
-     and each .b span broke in two — four ragged lines instead of the two the
-     block spans exist to enforce. 4.8rem fits with the webfont and the
-     fallback, so it holds while Bricolage is still loading. */
-  .hero h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;letter-spacing:-.03em;
-    line-height:.96;font-size:clamp(2.6rem,6.6vw,4.8rem)}
-  .hero h1 .b{display:block}
-  .hero h1 .sig{color:var(--signal)}
-  .hero .lede{margin-top:26px;max-width:46ch;font-size:clamp(1.05rem,1.9vw,1.28rem);color:var(--graphite)}
-  .hero .lede b{color:var(--ink);font-weight:600}
-  /* Below ~860px the two hero columns starve each other — the h1 loses its
-     measure and the spec panel wraps every value. Stack them instead. */
-  @media(max-width:860px){
-    .hero-grid{grid-template-columns:1fr;align-items:start;gap:34px}
-    .hero .lede{max-width:52ch}
-    /* The desktop clamp bottoms out at 2.6rem, which is wider than a 320px
-       phone can hold — track the viewport instead. 3.6rem at 860px hands off
-       almost exactly where the desktop curve leaves it. */
-    header.hero{padding-top:clamp(34px,6vh,64px)}
-    .hero h1{font-size:clamp(2.05rem,9.5vw,3.6rem)}
+  /* Full-bleed editorial band. The hero is its own dark field: the page's paper
+     tokens do not apply inside it, so the colours below are literal rather than
+     var()-driven — they are the band's palette, not the site's. */
+  header.hero{position:relative;isolation:isolate;overflow:hidden;
+    background:#0A0A0A;color:#F2F2F2;
+    /* The nav is sticky and measures 67px, and wraps to 97px once the links
+       drop to their own row. Subtracting a single hardcoded figure put the
+       scroll cue below the fold on phones; these two track the bar's real
+       height and must be re-measured if its type, padding or contents change
+       — adding the theme switch moved the wrapped bar from 97 to 100. */
+    --navh:67px;
+    /* The band runs UNDER the sticky nav rather than starting below it. That is
+       what lets the bar go transparent over the hero: with the hero starting at
+       the nav's lower edge, a transparent bar reveals the page's paper, not the
+       band. Negative margin slides it up; padding-top keeps the content clear of
+       the bar while the art and the gradient run the full height. */
+    margin-top:calc(-1 * var(--navh));
+    min-height:100vh;min-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:var(--navh) clamp(24px,5vw,72px) clamp(32px,4.4vh,40px)}
+
+  /* Measured off the reference rather than eyeballed. Sampling its luminance:
+     the top-left corner sits around 100/255 (#646464), falls to ~47 by a third
+     of the way down or half way across, and reaches #090909 at the bottom and
+     far right. So the band is a bright corner glow with a fast, elliptical
+     falloff — not the slow dark wash I had, which is why the rays had nothing
+     to sit in. The right side still bottoms out at near-black, so the portrait
+     keeps its separation. */
+  .hero .art{position:absolute;inset:0;z-index:-2;
+    background:radial-gradient(58% 78% at 8% -4%,
+      #666767 0%, #525353 14%, #3A3B3C 30%, #242525 48%,
+      #141515 66%, #0C0C0C 82%, #090909 100%)}
+
+  /* The rays come from a point, not a direction: a bulb in the top-left
+     corner throwing shafts down across the copy and the face. Parallel
+     stripes could never do that — these are conic gradients whose centre sits
+     exactly on the hero's corner, so every wedge genuinely fans out from it
+     and widens as it travels.
+
+     Two fans are layered, one of four shafts and one of five, at different
+     angles and on cycles that do not divide into each other (23s and 37s).
+     They cross-fade independently, so the count on screen drifts — four, then
+     three as one fades, five, and briefly more where the two interleave —
+     without any of them ever popping in. Each fan also swings a couple of
+     degrees about the corner, which is the wave. */
+  .hero .art::before,
+  .hero .art::after{content:"";position:absolute;left:-10%;top:-12%;
+    width:150%;height:150%;pointer-events:none;
+    filter:blur(11px);transform-origin:-1% -4%;
+    -webkit-mask-image:radial-gradient(54% 72% at -1% -4%,
+      #000 0%, #000 36%, rgba(0,0,0,.46) 62%, rgba(0,0,0,.14) 82%, transparent 96%);
+    mask-image:radial-gradient(54% 72% at -1% -4%,
+      #000 0%, #000 36%, rgba(0,0,0,.46) 62%, rgba(0,0,0,.14) 82%, transparent 96%)}
+
+  /* four shafts */
+  .hero .art::before{
+    background:conic-gradient(from 0deg at -1% -4%,
+      transparent 0deg,      transparent 104deg,
+      rgba(255,255,255,.25)  107deg, rgba(255,255,255,.25)  111deg,
+      transparent            114deg, transparent 119deg,
+      rgba(255,255,255,.19)  121deg, rgba(255,255,255,.19)  124deg,
+      transparent            127deg, transparent 133deg,
+      rgba(255,255,255,.265) 135deg, rgba(255,255,255,.265) 139deg,
+      transparent            142deg, transparent 148deg,
+      rgba(255,255,255,.16)  150deg, rgba(255,255,255,.16)  153deg,
+      transparent            156deg, transparent 360deg);
+    transform:rotate(var(--fan-a,-2deg));opacity:var(--fan-a-o,1);
+    transition:transform var(--fan-a-t,3.6s) cubic-bezier(.4,0,.5,1),
+               opacity   var(--fan-a-t,3.6s) ease-in-out}
+
+  /* five shafts, slotted into the gaps of the first four */
+  .hero .art::after{
+    background:conic-gradient(from 0deg at -1% -4%,
+      transparent 0deg,      transparent 101deg,
+      rgba(255,255,255,.17)  103deg, rgba(255,255,255,.17)  105deg,
+      transparent            108deg, transparent 114deg,
+      rgba(255,255,255,.215) 116deg, rgba(255,255,255,.215) 119deg,
+      transparent            122deg, transparent 128deg,
+      rgba(255,255,255,.145) 130deg, rgba(255,255,255,.145) 132deg,
+      transparent            135deg, transparent 142deg,
+      rgba(255,255,255,.2)   144deg, rgba(255,255,255,.2)   147deg,
+      transparent            150deg, transparent 156deg,
+      rgba(255,255,255,.13)  158deg, rgba(255,255,255,.13)  160deg,
+      transparent            163deg, transparent 360deg);
+    transform:rotate(var(--fan-b,2deg));opacity:var(--fan-b-o,.6);
+    transition:transform var(--fan-b-t,4.2s) cubic-bezier(.4,0,.5,1),
+               opacity   var(--fan-b-t,4.2s) ease-in-out}
+
+  /* No keyframes: a loop of any length eventually reads as a loop. The two
+     fans are driven by custom properties that a few lines of script re-roll at
+     random intervals, so the angle, the brightness and the timing of every
+     swing are all different. The transitions above do the easing. */
+  @media(prefers-reduced-motion:reduce){
+    .hero .art::before,.hero .art::after{transition:none}
   }
+
+  /* The figure is anchored to the right edge and hangs below the fold, so at
+     every width the face stays in frame while the body leaves it. Anchoring
+     beats scaling here: a uniform scale-down puts his shoulders behind the
+     headline on narrow screens. */
+  /* height:auto is load-bearing. The width/height attributes on the img become
+     presentational hints, and aspect-ratio only applies while height is auto —
+     without this the element takes a flat 620px height at every width and the
+     portrait is stretched vertically rather than scaled. It passes unnoticed at
+     desktop, where 760x620 is close to the true 720x620, and is obvious by 390. */
+  .hero .fig{position:absolute;right:0;bottom:22px;width:min(874px,60vw);height:auto;z-index:-1;
+    filter:contrast(1.02) brightness(1.24) saturate(.82)
+      /* A soft shadow cast down and to the left, so the cutout sits in the band
+         rather than on it. drop-shadow follows the alpha of the PNG, so it
+         traces the head rather than a box. */
+      drop-shadow(-16px 22px 34px rgba(0,0,0,.9));pointer-events:none}
+
+  /* Statement block: kicker over headline, cue on the far side, baseline-aligned. */
+  .hero-block{display:flex;align-items:flex-end;justify-content:space-between;
+    gap:24px;width:100%}
+  .hero-copy{display:flex;flex-direction:column;align-items:flex-start;gap:11px}
+  /* The kicker is the band's secondary voice, not a second headline, so it sits
+     at #B5B5B5 with the lede rather than at the headline's #F2F2F2. */
+  .hero .hero-kicker{font-family:"Schibsted Grotesk",sans-serif;font-weight:400;
+    font-size:clamp(.625rem,1.1vw,1rem);line-height:1.4;letter-spacing:0;
+    text-transform:uppercase;color:#B5B5B5}
+  /* 400, not bold, at every size. The weight in this setting comes from scale
+     and uppercase; bolding it to compensate for a smaller viewport is what
+     makes this kind of hero look shouty on phones. */
+  .hero h1{font-family:"Schibsted Grotesk",sans-serif;font-weight:400;
+    font-size:clamp(1.625rem,3.9vw,3.25rem);line-height:1.2;letter-spacing:0;
+    text-transform:uppercase;color:#F2F2F2;margin:0}
+
+  /* The statement says what he does; the lede is the only place on the page
+     that says what happened because he was there. Scope precedes the
+     still-ships claim deliberately — reversed, it reads as under-delegating
+     to enterprise readers. Measure is capped so it never runs under the
+     portrait. */
+  .hero .lede{margin:18px 0 0;max-width:min(60ch,52%);
+    font-family:"Schibsted Grotesk",sans-serif;font-weight:400;
+    font-size:clamp(.92rem,1.05vw,1.05rem);line-height:1.6;
+    letter-spacing:0;text-transform:none;color:#B5B5B5}
+  .hero .lede b{color:#F2F2F2;font-weight:400}
+
+  /* Widescreen: the hero stops being the page and becomes a band with gutters,
+     and it stops short of the fold so the next section announces itself. */
+  /* Widescreen keeps the brief's two rules — gutters left and right, and a band
+     that stops short of the fold — but takes them from the CONTENT COLUMN rather
+     than from an inset panel. Inset meant paper showed around the band, so the
+     page opened light and the bar went paper with it. The band is full-bleed
+     dark now and the copy is held to a centred 1600 column, which is the same
+     column the nav uses, so the gutters match on both sides and the page starts
+     dark all the way to the viewport edge. */
+  @media(min-width:1600px){
+    header.hero{max-width:none;margin-top:calc(-1 * var(--navh));border-radius:0;
+      min-height:100vh;min-height:100svh;padding:var(--navh) 0 clamp(40px,5vh,64px)}
+    .hero-block{max-width:1600px;margin:0 auto;padding:0 72px;width:100%}
+    /* the figure hangs off the right edge of that column, not the viewport */
+    /* a 100vh band on a tall screen strands a 760px figure at the bottom, so it
+       grows with viewport height — never below today's size at 1080. */
+    .hero .fig{right:calc(50% - 800px);width:min(clamp(874px,69vh,1081px),60vw);
+      bottom:clamp(22px,3.4vh,72px)}
+    .hero h1{font-size:3.625rem}
+  }
+
+  /* Below 860 the row starves: the cue and the headline fight for the same
+     line. Stack them and let the figure sit higher. */
+  /* Portrait-ish and narrow desktops: the band gets taller than it is wide, so
+     the figure is lifted clear of the statement rather than shrunk into it. */
+  /* The statement and the cue stop sharing a line here. With a lede in the block
+     the row squeezes it to a ~275px column — six lines in a gutter — so the block
+     stacks from tablet down and the lede takes the full measure. */
+  @media(max-width:1100px){
+    /* Centring is a widescreen move. Here the figure is top-anchored, so a
+       centred block runs over his chin and leaves the lower third empty — the
+       copy goes back to the bottom edge. */
+    header.hero{justify-content:flex-end}
+    .hero-block{flex-direction:column;align-items:flex-start;gap:18px}
+    .hero .lede{max-width:none;margin-top:14px}
+    .hero .fig{width:min(598px,71vw);right:-58px;bottom:auto;top:calc(var(--navh) + 34px)}
+  }
+
+  /* Below 860 the row starves: the cue and the headline fight for the same
+     line. Stack them, and park the figure well above the copy. */
+  /* Matches the nav's own wrap breakpoint. */
+  @media(max-width:720px){ header.hero{--navh:100px} }
+
+  /* 809, not 860: 810 is the reference's tablet width and keeps the row layout
+     and the larger figure. At 860 the tablet was being given phone treatment. */
+  @media(max-width:809px){
+    header.hero{padding-bottom:clamp(26px,4vh,36px)}
+    .hero .fig{width:min(380px,96vw);right:-44px;bottom:auto;top:calc(var(--navh) + 24px)}
+  }
+
+  /* Hero entrance. Above the fold, so it plays on load rather than on scroll. */
+  @keyframes heroIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes artIn{from{opacity:0;transform:scale(1.05)}to{opacity:1;transform:none}}
+  .hero .fig{animation:artIn 6s var(--ease) both}
+  .hero .hero-kicker{animation:heroIn .9s var(--ease) both .5s}
+  .hero h1{animation:heroIn .9s var(--ease) both .64s}
+  .hero .lede{animation:heroIn .9s var(--ease) both .78s}
+
+  /* Scroll cue — sits with the statement, not centred on the band. */
+  /* The statement is centred in the band, but the cue belongs to the band's
+     bottom edge, not to the copy — riding up with the block left it floating in
+     mid-air. It is taken out of the flow and parked at the bottom LEFT, on the
+     same vertical as the wordmark, the kicker and the headline, so the band has
+     one left edge rather than two anchors; below 1100 the block stacks and it
+     goes back in flow (already left-aligned there). */
+  @media(min-width:1101px){
+    .cue{position:absolute;left:clamp(24px,5vw,72px);bottom:clamp(32px,4.4vh,40px);z-index:1}
+  }
+  @media(min-width:1600px){
+    .cue{left:calc(50% - 800px + 72px);bottom:clamp(40px,5vh,64px)}
+  }
+  .cue{display:inline-flex;align-items:center;gap:10px;flex:none;
+    font-family:"Schibsted Grotesk",sans-serif;font-weight:600;
+    font-size:clamp(.625rem,1vw,.875rem);line-height:1.4;letter-spacing:0;
+    text-transform:uppercase;color:#F2F2F2;transition:color .2s;
+    animation:heroIn .9s var(--ease) both .92s}
+  .cue:hover,.cue:focus-visible{color:#B5B5B5}
+  .cue svg{animation:cueBounce 2.2s ease-in-out infinite}
+  @keyframes cueBounce{50%{transform:translateY(4px)}}
 
   /* spec readout — the signature (echoes the Lab instrument panel) */
   .spec{background:var(--panel);border-radius:14px;padding:20px 22px;color:var(--panel-text);
@@ -141,7 +418,7 @@
   .spec .sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;
     padding-bottom:12px;border-bottom:1px solid var(--panel-line)}
   .spec .sh .t{letter-spacing:.16em;font-size:.64rem;text-transform:uppercase;color:var(--panel-muted)}
-  .spec .sh .live{display:inline-flex;align-items:center;gap:6px;font-size:.6rem;letter-spacing:.14em;color:var(--panel-muted)}
+  .spec .sh .live{display:inline-flex;align-items:center;gap:6px;font-size:.6rem;letter-spacing:.14em;color:var(--up)}
   .spec .sh .live .pip{width:6px;height:6px;border-radius:50%;background:var(--up);box-shadow:0 0 8px var(--up);animation:pip 2s ease-in-out infinite}
   @keyframes pip{50%{opacity:.3}}
   .spec dl{display:grid;grid-template-columns:auto 1fr;gap:9px 16px}
@@ -161,44 +438,114 @@
   section{padding:clamp(48px,8vh,90px) 0;border-top:1px solid var(--line)}
   .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:36px;flex-wrap:wrap}
   .sec-head .n{font-family:"IBM Plex Mono",monospace;color:var(--signal);font-size:.8rem}
-  .sec-head h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;letter-spacing:-.02em;
-    font-size:clamp(1.7rem,3.6vw,2.6rem)}
-  .sec-head .sub{color:var(--muted);font-size:.95rem;margin-left:auto;max-width:34ch;text-align:right}
+  /* Measured off the reference: display sizes run at WEIGHT 400, uppercase,
+     letter-spacing 0 and a 1.2 leading — the weight comes from scale, not from
+     the stroke. The 700/-.02em setting here was a habit carried over from the
+     old display face and is what made the page look unlike its own hero. */
+  .sec-head h2{font-family:"Schibsted Grotesk",sans-serif;font-weight:400;letter-spacing:0;
+    text-transform:uppercase;line-height:1.2;font-size:clamp(1.75rem,3.2vw,2.5rem)}
+  .sec-head .sub{color:var(--muted);font-size:.875rem;line-height:1.4;margin-left:auto;
+    max-width:34ch;text-align:right}
   @media(max-width:640px){.sec-head .sub{margin-left:0;text-align:left}}
 
-  /* ---------- work ---------- */
-  .case{border:1px solid var(--line-2);border-radius:16px;overflow:hidden;margin-bottom:20px;
-    background:var(--paper);transition:border-color .25s}
-  .case:hover{border-color:var(--signal)}
-  .case-top{padding:26px clamp(20px,3vw,30px) 8px}
-  .case .tag{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--signal)}
-  .case h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:clamp(1.35rem,2.6vw,1.9rem);letter-spacing:-.015em;margin:10px 0 6px;max-width:22ch}
-  .case .role{color:var(--muted);font-size:.9rem}
-  .case-body{padding:14px clamp(20px,3vw,30px) 26px;display:grid;grid-template-columns:1.5fr 1fr;gap:28px}
-  .case-body p{color:var(--graphite);font-size:.97rem;margin-bottom:14px}
-  .case-body p:last-child{margin-bottom:0}
-  .case-body .k strong{color:var(--ink)}
-  .metrics{display:flex;flex-direction:column;gap:14px;border-left:1px solid var(--line);padding-left:22px}
-  .metric .v{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.55rem;line-height:1;letter-spacing:-.01em}
-  .metric .v.up{color:var(--up)} .metric .v.sig{color:var(--signal)}
-  .metric .l{font-size:.8rem;color:var(--muted);margin-top:4px}
-  /* Was 200x19 — the primary route into each case study, and too small to hit
-     comfortably on a phone. Padding takes it past the 44px guideline without
-     changing how it looks. */
-  .case-go{display:inline-flex;gap:8px;align-items:center;margin-top:10px;
-    padding:13px 2px;min-height:44px;
-    font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.05em;color:var(--signal)}
-  .case-go::after{content:"→";transition:transform .25s var(--ease)}
-  .case:hover .case-go::after{transform:translateX(4px)}
-  @media(max-width:640px){.case-body{grid-template-columns:1fr}.metrics{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:18px}}
+  /* ---------- intro (About, first section under the hero) ---------- */
+  /* The link sits on the head's right, in the mono voice the spec readout
+     uses, so it reads as an aside rather than a second call to action. */
+  /* Linked as index.html#about from all seven sub-pages, so the head needs to
+     clear the sticky bar on arrival. The other sections have the same issue
+     and are left alone here. */
+  .intro{scroll-margin-top:90px}
+  .intro .sec-head{margin-bottom:28px}
+  .intro .go-x{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.82rem;
+    letter-spacing:.04em;color:var(--muted);transition:color .2s}
+  .intro .go-x:hover,.intro .go-x:focus-visible{color:var(--ink)}
+  .intro p.say{font-size:clamp(1.05rem,1.35vw,1.25rem);line-height:1.45;color:var(--ink);
+    font-weight:400;max-width:58ch;margin:0}
+  /* Four figures on one row down to tablet, two up on phones. auto-fit would
+     reflow to three at some widths and break the rhythm against the copy. */
+  .figs{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,40px);
+    margin-top:clamp(40px,6vh,72px)}
+  .figs .fig-n{font-family:"Schibsted Grotesk",sans-serif;font-weight:400;
+    letter-spacing:0;text-transform:uppercase;font-size:clamp(1.5rem,2.2vw,2rem);line-height:1.2}
+  .figs .fig-l{color:var(--muted);font-size:.875rem;line-height:1.4;margin-top:8px}
+  @media(max-width:760px){.figs{grid-template-columns:repeat(2,1fr);row-gap:28px}}
+  /* At phone width the link crowds the heading on the same flex line, so it
+     takes a row of its own. */
+  @media(max-width:640px){.intro .go-x{margin-left:0;flex:1 0 100%;margin-top:4px}}
 
-  .sampler{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
-  .samp{border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--paper)}
-  .samp .v{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.15rem;letter-spacing:-.01em}
-  .samp .t{font-weight:600;font-size:.9rem;margin:8px 0 3px}
-  .samp .d{font-size:.82rem;color:var(--muted);line-height:1.4}
-  @media(max-width:860px){.sampler{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:460px){.sampler{grid-template-columns:1fr}}
+  /* ---------- work ----------
+     Statement → toggle → two views. The toggle drives the whole section:
+     headline, both side figures and the body all switch together. Manager view
+     is the delivery inventory; IC view is the hands-on sequence. */
+  .wk-state{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:clamp(24px,4vw,44px);
+    align-items:end;padding-bottom:30px;border-bottom:2px solid var(--ink)}
+  .wk-state .k{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--muted);transition:color .3s var(--ease)}
+  .wk-state.ic .k{color:var(--up)}
+  .wk-big{font-family:"Schibsted Grotesk",sans-serif;font-weight:800;
+    font-size:clamp(2.1rem,6.2vw,5.6rem);line-height:.88;letter-spacing:-.045em;margin-top:16px}
+  .wk-big .l2{color:var(--signal);transition:color .3s var(--ease)}
+  .wk-state.ic .wk-big .l2{color:var(--up)}
+  .wk-figs{display:flex;flex-direction:column;gap:22px;padding-bottom:8px}
+  .wk-figs .v{font-family:"Schibsted Grotesk",sans-serif;font-weight:700;font-size:2.3rem;
+    line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .wk-figs .l{font-size:.82rem;color:var(--muted);margin-top:6px}
+  @media(max-width:760px){.wk-state{grid-template-columns:1fr;gap:26px}}
+
+  .wk-bar{display:flex;align-items:center;gap:16px;padding:30px 0 26px;flex-wrap:wrap}
+  .wk-seg{display:inline-flex;padding:3px;gap:3px;border:1px solid var(--line-2);
+    border-radius:999px;background:var(--paper-2)}
+  .wk-seg button{font:inherit;border:0;cursor:pointer;padding:10px 20px;border-radius:999px;
+    min-height:42px;font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.1em;
+    text-transform:uppercase;background:transparent;color:var(--muted);
+    transition:background .22s var(--ease),color .22s var(--ease)}
+  .wk-seg button:hover{color:var(--ink)}
+  .wk-seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+  .wk-blurb{font-size:.88rem;color:var(--muted)}
+  .wk-view[hidden]{display:none}
+  .wk-view h3{font-family:"Schibsted Grotesk",sans-serif;font-weight:700;font-size:1.5rem;
+    letter-spacing:-.02em;margin-bottom:14px}
+
+  /* manager view — the delivery inventory, one row per vertical */
+  .wk-count{display:flex;align-items:baseline;gap:20px;margin-bottom:6px;flex-wrap:wrap}
+  .wk-count .n{font-family:"Schibsted Grotesk",sans-serif;font-weight:800;font-size:3.4rem;
+    line-height:.9;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+  .wk-count .t{font-size:.92rem;color:var(--graphite);max-width:44ch}
+  .wk-row{display:grid;grid-template-columns:140px 1fr;gap:24px;padding:13px 0;
+    border-top:1px solid var(--line);align-items:baseline}
+  .wk-row .vt{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.08em}
+  .wk-row .ct{font-family:"IBM Plex Mono",monospace;font-size:.62rem;color:var(--muted);
+    font-variant-numeric:tabular-nums;margin-left:9px}
+  .wk-row .ct.hist{letter-spacing:.1em;text-transform:uppercase;font-size:.56rem}
+  .wk-chips{display:flex;flex-wrap:wrap;gap:7px}
+  .wk-chip{display:inline-flex;align-items:center;border:1px solid var(--line-2);border-radius:999px;
+    padding:6px 13px;font-size:.79rem;line-height:1.2}
+  .wk-chip.todo{border-style:dashed;color:#9A9EA8}
+  .wk-note{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);
+    margin-top:18px;line-height:1.7;max-width:76ch}
+  .wk-note b{color:var(--ink);font-weight:500}
+  @media(max-width:640px){.wk-row{grid-template-columns:1fr;gap:8px}}
+
+  /* IC view — a sequence, not a set. Each step paid for the next. */
+  .wk-arc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .wk-step{border:1px solid var(--line-2);border-radius:14px;padding:20px 22px;
+    display:flex;flex-direction:column;gap:8px;transition:border-color .25s var(--ease)}
+  .wk-step:hover{border-color:var(--signal)}
+  .wk-step.wip{border-style:dashed;opacity:.78}
+  .wk-step.wip:hover{border-color:var(--line-2)}
+  .wk-step .hd{display:flex;align-items:baseline;gap:10px;font-family:"IBM Plex Mono",monospace;font-size:.6rem}
+  .wk-step .no{letter-spacing:.14em;text-transform:uppercase;color:var(--up)}
+  .wk-step .wh{letter-spacing:.08em;color:var(--muted)}
+  .wk-step h4{font-family:"Schibsted Grotesk",sans-serif;font-weight:700;font-size:1.28rem;letter-spacing:-.015em}
+  .wk-step .m{font-family:"Schibsted Grotesk",sans-serif;font-weight:700;font-size:1.55rem;
+    line-height:1;letter-spacing:-.02em;color:var(--up);margin-top:3px}
+  .wk-step .mn{font-size:.75rem;color:var(--muted);line-height:1.4}
+  .wk-step p{color:var(--graphite);font-size:.89rem;margin-top:5px}
+  .wk-step .go{margin-top:auto;padding-top:14px;font-family:"IBM Plex Mono",monospace;
+    font-size:.72rem;letter-spacing:.05em;color:var(--signal)}
+  .wk-step .go::after{content:" →";transition:transform .25s var(--ease);display:inline-block}
+  .wk-step:hover .go::after{transform:translateX(4px)}
+  @media(max-width:860px){.wk-arc{grid-template-columns:1fr}}
 
   /* ---------- lab ---------- */
   #lab{background:var(--panel);color:var(--panel-text);border-top:1px solid var(--panel-line)}
@@ -220,19 +567,13 @@
     display:inline-flex;align-items:center;min-height:44px;
     border:1px solid var(--panel-line);color:var(--panel-text);padding:9px 17px;border-radius:999px;transition:all .2s}
   .lab-open:hover{background:var(--panel-text);color:var(--panel)}
-  .lab-more{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
-  .lab-card{border:1px dashed var(--panel-line);border-radius:12px;padding:18px}
-  .lab-card .s{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--panel-muted)}
-  .lab-card h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:1.05rem;margin:10px 0 6px}
-  .lab-card p{color:var(--panel-muted);font-size:.85rem}
-  @media(max-width:760px){.lab-more{grid-template-columns:1fr}}
 
   /* ---------- writing ---------- */
   .writing{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .wcard{border:1px solid var(--line-2);border-radius:14px;padding:26px;background:var(--paper);transition:border-color .25s,transform .25s var(--ease)}
   .wcard:hover{border-color:var(--signal);transform:translateY(-3px)}
   .wcard .tag{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--signal)}
-  .wcard h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em;margin:12px 0 10px}
+  .wcard h3{font-family:"Schibsted Grotesk",sans-serif;font-weight:700;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em;margin:12px 0 10px}
   .wcard p{color:var(--graphite);font-size:.92rem}
   .wcard .go{margin-top:16px;font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--signal);display:inline-flex;gap:7px}
   .wcard .go::after{content:"→";transition:transform .25s}
@@ -245,7 +586,8 @@
   .about-grid{display:grid;grid-template-columns:1.25fr .95fr;gap:clamp(28px,5vw,56px)}
   .about-grid p{color:var(--graphite);margin-bottom:16px;font-size:1.02rem}
   .about-grid p b{color:var(--ink);font-weight:600}
-  .about h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:1.15rem;margin:26px 0 10px}
+  .about h3{font-family:"Schibsted Grotesk",sans-serif;font-weight:600;font-size:1.5rem;
+    text-transform:uppercase;line-height:1.4;margin:26px 0 10px}
   .work-me{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:22px;margin-top:8px}
   .work-me .eyebrow{margin-bottom:10px;display:block}
   .career{display:flex;flex-direction:column}
@@ -268,8 +610,11 @@
 
   /* ---------- footer ---------- */
   footer{background:var(--panel);color:var(--panel-text);border-top:1px solid var(--panel-line)}
-  .foot{max-width:var(--maxw);margin:0 auto;padding:clamp(52px,9vh,92px) clamp(20px,5vw,44px)}
-  .foot h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:clamp(1.9rem,4.6vw,3.2rem);letter-spacing:-.02em;line-height:1.02}
+  /* The footer is the same #0A0A0A as everything else in dark, so the rule is
+     the only thing separating it — it has to be visible. */
+  :root:not([data-theme="light"]) footer{border-top-color:var(--line-2)}
+  .foot{max-width:var(--maxw);margin:0 auto;padding:clamp(52px,9vh,92px) clamp(24px,5vw,72px)}
+  .foot h2{font-family:"Schibsted Grotesk",sans-serif;font-weight:400;font-size:clamp(1.9rem,4vw,3rem);letter-spacing:0;text-transform:uppercase;line-height:1.2}
   .foot h2 .sig{color:#8FA6FF}
   .foot .st{font-family:"IBM Plex Mono",monospace;font-size:.76rem;letter-spacing:.06em;color:var(--panel-muted);margin-top:18px}
   .foot .st .g{color:var(--up)}
@@ -282,6 +627,35 @@
   .reveal{opacity:0;transform:translateY(16px)}
   .reveal.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+  /* ---------- view transitions ----------
+     Cross-document, native: no framework, no router. Browsers without support
+     just navigate normally. Named pairs morph between pages — the Work card
+     becomes the case-study masthead rather than crossfading into it. */
+  @view-transition{navigation:auto}
+  ::view-transition-old(root){animation:vtOut .28s var(--ease) both}
+  ::view-transition-new(root){animation:vtIn .34s var(--ease) both}
+  @keyframes vtOut{to{opacity:0;transform:translateY(-8px)}}
+  @keyframes vtIn{from{opacity:0;transform:translateY(10px)}}
+  /* The nav is the same object on every page, so it holds still instead of
+     crossfading with the rest of the document. */
+  nav{view-transition-name:site-nav}
+  @media(prefers-reduced-motion:reduce){
+    @view-transition{navigation:none}
+    nav{view-transition-name:none}
+  }
+
+  /* Scroll-driven reveal. Where the browser supports it this runs off the
+     scroller with no JS; the IntersectionObserver at the foot of the page
+     stays as the fallback and is harmless when both are active. */
+  @supports (animation-timeline: view()){
+    @media(prefers-reduced-motion:no-preference){
+      .reveal{animation:revealIn linear both;animation-timeline:view();
+        animation-range:entry 5% cover 26%}
+      @keyframes revealIn{from{opacity:0;transform:translateY(16px)}
+        to{opacity:1;transform:none}}
+    }
+  }
 </style>
 </head>
 <body>
@@ -289,233 +663,86 @@
 <!-- ============ NAV ============ -->
 <nav>
   <div class="nav-in">
-    <a class="brand" href="#top"><span class="mk"></span>Sujith Kumar Anand</a>
+    <a class="brand" href="#top">Sujith Anand</a>
     <div class="nav-links">
-      <a href="#work">Work</a>
-      <a href="#lab">Lab</a>
-      <a href="#writing">Writing</a>
       <a href="#about">About</a>
+      <span class="nav-dot" aria-hidden="true"></span>
+      <a href="#contact">Contact</a>
+      <button class="theme" type="button" id="theme" aria-label="Switch to light theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+             stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+        </svg>
+      </button>
     </div>
-    <a class="nav-cta" href="#contact">Get in touch</a>
   </div>
 </nav>
 
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow">Product Design Leader · Bengaluru</span>
-      <h1 style="margin-top:18px">
-        <span class="b">A design leader</span>
-        <span class="b">who <span class="sig">still ships.</span></span>
-      </h1>
-      <p class="lede">I lead the team, deliver as an IC, and turn design into working front-end with AI. <b>Ten years turning complex fintech into products people trust</b> — across trading, DeFi, and HCI research.</p>
+  <div class="art" aria-hidden="true"></div>
+  <img class="fig" src="img/sujith-cut.webp" alt="Sujith Kumar Anand" width="720" height="620" fetchpriority="high" decoding="async">
+
+  <div class="hero-block">
+    <div class="hero-copy">
+      <span class="hero-kicker">Senior Design Manager · Bengaluru</span>
+      <h1>Designing fintech<br>people trust with money</h1>
+      <p class="lede">Eleven years in product design, with multiple products launched
+        <b>0&thinsp;&rarr;&thinsp;1</b>. Today I lead five designers across six verticals at a
+        <b>top-20 Indian retail brokerage serving over a million active clients</b>, and I
+        still ship front-end.</p>
     </div>
 
-    <!-- spec readout : signature element -->
-    <aside class="spec" aria-label="Profile at a glance">
-      <div class="sh"><span class="t">sujith.spec</span><span class="live"><span class="pip"></span>Open to roles</span></div>
-      <dl>
-        <dt>role</dt><dd>Sr Design Manager, FYERS</dd>
-        <dt>exp</dt><dd>10+ yrs</dd>
-        <dt>domains</dt><dd>fintech · DeFi · HCI</dd>
-        <dt>ships</dt><dd><span class="g">front-end, with AI</span></dd>
-        <dt>stack</dt><dd>Figma · Flutter · FE · AI</dd>
-        <dt>seeking</dt><dd>Director / Head of Design</dd>
-      </dl>
-    </aside>
+    <a class="cue" href="#about" aria-label="Scroll to About">
+      Scroll for more
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path>
+      </svg>
+    </a>
   </div>
 </header>
 
-<!-- ============ WORK ============ -->
-<section id="work">
+<!-- ============ ABOUT (intro) ============ -->
+<!-- The short version, straight under the hero. The long version — career,
+     credentials, what it is like to work with me — is section 05. -->
+<section id="about" class="intro">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="n">01</span>
-      <h2>Work</h2>
-      <span class="sub">Two anchor stories — one on strategy and scale, one on execution under pressure.</span>
-    </div>
-
-    <!-- CASE A -->
-    <article class="case reveal" id="case-fdsg">
-      <div class="case-top">
-        <span class="tag">Strategy &amp; Leadership · Design systems</span>
-        <h3>FDSG — one design language across a fintech platform</h3>
-        <div class="role">Design Review Board member → owner of v2.0 &amp; v2.1 · web + mobile · 8-person team</div>
-      </div>
-      <div class="case-body">
-        <div class="k">
-          <p>When I joined FYERS, design didn't have one language — it had several dialects. Style guides were scattered, half-finished, or duplicated, so the same element existed in different ways across web, iOS, and Android. That cost the business twice: designers rebuilt instead of designed, and users met a product that felt subtly inconsistent — costly in a product built on trust.</p>
-          <p>I became one of the louder voices for <strong>a single, versioned source of truth</strong> rather than more scattered guides. After v1.0, I took over and drove <strong>FDSG 2.0 and 2.1</strong> across web and mobile — a visual reset from gradient-heavy to clean and minimal, then a pass that tightened spacing and density. The deeper change was organizational: I helped move FYERS from a split <strong>UX/UI relay</strong> to end-to-end <strong>Product Designers</strong>, which made adoption fast because the people using the system understood it top to bottom.</p>
-          <p>When engineering built it into code, we were honest that design-to-code was never a 100% match — naming the gap is what kept the system improving instead of quietly rotting.</p>
-          <a class="case-go" href="case-study-fdsg.html">Read the full case study</a>
-        </div>
-        <div class="metrics">
-          <div class="metric"><div class="v up">~30%</div><div class="l">less design effort, measured on live projects with vs. without the system</div></div>
-          <div class="metric"><div class="v sig">1</div><div class="l">source of truth, replacing scattered guides</div></div>
-          <div class="metric"><div class="v">UX/UI → PD</div><div class="l">org shift to end-to-end product designers</div></div>
-        </div>
-      </div>
-    </article>
-
-    <!-- CASE B -->
-    <article class="case reveal" id="case-options-scalper">
-      <div class="case-top">
-        <span class="tag">Execution &amp; Impact · Real-time trading</span>
-        <h3>Options Scalper Terminal — designing for the hardest user in the building</h3>
-        <div class="role">Design lead &amp; oversight · Options vertical · Q2 2024, ~3 months</div>
-      </div>
-      <div class="case-body">
-        <div class="k">
-          <p>Most fintech design makes the complex feel simple. This was the opposite: the user <em>wants</em> complexity, at speed, with zero margin for error. High-frequency options traders live in seconds — a slow interaction or an ambiguous state isn't an annoyance, it's money.</p>
-          <p>I set the direction and defended the standard: a <strong>fixed layout</strong> that becomes muscle memory, deeper analytics behind progressive disclosure so the default view stays scannable, live state read through colour and motion rather than full redraws, and <strong>error-prevention at speed</strong> — a deliberate confirm step and guardrails against fat-finger mistakes. The principle I held against pressure to show everything: the terminal should disappear into muscle memory.</p>
-          <p>The result showed up in the behaviour of the most demanding traders on the platform — they leaned in, spending more time in the tool and placing more through it.</p>
-          <a class="case-go" href="case-study-options-scalper.html">Read the full case study</a>
-        </div>
-        <div class="metrics">
-          <div class="metric"><div class="v up">↑ engagement</div><div class="l">session duration up; MAU grew steadily among active traders</div></div>
-          <div class="metric"><div class="v sig">high</div><div class="l">daily order volume per user — a tool people live in</div></div>
-          <div class="metric"><div class="v">↑ orders</div><div class="l">order volume through the terminal grew at scale</div></div>
-        </div>
-      </div>
-    </article>
-
-    <!-- SAMPLER -->
-    <div class="sampler reveal">
-      <div class="samp"><div class="v">↑ conversion</div><div class="t">NRI Onboarding</div><div class="d">Led the redesign; conversion improved month-on-month.</div></div>
-      <div class="samp"><div class="v">↑ MAU</div><div class="t">Markets · Screeners</div><div class="d">Screeners usage grew substantially after the revamp.</div></div>
-      <div class="samp"><div class="v">0 → 1</div><div class="t">FIA</div><div class="d">Built and launched from scratch; grew into a key analytical layer.</div></div>
-      <div class="samp"><div class="v">high</div><div class="t">Profile on FDSG</div><div class="d">Strong adoption among existing users; complaints trending down.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ LAB ============ -->
-<section id="lab">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="n">02</span>
-      <h2>Lab</h2>
-      <span class="sub">Small, real things I build. Where "I still ship" stops being a claim and becomes something you can click.</span>
-    </div>
-
-    <div class="lab-frame reveal">
-      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="lbl">order-ticket · live component</span></div>
-      <iframe src="lab-order-ticket.html" title="Live order ticket component" loading="lazy"></iframe>
-    </div>
-    <div class="lab-note">
-      <p>A real-time order ticket — density, speed, live state, and hold-to-confirm error prevention. The same ideas as the Options Scalper story, built and running in your browser. <em>(Simulated data; nothing confidential.)</em></p>
-      <a class="lab-open" href="lab-order-ticket.html" target="_blank" rel="noopener">Open full component ↗</a>
-    </div>
-
-    <div class="lab-more reveal">
-      <div class="lab-card"><span class="s">In progress</span><h4>Figma → front-end, with AI</h4><p>A teardown of the workflow I used to ship Wealth Tracker end to end — one screen, from design file to working code.</p></div>
-      <div class="lab-card"><span class="s">In progress</span><h4>A small fintech tool</h4><p>An options payoff visualizer — useful, shareable, and built to prove domain fluency plus the ability to ship it.</p></div>
-      <div class="lab-card"><span class="s">In progress</span><h4>Micro-interaction study</h4><p>A single interaction done properly — the craft at the detail level, shipped rather than described.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ WRITING ============ -->
-<section id="writing">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="n">03</span>
-      <h2>Writing</h2>
-      <span class="sub">How I think, not just what I've shipped. Three pieces on design, systems, and AI.</span>
-    </div>
-
-    <div class="writing">
-      <a class="wcard lead reveal" href="article-design-frontend-ai.html">
-        <div>
-          <span class="tag">Essay · Design + AI</span>
-          <h3>The handoff is dead. I designed and shipped the front-end myself — with AI.</h3>
-        </div>
-        <div>
-          <p>Design used to end at a handoff. Working with AI as a pair, I designed Wealth Tracker and shipped its front-end myself — and it changed how I think about what a designer is. The workflow, and the honest limits.</p>
-          <span class="go">Read the piece</span>
-        </div>
-      </a>
-
-      <a class="wcard reveal" href="article-scaling-design-system.html">
-        <span class="tag">Essay · Design systems</span>
-        <h3>What I learned scaling a design system across a fintech platform</h3>
-        <p>A system isn't a folder of components — it's an organizational agreement. On governance, the design-to-code gap, and measuring the promise you actually made.</p>
-        <span class="go">Read the piece</span>
-      </a>
-
-      <a class="wcard reveal" href="article-ux-to-ui-ownership.html">
-        <span class="tag">Essay · Team &amp; craft</span>
-        <h3>One designer, whole problem: why I killed the UX/UI split</h3>
-        <p>Handoffs are where intent dies. The case for one Product Designer owning a problem from user need to shipped screen — and the objections, answered.</p>
-        <span class="go">Read the piece</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ABOUT ============ -->
-<section id="about" class="about">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="n">04</span>
       <h2>About</h2>
-      <span class="sub">The human, the credentials, and what it's actually like to work with me.</span>
+      <a class="go-x" href="#background">View experience &#8599;</a>
     </div>
 
-    <div class="about-grid reveal">
-      <div>
-        <p>I'm a product design leader with over ten years turning complex problems into products people enjoy — most of it in fintech, where the stakes and the trust are both high. I came into design from an <b>engineering foundation</b> (a master's in Advanced Computer Science before one in Human-Computer Interaction), which is exactly why "a design leader who ships front-end" isn't a stretch for me — it's where I started.</p>
-        <p>Today I lead product design at <b>FYERS</b> across six verticals. Before that, DeFi and fintech at Qplum, Datami, Nexter, and Oddz; and before design was my job, I was the person running the interviews and diary studies as an HCI researcher at <b>Microsoft</b> and <b>IBM</b>.</p>
+    <p class="say reveal">I&rsquo;m a design leader with eleven years of experience, leading teams
+      that ship at scale. Today I lead five designers across seven verticals at a
+      top-20 Indian retail brokerage serving over a million active clients. I care about
+      design that moves the product and the people &mdash; and I have not stopped making the
+      thing itself, which is how I know what I am asking for when I ask for it.</p>
 
-        <div class="work-me">
-          <span class="eyebrow">What it's like to work with me</span>
-          <p style="margin:0;color:var(--graphite)">I optimize for clarity and ownership. I'd rather my team own a problem end to end — from user need to shipped screen — than pass it down a relay, and I try to lead the way I wish I'd been led: a clear direction, room to do the best work of your career, and systems that make the next project easier. I push for craft, I'll get into the code when it helps, and I care more about the team getting sharper than about being the smartest person in the room.</p>
-        </div>
-
-        <h3>Career</h3>
-        <div class="career">
-          <div class="row"><span class="yr">2024 — Now</span><div><div class="org">FYERS</div><div class="r">Senior Design Manager, Product Design · 6 verticals</div></div></div>
-          <div class="row"><span class="yr">2022 — 24</span><div><div class="org">Nexter Finance</div><div class="r">Design Lead · web3 / DeFi</div></div></div>
-          <div class="row"><span class="yr">2021 — 22</span><div><div class="org">Oddz Finance</div><div class="r">Design Lead · DeFi</div></div></div>
-          <div class="row"><span class="yr">2018 — 21</span><div><div class="org">Datami</div><div class="r">Lead Product Designer → Product Designer · Airtel TV Africa, Reach Mobile</div></div></div>
-          <div class="row"><span class="yr">Oct 2017 — Mar 18</span><div><div class="org">Two Roads Tech</div><div class="r">Product Designer · Bengaluru</div></div></div>
-          <div class="row"><span class="yr">2017</span><div><div class="org">Qplum</div><div class="r">Product Designer · AI portfolio-investment platform (US)</div></div></div>
-          <div class="row"><span class="yr">Oct 2016 — Apr 17</span><div><div class="org">Onetech Ventures</div><div class="r">UX Specialist · Bengaluru</div></div></div>
-          <div class="row"><span class="yr">Feb — Jun 2016</span><div><div class="org">IBM Studios, Böblingen</div><div class="r">UX design &amp; research — IBM BPM Process Portal</div></div></div>
-          <div class="row"><span class="yr">2015 — 16</span><div><div class="org">emocial Ltd · freelance</div><div class="r">UX design · London</div></div></div>
-          <div class="row"><span class="yr">2014 — 15</span><div><div class="org">Microsoft</div><div class="r">UX research — care technology, with UCL &amp; Kent County Council</div></div></div>
-          
-        </div>
-      </div>
-
-      <div>
-        <h3 style="margin-top:0">Credentials</h3>
-        <div class="creds">
-          <div><b>MSc, Human-Computer Interaction &amp; Design</b> — EIT Digital · KTH, then UCL · 2013 — 15</div>
-          <div><b>MSc, Advanced Computer Science</b> — Newcastle University · 2011 — 12</div>
-          <div><b>BE, Information Science &amp; Engineering</b> — BMS College of Engineering · 2006 — 10</div>
-          <div><b>NISM Series 7</b> — certified · Series 8 in progress</div>
-        </div>
-
-        <h3>What I do</h3>
-        <div class="skills">
-          <span>Design leadership</span><span>Team scaling</span><span>Design systems</span>
-          <span>Product design</span><span>Figma</span><span>Flutter</span>
-          <span>Front-end</span><span>AI-assisted build</span><span>Research</span>
-        </div>
-
-        <a class="cv" href="cv.html">↗ View / print CV</a>
-      </div>
+    <div class="figs reveal">
+      <div><div class="fig-n">11+ Yrs</div><div class="fig-l">Product design &amp; leadership</div></div>
+      <div><div class="fig-n">1M+</div><div class="fig-l">Active clients on the platform</div></div>
+      <div><div class="fig-n">7</div><div class="fig-l">Verticals under one design bar</div></div>
+      <div><div class="fig-n">19</div><div class="fig-l">Product areas shipped since 2024</div></div>
     </div>
   </div>
 </section>
+
+<!-- Work, Lab, Writing and Background are parked while the page is rebuilt
+     section by section. They are in git history at e967ba5; restore by
+     reverting the commit that removed them. -->
 
 <!-- ============ CONTACT / FOOTER ============ -->
 <footer id="contact">
   <div class="foot">
     <h2>Let's build something <span class="sig">worth using.</span></h2>
-    <p class="st"><span class="g">●</span> Open to Director / Head of Design roles · Bengaluru or remote</p>
+    <p class="st"><span class="g">●</span> Open to Head of Design / Sr Design Manager roles · Bengaluru or remote</p>
     <div class="contacts">
       <a href="mailto:suj009@gmail.com">✉ suj009@gmail.com</a>
       <a href="https://www.linkedin.com/in/suj009" target="_blank" rel="noopener">in · LinkedIn</a>
@@ -538,18 +765,77 @@
     var bar = document.querySelector("nav");
     if (!bar) return;
     var dark = [document.getElementById("lab"), document.getElementById("contact")].filter(Boolean);
-    if (!dark.length) return;
-    var tick = function () {
+    var hero = document.getElementById("top");
+    if (!dark.length && !hero) return;
+    var behind = function (s) {
       var edge = bar.getBoundingClientRect().bottom;
-      var over = dark.some(function (s) {
-        var r = s.getBoundingClientRect();
-        return r.top <= edge && r.bottom >= edge;
+      var r = s.getBoundingClientRect();
+      return r.top <= edge && r.bottom >= edge;
+    };
+    // Scroll spy. The links are read from the bar itself, so sections coming
+    // back later need no change here.
+    var spy = [].slice.call(bar.querySelectorAll('.nav-links a[href^="#"]'))
+      .map(function (a) { return { a: a, el: document.querySelector(a.getAttribute("href")) }; })
+      .filter(function (x) { return x.el; });
+    var mark = function () {
+      var edge = bar.getBoundingClientRect().bottom + 1;
+      var cur = null;
+      spy.forEach(function (x) {
+        var r = x.el.getBoundingClientRect();
+        if (r.top <= edge && r.bottom > edge) cur = x;
       });
-      bar.classList.toggle("on-dark", over);
+      spy.forEach(function (x) {
+        if (x === cur) x.a.setAttribute("aria-current", "true");
+        else x.a.removeAttribute("aria-current");
+      });
+    };
+    var tick = function () {
+      mark();
+      // At >=1600px the hero is an inset band and the bar sits over paper, so the
+      // overlap test turns .on-hero off on its own — no breakpoint needed here.
+      bar.classList.toggle("on-hero", !!hero && behind(hero));
+      bar.classList.toggle("on-dark", dark.some(behind));
     };
     addEventListener("scroll", tick, { passive: true });
     addEventListener("resize", tick);
     tick();
+
+    // Theme switch. The choice is remembered; with nothing remembered the page
+    // is dark, whatever the OS asks for — that is the design, not a default.
+    var btn = document.getElementById("theme");
+    if (btn) {
+      var label = function () {
+        var light = document.documentElement.getAttribute("data-theme") === "light";
+        btn.setAttribute("aria-label", light ? "Switch to dark theme" : "Switch to light theme");
+      };
+      label();
+      btn.addEventListener("click", function () {
+        var light = document.documentElement.getAttribute("data-theme") === "light";
+        if (light) document.documentElement.removeAttribute("data-theme");
+        else document.documentElement.setAttribute("data-theme", "light");
+        try { localStorage.setItem("theme", light ? "dark" : "light"); } catch (e) {}
+        label();
+        tick();
+      });
+    }
+  })();
+
+  // The hero's light. Each fan gets a new angle, brightness and duration at a
+  // random interval, so the sweep never repeats. Held still for anyone who
+  // asks for reduced motion.
+  (function () {
+    var art = document.querySelector(".hero .art");
+    if (!art || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var rnd = function (lo, hi) { return lo + Math.random() * (hi - lo); };
+    var roll = function (name, lo, hi) {
+      var t = rnd(2.6, 5.2);
+      art.style.setProperty("--fan-" + name + "-t", t.toFixed(2) + "s");
+      art.style.setProperty("--fan-" + name, rnd(lo, hi).toFixed(2) + "deg");
+      art.style.setProperty("--fan-" + name + "-o", rnd(.42, 1).toFixed(2));
+      setTimeout(function () { roll(name, lo, hi); }, (t * 1000) * rnd(.55, .95));
+    };
+    roll("a", -6, 4);
+    roll("b", -4, 6);
   })();
 
   // scroll reveal
@@ -557,6 +843,70 @@
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} });
   },{threshold:.12});
   document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+
+  // Work section: one control, two readings. It rewrites the statement as well
+  // as the body — the headline, both side figures and the kicker all switch,
+  // which is the whole point of the section.
+  (function () {
+    var seg = document.querySelector(".wk-seg");
+    if (!seg) return;
+    var state = document.getElementById("wk-state");
+    var views = { manager: document.getElementById("wk-manager"), ic: document.getElementById("wk-ic") };
+    var el = function (id) { return document.getElementById(id); };
+
+    var COPY = {
+      manager: {
+        kicker: "What I am accountable for",
+        l1: "Seven verticals.", l2: "One design bar.",
+        f1v: "5", f1l: "designers today \u2014 eight at full stretch, across two org changes",
+        f2v: "1M+", f2l: "active clients \u2014 #18 Indian retail brokerage by active clients, NSE",
+        blurb: "Seven verticals of work delivered by the team since February 2024."
+      },
+      ic: {
+        kicker: "And what I make myself",
+        l1: "Three I built.", l2: "Each one paid for the next.",
+        f1v: "~70%", f1l: "less front-end effort on Wealth Tracker, estimated by the front-end team",
+        f2v: "0 \u2192 1", f2l: "Nexter Finance, led and designed hands-on before FYERS",
+        blurb: "Orders, then Wealth Tracker, then the framework it justified."
+      }
+    };
+
+    function show(view) {
+      var c = COPY[view];
+      el("wk-kicker").textContent = c.kicker;
+      el("wk-l1").textContent = c.l1;
+      el("wk-l2").textContent = c.l2;
+      el("wk-f1v").textContent = c.f1v;
+      el("wk-f1l").textContent = c.f1l;
+      el("wk-f2v").textContent = c.f2v;
+      el("wk-f2l").textContent = c.f2l;
+      el("wk-blurb").textContent = c.blurb;
+      state.classList.toggle("ic", view === "ic");
+      views.manager.hidden = view !== "manager";
+      views.ic.hidden = view !== "ic";
+      seg.querySelectorAll("button").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.dataset.view === view));
+      });
+    }
+
+    seg.addEventListener("click", function (e) {
+      var b = e.target.closest("button");
+      if (b) show(b.dataset.view);
+    });
+
+    // Arrow keys move between segments, as a segmented control should.
+    seg.addEventListener("keydown", function (e) {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      var bs = Array.prototype.slice.call(seg.querySelectorAll("button"));
+      var i = bs.indexOf(document.activeElement);
+      if (i === -1) return;
+      e.preventDefault();
+      var next = bs[(i + (e.key === "ArrowRight" ? 1 : -1) + bs.length) % bs.length];
+      next.focus();
+      show(next.dataset.view);
+    });
+  })();
 
   // live "spec" pip already animated in CSS; small touch: nudge the "seeking" line on load
   // (kept minimal on purpose — restraint over motion)
