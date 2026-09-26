@@ -241,7 +241,7 @@
   .hero .art::before,
   .hero .art::after{content:"";position:absolute;left:-10%;top:-12%;
     width:150%;height:150%;pointer-events:none;
-    filter:blur(13px);transform-origin:-1% -4%;
+    filter:blur(11px);transform-origin:-1% -4%;
     -webkit-mask-image:radial-gradient(78% 82% at -1% -4%,
       #000 0%, #000 30%, rgba(0,0,0,.62) 52%, rgba(0,0,0,.22) 72%, transparent 92%);
     mask-image:radial-gradient(78% 82% at -1% -4%,
@@ -250,32 +250,32 @@
   /* four shafts */
   .hero .art::before{
     background:conic-gradient(from 0deg at -1% -4%,
-      transparent 0deg,      transparent 99deg,
-      rgba(255,255,255,.15)  105deg, rgba(255,255,255,.15) 112deg,
-      transparent            119deg, transparent 125deg,
-      rgba(255,255,255,.11)  130deg, rgba(255,255,255,.11)  135deg,
-      transparent            141deg, transparent 146deg,
-      rgba(255,255,255,.16)  151deg, rgba(255,255,255,.16)  158deg,
-      transparent            164deg, transparent 168deg,
-      rgba(255,255,255,.09)  172deg, rgba(255,255,255,.09)  176deg,
-      transparent            181deg, transparent 360deg);
-    animation:fanA 23s ease-in-out infinite}
+      transparent 0deg,      transparent 102deg,
+      rgba(255,255,255,.2)   106deg, rgba(255,255,255,.2)  110deg,
+      transparent            114deg, transparent 128deg,
+      rgba(255,255,255,.15)  131deg, rgba(255,255,255,.15) 134deg,
+      transparent            137deg, transparent 149deg,
+      rgba(255,255,255,.215) 153deg, rgba(255,255,255,.215) 157deg,
+      transparent            161deg, transparent 170deg,
+      rgba(255,255,255,.12)  173deg, rgba(255,255,255,.12) 175deg,
+      transparent            179deg, transparent 360deg);
+    animation:fanA 15s ease-in-out infinite}
 
   /* five shafts, slotted between the first four */
   .hero .art::after{
     background:conic-gradient(from 0deg at -1% -4%,
-      transparent 0deg,      transparent 95deg,
-      rgba(255,255,255,.1)   100deg, rgba(255,255,255,.1)   103deg,
-      transparent            108deg, transparent 114deg,
-      rgba(255,255,255,.13)  118deg, rgba(255,255,255,.13)  124deg,
-      transparent            129deg, transparent 136deg,
-      rgba(255,255,255,.085) 140deg, rgba(255,255,255,.085) 144deg,
-      transparent            149deg, transparent 159deg,
-      rgba(255,255,255,.12)  163deg, rgba(255,255,255,.12)  169deg,
-      transparent            174deg, transparent 178deg,
-      rgba(255,255,255,.075) 182deg, rgba(255,255,255,.075) 186deg,
-      transparent            191deg, transparent 360deg);
-    animation:fanB 37s ease-in-out infinite}
+      transparent 0deg,      transparent 98deg,
+      rgba(255,255,255,.135) 100deg, rgba(255,255,255,.135) 102deg,
+      transparent            105deg, transparent 118deg,
+      rgba(255,255,255,.175) 120deg, rgba(255,255,255,.175) 124deg,
+      transparent            127deg, transparent 139deg,
+      rgba(255,255,255,.115) 141deg, rgba(255,255,255,.115) 143deg,
+      transparent            146deg, transparent 162deg,
+      rgba(255,255,255,.16)  164deg, rgba(255,255,255,.16)  168deg,
+      transparent            171deg, transparent 181deg,
+      rgba(255,255,255,.1)   183deg, rgba(255,255,255,.1)   185deg,
+      transparent            188deg, transparent 360deg);
+    animation:fanB 24s ease-in-out infinite}
 
   @keyframes fanA{
     0%  {opacity:.95;transform:rotate(-1.6deg)}
