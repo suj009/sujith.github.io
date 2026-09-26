@@ -242,10 +242,10 @@
   .hero .art::after{content:"";position:absolute;left:-10%;top:-12%;
     width:150%;height:150%;pointer-events:none;
     filter:blur(11px);transform-origin:-1% -4%;
-    -webkit-mask-image:radial-gradient(46% 62% at -1% -4%,
-      #000 0%, #000 38%, rgba(0,0,0,.5) 62%, rgba(0,0,0,.16) 80%, transparent 95%);
-    mask-image:radial-gradient(46% 62% at -1% -4%,
-      #000 0%, #000 38%, rgba(0,0,0,.5) 62%, rgba(0,0,0,.16) 80%, transparent 95%)}
+    -webkit-mask-image:radial-gradient(54% 72% at -1% -4%,
+      #000 0%, #000 36%, rgba(0,0,0,.46) 62%, rgba(0,0,0,.14) 82%, transparent 96%);
+    mask-image:radial-gradient(54% 72% at -1% -4%,
+      #000 0%, #000 36%, rgba(0,0,0,.46) 62%, rgba(0,0,0,.14) 82%, transparent 96%)}
 
   /* four shafts */
   .hero .art::before{
@@ -259,7 +259,9 @@
       transparent            161deg, transparent 170deg,
       rgba(255,255,255,.12)  173deg, rgba(255,255,255,.12) 175deg,
       transparent            179deg, transparent 360deg);
-    animation:fanA 11s ease-in-out infinite}
+    transform:rotate(var(--fan-a,-2deg));opacity:var(--fan-a-o,1);
+    transition:transform var(--fan-a-t,6s) cubic-bezier(.4,0,.5,1),
+               opacity   var(--fan-a-t,6s) ease-in-out}
 
   /* five shafts, slotted between the first four */
   .hero .art::after{
@@ -275,27 +277,16 @@
       transparent            171deg, transparent 181deg,
       rgba(255,255,255,.1)   183deg, rgba(255,255,255,.1)   185deg,
       transparent            188deg, transparent 360deg);
-    animation:fanB 17s ease-in-out infinite}
+    transform:rotate(var(--fan-b,2deg));opacity:var(--fan-b-o,.6);
+    transition:transform var(--fan-b-t,7s) cubic-bezier(.4,0,.5,1),
+               opacity   var(--fan-b-t,7s) ease-in-out}
 
-  /* The sway is now wide enough to see: each fan swings about the bulb itself,
-     so the shafts sweep across the band like a searchlight rather than sitting
-     still and fading. The two swing opposite ways on cycles that do not divide
-     into each other, which keeps the pattern from repeating visibly. */
-  @keyframes fanA{
-    0%  {opacity:1;  transform:rotate(-4.5deg)}
-    34% {opacity:.45;transform:rotate(2.5deg)}
-    67% {opacity:1;  transform:rotate(-1deg)}
-    100%{opacity:1;  transform:rotate(-4.5deg)}
-  }
-  @keyframes fanB{
-    0%  {opacity:.4; transform:rotate(3.5deg)}
-    30% {opacity:1;  transform:rotate(-3deg)}
-    70% {opacity:.55;transform:rotate(1.5deg)}
-    100%{opacity:.4; transform:rotate(3.5deg)}
-  }
+  /* No keyframes: a loop of any length eventually reads as a loop. The two
+     fans are driven by custom properties that a few lines of script re-roll at
+     random intervals, so the angle, the brightness and the timing of every
+     swing are all different. The transitions above do the easing. */
   @media(prefers-reduced-motion:reduce){
-    .hero .art::before{animation:none;opacity:.95}
-    .hero .art::after{animation:none;opacity:.55}
+    .hero .art::before,.hero .art::after{transition:none}
   }
 
   /* The figure is anchored to the right edge and hangs below the fold, so at
@@ -827,6 +818,24 @@
         tick();
       });
     }
+  })();
+
+  // The hero's light. Each fan gets a new angle, brightness and duration at a
+  // random interval, so the sweep never repeats. Held still for anyone who
+  // asks for reduced motion.
+  (function () {
+    var art = document.querySelector(".hero .art");
+    if (!art || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var rnd = function (lo, hi) { return lo + Math.random() * (hi - lo); };
+    var roll = function (name, lo, hi) {
+      var t = rnd(4.5, 9);
+      art.style.setProperty("--fan-" + name + "-t", t.toFixed(2) + "s");
+      art.style.setProperty("--fan-" + name, rnd(lo, hi).toFixed(2) + "deg");
+      art.style.setProperty("--fan-" + name + "-o", rnd(.42, 1).toFixed(2));
+      setTimeout(function () { roll(name, lo, hi); }, (t * 1000) * rnd(.55, .95));
+    };
+    roll("a", -6, 4);
+    roll("b", -4, 6);
   })();
 
   // scroll reveal
