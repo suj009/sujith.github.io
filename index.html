@@ -260,8 +260,8 @@
       rgba(255,255,255,.16)  150deg, rgba(255,255,255,.16)  153deg,
       transparent            156deg, transparent 360deg);
     transform:rotate(var(--fan-a,-2deg));opacity:var(--fan-a-o,1);
-    transition:transform var(--fan-a-t,6s) cubic-bezier(.4,0,.5,1),
-               opacity   var(--fan-a-t,6s) ease-in-out}
+    transition:transform var(--fan-a-t,3.6s) cubic-bezier(.4,0,.5,1),
+               opacity   var(--fan-a-t,3.6s) ease-in-out}
 
   /* five shafts, slotted into the gaps of the first four */
   .hero .art::after{
@@ -278,8 +278,8 @@
       rgba(255,255,255,.13)  158deg, rgba(255,255,255,.13)  160deg,
       transparent            163deg, transparent 360deg);
     transform:rotate(var(--fan-b,2deg));opacity:var(--fan-b-o,.6);
-    transition:transform var(--fan-b-t,7s) cubic-bezier(.4,0,.5,1),
-               opacity   var(--fan-b-t,7s) ease-in-out}
+    transition:transform var(--fan-b-t,4.2s) cubic-bezier(.4,0,.5,1),
+               opacity   var(--fan-b-t,4.2s) ease-in-out}
 
   /* No keyframes: a loop of any length eventually reads as a loop. The two
      fans are driven by custom properties that a few lines of script re-roll at
@@ -828,7 +828,7 @@
     if (!art || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     var rnd = function (lo, hi) { return lo + Math.random() * (hi - lo); };
     var roll = function (name, lo, hi) {
-      var t = rnd(4.5, 9);
+      var t = rnd(2.6, 5.2);
       art.style.setProperty("--fan-" + name + "-t", t.toFixed(2) + "s");
       art.style.setProperty("--fan-" + name, rnd(lo, hi).toFixed(2) + "deg");
       art.style.setProperty("--fan-" + name + "-o", rnd(.42, 1).toFixed(2));
