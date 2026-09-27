@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sujith Hero Replica</title>
+<meta name="description" content="Sujith Kumar Anand, Senior Design Manager. Designing fintech people trust with money.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --ground:#ECE5DA;
+  --ink:#16130F;
+  --ink-2:rgba(22,19,15,.52);
+  /* elements drawn with difference blending use this constant light tone,
+     so they read dark on the warm ground and light on the dark one */
+  --blend:#ECE5DA;
+  --hair:rgba(236,229,218,.10);
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.25,1,.5,1);
+  --nav-h:2.4375rem;
+  --logo-offset:calc(13.5vw + 1rem);
+  --angle:-143.5deg;
+  --cut:50%;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){color-scheme:dark;--ground:#16130F;--ink:#ECE5DA;--ink-2:rgba(236,229,218,.5)}
+}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#16130F;--ink:#ECE5DA;--ink-2:rgba(236,229,218,.5)}
+
+*{box-sizing:border-box}
+html{font-size:calc(16 / 1440 * 100vw);background:var(--ground);
+  transition:background-color .5s var(--ease)}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-weight:400;
+  line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  transition:background-color .5s var(--ease),color .5s var(--ease)}
+a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:none}
+:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.c1{font-size:.75rem;font-weight:500;letter-spacing:-.02em;line-height:120%}
+.c2{font-size:.75rem;font-weight:500;letter-spacing:-.02em;line-height:116%}
+.h2{font-size:6.125rem;font-weight:400;letter-spacing:-.05em;line-height:88%}
+.h4{font-size:2.0625rem;font-weight:400;letter-spacing:-.03em;line-height:108%}
+.p1{font-size:1rem;font-weight:400;letter-spacing:-.02em;line-height:128%}
+
+/* ---------- Nav rail: sticks once the wordmark has scrolled past ---------- */
+.nav{position:sticky;top:0;z-index:10;height:var(--nav-h);margin-top:var(--logo-offset);
+  margin-bottom:calc(-1 * (var(--logo-offset) + var(--nav-h)));
+  display:grid;grid-template-columns:repeat(8,minmax(0,1fr));
+  color:var(--blend);mix-blend-mode:difference}
+.nav::before{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--hair)}
+.nav .mark{display:flex;align-items:flex-end;padding:0 0 .5rem 1rem}
+.nav .mark i{display:block;width:.9375rem;height:.9375rem;border-radius:50%;background:currentColor}
+.link{position:relative;display:flex;align-items:flex-end;padding:1rem 0 .5rem}
+.link.wide{grid-column:span 2}
+.link::after{content:"";position:absolute;left:0;bottom:-.1875rem;width:1px;height:.4375rem;background:currentColor}
+.slide{position:relative;display:block;overflow:clip}
+.slide span{display:block;transition:transform .5s var(--ease)}
+.slide span+span{position:absolute;left:0;top:0;transform:translateY(100%)}
+.link:hover .slide span:first-child{transform:translateY(-100%)}
+.link:hover .slide span+span{transform:translateY(0)}
+.link .bar{position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.link:hover .bar{transform:scaleX(1)}
+.menu{display:none}
+
+/* ---------- Hero ---------- */
+.hero{position:relative}
+.hero::after{content:"";display:block;height:calc(50svh + 18rem)}
+
+.grid{position:sticky;top:0;height:100svh;margin-bottom:-100svh;mix-blend-mode:difference;pointer-events:none;z-index:2}
+.grid i{position:absolute;background:var(--hair)}
+.grid .g1{left:12.5%;top:0;width:1px;height:100%}
+.grid .g2{left:62.5%;top:0;width:1px;height:100%}
+.grid .g3{inset:0;background:linear-gradient(var(--angle),transparent calc(50% - .5px),var(--hair) calc(50% - .5px),var(--hair) calc(50% + .5px),transparent calc(50% + .5px))}
+
+.tag-wrap{position:sticky;top:0;height:100svh;margin-bottom:-100svh;overflow:hidden;pointer-events:none;z-index:1;
+  -webkit-mask-image:linear-gradient(var(--angle),#000 var(--cut),transparent var(--cut));
+          mask-image:linear-gradient(var(--angle),#000 var(--cut),transparent var(--cut))}
+.tag-box{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));will-change:transform;
+  padding-top:calc(394 / 800 * 100svh);padding-bottom:50svh}
+.desc{grid-column:6 / 9;height:calc(406 / 800 * 100svh);padding:0 1rem 0 0;
+  display:flex;flex-direction:column;gap:1.5rem}
+.desc .p1{max-width:32rem;color:var(--ink-2)}
+.desc .p1 b{font-weight:500;color:var(--ink)}
+.tagline{grid-column:1 / 6;grid-row:2;margin:9.75rem .5rem 0 0;text-align:end}
+.tagline span{display:block}
+
+.hero-body{position:relative;height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding-bottom:1rem}
+.wordmark{display:flex;justify-content:space-between;padding:.5rem .5rem 0;
+  font-weight:800;font-stretch:125%;font-size:21vw;line-height:.74;letter-spacing:0;text-transform:uppercase}
+.wordmark .l{display:block;overflow:clip;padding-top:.02em}
+.wordmark .l span{display:block}
+.content{height:calc(50svh - 1rem);display:grid;grid-template-columns:repeat(8,minmax(0,1fr))}
+.caption{grid-column:2 / 4;align-self:start}
+.scroll-cap{grid-column:6 / 9;grid-row:1;align-self:end;display:flex;align-items:center;gap:.4375rem}
+.desc-m{display:none}
+
+.drip{position:absolute;left:62.5%;top:calc(100svh - 1rem - 4.875rem);width:1px;height:4.875rem;overflow:hidden;
+  mix-blend-mode:difference;z-index:3}
+.drip::after{content:"";position:absolute;left:0;top:-100%;width:1px;height:100%;
+  background:linear-gradient(180deg,rgba(236,229,218,0),var(--blend));animation:drip 2.4s var(--ease) infinite}
+@keyframes drip{0%{top:-100%}70%,100%{top:100%}}
+
+/* ---------- Bits that sit over everything ---------- */
+.invert{position:fixed;left:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:12;
+  color:var(--blend);mix-blend-mode:difference;display:flex;align-items:center;gap:.35rem}
+.invert::before{content:"";width:.25rem;height:.25rem;border-radius:50%;background:currentColor}
+.invert u{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
+
+.cursor{position:fixed;left:-1.25rem;top:-1.25rem;z-index:30;pointer-events:none;mix-blend-mode:difference;display:none}
+.cursor i{display:block;width:2.5rem;height:2.5rem;border-radius:50%;background:var(--blend);
+  transform:scale(.15);transition:transform .45s var(--ease)}
+.cursor.big i{transform:scale(1)}
+@media (pointer:fine){.cursor{display:block}}
+
+.next{position:relative;z-index:3;background:var(--ink);color:var(--ground);min-height:60svh;
+  display:grid;grid-template-columns:repeat(8,minmax(0,1fr));padding:8rem 0 4rem;
+  transition:background-color .5s var(--ease),color .5s var(--ease)}
+.next .c1{grid-column:2;opacity:.6}
+.next .h4{grid-column:6 / 9;padding-right:1rem}
+
+/* ---------- Phone and tablet ---------- */
+@media (max-width:1023px){
+  html{font-size:calc(16 / 416 * 100vw)}
+  .c1{font-size:.875rem;line-height:115%}
+  .h2{font-size:3.25rem}
+  .h4{font-size:1.75rem}
+  .nav{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:0;margin-bottom:calc(-1 * var(--nav-h));height:3.125rem}
+  .link{display:none}
+  .menu{display:block;grid-column:4;text-align:end;padding:1rem}
+  .grid .g1{left:50%}
+  .grid .g2{left:0;top:calc(50% - 1px);width:100%;height:1px}
+  .tag-wrap{-webkit-mask-image:none;mask-image:none}
+  .tag-box{grid-template-columns:repeat(4,minmax(0,1fr));padding:calc(100svh + 7rem) 1rem 50svh}
+  .desc{display:none}
+  .tagline{grid-column:1 / -1;grid-row:1;margin:0;text-align:start}
+  .hero::after{height:calc(50svh + 14rem)}
+  .hero-body{padding:4.5625rem 0 1.25rem}
+  .content{height:calc(50svh - .25rem);grid-template-columns:repeat(4,minmax(0,1fr));align-content:space-between;padding:0 1rem}
+  .desc-m{display:block;grid-column:1 / -1;grid-row:1;text-align:center;font-size:.875rem;font-weight:500;
+    letter-spacing:-.02em;line-height:115%;padding-top:1rem}
+  .caption{grid-column:3 / -1;grid-row:2;align-self:end;max-width:8rem;padding-left:.5rem}
+  .scroll-cap,.drip{display:none}
+  .next{grid-template-columns:1fr;gap:2rem;padding:6rem 1rem 4rem}
+  .next .c1,.next .h4{grid-column:1}
+  .sheet{position:fixed;inset:0;z-index:9;background:var(--ground);display:flex;flex-direction:column;justify-content:flex-end;
+    gap:.75rem;padding:5rem 1rem calc(4rem + env(safe-area-inset-bottom,0px))}
+  .sheet a{font-size:2.5rem;letter-spacing:-.04em;line-height:1}
+}
+@media (min-width:1024px){.sheet{display:none!important}}
+
+@media (prefers-reduced-motion:reduce){
+  .drip::after{animation:none;top:0}
+  .cursor{display:none!important}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary">
+  <a class="mark" href="#top" aria-label="Sujith Kumar Anand, back to top"><i></i></a>
+  <a class="link c1 wide" href="#about"><span class="slide"><span>About</span><span aria-hidden="true">About</span></span><span class="bar"></span></a>
+  <a class="link c1" href="#work"><span class="slide"><span>Work</span><span aria-hidden="true">Work</span></span><span class="bar"></span></a>
+  <a class="link c1" href="#leadership"><span class="slide"><span>Leadership</span><span aria-hidden="true">Leadership</span></span><span class="bar"></span></a>
+  <a class="link c1" href="#writing"><span class="slide"><span>Writing</span><span aria-hidden="true">Writing</span></span><span class="bar"></span></a>
+  <a class="link c1" href="#cv"><span class="slide"><span>CV</span><span aria-hidden="true">CV</span></span><span class="bar"></span></a>
+  <a class="link c1" href="#contact"><span class="slide"><span>Contact</span><span aria-hidden="true">Contact</span></span><span class="bar"></span></a>
+  <button class="menu c1" type="button" id="menuBtn" aria-expanded="false" aria-controls="sheet">Menu</button>
+</nav>
+
+<div class="sheet" id="sheet" hidden>
+  <a href="#about">About</a><a href="#work">Work</a><a href="#leadership">Leadership</a>
+  <a href="#writing">Writing</a><a href="#cv">CV</a><a href="#contact">Contact</a>
+</div>
+
+<main>
+  <section class="hero" id="top">
+    <div class="grid" aria-hidden="true"><i class="g1"></i><i class="g2"></i><i class="g3"></i></div>
+
+    <div class="tag-wrap">
+      <div class="tag-box" id="tagBox">
+        <div class="desc">
+          <p class="h4 words" style="margin:0">Eleven years in product design, with multiple products launched 0&thinsp;&rarr;&thinsp;1.</p>
+          <p class="p1 words" style="margin:0">Today I lead five designers across six verticals at a
+            <b>top-20 Indian retail brokerage serving over a million active clients</b>, and I still ship front-end.</p>
+        </div>
+        <h1 class="tagline h2" id="tagline"><span>Designing fintech</span><span>people trust</span><span>with money</span></h1>
+      </div>
+    </div>
+
+    <div class="drip" aria-hidden="true"></div>
+
+    <div class="hero-body">
+      <div class="wordmark" id="wordmark" aria-hidden="true"></div>
+      <div class="content">
+        <p class="caption c2 words" style="margin:0">Senior Design Manager.<br>Bengaluru, IN.</p>
+        <p class="desc-m words" style="margin:0">Eleven years in product design, with multiple products launched 0&thinsp;&rarr;&thinsp;1. Today I lead five designers across six verticals at a top-20 Indian retail brokerage serving over a million active clients, and I still ship front-end.</p>
+        <p class="scroll-cap c2" style="margin:0">Scroll to discover</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="next" id="about">
+    <span class="c1">02 — About</span>
+    <p class="h4" style="margin:0">The next section is in build.</p>
+  </section>
+</main>
+
+<button class="invert c1" type="button" id="invert"><u>Invert colour</u></button>
+<div class="cursor" id="cursor" aria-hidden="true"><i></i></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  var root = document.documentElement;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hero = document.querySelector('.hero');
+  var tagBox = document.getElementById('tagBox');
+  var mark = document.getElementById('wordmark');
+
+  mark.innerHTML = 'SUJITH'.split('').map(function(c){
+    return '<span class="l"><span>'+c+'</span></span>';
+  }).join('');
+
+  function fitMark(){
+    mark.style.fontSize = '100px';
+    var natural = 0;
+    mark.querySelectorAll('.l').forEach(function(l){ natural += l.getBoundingClientRect().width; });
+    var avail = mark.clientWidth - parseFloat(getComputedStyle(mark).paddingLeft) * 2;
+    mark.style.fontSize = (avail * .86 / natural * 100) + 'px';
+    var h = mark.getBoundingClientRect().height;
+    root.style.setProperty('--logo-offset', (h + parseFloat(getComputedStyle(root).fontSize)) + 'px');
+  }
+
+  function fitAngle(){
+    var w = innerWidth, h = innerHeight;
+    var run = innerWidth < 1024 ? w / 2 : w * .375;
+    var line = 90 + Math.atan((h / 2) / run) * 180 / Math.PI;
+    hero.style.setProperty('--angle', (line + 90 - 360) + 'deg');
+  }
+
+  function onScroll(){
+    var range = hero.offsetHeight - innerHeight;
+    var y = Math.min(Math.max(scrollY - hero.offsetTop, 0), range);
+    tagBox.style.transform = 'translate3d(0,' + (-y) + 'px,0)';
+    var p = range > 0 ? y / range : 0;
+    hero.style.setProperty('--cut', (50 + 50 * Math.min(p * 1.15, 1)) + '%');
+  }
+
+  function layout(){ fitMark(); fitAngle(); onScroll(); }
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(layout);
+  addEventListener('resize', layout);
+  addEventListener('scroll', onScroll, {passive:true});
+  layout();
+
+  document.getElementById('invert').addEventListener('click', function(){
+    var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+  });
+
+  var btn = document.getElementById('menuBtn'), sheet = document.getElementById('sheet');
+  btn.addEventListener('click', function(){
+    var open = sheet.hidden;
+    sheet.hidden = !open;
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? 'Close' : 'Menu';
+  });
+  sheet.addEventListener('click', function(e){ if(e.target.tagName === 'A'){ btn.click(); } });
+
+  var lenis = null;
+  if(!reduce && window.Lenis){
+    lenis = new Lenis({lerp:.09});
+    function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var el = document.querySelector(a.getAttribute('href'));
+      if(!el) { e.preventDefault(); return; }
+      e.preventDefault();
+      if(lenis) lenis.scrollTo(el, {duration:1.6}); else el.scrollIntoView();
+    });
+  });
+
+  var cur = document.getElementById('cursor');
+  if(!reduce && matchMedia('(pointer: fine)').matches){
+    var x = innerWidth/2, y = innerHeight/2, cx = x, cy = y;
+    addEventListener('mousemove', function(e){ x = e.clientX; y = e.clientY; });
+    (function loop(){
+      cx += (x - cx) * .18; cy += (y - cy) * .18;
+      cur.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)';
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a,button').forEach(function(el){
+      el.addEventListener('mouseenter', function(){ cur.classList.add('big'); });
+      el.addEventListener('mouseleave', function(){ cur.classList.remove('big'); });
+    });
+  }
+
+  if(reduce || !window.gsap) return;
+
+  document.querySelectorAll('.words').forEach(function(p){
+    var walk = function(node){
+      Array.from(node.childNodes).forEach(function(n){
+        if(n.nodeType === 3){
+          var frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function(part){
+            if(!part) return;
+            if(/^\s+$/.test(part)){ frag.appendChild(document.createTextNode(' ')); return; }
+            var s = document.createElement('span');
+            s.className = 'w'; s.style.display = 'inline-block'; s.textContent = part;
+            frag.appendChild(s);
+          });
+          n.replaceWith(frag);
+        } else if(n.nodeType === 1){ walk(n); }
+      });
+    };
+    walk(p);
+  });
+  var tag = document.getElementById('tagline');
+  tag.querySelectorAll('span').forEach(function(s){
+    s.style.overflow = 'clip';
+    s.innerHTML = '<span style="display:block">' + s.textContent + '</span>';
+  });
+
+  var o = {a: 0};
+  var finalAngle = parseFloat(getComputedStyle(hero).getPropertyValue('--angle'));
+  var tl = gsap.timeline({defaults:{ease:'expo.out'}});
+  tl.from('.grid .g1, .grid .g2', {clipPath:'inset(0 0 100% 0)', duration:1.6, stagger:.12, ease:'power3.inOut'}, 0)
+    .fromTo(o, {a: 36}, {a: 0, duration:1.8, ease:'power3.inOut',
+      onUpdate:function(){ hero.style.setProperty('--angle', (finalAngle + o.a) + 'deg'); },
+      onComplete:fitAngle}, 0)
+    .from('.grid .g3', {opacity:0, duration:1.2}, 0)
+    .from('.wordmark .l > span', {yPercent:105, duration:1.4, stagger:.07}, .35)
+    .from('.nav .mark i, .nav .slide', {y:14, opacity:0, duration:1, stagger:.06}, .8)
+    .from('.words .w', {y:'0.6em', opacity:0, duration:1, stagger:.012}, 1)
+    .from('.scroll-cap, .drip, .invert, .menu', {opacity:0, duration:1}, 1.4);
+})();
+</script>
+</body>
+</html>
