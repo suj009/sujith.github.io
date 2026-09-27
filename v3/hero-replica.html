@@ -7,18 +7,19 @@
 <meta name="description" content="Sujith Kumar Anand, Senior Design Manager. Designing fintech people trust with money.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,800&display=swap">
 <style>
 :root{
   color-scheme:light;
-  --ground:#ECE5DA;
-  --ink:#16130F;
-  --ink-2:rgba(22,19,15,.52);
+  /* the reference's own palette: #f0f0f0 / #0f0f0f, 40% for the secondary voice */
+  --ground:#F0F0F0;
+  --ink:#0F0F0F;
+  --ink-2:#0F0F0F66;
   /* elements drawn with difference blending use this constant light tone,
-     so they read dark on the warm ground and light on the dark one */
-  --blend:#ECE5DA;
-  --hair:rgba(236,229,218,.10);
-  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+     so they read dark on the light ground and light on the dark one */
+  --blend:#F0F0F0;
+  --hair:#F2F0F00D;
+  --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
   --ease:cubic-bezier(.25,1,.5,1);
   --nav-h:2.4375rem;
   --logo-offset:calc(13.5vw + 1rem);
@@ -26,9 +27,9 @@
   --cut:50%;
 }
 @media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){color-scheme:dark;--ground:#16130F;--ink:#ECE5DA;--ink-2:rgba(236,229,218,.5)}
+  :root:not([data-theme="light"]){color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F066}
 }
-:root[data-theme="dark"]{color-scheme:dark;--ground:#16130F;--ink:#ECE5DA;--ink-2:rgba(236,229,218,.5)}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F066}
 
 *{box-sizing:border-box}
 html{font-size:calc(16 / 1440 * 100vw);background:var(--ground);
@@ -92,7 +93,7 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
 
 .hero-body{position:relative;height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding-bottom:1rem}
 .wordmark{display:flex;justify-content:space-between;padding:.5rem .5rem 0;
-  font-weight:800;font-stretch:125%;font-size:21vw;line-height:.74;letter-spacing:0;text-transform:uppercase}
+  font-family:"Archivo",var(--sans);font-weight:800;font-stretch:125%;font-size:21vw;line-height:.74;letter-spacing:0;text-transform:uppercase}
 .wordmark .l{display:block;overflow:clip;padding-top:.02em}
 .wordmark .l span{display:block}
 .content{height:calc(50svh - 1rem);display:grid;grid-template-columns:repeat(8,minmax(0,1fr))}
@@ -103,7 +104,7 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
 .drip{position:absolute;left:62.5%;top:calc(100svh - 1rem - 4.875rem);width:1px;height:4.875rem;overflow:hidden;
   mix-blend-mode:difference;z-index:3}
 .drip::after{content:"";position:absolute;left:0;top:-100%;width:1px;height:100%;
-  background:linear-gradient(180deg,rgba(236,229,218,0),var(--blend));animation:drip 2.4s var(--ease) infinite}
+  background:linear-gradient(180deg,rgba(240,240,240,0),var(--blend));animation:drip 2.4s var(--ease) infinite}
 @keyframes drip{0%{top:-100%}70%,100%{top:100%}}
 
 /* ---------- Bits that sit over everything ---------- */
@@ -127,39 +128,36 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
 
 /* ---------- 02 About ----------
    Default is a plain stacked layout; html.anim switches on the scroll choreography. */
-.about{position:relative;z-index:4;background:#16130F;color:#ECE5DA}
+.about{position:relative;z-index:4;background:#0F0F0F;color:#F0F0F0}
 .about .layer{position:relative}
 .curtain,.cross,.about-nav{display:none}
-.photo{position:relative;height:70svh;overflow:hidden}
-.photo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
-.photo .shade,.photo .vig{position:absolute;inset:0}
-.photo .shade{background:rgba(22,19,15,.3)}
-.photo .vig{background:
-  linear-gradient(90deg,rgba(22,19,15,.78) 0,rgba(22,19,15,.4) 55%,rgba(22,19,15,.12) 100%),
-  linear-gradient(180deg,rgba(22,19,15,.45) 0,rgba(22,19,15,0) 35%,rgba(22,19,15,0) 65%,rgba(22,19,15,.45) 100%)}
+.photo{position:relative;height:80svh;overflow:hidden;background:#0F0F0F}
+.photo .glow{position:absolute;inset:0;
+  background:radial-gradient(58% 78% at 8% -4%,#666767 0%,#525353 14%,#3A3B3C 30%,#242525 48%,#141515 66%,#0F0F0F 84%)}
+.photo .cut{position:absolute;right:2%;bottom:0;height:92%;width:auto;max-width:none;display:block;
+  filter:contrast(1.02) brightness(1.2) saturate(.82);transform-origin:50% 100%}
 .stmts{padding:4rem 0}
 .stmt{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));align-content:start;padding:3rem 0}
 .stmt .t{grid-column:2 / 5;margin:0}
-.stmt .d{grid-column:5 / 9;max-width:19.75rem;margin:0}
+.stmt .d{grid-column:2 / 5;grid-row:2;max-width:22rem;margin:1.75rem 0 0}
 .stmt .d b{font-weight:500}
 
 html.anim .about{background:none;margin-top:-100svh;height:600svh}
 html.anim .about .layer{position:sticky;top:0;height:100svh;margin-bottom:-100svh;overflow:hidden;pointer-events:none}
 html.anim .curtain,html.anim .cross{display:block}
 html.anim .about-nav{display:grid}
-.curtain i{position:absolute;left:0;width:100%;height:50.2%;background:var(--ink);transform:scaleY(0);
-  transition:background-color .5s var(--ease)}
+.curtain i{position:absolute;left:0;width:100%;height:50.2%;background:#0F0F0F;transform:scaleY(0)}
 .curtain .t{top:0;transform-origin:top}
 .curtain .b{bottom:0;transform-origin:bottom}
-html.anim .photo{position:sticky;height:100svh;clip-path:inset(40% 42% 40% 42%)}
-html.anim .photo img{transform:translateX(8%) scale(1.45)}
-.cross i{position:absolute;background:rgba(236,229,218,.2)}
-.cross .x{left:50%;top:0;width:1px;height:100%}
-.cross .y{left:0;top:50%;width:100%;height:1px}
+html.anim .photo{position:sticky;height:100svh;opacity:0}
+.cross{position:absolute;inset:0}
+.cross i{position:absolute;background:#F2F0F033}
+.cross .x{left:12.5%;top:0;width:1px;height:100%}
+.cross .y{left:0;top:50%;width:100%;height:1px;
+  -webkit-mask-image:linear-gradient(90deg,#000 32%,transparent 48%);mask-image:linear-gradient(90deg,#000 32%,transparent 48%)}
 html.anim .cross{opacity:0}
 html.anim .stmts{padding:0}
 html.anim .stmt{position:absolute;inset:0;padding:50svh 0 0}
-html.anim .stmt.flip{color:#16130F}
 .about-nav{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));align-content:end;height:100%;padding-bottom:1rem;
   color:var(--blend);mix-blend-mode:difference}
 html.anim .about-nav{opacity:0}
@@ -196,10 +194,11 @@ html.anim .about-nav{opacity:0}
   .stmt{grid-template-columns:1fr;padding:2.5rem 1rem}
   .stmt .t,.stmt .d{grid-column:1}
   .stmt .d{max-width:none;margin-top:1.5rem}
-  html.anim .stmt{padding:calc(50svh - 3.52rem) 1rem 0}
-  html.anim .stmt.flip{color:#ECE5DA}
-  .photo img{object-position:72% 35%}
-  html.anim .photo img{transform:scale(1.45)}
+  .stmt .d{grid-row:auto}
+  html.anim .stmt{padding:62svh 1rem 0}
+  .photo .cut{height:auto;width:130%;right:-22%;top:9svh;bottom:auto}
+  .cross .x{display:none}
+  .cross .y{top:58svh;-webkit-mask-image:none;mask-image:none}
   .about-nav{grid-template-columns:1fr;padding:0 1rem 1.5rem}
   .about-nav .wrap{grid-column:1;justify-content:flex-end}
   .sheet{position:fixed;inset:0;z-index:9;background:var(--ground);display:flex;flex-direction:column;justify-content:flex-end;
@@ -263,10 +262,10 @@ html.anim .about-nav{opacity:0}
     <h2 class="sr" id="aboutTitle">About</h2>
     <div class="layer curtain" aria-hidden="true"><i class="t"></i><i class="b"></i></div>
     <div class="layer photo">
-      <img src="img/portrait-warm.webp" alt="Sujith Kumar Anand" width="1672" height="941" loading="lazy" decoding="async">
-      <div class="shade" aria-hidden="true"></div><div class="vig" aria-hidden="true"></div>
+      <div class="glow" aria-hidden="true"></div>
+      <div class="cross" aria-hidden="true"><i class="x"></i><i class="y"></i></div>
+      <img class="cut" src="img/sujith-cut.webp" alt="Sujith Kumar Anand" width="720" height="620" loading="lazy" decoding="async">
     </div>
-    <div class="layer cross" aria-hidden="true"><i class="x"></i><i class="y"></i></div>
     <div class="layer stmts">
       <div class="stmt s1">
         <h3 class="t h2">Lead</h3>
@@ -276,7 +275,7 @@ html.anim .about-nav{opacity:0}
         <h3 class="t h2">Launch</h3>
         <p class="d p1 words">Multiple products taken 0&thinsp;&rarr;&thinsp;1: FIA at FYERS, Nexter Finance in decentralised finance, and the Airtel TV Africa streaming app.</p>
       </div>
-      <div class="stmt s3 flip">
+      <div class="stmt s3">
         <h3 class="t h2">Ship</h3>
         <p class="d p1 words">Still hands-on. Wealth Tracker went from brief to Flutter-ready web and mobile, built with AI. The front-end team estimated roughly 70% less implementation effort.</p>
       </div>
@@ -434,7 +433,6 @@ html.anim .about-nav{opacity:0}
 
   gsap.matchMedia().add({desk:'(min-width: 1024px)', mob:'(max-width: 1023px)'}, function(ctx){
     var desk = ctx.conditions.desk;
-    var rest = desk ? {x:'8%', scale:1.2} : {x:0, scale:1.12};
     gsap.set('.stmt .t, .stmt .d .w', {opacity:0});
     var tl = gsap.timeline({defaults:{ease:'none'},
       scrollTrigger:{trigger:'.about', start:'top top', end:'bottom bottom', scrub:true}});
@@ -448,8 +446,9 @@ html.anim .about-nav{opacity:0}
     }
 
     tl.to('.curtain .t, .curtain .b', {scaleY:1, duration:1.2, ease:'power2.inOut'}, 0)
-      .fromTo('.photo', {clipPath:'inset(40% 42% 40% 42%)'}, {clipPath:'inset(0% 0% 0% 0%)', duration:1.8, ease:'power2.inOut'}, 1.25)
-      .fromTo('.photo img', {x:rest.x, scale:1.45}, {x:rest.x, scale:rest.scale, duration:2.4, ease:'power1.out'}, 1.25)
+      .fromTo('.photo', {opacity:0}, {opacity:1, duration:1, ease:'power1.inOut'}, 1.2)
+      .fromTo('.photo .cut', {opacity:0, yPercent:4, scale:1.06}, {opacity:1, yPercent:0, scale:1, duration:1.6, ease:'power2.out'}, 1.5)
+      .to('.photo .cut', {scale:1.04, duration:6, ease:'none'}, 3.1)
       .to('.cross, .about-nav', {opacity:1, duration:.6}, 2.2);
     show('.s1', 2.5);
     hide('.s1', 4.1);
@@ -457,9 +456,6 @@ html.anim .about-nav{opacity:0}
     show('.s2', 4.6);
     hide('.s2', 6.4);
     tl.to('.idx .roll', {yPercent:-200/3, duration:.4, ease:'power2.inOut'}, 6.9);
-    if(desk){
-      tl.to('.photo .shade, .photo .vig, .cross', {opacity:0, duration:1, ease:'power1.inOut'}, 6.6);
-    }
     show('.s3', 7.3);
     tl.to({}, {duration:1.6}, 8.4);
   });
