@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sujith Kumar Anand</title>
+<meta name="description" content="Sujith Kumar Anand, Senior Design Manager. Designing fintech people trust with money.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --basalt:#14120F;
+  --linen:#F2EDE4;
+  --travertine:#F1DDCB;
+  --stone:#CFC3B1;
+  --oak:#8A6F55;
+  --umber:#2A241E;
+  --hair:rgba(242,237,228,.16);
+  --sans:"Instrument Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --gutter:clamp(16px,3.2vw,48px);
+  --ease:cubic-bezier(.65,.05,.2,1);
+
+  /* the door slot, as insets of the stage */
+  --dt:14%; --dr:12.5%; --db:18%; --dl:62.5%;
+}
+*{box-sizing:border-box}
+html{background:var(--basalt)}
+body{margin:0;background:var(--basalt);color:var(--linen);font-family:var(--sans);
+  font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:1px solid var(--linen);outline-offset:4px}
+
+/* ---------- Nav ---------- */
+.nav{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+  gap:24px;padding:calc(18px + env(safe-area-inset-top,0px)) var(--gutter) 18px;
+  mix-blend-mode:difference;color:var(--linen)}
+.nav .name{font-weight:500;font-size:.9375rem;letter-spacing:-.02em;text-decoration:none}
+.nav ul{display:flex;gap:clamp(18px,2.4vw,36px);list-style:none;margin:0;padding:0}
+.nav ul a{font-size:.875rem;letter-spacing:-.01em;text-decoration:none;opacity:.72;transition:opacity .3s}
+.nav ul a:hover{opacity:1}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;height:240svh}
+.stage{position:sticky;top:0;height:100svh;overflow:hidden;--p:0}
+
+.door-open{position:absolute;inset:0}
+.door{position:absolute;inset:0;
+  clip-path:inset(calc(var(--dt)*(1 - var(--p))) calc(var(--dr)*(1 - var(--p)))
+                  calc(var(--db)*(1 - var(--p))) calc(var(--dl)*(1 - var(--p))));
+  will-change:clip-path}
+.door img{width:100%;height:100%;object-fit:cover;object-position:74% 40%;
+  transform:scale(calc(1.12 - var(--p)*.12));transform-origin:74% 40%}
+
+.lines{position:absolute;inset:0;pointer-events:none;mix-blend-mode:difference;opacity:calc(1 - var(--p)*1.6)}
+.lines i{position:absolute;background:var(--hair)}
+.lines .v{top:0;bottom:0;width:1px}
+.lines .h{left:0;right:0;height:1px}
+.lines .v1{left:var(--dl)}
+.lines .v2{right:var(--dr)}
+.lines .h1{top:var(--dt)}
+.lines .h2{bottom:var(--db)}
+
+.fig{position:absolute;left:var(--dl);top:calc(100% - var(--db));padding:10px 0 0 12px;
+  font:400 .6875rem/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--stone);opacity:calc(1 - var(--p)*3)}
+
+.copy{position:absolute;left:var(--gutter);bottom:calc(var(--db) + clamp(24px,3svh,36px));width:min(58%,860px);
+  mix-blend-mode:difference;color:var(--linen);
+  transform:translateY(calc(var(--p)*-4svh))}
+.kicker{display:block;font:400 .75rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  margin-bottom:clamp(20px,2.4vw,32px)}
+h1{margin:0;font-weight:400;font-size:clamp(2.5rem,5vw,5rem);line-height:.98;letter-spacing:-.045em;
+  text-wrap:balance}
+h1 .ln{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+h1 .w{display:inline-block}
+.lede{margin:clamp(22px,2.6vw,36px) 0 0;max-width:44ch;font-size:clamp(1rem,1.15vw,1.125rem);
+  line-height:1.5;letter-spacing:-.01em}
+.lede b{font-weight:500}
+
+.cue{position:absolute;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:12px;text-decoration:none;
+  font:400 .6875rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  mix-blend-mode:difference;color:var(--linen);opacity:calc(1 - var(--p)*4)}
+.cue .rail{position:relative;width:1px;height:44px;background:var(--hair);overflow:hidden}
+.cue .rail::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--linen);
+  animation:drip 2.2s var(--ease) infinite}
+@keyframes drip{to{top:100%}}
+
+/* ---------- What comes next (placeholder until section 02 is built) ---------- */
+.next{background:var(--travertine);color:var(--umber);padding:clamp(72px,12vw,160px) var(--gutter);
+  display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap}
+.next span{font:400 .75rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--oak)}
+.next p{margin:0;font-size:clamp(1.5rem,3vw,2.5rem);letter-spacing:-.035em;line-height:1.05}
+
+/* ---------- Phone ---------- */
+@media (max-width:760px){
+  /* the door opens across a top band only, so the copy keeps its dark ground */
+  .stage{--band:46svh;--dt:22%;--dr:16%;--db:0%;--dl:16%}
+  .nav ul{display:none}
+  .door-open,.door{bottom:auto;height:var(--band)}
+  .door img{object-position:80% 40%;transform-origin:80% 40%}
+  .lines .h1{top:calc(var(--band)*.22)}
+  .lines .h2{top:var(--band);bottom:auto}
+  .fig{top:var(--band)}
+  .copy{width:auto;right:var(--gutter);bottom:auto;top:calc(var(--band) + 52px)}
+  .kicker{margin-bottom:16px}
+  h1{font-size:clamp(2.1rem,9.6vw,3.25rem)}
+  .lede{font-size:.9375rem;margin-top:18px}
+  .fig{padding:10px 0 0}
+  .cue{display:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .cue .rail::after{animation:none;top:30%}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary">
+  <a class="name" href="#top">Sujith Kumar Anand</a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#leadership">Leadership</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <div class="stage" id="stage">
+    <div class="door-open" id="doorOpen">
+      <div class="door">
+        <img src="img/portrait-warm.webp" alt="Sujith Kumar Anand" width="1672" height="941" fetchpriority="high" decoding="async">
+      </div>
+    </div>
+
+    <div class="lines" aria-hidden="true">
+      <i class="v v1"></i><i class="v v2"></i><i class="h h1"></i><i class="h h2"></i>
+    </div>
+    <span class="fig" aria-hidden="true">Fig. 01 — Bengaluru, IN</span>
+
+    <div class="copy">
+      <span class="kicker">Senior Design Manager · Bengaluru</span>
+      <h1><span class="ln">Designing fintech</span><span class="ln">people trust with money</span></h1>
+      <p class="lede">Eleven years in product design, with multiple products launched
+        <b>0&thinsp;&rarr;&thinsp;1</b>. Today I lead five designers across six verticals at a
+        <b>top-20 Indian retail brokerage serving over a million active clients</b>, and I
+        still ship front-end.</p>
+    </div>
+
+    <a class="cue" href="#about"><span>Scroll to enter</span><span class="rail" aria-hidden="true"></span></a>
+  </div>
+</header>
+
+<section class="next" id="about" aria-label="Next section">
+  <span>02 · About</span>
+  <p>Next section in build.</p>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  if(!window.gsap) return;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var stage = document.getElementById('stage');
+
+  document.querySelectorAll('h1 .ln').forEach(function(ln){
+    ln.innerHTML = ln.textContent.trim().split(/\s+/)
+      .map(function(w){return '<span class="w">'+w+'</span>'}).join(' ');
+  });
+
+  if(!reduce && window.Lenis){
+    var lenis = new Lenis({lerp:.085});
+    lenis.on('scroll', function(){ window.ScrollTrigger && ScrollTrigger.update(); });
+    gsap.ticker.add(function(t){ lenis.raf(t*1000); });
+    gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var el = document.querySelector(a.getAttribute('href'));
+        if(el){ e.preventDefault(); lenis.scrollTo(el, {duration:1.6}); }
+      });
+    });
+  }
+
+  if(window.ScrollTrigger){
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.create({
+      trigger:'.hero', start:'top top', end:'bottom bottom', scrub:reduce ? true : .6,
+      onUpdate:function(s){ stage.style.setProperty('--p', s.progress.toFixed(4)); }
+    });
+  }
+
+  if(reduce) return;
+
+  var tl = gsap.timeline({defaults:{ease:'power3.out'}});
+  tl.from('.lines .v', {clipPath:'inset(0 0 100% 0)', duration:1.4, stagger:.12, ease:'power2.inOut'}, 0)
+    .from('.lines .h', {clipPath:'inset(0 100% 0 0)', duration:1.4, stagger:.12, ease:'power2.inOut'}, .15)
+    .from('#doorOpen', {clipPath:'inset(50% 0 50% 0)', duration:1.5, ease:'expo.inOut'}, .45)
+    .from('h1 .w', {yPercent:110, duration:1.1, stagger:.06}, .9)
+    .from('.kicker, .lede', {y:18, opacity:0, duration:1, stagger:.12, clearProps:'all'}, 1.3)
+    .from('.nav, .fig, .cue', {opacity:0, duration:1, clearProps:'opacity'}, 1.6);
+})();
+</script>
+</body>
+</html>
