@@ -118,11 +118,56 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
 .cursor.big i{transform:scale(1)}
 @media (pointer:fine){.cursor{display:block}}
 
-.next{position:relative;z-index:3;background:var(--ink);color:var(--ground);min-height:60svh;
+.next{position:relative;z-index:5;background:var(--ink);color:var(--ground);min-height:60svh;
   display:grid;grid-template-columns:repeat(8,minmax(0,1fr));padding:8rem 0 4rem;
   transition:background-color .5s var(--ease),color .5s var(--ease)}
 .next .c1{grid-column:2;opacity:.6}
 .next .h4{grid-column:6 / 9;padding-right:1rem}
+
+
+/* ---------- 02 About ----------
+   Default is a plain stacked layout; html.anim switches on the scroll choreography. */
+.about{position:relative;z-index:4;background:#16130F;color:#ECE5DA}
+.about .layer{position:relative}
+.curtain,.cross,.about-nav{display:none}
+.photo{position:relative;height:70svh;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
+.photo .shade,.photo .vig{position:absolute;inset:0}
+.photo .shade{background:rgba(22,19,15,.3)}
+.photo .vig{background:
+  linear-gradient(90deg,rgba(22,19,15,.78) 0,rgba(22,19,15,.4) 55%,rgba(22,19,15,.12) 100%),
+  linear-gradient(180deg,rgba(22,19,15,.45) 0,rgba(22,19,15,0) 35%,rgba(22,19,15,0) 65%,rgba(22,19,15,.45) 100%)}
+.stmts{padding:4rem 0}
+.stmt{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));align-content:start;padding:3rem 0}
+.stmt .t{grid-column:2 / 5;margin:0}
+.stmt .d{grid-column:5 / 9;max-width:19.75rem;margin:0}
+.stmt .d b{font-weight:500}
+
+html.anim .about{background:none;margin-top:-100svh;height:600svh}
+html.anim .about .layer{position:sticky;top:0;height:100svh;margin-bottom:-100svh;overflow:hidden;pointer-events:none}
+html.anim .curtain,html.anim .cross{display:block}
+html.anim .about-nav{display:grid}
+.curtain i{position:absolute;left:0;width:100%;height:50.2%;background:var(--ink);transform:scaleY(0);
+  transition:background-color .5s var(--ease)}
+.curtain .t{top:0;transform-origin:top}
+.curtain .b{bottom:0;transform-origin:bottom}
+html.anim .photo{position:sticky;height:100svh;clip-path:inset(40% 42% 40% 42%)}
+html.anim .photo img{transform:translateX(8%) scale(1.45)}
+.cross i{position:absolute;background:rgba(236,229,218,.2)}
+.cross .x{left:50%;top:0;width:1px;height:100%}
+.cross .y{left:0;top:50%;width:100%;height:1px}
+html.anim .cross{opacity:0}
+html.anim .stmts{padding:0}
+html.anim .stmt{position:absolute;inset:0;padding:50svh 0 0}
+html.anim .stmt.flip{color:#16130F}
+.about-nav{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));align-content:end;height:100%;padding-bottom:1rem;
+  color:var(--blend);mix-blend-mode:difference}
+html.anim .about-nav{opacity:0}
+.about-nav .wrap{grid-column:5 / 9;display:flex;gap:2.5rem;align-items:flex-end}
+.idx{display:flex;gap:.25rem;align-items:flex-end;font-variant-numeric:tabular-nums}
+.idx .mask{display:block;height:1.16em;overflow:clip}
+.idx .roll{display:block}
+.idx .roll span{display:block;height:1.16em}
 
 /* ---------- Phone and tablet ---------- */
 @media (max-width:1023px){
@@ -148,6 +193,15 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
   .scroll-cap,.drip{display:none}
   .next{grid-template-columns:1fr;gap:2rem;padding:6rem 1rem 4rem}
   .next .c1,.next .h4{grid-column:1}
+  .stmt{grid-template-columns:1fr;padding:2.5rem 1rem}
+  .stmt .t,.stmt .d{grid-column:1}
+  .stmt .d{max-width:none;margin-top:1.5rem}
+  html.anim .stmt{padding:calc(50svh - 3.52rem) 1rem 0}
+  html.anim .stmt.flip{color:#ECE5DA}
+  .photo img{object-position:72% 35%}
+  html.anim .photo img{transform:scale(1.45)}
+  .about-nav{grid-template-columns:1fr;padding:0 1rem 1.5rem}
+  .about-nav .wrap{grid-column:1;justify-content:flex-end}
   .sheet{position:fixed;inset:0;z-index:9;background:var(--ground);display:flex;flex-direction:column;justify-content:flex-end;
     gap:.75rem;padding:5rem 1rem calc(4rem + env(safe-area-inset-bottom,0px))}
   .sheet a{font-size:2.5rem;letter-spacing:-.04em;line-height:1}
@@ -205,8 +259,38 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
     </div>
   </section>
 
-  <section class="next" id="about">
-    <span class="c1">02 — About</span>
+  <section class="about" id="about" aria-labelledby="aboutTitle">
+    <h2 class="sr" id="aboutTitle">About</h2>
+    <div class="layer curtain" aria-hidden="true"><i class="t"></i><i class="b"></i></div>
+    <div class="layer photo">
+      <img src="img/portrait-warm.webp" alt="Sujith Kumar Anand" width="1672" height="941" loading="lazy" decoding="async">
+      <div class="shade" aria-hidden="true"></div><div class="vig" aria-hidden="true"></div>
+    </div>
+    <div class="layer cross" aria-hidden="true"><i class="x"></i><i class="y"></i></div>
+    <div class="layer stmts">
+      <div class="stmt s1">
+        <h3 class="t h2">Lead</h3>
+        <p class="d p1 words">Product design across six verticals at a top-20 Indian retail brokerage. A team of five today, up to eight across all verticals.</p>
+      </div>
+      <div class="stmt s2">
+        <h3 class="t h2">Launch</h3>
+        <p class="d p1 words">Multiple products taken 0&thinsp;&rarr;&thinsp;1: FIA at FYERS, Nexter Finance in decentralised finance, and the Airtel TV Africa streaming app.</p>
+      </div>
+      <div class="stmt s3 flip">
+        <h3 class="t h2">Ship</h3>
+        <p class="d p1 words">Still hands-on. Wealth Tracker went from brief to Flutter-ready web and mobile, built with AI. The front-end team estimated roughly 70% less implementation effort.</p>
+      </div>
+    </div>
+    <div class="layer about-nav" aria-hidden="true">
+      <div class="wrap c2">
+        <span>About</span>
+        <span class="idx"><span class="mask"><span class="roll"><span>01</span><span>02</span><span>03</span></span></span><span>/ 03</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="next" id="work">
+    <span class="c1">03 — Work</span>
     <p class="h4" style="margin:0">The next section is in build.</p>
   </section>
 </main>
@@ -215,6 +299,7 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
 <div class="cursor" id="cursor" aria-hidden="true"><i></i></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 (function(){
@@ -339,8 +424,45 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
     .from('.grid .g3', {opacity:0, duration:1.2}, 0)
     .from('.wordmark .l > span', {yPercent:105, duration:1.4, stagger:.07}, .35)
     .from('.nav .mark i, .nav .slide', {y:14, opacity:0, duration:1, stagger:.06}, .8)
-    .from('.words .w', {y:'0.6em', opacity:0, duration:1, stagger:.012}, 1)
+    .from('.hero .w', {y:'0.6em', opacity:0, duration:1, stagger:.012}, 1)
     .from('.scroll-cap, .drip, .invert, .menu', {opacity:0, duration:1}, 1.4);
+
+  if(!window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  root.classList.add('anim');
+  if(lenis) lenis.on('scroll', ScrollTrigger.update);
+
+  gsap.matchMedia().add({desk:'(min-width: 1024px)', mob:'(max-width: 1023px)'}, function(ctx){
+    var desk = ctx.conditions.desk;
+    var rest = desk ? {x:'8%', scale:1.2} : {x:0, scale:1.12};
+    gsap.set('.stmt .t, .stmt .d .w', {opacity:0});
+    var tl = gsap.timeline({defaults:{ease:'none'},
+      scrollTrigger:{trigger:'.about', start:'top top', end:'bottom bottom', scrub:true}});
+
+    function show(sel, at){
+      tl.fromTo(sel + ' .t', {opacity:0, y:40}, {opacity:1, y:0, duration:.6, ease:'power2.out'}, at)
+        .fromTo(sel + ' .d .w', {opacity:0, y:'0.5em'}, {opacity:1, y:0, duration:.35, stagger:.025, ease:'power2.out'}, at + .15);
+    }
+    function hide(sel, at){
+      tl.to(sel + ' .t, ' + sel + ' .d .w', {opacity:0, y:-30, duration:.4, ease:'power2.in'}, at);
+    }
+
+    tl.to('.curtain .t, .curtain .b', {scaleY:1, duration:1.2, ease:'power2.inOut'}, 0)
+      .fromTo('.photo', {clipPath:'inset(40% 42% 40% 42%)'}, {clipPath:'inset(0% 0% 0% 0%)', duration:1.8, ease:'power2.inOut'}, 1.25)
+      .fromTo('.photo img', {x:rest.x, scale:1.45}, {x:rest.x, scale:rest.scale, duration:2.4, ease:'power1.out'}, 1.25)
+      .to('.cross, .about-nav', {opacity:1, duration:.6}, 2.2);
+    show('.s1', 2.5);
+    hide('.s1', 4.1);
+    tl.to('.idx .roll', {yPercent:-100/3, duration:.4, ease:'power2.inOut'}, 4.4);
+    show('.s2', 4.6);
+    hide('.s2', 6.4);
+    tl.to('.idx .roll', {yPercent:-200/3, duration:.4, ease:'power2.inOut'}, 6.9);
+    if(desk){
+      tl.to('.photo .shade, .photo .vig, .cross', {opacity:0, duration:1, ease:'power1.inOut'}, 6.6);
+    }
+    show('.s3', 7.3);
+    tl.to({}, {duration:1.6}, 8.4);
+  });
 })();
 </script>
 </body>
