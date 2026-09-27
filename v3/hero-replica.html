@@ -167,6 +167,68 @@ html.anim .about-nav{opacity:0}
 .idx .roll{display:block}
 .idx .roll span{display:block;height:1.16em}
 
+
+/* ---------- 03 Work ---------- */
+.works{position:relative;z-index:5;background:var(--ground);color:var(--ink);padding:8rem 0 10rem;
+  transition:background-color .5s var(--ease),color .5s var(--ease)}
+html.anim .works{margin-top:-100svh;padding-top:55svh;clip-path:inset(0 50%)}
+.w-lines{position:absolute;inset:0;pointer-events:none}
+.w-lines div{position:sticky;top:0;height:100svh;mix-blend-mode:difference}
+.w-lines i{position:absolute;background:var(--hair)}
+.w-lines .x{left:50%;top:0;width:1px;height:100%}
+.w-lines .y{left:0;top:50%;width:100%;height:1px}
+.w-head{position:relative;display:flex;flex-direction:column;align-items:center;gap:1.5rem;text-align:center;padding:0 1rem 1.5rem}
+.w-title{margin:0}
+.w-tabs{display:flex;gap:2.5rem}
+.w-tab{position:relative;padding-bottom:.4rem;color:var(--ink-2);transition:color .3s var(--ease)}
+.w-tab::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.w-tab[aria-selected="true"]{color:var(--ink)}
+.w-tab[aria-selected="true"]::after{transform:scaleX(1)}
+.w-view{position:relative;padding:0 1rem}
+.w-view + .w-view{margin-top:8rem}
+.js-tabs .w-view + .w-view{margin-top:0}
+.w-lede{max-width:26rem;margin:0 auto 6rem;text-align:center;color:var(--ink-2)}
+
+.plates{list-style:none;margin:0;padding:0;columns:3;column-gap:1rem}
+.plates.split{columns:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;align-items:start}
+.plates .col{display:flex;flex-direction:column;gap:1rem}
+.plate{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:1rem;
+  aspect-ratio:var(--ar);max-width:100%;overflow:hidden;padding:1rem;margin:0 0 1rem;break-inside:avoid;
+  background:var(--pbg);color:var(--pfg)}
+.plates.split .plate{margin:0}
+.plate.d{--pfg:#F0F0F0;--pbg:radial-gradient(95% 85% at var(--g),#525353 0%,#343535 22%,#1C1D1D 48%,#0F0F0F 78%)}
+.plate.m{--pfg:#F0F0F0;--pbg:#1E1E1E}
+.plate.m::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(-143deg,transparent calc(50% - .5px),#F2F0F01F calc(50% - .5px),#F2F0F01F calc(50% + .5px),transparent calc(50% + .5px))}
+.plate.l{--pfg:#0F0F0F;--pbg:#DADADA}
+.plate.g{--pfg:#0F0F0F;--pbg:#A9A9A9}
+.plate .top{position:relative;z-index:1;display:flex;justify-content:space-between;gap:1rem;opacity:.72}
+.plate .bot{position:relative;z-index:1;display:flex;flex-direction:column;gap:.6rem}
+.plate .nm{font-size:2.5rem;letter-spacing:-.04em;line-height:1;max-width:12ch;text-wrap:balance}
+.plate .sub{opacity:.6}
+
+.plate.ic{text-decoration:none}
+.plate.ic .nm{font-size:2.0625rem;max-width:none}
+.plate.ic .role{opacity:.6}
+.plate.ic .ic-desc{max-width:24rem;opacity:.86;margin-top:.4rem}
+.plate.ic .go{display:inline-flex;gap:.4rem;align-items:center;margin-top:.9rem}
+.plate.ic .go.dim{opacity:.5}
+a.plate.ic:hover .slide span:first-child{transform:translateY(-100%)}
+a.plate.ic:hover .slide span+span{transform:translateY(0)}
+a.plate.ic .go > span:last-child{transition:transform .5s var(--ease)}
+a.plate.ic:hover .go > span:last-child{transform:translateX(.35rem)}
+
+.more{display:flex;align-items:center;gap:.5rem;margin:4.5rem auto 0;padding-bottom:.2rem;border-bottom:1px solid currentColor}
+.more:hover .slide span:first-child{transform:translateY(-100%)}
+.more:hover .slide span+span{transform:translateY(0)}
+.more .plus{position:relative;width:.625rem;height:.625rem}
+.more .plus::before,.more .plus::after{content:"";position:absolute;background:currentColor}
+.more .plus::before{left:0;right:0;top:50%;height:1px}
+.more .plus::after{top:0;bottom:0;left:50%;width:1px}
+.before{max-width:36rem;margin:6rem auto 0;text-align:center;color:var(--ink-2)}
+.before b{font-weight:500;color:var(--ink)}
+
 /* ---------- Phone and tablet ---------- */
 @media (max-width:1023px){
   html{font-size:calc(16 / 416 * 100vw)}
@@ -201,6 +263,18 @@ html.anim .about-nav{opacity:0}
   .cross .y{top:58svh;-webkit-mask-image:none;mask-image:none}
   .about-nav{grid-template-columns:1fr;padding:0 1rem 1.5rem}
   .about-nav .wrap{grid-column:1;justify-content:flex-end}
+  html.anim .works{padding-top:40svh}
+  .plates{columns:2;column-gap:.375rem}
+  .plates.split{grid-template-columns:repeat(2,minmax(0,1fr));gap:.375rem}
+  .plates .col{gap:.375rem}
+  .plate{padding:.75rem;margin-bottom:.375rem}
+  .plate .top{flex-direction:column;gap:.2rem}
+  .plate .nm{font-size:1.375rem}
+  .plates.ic,.plates.ic.split{columns:1;grid-template-columns:1fr;gap:.75rem}
+  .plate.ic{aspect-ratio:auto;min-height:30rem;padding:1rem}
+  .plate.ic .top{flex-direction:row}
+  .plate.ic .nm{font-size:2rem}
+  .w-lede{margin-bottom:4rem}
   .sheet{position:fixed;inset:0;z-index:9;background:var(--ground);display:flex;flex-direction:column;justify-content:flex-end;
     gap:.75rem;padding:5rem 1rem calc(4rem + env(safe-area-inset-bottom,0px))}
   .sheet a{font-size:2.5rem;letter-spacing:-.04em;line-height:1}
@@ -288,8 +362,139 @@ html.anim .about-nav{opacity:0}
     </div>
   </section>
 
-  <section class="next" id="work">
-    <span class="c1">03 — Work</span>
+  <section class="works" id="work" aria-labelledby="workTitle">
+    <div class="w-lines" aria-hidden="true"><div><i class="x"></i><i class="y"></i></div></div>
+    <div class="w-head">
+      <h2 class="w-title c2" id="workTitle">Selected Work</h2>
+      <div class="w-tabs c1" role="tablist" aria-label="Two readings of the same job" hidden>
+        <button class="w-tab" type="button" role="tab" id="tabMgr" aria-controls="viewMgr" aria-selected="true">As a manager</button>
+        <button class="w-tab" type="button" role="tab" id="tabIc" aria-controls="viewIc" aria-selected="false">As an IC</button>
+      </div>
+    </div>
+
+    <div class="w-view" id="viewMgr" role="tabpanel" aria-labelledby="tabMgr">
+      <p class="w-lede p1">Nineteen product areas delivered by the team since February 2024. Direction, review and delivery oversight mine; execution theirs.</p>
+      <ul class="plates">
+          <li class="plate d" style="--ar:5/4;--g:10% 0%">
+            <span class="top c2"><span>01</span><span>Options</span></span>
+            <span class="bot"><span class="nm">Options Scalper Terminal</span></span>
+          </li>
+          <li class="plate l" style="--ar:16/9;--g:90% 10%">
+            <span class="top c2"><span>02</span><span>Markets</span></span>
+            <span class="bot"><span class="nm">Market Analytics</span></span>
+          </li>
+          <li class="plate m" style="--ar:4/3;--g:0% 100%">
+            <span class="top c2"><span>03</span><span>FIA</span></span>
+            <span class="bot"><span class="nm">FIA product experiences</span></span>
+          </li>
+          <li class="plate l" style="--ar:1/1;--g:100% 100%">
+            <span class="top c2"><span>04</span><span>Trading</span></span>
+            <span class="bot"><span class="nm">Orders &amp; order management</span></span>
+          </li>
+          <li class="plate d" style="--ar:16/10;--g:50% 0%">
+            <span class="top c2"><span>05</span><span>Reports</span></span>
+            <span class="bot"><span class="nm">Wealth Tracker</span></span>
+          </li>
+          <li class="plate g" style="--ar:5/4;--g:20% 80%">
+            <span class="top c2"><span>06</span><span>Options</span></span>
+            <span class="bot"><span class="nm">Strategy Builder</span></span>
+          </li>
+          <li class="plate m" style="--ar:4/3;--g:10% 0%">
+            <span class="top c2"><span>07</span><span>Markets</span></span>
+            <span class="bot"><span class="nm">Screeners</span></span>
+          </li>
+          <li class="plate d" style="--ar:16/9;--g:90% 10%">
+            <span class="top c2"><span>08</span><span>Institutional</span></span>
+            <span class="bot"><span class="nm">FYERS Professional</span></span>
+          </li>
+          <li class="plate l" style="--ar:1/1;--g:0% 100%">
+            <span class="top c2"><span>09</span><span>FIA</span></span>
+            <span class="bot"><span class="nm">AI-assisted analysis</span></span>
+          </li>
+          <li class="plate g" style="--ar:5/4;--g:100% 100%">
+            <span class="top c2"><span>10</span><span>Options</span></span>
+            <span class="bot"><span class="nm">Options Analytics</span></span>
+          </li>
+          <li class="plate d" style="--ar:16/10;--g:50% 0%">
+            <span class="top c2"><span>11</span><span>Reports</span></span>
+            <span class="bot"><span class="nm">Reports &amp; portfolio experiences</span></span>
+          </li>
+          <li class="plate m" style="--ar:4/3;--g:20% 80%">
+            <span class="top c2"><span>12</span><span>Markets</span></span>
+            <span class="bot"><span class="nm">Watchlists</span></span>
+          </li>
+          <li class="plate l extra" style="--ar:1/1;--g:10% 0%">
+            <span class="top c2"><span>13</span><span>Trading</span></span>
+            <span class="bot"><span class="nm">Trading workflow improvements</span></span>
+          </li>
+          <li class="plate d extra" style="--ar:16/9;--g:90% 10%">
+            <span class="top c2"><span>14</span><span>Automate</span></span>
+            <span class="bot"><span class="nm">Automation &amp; strategy building</span></span>
+          </li>
+          <li class="plate g extra" style="--ar:5/4;--g:0% 100%">
+            <span class="top c2"><span>15</span><span>Options</span></span>
+            <span class="bot"><span class="nm">Option Chain improvements</span></span>
+          </li>
+          <li class="plate l extra" style="--ar:4/3;--g:100% 100%">
+            <span class="top c2"><span>16</span><span>Markets</span></span>
+            <span class="bot"><span class="nm">Market discovery</span></span>
+          </li>
+          <li class="plate m extra" style="--ar:16/10;--g:50% 0%">
+            <span class="top c2"><span>17</span><span>Onboarding</span></span>
+            <span class="bot"><span class="nm">Onboarding journeys</span><span class="sub c2">Earlier scope</span></span>
+          </li>
+          <li class="plate d extra" style="--ar:1/1;--g:20% 80%">
+            <span class="top c2"><span>18</span><span>Onboarding</span></span>
+            <span class="bot"><span class="nm">NRI onboarding</span><span class="sub c2">Earlier scope</span></span>
+          </li>
+          <li class="plate l extra" style="--ar:16/9;--g:10% 0%">
+            <span class="top c2"><span>19</span><span>Onboarding</span></span>
+            <span class="bot"><span class="nm">Web + mobile onboarding</span><span class="sub c2">Earlier scope</span></span>
+          </li>
+      </ul>
+      <button class="more c2" type="button" id="more" hidden>
+        <span class="slide"><span>Load more</span><span aria-hidden="true">Load more</span></span>
+        <span class="plus" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <div class="w-view" id="viewIc" role="tabpanel" aria-labelledby="tabIc">
+      <p class="w-lede p1">Three pieces of hands-on work, in order.</p>
+      <div class="plates ic">
+          <a class="plate ic d" href="https://sujith.design/case-study-orders.html" target="_blank" rel="noopener" style="--ar:4/5;--g:10% 0%">
+            <span class="top c2"><span>01</span><span>Trading · 2024</span></span>
+            <span class="bot">
+              <span class="nm">Orders</span>
+              <span class="role c2">Design Manager, and individual contributor</span>
+              <span class="ic-desc p1">Delivered the Orders section myself, straight into a high-fidelity model built on reusable local components. Changing a shared pattern stopped meaning changing every screen.</span>
+              <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+            </span>
+          </a>
+          <a class="plate ic l" href="https://sujith.design/case-study-wealth-tracker.html" target="_blank" rel="noopener" style="--ar:4/5;--g:10% 0%">
+            <span class="top c2"><span>02</span><span>Reports · 2026</span></span>
+            <span class="bot">
+              <span class="nm">Wealth Tracker</span>
+              <span class="role c2">Product Design Manager · end-to-end ownership</span>
+              <span class="ic-desc p1">A PRD and an AI-generated concept in; Flutter-ready web and mobile out. Taken through approval with the AVP, CPO and CTO, then built myself. The front-end team estimated roughly 70% less implementation effort.</span>
+              <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+            </span>
+          </a>
+          <div class="plate ic m" style="--ar:4/5;--g:10% 0%">
+            <span class="top c2"><span>03</span><span>In progress</span></span>
+            <span class="bot">
+              <span class="nm">Agentic Design Framework</span>
+              <span class="role c2">No impact claims until it ships and is measured</span>
+              <span class="ic-desc p1">Wealth Tracker was the proof point. Now leading an internal framework that takes product teams from requirement to implementation-ready output, with product, design and engineering review kept in the loop.</span>
+              <span class="go c1 dim">Case study once it ships</span>
+            </span>
+          </div>
+      </div>
+      <p class="before p1"><b>Before FYERS: Nexter Finance, 0&thinsp;&rarr;&thinsp;1.</b> Led and personally designed the desktop and mobile web product, ran usability testing with six users, and called the phased release that let the team ship while the scope was still moving.</p>
+    </div>
+  </section>
+
+  <section class="next" id="leadership">
+    <span class="c1">04 — Leadership</span>
     <p class="h4" style="margin:0">The next section is in build.</p>
   </section>
 </main>
@@ -387,6 +592,62 @@ html.anim .about-nav{opacity:0}
     });
   }
 
+
+  // Work: masonry columns, the manager/IC switch and "Load more" work with or without animation.
+  var extras = Array.from(document.querySelectorAll('.plate.extra'));
+  var moreBtn = document.getElementById('more');
+  function splitPlates(){
+    document.querySelectorAll('.plates').forEach(function(box){
+      var ic = box.classList.contains('ic');
+      var n = innerWidth < 1024 ? (ic ? 1 : 2) : 3;
+      if(box._n === n) return;
+      var plates = box._all || (box._all = Array.from(box.querySelectorAll('.plate')));
+      box.textContent = '';
+      var cols = [];
+      for(var i = 0; i < n; i++){ var c = document.createElement(ic ? 'div' : 'li'); c.className = 'col'; box.appendChild(c); cols.push(c); }
+      if(!ic) box.querySelectorAll('.col').forEach(function(c){ var ul = document.createElement('ul'); ul.style.cssText='list-style:none;margin:0;padding:0;display:contents'; c.appendChild(ul); });
+      plates.forEach(function(p, i){ var c = cols[i % n]; (c.firstElementChild && c.firstElementChild.tagName === 'UL' ? c.firstElementChild : c).appendChild(p); });
+      box.classList.add('split');
+      box._n = n;
+    });
+    if(window.ScrollTrigger) ScrollTrigger.refresh();
+  }
+  splitPlates();
+  addEventListener('resize', function(){ clearTimeout(splitPlates._t); splitPlates._t = setTimeout(splitPlates, 150); });
+
+  function reveal(list){
+    list.forEach(function(el){ el.dataset.in = '1'; });
+    if(window.gsap && !reduce) gsap.fromTo(list, {opacity:0, y:50}, {opacity:1, y:0, duration:1.1, stagger:.06, ease:'expo.out', overwrite:true});
+  }
+
+  extras.forEach(function(el){ el.hidden = true; });
+  moreBtn.hidden = !extras.length;
+  moreBtn.addEventListener('click', function(){
+    extras.forEach(function(el){ el.hidden = false; });
+    moreBtn.hidden = true;
+    reveal(extras);
+    if(window.ScrollTrigger) ScrollTrigger.refresh();
+  });
+
+  var tabs = document.querySelector('.w-tabs');
+  var views = {tabMgr: document.getElementById('viewMgr'), tabIc: document.getElementById('viewIc')};
+  tabs.hidden = false;
+  document.querySelector('.works').classList.add('js-tabs');
+  views.tabIc.hidden = true;
+  tabs.querySelectorAll('.w-tab').forEach(function(t){
+    t.addEventListener('click', function(){
+      if(t.getAttribute('aria-selected') === 'true') return;
+      tabs.querySelectorAll('.w-tab').forEach(function(o){
+        var on = o === t;
+        o.setAttribute('aria-selected', on);
+        views[o.id].hidden = !on;
+      });
+      var shown = Array.from(views[t.id].querySelectorAll('.plate:not([hidden]), .w-lede, .before, .more:not([hidden])'));
+      reveal(shown);
+      if(window.ScrollTrigger) ScrollTrigger.refresh();
+    });
+  });
+
   if(reduce || !window.gsap) return;
 
   document.querySelectorAll('.words').forEach(function(p){
@@ -458,6 +719,23 @@ html.anim .about-nav{opacity:0}
     tl.to('.idx .roll', {yPercent:-200/3, duration:.4, ease:'power2.inOut'}, 6.9);
     show('.s3', 7.3);
     tl.to({}, {duration:1.6}, 8.4);
+  });
+
+  gsap.fromTo('.works', {clipPath:'inset(0% 50% 0% 50%)'}, {clipPath:'inset(0% 0% 0% 0%)', ease:'none',
+    scrollTrigger:{trigger:'.works', start:'top bottom', end:'top top', scrub:true}});
+  gsap.from('.w-head > *', {opacity:0, y:24, duration:1, stagger:.1, ease:'expo.out',
+    scrollTrigger:{trigger:'.w-head', start:'top 80%'}});
+  var firstPlates = Array.from(document.querySelectorAll('#viewMgr .plate:not(.extra)'));
+  gsap.set(firstPlates, {opacity:0});
+  ScrollTrigger.batch(firstPlates, {start:'top 92%', once:true, onEnter:function(batch){
+    batch = batch.filter(function(el){ return !el.dataset.in; });
+    batch.forEach(function(el){ el.dataset.in = '1'; });
+    gsap.fromTo(batch, {opacity:0, y:60}, {opacity:1, y:0, duration:1.2, stagger:.08, ease:'expo.out', overwrite:true});
+  }});
+  gsap.matchMedia().add('(min-width: 1024px)', function(){
+    splitPlates();
+    gsap.fromTo('.plates.split .col:nth-child(2)', {y:'5rem'}, {y:'-5rem', ease:'none',
+      scrollTrigger:{trigger:'.works', start:'top bottom', end:'bottom top', scrub:true}});
   });
 })();
 </script>
