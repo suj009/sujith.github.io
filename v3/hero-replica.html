@@ -21,6 +21,9 @@
   --blend:#F0F0F0;
   --hair:#F2F0F00D;
   --plate-d:#0F0F0F;
+  /* About, Leadership and Writing run on the opposite of the page, so they flip with the theme too */
+  --inv-bg:#0F0F0F;
+  --inv-fg:#F0F0F0;
   --plate-m:#1E1E1E;
   --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
   --ease:cubic-bezier(.25,1,.5,1);
@@ -30,9 +33,9 @@
   --cut:50%;
 }
 @media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F066;--plate-d:#1C1C1C;--plate-m:#2A2A2A}
+  :root:not([data-theme="light"]){color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F066;--plate-d:#1C1C1C;--plate-m:#2A2A2A;--inv-bg:#F0F0F0;--inv-fg:#0F0F0F}
 }
-:root[data-theme="dark"]{color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F066;--plate-d:#1C1C1C;--plate-m:#2A2A2A}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F066;--plate-d:#1C1C1C;--plate-m:#2A2A2A;--inv-bg:#F0F0F0;--inv-fg:#0F0F0F}
 
 *{box-sizing:border-box}
 html{font-size:calc(16 / 1440 * 100vw);background:var(--ground);
@@ -129,12 +132,20 @@ html:not(.js) .tag-wrap{position:absolute;left:0;right:0;top:0;height:auto;margi
 
 /* ---------- 02 About ----------
    Default is a plain stacked layout; html.anim switches on the scroll choreography. */
-.about{position:relative;z-index:4;background:#0F0F0F;color:#F0F0F0}
+.about,.lead,.writing,.photo,.curtain i,html.anim .ld-stage{transition:background-color .5s var(--ease),color .5s var(--ease)}
+.about{position:relative;z-index:4;background:var(--inv-bg);color:var(--inv-fg)}
 .about .layer{position:relative}
 .curtain,.cross,.about-nav{display:none}
-.photo{position:relative;height:80svh;overflow:hidden;background:#0F0F0F}
-.photo .cut{position:absolute;right:2%;bottom:0;height:92%;width:auto;max-width:none;display:block;
-  filter:contrast(1.02) brightness(1.2) saturate(.82);transform-origin:50% 100%}
+.photo{position:relative;height:80svh;overflow:hidden;background:var(--inv-bg)}
+.photo .cut{position:absolute;right:2%;bottom:0;height:92%;width:auto;max-width:none;display:block;transform-origin:50% 100%}
+.photo .cut.dk{filter:contrast(1.02) brightness(1.2) saturate(.82)}
+.photo .cut.lt{display:none}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .photo .cut.dk{display:none}
+  :root:not([data-theme="light"]) .photo .cut.lt{display:block}
+}
+:root[data-theme="dark"] .photo .cut.dk{display:none}
+:root[data-theme="dark"] .photo .cut.lt{display:block}
 .stmts{padding:4rem 0}
 .stmt{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));align-content:start;padding:3rem 0}
 .stmt .t{grid-column:2 / 5;margin:0}
@@ -145,12 +156,12 @@ html.anim .about{background:none;margin-top:-100svh;height:600svh}
 html.anim .about .layer{position:sticky;top:0;height:100svh;margin-bottom:-100svh;overflow:hidden;pointer-events:none}
 html.anim .curtain,html.anim .cross{display:block}
 html.anim .about-nav{display:grid}
-.curtain i{position:absolute;left:0;width:100%;height:50.2%;background:#0F0F0F;transform:scaleY(0)}
+.curtain i{position:absolute;left:0;width:100%;height:50.2%;background:var(--inv-bg);transform:scaleY(0)}
 .curtain .t{top:0;transform-origin:top}
 .curtain .b{bottom:0;transform-origin:bottom}
 html.anim .photo{position:sticky;height:100svh;opacity:0}
 .cross{position:absolute;inset:0}
-.cross i{position:absolute;background:#F2F0F033}
+.cross i{position:absolute;background:color-mix(in srgb,var(--inv-fg) 20%,transparent)}
 .cross .x{left:12.5%;top:0;width:1px;height:100%}
 .cross .y{left:0;top:50%;width:100%;height:1px;
   -webkit-mask-image:linear-gradient(90deg,#000 32%,transparent 48%);mask-image:linear-gradient(90deg,#000 32%,transparent 48%)}
@@ -231,13 +242,13 @@ a.plate.ic:hover .go > span:last-child{transform:translateX(.35rem)}
 
 /* ---------- 04 Leadership ----------
    Static by default; html.anim pins a dark stage that wipes up from the bottom. */
-.lead{position:relative;z-index:6;background:#0F0F0F;color:#F0F0F0}
+.lead{position:relative;z-index:6;background:var(--inv-bg);color:var(--inv-fg)}
 .ld-stage{position:relative;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:3rem 1rem;padding:8rem 1rem}
 .ld-open{grid-column:1 / -1;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
 .ld-cap{margin:0;opacity:.6}
 .ld-thesis{margin:0;max-width:24rem}
 .ld-figwrap{grid-column:4 / 6;grid-row:2 / span 4;display:flex;justify-content:center}
-.ld-fig{height:72svh;width:auto;max-width:100%;overflow:visible;color:#F0F0F0}
+.ld-fig{height:72svh;width:auto;max-width:100%;overflow:visible;color:inherit}
 .ld-fig line,.ld-fig rect{fill:none;stroke:currentColor;stroke-width:1;vector-effect:non-scaling-stroke}
 .ld-fig .fr{stroke-opacity:.5;stroke-dasharray:1;stroke-dashoffset:0}
 .ld-fig .lane{stroke-opacity:.14}
@@ -260,7 +271,7 @@ a.plate.ic:hover .go > span:last-child{transform:translateX(.35rem)}
 
 html.anim .lead{height:600svh;margin-top:-100svh;background:none;pointer-events:none}
 html.anim .ld-stage{position:sticky;top:0;height:100svh;overflow:hidden;display:block;padding:0;
-  background:#0F0F0F;clip-path:inset(100% 0 0 0)}
+  background:var(--inv-bg);clip-path:inset(100% 0 0 0)}
 html.anim .ld-open{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%)}
 html.anim .ld-figwrap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
 html.anim .ld-st{position:absolute;margin:0;pointer-events:none}
@@ -282,7 +293,7 @@ html.anim .ld-nav{display:flex;gap:2.5rem;position:absolute;right:1rem;bottom:1r
 
 
 /* ---------- 05 Writing ---------- */
-.writing{position:relative;z-index:6;background:#0F0F0F;color:#F0F0F0;display:grid;
+.writing{position:relative;z-index:6;background:var(--inv-bg);color:var(--inv-fg);display:grid;
   grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem;padding:32svh 1rem 30svh}
 .wr-cap{grid-column:1 / 3;align-self:start;position:sticky;top:50svh;margin:0;padding-left:.5rem;opacity:.6}
 .wr-body{grid-column:5 / -1;padding-right:.5rem}
@@ -290,7 +301,7 @@ html.anim .ld-nav{display:flex;gap:2.5rem;position:absolute;right:1rem;bottom:1r
 .acc{list-style:none;margin:10.75rem 0 0;padding:0}
 .acc-item{position:relative}
 .acc-item + .acc-item{margin-top:4.5rem}
-.acc-line{position:absolute;left:0;top:0;width:100%;height:1px;background:#F0F0F0;opacity:.14;transform-origin:left;
+.acc-line{position:absolute;left:0;top:0;width:100%;height:1px;background:currentColor;opacity:.14;transform-origin:left;
   transition:opacity .3s var(--ease)}
 .acc-item.open .acc-line{opacity:1}
 @media (hover:hover){.acc-item:hover .acc-line{opacity:1}}
@@ -431,8 +442,8 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   .ld-fig .lb-area{transform:translateY(34px)}
   .ld-fig .lb-own{transform:translateY(-10px)}
   html.anim .ld-open{top:auto;bottom:18svh;transform:none;padding:0 1rem}
-  html.anim .ld-progress{display:block;position:absolute;left:0;right:0;top:54svh;height:1px;background:#F2F0F01A}
-  .ld-progress i{position:absolute;inset:0;background:#F0F0F0;transform:scaleX(0);transform-origin:left}
+  html.anim .ld-progress{display:block;position:absolute;left:0;right:0;top:54svh;height:1px;background:color-mix(in srgb,var(--inv-fg) 10%,transparent)}
+  .ld-progress i{position:absolute;inset:0;background:var(--inv-fg);transform:scaleX(0);transform-origin:left}
   html.anim .ld-st,html.anim .ld4{inset:auto 1rem auto 1rem;top:calc(54svh + 1.5rem);left:1rem;right:1rem;bottom:auto;width:auto}
   html.anim .ld-st .ld-t,html.anim .ld-st .ld-d{position:static;width:auto;max-width:none;text-align:start;padding:0}
   html.anim .ld-st .ld-d{margin-top:1rem}
@@ -526,7 +537,8 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     <div class="layer curtain" aria-hidden="true"><i class="t"></i><i class="b"></i></div>
     <div class="layer photo">
       <div class="cross" aria-hidden="true"><i class="x"></i><i class="y"></i></div>
-      <img class="cut" src="img/sujith-cut.webp" alt="Sujith Kumar Anand" width="720" height="620" loading="lazy" decoding="async">
+      <img class="cut dk" src="img/sujith-cut.webp" alt="Sujith Kumar Anand" width="720" height="620" loading="lazy" decoding="async">
+      <img class="cut lt" src="img/sujith-cut-light.webp" alt="Sujith Kumar Anand" width="1080" height="930" loading="lazy" decoding="async">
     </div>
     <div class="layer stmts">
       <div class="stmt s1">
