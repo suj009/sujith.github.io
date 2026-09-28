@@ -70,9 +70,10 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
 .slide span+span{position:absolute;left:0;top:0;transform:translateY(100%)}
 .link:hover .slide span:first-child{transform:translateY(-100%)}
 .link:hover .slide span+span{transform:translateY(0)}
-.link .bar{position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;
-  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
-.link:hover .bar{transform:scaleX(1)}
+/* scroll progress: each link fills its stretch of the rail while its section is on screen */
+.nav .mark,.link{position:relative}
+.nav .bar{position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:left;will-change:transform;pointer-events:none}
 .menu{display:none}
 
 /* ---------- Hero ---------- */
@@ -396,6 +397,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   .h4{font-size:1.75rem}
   .nav{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:0;margin-bottom:calc(-1 * var(--nav-h));height:3.125rem}
   .link{display:none}
+  .nav .mark{position:static}
   .menu{display:block;grid-column:4;text-align:end;padding:1rem}
   .grid .g1{left:50%}
   .grid .g2{left:0;top:calc(50% - 1px);width:100%;height:1px}
@@ -490,7 +492,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
 <body>
 
 <nav class="nav" aria-label="Primary">
-  <a class="mark" href="#top" aria-label="Sujith Kumar Anand, back to top"><i></i></a>
+  <a class="mark" href="#top" aria-label="Sujith Kumar Anand, back to top"><i></i><span class="bar"></span></a>
   <a class="link c1 wide" href="#about"><span class="slide"><span>About</span><span aria-hidden="true">About</span></span><span class="bar"></span></a>
   <a class="link c1" href="#work"><span class="slide"><span>Work</span><span aria-hidden="true">Work</span></span><span class="bar"></span></a>
   <a class="link c1" href="#leadership"><span class="slide"><span>Leadership</span><span aria-hidden="true">Leadership</span></span><span class="bar"></span></a>
@@ -911,6 +913,41 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   });
   sheet.addEventListener('click', function(e){ if(e.target.tagName === 'A'){ btn.click(); } });
 
+  // Rail progress, as on the reference: the mark fills through the hero, each link through its
+  // own section, so the line under the nav grows section by section. Below 1024px only the
+  // mark shows, and its line spans the rail for the whole page.
+  var railMeasure = (function(){
+    var bars = [].slice.call(document.querySelectorAll('.nav .bar'));
+    var targets = bars.map(function(b){ return document.querySelector(b.parentNode.getAttribute('href')); });
+    var narrow = matchMedia('(max-width:1023px)'), starts = [], max = 1, queued = false;
+    function measure(){
+      max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+      // A section takes over the line once its top is halfway up the screen, so Contact, whose
+      // top only meets the rail at the very foot of the page, still gets a stretch to fill.
+      starts = targets.map(function(el){
+        return Math.min(max, Math.max(0, el.getBoundingClientRect().top + scrollY - innerHeight / 2));
+      });
+      starts.push(max);
+      draw();
+    }
+    function draw(){
+      queued = false;
+      var y = scrollY;
+      bars.forEach(function(b, i){
+        var p;
+        if(narrow.matches) p = i ? 0 : y / max;
+        else { var a = starts[i], z = starts[i + 1]; p = z > a ? (y - a) / (z - a) : (y >= z ? 1 : 0); }
+        b.style.transform = 'scaleX(' + Math.min(1, Math.max(0, p)) + ')';
+      });
+    }
+    addEventListener('scroll', function(){ if(!queued){ queued = true; requestAnimationFrame(draw); } }, {passive:true});
+    addEventListener('resize', measure);
+    addEventListener('load', measure);
+    if('ResizeObserver' in window) new ResizeObserver(measure).observe(document.body);
+    measure();
+    return measure;
+  })();
+
   var lenis = null;
   if(!reduce && window.Lenis){
     lenis = new Lenis({lerp:.09});
@@ -1062,6 +1099,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   gsap.registerPlugin(ScrollTrigger);
   root.classList.add('anim');
   if(lenis) lenis.on('scroll', ScrollTrigger.update);
+  ScrollTrigger.addEventListener('refresh', railMeasure);
 
   gsap.matchMedia().add({desk:'(min-width: 1024px)', mob:'(max-width: 1023px)'}, function(ctx){
     var desk = ctx.conditions.desk;
