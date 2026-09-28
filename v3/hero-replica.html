@@ -127,8 +127,6 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
 .about .layer{position:relative}
 .curtain,.cross,.about-nav{display:none}
 .photo{position:relative;height:80svh;overflow:hidden;background:#0F0F0F}
-.photo .glow{position:absolute;inset:0;
-  background:radial-gradient(58% 78% at 8% -4%,#666767 0%,#525353 14%,#3A3B3C 30%,#242525 48%,#141515 66%,#0F0F0F 84%)}
 .photo .cut{position:absolute;right:2%;bottom:0;height:92%;width:auto;max-width:none;display:block;
   filter:contrast(1.02) brightness(1.2) saturate(.82);transform-origin:50% 100%}
 .stmts{padding:4rem 0}
@@ -192,7 +190,7 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;clip-path:inset(0 50%)}
   aspect-ratio:var(--ar);max-width:100%;overflow:hidden;padding:1rem;margin:0 0 1rem;break-inside:avoid;
   background:var(--pbg);color:var(--pfg)}
 .plates.split .plate{margin:0}
-.plate.d{--pfg:#F0F0F0;--pbg:radial-gradient(95% 85% at var(--g),#525353 0%,#343535 22%,#1C1D1D 48%,#0F0F0F 78%)}
+.plate.d{--pfg:#F0F0F0;--pbg:#0F0F0F}
 .plate.m{--pfg:#F0F0F0;--pbg:#1E1E1E}
 .plate.m::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(-143deg,transparent calc(50% - .5px),#F2F0F01F calc(50% - .5px),#F2F0F01F calc(50% + .5px),transparent calc(50% + .5px))}
@@ -254,7 +252,7 @@ a.plate.ic:hover .go > span:last-child{transform:translateX(.35rem)}
 .ld-link:hover .slide span+span{transform:translateY(0)}
 .ld-nav,.ld-progress{display:none}
 
-html.anim .lead{height:600svh;margin-top:-100svh;background:none}
+html.anim .lead{height:600svh;margin-top:-100svh;background:none;pointer-events:none}
 html.anim .ld-stage{position:sticky;top:0;height:100svh;overflow:hidden;display:block;padding:0;
   background:#0F0F0F;clip-path:inset(100% 0 0 0)}
 html.anim .ld-open{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%)}
@@ -521,7 +519,6 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     <h2 class="sr" id="aboutTitle">About</h2>
     <div class="layer curtain" aria-hidden="true"><i class="t"></i><i class="b"></i></div>
     <div class="layer photo">
-      <div class="glow" aria-hidden="true"></div>
       <div class="cross" aria-hidden="true"><i class="x"></i><i class="y"></i></div>
       <img class="cut" src="img/sujith-cut.webp" alt="Sujith Kumar Anand" width="720" height="620" loading="lazy" decoding="async">
     </div>
@@ -560,79 +557,79 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     <div class="w-view" id="viewMgr" role="tabpanel" aria-labelledby="tabMgr">
       <p class="w-lede p1">Nineteen product areas delivered by the team since February 2024. Direction, review and delivery oversight mine; execution theirs.</p>
       <ul class="plates">
-          <li class="plate d" style="--ar:5/4;--g:10% 0%">
+          <li class="plate d" style="--ar:5/4">
             <span class="top c2"><span>01</span><span>Options</span></span>
             <span class="bot"><span class="nm">Options Scalper Terminal</span></span>
           </li>
-          <li class="plate l" style="--ar:16/9;--g:90% 10%">
+          <li class="plate l" style="--ar:16/9">
             <span class="top c2"><span>02</span><span>Markets</span></span>
             <span class="bot"><span class="nm">Market Analytics</span></span>
           </li>
-          <li class="plate m" style="--ar:4/3;--g:0% 100%">
+          <li class="plate m" style="--ar:4/3">
             <span class="top c2"><span>03</span><span>FIA</span></span>
             <span class="bot"><span class="nm">FIA product experiences</span></span>
           </li>
-          <li class="plate l" style="--ar:1/1;--g:100% 100%">
+          <li class="plate l" style="--ar:1/1">
             <span class="top c2"><span>04</span><span>Trading</span></span>
             <span class="bot"><span class="nm">Orders &amp; order management</span></span>
           </li>
-          <li class="plate d" style="--ar:16/10;--g:50% 0%">
+          <li class="plate d" style="--ar:16/10">
             <span class="top c2"><span>05</span><span>Reports</span></span>
             <span class="bot"><span class="nm">Wealth Tracker</span></span>
           </li>
-          <li class="plate g" style="--ar:5/4;--g:20% 80%">
+          <li class="plate g" style="--ar:5/4">
             <span class="top c2"><span>06</span><span>Options</span></span>
             <span class="bot"><span class="nm">Strategy Builder</span></span>
           </li>
-          <li class="plate m" style="--ar:4/3;--g:10% 0%">
+          <li class="plate m" style="--ar:4/3">
             <span class="top c2"><span>07</span><span>Markets</span></span>
             <span class="bot"><span class="nm">Screeners</span></span>
           </li>
-          <li class="plate d" style="--ar:16/9;--g:90% 10%">
+          <li class="plate d" style="--ar:16/9">
             <span class="top c2"><span>08</span><span>Institutional</span></span>
             <span class="bot"><span class="nm">FYERS Professional</span></span>
           </li>
-          <li class="plate l" style="--ar:1/1;--g:0% 100%">
+          <li class="plate l" style="--ar:1/1">
             <span class="top c2"><span>09</span><span>FIA</span></span>
             <span class="bot"><span class="nm">AI-assisted analysis</span></span>
           </li>
-          <li class="plate g" style="--ar:5/4;--g:100% 100%">
+          <li class="plate g" style="--ar:5/4">
             <span class="top c2"><span>10</span><span>Options</span></span>
             <span class="bot"><span class="nm">Options Analytics</span></span>
           </li>
-          <li class="plate d" style="--ar:16/10;--g:50% 0%">
+          <li class="plate d" style="--ar:16/10">
             <span class="top c2"><span>11</span><span>Reports</span></span>
             <span class="bot"><span class="nm">Reports &amp; portfolio experiences</span></span>
           </li>
-          <li class="plate m" style="--ar:4/3;--g:20% 80%">
+          <li class="plate m" style="--ar:4/3">
             <span class="top c2"><span>12</span><span>Markets</span></span>
             <span class="bot"><span class="nm">Watchlists</span></span>
           </li>
-          <li class="plate l extra" style="--ar:1/1;--g:10% 0%">
+          <li class="plate l extra" style="--ar:1/1">
             <span class="top c2"><span>13</span><span>Trading</span></span>
             <span class="bot"><span class="nm">Trading workflow improvements</span></span>
           </li>
-          <li class="plate d extra" style="--ar:16/9;--g:90% 10%">
+          <li class="plate d extra" style="--ar:16/9">
             <span class="top c2"><span>14</span><span>Automate</span></span>
             <span class="bot"><span class="nm">Automation &amp; strategy building</span></span>
           </li>
-          <li class="plate g extra" style="--ar:5/4;--g:0% 100%">
+          <li class="plate g extra" style="--ar:5/4">
             <span class="top c2"><span>15</span><span>Options</span></span>
             <span class="bot"><span class="nm">Option Chain improvements</span></span>
           </li>
-          <li class="plate l extra" style="--ar:4/3;--g:100% 100%">
+          <li class="plate l extra" style="--ar:4/3">
             <span class="top c2"><span>16</span><span>Markets</span></span>
             <span class="bot"><span class="nm">Market discovery</span></span>
           </li>
-          <li class="plate m extra" style="--ar:16/10;--g:50% 0%">
+          <li class="plate m extra" style="--ar:16/10">
             <span class="top c2"><span>17</span><span>Onboarding</span></span>
             <span class="bot"><span class="nm">Onboarding journeys</span><span class="sub c2">Earlier scope</span></span>
           </li>
-          <li class="plate d extra" style="--ar:1/1;--g:20% 80%">
+          <li class="plate d extra" style="--ar:1/1">
             <span class="top c2"><span>18</span><span>Onboarding</span></span>
             <span class="bot"><span class="nm">NRI onboarding</span><span class="sub c2">Earlier scope</span></span>
           </li>
-          <li class="plate l extra" style="--ar:16/9;--g:10% 0%">
+          <li class="plate l extra" style="--ar:16/9">
             <span class="top c2"><span>19</span><span>Onboarding</span></span>
             <span class="bot"><span class="nm">Web + mobile onboarding</span><span class="sub c2">Earlier scope</span></span>
           </li>
@@ -646,7 +643,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     <div class="w-view" id="viewIc" role="tabpanel" aria-labelledby="tabIc">
       <p class="w-lede p1">Three pieces of hands-on work, in order.</p>
       <div class="plates ic">
-          <a class="plate ic d" href="https://sujith.design/case-study-orders.html" target="_blank" rel="noopener" style="--ar:4/5;--g:10% 0%">
+          <a class="plate ic d" href="https://sujith.design/case-study-orders.html" target="_blank" rel="noopener" style="--ar:4/5">
             <span class="top c2"><span>01</span><span>Trading · 2024</span></span>
             <span class="bot">
               <span class="nm">Orders</span>
@@ -655,7 +652,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
               <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
             </span>
           </a>
-          <a class="plate ic l" href="https://sujith.design/case-study-wealth-tracker.html" target="_blank" rel="noopener" style="--ar:4/5;--g:10% 0%">
+          <a class="plate ic l" href="https://sujith.design/case-study-wealth-tracker.html" target="_blank" rel="noopener" style="--ar:4/5">
             <span class="top c2"><span>02</span><span>Reports · 2026</span></span>
             <span class="bot">
               <span class="nm">Wealth Tracker</span>
@@ -664,7 +661,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
               <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
             </span>
           </a>
-          <div class="plate ic m" style="--ar:4/5;--g:10% 0%">
+          <div class="plate ic m" style="--ar:4/5">
             <span class="top c2"><span>03</span><span>In progress</span></span>
             <span class="bot">
               <span class="nm">Agentic Design Framework</span>
