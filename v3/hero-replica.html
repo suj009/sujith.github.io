@@ -119,11 +119,6 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
 .cursor.big i{transform:scale(1)}
 @media (pointer:fine){.cursor{display:block}}
 
-.next{position:relative;z-index:5;background:var(--ink);color:var(--ground);min-height:60svh;
-  display:grid;grid-template-columns:repeat(8,minmax(0,1fr));padding:8rem 0 4rem;
-  transition:background-color .5s var(--ease),color .5s var(--ease)}
-.next .c1{grid-column:2;opacity:.6}
-.next .h4{grid-column:6 / 9;padding-right:1rem}
 
 
 /* ---------- 02 About ----------
@@ -321,6 +316,63 @@ html.anim .ld-nav{display:flex;gap:2.5rem;position:absolute;right:1rem;bottom:1r
 .acc-scope li + li{margin-top:.625rem}
 .acc-ar{flex-shrink:0;width:.625rem;height:.875rem;opacity:.6}
 
+/* ---------- 06 CV & Contact ---------- */
+.cvc{position:relative;z-index:6;background:var(--ground);color:var(--ink);
+  transition:background-color .5s var(--ease),color .5s var(--ease)}
+.orbit{height:200svh}
+.orbit-stage{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3rem}
+.orbit-fig{position:relative;width:min(34vw,30rem);aspect-ratio:1}
+.globe{display:block;width:100%;height:100%;overflow:visible;color:var(--ink)}
+.globe *{fill:none;stroke:currentColor;stroke-opacity:.28;stroke-width:1;vector-effect:non-scaling-stroke}
+.locs{position:absolute;left:50%;top:50%;width:0;height:0;perspective:75rem}
+.loc{--size:20rem;--dur:24s;position:absolute;width:var(--size);height:2px;margin-left:calc(var(--size) * -.5);
+  background:linear-gradient(90deg,transparent 50%,var(--ink-2) 50%);
+  transform:rotateY(var(--ly)) rotate(var(--lz));transform-style:preserve-3d;animation:locSpin var(--dur) linear infinite}
+.loc-t{position:absolute;left:calc(100% + .25rem);top:50%;margin-top:-.36rem;white-space:nowrap;color:var(--ink);
+  transform:rotate(calc(var(--lz) * -1)) rotateY(calc(0deg - var(--ly)));animation:locText var(--dur) linear infinite}
+@keyframes locSpin{from{transform:rotateY(var(--ly)) rotate(var(--lz))}to{transform:rotateY(calc(var(--ly) - 1turn)) rotate(var(--lz))}}
+@keyframes locText{from{transform:rotate(calc(var(--lz) * -1)) rotateY(calc(0deg - var(--ly)))}to{transform:rotate(calc(var(--lz) * -1)) rotateY(calc(1turn - var(--ly)))}}
+.loc:nth-child(1){--size:15rem;--ly:218deg;--lz:158deg}
+.loc:nth-child(2){--size:19.125rem;--ly:64deg;--lz:233deg}
+.loc:nth-child(3){--size:17.625rem;--ly:339deg;--lz:35deg}
+.loc:nth-child(4){--size:20.375rem;--ly:96deg;--lz:312deg}
+.loc:nth-child(5){--size:21.625rem;--ly:205deg;--lz:130deg}
+.loc:nth-child(6){--size:20.625rem;--ly:221deg;--lz:48deg}
+.loc:nth-child(7){--size:18.625rem;--ly:17deg;--lz:348deg}
+.loc:nth-child(8){--size:21.25rem;--ly:42deg;--lz:212deg}
+.orbit-cap{margin:0;max-width:16rem;text-align:center;color:var(--ink-2)}
+
+.cv{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem;padding:10rem 1rem 12rem}
+.cv-head{grid-column:1 / -1;display:grid;grid-template-columns:subgrid;align-items:start;margin-bottom:6rem}
+.cv-title{grid-column:1 / 3;margin:0;padding-left:.5rem;color:var(--ink-2)}
+.cv-lede{grid-column:5 / -1;margin:0;max-width:34rem}
+.cv-list{grid-column:1 / -1;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:subgrid}
+.cv-row{grid-column:1 / -1;display:grid;grid-template-columns:subgrid;align-items:baseline;row-gap:.5rem;
+  padding:1.25rem 0 2.25rem;border-top:1px solid color-mix(in srgb,var(--ink) 12%,transparent)}
+.cv-yr{grid-column:1 / 3;padding-left:.5rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.cv-org{grid-column:3 / 5;font-size:2.0625rem;letter-spacing:-.03em;line-height:1.05}
+.cv-role{grid-column:5 / 7;padding-right:1rem}
+.cv-note{grid-column:7 / 9;color:var(--ink-2);max-width:17rem}
+.cv-full{grid-column:5 / 7;justify-self:start;margin-top:3rem}
+
+.contact{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;
+  padding:22svh 1rem 1rem;overflow:hidden;border-top:1px solid color-mix(in srgb,var(--ink) 12%,transparent)}
+.ct-line{position:absolute;left:50%;top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--ink) 10%,transparent)}
+.ct-title{position:relative;margin:0;display:grid;grid-template-columns:1fr 1fr;column-gap:2rem;align-items:end}
+.ct-l{text-align:end}
+.ct-grid{position:relative;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem;margin-top:10rem}
+.ct-seek{grid-column:3 / 5;margin:0;max-width:15.625rem;color:var(--ink-2)}
+.ct-list{grid-column:5 / -1;list-style:none;margin:0;padding:0 0 0 1rem}
+.ct-row{display:grid;grid-template-columns:7rem 1fr;align-items:baseline;gap:1rem;padding:.9rem 0;
+  border-top:1px solid color-mix(in srgb,var(--ink) 12%,transparent)}
+.ct-k{color:var(--ink-2)}
+.ct-v{font-size:1.375rem;letter-spacing:-.025em;display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap}
+a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
+.ct-mail{user-select:text;-webkit-user-select:text}
+.ct-copy{color:var(--ink-2);border-bottom:1px solid currentColor}
+.ct-copy:hover{color:var(--ink)}
+.ct-foot{position:relative;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:8rem;padding-left:9rem;color:var(--ink-2)}
+
 /* ---------- Phone and tablet ---------- */
 @media (max-width:1023px){
   html{font-size:calc(16 / 416 * 100vw)}
@@ -343,8 +395,6 @@ html.anim .ld-nav{display:flex;gap:2.5rem;position:absolute;right:1rem;bottom:1r
     letter-spacing:-.02em;line-height:115%;padding-top:1rem}
   .caption{grid-column:3 / -1;grid-row:2;align-self:end;max-width:8rem;padding-left:.5rem}
   .scroll-cap,.drip{display:none}
-  .next{grid-template-columns:1fr;gap:2rem;padding:6rem 1rem 4rem}
-  .next .c1,.next .h4{grid-column:1}
   .stmt{grid-template-columns:1fr;padding:2.5rem 1rem}
   .stmt .t,.stmt .d{grid-column:1}
   .stmt .d{max-width:none;margin-top:1.5rem}
@@ -393,6 +443,22 @@ html.anim .ld-nav{display:flex;gap:2.5rem;position:absolute;right:1rem;bottom:1r
   .acc-title{font-size:1.75rem;max-width:none}
   .acc-content{flex-direction:column;gap:2.5rem;padding:0 0 3.5rem}
   .acc-scope{width:auto}
+  .orbit{height:170svh}
+  .orbit-fig{width:calc(100vw - 2rem)}
+  .loc{width:calc(var(--size) * .6);margin-left:calc(var(--size) * -.3)}
+  .cv{grid-template-columns:1fr;padding:6rem 1rem 8rem}
+  .cv-head,.cv-list,.cv-row{grid-template-columns:1fr}
+  .cv-title,.cv-lede,.cv-yr,.cv-org,.cv-role,.cv-note,.cv-full{grid-column:1;padding-left:0}
+  .cv-head{row-gap:1.5rem;margin-bottom:4rem}
+  .cv-org{font-size:1.75rem}
+  .contact{padding-top:14svh}
+  .ct-line{display:none}
+  .ct-title{grid-template-columns:1fr;font-size:3rem}
+  .ct-l{text-align:start}
+  .ct-grid{grid-template-columns:1fr;row-gap:2.5rem;margin-top:5rem}
+  .ct-seek,.ct-list{grid-column:1;padding:0}
+  .ct-row{grid-template-columns:5.5rem 1fr}
+  .ct-v{font-size:1.125rem}
   .sheet{position:fixed;inset:0;z-index:9;background:var(--ground);display:flex;flex-direction:column;justify-content:flex-end;
     gap:.75rem;padding:5rem 1rem calc(4rem + env(safe-area-inset-bottom,0px))}
   .sheet a{font-size:2.5rem;letter-spacing:-.04em;line-height:1}
@@ -402,6 +468,7 @@ html.anim .ld-nav{display:flex;gap:2.5rem;position:absolute;right:1rem;bottom:1r
 @media (prefers-reduced-motion:reduce){
   .drip::after{animation:none;top:0}
   .cursor{display:none!important}
+  .loc,.loc-t{animation:none}
 }
 </style>
 </head>
@@ -430,7 +497,7 @@ html.anim .ld-nav{display:flex;gap:2.5rem;position:absolute;right:1rem;bottom:1r
     <div class="tag-wrap">
       <div class="tag-box" id="tagBox">
         <div class="desc">
-          <p class="h4 words" style="margin:0">Eleven years in product design, with multiple products launched 0&thinsp;&rarr;&thinsp;1.</p>
+          <p class="h4 words" style="margin:0">Eleven years in product design, with multiple products launched 0&#8239;&rarr;&#8239;1.</p>
           <p class="p1 words" style="margin:0">Today I lead five designers across six verticals at a
             <b>top-20 Indian retail brokerage serving over a million active clients</b>, and I still ship front-end.</p>
         </div>
@@ -444,7 +511,7 @@ html.anim .ld-nav{display:flex;gap:2.5rem;position:absolute;right:1rem;bottom:1r
       <div class="wordmark" id="wordmark" aria-hidden="true"></div>
       <div class="content">
         <p class="caption c2 words" style="margin:0">Senior Design Manager.<br>Bengaluru, IN.</p>
-        <p class="desc-m words" style="margin:0">Eleven years in product design, with multiple products launched 0&thinsp;&rarr;&thinsp;1. Today I lead five designers across six verticals at a top-20 Indian retail brokerage serving over a million active clients, and I still ship front-end.</p>
+        <p class="desc-m words" style="margin:0">Eleven years in product design, with multiple products launched 0&#8239;&rarr;&#8239;1. Today I lead five designers across six verticals at a top-20 Indian retail brokerage serving over a million active clients, and I still ship front-end.</p>
         <p class="scroll-cap c2" style="margin:0">Scroll to discover</p>
       </div>
     </div>
@@ -465,7 +532,7 @@ html.anim .ld-nav{display:flex;gap:2.5rem;position:absolute;right:1rem;bottom:1r
       </div>
       <div class="stmt s2">
         <h3 class="t h2">Launch</h3>
-        <p class="d p1 words">Multiple products taken 0&thinsp;&rarr;&thinsp;1: FIA at FYERS, Nexter Finance in decentralised finance, and the Airtel TV Africa streaming app.</p>
+        <p class="d p1 words">Multiple products taken 0&#8239;&rarr;&#8239;1: FIA at FYERS, Nexter Finance in decentralised finance, and the Airtel TV Africa streaming app.</p>
       </div>
       <div class="stmt s3">
         <h3 class="t h2">Ship</h3>
@@ -607,7 +674,7 @@ html.anim .ld-nav{display:flex;gap:2.5rem;position:absolute;right:1rem;bottom:1r
             </span>
           </div>
       </div>
-      <p class="before p1"><b>Before FYERS: Nexter Finance, 0&thinsp;&rarr;&thinsp;1.</b> Led and personally designed the desktop and mobile web product, ran usability testing with six users, and called the phased release that let the team ship while the scope was still moving.</p>
+      <p class="before p1"><b>Before FYERS: Nexter Finance, 0&#8239;&rarr;&#8239;1.</b> Led and personally designed the desktop and mobile web product, ran usability testing with six users, and called the phased release that let the team ship while the scope was still moving.</p>
     </div>
   </section>
 
@@ -712,9 +779,60 @@ html.anim .ld-nav{display:flex;gap:2.5rem;position:absolute;right:1rem;bottom:1r
     </div>
   </section>
 
-  <section class="next" id="cv">
-    <span class="c1">06 — CV &amp; Contact</span>
-    <p class="h4" style="margin:0">The next section is in build.</p>
+  <section class="cvc" id="cv" aria-labelledby="cvTitle">
+    <div class="orbit">
+      <div class="orbit-stage">
+        <div class="orbit-fig">
+          <svg class="globe" viewBox="-101 -101 202 202" aria-hidden="true" focusable="false">
+            <circle r="100"/><ellipse rx="100" ry="30"/><ellipse rx="83" ry="25" cy="-55"/><ellipse rx="83" ry="25" cy="55"/>
+            <ellipse rx="35" ry="100"/><ellipse rx="70" ry="100"/><line x1="0" y1="-100" x2="0" y2="100"/>
+          </svg>
+          <div class="locs" aria-hidden="true">
+            <div class="loc"><span class="loc-t c2">Bengaluru</span></div>
+            <div class="loc"><span class="loc-t c2">Stockholm</span></div>
+            <div class="loc"><span class="loc-t c2">London</span></div>
+            <div class="loc"><span class="loc-t c2">Newcastle</span></div>
+            <div class="loc"><span class="loc-t c2">Böblingen</span></div>
+            <div class="loc"><span class="loc-t c2">India</span></div>
+            <div class="loc"><span class="loc-t c2">Africa</span></div>
+            <div class="loc"><span class="loc-t c2">United States</span></div>
+          </div>
+        </div>
+        <p class="orbit-cap c2">Studied and worked in India, Sweden, the UK and Germany. Designed for people in India, Africa and the US.</p>
+      </div>
+    </div>
+
+    <div class="cv">
+      <div class="cv-head">
+        <h2 class="c2 cv-title" id="cvTitle">CV</h2>
+        <p class="h4 cv-lede words">Eleven years turning complex fintech into products people trust.</p>
+      </div>
+      <ul class="cv-list">
+        <li class="cv-row"><span class="cv-yr c2">2024 — Present</span><span class="cv-org">FYERS</span><span class="cv-role p1">Senior Design Manager, Product Design</span><span class="cv-note c2">Product design across six verticals at a top-20 Indian retail brokerage. A team of five today, up to eight.</span></li>
+        <li class="cv-row"><span class="cv-yr c2">2022 — 24</span><span class="cv-org">Nexter Finance</span><span class="cv-role p1">Design Lead · decentralised finance</span><span class="cv-note c2">Set design direction from the ground up. Launched 0&#8239;&rarr;&#8239;1.</span></li>
+        <li class="cv-row"><span class="cv-yr c2">2021 — 22</span><span class="cv-org">Oddz Finance</span><span class="cv-role p1">Design Lead · decentralised finance</span><span class="cv-note c2">Complex trading and options flows for non-expert users.</span></li>
+        <li class="cv-row"><span class="cv-yr c2">2018 — 21</span><span class="cv-org">Datami</span><span class="cv-role p1">Lead Product Designer &rarr; Product Designer</span><span class="cv-note c2">Airtel TV Africa, the streaming app designed end to end for the African market. Reach Mobile web journeys.</span></li>
+        <li class="cv-row"><span class="cv-yr c2">2014 — 18</span><span class="cv-org">Earlier</span><span class="cv-role p1">Product design and UX research</span><span class="cv-note c2">Two Roads Tech, Qplum, Onetech Ventures, IBM Studios Böblingen, emocial, and field research with Microsoft in the UK.</span></li>
+        <li class="cv-row"><span class="cv-yr c2">2006 — 15</span><span class="cv-org">Education</span><span class="cv-role p1">MSc, Human-Computer Interaction &amp; Design</span><span class="cv-note c2">KTH Stockholm, then UCL London. Also MSc, Advanced Computer Science, Newcastle University, and BE, BMS College of Engineering.</span></li>
+        <li class="cv-row"><span class="cv-yr c2">Certified</span><span class="cv-org">NISM</span><span class="cv-role p1">Series 7</span><span class="cv-note c2">Series 8 in progress.</span></li>
+      </ul>
+      <a class="ld-link c1 cv-full" href="https://sujith.design/cv.html" target="_blank" rel="noopener"><span class="slide"><span>Full CV</span><span aria-hidden="true">Full CV</span></span><span aria-hidden="true">&rarr;</span></a>
+    </div>
+
+    <div class="contact" id="contact">
+      <span class="ct-line" aria-hidden="true"></span>
+      <h2 class="ct-title h2"><span class="ct-l">Let&rsquo;s build something</span><span class="ct-r">worth using.</span></h2>
+      <div class="ct-grid">
+        <p class="ct-seek p1">Open to Head of Design / Sr Design Manager roles · Bengaluru or remote</p>
+        <ul class="ct-list">
+          <li class="ct-row"><span class="c2 ct-k">Email</span><span class="ct-v"><span class="ct-mail" id="mail">suj009@gmail.com</span><button class="ct-copy c2" type="button" id="copyMail">Copy</button></span></li>
+          <li class="ct-row"><span class="c2 ct-k">LinkedIn</span><a class="ct-v" href="https://www.linkedin.com/in/suj009" target="_blank" rel="noopener">linkedin.com/in/suj009 <span aria-hidden="true">&nearr;</span></a></li>
+          <li class="ct-row"><span class="c2 ct-k">Medium</span><a class="ct-v" href="https://medium.com/@suj009" target="_blank" rel="noopener">medium.com/@suj009 <span aria-hidden="true">&nearr;</span></a></li>
+          <li class="ct-row"><span class="c2 ct-k">CV</span><a class="ct-v" href="https://sujith.design/cv.html" target="_blank" rel="noopener">sujith.design/cv <span aria-hidden="true">&nearr;</span></a></li>
+        </ul>
+      </div>
+      <footer class="ct-foot c2"><span>&copy; <span id="yr">2026</span> Sujith Kumar Anand</span><span>Designed &amp; built by me, with AI</span></footer>
+    </div>
   </section>
 </main>
 
@@ -881,6 +999,19 @@ html.anim .ld-nav{display:flex;gap:2.5rem;position:absolute;right:1rem;bottom:1r
     });
   });
 
+  // Contact: copy the address; if the clipboard is refused, select it so it can be copied by hand.
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  var copyBtn = document.getElementById('copyMail'), mailEl = document.getElementById('mail');
+  copyBtn.addEventListener('click', function(){
+    var done = function(){ copyBtn.textContent = 'Copied'; setTimeout(function(){ copyBtn.textContent = 'Copy'; }, 1800); };
+    var pick = function(){
+      var r = document.createRange(); r.selectNodeContents(mailEl);
+      var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      copyBtn.textContent = 'Selected';
+    };
+    try { navigator.clipboard.writeText(mailEl.textContent).then(done, pick); } catch(e){ pick(); }
+  });
+
   if(reduce || !window.gsap) return;
 
   document.querySelectorAll('.words').forEach(function(p){
@@ -1022,6 +1153,22 @@ html.anim .ld-nav{display:flex;gap:2.5rem;position:absolute;right:1rem;bottom:1r
     t.fromTo(it.querySelector('.acc-line'), {scaleX:0}, {scaleX:1, duration:1.2, ease:'expo.out'})
      .fromTo(it.querySelectorAll('.acc-title, .acc-icon'), {opacity:0, y:24}, {opacity:1, y:0, duration:1, stagger:.08, ease:'expo.out'}, .1);
   });
+
+  gsap.fromTo('.orbit-fig', {scale:.35, opacity:0}, {scale:1, opacity:1, ease:'none',
+    scrollTrigger:{trigger:'.orbit', start:'top bottom', end:'top top', scrub:true}});
+  gsap.fromTo('.orbit-cap', {opacity:0, y:20}, {opacity:1, y:0, ease:'none',
+    scrollTrigger:{trigger:'.orbit', start:'top 30%', end:'top top', scrub:true}});
+  gsap.fromTo('.cv-lede .w', {opacity:0, y:'0.5em'}, {opacity:1, y:0, duration:.9, stagger:.03, ease:'expo.out',
+    scrollTrigger:{trigger:'.cv-head', start:'top 80%'}});
+  ScrollTrigger.batch('.cv-row', {start:'top 90%', once:true, onEnter:function(b){
+    gsap.fromTo(b, {opacity:0, y:40}, {opacity:1, y:0, duration:1.1, stagger:.08, ease:'expo.out'});
+  }});
+  gsap.fromTo('.ct-l', {xPercent:-18, opacity:0}, {xPercent:0, opacity:1, ease:'none',
+    scrollTrigger:{trigger:'.contact', start:'top bottom', end:'top 25%', scrub:true}});
+  gsap.fromTo('.ct-r', {xPercent:18, opacity:0}, {xPercent:0, opacity:1, ease:'none',
+    scrollTrigger:{trigger:'.contact', start:'top bottom', end:'top 25%', scrub:true}});
+  gsap.fromTo('.ct-line', {scaleY:0, transformOrigin:'50% 0%'}, {scaleY:1, ease:'none',
+    scrollTrigger:{trigger:'.contact', start:'top 80%', end:'top top', scrub:true}});
 })();
 </script>
 </body>
