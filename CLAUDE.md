@@ -143,3 +143,24 @@ Claims on this site are checkable by the people being persuaded, so:
 
 There are no tests and no CI. Verify by reading the rendered copy and by
 grepping for stale strings across all HTML files after any repeated-copy change.
+
+## The mark, favicon and SEO (v3)
+
+- **The mark** is option I from the S marks sheet: the Archivo Expanded ExtraBold
+  S from the wordmark, with an A cut through it (legs from an apex above the S,
+  bar at y=470 in glyph units). It replaces the nav dot in `v3/hero-replica.html`
+  and the CV rail. Small sizes use a thicker cut (stroke 62–66) than the large
+  mark (44) so the A survives at 16–20px.
+- **Favicons** live in `v3/img/` (`favicon.svg` flips for dark browser chrome;
+  `.ico`, 16/32 PNG, 180 apple-touch, 192/512 manifest icons) with
+  `v3/site.webmanifest`. On merge they move to the root and replace the old
+  `img/logo-s*` / `favicon.ico` set.
+- **Titles** put the name first (tabs cut at ~25 characters): home is
+  "Sujith Kumar Anand — Product Design Leader, Fintech"; other pages are
+  "<page> — Sujith Kumar Anand". The description uses the top-20 ranking and
+  "over a million active clients", so it moves with those claims.
+- **Canonical, `og:url`, `og:image` and JSON-LD use absolute
+  `https://sujith.design/` URLs**, which assume v3 is merged to the root.
+- `robots.txt` and `sitemap.xml` are at the root. The sitemap leaves out
+  `case-study-fdsg.html` and `article-scaling-design-system.html` while the FDSG
+  claim is disputed; robots blocks `/v2/` and `/v3/` as duplicate versions.
