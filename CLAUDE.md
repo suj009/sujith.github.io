@@ -156,7 +156,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   `v3/site.webmanifest`. On merge they move to the root and replace the old
   `img/logo-s*` / `favicon.ico` set.
 - **Titles** put the name first (tabs cut at ~25 characters): home is
-  "Sujith Kumar Anand — Product Design Leader, Fintech"; other pages are
+  "Sujith Kumar Anand — Senior Product Design Manager" (Sujith's wording); other pages are
   "<page> — Sujith Kumar Anand". The description uses the top-20 ranking and
   "over a million active clients", so it moves with those claims.
 - **Canonical, `og:url`, `og:image` and JSON-LD use absolute
