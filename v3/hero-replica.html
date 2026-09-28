@@ -1032,11 +1032,6 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     };
     walk(p);
   });
-  var tag = document.getElementById('tagline');
-  tag.querySelectorAll('span').forEach(function(s){
-    s.style.overflow = 'clip';
-    s.innerHTML = '<span style="display:block">' + s.textContent + '</span>';
-  });
 
   var o = {a: 0};
   var finalAngle = parseFloat(getComputedStyle(hero).getPropertyValue('--angle'));
