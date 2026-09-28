@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,800&display=swap">
+<script>document.documentElement.classList.add('js')</script>
 <style>
 :root{
   color-scheme:light;
@@ -19,6 +20,8 @@
      so they read dark on the light ground and light on the dark one */
   --blend:#F0F0F0;
   --hair:#F2F0F00D;
+  --plate-d:#0F0F0F;
+  --plate-m:#1E1E1E;
   --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
   --ease:cubic-bezier(.25,1,.5,1);
   --nav-h:2.4375rem;
@@ -27,9 +30,9 @@
   --cut:50%;
 }
 @media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F066}
+  :root:not([data-theme="light"]){color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F066;--plate-d:#1C1C1C;--plate-m:#2A2A2A}
 }
-:root[data-theme="dark"]{color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F066}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F066;--plate-d:#1C1C1C;--plate-m:#2A2A2A}
 
 *{box-sizing:border-box}
 html{font-size:calc(16 / 1440 * 100vw);background:var(--ground);
@@ -82,6 +85,9 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
 .tag-wrap{position:sticky;top:0;height:100svh;margin-bottom:-100svh;overflow:hidden;pointer-events:none;z-index:1;
   -webkit-mask-image:linear-gradient(var(--angle),#000 var(--cut),transparent var(--cut));
           mask-image:linear-gradient(var(--angle),#000 var(--cut),transparent var(--cut))}
+/* without script nothing moves the pinned layer, so let the headline sit in the hero's flow instead */
+html:not(.js) .tag-wrap{position:absolute;left:0;right:0;top:0;height:auto;margin:0;overflow:visible;
+  -webkit-mask-image:none;mask-image:none}
 .tag-box{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));will-change:transform;
   padding-top:calc(394 / 800 * 100svh);padding-bottom:50svh}
 .desc{grid-column:6 / 9;height:calc(406 / 800 * 100svh);padding:0 1rem 0 0;
@@ -93,7 +99,7 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
 
 .hero-body{position:relative;height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding-bottom:1rem}
 .wordmark{display:flex;justify-content:space-between;padding:.5rem .5rem 0;
-  font-family:"Archivo",var(--sans);font-weight:800;font-stretch:125%;font-size:21vw;line-height:.74;letter-spacing:0;text-transform:uppercase}
+  font-family:"Archivo",var(--sans);font-weight:800;font-stretch:125%;font-size:calc((100vw - 1rem) * .18);line-height:.74;letter-spacing:0;text-transform:uppercase}
 .wordmark .l{display:block;overflow:clip;padding-top:.02em}
 .wordmark .l span{display:block}
 .content{height:calc(50svh - 1rem);display:grid;grid-template-columns:repeat(8,minmax(0,1fr))}
@@ -190,8 +196,8 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;clip-path:inset(0 50%)}
   aspect-ratio:var(--ar);max-width:100%;overflow:hidden;padding:1rem;margin:0 0 1rem;break-inside:avoid;
   background:var(--pbg);color:var(--pfg)}
 .plates.split .plate{margin:0}
-.plate.d{--pfg:#F0F0F0;--pbg:#0F0F0F}
-.plate.m{--pfg:#F0F0F0;--pbg:#1E1E1E}
+.plate.d{--pfg:#F0F0F0;--pbg:var(--plate-d)}
+.plate.m{--pfg:#F0F0F0;--pbg:var(--plate-m)}
 .plate.m::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(-143deg,transparent calc(50% - .5px),#F2F0F01F calc(50% - .5px),#F2F0F01F calc(50% + .5px),transparent calc(50% + .5px))}
 .plate.l{--pfg:#0F0F0F;--pbg:#DADADA}
@@ -506,7 +512,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     <div class="drip" aria-hidden="true"></div>
 
     <div class="hero-body">
-      <div class="wordmark" id="wordmark" aria-hidden="true"></div>
+      <div class="wordmark" id="wordmark" aria-hidden="true"><span class="l"><span>S</span></span><span class="l"><span>U</span></span><span class="l"><span>J</span></span><span class="l"><span>I</span></span><span class="l"><span>T</span></span><span class="l"><span>H</span></span></div>
       <div class="content">
         <p class="caption c2 words" style="margin:0">Senior Design Manager.<br>Bengaluru, IN.</p>
         <p class="desc-m words" style="margin:0">Eleven years in product design, with multiple products launched 0&#8239;&rarr;&#8239;1. Today I lead five designers across six verticals at a top-20 Indian retail brokerage serving over a million active clients, and I still ship front-end.</p>
@@ -847,9 +853,6 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   var tagBox = document.getElementById('tagBox');
   var mark = document.getElementById('wordmark');
 
-  mark.innerHTML = 'SUJITH'.split('').map(function(c){
-    return '<span class="l"><span>'+c+'</span></span>';
-  }).join('');
 
   function fitMark(){
     mark.style.fontSize = '100px';
