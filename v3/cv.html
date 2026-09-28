@@ -139,20 +139,11 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
 .u:hover::after{transform:scaleX(1)}
 .rail .mark{display:inline-flex;align-items:center;gap:.6rem}
-.rail .mark .logo{display:block;height:1.1rem;width:auto;overflow:visible}
+.rail .back .ar{display:inline-block;transition:transform .4s var(--ease)}
+.rail .back:hover .ar{transform:translateX(-.25rem)}
+.rail .dl{text-decoration:none;color:inherit}
 .rail .here{color:var(--ink-2)}
 
-/* ---------- Wordmark ---------- */
-.wordmark{display:flex;justify-content:space-between;padding:clamp(20px,3vw,40px) 0 0;
-  font-family:"Archivo",var(--sans);font-weight:800;font-stretch:125%;font-size:calc((min(100vw,1320px) - 3rem) * .18);
-  line-height:.74;text-transform:uppercase}
-.wordmark .l{display:block;overflow:clip;padding-top:.02em}
-.wordmark .l span{display:block}
-.js .wordmark .l span{transform:translateY(105%);transition:transform 1.3s var(--ease)}
-.js .ready .wordmark .l span{transform:none}
-.wordmark .l:nth-child(2) span{transition-delay:.06s}.wordmark .l:nth-child(3) span{transition-delay:.12s}
-.wordmark .l:nth-child(4) span{transition-delay:.18s}.wordmark .l:nth-child(5) span{transition-delay:.24s}
-.wordmark .l:nth-child(6) span{transition-delay:.3s}
 
 /* ---------- Header ---------- */
 .head{padding:clamp(28px,4vw,56px) 0 clamp(32px,5vw,64px);border-bottom:1px solid var(--ink);row-gap:2.5rem}
@@ -172,7 +163,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 :root[data-theme="dark"] .shot .dk{display:block}
 .shot figcaption{position:absolute;left:0;bottom:.6rem;color:var(--ink-2)}
 
-.contact{grid-column:1 / -1;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:1rem}
+.contact{grid-column:1 / -1;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:1rem}
 .contact li{display:flex;flex-direction:column;gap:.35rem;padding-top:.8rem;border-top:1px solid var(--rule)}
 .contact .k{color:var(--ink-2)}
 .contact .v{font-size:1.05rem;letter-spacing:-.02em;display:flex;gap:.6rem;align-items:baseline;flex-wrap:wrap}
@@ -240,6 +231,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 /* two-up blocks */
 .two{display:grid;grid-template-columns:1fr 1fr;column-gap:1rem;row-gap:2.5rem}
+.two .lang{grid-column:1 / -1}
 .blk-h{padding-top:1.1rem;border-top:1px solid var(--ink);margin:0 0 1rem;color:var(--ink-2)}
 .tags{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}
 .tags li{border:1px solid var(--rule);border-radius:999px;padding:.4rem .85rem;transition:border-color .3s var(--ease)}
@@ -263,7 +255,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .js .rv{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
 .js .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
-  .js .rv,.js .tl-bar .seg,.js .wordmark .l span{opacity:1;transform:none;transition:none}
+  .js .rv,.js .tl-bar .seg{opacity:1;transform:none;transition:none}
 }
 
 /* ---------- Phone ---------- */
@@ -291,7 +283,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   @page{margin:13mm}
   :root{--ground:#fff;--ink:#0F0F0F;--ink-2:#0F0F0FA6;--rule:#0F0F0F24;--seg:#0F0F0F;--seg-2:#0F0F0F40;color-scheme:light}
   body{font-size:9pt;line-height:1.36}
-  .rail,.wordmark,.shot,.close,.tip{display:none!important}
+  .rail,.shot,.close,.tip{display:none!important}
   .page{max-width:none;padding:0}
   .head{padding:0 0 10pt;row-gap:10pt}
   .id{grid-column:1 / -1;gap:5pt}
@@ -326,15 +318,13 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 <div class="page" id="page">
 
   <header class="rail c2">
-    <a class="mark u" href="hero-replica.html"><svg class="logo" viewBox="40 -10 793 732" aria-hidden="true" focusable="false"><defs><mask id="cvCut" maskUnits="userSpaceOnUse" x="-100" y="-200" width="1100" height="1200"><rect x="-100" y="-200" width="1100" height="1200" fill="#fff"/><path d="M92 900 L436 -40 L780 900 M249 470 H623" fill="none" stroke="#000" stroke-width="62" stroke-miterlimit="10"/></mask></defs><path d="M452 712Q368 712 295 702Q222 692 167 667Q112 642 81 597Q50 552 50 483Q50 481 50 478Q50 475 51 472H251Q250 476 249.5 480Q249 484 249 489Q249 520 272.5 537.5Q296 555 338 562Q380 569 437 569Q460 569 484.5 567.5Q509 566 532 562.5Q555 559 573.5 552Q592 545 602.5 534.5Q613 524 613 508Q613 487 590.5 474.5Q568 462 528.5 454.5Q489 447 440.5 441Q392 435 340 426.5Q288 418 239 403.5Q190 389 151 365Q112 341 89 303Q66 265 66 211Q66 156 93.5 116.5Q121 77 171 51Q221 25 289 12.5Q357 0 437 0Q519 0 585.5 13Q652 26 699.5 51.5Q747 77 772.5 115.5Q798 154 798 206V220H601V212Q601 191 583 174.5Q565 158 530.5 148.5Q496 139 447 139Q388 139 350 146.5Q312 154 294 166.5Q276 179 276 195Q276 215 299 226.5Q322 238 361 245Q400 252 448.5 258Q497 264 549.5 272Q602 280 650.5 294Q699 308 738 331.5Q777 355 800 391.5Q823 428 823 481Q823 564 775 615Q727 666 643.5 689Q560 712 452 712Z" fill="currentColor" mask="url(#cvCut)"/></svg>Back to portfolio</a>
+    <a class="mark back u" href="hero-replica.html"><span class="ar" aria-hidden="true">&larr;</span>Back to portfolio</a>
     <span class="here">Curriculum vitae</span>
     <nav aria-label="CV actions">
       <button class="u" type="button" id="invert">Invert colour</button>
-      <button class="u" type="button" id="print" hidden>Save as PDF</button>
+      <a class="u dl" id="dl" href="Sujith-Kumar-Anand-CV.pdf" download="Sujith-Kumar-Anand-CV.pdf" target="_blank" rel="noopener">Download PDF <span aria-hidden="true">&darr;</span></a>
     </nav>
   </header>
-
-  <div class="wordmark" id="wordmark" aria-hidden="true"><span class="l"><span>S</span></span><span class="l"><span>U</span></span><span class="l"><span>J</span></span><span class="l"><span>I</span></span><span class="l"><span>T</span></span><span class="l"><span>H</span></span></div>
 
   <main>
     <section class="head grid8" aria-labelledby="cvName">
@@ -342,7 +332,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
         <span class="kicker c2">Curriculum vitae · Bengaluru, IN</span>
         <h1 class="name" id="cvName">Sujith Kumar Anand</h1>
         <p class="role">Senior Product Design Manager — a design leader who still ships</p>
-        <p class="sum">Eleven years turning complex fintech into products people trust. I lead the team, deliver as an IC, and ship front-end with AI. Rooted in HCI research; grounded in engineering.</p>
+        <p class="sum">Eleven years of product design, most recently in fintech, turning complex products into ones people trust. I lead the team, deliver hands-on, and ship front-end with AI. Rooted in HCI research; grounded in engineering.</p>
       </div>
       <figure class="shot rv" style="margin:0">
         <img class="lt" src="img/sujith-cut-light.webp" alt="Sujith Kumar Anand" width="1080" height="930" decoding="async">
@@ -351,16 +341,15 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
       <ul class="contact c2 rv">
         <li><span class="k">Email</span><span class="v"><span id="mail">suj009@gmail.com</span><button class="copy c2" type="button" id="copyMail">Copy</button></span></li>
         <li><span class="k">LinkedIn</span><a class="v" href="https://www.linkedin.com/in/suj009" target="_blank" rel="noopener">linkedin.com/in/suj009 ↗</a></li>
-        <li><span class="k">Writing</span><a class="v" href="https://medium.com/@suj009" target="_blank" rel="noopener">medium.com/@suj009 ↗</a></li>
-        <li><span class="k">Portfolio</span><a class="v" href="https://sujith.design" target="_blank" rel="noopener">sujith.design ↗</a></li>
+                <li><span class="k">Portfolio</span><a class="v" href="https://sujith.design" target="_blank" rel="noopener">sujith.design ↗</a></li>
       </ul>
     </section>
 
     <ul class="glance grid8" aria-label="At a glance">
       <li class="rv"><span class="n">11</span><span class="k c2">Years in product design</span></li>
-      <li class="rv"><span class="n">5–8</span><span class="k c2">Designers led across all verticals</span></li>
-      <li class="rv"><span class="n">6</span><span class="k c2">Verticals at a top-20 Indian retail brokerage</span></li>
-      <li class="rv"><span class="n">1M+</span><span class="k c2">Active clients on the platform</span></li>
+      <li class="rv"><span class="n">3</span><span class="k c2">Products launched 0&#8239;&rarr;&#8239;1: FIA, Nexter Finance, Airtel TV Africa</span></li>
+      <li class="rv"><span class="n">9</span><span class="k c2">Roles, from research labs and startups to a top-20 brokerage</span></li>
+      <li class="rv"><span class="n">4</span><span class="k c2">Countries studied and worked in: India, the UK, Sweden, Germany</span></li>
     </ul>
 
     <section class="sec grid8" aria-labelledby="hCar">
@@ -369,10 +358,10 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
         <div class="tl rv" id="tl">
           <div class="tl-labels" aria-hidden="true"></div>
           <div class="tl-bar" role="list" aria-label="Career timeline by year">
-            <span class="seg" role="listitem" tabindex="0" data-a="2014" data-b="2018" data-t="Earlier" data-d="Microsoft research, emocial, IBM Studios Böblingen, Onetech Ventures, Qplum, Two Roads Tech"><span class="lab c2">Earlier</span><span class="yrs c2">2014 — 18</span></span>
+            <span class="seg" role="listitem" tabindex="0" data-a="2014" data-b="2018" data-t="Earlier" data-d="Microsoft research, emocial, IBM Studios Böblingen, Onetech Ventures, Two Roads Tech (Qplum)"><span class="lab c2">Earlier</span><span class="yrs c2">2014 — 18</span></span>
             <span class="seg" role="listitem" tabindex="0" data-a="2018" data-b="2021" data-t="Datami" data-d="Lead Product Designer → Product Designer · Airtel TV Africa, Reach Mobile"><span class="lab c2">Datami</span><span class="yrs c2">2018 — 21</span></span>
             <span class="seg" role="listitem" tabindex="0" data-a="2021" data-b="2022" data-t="Oddz Finance" data-d="Design Lead · DeFi"><span class="lab c2">Oddz</span><span class="yrs c2">21 — 22</span></span>
-            <span class="seg" role="listitem" tabindex="0" data-a="2022" data-b="2024" data-t="Nexter Finance" data-d="Design Lead · web3 / DeFi"><span class="lab c2">Nexter</span><span class="yrs c2">2022 — 24</span></span>
+            <span class="seg" role="listitem" tabindex="0" data-a="2022" data-b="2024" data-t="Nexter Finance" data-d="Design Lead · decentralised prediction market"><span class="lab c2">Nexter</span><span class="yrs c2">2022 — 24</span></span>
             <span class="seg now" role="listitem" tabindex="0" data-a="2024" data-b="now" data-t="FYERS" data-d="Senior Product Design Manager"><span class="lab c2">FYERS</span><span class="yrs c2">2024 — now</span></span>
           </div>
           <div class="tl-axis c2" aria-hidden="true"></div>
@@ -382,14 +371,14 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
     </section>
 
     <section class="sec grid8" aria-labelledby="hExp">
-      <div class="sec-h"><h2 id="hExp">Experience</h2><span class="n c2">10 roles</span></div>
+      <div class="sec-h"><h2 id="hExp">Experience</h2><span class="n c2">9 roles</span></div>
       <ol class="rows sec-b">
         <li class="row lead-row rv">
           <span class="idx c2">01</span><span class="org">FYERS</span><span class="yr c2">2024 — Present</span>
           <div class="what">
             <p class="rl">Senior Product Design Manager <span class="pill c2">Current</span></p>
             <ul class="pts">
-              <li>Lead product design across six verticals for a top-20 Indian retail brokerage; a team of five today, up to eight across all verticals.</li>
+              <li>Lead product design across six verticals for a top-20 Indian retail brokerage, with a team of five designers today (eight at its largest).</li>
               <li>A leading voice for moving from a split UX/UI relay to end-to-end Product Designers.</li>
               <li>Directed design for the Options Scalper Terminal; delivery through the team I managed.</li>
               <li>Shipped Wealth Tracker end to end — PRD and an AI-generated concept through to Flutter-ready web and mobile; the front-end team estimated roughly 70% less implementation effort.</li>
@@ -399,7 +388,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
         <li class="row rv">
           <span class="idx c2">02</span><span class="org">Nexter Finance</span><span class="yr c2">2022 — 24</span>
           <div class="what"><p class="rl">Design Lead · web3 / DeFi</p>
-            <ul class="pts"><li>Set design direction from the ground up for a decentralized-finance product.</li></ul></div>
+            <ul class="pts"><li>Took a decentralised prediction market (crypto, stocks, commodities and real-world events) from zero to launch; led and personally designed desktop and mobile web.</li><li>Proposed launching Lossy Predictions first and a phased release, so the team shipped while scope was still moving; ran usability testing with six users.</li></ul></div>
         </li>
         <li class="row rv">
           <span class="idx c2">03</span><span class="org">Oddz Finance</span><span class="yr c2">2021 — 22</span>
@@ -412,32 +401,28 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
             <ul class="pts"><li>Airtel TV Africa — designed the streaming app end to end for the African market.</li><li>Reach Mobile — designed the web journeys.</li></ul></div>
         </li>
         <li class="row rv">
-          <span class="idx c2">05</span><span class="org">Two Roads Tech</span><span class="yr c2">Oct 2017 — Mar 18</span>
+          <span class="idx c2">05</span><span class="org">Two Roads Tech (Qplum)</span><span class="yr c2">2017 — Mar 18</span>
           <div class="what"><p class="rl">Product Designer</p>
-            <ul class="pts"><li>Consumer and enterprise product design across web and mobile.</li></ul></div>
+            <ul class="pts"><li>Owned all web journeys for Qplum, an AI-based portfolio-investment platform for US investors.</li></ul></div>
+        </li></ul></div>
         </li>
         <li class="row rv">
-          <span class="idx c2">06</span><span class="org">Qplum</span><span class="yr c2">2017</span>
-          <div class="what"><p class="rl">Product Designer</p>
-            <ul class="pts"><li>Owned all web journeys for an AI-based portfolio-investment platform for US investors.</li></ul></div>
-        </li>
-        <li class="row rv">
-          <span class="idx c2">07</span><span class="org">Onetech Ventures</span><span class="yr c2">Oct 2016 — Apr 17</span>
+          <span class="idx c2">06</span><span class="org">Onetech Ventures</span><span class="yr c2">Oct 2016 — Apr 17</span>
           <div class="what"><p class="rl">UX Specialist · Bangalore</p>
             <ul class="pts"><li>Web applications end to end — requirements gathering, interviews, design walkthroughs, empathy and scenario maps, wireframes, UI and prototypes.</li></ul></div>
         </li>
         <li class="row rv">
-          <span class="idx c2">08</span><span class="org">IBM Studios, Böblingen</span><span class="yr c2">Feb — Jun 2016</span>
+          <span class="idx c2">07</span><span class="org">IBM Studios, Böblingen</span><span class="yr c2">Feb — Jun 2016</span>
           <div class="what"><p class="rl">UX Design &amp; Research Intern</p>
             <ul class="pts"><li>IBM BPM Process Portal — two projects from paper sketches and wireframes through interviews and design walkthroughs with business partners and internal users.</li></ul></div>
         </li>
         <li class="row rv">
-          <span class="idx c2">09</span><span class="org">emocial Ltd · freelance</span><span class="yr c2">2015 — 16</span>
+          <span class="idx c2">08</span><span class="org">emocial Ltd · freelance</span><span class="yr c2">2015 — 16</span>
           <div class="what"><p class="rl">UX Design · London</p>
             <ul class="pts"><li>Responsive web applications — personas, information architecture, task flows, wireframes and prototypes; plus a freelance engagement for a London non-profit.</li></ul></div>
         </li>
         <li class="row rv">
-          <span class="idx c2">10</span><span class="org">Microsoft</span><span class="yr c2">2014 — 15</span>
+          <span class="idx c2">09</span><span class="org">Microsoft</span><span class="yr c2">2014 — 15</span>
           <div class="what"><p class="rl">UX Research · United Kingdom</p>
             <ul class="pts"><li>Field research on care technology with UCL &amp; Kent County Council — interviews, diary studies, usability testing.</li></ul></div>
         </li>
@@ -459,17 +444,13 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
     </section>
 
     <section class="sec grid8" aria-labelledby="hMore">
-      <div class="sec-h"><h2 id="hMore">Craft &amp; context</h2></div>
+      <div class="sec-h"><h2 id="hMore">Skills &amp; context</h2></div>
       <div class="sec-b two">
         <div class="rv"><h3 class="blk-h c2">What I do</h3>
           <ul class="tags c2"><li>Design leadership</li><li>Team scaling</li><li>Design systems</li><li>Product design</li><li>Figma</li><li>Flutter</li><li>Front-end</li><li>AI-assisted build</li><li>Research</li></ul></div>
         <div class="rv"><h3 class="blk-h c2">Domains</h3>
           <ul class="tags c2"><li>Fintech</li><li>Crypto</li><li>Telecom</li><li>Streaming</li><li>Recruitment</li><li>B2C &amp; B2B</li><li>India &amp; global</li></ul></div>
-        <div class="rv wr"><h3 class="blk-h c2">Writing</h3>
-          <a href="https://sujith.design/article-design-frontend-ai.html" target="_blank" rel="noopener"><span>The handoff is dead</span><span class="ar c2">↗</span></a>
-          <a href="https://sujith.design/article-ux-to-ui-ownership.html" target="_blank" rel="noopener"><span>One designer, whole problem</span><span class="ar c2">↗</span></a>
-          <a href="https://medium.com/@suj009" target="_blank" rel="noopener"><span>More on Medium</span><span class="ar c2">↗</span></a></div>
-        <div class="rv"><h3 class="blk-h c2">Languages</h3>
+        <div class="rv lang"><h3 class="blk-h c2">Languages</h3>
           <p class="plain">English (full professional) · Kannada · Telugu · Tamil (professional) · Hindi</p></div>
       </div>
     </section>
@@ -496,16 +477,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
     root.dataset.theme = dark ? 'light' : 'dark';
   });
 
-  // Claude's artifact viewer blocks printing and serves the portfolio at its own root,
-  // so there the PDF button stays hidden and "back" returns to the page it came from.
-  var inViewer = /claude/i.test(location.hostname);
-  var printBtn = document.getElementById('print');
-  if(!inViewer){ printBtn.hidden = false; printBtn.addEventListener('click', function(){ window.print(); }); }
-  else {
-    document.querySelector('.rail .mark').addEventListener('click', function(e){
-      if(history.length > 1){ e.preventDefault(); history.back(); }
-    });
-  }
 
   var copyBtn = document.getElementById('copyMail'), mailEl = document.getElementById('mail');
   copyBtn.addEventListener('click', function(){
@@ -514,15 +485,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
     try { navigator.clipboard.writeText(mailEl.textContent).then(done, pick); } catch(e){ pick(); }
   });
 
-  // Wordmark: fit the letters to the column, as on the portfolio.
-  var mark = document.getElementById('wordmark');
-  function fitMark(){
-    if(getComputedStyle(mark).display === 'none') return;
-    mark.style.fontSize = '100px';
-    var natural = 0;
-    mark.querySelectorAll('.l').forEach(function(l){ natural += l.getBoundingClientRect().width; });
-    mark.style.fontSize = (mark.clientWidth * .86 / natural * 100) + 'px';
-  }
 
   // Timeline: widths and axis come from the years, so the bar stays true to scale.
   var now = new Date(), nowY = now.getFullYear() + now.getMonth() / 12;
@@ -559,10 +521,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
       if(l.offsetWidth + 16 > l.parentNode.offsetWidth && l.parentNode.nextElementSibling) l.classList.add('tight');
     });
   }
-  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function(){ fitMark(); fitLabels(); });
-  addEventListener('resize', function(){ fitMark(); fitLabels(); });
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(fitLabels);
+  addEventListener('resize', fitLabels);
   fitLabels();
-  fitMark();
   requestAnimationFrame(function(){ requestAnimationFrame(function(){ document.getElementById('page').classList.add('ready'); }); });
 
   var items = document.querySelectorAll('.rv');

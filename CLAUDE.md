@@ -164,3 +164,24 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 - `robots.txt` and `sitemap.xml` are at the root. The sitemap leaves out
   `case-study-fdsg.html` and `article-scaling-design-system.html` while the FDSG
   claim is disputed; robots blocks `/v2/` and `/v3/` as duplicate versions.
+
+## v3 Work, case studies and essays
+
+- **Manager wall** (`#viewMgr` in `v3/hero-replica.html`) lists FYERS features
+  shipped since February 2024, newest first. Each card links to the matching
+  walkthrough on FYERS's official YouTube channel (@FYERS-Platforms) and uses
+  that video's thumbnail from `v3/img/work/<videoId>.webp`, shown in greyscale
+  with colour on hover. The list was assembled from the channel and **still needs
+  Sujith's confirmation** that his team designed each one. No adoption or usage
+  figures are shown: none are public, and none may be invented.
+- **IC view** has six cards, each opening a page in `v3/work/` (Orders, Wealth
+  Tracker, Agentic Design Framework, Nexter Finance, Airtel TV Africa, Reach
+  Mobile). Pages are generated from one template; `[[...]]`-style gaps render as
+  "To add" highlights and dashed boxes mark screenshot slots for Sujith to fill.
+- **Essays** live in `v3/writing/`. Two are ports of the live articles with the
+  FDSG and Lab references removed; *Trust is a design material* and *Zero to one,
+  three times* are new drafts written from facts already in the repo.
+- **Team size:** five designers today, eight at the team's largest. Never "5–8".
+- **The detailed CV** (`v3/cv.html`) has a pre-rendered
+  `v3/Sujith-Kumar-Anand-CV.pdf` for its Download button. Regenerate it
+  whenever the CV changes.

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nexter Finance case study — Sujith Kumar Anand</title>
+<meta name="description" content="How Sujith Kumar Anand led and designed Nexter Finance, a decentralised prediction market, from zero to launch with a phased release.">
+<meta name="author" content="Sujith Kumar Anand">
+<link rel="canonical" href="https://sujith.design/work/nexter-finance.html">
+<link rel="icon" href="../img/favicon.ico" sizes="48x48">
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nexter Finance case study — Sujith Kumar Anand">
+<meta property="og:description" content="How Sujith Kumar Anand led and designed Nexter Finance, a decentralised prediction market, from zero to launch with a phased release.">
+<meta property="og:image" content="https://sujith.design/img/og-sujith.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  color-scheme:light;
+  --ground:#F0F0F0;--ink:#0F0F0F;--ink-2:#0F0F0F8C;--rule:#0F0F0F1F;--tint:#0F0F0F08;
+  --todo:#0F0F0F12;
+  --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.25,1,.5,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F08C;--rule:#F2F0F024;--tint:#F2F0F00A;--todo:#F2F0F01A}
+}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F08C;--rule:#F2F0F024;--tint:#F2F0F00A;--todo:#F2F0F01A}
+*{box-sizing:border-box}
+html{background:var(--ground)}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;transition:background-color .5s var(--ease),color .5s var(--ease)}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+.c2{font-size:.75rem;font-weight:500;letter-spacing:-.02em;line-height:1.2}
+.page{max-width:1320px;margin:0 auto;padding:0 clamp(16px,2.5vw,32px) 40px}
+.grid8{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem}
+
+.rail{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  padding:calc(14px + env(safe-area-inset-top,0px)) 0 12px;background:var(--ground);border-bottom:1px solid var(--rule);
+  transition:background-color .5s var(--ease)}
+.rail a{text-decoration:none}
+.u{position:relative;padding-bottom:2px}
+.u::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.u:hover::after{transform:scaleX(1)}
+.back{display:inline-flex;align-items:center;gap:.5rem}
+.back .ar{display:inline-block;transition:transform .4s var(--ease)}
+.back:hover .ar{transform:translateX(-.25rem)}
+.rail .here{color:var(--ink-2)}
+
+.hero{padding:clamp(40px,7vw,96px) 0 clamp(28px,4vw,48px);row-gap:2rem}
+.kicker{grid-column:1 / -1;color:var(--ink-2);display:flex;gap:.75rem;flex-wrap:wrap}
+.kicker .tag{border:1px solid currentColor;border-radius:999px;padding:.15rem .55rem}
+h1{grid-column:1 / 8;margin:0;font-weight:400;font-size:clamp(2.6rem,6.4vw,6rem);letter-spacing:-.055em;line-height:.92;text-wrap:balance}
+.lede{grid-column:1 / 6;margin:0;font-size:clamp(1.15rem,1.8vw,1.5rem);letter-spacing:-.025em;line-height:1.3;text-wrap:pretty}
+.facts{grid-column:1 / -1;list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:1rem}
+.facts li{display:flex;flex-direction:column;gap:.35rem;padding-top:.8rem;border-top:1px solid var(--ink)}
+.facts .k{color:var(--ink-2)}
+.facts .v{font-size:1.05rem;letter-spacing:-.02em;line-height:1.3}
+
+figure{margin:0}
+.fig{grid-column:1 / -1;margin:clamp(24px,4vw,48px) 0}
+.fig.half{grid-column:span 4}
+.ph{position:relative;display:grid;place-items:center;aspect-ratio:16 / 9;background:var(--tint);
+  border:1px dashed var(--ink-2);color:var(--ink-2);text-align:center;padding:1.5rem}
+.ph.tall{aspect-ratio:4 / 5}
+.ph .in{display:grid;gap:.4rem;max-width:26rem}
+.ph .in b{color:var(--ink);font-weight:500;font-size:.95rem;letter-spacing:-.01em}
+.ph .ic{justify-self:center;width:2rem;height:1.5rem;border:1px solid currentColor;border-radius:3px;position:relative;margin-bottom:.3rem}
+.ph .ic::after{content:"";position:absolute;left:.35rem;bottom:.3rem;width:.7rem;height:.45rem;border-left:1px solid currentColor;border-bottom:1px solid currentColor;transform:skewX(-30deg)}
+figcaption{margin-top:.6rem;color:var(--ink-2)}
+
+.sec{padding:clamp(40px,6vw,80px) 0 0}
+.sec-h{grid-column:1 / 3;align-self:start;position:sticky;top:4.25rem;display:flex;flex-direction:column;gap:.4rem;padding-top:.9rem}
+.sec-h .n{color:var(--ink-2)}
+.sec-h h2{margin:0;font-size:1.5rem;font-weight:400;letter-spacing:-.035em;line-height:1.05}
+.sec-b{grid-column:3 / 8;border-top:1px solid var(--ink);padding-top:.9rem;display:grid;gap:1.1rem}
+.sec-b p{margin:0;font-size:1.125rem;line-height:1.55;letter-spacing:-.01em;max-width:40rem;text-wrap:pretty}
+.sec-b ul.pts{margin:0;padding:0;list-style:none;display:grid;gap:.55rem;max-width:40rem}
+.sec-b ul.pts li{position:relative;padding-left:1.25rem;font-size:1.0625rem;line-height:1.5}
+.sec-b ul.pts li::before{content:"";position:absolute;left:0;top:.72em;width:.6rem;height:1px;background:currentColor}
+.sec-b .fig{margin:.6rem 0 0}
+
+.pull{grid-column:1 / -1;margin:clamp(48px,7vw,96px) 0 0;padding:clamp(28px,4vw,48px) 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
+.pull p{margin:0;max-width:22ch;font-size:clamp(1.9rem,4.4vw,3.75rem);letter-spacing:-.045em;line-height:1.02;text-wrap:balance}
+
+.todo{background:var(--todo);border-bottom:1px dashed var(--ink-2);padding:0 .2em;color:var(--ink)}
+.todo::before{content:"To add: ";font-size:.75em;font-weight:500;letter-spacing:.02em;color:var(--ink-2)}
+.status{grid-column:1 / -1;display:flex;gap:.6rem;align-items:baseline;padding:.8rem 1rem;background:var(--tint);border:1px solid var(--rule);color:var(--ink-2)}
+
+.next{margin-top:clamp(64px,9vw,120px);border-top:1px solid var(--ink)}
+.next a{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem;padding:1.5rem 0 1rem;text-decoration:none}
+.next .k{grid-column:1 / 3;color:var(--ink-2)}
+.next .t{grid-column:3 / 8;font-size:clamp(2rem,5vw,4.5rem);letter-spacing:-.05em;line-height:.95}
+.next .s{grid-column:3 / 7;margin-top:.8rem;color:var(--ink-2)}
+.next .ar{display:inline-block;transition:transform .5s var(--ease)}
+.next a:hover .ar{transform:translateX(.4rem)}
+.foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:clamp(40px,6vw,72px);padding-top:1rem;border-top:1px solid var(--rule);color:var(--ink-2)}
+
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+@media (max-width:860px){
+  .grid8,.next a{grid-template-columns:1fr}
+  h1,.lede,.sec-h,.sec-b,.fig,.fig.half,.next .k,.next .t,.next .s{grid-column:1}
+  .facts{grid-template-columns:1fr 1fr;row-gap:1rem}
+  .sec-h{position:static;flex-direction:row;justify-content:space-between;align-items:baseline;padding:0 0 1rem}
+  .rail .here{display:none}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="rail c2">
+    <a class="back u" href="../hero-replica.html#work"><span class="ar" aria-hidden="true">&larr;</span>Back to work</a>
+    <span class="here">Case study · Nexter Finance</span>
+    <button class="u" type="button" id="invert">Invert colour</button>
+  </header>
+  <main>
+    <header class="hero grid8">
+      <p class="kicker c2 rv" style="margin:0"><span>Nexter Finance · DeFi · 2022–24</span><span class="tag">0 → 1</span><span class="tag">Hands-on</span></p>
+      <h1 class="rv">Nexter Finance: taking a prediction market from zero</h1>
+      <p class="lede rv">A decentralised prediction-market product spanning crypto, stocks, commodities and real-world events. I led and personally designed the desktop and mobile web product, and called the phased release that let the team ship while the scope was still moving.</p>
+      <ul class="facts rv"><li><span class="k c2">Role</span><span class="v">Design Lead, hands-on</span></li><li><span class="k c2">Platforms</span><span class="v">Desktop and mobile web</span></li><li><span class="k c2">Research</span><span class="v">Usability testing with six users</span></li><li><span class="k c2">Stage</span><span class="v">0 → 1</span></li></ul>
+      
+      <figure class="fig rv"><div class="ph" role="img" aria-label="Screenshot to add: Nexter Finance, the product"><div class="in c2"><span class="ic" aria-hidden="true"></span><b>Nexter Finance, the product</b><span>The main prediction-market screen on desktop</span></div></div><figcaption class="c2">Screenshot to add</figcaption></figure>
+    </header>
+    <section class="sec grid8" aria-labelledby="s1">
+      <div class="sec-h"><span class="n c2">01</span><h2 id="s1">The challenge</h2></div>
+      <div class="sec-b rv"><p>Nexter set out to let people take positions on outcomes across crypto, stocks, commodities and real-world events, in a decentralised product. The scope was broad and still moving, and most of the people it was for were not DeFi experts.</p><p><span class="todo">The main problem you had to solve for users, in one or two sentences</span></p></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s2">
+      <div class="sec-h"><span class="n c2">02</span><h2 id="s2">My role</h2></div>
+      <div class="sec-b rv"><p>I set the design direction from the ground up and personally designed the desktop and mobile web product. I owned the experience end to end, from the first flows to the shipped screens.</p></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s3">
+      <div class="sec-h"><span class="n c2">03</span><h2 id="s3">Shipping while the scope moved</h2></div>
+      <div class="sec-b rv"><p>Waiting for a settled scope would have meant not shipping. I proposed launching Lossy Predictions first and releasing in phases, so the team could put a real product in people’s hands while the rest was still being decided.</p><figure class="fig rv"><div class="ph" role="img" aria-label="Screenshot to add: Lossy Predictions"><div class="in c2"><span class="ic" aria-hidden="true"></span><b>Lossy Predictions</b><span>The first released flow</span></div></div><figcaption class="c2">Screenshot to add</figcaption></figure></div>
+    </section>
+    <blockquote class="pull grid8 rv" style="margin-inline:0"><p>Waiting for a settled scope would have meant not shipping.</p></blockquote>
+    <section class="sec grid8" aria-labelledby="s4">
+      <div class="sec-h"><span class="n c2">04</span><h2 id="s4">Testing with people</h2></div>
+      <div class="sec-b rv"><p>I ran usability testing with six users to check that the core flows made sense to people who were not crypto natives.</p><p><span class="todo">What the testing showed, and what you changed because of it</span></p><figure class="fig rv"><div class="ph" role="img" aria-label="Screenshot to add: Before and after testing"><div class="in c2"><span class="ic" aria-hidden="true"></span><b>Before and after testing</b><span>A flow before and after the changes from usability testing</span></div></div><figcaption class="c2">Screenshot to add</figcaption></figure></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s5">
+      <div class="sec-h"><span class="n c2">05</span><h2 id="s5">Outcome</h2></div>
+      <div class="sec-b rv"><p><span class="todo">What launched, and any results you can share</span></p></div>
+    </section>
+  </main>
+  <nav class="next" aria-label="Next case study">
+    <a href="airtel-tv-africa.html"><span class="k c2">Next case study</span><span class="t">Airtel TV Africa <span class="ar" aria-hidden="true">&rarr;</span></span><span class="s p">A streaming app designed end to end for the African market.</span></a>
+  </nav>
+  <footer class="foot c2"><span>&copy; <span id="yr">2026</span> Sujith Kumar Anand · Senior Product Design Manager</span><span>Open to Head of Design / Sr Design Manager roles · Bengaluru or remote</span></footer>
+</div>
+<script>
+(function(){
+  var root = document.documentElement;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  document.getElementById('invert').addEventListener('click', function(){
+    var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+  });
+  var items = document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){ items.forEach(function(e){ e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -6% 0px'});
+  items.forEach(function(e, i){ if(e.closest('.hero')) e.style.transitionDelay = (i * 90) + 'ms'; io.observe(e); });
+})();
+</script>
+</body>
+</html>

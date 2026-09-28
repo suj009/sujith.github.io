@@ -232,6 +232,11 @@ html:not(.js) .tag-wrap{position:absolute;left:0;right:0;top:0;height:auto;margi
   color:var(--blend);mix-blend-mode:difference;display:flex;align-items:center;gap:.35rem}
 .invert::before{content:"";width:.25rem;height:.25rem;border-radius:50%;background:currentColor}
 .invert u{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
+/* Over the image-heavy Work wall, blending alone can't keep the nav and the invert
+   control readable, so there (and only there) they take a solid ground. */
+.nav,.invert{transition:background-color .35s var(--ease),box-shadow .35s var(--ease)}
+.nav.solid,.invert.solid{mix-blend-mode:normal;color:var(--ink);background:var(--ground)}
+.invert.solid{box-shadow:0 0 0 .45rem var(--ground)}
 
 .cursor{position:fixed;left:-1.25rem;top:-1.25rem;z-index:30;pointer-events:none;mix-blend-mode:difference;display:none}
 .cursor i{display:block;width:2.5rem;height:2.5rem;border-radius:50%;background:var(--blend);
@@ -292,7 +297,7 @@ html.anim .about-nav{opacity:0}
 /* ---------- 03 Work ---------- */
 .works{position:relative;z-index:5;background:var(--ground);color:var(--ink);padding:8rem 0 10rem;
   transition:background-color .5s var(--ease),color .5s var(--ease)}
-html.anim .works{margin-top:-100svh;padding-top:55svh;clip-path:inset(0 50%)}
+html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:calc(100svh + 4rem);clip-path:inset(0 50%)}
 .w-lines{position:absolute;inset:0;pointer-events:none}
 .w-lines div{position:sticky;top:0;height:100svh;mix-blend-mode:difference}
 .w-lines i{position:absolute;background:var(--hair)}
@@ -320,14 +325,34 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;clip-path:inset(0 50%)}
 .plates.split .plate{margin:0}
 .plate.d{--pfg:#F0F0F0;--pbg:var(--plate-d)}
 .plate.m{--pfg:#F0F0F0;--pbg:var(--plate-m)}
-.plate.m::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(-143deg,transparent calc(50% - .5px),#F2F0F01F calc(50% - .5px),#F2F0F01F calc(50% + .5px),transparent calc(50% + .5px))}
 .plate.l{--pfg:#0F0F0F;--pbg:#DADADA}
 .plate.g{--pfg:#0F0F0F;--pbg:#A9A9A9}
 .plate .top{position:relative;z-index:1;display:flex;justify-content:space-between;gap:1rem;opacity:.72}
 .plate .bot{position:relative;z-index:1;display:flex;flex-direction:column;gap:.6rem}
 .plate .nm{font-size:2.5rem;letter-spacing:-.04em;line-height:1;max-width:12ch;text-wrap:balance}
 .plate .sub{opacity:.6}
+/* feature plates carry a still from FYERS's walkthrough and link to it */
+.plate.vid{aspect-ratio:auto;padding:0}
+.plate.vid .pl-link{display:flex;flex-direction:column;gap:1rem;padding:1rem;color:inherit;text-decoration:none}
+.plate.vid .nm{font-size:1.75rem;max-width:16ch}
+.plate .shot{position:relative;display:block;aspect-ratio:16 / 9;overflow:hidden;background:#0F0F0F}
+.plate .shot img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);
+  transform:scale(1.001);transition:filter .6s var(--ease),transform .9s var(--ease)}
+.plate .play{position:absolute;right:.6rem;bottom:.6rem;width:2rem;height:2rem;border-radius:50%;background:#F0F0F0;
+  opacity:.92;transition:transform .5s var(--ease)}
+.plate .play::after{content:"";position:absolute;left:.8rem;top:.62rem;border-style:solid;border-width:.38rem 0 .38rem .6rem;
+  border-color:transparent transparent transparent #0F0F0F}
+.plate .watch{display:inline-flex;gap:.35rem;opacity:.7;transition:opacity .3s var(--ease)}
+.plate.vid:hover .shot img,.plate.vid .pl-link:focus-visible .shot img{filter:none;transform:scale(1.03)}
+.plate.vid:hover .play{transform:scale(1.12)}
+.plate.vid:hover .watch{opacity:1}
+@media (max-width:1023px){
+  .plate.vid .pl-link{gap:.75rem;padding:.75rem}
+  .plate.vid .nm{font-size:1.25rem}
+  .plate .play{right:.4rem;bottom:.4rem;width:1.5rem;height:1.5rem}
+  .plate .play::after{left:.58rem;top:.45rem;border-width:.3rem 0 .3rem .48rem}
+}
+@media (prefers-reduced-motion:reduce){.plate .shot img{transition:none}}
 
 .plate.ic{text-decoration:none}
 .plate.ic .nm{font-size:2.0625rem;max-width:none}
@@ -427,6 +452,10 @@ html.anim .ld-nav{display:flex;gap:2.5rem;position:absolute;right:1rem;bottom:1r
 .acc-icon.ext::after{top:30%;bottom:30%;left:auto;right:30%;width:1px}
 .acc-icon.ext{background:linear-gradient(135deg,transparent calc(50% - .5px),currentColor calc(50% - .5px),currentColor calc(50% + .5px),transparent calc(50% + .5px)) center/40% 40% no-repeat}
 .acc-body{display:grid;grid-template-rows:1fr}
+.wr-more{margin:1.75rem 0 0;opacity:.55;transition:opacity .3s var(--ease)}
+.wr-more:hover{opacity:1}
+.wr-more a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s var(--ease)}
+.wr-more a:hover{border-bottom-color:currentColor}
 .acc-body > div{overflow:hidden;min-height:0}
 .js-acc .acc-body{transition:grid-template-rows .7s var(--ease)}
 .js-acc .acc-item:not(.open) .acc-body{grid-template-rows:0fr}
@@ -458,6 +487,7 @@ html.anim .ld-nav{display:flex;gap:2.5rem;position:absolute;right:1rem;bottom:1r
   transform:rotate(calc(var(--lz) * -1)) rotateY(calc(0deg - var(--ly)));animation:locText var(--dur) linear infinite}
 @keyframes locSpin{from{transform:rotateY(var(--ly)) rotate(var(--lz))}to{transform:rotateY(calc(var(--ly) - 1turn)) rotate(var(--lz))}}
 @keyframes locText{from{transform:rotate(calc(var(--lz) * -1)) rotateY(calc(0deg - var(--ly)))}to{transform:rotate(calc(var(--lz) * -1)) rotateY(calc(1turn - var(--ly)))}}
+.loc-k{display:block;margin-top:.15rem;font-size:.5625rem;letter-spacing:.06em;text-transform:uppercase;opacity:.55;font-weight:500}
 .loc:nth-child(1){--size:15rem;--ly:218deg;--lz:158deg}
 .loc:nth-child(2){--size:19.125rem;--ly:64deg;--lz:233deg}
 .loc:nth-child(3){--size:17.625rem;--ly:339deg;--lz:35deg}
@@ -655,7 +685,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     <div class="layer stmts">
       <div class="stmt s1">
         <h3 class="t h2">Lead</h3>
-        <p class="d p1 words">Product design across six verticals at a top-20 Indian retail brokerage. A team of five today, up to eight across all verticals.</p>
+        <p class="d p1 words">Product design across six verticals at a top-20 Indian retail brokerage. A team of five designers today; eight at its largest.</p>
       </div>
       <div class="stmt s2">
         <h3 class="t h2">Launch</h3>
@@ -685,84 +715,225 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     </div>
 
     <div class="w-view" id="viewMgr" role="tabpanel" aria-labelledby="tabMgr">
-      <p class="w-lede p1">Nineteen product areas delivered by the team since February 2024. Direction, review and delivery oversight mine; execution theirs.</p>
+      <p class="w-lede p1">44 features shipped at FYERS since February 2024, newest first. Direction, review and delivery oversight mine; execution the team&rsquo;s. Each opens FYERS&rsquo;s own walkthrough.</p>
       <ul class="plates">
-          <li class="plate d" style="--ar:5/4">
-            <span class="top c2"><span>01</span><span>Options</span></span>
-            <span class="bot"><span class="nm">Options Scalper Terminal</span></span>
-          </li>
-          <li class="plate l" style="--ar:16/9">
-            <span class="top c2"><span>02</span><span>Markets</span></span>
-            <span class="bot"><span class="nm">Market Analytics</span></span>
-          </li>
-          <li class="plate m" style="--ar:4/3">
-            <span class="top c2"><span>03</span><span>FIA</span></span>
-            <span class="bot"><span class="nm">FIA product experiences</span></span>
-          </li>
-          <li class="plate l" style="--ar:1/1">
-            <span class="top c2"><span>04</span><span>Trading</span></span>
-            <span class="bot"><span class="nm">Orders &amp; order management</span></span>
-          </li>
-          <li class="plate d" style="--ar:16/10">
-            <span class="top c2"><span>05</span><span>Reports</span></span>
-            <span class="bot"><span class="nm">Wealth Tracker</span></span>
-          </li>
-          <li class="plate g" style="--ar:5/4">
-            <span class="top c2"><span>06</span><span>Options</span></span>
-            <span class="bot"><span class="nm">Strategy Builder</span></span>
-          </li>
-          <li class="plate m" style="--ar:4/3">
-            <span class="top c2"><span>07</span><span>Markets</span></span>
-            <span class="bot"><span class="nm">Screeners</span></span>
-          </li>
-          <li class="plate d" style="--ar:16/9">
-            <span class="top c2"><span>08</span><span>Institutional</span></span>
-            <span class="bot"><span class="nm">FYERS Professional</span></span>
-          </li>
-          <li class="plate l" style="--ar:1/1">
-            <span class="top c2"><span>09</span><span>FIA</span></span>
-            <span class="bot"><span class="nm">AI-assisted analysis</span></span>
-          </li>
-          <li class="plate g" style="--ar:5/4">
-            <span class="top c2"><span>10</span><span>Options</span></span>
-            <span class="bot"><span class="nm">Options Analytics</span></span>
-          </li>
-          <li class="plate d" style="--ar:16/10">
-            <span class="top c2"><span>11</span><span>Reports</span></span>
-            <span class="bot"><span class="nm">Reports &amp; portfolio experiences</span></span>
-          </li>
-          <li class="plate m" style="--ar:4/3">
-            <span class="top c2"><span>12</span><span>Markets</span></span>
-            <span class="bot"><span class="nm">Watchlists</span></span>
-          </li>
-          <li class="plate l extra" style="--ar:1/1">
-            <span class="top c2"><span>13</span><span>Trading</span></span>
-            <span class="bot"><span class="nm">Trading workflow improvements</span></span>
-          </li>
-          <li class="plate d extra" style="--ar:16/9">
-            <span class="top c2"><span>14</span><span>Automate</span></span>
-            <span class="bot"><span class="nm">Automation &amp; strategy building</span></span>
-          </li>
-          <li class="plate g extra" style="--ar:5/4">
-            <span class="top c2"><span>15</span><span>Options</span></span>
-            <span class="bot"><span class="nm">Option Chain improvements</span></span>
-          </li>
-          <li class="plate l extra" style="--ar:4/3">
-            <span class="top c2"><span>16</span><span>Markets</span></span>
-            <span class="bot"><span class="nm">Market discovery</span></span>
-          </li>
-          <li class="plate m extra" style="--ar:16/10">
-            <span class="top c2"><span>17</span><span>Onboarding</span></span>
-            <span class="bot"><span class="nm">Onboarding journeys</span><span class="sub c2">Earlier scope</span></span>
-          </li>
-          <li class="plate d extra" style="--ar:1/1">
-            <span class="top c2"><span>18</span><span>Onboarding</span></span>
-            <span class="bot"><span class="nm">NRI onboarding</span><span class="sub c2">Earlier scope</span></span>
-          </li>
-          <li class="plate l extra" style="--ar:16/9">
-            <span class="top c2"><span>19</span><span>Onboarding</span></span>
-            <span class="bot"><span class="nm">Web + mobile onboarding</span><span class="sub c2">Earlier scope</span></span>
-          </li>
+        <li class="plate d vid"><a class="pl-link" href="https://www.youtube.com/watch?v=vfW_KMU-AFU" target="_blank" rel="noopener" aria-label="Order Flow on Smart Charts: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>01</span><span>Charts · Sep 2026</span></span>
+          <span class="shot"><img src="img/work/vfW_KMU-AFU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Order Flow on Smart Charts</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate l vid"><a class="pl-link" href="https://www.youtube.com/watch?v=bUF2rhsrwQw" target="_blank" rel="noopener" aria-label="Build your own indicators: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>02</span><span>Charts · Sep 2026</span></span>
+          <span class="shot"><img src="img/work/bUF2rhsrwQw.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Build your own indicators</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate m vid"><a class="pl-link" href="https://www.youtube.com/watch?v=LXug2VUWf4A" target="_blank" rel="noopener" aria-label="Backtest strategies with AI: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>03</span><span>Automate · Sep 2026</span></span>
+          <span class="shot"><img src="img/work/LXug2VUWf4A.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Backtest strategies with AI</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate g vid"><a class="pl-link" href="https://www.youtube.com/watch?v=adhEOlA5UFA" target="_blank" rel="noopener" aria-label="FYERS Automate with FIA: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>04</span><span>Automate · Aug 2026</span></span>
+          <span class="shot"><img src="img/work/adhEOlA5UFA.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">FYERS Automate with FIA</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate d vid"><a class="pl-link" href="https://www.youtube.com/watch?v=fiAxvS61Oqs" target="_blank" rel="noopener" aria-label="FYERS Prime: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>05</span><span>Platform · Jul 2026</span></span>
+          <span class="shot"><img src="img/work/fiAxvS61Oqs.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">FYERS Prime</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate l vid"><a class="pl-link" href="https://www.youtube.com/watch?v=tByaoXgEYvI" target="_blank" rel="noopener" aria-label="Strategy Builder: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>06</span><span>Options · Jul 2026</span></span>
+          <span class="shot"><img src="img/work/tByaoXgEYvI.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Strategy Builder</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate m vid"><a class="pl-link" href="https://www.youtube.com/watch?v=aOt4ySZRAJg" target="_blank" rel="noopener" aria-label="Options Analytics: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>07</span><span>Options · Jun 2026</span></span>
+          <span class="shot"><img src="img/work/aOt4ySZRAJg.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Options Analytics</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate g vid"><a class="pl-link" href="https://www.youtube.com/watch?v=Q2w1Mj7LW8U" target="_blank" rel="noopener" aria-label="FYERS Web: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>08</span><span>Platform · Jun 2026</span></span>
+          <span class="shot"><img src="img/work/Q2w1Mj7LW8U.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">FYERS Web</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate d vid"><a class="pl-link" href="https://www.youtube.com/watch?v=93cDp9T3NeU" target="_blank" rel="noopener" aria-label="Fixed Deposits: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>09</span><span>Invest · Jun 2026</span></span>
+          <span class="shot"><img src="img/work/93cDp9T3NeU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Fixed Deposits</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate l vid"><a class="pl-link" href="https://www.youtube.com/watch?v=oQ24N3rVlQc" target="_blank" rel="noopener" aria-label="Bar Replay: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>10</span><span>Charts · May 2026</span></span>
+          <span class="shot"><img src="img/work/oQ24N3rVlQc.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Bar Replay</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate m vid"><a class="pl-link" href="https://www.youtube.com/watch?v=mxeN6i0_nvE" target="_blank" rel="noopener" aria-label="Dual Chart Mode: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>11</span><span>Options · May 2026</span></span>
+          <span class="shot"><img src="img/work/mxeN6i0_nvE.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Dual Chart Mode</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate g vid"><a class="pl-link" href="https://www.youtube.com/watch?v=ZA8i3dIXhuI" target="_blank" rel="noopener" aria-label="Indicator triggers: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>12</span><span>Automate · May 2026</span></span>
+          <span class="shot"><img src="img/work/ZA8i3dIXhuI.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Indicator triggers</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate d vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=oyWc8Jg-ihc" target="_blank" rel="noopener" aria-label="TradingView &amp; Chartink webhooks: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>13</span><span>Automate · Apr 2026</span></span>
+          <span class="shot"><img src="img/work/oyWc8Jg-ihc.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">TradingView &amp; Chartink webhooks</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate l vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=xa2i-PPdhG8" target="_blank" rel="noopener" aria-label="Smart Exit: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>14</span><span>Trading · Apr 2026</span></span>
+          <span class="shot"><img src="img/work/xa2i-PPdhG8.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Smart Exit</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate m vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=lwridfy0vqM" target="_blank" rel="noopener" aria-label="IPO analysis with FIA: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>15</span><span>FIA · Apr 2026</span></span>
+          <span class="shot"><img src="img/work/lwridfy0vqM.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">IPO analysis with FIA</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate g vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=KoaFje9nRxk" target="_blank" rel="noopener" aria-label="Stock Screeners: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>16</span><span>Markets · Mar 2026</span></span>
+          <span class="shot"><img src="img/work/KoaFje9nRxk.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Stock Screeners</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate d vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=4dja7bZh2sk" target="_blank" rel="noopener" aria-label="Market Analytics: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>17</span><span>Markets · Mar 2026</span></span>
+          <span class="shot"><img src="img/work/4dja7bZh2sk.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Market Analytics</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate l vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=siPihI_016s" target="_blank" rel="noopener" aria-label="Positions P&amp;L Curve: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>18</span><span>Trading · Feb 2026</span></span>
+          <span class="shot"><img src="img/work/siPihI_016s.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Positions P&amp;L Curve</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate m vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=A_X6D5vVlfQ" target="_blank" rel="noopener" aria-label="Mobile Scalper: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>19</span><span>Options · Feb 2026</span></span>
+          <span class="shot"><img src="img/work/A_X6D5vVlfQ.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Mobile Scalper</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate g vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=zVgDopYIRjU" target="_blank" rel="noopener" aria-label="Price breakout triggers: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>20</span><span>Automate · Feb 2026</span></span>
+          <span class="shot"><img src="img/work/zVgDopYIRjU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Price breakout triggers</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate d vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=imbmGoyBmhE" target="_blank" rel="noopener" aria-label="Alert trigger orders: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>21</span><span>Automate · Feb 2026</span></span>
+          <span class="shot"><img src="img/work/imbmGoyBmhE.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Alert trigger orders</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate l vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=M-ivZx7xm2c" target="_blank" rel="noopener" aria-label="FYERS Automate: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>22</span><span>Automate · Jan 2026</span></span>
+          <span class="shot"><img src="img/work/M-ivZx7xm2c.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">FYERS Automate</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate m vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=bwe6kX_ENKE" target="_blank" rel="noopener" aria-label="Budget Dashboard: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>23</span><span>Markets · Jan 2026</span></span>
+          <span class="shot"><img src="img/work/bwe6kX_ENKE.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Budget Dashboard</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate g vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=6f0q8l3-HvA" target="_blank" rel="noopener" aria-label="Chart &amp; options analysis with FIA: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>24</span><span>FIA · Jan 2026</span></span>
+          <span class="shot"><img src="img/work/6f0q8l3-HvA.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Chart &amp; options analysis with FIA</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate d vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=58wtc8hOhMU" target="_blank" rel="noopener" aria-label="Portfolio analysis with FIA: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>25</span><span>FIA · Jan 2026</span></span>
+          <span class="shot"><img src="img/work/58wtc8hOhMU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Portfolio analysis with FIA</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate l vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=X0eSU9I-sOI" target="_blank" rel="noopener" aria-label="Smart News: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>26</span><span>Markets · Jan 2026</span></span>
+          <span class="shot"><img src="img/work/X0eSU9I-sOI.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Smart News</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate m vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=410VrVUGmJI" target="_blank" rel="noopener" aria-label="Smart Watchlist: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>27</span><span>Markets · Jan 2026</span></span>
+          <span class="shot"><img src="img/work/410VrVUGmJI.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Smart Watchlist</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate g vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=T3_fF80Qebg" target="_blank" rel="noopener" aria-label="Smart SIP in stocks: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>28</span><span>Invest · Jan 2026</span></span>
+          <span class="shot"><img src="img/work/T3_fF80Qebg.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Smart SIP in stocks</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate d vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=YesILLiBhOU" target="_blank" rel="noopener" aria-label="Advanced Option Chain: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>29</span><span>Options · Jan 2026</span></span>
+          <span class="shot"><img src="img/work/YesILLiBhOU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Advanced Option Chain</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate l vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=ttbSwAnuyvw" target="_blank" rel="noopener" aria-label="Trade from Advanced Charts: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>30</span><span>Charts · Jan 2026</span></span>
+          <span class="shot"><img src="img/work/ttbSwAnuyvw.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Trade from Advanced Charts</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate m vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=hkJi80v1kRk" target="_blank" rel="noopener" aria-label="Margin Trading Facility: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>31</span><span>Invest · Oct 2025</span></span>
+          <span class="shot"><img src="img/work/hkJi80v1kRk.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Margin Trading Facility</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate g vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=rg_CDasn0_o" target="_blank" rel="noopener" aria-label="The all-new FYERS experience: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>32</span><span>Platform · Aug 2025</span></span>
+          <span class="shot"><img src="img/work/rg_CDasn0_o.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">The all-new FYERS experience</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate d vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=EST-LMY0zHw" target="_blank" rel="noopener" aria-label="FIA GPT: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>33</span><span>FIA · Aug 2025</span></span>
+          <span class="shot"><img src="img/work/EST-LMY0zHw.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">FIA GPT</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate l vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=Fv0s2AgVwt4" target="_blank" rel="noopener" aria-label="AI Screener: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>34</span><span>FIA · Jun 2025</span></span>
+          <span class="shot"><img src="img/work/Fv0s2AgVwt4.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">AI Screener</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate m vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=xZ06dasa1_8" target="_blank" rel="noopener" aria-label="Options Scalper Terminal: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>35</span><span>Options · Apr 2025</span></span>
+          <span class="shot"><img src="img/work/xZ06dasa1_8.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Options Scalper Terminal</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate g vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=j9hevhoHrKU" target="_blank" rel="noopener" aria-label="FIA, FYERS Intelligent Assistant: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>36</span><span>FIA · Mar 2025</span></span>
+          <span class="shot"><img src="img/work/j9hevhoHrKU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">FIA, FYERS Intelligent Assistant</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate d vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=6mKK6bzzzBI" target="_blank" rel="noopener" aria-label="Instant Withdrawal: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>37</span><span>Funds · Dec 2024</span></span>
+          <span class="shot"><img src="img/work/6mKK6bzzzBI.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Instant Withdrawal</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate l vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=ScchXOh0UXw" target="_blank" rel="noopener" aria-label="Payment mandates: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>38</span><span>Funds · Dec 2024</span></span>
+          <span class="shot"><img src="img/work/ScchXOh0UXw.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Payment mandates</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate m vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=Xk8_NDtETRY" target="_blank" rel="noopener" aria-label="Smart Orders: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>39</span><span>Trading · Dec 2024</span></span>
+          <span class="shot"><img src="img/work/Xk8_NDtETRY.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Smart Orders</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate g vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=k3RI_PjwZ08" target="_blank" rel="noopener" aria-label="DDPI: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>40</span><span>Onboarding · Jul 2024</span></span>
+          <span class="shot"><img src="img/work/k3RI_PjwZ08.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">DDPI</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate d vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=bNzlxoC_Nxk" target="_blank" rel="noopener" aria-label="Account opening: watch FYERS's walkthrough on YouTube">
+          <span class="top c2"><span>41</span><span>Onboarding · Jun 2024</span></span>
+          <span class="shot"><img src="img/work/bNzlxoC_Nxk.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="bot"><span class="nm">Account opening</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+        </a></li>
+        <li class="plate l extra" style="--ar:5/4">
+          <span class="top c2"><span>42</span><span>Institutional</span></span>
+          <span class="bot"><span class="nm">FYERS Professional</span></span>
+        </li>
+        <li class="plate m extra" style="--ar:5/4">
+          <span class="top c2"><span>43</span><span>Reports</span></span>
+          <span class="bot"><span class="nm">Reports &amp; portfolio</span></span>
+        </li>
+        <li class="plate g extra" style="--ar:5/4">
+          <span class="top c2"><span>44</span><span>Onboarding</span></span>
+          <span class="bot"><span class="nm">NRI onboarding</span></span>
+        </li>
       </ul>
       <button class="more c2" type="button" id="more" hidden>
         <span class="slide"><span>Load more</span><span aria-hidden="true">Load more</span></span>
@@ -771,37 +942,63 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     </div>
 
     <div class="w-view" id="viewIc" role="tabpanel" aria-labelledby="tabIc">
-      <p class="w-lede p1">Three pieces of hands-on work, in order.</p>
+      <p class="w-lede p1">Six pieces of hands-on work across three companies, newest first. Each opens its case study.</p>
       <div class="plates ic">
-          <a class="plate ic d" href="https://sujith.design/case-study-orders.html" target="_blank" rel="noopener" style="--ar:4/5">
-            <span class="top c2"><span>01</span><span>Trading · 2024</span></span>
-            <span class="bot">
-              <span class="nm">Orders</span>
-              <span class="role c2">Design Manager, and individual contributor</span>
-              <span class="ic-desc p1">Delivered the Orders section myself, straight into a high-fidelity model built on reusable local components. Changing a shared pattern stopped meaning changing every screen.</span>
-              <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
-            </span>
-          </a>
-          <a class="plate ic l" href="https://sujith.design/case-study-wealth-tracker.html" target="_blank" rel="noopener" style="--ar:4/5">
-            <span class="top c2"><span>02</span><span>Reports · 2026</span></span>
-            <span class="bot">
-              <span class="nm">Wealth Tracker</span>
-              <span class="role c2">Product Design Manager · end-to-end ownership</span>
-              <span class="ic-desc p1">A PRD and an AI-generated concept in; Flutter-ready web and mobile out. Taken through approval with the AVP, CPO and CTO, then built myself. The front-end team estimated roughly 70% less implementation effort.</span>
-              <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
-            </span>
-          </a>
-          <div class="plate ic m" style="--ar:4/5">
-            <span class="top c2"><span>03</span><span>In progress</span></span>
-            <span class="bot">
-              <span class="nm">Agentic Design Framework</span>
-              <span class="role c2">No impact claims until it ships and is measured</span>
-              <span class="ic-desc p1">Wealth Tracker was the proof point. Now leading an internal framework that takes product teams from requirement to implementation-ready output, with product, design and engineering review kept in the loop.</span>
-              <span class="go c1 dim">Case study once it ships</span>
-            </span>
-          </div>
+        <a class="plate ic d" href="work/orders.html" style="--ar:4/5">
+          <span class="top c2"><span>01</span><span>Trading · 2024</span></span>
+          <span class="bot">
+            <span class="nm">Orders</span>
+            <span class="role c2">FYERS · Design manager, and individual contributor</span>
+            <span class="ic-desc p1">Delivered the Orders section myself, straight into a high-fidelity model built on reusable local components. Changing a shared pattern stopped meaning changing every screen.</span>
+            <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+          </span>
+        </a>
+        <a class="plate ic l" href="work/wealth-tracker.html" style="--ar:4/5">
+          <span class="top c2"><span>02</span><span>Reports · 2026</span></span>
+          <span class="bot">
+            <span class="nm">Wealth Tracker</span>
+            <span class="role c2">FYERS · End-to-end ownership</span>
+            <span class="ic-desc p1">A PRD and an AI-generated concept in; Flutter-ready web and mobile out. Taken through approval with the AVP, CPO and CTO, then built myself. The front-end team estimated roughly 70% less implementation effort.</span>
+            <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+          </span>
+        </a>
+        <a class="plate ic m" href="work/agentic-design-framework.html" style="--ar:4/5">
+          <span class="top c2"><span>03</span><span>In progress</span></span>
+          <span class="bot">
+            <span class="nm">Agentic Design Framework</span>
+            <span class="role c2">FYERS · No impact claims until it ships</span>
+            <span class="ic-desc p1">Wealth Tracker was the proof point. Now leading an internal framework that takes product teams from requirement to implementation-ready output, with product, design and engineering review kept in the loop.</span>
+            <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+          </span>
+        </a>
+        <a class="plate ic g" href="work/nexter-finance.html" style="--ar:4/5">
+          <span class="top c2"><span>04</span><span>DeFi · 2022–24</span></span>
+          <span class="bot">
+            <span class="nm">Nexter Finance</span>
+            <span class="role c2">Nexter · Design Lead · 0&#8239;&rarr;&#8239;1</span>
+            <span class="ic-desc p1">Led and personally designed a decentralised prediction market for desktop and mobile web, tested it with six users, and called the phased release that let the team ship while the scope was still moving.</span>
+            <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+          </span>
+        </a>
+        <a class="plate ic d" href="work/airtel-tv-africa.html" style="--ar:4/5">
+          <span class="top c2"><span>05</span><span>Streaming · 2018–21</span></span>
+          <span class="bot">
+            <span class="nm">Airtel TV Africa</span>
+            <span class="role c2">Datami · Lead Product Designer · 0&#8239;&rarr;&#8239;1</span>
+            <span class="ic-desc p1">Designed the Airtel TV streaming app end to end for the African market.</span>
+            <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+          </span>
+        </a>
+        <a class="plate ic l" href="work/reach-mobile.html" style="--ar:4/5">
+          <span class="top c2"><span>06</span><span>Web · 2018–21</span></span>
+          <span class="bot">
+            <span class="nm">Reach Mobile</span>
+            <span class="role c2">Datami · Product Designer</span>
+            <span class="ic-desc p1">Designed the Reach Mobile web journeys.</span>
+            <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+          </span>
+        </a>
       </div>
-      <p class="before p1"><b>Before FYERS: Nexter Finance, 0&#8239;&rarr;&#8239;1.</b> Led and personally designed the desktop and mobile web product, ran usability testing with six users, and called the phased release that let the team ship while the scope was still moving.</p>
     </div>
   </section>
 
@@ -821,30 +1018,30 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
           <g class="dots"><circle class="dot" cx="20" cy="40" r="6"/><circle class="dot" cx="60" cy="40" r="6"/><circle class="dot" cx="100" cy="40" r="6"/><circle class="dot" cx="140" cy="40" r="6"/><circle class="dot" cx="180" cy="40" r="6"/></g>
           <g class="hols"><circle class="hol" cx="20" cy="80" r="5.5"/><circle class="hol" cx="60" cy="80" r="5.5"/><circle class="hol" cx="100" cy="80" r="5.5"/></g>
           <g class="me"><line class="me-ln" pathLength="1" x1="220" y1="380" x2="220" y2="560"/><circle class="me-ring" cx="220" cy="470" r="13"/><circle class="me-dot" cx="220" cy="470" r="6.5"/></g>
-          <text class="lbl lb-des" x="0" y="-18">5–8 designers</text>
+          <text class="lbl lb-des" x="0" y="-18">5 designers · 8 at peak</text>
           <text class="lbl lb-ver" x="0" y="930">6 verticals</text>
           <text class="lbl lb-own" x="240" y="-44" text-anchor="end">one owner per problem</text>
-          <text class="lbl lb-area" x="240" y="930" text-anchor="end">19 product areas</text>
+          <text class="lbl lb-area" x="240" y="930" text-anchor="end">44 features shipped</text>
           <text class="lbl lb-me" x="262" y="474">hands-on</text>
         </svg>
       </div>
       <div class="ld-progress" aria-hidden="true"><i></i></div>
       <div class="ld-st ld1">
-        <h3 class="ld-t">A team of five to eight</h3>
-        <p class="ld-d p1 words">Five designers today, up to eight across all verticals, managed through two organisational changes at a top-20 Indian retail brokerage.</p>
+        <h3 class="ld-t">A team of five, eight at its largest</h3>
+        <p class="ld-d p1 words">Five designers today and eight at the team&rsquo;s largest, led through two organisational changes across six verticals at a top-20 Indian retail brokerage.</p>
       </div>
       <div class="ld-st ld2">
         <h3 class="ld-t">One designer, whole problem</h3>
         <p class="ld-d p1"><span class="words">My case for closing the UX/UI split: one designer carries a problem from user need to shipped screen, so intent stops leaking at every handoff.</span>
-          <a class="ld-link c1" href="https://sujith.design/article-ux-to-ui-ownership.html" target="_blank" rel="noopener"><span class="slide"><span>Read the essay</span><span aria-hidden="true">Read the essay</span></span><span aria-hidden="true">&rarr;</span></a></p>
+          <a class="ld-link c1" href="writing/one-designer-whole-problem.html"><span class="slide"><span>Read the essay</span><span aria-hidden="true">Read the essay</span></span><span aria-hidden="true">&rarr;</span></a></p>
       </div>
       <div class="ld-st ld3">
         <h3 class="ld-t">Direction, review, delivery</h3>
-        <p class="ld-d p1 words">Across nineteen product areas since February 2024, I set direction, run review and hold delivery oversight. The team owns execution.</p>
+        <p class="ld-d p1 words">Forty-four features shipped since February 2024. I set direction, run review and hold delivery oversight; the team owns execution.</p>
       </div>
       <div class="ld-st ld4">
         <h3 class="ld-t">Close to the work</h3>
-        <p class="ld-d p1 words">I still deliver selected work myself, Orders and then Wealth Tracker. It is how I know what I am asking for when I ask for it.</p>
+        <p class="ld-d p1 words">I still deliver selected work myself. Wealth Tracker went from PRD to Flutter-ready code with an estimated 70% less front-end effort. It is how I know what I am asking for when I ask for it.</p>
       </div>
       <div class="ld-nav c2" aria-hidden="true">
         <span class="mask"><span class="caps"><span>Team</span><span>Ownership</span><span>Oversight</span><span>Hands-on</span></span></span>
@@ -857,52 +1054,85 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     <h2 class="wr-cap c2" id="writeTitle">Writing</h2>
     <div class="wr-body">
       <p class="wr-lede h4 words">Arguments I&rsquo;ve had to make more than once, written down properly.</p>
-      <ul class="acc">
-        <li class="acc-item open">
-          <span class="acc-line" aria-hidden="true"></span>
-          <button class="acc-head" type="button" aria-expanded="true" aria-controls="acc1">
-            <h3 class="acc-title h4">The handoff is dead</h3><span class="acc-icon" aria-hidden="true"></span>
-          </button>
-          <div class="acc-body" id="acc1"><div>
-            <div class="acc-content">
-              <div class="acc-main">
-                <span class="acc-meta c2">Design + AI · ~6 min read</span>
-                <p class="acc-desc p1">I designed a product and then shipped the front-end myself, working with AI as a pair. It changed how I think about what a designer is.</p>
-                <a class="ld-link c1" href="https://sujith.design/article-design-frontend-ai.html" target="_blank" rel="noopener"><span class="slide"><span>Read the essay</span><span aria-hidden="true">Read the essay</span></span><span aria-hidden="true">&rarr;</span></a>
+        <ul class="acc">
+          <li class="acc-item open">
+            <span class="acc-line" aria-hidden="true"></span>
+            <button class="acc-head" type="button" aria-expanded="true" aria-controls="acc1">
+              <h3 class="acc-title h4">The handoff is dead</h3><span class="acc-icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc-body" id="acc1"><div>
+              <div class="acc-content">
+                <div class="acc-main">
+                  <span class="acc-meta c2">Design + AI · about 6 min read</span>
+                  <p class="acc-desc p1">I designed a product and then shipped the front-end myself, working with AI as a pair. It changed how I think about what a designer is.</p>
+                  <a class="ld-link c1" href="writing/the-handoff-is-dead.html"><span class="slide"><span>Read the essay</span><span aria-hidden="true">Read the essay</span></span><span aria-hidden="true">&rarr;</span></a>
+                </div>
+                <div class="acc-scope">
+                  <span class="c2 acc-cap">In this essay</span>
+                  <ul class="c2"><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>What actually changed</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>My workflow</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>What it means for design teams</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>The honest limits</span></li></ul>
+                </div>
               </div>
-              <div class="acc-scope">
-                <span class="c2 acc-cap">In this essay</span>
-                <ul class="c2"><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>What actually changed</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>My workflow</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>What it means for design teams</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>The honest limits</span></li></ul>
+            </div></div>
+          </li>
+          <li class="acc-item">
+            <span class="acc-line" aria-hidden="true"></span>
+            <button class="acc-head" type="button" aria-expanded="false" aria-controls="acc2">
+              <h3 class="acc-title h4">Trust is a design material</h3><span class="acc-icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc-body" id="acc2"><div>
+              <div class="acc-content">
+                <div class="acc-main">
+                  <span class="acc-meta c2">Fintech · about 5 min read</span>
+                  <p class="acc-desc p1">When the screen moves someone&rsquo;s money, trust isn&rsquo;t a brand value you add at the end. It is built, or lost, in the smallest interactions.</p>
+                  <a class="ld-link c1" href="writing/trust-is-a-design-material.html"><span class="slide"><span>Read the essay</span><span aria-hidden="true">Read the essay</span></span><span aria-hidden="true">&rarr;</span></a>
+                </div>
+                <div class="acc-scope">
+                  <span class="c2 acc-cap">In this essay</span>
+                  <ul class="c2"><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>Speed and safety are not opposites</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>Show the state, always</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>Say what will happen before it happens</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>Make the exit as easy as the entry</span></li></ul>
+                </div>
               </div>
-            </div>
-          </div></div>
-        </li>
-        <li class="acc-item">
-          <span class="acc-line" aria-hidden="true"></span>
-          <button class="acc-head" type="button" aria-expanded="false" aria-controls="acc2">
-            <h3 class="acc-title h4">One designer, whole problem</h3><span class="acc-icon" aria-hidden="true"></span>
-          </button>
-          <div class="acc-body" id="acc2"><div>
-            <div class="acc-content">
-              <div class="acc-main">
-                <span class="acc-meta c2">Team &amp; craft · ~5 min read</span>
-                <p class="acc-desc p1">Why I argued for closing the UX/UI split, and what happened to the work when one person carried a problem all the way through.</p>
-                <a class="ld-link c1" href="https://sujith.design/article-ux-to-ui-ownership.html" target="_blank" rel="noopener"><span class="slide"><span>Read the essay</span><span aria-hidden="true">Read the essay</span></span><span aria-hidden="true">&rarr;</span></a>
+            </div></div>
+          </li>
+          <li class="acc-item">
+            <span class="acc-line" aria-hidden="true"></span>
+            <button class="acc-head" type="button" aria-expanded="false" aria-controls="acc3">
+              <h3 class="acc-title h4">Zero to one, three times</h3><span class="acc-icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc-body" id="acc3"><div>
+              <div class="acc-content">
+                <div class="acc-main">
+                  <span class="acc-meta c2">Product · about 5 min read</span>
+                  <p class="acc-desc p1">Three launches from nothing: a streaming app, a DeFi prediction market and an AI assistant. The lessons that held across all three.</p>
+                  <a class="ld-link c1" href="writing/zero-to-one-three-times.html"><span class="slide"><span>Read the essay</span><span aria-hidden="true">Read the essay</span></span><span aria-hidden="true">&rarr;</span></a>
+                </div>
+                <div class="acc-scope">
+                  <span class="c2 acc-cap">In this essay</span>
+                  <ul class="c2"><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>Ship the smallest true thing</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>Design for a scope that will move</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>Put it in front of a few real people early</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>Let the launch be the beginning</span></li></ul>
+                </div>
               </div>
-              <div class="acc-scope">
-                <span class="c2 acc-cap">In this essay</span>
-                <ul class="c2"><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>Handoffs are where intent dies</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>The UX/UI divide was never real to the user</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>Ownership changes how people work</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>The objections, and my answers</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>The relay was serving the org chart</span></li></ul>
+            </div></div>
+          </li>
+          <li class="acc-item">
+            <span class="acc-line" aria-hidden="true"></span>
+            <button class="acc-head" type="button" aria-expanded="false" aria-controls="acc4">
+              <h3 class="acc-title h4">One designer, whole problem</h3><span class="acc-icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc-body" id="acc4"><div>
+              <div class="acc-content">
+                <div class="acc-main">
+                  <span class="acc-meta c2">Team &amp; craft · about 5 min read</span>
+                  <p class="acc-desc p1">Why I argued for closing the UX/UI split, and what happened to the work when one person carried a problem all the way through.</p>
+                  <a class="ld-link c1" href="writing/one-designer-whole-problem.html"><span class="slide"><span>Read the essay</span><span aria-hidden="true">Read the essay</span></span><span aria-hidden="true">&rarr;</span></a>
+                </div>
+                <div class="acc-scope">
+                  <span class="c2 acc-cap">In this essay</span>
+                  <ul class="c2"><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>Handoffs are where intent dies</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>The UX/UI divide was never real to the user</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>Ownership changes how people work</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>The objections, and my answers</span></li></ul>
+                </div>
               </div>
-            </div>
-          </div></div>
-        </li>
-        <li class="acc-item out">
-          <span class="acc-line" aria-hidden="true"></span>
-          <a class="acc-head" href="https://medium.com/@suj009" target="_blank" rel="noopener">
-            <h3 class="acc-title h4">More on Medium</h3><span class="acc-icon ext" aria-hidden="true"></span>
-          </a>
-        </li>
-      </ul>
+            </div></div>
+          </li>
+        </ul>
+        <p class="wr-more c2"><a href="https://medium.com/@suj009" target="_blank" rel="noopener">Older posts on Medium <span aria-hidden="true">&#8599;</span></a></p>
     </div>
   </section>
 
@@ -915,14 +1145,14 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
             <ellipse rx="35" ry="100"/><ellipse rx="70" ry="100"/><line x1="0" y1="-100" x2="0" y2="100"/>
           </svg>
           <div class="locs" aria-hidden="true">
-            <div class="loc"><span class="loc-t c2">Bengaluru</span></div>
-            <div class="loc"><span class="loc-t c2">Stockholm</span></div>
-            <div class="loc"><span class="loc-t c2">London</span></div>
-            <div class="loc"><span class="loc-t c2">Newcastle</span></div>
-            <div class="loc"><span class="loc-t c2">Böblingen</span></div>
-            <div class="loc"><span class="loc-t c2">India</span></div>
-            <div class="loc"><span class="loc-t c2">Africa</span></div>
-            <div class="loc"><span class="loc-t c2">United States</span></div>
+            <div class="loc"><span class="loc-t c2">Bengaluru<small class="loc-k">Study &amp; Work</small></span></div>
+            <div class="loc"><span class="loc-t c2">Stockholm<small class="loc-k">Study</small></span></div>
+            <div class="loc"><span class="loc-t c2">London<small class="loc-k">Study &amp; Work</small></span></div>
+            <div class="loc"><span class="loc-t c2">Newcastle<small class="loc-k">Study</small></span></div>
+            <div class="loc"><span class="loc-t c2">Böblingen<small class="loc-k">Work</small></span></div>
+            <div class="loc"><span class="loc-t c2">India<small class="loc-k">Designed for</small></span></div>
+            <div class="loc"><span class="loc-t c2">Africa<small class="loc-k">Designed for</small></span></div>
+            <div class="loc"><span class="loc-t c2">United States<small class="loc-k">Designed for</small></span></div>
           </div>
         </div>
         <p class="orbit-cap c2">Studied and worked in India, Sweden, the UK and Germany. Designed for people in India, Africa and the US.</p>
@@ -932,14 +1162,14 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     <div class="cv">
       <div class="cv-head">
         <h2 class="c2 cv-title" id="cvTitle">CV</h2>
-        <p class="h4 cv-lede words">Eleven years turning complex fintech into products people trust.</p>
+        <p class="h4 cv-lede words">Eleven years of product design, the most recent in fintech, turning complex products into ones people trust.</p>
       </div>
       <ul class="cv-list">
-        <li class="cv-row"><span class="cv-yr c2">2024 — Present</span><span class="cv-org">FYERS</span><span class="cv-role p1">Senior Product Design Manager</span><span class="cv-note c2">Product design across six verticals at a top-20 Indian retail brokerage. A team of five today, up to eight.</span></li>
-        <li class="cv-row"><span class="cv-yr c2">2022 — 24</span><span class="cv-org">Nexter Finance</span><span class="cv-role p1">Design Lead · decentralised finance</span><span class="cv-note c2">Set design direction from the ground up. Launched 0&#8239;&rarr;&#8239;1.</span></li>
+        <li class="cv-row"><span class="cv-yr c2">2024 — Present</span><span class="cv-org">FYERS</span><span class="cv-role p1">Senior Product Design Manager</span><span class="cv-note c2">Product design across six verticals at a top-20 Indian retail brokerage. A team of five designers today; eight at its largest.</span></li>
+        <li class="cv-row"><span class="cv-yr c2">2022 — 24</span><span class="cv-org">Nexter Finance</span><span class="cv-role p1">Design Lead · decentralised finance</span><span class="cv-note c2">Took a decentralised prediction market from zero to launch, with a phased release.</span></li>
         <li class="cv-row"><span class="cv-yr c2">2021 — 22</span><span class="cv-org">Oddz Finance</span><span class="cv-role p1">Design Lead · decentralised finance</span><span class="cv-note c2">Complex trading and options flows for non-expert users.</span></li>
         <li class="cv-row"><span class="cv-yr c2">2018 — 21</span><span class="cv-org">Datami</span><span class="cv-role p1">Lead Product Designer &rarr; Product Designer</span><span class="cv-note c2">Airtel TV Africa, the streaming app designed end to end for the African market. Reach Mobile web journeys.</span></li>
-        <li class="cv-row"><span class="cv-yr c2">2014 — 18</span><span class="cv-org">Earlier</span><span class="cv-role p1">Product design and UX research</span><span class="cv-note c2">Two Roads Tech, Qplum, Onetech Ventures, IBM Studios Böblingen, emocial, and field research with Microsoft in the UK.</span></li>
+        <li class="cv-row"><span class="cv-yr c2">2014 — 18</span><span class="cv-org">Earlier</span><span class="cv-role p1">Product design and UX research</span><span class="cv-note c2">Two Roads Tech (Qplum), Onetech Ventures, IBM Studios Böblingen, emocial, and field research with Microsoft in the UK.</span></li>
         <li class="cv-row"><span class="cv-yr c2">2006 — 15</span><span class="cv-org">Education</span><span class="cv-role p1">MSc, Human-Computer Interaction &amp; Design</span><span class="cv-note c2">KTH Stockholm, then UCL London. Also MSc, Advanced Computer Science, Newcastle University, and BE, BMS College of Engineering.</span></li>
         <li class="cv-row"><span class="cv-yr c2">Certified</span><span class="cv-org">NISM</span><span class="cv-role p1">Series 7</span><span class="cv-note c2">Series 8 in progress.</span></li>
       </ul>
@@ -1040,9 +1270,12 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
       starts.push(max);
       draw();
     }
+    var navEl = document.querySelector('.nav'), invEl = document.getElementById('invert'), busy = document.getElementById('work');
     function draw(){
       queued = false;
-      var y = scrollY;
+      var y = scrollY, r = busy.getBoundingClientRect();
+      navEl.classList.toggle('solid', r.top < navEl.offsetHeight && r.bottom > 0);
+      invEl.classList.toggle('solid', r.top < innerHeight && r.bottom > innerHeight - 64);
       bars.forEach(function(b, i){
         var p;
         if(narrow.matches) p = i ? 0 : y / max;
