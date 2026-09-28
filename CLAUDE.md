@@ -171,9 +171,8 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   shipped since February 2024, newest first. Each card links to the matching
   walkthrough on FYERS's official YouTube channel (@FYERS-Platforms) and uses
   that video's thumbnail from `v3/img/work/<videoId>.webp`, shown in greyscale
-  with colour on hover. The list was assembled from the channel and **still needs
-  Sujith's confirmation** that his team designed each one. No adoption or usage
-  figures are shown: none are public, and none may be invented.
+  with colour on hover. **Sujith confirmed his team designed all 44.** No
+  adoption or usage figures are shown: none are public, and none may be invented.
 - **IC view** has six cards, each opening a page in `v3/work/` (Orders, Wealth
   Tracker, Agentic Design Framework, Nexter Finance, Airtel TV Africa, Reach
   Mobile). Pages are generated from one template; `[[...]]`-style gaps render as
