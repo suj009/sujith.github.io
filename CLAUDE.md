@@ -178,7 +178,8 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   "Reports & portfolio" card (Reports is a vertical; portfolio sits under
   Trading). Chart features are
   "minimal design, mostly dev", so they carry a Small scope.
-- Cards are the big cards again (area and month, a dark panel, then the title with
+- Cards are the big cards again (area and month, a panel in the card's own colour, never a
+  black box, then the title with
   its scope word and "Watch the walkthrough"). The panel holds a one-line
   description, written from FYERS's own video description, and two end-user
   analytics slots, Adoption and Impact. Every slot reads "To add" until Sujith
