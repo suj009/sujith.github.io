@@ -340,11 +340,11 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:8rem;clip-p
 .plate .shot::before{content:"";grid-area:1 / 1;padding-top:56.25%}
 .plate .info{grid-area:1 / 1;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;transition:opacity .45s var(--ease)}
 .plate .sum{max-width:32ch;letter-spacing:-.015em;text-wrap:pretty}
-.plate .kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;padding-top:.7rem;border-top:1px solid color-mix(in srgb,currentColor 22%,transparent)}
-.plate .kpi{display:flex;flex-direction:column;align-items:flex-start;gap:.3rem;color:color-mix(in srgb,var(--pfg) 62%,transparent)}
-.plate .kpi b{color:var(--pfg);font-weight:400;font-size:1.75rem;letter-spacing:-.045em;line-height:1;font-variant-numeric:tabular-nums}
+.plate .kpis{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-top:.55rem;border-top:1px solid color-mix(in srgb,currentColor 22%,transparent)}
+.plate .kpi{display:flex;flex-direction:column;align-items:flex-start;gap:.2rem;font-size:.6875rem;color:color-mix(in srgb,var(--pfg) 62%,transparent)}
+.plate .kpi b{color:var(--pfg);font-weight:400;font-size:1.125rem;letter-spacing:-.035em;line-height:1;font-variant-numeric:tabular-nums}
 .plate .todo{font-weight:400;border:1px dashed color-mix(in srgb,currentColor 45%,transparent);padding:.05rem .4rem}
-.plate .kpi b.todo{font-size:.8125rem;letter-spacing:0;line-height:1.4}
+.plate .kpi b.todo{font-size:.6875rem;letter-spacing:0;line-height:1.35;padding:0 .3rem}
 .plate .shot img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);
   transition:opacity .45s var(--ease),transform .9s var(--ease)}
 .plate .play{position:absolute;right:.6rem;bottom:.6rem;width:2rem;height:2rem;border-radius:50%;background:#F0F0F0;
@@ -425,7 +425,6 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:8rem;clip-p
   .plate.vid .pl-link{gap:.75rem;padding:.75rem}
   .plate.vid .nm{font-size:1.25rem}
   .plate .info{gap:1.25rem}
-  .plate .kpi b{font-size:1.5rem}
 }
 @media (max-width:639px){
   .plate.vid .pl-link{padding:1rem;gap:1rem}
