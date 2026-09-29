@@ -167,15 +167,29 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 
 ## v3 Work, case studies and essays
 
-- **Manager wall** (`#viewMgr` in `v3/hero-replica.html`) lists FYERS features
-  shipped since February 2024, newest first. Each card links to the matching
-  walkthrough on FYERS's official YouTube channel (@FYERS-Platforms) and uses
-  that video's thumbnail from `v3/img/work/<videoId>.webp`, shown in greyscale
-  with colour on hover. **Sujith confirmed his team designed all 44.** No
-  adoption or usage figures are shown: none are public, and none may be invented.
-- **IC view** has six cards, each opening a page in `v3/work/` (Orders, Wealth
-  Tracker, Agentic Design Framework, Nexter Finance, Airtel TV Africa, Reach
-  Mobile). Pages are generated from one template; `[[...]]`-style gaps render as
+- **Manager wall** (`#viewMgr` in `v3/hero-replica.html`) lists 34 FYERS
+  features shipped since February 2024. Sujith reviewed the list card by card;
+  the source of truth is `wall.tsv` (video id, name, area, sub-area, design
+  scope S/M/L, launch month), which `wall.py` turns into the cards. Both live in
+  the session scratchpad under `yt/`. Removed on his review: FYERS Prime (he
+  didn't work on it), the FYERS Web explainer (not a feature), FIA GPT (no
+  design), four Automate triggers and FIA IPO analysis (dev work), and NRI
+  onboarding (his own hands-on work, now an IC case study) and the generic
+  "Reports & portfolio" card (Reports is a vertical; portfolio sits under
+  Trading). Chart features are
+  "minimal design, mostly dev", so they carry a Small scope.
+- Cards link to the matching walkthrough on FYERS's official YouTube channel
+  (@FYERS-Platforms) and use that video's thumbnail from
+  `v3/img/work/<videoId>.webp`, greyscale with colour on hover. Chips above the
+  wall filter by area and sort by newest or largest design scope. No adoption
+  or usage figures are shown: none are public, and none may be invented.
+- **The all-new FYERS experience** (Aug 2025, Large) was FYERS's first push to
+  unify web and app on one design system. Sujith was part of the design team,
+  leading three verticals at the time under the CXO. Say "part of"; the FDSG
+  ownership claim stays disputed.
+- **IC view** has seven cards, each opening a page in `v3/work/` (Orders, Wealth
+  Tracker, Agentic Design Framework, NRI onboarding, Nexter Finance, Airtel TV
+  Africa, Reach Mobile). Pages are generated from one template; `[[...]]`-style gaps render as
   "To add" highlights and dashed boxes mark screenshot slots for Sujith to fill.
 - **Essays** live in `v3/writing/`. Two are ports of the live articles with the
   FDSG and Lab references removed; *Trust is a design material* and *Zero to one,

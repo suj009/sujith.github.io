@@ -346,6 +346,20 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:calc(100svh
 .plate.vid:hover .shot img,.plate.vid .pl-link:focus-visible .shot img{filter:none;transform:scale(1.03)}
 .plate.vid:hover .play{transform:scale(1.12)}
 .plate.vid:hover .watch{opacity:1}
+/* wall controls: filter by area, sort by date or design scope */
+.w-ctrl{display:flex;justify-content:space-between;align-items:center;gap:1rem 2rem;flex-wrap:wrap;margin:-3rem 0 2.5rem}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center}
+.chip{border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);border-radius:999px;padding:.42rem .8rem;color:var(--ink);
+  transition:background-color .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease)}
+.chip span{opacity:.5;margin-left:.2rem;font-variant-numeric:tabular-nums}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.chips.sort .lbl{color:var(--ink-2);margin-right:.2rem}
+.plate .note{opacity:.8;max-width:30ch;margin:-.2rem 0 .1rem}
+.plate .scope{display:inline-flex;align-items:center;gap:.5rem;opacity:.72}
+.plate .bars{display:inline-flex;gap:2px}
+.plate .bars i{display:block;width:.7rem;height:3px;background:currentColor;opacity:.25}
+.plate .bars i.on{opacity:1}
 @media (max-width:1023px){
   .plate.vid .pl-link{gap:.75rem;padding:.75rem}
   .plate.vid .nm{font-size:1.25rem}
@@ -715,224 +729,180 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     </div>
 
     <div class="w-view" id="viewMgr" role="tabpanel" aria-labelledby="tabMgr">
-      <p class="w-lede p1">44 features shipped at FYERS since February 2024, newest first. Direction, review and delivery oversight mine; execution the team&rsquo;s. Each opens FYERS&rsquo;s own walkthrough.</p>
+      <p class="w-lede p1">34 features the team shipped at FYERS since February 2024. Direction, review and delivery oversight mine; execution the team&rsquo;s. Each opens FYERS&rsquo;s own walkthrough.</p>
+      <div class="w-ctrl c2" hidden>
+        <div class="chips" role="group" aria-label="Filter by area"><button class="chip" type="button" data-area="all" aria-pressed="true">All <span>34</span></button><button class="chip" type="button" data-area="Trading" aria-pressed="false">Trading <span>13</span></button><button class="chip" type="button" data-area="Options" aria-pressed="false">Options <span>4</span></button><button class="chip" type="button" data-area="Markets" aria-pressed="false">Markets <span>5</span></button><button class="chip" type="button" data-area="FIA" aria-pressed="false">FIA <span>4</span></button><button class="chip" type="button" data-area="Automate" aria-pressed="false">Automate <span>3</span></button><button class="chip" type="button" data-area="Reports" aria-pressed="false">Reports <span>1</span></button><button class="chip" type="button" data-area="Mutual funds" aria-pressed="false">Mutual funds <span>1</span></button><button class="chip" type="button" data-area="Onboarding" aria-pressed="false">Onboarding <span>1</span></button><button class="chip" type="button" data-area="Institutional" aria-pressed="false">Institutional <span>1</span></button><button class="chip" type="button" data-area="Platform" aria-pressed="false">Platform <span>1</span></button></div>
+        <div class="chips sort" role="group" aria-label="Sort"><span class="lbl">Sort</span><button class="chip" type="button" data-sort="new" aria-pressed="true">Newest</button><button class="chip" type="button" data-sort="scope" aria-pressed="false">Largest scope</button></div>
+      </div>
       <ul class="plates">
-        <li class="plate d vid"><a class="pl-link" href="https://www.youtube.com/watch?v=vfW_KMU-AFU" target="_blank" rel="noopener" aria-label="Order Flow on Smart Charts: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>01</span><span>Charts · Sep 2026</span></span>
+        <li class="plate d vid" data-area="Trading" data-scope="1" data-date="2026-09" data-order="0"><a class="pl-link" href="https://www.youtube.com/watch?v=vfW_KMU-AFU" target="_blank" rel="noopener" aria-label="Order Flow on Smart Charts: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Trading · Charts</span><span>Sep 2026</span></span>
           <span class="shot"><img src="img/work/vfW_KMU-AFU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Order Flow on Smart Charts</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Order Flow on Smart Charts</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate l vid"><a class="pl-link" href="https://www.youtube.com/watch?v=bUF2rhsrwQw" target="_blank" rel="noopener" aria-label="Build your own indicators: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>02</span><span>Charts · Sep 2026</span></span>
+        <li class="plate l vid" data-area="Trading" data-scope="1" data-date="2026-09" data-order="1"><a class="pl-link" href="https://www.youtube.com/watch?v=bUF2rhsrwQw" target="_blank" rel="noopener" aria-label="Build your own indicators: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Trading · Charts</span><span>Sep 2026</span></span>
           <span class="shot"><img src="img/work/bUF2rhsrwQw.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Build your own indicators</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Build your own indicators</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate m vid"><a class="pl-link" href="https://www.youtube.com/watch?v=LXug2VUWf4A" target="_blank" rel="noopener" aria-label="Backtest strategies with AI: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>03</span><span>Automate · Sep 2026</span></span>
+        <li class="plate m vid" data-area="Automate" data-scope="3" data-date="2026-09" data-order="2"><a class="pl-link" href="https://www.youtube.com/watch?v=LXug2VUWf4A" target="_blank" rel="noopener" aria-label="Backtest strategies with AI: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Automate</span><span>Sep 2026</span></span>
           <span class="shot"><img src="img/work/LXug2VUWf4A.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Backtest strategies with AI</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Backtest strategies with AI</span><span class="scope c2" title="Design scope: Large"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Large design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate g vid"><a class="pl-link" href="https://www.youtube.com/watch?v=adhEOlA5UFA" target="_blank" rel="noopener" aria-label="FYERS Automate with FIA: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>04</span><span>Automate · Aug 2026</span></span>
+        <li class="plate g vid" data-area="Automate" data-scope="3" data-date="2026-08" data-order="3"><a class="pl-link" href="https://www.youtube.com/watch?v=adhEOlA5UFA" target="_blank" rel="noopener" aria-label="FYERS Automate with FIA: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Automate · FIA</span><span>Aug 2026</span></span>
           <span class="shot"><img src="img/work/adhEOlA5UFA.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">FYERS Automate with FIA</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">FYERS Automate with FIA</span><span class="scope c2" title="Design scope: Large"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Large design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate d vid"><a class="pl-link" href="https://www.youtube.com/watch?v=fiAxvS61Oqs" target="_blank" rel="noopener" aria-label="FYERS Prime: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>05</span><span>Platform · Jul 2026</span></span>
-          <span class="shot"><img src="img/work/fiAxvS61Oqs.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">FYERS Prime</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
-        </a></li>
-        <li class="plate l vid"><a class="pl-link" href="https://www.youtube.com/watch?v=tByaoXgEYvI" target="_blank" rel="noopener" aria-label="Strategy Builder: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>06</span><span>Options · Jul 2026</span></span>
+        <li class="plate d vid" data-area="Options" data-scope="3" data-date="2026-07" data-order="4"><a class="pl-link" href="https://www.youtube.com/watch?v=tByaoXgEYvI" target="_blank" rel="noopener" aria-label="Strategy Builder: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Options</span><span>Jul 2026</span></span>
           <span class="shot"><img src="img/work/tByaoXgEYvI.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Strategy Builder</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Strategy Builder</span><span class="scope c2" title="Design scope: Large"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Large design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate m vid"><a class="pl-link" href="https://www.youtube.com/watch?v=aOt4ySZRAJg" target="_blank" rel="noopener" aria-label="Options Analytics: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>07</span><span>Options · Jun 2026</span></span>
+        <li class="plate l vid" data-area="Options" data-scope="3" data-date="2026-06" data-order="5"><a class="pl-link" href="https://www.youtube.com/watch?v=aOt4ySZRAJg" target="_blank" rel="noopener" aria-label="Options Analytics: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Options</span><span>Jun 2026</span></span>
           <span class="shot"><img src="img/work/aOt4ySZRAJg.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Options Analytics</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Options Analytics</span><span class="scope c2" title="Design scope: Large"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Large design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate g vid"><a class="pl-link" href="https://www.youtube.com/watch?v=Q2w1Mj7LW8U" target="_blank" rel="noopener" aria-label="FYERS Web: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>08</span><span>Platform · Jun 2026</span></span>
-          <span class="shot"><img src="img/work/Q2w1Mj7LW8U.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">FYERS Web</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
-        </a></li>
-        <li class="plate d vid"><a class="pl-link" href="https://www.youtube.com/watch?v=93cDp9T3NeU" target="_blank" rel="noopener" aria-label="Fixed Deposits: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>09</span><span>Invest · Jun 2026</span></span>
+        <li class="plate m vid" data-area="Mutual funds" data-scope="3" data-date="2026-06" data-order="6"><a class="pl-link" href="https://www.youtube.com/watch?v=93cDp9T3NeU" target="_blank" rel="noopener" aria-label="Fixed Deposits: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Mutual funds</span><span>Jun 2026</span></span>
           <span class="shot"><img src="img/work/93cDp9T3NeU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Fixed Deposits</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Fixed Deposits</span><span class="scope c2" title="Design scope: Large"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Large design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate l vid"><a class="pl-link" href="https://www.youtube.com/watch?v=oQ24N3rVlQc" target="_blank" rel="noopener" aria-label="Bar Replay: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>10</span><span>Charts · May 2026</span></span>
+        <li class="plate g vid" data-area="Trading" data-scope="1" data-date="2026-05" data-order="7"><a class="pl-link" href="https://www.youtube.com/watch?v=oQ24N3rVlQc" target="_blank" rel="noopener" aria-label="Bar Replay: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Trading · Charts</span><span>May 2026</span></span>
           <span class="shot"><img src="img/work/oQ24N3rVlQc.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Bar Replay</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Bar Replay</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate m vid"><a class="pl-link" href="https://www.youtube.com/watch?v=mxeN6i0_nvE" target="_blank" rel="noopener" aria-label="Dual Chart Mode: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>11</span><span>Options · May 2026</span></span>
+        <li class="plate d vid" data-area="Trading" data-scope="1" data-date="2026-05" data-order="8"><a class="pl-link" href="https://www.youtube.com/watch?v=mxeN6i0_nvE" target="_blank" rel="noopener" aria-label="Dual Chart Mode: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Trading · Charts</span><span>May 2026</span></span>
           <span class="shot"><img src="img/work/mxeN6i0_nvE.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Dual Chart Mode</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Dual Chart Mode</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate g vid"><a class="pl-link" href="https://www.youtube.com/watch?v=ZA8i3dIXhuI" target="_blank" rel="noopener" aria-label="Indicator triggers: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>12</span><span>Automate · May 2026</span></span>
-          <span class="shot"><img src="img/work/ZA8i3dIXhuI.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Indicator triggers</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
-        </a></li>
-        <li class="plate d vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=oyWc8Jg-ihc" target="_blank" rel="noopener" aria-label="TradingView &amp; Chartink webhooks: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>13</span><span>Automate · Apr 2026</span></span>
-          <span class="shot"><img src="img/work/oyWc8Jg-ihc.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">TradingView &amp; Chartink webhooks</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
-        </a></li>
-        <li class="plate l vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=xa2i-PPdhG8" target="_blank" rel="noopener" aria-label="Smart Exit: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>14</span><span>Trading · Apr 2026</span></span>
+        <li class="plate l vid" data-area="Trading" data-scope="1" data-date="2026-04" data-order="9"><a class="pl-link" href="https://www.youtube.com/watch?v=xa2i-PPdhG8" target="_blank" rel="noopener" aria-label="Smart Exit: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Trading</span><span>Apr 2026</span></span>
           <span class="shot"><img src="img/work/xa2i-PPdhG8.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Smart Exit</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Smart Exit</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate m vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=lwridfy0vqM" target="_blank" rel="noopener" aria-label="IPO analysis with FIA: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>15</span><span>FIA · Apr 2026</span></span>
-          <span class="shot"><img src="img/work/lwridfy0vqM.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">IPO analysis with FIA</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
-        </a></li>
-        <li class="plate g vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=KoaFje9nRxk" target="_blank" rel="noopener" aria-label="Stock Screeners: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>16</span><span>Markets · Mar 2026</span></span>
+        <li class="plate m vid" data-area="Markets" data-scope="3" data-date="2026-03" data-order="10"><a class="pl-link" href="https://www.youtube.com/watch?v=KoaFje9nRxk" target="_blank" rel="noopener" aria-label="Stock Screeners: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Markets</span><span>Mar 2026</span></span>
           <span class="shot"><img src="img/work/KoaFje9nRxk.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Stock Screeners</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Stock Screeners</span><span class="scope c2" title="Design scope: Large"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Large design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate d vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=4dja7bZh2sk" target="_blank" rel="noopener" aria-label="Market Analytics: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>17</span><span>Markets · Mar 2026</span></span>
+        <li class="plate g vid" data-area="Markets" data-scope="2" data-date="2026-03" data-order="11"><a class="pl-link" href="https://www.youtube.com/watch?v=4dja7bZh2sk" target="_blank" rel="noopener" aria-label="Market Analytics: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Markets</span><span>Mar 2026</span></span>
           <span class="shot"><img src="img/work/4dja7bZh2sk.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Market Analytics</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Market Analytics</span><span class="scope c2" title="Design scope: Medium"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span>Medium design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate l vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=siPihI_016s" target="_blank" rel="noopener" aria-label="Positions P&amp;L Curve: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>18</span><span>Trading · Feb 2026</span></span>
+        <li class="plate d vid extra" data-area="Reports" data-scope="2" data-date="2026-02" data-order="12"><a class="pl-link" href="https://www.youtube.com/watch?v=siPihI_016s" target="_blank" rel="noopener" aria-label="Positions P&amp;L Curve: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Reports</span><span>Feb 2026</span></span>
           <span class="shot"><img src="img/work/siPihI_016s.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Positions P&amp;L Curve</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Positions P&amp;L Curve</span><span class="scope c2" title="Design scope: Medium"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span>Medium design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate m vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=A_X6D5vVlfQ" target="_blank" rel="noopener" aria-label="Mobile Scalper: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>19</span><span>Options · Feb 2026</span></span>
+        <li class="plate l vid extra" data-area="Trading" data-scope="2" data-date="2026-02" data-order="13"><a class="pl-link" href="https://www.youtube.com/watch?v=A_X6D5vVlfQ" target="_blank" rel="noopener" aria-label="Mobile Scalper: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Trading</span><span>Feb 2026</span></span>
           <span class="shot"><img src="img/work/A_X6D5vVlfQ.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Mobile Scalper</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Mobile Scalper</span><span class="scope c2" title="Design scope: Medium"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span>Medium design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate g vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=zVgDopYIRjU" target="_blank" rel="noopener" aria-label="Price breakout triggers: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>20</span><span>Automate · Feb 2026</span></span>
-          <span class="shot"><img src="img/work/zVgDopYIRjU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Price breakout triggers</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
-        </a></li>
-        <li class="plate d vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=imbmGoyBmhE" target="_blank" rel="noopener" aria-label="Alert trigger orders: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>21</span><span>Automate · Feb 2026</span></span>
-          <span class="shot"><img src="img/work/imbmGoyBmhE.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Alert trigger orders</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
-        </a></li>
-        <li class="plate l vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=M-ivZx7xm2c" target="_blank" rel="noopener" aria-label="FYERS Automate: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>22</span><span>Automate · Jan 2026</span></span>
+        <li class="plate m vid extra" data-area="Automate" data-scope="3" data-date="2026-01" data-order="14"><a class="pl-link" href="https://www.youtube.com/watch?v=M-ivZx7xm2c" target="_blank" rel="noopener" aria-label="FYERS Automate: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Automate</span><span>Jan 2026</span></span>
           <span class="shot"><img src="img/work/M-ivZx7xm2c.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">FYERS Automate</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">FYERS Automate</span><span class="scope c2" title="Design scope: Large"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Large design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate m vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=bwe6kX_ENKE" target="_blank" rel="noopener" aria-label="Budget Dashboard: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>23</span><span>Markets · Jan 2026</span></span>
+        <li class="plate g vid extra" data-area="Markets" data-scope="2" data-date="2026-01" data-order="15"><a class="pl-link" href="https://www.youtube.com/watch?v=bwe6kX_ENKE" target="_blank" rel="noopener" aria-label="Budget Dashboard: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Markets</span><span>Jan 2026</span></span>
           <span class="shot"><img src="img/work/bwe6kX_ENKE.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Budget Dashboard</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Budget Dashboard</span><span class="scope c2" title="Design scope: Medium"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span>Medium design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate g vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=6f0q8l3-HvA" target="_blank" rel="noopener" aria-label="Chart &amp; options analysis with FIA: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>24</span><span>FIA · Jan 2026</span></span>
+        <li class="plate d vid extra" data-area="FIA" data-scope="1" data-date="2026-01" data-order="16"><a class="pl-link" href="https://www.youtube.com/watch?v=6f0q8l3-HvA" target="_blank" rel="noopener" aria-label="Chart &amp; options analysis with FIA: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>FIA</span><span>Jan 2026</span></span>
           <span class="shot"><img src="img/work/6f0q8l3-HvA.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Chart &amp; options analysis with FIA</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Chart &amp; options analysis with FIA</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate d vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=58wtc8hOhMU" target="_blank" rel="noopener" aria-label="Portfolio analysis with FIA: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>25</span><span>FIA · Jan 2026</span></span>
+        <li class="plate l vid extra" data-area="FIA" data-scope="1" data-date="2026-01" data-order="17"><a class="pl-link" href="https://www.youtube.com/watch?v=58wtc8hOhMU" target="_blank" rel="noopener" aria-label="Portfolio analysis with FIA: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>FIA</span><span>Jan 2026</span></span>
           <span class="shot"><img src="img/work/58wtc8hOhMU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Portfolio analysis with FIA</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Portfolio analysis with FIA</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate l vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=X0eSU9I-sOI" target="_blank" rel="noopener" aria-label="Smart News: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>26</span><span>Markets · Jan 2026</span></span>
+        <li class="plate m vid extra" data-area="Markets" data-scope="1" data-date="2026-01" data-order="18"><a class="pl-link" href="https://www.youtube.com/watch?v=X0eSU9I-sOI" target="_blank" rel="noopener" aria-label="Smart News: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Markets</span><span>Jan 2026</span></span>
           <span class="shot"><img src="img/work/X0eSU9I-sOI.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Smart News</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Smart News</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate m vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=410VrVUGmJI" target="_blank" rel="noopener" aria-label="Smart Watchlist: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>27</span><span>Markets · Jan 2026</span></span>
+        <li class="plate g vid extra" data-area="Markets" data-scope="1" data-date="2026-01" data-order="19"><a class="pl-link" href="https://www.youtube.com/watch?v=410VrVUGmJI" target="_blank" rel="noopener" aria-label="Smart Watchlist: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Markets</span><span>Jan 2026</span></span>
           <span class="shot"><img src="img/work/410VrVUGmJI.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Smart Watchlist</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Smart Watchlist</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate g vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=T3_fF80Qebg" target="_blank" rel="noopener" aria-label="Smart SIP in stocks: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>28</span><span>Invest · Jan 2026</span></span>
+        <li class="plate d vid extra" data-area="Trading" data-scope="1" data-date="2026-01" data-order="20"><a class="pl-link" href="https://www.youtube.com/watch?v=T3_fF80Qebg" target="_blank" rel="noopener" aria-label="Smart SIP in stocks: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Trading</span><span>Jan 2026</span></span>
           <span class="shot"><img src="img/work/T3_fF80Qebg.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Smart SIP in stocks</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Smart SIP in stocks</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate d vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=YesILLiBhOU" target="_blank" rel="noopener" aria-label="Advanced Option Chain: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>29</span><span>Options · Jan 2026</span></span>
+        <li class="plate l vid extra" data-area="Options" data-scope="1" data-date="2026-01" data-order="21"><a class="pl-link" href="https://www.youtube.com/watch?v=YesILLiBhOU" target="_blank" rel="noopener" aria-label="Advanced Option Chain: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Options · Option Chain</span><span>Jan 2026</span></span>
           <span class="shot"><img src="img/work/YesILLiBhOU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Advanced Option Chain</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Advanced Option Chain</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate l vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=ttbSwAnuyvw" target="_blank" rel="noopener" aria-label="Trade from Advanced Charts: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>30</span><span>Charts · Jan 2026</span></span>
+        <li class="plate m vid extra" data-area="Trading" data-scope="1" data-date="2026-01" data-order="22"><a class="pl-link" href="https://www.youtube.com/watch?v=ttbSwAnuyvw" target="_blank" rel="noopener" aria-label="Trade from Advanced Charts: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Trading · Charts</span><span>Jan 2026</span></span>
           <span class="shot"><img src="img/work/ttbSwAnuyvw.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Trade from Advanced Charts</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Trade from Advanced Charts</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate m vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=hkJi80v1kRk" target="_blank" rel="noopener" aria-label="Margin Trading Facility: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>31</span><span>Invest · Oct 2025</span></span>
+        <li class="plate g vid extra" data-area="Trading" data-scope="1" data-date="2025-10" data-order="23"><a class="pl-link" href="https://www.youtube.com/watch?v=hkJi80v1kRk" target="_blank" rel="noopener" aria-label="Margin Trading Facility: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Trading</span><span>Oct 2025</span></span>
           <span class="shot"><img src="img/work/hkJi80v1kRk.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Margin Trading Facility</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Margin Trading Facility</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate g vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=rg_CDasn0_o" target="_blank" rel="noopener" aria-label="The all-new FYERS experience: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>32</span><span>Platform · Aug 2025</span></span>
+        <li class="plate d vid extra" data-area="Platform" data-scope="3" data-date="2025-08" data-order="24"><a class="pl-link" href="https://www.youtube.com/watch?v=rg_CDasn0_o" target="_blank" rel="noopener" aria-label="The all-new FYERS experience: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Platform · Design system</span><span>Aug 2025</span></span>
           <span class="shot"><img src="img/work/rg_CDasn0_o.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">The all-new FYERS experience</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">The all-new FYERS experience</span><span class="note p1">FYERS&rsquo;s first push to unify web and app on one design system. Part of the design team, leading three verticals under the CXO.</span><span class="scope c2" title="Design scope: Large"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Large design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate d vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=EST-LMY0zHw" target="_blank" rel="noopener" aria-label="FIA GPT: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>33</span><span>FIA · Aug 2025</span></span>
-          <span class="shot"><img src="img/work/EST-LMY0zHw.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">FIA GPT</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
-        </a></li>
-        <li class="plate l vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=Fv0s2AgVwt4" target="_blank" rel="noopener" aria-label="AI Screener: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>34</span><span>FIA · Jun 2025</span></span>
+        <li class="plate l vid extra" data-area="FIA" data-scope="1" data-date="2025-06" data-order="25"><a class="pl-link" href="https://www.youtube.com/watch?v=Fv0s2AgVwt4" target="_blank" rel="noopener" aria-label="AI Screener: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>FIA</span><span>Jun 2025</span></span>
           <span class="shot"><img src="img/work/Fv0s2AgVwt4.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">AI Screener</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">AI Screener</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate m vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=xZ06dasa1_8" target="_blank" rel="noopener" aria-label="Options Scalper Terminal: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>35</span><span>Options · Apr 2025</span></span>
+        <li class="plate m vid extra" data-area="Options" data-scope="2" data-date="2025-04" data-order="26"><a class="pl-link" href="https://www.youtube.com/watch?v=xZ06dasa1_8" target="_blank" rel="noopener" aria-label="Options Scalper Terminal: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Options</span><span>Apr 2025</span></span>
           <span class="shot"><img src="img/work/xZ06dasa1_8.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Options Scalper Terminal</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Options Scalper Terminal</span><span class="scope c2" title="Design scope: Medium"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span>Medium design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate g vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=j9hevhoHrKU" target="_blank" rel="noopener" aria-label="FIA, FYERS Intelligent Assistant: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>36</span><span>FIA · Mar 2025</span></span>
+        <li class="plate g vid extra" data-area="FIA" data-scope="2" data-date="2025-03" data-order="27"><a class="pl-link" href="https://www.youtube.com/watch?v=j9hevhoHrKU" target="_blank" rel="noopener" aria-label="FIA, FYERS Intelligent Assistant: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>FIA</span><span>Mar 2025</span></span>
           <span class="shot"><img src="img/work/j9hevhoHrKU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">FIA, FYERS Intelligent Assistant</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">FIA, FYERS Intelligent Assistant</span><span class="scope c2" title="Design scope: Medium"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span>Medium design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate d vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=6mKK6bzzzBI" target="_blank" rel="noopener" aria-label="Instant Withdrawal: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>37</span><span>Funds · Dec 2024</span></span>
+        <li class="plate d vid extra" data-area="Trading" data-scope="1" data-date="2024-12" data-order="28"><a class="pl-link" href="https://www.youtube.com/watch?v=6mKK6bzzzBI" target="_blank" rel="noopener" aria-label="Instant Withdrawal: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Trading</span><span>Dec 2024</span></span>
           <span class="shot"><img src="img/work/6mKK6bzzzBI.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Instant Withdrawal</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Instant Withdrawal</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate l vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=ScchXOh0UXw" target="_blank" rel="noopener" aria-label="Payment mandates: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>38</span><span>Funds · Dec 2024</span></span>
+        <li class="plate l vid extra" data-area="Trading" data-scope="1" data-date="2024-12" data-order="29"><a class="pl-link" href="https://www.youtube.com/watch?v=ScchXOh0UXw" target="_blank" rel="noopener" aria-label="Payment mandates: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Trading</span><span>Dec 2024</span></span>
           <span class="shot"><img src="img/work/ScchXOh0UXw.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Payment mandates</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Payment mandates</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate m vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=Xk8_NDtETRY" target="_blank" rel="noopener" aria-label="Smart Orders: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>39</span><span>Trading · Dec 2024</span></span>
+        <li class="plate m vid extra" data-area="Trading" data-scope="3" data-date="2024-12" data-order="30"><a class="pl-link" href="https://www.youtube.com/watch?v=Xk8_NDtETRY" target="_blank" rel="noopener" aria-label="Smart Orders: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Trading</span><span>Dec 2024</span></span>
           <span class="shot"><img src="img/work/Xk8_NDtETRY.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Smart Orders</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Smart Orders</span><span class="scope c2" title="Design scope: Large"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Large design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate g vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=k3RI_PjwZ08" target="_blank" rel="noopener" aria-label="DDPI: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>40</span><span>Onboarding · Jul 2024</span></span>
+        <li class="plate g vid extra" data-area="Trading" data-scope="1" data-date="2024-07" data-order="31"><a class="pl-link" href="https://www.youtube.com/watch?v=k3RI_PjwZ08" target="_blank" rel="noopener" aria-label="DDPI: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Trading</span><span>Jul 2024</span></span>
           <span class="shot"><img src="img/work/k3RI_PjwZ08.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">DDPI</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">DDPI</span><span class="scope c2" title="Design scope: Small"><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Small design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate d vid extra"><a class="pl-link" href="https://www.youtube.com/watch?v=bNzlxoC_Nxk" target="_blank" rel="noopener" aria-label="Account opening: watch FYERS's walkthrough on YouTube">
-          <span class="top c2"><span>41</span><span>Onboarding · Jun 2024</span></span>
+        <li class="plate d vid extra" data-area="Onboarding" data-scope="2" data-date="2024-06" data-order="32"><a class="pl-link" href="https://www.youtube.com/watch?v=bNzlxoC_Nxk" target="_blank" rel="noopener" aria-label="Account opening: watch FYERS&rsquo;s walkthrough on YouTube">
+          <span class="top c2"><span>Onboarding</span><span>Jun 2024</span></span>
           <span class="shot"><img src="img/work/bNzlxoC_Nxk.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="nm">Account opening</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
+          <span class="bot"><span class="nm">Account opening</span><span class="scope c2" title="Design scope: Medium"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span>Medium design scope</span><span class="watch c2">Watch the walkthrough <span aria-hidden="true">&#8599;</span></span></span>
         </a></li>
-        <li class="plate l extra" style="--ar:5/4">
-          <span class="top c2"><span>42</span><span>Institutional</span></span>
-          <span class="bot"><span class="nm">FYERS Professional</span></span>
-        </li>
-        <li class="plate m extra" style="--ar:5/4">
-          <span class="top c2"><span>43</span><span>Reports</span></span>
-          <span class="bot"><span class="nm">Reports &amp; portfolio</span></span>
-        </li>
-        <li class="plate g extra" style="--ar:5/4">
-          <span class="top c2"><span>44</span><span>Onboarding</span></span>
-          <span class="bot"><span class="nm">NRI onboarding</span></span>
+        <li class="plate l extra" data-area="Institutional" data-scope="2" data-date="0000-00" data-order="33" style="--ar:5/4">
+          <span class="top c2"><span>Institutional</span><span></span></span>
+          <span class="bot"><span class="nm">FYERS Professional</span><span class="scope c2" title="Design scope: Medium"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span>Medium design scope</span></span>
         </li>
       </ul>
       <button class="more c2" type="button" id="more" hidden>
@@ -942,7 +912,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     </div>
 
     <div class="w-view" id="viewIc" role="tabpanel" aria-labelledby="tabIc">
-      <p class="w-lede p1">Six pieces of hands-on work across three companies, newest first. Each opens its case study.</p>
+      <p class="w-lede p1">Seven pieces of hands-on work across three companies. Each opens its case study.</p>
       <div class="plates ic">
         <a class="plate ic d" href="work/orders.html" style="--ar:4/5">
           <span class="top c2"><span>01</span><span>Trading · 2024</span></span>
@@ -971,8 +941,17 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
             <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
           </span>
         </a>
+        <a class="plate ic d" href="work/nri-onboarding.html" style="--ar:4/5">
+          <span class="top c2"><span>04</span><span>Onboarding</span></span>
+          <span class="bot">
+            <span class="nm">NRI onboarding</span>
+            <span class="role c2">FYERS · Hands-on</span>
+            <span class="ic-desc p1">Account opening for Indians living abroad who want to invest and trade in India. My own hands-on work.</span>
+            <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+          </span>
+        </a>
         <a class="plate ic g" href="work/nexter-finance.html" style="--ar:4/5">
-          <span class="top c2"><span>04</span><span>DeFi · 2022–24</span></span>
+          <span class="top c2"><span>05</span><span>DeFi · 2022–24</span></span>
           <span class="bot">
             <span class="nm">Nexter Finance</span>
             <span class="role c2">Nexter · Design Lead · 0&#8239;&rarr;&#8239;1</span>
@@ -981,7 +960,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
           </span>
         </a>
         <a class="plate ic d" href="work/airtel-tv-africa.html" style="--ar:4/5">
-          <span class="top c2"><span>05</span><span>Streaming · 2018–21</span></span>
+          <span class="top c2"><span>06</span><span>Streaming · 2018–21</span></span>
           <span class="bot">
             <span class="nm">Airtel TV Africa</span>
             <span class="role c2">Datami · Lead Product Designer · 0&#8239;&rarr;&#8239;1</span>
@@ -990,7 +969,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
           </span>
         </a>
         <a class="plate ic l" href="work/reach-mobile.html" style="--ar:4/5">
-          <span class="top c2"><span>06</span><span>Web · 2018–21</span></span>
+          <span class="top c2"><span>07</span><span>Web · 2018–21</span></span>
           <span class="bot">
             <span class="nm">Reach Mobile</span>
             <span class="role c2">Datami · Product Designer</span>
@@ -1021,7 +1000,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
           <text class="lbl lb-des" x="0" y="-18">5 designers · 8 at peak</text>
           <text class="lbl lb-ver" x="0" y="930">6 verticals</text>
           <text class="lbl lb-own" x="240" y="-44" text-anchor="end">one owner per problem</text>
-          <text class="lbl lb-area" x="240" y="930" text-anchor="end">44 features shipped</text>
+          <text class="lbl lb-area" x="240" y="930" text-anchor="end">34 features shipped</text>
           <text class="lbl lb-me" x="262" y="474">hands-on</text>
         </svg>
       </div>
@@ -1037,7 +1016,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
       </div>
       <div class="ld-st ld3">
         <h3 class="ld-t">Direction, review, delivery</h3>
-        <p class="ld-d p1 words">Forty-four features shipped since February 2024. I set direction, run review and hold delivery oversight; the team owns execution.</p>
+        <p class="ld-d p1 words">Thirty-four features shipped since February 2024. I set direction, run review and hold delivery oversight; the team owns execution.</p>
       </div>
       <div class="ld-st ld4">
         <h3 class="ld-t">Close to the work</h3>
@@ -1323,7 +1302,6 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
 
 
   // Work: masonry columns, the manager/IC switch and "Load more" work with or without animation.
-  var extras = Array.from(document.querySelectorAll('.plate.extra'));
   var moreBtn = document.getElementById('more');
   function splitPlates(){
     document.querySelectorAll('.plates').forEach(function(box){
@@ -1349,14 +1327,38 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     if(window.gsap && !reduce) gsap.fromTo(list, {opacity:0, y:50}, {opacity:1, y:0, duration:1.1, stagger:.06, ease:'expo.out', overwrite:true});
   }
 
-  extras.forEach(function(el){ el.hidden = true; });
-  moreBtn.hidden = !extras.length;
-  moreBtn.addEventListener('click', function(){
-    extras.forEach(function(el){ el.hidden = false; });
-    moreBtn.hidden = true;
-    reveal(extras);
-    if(window.ScrollTrigger) ScrollTrigger.refresh();
+  // Manager wall: area chips filter it, sort chips order it (newest, or largest design
+  // scope first), and "Load more" opens the rest of an unfiltered wall.
+  var mgrBox = document.querySelector('#viewMgr .plates');
+  var mgrAll = Array.from(mgrBox.querySelectorAll('.plate'));
+  var wall = {area: 'all', sort: 'new', open: false};
+  function arrange(animate){
+    var list = mgrAll.filter(function(p){ return wall.area === 'all' || p.dataset.area === wall.area; });
+    list.sort(function(a, b){
+      return (wall.sort === 'scope' ? b.dataset.scope - a.dataset.scope : 0) || a.dataset.order - b.dataset.order;
+    });
+    var limit = wall.area === 'all' && !wall.open ? 12 : list.length;
+    var shown = list.slice(0, limit);
+    mgrAll.forEach(function(p){ p.hidden = shown.indexOf(p) < 0; });
+    moreBtn.hidden = list.length <= limit;
+    mgrBox._all = shown; mgrBox._n = null;
+    splitPlates();
+    if(animate) reveal(shown.filter(function(p){ return !p.dataset.in; }));
+  }
+  var ctrl = document.querySelector('.w-ctrl');
+  ctrl.hidden = false;
+  ctrl.addEventListener('click', function(e){
+    var b = e.target.closest('.chip');
+    if(!b) return;
+    var key = b.dataset.area ? 'area' : 'sort', val = b.dataset.area || b.dataset.sort;
+    if(wall[key] === val) return;
+    wall[key] = val;
+    if(key === 'area') wall.open = false;
+    b.parentNode.querySelectorAll('.chip').forEach(function(c){ c.setAttribute('aria-pressed', c === b); });
+    arrange(true);
   });
+  moreBtn.addEventListener('click', function(){ wall.open = true; arrange(true); });
+  arrange(false);
 
   var tabs = document.querySelector('.w-tabs');
   var views = {tabMgr: document.getElementById('viewMgr'), tabIc: document.getElementById('viewIc')};
