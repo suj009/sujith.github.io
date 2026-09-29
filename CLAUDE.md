@@ -181,7 +181,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 - Cards link to the matching walkthrough on FYERS's official YouTube channel
   (@FYERS-Platforms) and use that video's thumbnail from
   `v3/img/work/<videoId>.webp`, greyscale with colour on hover. Chips above the
-  wall filter by area and sort by newest or largest design scope. No adoption
+  wall filter by area and sort by newest or flagship first. Design scope shows
+  as a word beside each card's title, in Sujith's chosen wording: Large =
+  Flagship, Medium = Feature, Small = Enhancement. No adoption
   or usage figures are shown: none are public, and none may be invented.
 - **The all-new FYERS experience** (Aug 2025, Large) was FYERS's first push to
   unify web and app on one design system. Sujith was part of the design team,
