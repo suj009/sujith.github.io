@@ -355,6 +355,27 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:calc(100svh
 .chip:hover{border-color:var(--ink)}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
 .chips.sort .lbl{color:var(--ink-2);margin-right:.2rem}
+/* phones: the chips live in a bottom sheet behind one Filter & sort button */
+.w-fbtn,.w-sheet-h,.w-done,.w-scrim,.area-lbl{display:none}
+@media (max-width:1023px){
+  .w-fbtn:not([hidden]){display:inline-flex;align-items:center;gap:.6rem;margin:-2rem 0 1.5rem;padding:.55rem .9rem;
+    border:1px solid var(--ink);border-radius:999px;color:var(--ink)}
+  .w-fbtn svg{width:1.05rem;height:.85rem;overflow:visible}
+  .w-fsum{color:var(--ink-2);border-left:1px solid color-mix(in srgb,var(--ink) 22%,transparent);padding-left:.6rem}
+  .w-ctrl{position:fixed;left:0;right:0;bottom:0;z-index:40;margin:0;display:flex;flex-direction:column;align-items:stretch;gap:1.25rem;
+    padding:1rem 1rem calc(1rem + env(safe-area-inset-bottom,0px));background:var(--ground);border-top:1px solid var(--ink);
+    max-height:85svh;overflow:auto;transform:translateY(101%);visibility:hidden;
+    transition:transform .45s var(--ease),visibility 0s linear .45s}
+  .w-ctrl.open{transform:none;visibility:visible;transition:transform .45s var(--ease)}
+  .w-ctrl .chips{justify-content:flex-start}
+  .w-ctrl .lbl,.area-lbl{display:block;flex-basis:100%;color:var(--ink-2);margin:0 0 .15rem}
+  .w-sheet-h{display:flex;justify-content:space-between;align-items:center;font-size:.875rem;padding-bottom:.75rem;
+    border-bottom:1px solid color-mix(in srgb,var(--ink) 15%,transparent)}
+  .w-x{font-size:1.5rem;line-height:1;width:2rem;height:2rem;margin-right:-.4rem;color:var(--ink)}
+  .w-done{display:block;padding:.9rem 1rem;background:var(--ink);color:var(--ground);border-radius:999px;text-align:center}
+  .w-scrim:not([hidden]){display:block;position:fixed;inset:0;z-index:39;background:#0F0F0F66;opacity:0;transition:opacity .35s var(--ease)}
+  .w-scrim.on{opacity:1}
+}
 .plate .note{opacity:.8;max-width:30ch;margin:-.2rem 0 .1rem}
 .plate .scope{display:inline-flex;align-items:center;gap:.5rem;opacity:.72}
 .plate .bars{display:inline-flex;gap:2px}
@@ -730,10 +751,14 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
 
     <div class="w-view" id="viewMgr" role="tabpanel" aria-labelledby="tabMgr">
       <p class="w-lede p1">34 features the team shipped at FYERS since February 2024. Direction, review and delivery oversight mine; execution the team&rsquo;s. Each opens FYERS&rsquo;s own walkthrough.</p>
-      <div class="w-ctrl c2" hidden>
-        <div class="chips" role="group" aria-label="Filter by area"><button class="chip" type="button" data-area="all" aria-pressed="true">All <span>34</span></button><button class="chip" type="button" data-area="Trading" aria-pressed="false">Trading <span>13</span></button><button class="chip" type="button" data-area="Options" aria-pressed="false">Options <span>4</span></button><button class="chip" type="button" data-area="Markets" aria-pressed="false">Markets <span>5</span></button><button class="chip" type="button" data-area="FIA" aria-pressed="false">FIA <span>4</span></button><button class="chip" type="button" data-area="Automate" aria-pressed="false">Automate <span>3</span></button><button class="chip" type="button" data-area="Reports" aria-pressed="false">Reports <span>1</span></button><button class="chip" type="button" data-area="Mutual funds" aria-pressed="false">Mutual funds <span>1</span></button><button class="chip" type="button" data-area="Onboarding" aria-pressed="false">Onboarding <span>1</span></button><button class="chip" type="button" data-area="Institutional" aria-pressed="false">Institutional <span>1</span></button><button class="chip" type="button" data-area="Platform" aria-pressed="false">Platform <span>1</span></button></div>
+      <button class="w-fbtn c2" type="button" id="wFilterBtn" aria-haspopup="dialog" aria-controls="wCtrl" aria-expanded="false" hidden><svg viewBox="0 0 18 14" aria-hidden="true" focusable="false"><path d="M0 3h18M0 11h18" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="3" r="2.4" fill="var(--ground)" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="11" r="2.4" fill="var(--ground)" stroke="currentColor" stroke-width="1.2"/></svg><span>Filter &amp; sort</span><span class="w-fsum" id="wFsum">All · Newest</span></button>
+      <div class="w-ctrl c2" id="wCtrl" role="dialog" aria-label="Filter and sort features" hidden>
+        <div class="w-sheet-h"><span>Filter &amp; sort</span><button class="w-x" type="button" id="wClose" aria-label="Close">&times;</button></div>
+        <div class="chips" role="group" aria-label="Filter by area"><span class="lbl area-lbl">Area</span><button class="chip" type="button" data-area="all" aria-pressed="true">All <span>34</span></button><button class="chip" type="button" data-area="Trading" aria-pressed="false">Trading <span>13</span></button><button class="chip" type="button" data-area="Options" aria-pressed="false">Options <span>4</span></button><button class="chip" type="button" data-area="Markets" aria-pressed="false">Markets <span>5</span></button><button class="chip" type="button" data-area="FIA" aria-pressed="false">FIA <span>4</span></button><button class="chip" type="button" data-area="Automate" aria-pressed="false">Automate <span>3</span></button><button class="chip" type="button" data-area="Reports" aria-pressed="false">Reports <span>1</span></button><button class="chip" type="button" data-area="Mutual funds" aria-pressed="false">Mutual funds <span>1</span></button><button class="chip" type="button" data-area="Onboarding" aria-pressed="false">Onboarding <span>1</span></button><button class="chip" type="button" data-area="Institutional" aria-pressed="false">Institutional <span>1</span></button><button class="chip" type="button" data-area="Platform" aria-pressed="false">Platform <span>1</span></button></div>
         <div class="chips sort" role="group" aria-label="Sort"><span class="lbl">Sort</span><button class="chip" type="button" data-sort="new" aria-pressed="true">Newest</button><button class="chip" type="button" data-sort="scope" aria-pressed="false">Largest scope</button></div>
+        <button class="w-done c1" type="button" id="wDone">Show 34 features</button>
       </div>
+      <div class="w-scrim" id="wScrim" hidden></div>
       <ul class="plates">
         <li class="plate d vid" data-area="Trading" data-scope="1" data-date="2026-09" data-order="0"><a class="pl-link" href="https://www.youtube.com/watch?v=vfW_KMU-AFU" target="_blank" rel="noopener" aria-label="Order Flow on Smart Charts: watch FYERS&rsquo;s walkthrough on YouTube">
           <span class="top c2"><span>Trading · Charts</span><span>Sep 2026</span></span>
@@ -1343,10 +1368,52 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     moreBtn.hidden = list.length <= limit;
     mgrBox._all = shown; mgrBox._n = null;
     splitPlates();
+    summarise(list.length);
     if(animate) reveal(shown.filter(function(p){ return !p.dataset.in; }));
   }
   var ctrl = document.querySelector('.w-ctrl');
   ctrl.hidden = false;
+
+  // Phones: one Filter & sort button opens the chips as a bottom sheet. The Work
+  // section is clipped for its reveal, so the sheet and scrim move to <body> there.
+  var fBtn = document.getElementById('wFilterBtn'), fSum = document.getElementById('wFsum');
+  var scrim = document.getElementById('wScrim'), doneBtn = document.getElementById('wDone');
+  var home = document.createComment('w-ctrl'), phone = matchMedia('(max-width:1023px)');
+  ctrl.parentNode.insertBefore(home, ctrl);
+  function placeCtrl(){
+    if(phone.matches){ document.body.appendChild(scrim); document.body.appendChild(ctrl); }
+    else { closeSheet(); home.parentNode.insertBefore(ctrl, home.nextSibling); ctrl.parentNode.insertBefore(scrim, ctrl.nextSibling); }
+    fBtn.hidden = !phone.matches;
+  }
+  function openSheet(){
+    scrim.hidden = false;
+    requestAnimationFrame(function(){ scrim.classList.add('on'); ctrl.classList.add('open'); });
+    fBtn.setAttribute('aria-expanded', 'true');
+    if(lenis) lenis.stop();
+    document.documentElement.style.overflow = 'hidden';
+    setTimeout(function(){ var on = ctrl.querySelector('.chip[aria-pressed="true"]'); if(on) on.focus({preventScroll:true}); }, 50);
+  }
+  function closeSheet(){
+    if(!ctrl.classList.contains('open')) return;
+    ctrl.classList.remove('open'); scrim.classList.remove('on');
+    setTimeout(function(){ scrim.hidden = true; }, 350);
+    fBtn.setAttribute('aria-expanded', 'false');
+    if(lenis) lenis.start();
+    document.documentElement.style.overflow = '';
+    fBtn.focus({preventScroll:true});
+  }
+  fBtn.addEventListener('click', openSheet);
+  scrim.addEventListener('click', closeSheet);
+  doneBtn.addEventListener('click', closeSheet);
+  document.getElementById('wClose').addEventListener('click', closeSheet);
+  addEventListener('keydown', function(e){ if(e.key === 'Escape') closeSheet(); });
+  (phone.addEventListener ? phone.addEventListener('change', placeCtrl) : phone.addListener(placeCtrl));
+  placeCtrl();
+  function summarise(n){
+    var a = document.querySelector('.chip[data-area][aria-pressed="true"]'), s = document.querySelector('.chip[data-sort][aria-pressed="true"]');
+    fSum.textContent = a.firstChild.textContent.trim() + ' · ' + s.textContent.trim();
+    doneBtn.textContent = 'Show ' + n + (n === 1 ? ' feature' : ' features');
+  }
   ctrl.addEventListener('click', function(e){
     var b = e.target.closest('.chip');
     if(!b) return;
