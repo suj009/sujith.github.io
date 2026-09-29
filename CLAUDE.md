@@ -178,21 +178,26 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   "Reports & portfolio" card (Reports is a vertical; portfolio sits under
   Trading). Chart features are
   "minimal design, mostly dev", so they carry a Small scope.
-- Cards are compact text cards. Each links to the matching walkthrough on
-  FYERS's official YouTube channel (@FYERS-Platforms). A plain click opens a
-  brief on the same page: a one-to-two-line summary written from FYERS's own
-  video description (the title, where the description is empty), then
-  Published, Design scope, Walkthrough views and Video length. Views are the
-  public YouTube count as of September 2026 and are labelled as reach, not
-  usage. "Play the walkthrough" then loads the youtube-nocookie embed in place.
-  Modified clicks and no-JS still go to YouTube. The summaries and figures are
-  embedded as JSON (`#briefData`), built by `briefs.py` in the scratchpad `yt/`. The video's thumbnail (`v3/img/work/<videoId>.webp`)
-  shows only on hover, floating beside the cursor, and never on touch screens.
-  Hands-on cards use the same compact anatomy, with no image. Chips above the
-  wall filter by area and sort by newest or flagship first. Design scope shows
-  as a word beside each card's title, in Sujith's chosen wording: Large =
-  Flagship, Medium = Feature, Small = Enhancement. No adoption
-  or usage figures are shown: none are public, and none may be invented.
+- Cards are the big cards again (area and month, a dark panel, then the title with
+  its scope word and "Watch the walkthrough"). The panel holds a one-line
+  description, written from FYERS's own video description, and two end-user
+  analytics slots, Adoption and Impact. Every slot reads "To add" until Sujith
+  supplies a figure. Fill a slot as `<span class="kpi"><b>value</b>label</span>`,
+  only with verified, publishable figures that have a source and date. **No
+  YouTube figures (views, length) on the page: he asked for end-user analytics
+  only.** On hover (fine pointers) or keyboard focus, the panel gives way to the
+  walkthrough's still (`v3/img/work/<videoId>.webp`). A plain click plays FYERS's
+  walkthrough (@FYERS-Platforms) straight away in an overlay on the same page
+  (youtube-nocookie embed). Modified clicks and no-JS still go to YouTube.
+  Phones below 640px get one card per row. Hands-on cards use the same anatomy:
+  their description sits in the panel with the same two slots, and there is no
+  hover still. Chips above the wall filter by area and sort by newest or flagship
+  first. Design scope shows as a word beside each card's title, in Sujith's
+  chosen wording: Large = Flagship, Medium = Feature, Small = Enhancement.
+- **Work → Leadership spacing.** Leadership's panel wipes up at exactly the speed
+  Work's last row scrolls away (its own ScrollTrigger, `top top` to `top -100%`),
+  so `.works` needs only an 8rem bottom pad. The old `100svh` pad left a blank
+  screen after "Load more"; don't bring it back.
 - **The all-new FYERS experience** (Aug 2025, Large) was FYERS's first push to
   unify web and app on one design system. Sujith was part of the design team,
   leading three verticals at the time under the CXO. Say "part of"; the FDSG
