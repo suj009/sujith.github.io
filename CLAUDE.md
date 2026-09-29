@@ -179,9 +179,14 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Trading). Chart features are
   "minimal design, mostly dev", so they carry a Small scope.
 - Cards are compact text cards. Each links to the matching walkthrough on
-  FYERS's official YouTube channel (@FYERS-Platforms); a plain click plays it in
-  an overlay on the same page (youtube-nocookie embed), while modified clicks and
-  no-JS still go to YouTube. The video's thumbnail (`v3/img/work/<videoId>.webp`)
+  FYERS's official YouTube channel (@FYERS-Platforms). A plain click opens a
+  brief on the same page: a one-to-two-line summary written from FYERS's own
+  video description (the title, where the description is empty), then
+  Published, Design scope, Walkthrough views and Video length. Views are the
+  public YouTube count as of September 2026 and are labelled as reach, not
+  usage. "Play the walkthrough" then loads the youtube-nocookie embed in place.
+  Modified clicks and no-JS still go to YouTube. The summaries and figures are
+  embedded as JSON (`#briefData`), built by `briefs.py` in the scratchpad `yt/`. The video's thumbnail (`v3/img/work/<videoId>.webp`)
   shows only on hover, floating beside the cursor, and never on touch screens.
   Hands-on cards use the same compact anatomy, with no image. Chips above the
   wall filter by area and sort by newest or flagship first. Design scope shows
