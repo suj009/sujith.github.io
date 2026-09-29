@@ -178,9 +178,12 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   "Reports & portfolio" card (Reports is a vertical; portfolio sits under
   Trading). Chart features are
   "minimal design, mostly dev", so they carry a Small scope.
-- Cards link to the matching walkthrough on FYERS's official YouTube channel
-  (@FYERS-Platforms) and use that video's thumbnail from
-  `v3/img/work/<videoId>.webp`, greyscale with colour on hover. Chips above the
+- Cards are compact text cards. Each links to the matching walkthrough on
+  FYERS's official YouTube channel (@FYERS-Platforms); a plain click plays it in
+  an overlay on the same page (youtube-nocookie embed), while modified clicks and
+  no-JS still go to YouTube. The video's thumbnail (`v3/img/work/<videoId>.webp`)
+  shows only on hover, floating beside the cursor, and never on touch screens.
+  Hands-on cards use the same compact anatomy, with no image. Chips above the
   wall filter by area and sort by newest or flagship first. Design scope shows
   as a word beside each card's title, in Sujith's chosen wording: Large =
   Flagship, Medium = Feature, Small = Enhancement. No adoption
