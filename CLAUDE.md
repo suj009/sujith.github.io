@@ -203,8 +203,12 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   (youtube-nocookie embed). Modified clicks and no-JS still go to YouTube.
   Phones below 640px get one card per row. Hands-on cards use the same anatomy:
   their description sits in the panel with the same two slots, and there is no
-  hover still. Chips above the wall filter by area and sort by newest or flagship
-  first. Design scope shows as a word beside each card's title, in Sujith's
+  hover still. **The filter** (Sujith's picks from the filter options page): on
+  desktop it is one sentence, "Showing 35 features in [every area], [newest
+  first]", with two native dropdowns (option B); below 1024px it is one strip of
+  area and sort chips that swipes sideways, with no sheet (option F). Both drive
+  the same state and stay in step; the count in the sentence updates as you
+  filter. Design scope shows as a word beside each card's title, in Sujith's
   chosen wording: Large = Flagship, Medium = Feature, Small = Enhancement.
 - **Work → Leadership spacing.** Leadership's panel wipes up at exactly the speed
   Work's last row scrolls away (its own ScrollTrigger, `top top` to `top -100%`),

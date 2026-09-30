@@ -369,34 +369,30 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:8rem;clip-p
 }
 .plate.vid:hover .watch{opacity:1}
 /* wall controls: filter by area, sort by date or design scope */
-.w-ctrl{display:flex;justify-content:space-between;align-items:center;gap:1rem 2rem;flex-wrap:wrap;margin:-3rem 0 2.5rem}
-.chips{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center}
-.chip{border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);border-radius:999px;padding:.42rem .8rem;color:var(--ink);
+/* desktop: the filter is one sentence with two choices in it (option B) */
+.w-filter{margin:-3rem 0 2.5rem}
+.w-sent{margin:0;font-size:clamp(1.35rem,2.6vw,2rem);letter-spacing:-.04em;line-height:1.25;text-wrap:balance}
+.w-sent .dim{color:var(--ink-2)}
+.w-sent #wCount{font-variant-numeric:tabular-nums}
+.pick{position:relative;display:inline-flex;align-items:baseline;border-bottom:1px solid var(--ink)}
+.pick select{appearance:none;-webkit-appearance:none;padding:0 1.1em 0 0;font:inherit;letter-spacing:inherit;color:var(--ink);background:transparent;border:0;cursor:pointer}
+.pick::after{content:"";position:absolute;right:.15em;top:55%;width:.32em;height:.32em;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+  transform:translateY(-75%) rotate(45deg);pointer-events:none}
+.pick select option{font-size:1rem;color:var(--ink);background:var(--ground)}
+.pick:hover{border-bottom-width:2px;margin-bottom:-1px}
+/* phones: area and sort chips in one strip you swipe sideways (option F) */
+.w-strip{display:none}
+.chip{flex:none;border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);border-radius:999px;padding:.42rem .8rem;color:var(--ink);
   transition:background-color .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease)}
 .chip span{opacity:.5;margin-left:.2rem;font-variant-numeric:tabular-nums}
-.chip:hover{border-color:var(--ink)}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
-.chips.sort .lbl{color:var(--ink-2);margin-right:.2rem}
-/* phones: the chips live in a bottom sheet behind one Filter & sort button */
-.w-fbtn,.w-sheet-h,.w-done,.w-scrim,.area-lbl{display:none}
+.w-strip .div{flex:none;width:1px;background:color-mix(in srgb,var(--ink) 22%,transparent);margin:.3rem .2rem}
 @media (max-width:1023px){
-  .w-fbtn:not([hidden]){display:inline-flex;align-items:center;gap:.6rem;margin:-2rem 0 1.5rem;padding:.55rem .9rem;
-    border:1px solid var(--ink);border-radius:999px;color:var(--ink)}
-  .w-fbtn svg{width:1.05rem;height:.85rem;overflow:visible}
-  .w-fsum{color:var(--ink-2);border-left:1px solid color-mix(in srgb,var(--ink) 22%,transparent);padding-left:.6rem}
-  .w-ctrl{position:fixed;left:0;right:0;bottom:0;z-index:40;margin:0;display:flex;flex-direction:column;align-items:stretch;gap:1.25rem;
-    padding:1rem 1rem calc(1rem + env(safe-area-inset-bottom,0px));background:var(--ground);border-top:1px solid var(--ink);
-    max-height:85svh;overflow:auto;transform:translateY(101%);visibility:hidden;
-    transition:transform .45s var(--ease),visibility 0s linear .45s}
-  .w-ctrl.open{transform:none;visibility:visible;transition:transform .45s var(--ease)}
-  .w-ctrl .chips{justify-content:flex-start}
-  .w-ctrl .lbl,.area-lbl{display:block;flex-basis:100%;color:var(--ink-2);margin:0 0 .15rem}
-  .w-sheet-h{display:flex;justify-content:space-between;align-items:center;font-size:.875rem;padding-bottom:.75rem;
-    border-bottom:1px solid color-mix(in srgb,var(--ink) 15%,transparent)}
-  .w-x{font-size:1.5rem;line-height:1;width:2rem;height:2rem;margin-right:-.4rem;color:var(--ink)}
-  .w-done{display:block;padding:.9rem 1rem;background:var(--ink);color:var(--ground);border-radius:999px;text-align:center}
-  .w-scrim:not([hidden]){display:block;position:fixed;inset:0;z-index:39;background:#0F0F0F66;opacity:0;transition:opacity .35s var(--ease)}
-  .w-scrim.on{opacity:1}
+  .w-filter{margin:-2rem -1rem 1.5rem}
+  .w-sent{display:none}
+  .w-strip{display:flex;gap:.4rem;overflow-x:auto;padding:0 1rem .25rem;scrollbar-width:none;scroll-snap-type:x proximity;overscroll-behavior-x:contain}
+  .w-strip::-webkit-scrollbar{display:none}
+  .w-strip .chip{scroll-snap-align:start}
 }
 .plate .note{opacity:.8;max-width:30ch;margin:-.2rem 0 .1rem}
 /* design scope as a word beside the title: Flagship, Feature or Enhancement */
@@ -806,14 +802,10 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
 
     <div class="w-view" id="viewMgr" role="tabpanel" aria-labelledby="tabMgr">
       <p class="w-lede p1">35 features the team shipped at FYERS since February 2024. Direction, review and delivery oversight mine; execution the team&rsquo;s. Most open FYERS&rsquo;s own walkthrough.</p>
-      <button class="w-fbtn c2" type="button" id="wFilterBtn" aria-haspopup="dialog" aria-controls="wCtrl" aria-expanded="false" hidden><svg viewBox="0 0 18 14" aria-hidden="true" focusable="false"><path d="M0 3h18M0 11h18" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="3" r="2.4" fill="var(--ground)" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="11" r="2.4" fill="var(--ground)" stroke="currentColor" stroke-width="1.2"/></svg><span>Filter &amp; sort</span><span class="w-fsum" id="wFsum">All · Newest</span></button>
-      <div class="w-ctrl c2" id="wCtrl" role="dialog" aria-label="Filter and sort features" hidden>
-        <div class="w-sheet-h"><span>Filter &amp; sort</span><button class="w-x" type="button" id="wClose" aria-label="Close">&times;</button></div>
-        <div class="chips" role="group" aria-label="Filter by area"><span class="lbl area-lbl">Area</span><button class="chip" type="button" data-area="all" aria-pressed="true">All <span>35</span></button><button class="chip" type="button" data-area="Trading" aria-pressed="false">Trading <span>14</span></button><button class="chip" type="button" data-area="Options" aria-pressed="false">Options <span>4</span></button><button class="chip" type="button" data-area="Markets" aria-pressed="false">Markets <span>5</span></button><button class="chip" type="button" data-area="FIA" aria-pressed="false">FIA <span>4</span></button><button class="chip" type="button" data-area="Automate" aria-pressed="false">Automate <span>3</span></button><button class="chip" type="button" data-area="Reports" aria-pressed="false">Reports <span>1</span></button><button class="chip" type="button" data-area="Mutual funds" aria-pressed="false">Mutual funds <span>1</span></button><button class="chip" type="button" data-area="Onboarding" aria-pressed="false">Onboarding <span>1</span></button><button class="chip" type="button" data-area="Institutional" aria-pressed="false">Institutional <span>1</span></button><button class="chip" type="button" data-area="Platform" aria-pressed="false">Platform <span>1</span></button></div>
-        <div class="chips sort" role="group" aria-label="Sort"><span class="lbl">Sort</span><button class="chip" type="button" data-sort="new" aria-pressed="true">Newest</button><button class="chip" type="button" data-sort="scope" aria-pressed="false">Flagship first</button></div>
-        <button class="w-done c1" type="button" id="wDone">Show 35 features</button>
+      <div class="w-filter" id="wFilter" hidden>
+        <p class="w-sent" id="wSent">Showing <span id="wCount">35 features</span> <span class="dim">in</span> <span class="pick"><select id="wArea" aria-label="Area"><option value="all">every area</option><option value="Trading">Trading</option><option value="Options">Options</option><option value="Markets">Markets</option><option value="FIA">FIA</option><option value="Automate">Automate</option><option value="Reports">Reports</option><option value="Mutual funds">Mutual funds</option><option value="Onboarding">Onboarding</option><option value="Institutional">Institutional</option><option value="Platform">Platform</option></select></span><span class="dim">,</span> <span class="pick"><select id="wSort" aria-label="Order"><option value="new">newest first</option><option value="scope">flagship work first</option></select></span></p>
+        <div class="w-strip c2" id="wStrip" role="group" aria-label="Filter and sort features"><button class="chip" type="button" data-area="all" aria-pressed="true">All <span>35</span></button><button class="chip" type="button" data-area="Trading" aria-pressed="false">Trading <span>14</span></button><button class="chip" type="button" data-area="Options" aria-pressed="false">Options <span>4</span></button><button class="chip" type="button" data-area="Markets" aria-pressed="false">Markets <span>5</span></button><button class="chip" type="button" data-area="FIA" aria-pressed="false">FIA <span>4</span></button><button class="chip" type="button" data-area="Automate" aria-pressed="false">Automate <span>3</span></button><button class="chip" type="button" data-area="Reports" aria-pressed="false">Reports <span>1</span></button><button class="chip" type="button" data-area="Mutual funds" aria-pressed="false">Mutual funds <span>1</span></button><button class="chip" type="button" data-area="Onboarding" aria-pressed="false">Onboarding <span>1</span></button><button class="chip" type="button" data-area="Institutional" aria-pressed="false">Institutional <span>1</span></button><button class="chip" type="button" data-area="Platform" aria-pressed="false">Platform <span>1</span></button><span class="div" aria-hidden="true"></span><button class="chip" type="button" data-sort="new" aria-pressed="true">Newest</button><button class="chip" type="button" data-sort="scope" aria-pressed="false">Flagship first</button></div>
       </div>
-      <div class="w-scrim" id="wScrim" hidden></div>
       <ul class="plates">
         <li class="plate d vid" data-area="Trading" data-scope="1" data-date="2026-09" data-order="0"><a class="pl-link" href="https://www.youtube.com/watch?v=vfW_KMU-AFU" target="_blank" rel="noopener" aria-label="Order Flow on Smart Charts: play FYERS&rsquo;s walkthrough" aria-describedby="sum-vfW_KMU-AFU">
           <span class="top c2"><span>Trading · Charts</span><span>Sep 2026</span></span>
@@ -1472,58 +1464,26 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     summarise(list.length);
     if(animate) reveal(shown.filter(function(p){ return !p.dataset.in; }));
   }
-  var ctrl = document.querySelector('.w-ctrl');
-  ctrl.hidden = false;
-
-  // Phones: one Filter & sort button opens the chips as a bottom sheet. The Work
-  // section is clipped for its reveal, so the sheet and scrim move to <body> there.
-  var fBtn = document.getElementById('wFilterBtn'), fSum = document.getElementById('wFsum');
-  var scrim = document.getElementById('wScrim'), doneBtn = document.getElementById('wDone');
-  var home = document.createComment('w-ctrl'), phone = matchMedia('(max-width:1023px)');
-  ctrl.parentNode.insertBefore(home, ctrl);
-  function placeCtrl(){
-    if(phone.matches){ document.body.appendChild(scrim); document.body.appendChild(ctrl); }
-    else { closeSheet(); home.parentNode.insertBefore(ctrl, home.nextSibling); ctrl.parentNode.insertBefore(scrim, ctrl.nextSibling); }
-    fBtn.hidden = !phone.matches;
-  }
-  function openSheet(){
-    scrim.hidden = false;
-    requestAnimationFrame(function(){ scrim.classList.add('on'); ctrl.classList.add('open'); });
-    fBtn.setAttribute('aria-expanded', 'true');
-    if(lenis) lenis.stop();
-    document.documentElement.style.overflow = 'hidden';
-    setTimeout(function(){ var on = ctrl.querySelector('.chip[aria-pressed="true"]'); if(on) on.focus({preventScroll:true}); }, 50);
-  }
-  function closeSheet(){
-    if(!ctrl.classList.contains('open')) return;
-    ctrl.classList.remove('open'); scrim.classList.remove('on');
-    setTimeout(function(){ scrim.hidden = true; }, 350);
-    fBtn.setAttribute('aria-expanded', 'false');
-    if(lenis) lenis.start();
-    document.documentElement.style.overflow = '';
-    fBtn.focus({preventScroll:true});
-  }
-  fBtn.addEventListener('click', openSheet);
-  scrim.addEventListener('click', closeSheet);
-  doneBtn.addEventListener('click', closeSheet);
-  document.getElementById('wClose').addEventListener('click', closeSheet);
-  addEventListener('keydown', function(e){ if(e.key === 'Escape') closeSheet(); });
-  (phone.addEventListener ? phone.addEventListener('change', placeCtrl) : phone.addListener(placeCtrl));
-  placeCtrl();
-  function summarise(n){
-    var a = document.querySelector('.chip[data-area][aria-pressed="true"]'), s = document.querySelector('.chip[data-sort][aria-pressed="true"]');
-    fSum.textContent = a.firstChild.textContent.trim() + ' · ' + s.textContent.trim();
-    doneBtn.textContent = 'Show ' + n + (n === 1 ? ' feature' : ' features');
-  }
-  ctrl.addEventListener('click', function(e){
-    var b = e.target.closest('.chip');
-    if(!b) return;
-    var key = b.dataset.area ? 'area' : 'sort', val = b.dataset.area || b.dataset.sort;
+  // The filter: a sentence with two dropdowns on desktop, a strip of chips on phones.
+  // Both drive the same state and are kept in step with each other.
+  var filt = document.getElementById('wFilter'), strip = document.getElementById('wStrip');
+  var selArea = document.getElementById('wArea'), selSort = document.getElementById('wSort'), countOut = document.getElementById('wCount');
+  filt.hidden = false;
+  function summarise(n){ countOut.textContent = n + (n === 1 ? ' feature' : ' features'); }
+  function setWall(key, val){
     if(wall[key] === val) return;
     wall[key] = val;
     if(key === 'area') wall.open = false;
-    b.parentNode.querySelectorAll('.chip').forEach(function(c){ c.setAttribute('aria-pressed', c === b); });
+    (key === 'area' ? selArea : selSort).value = val;
+    strip.querySelectorAll('.chip[data-' + key + ']').forEach(function(c){ c.setAttribute('aria-pressed', c.dataset[key] === val); });
     arrange(true);
+  }
+  selArea.addEventListener('change', function(){ setWall('area', selArea.value); });
+  selSort.addEventListener('change', function(){ setWall('sort', selSort.value); });
+  strip.addEventListener('click', function(e){
+    var b = e.target.closest('.chip');
+    if(!b) return;
+    if(b.dataset.area) setWall('area', b.dataset.area); else setWall('sort', b.dataset.sort);
   });
   moreBtn.addEventListener('click', function(){ wall.open = true; arrange(true); });
 
