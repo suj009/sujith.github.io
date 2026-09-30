@@ -178,7 +178,12 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   "Reports & portfolio" card (Reports is a vertical; portfolio sits under
   Trading). Chart features are
   "minimal design, mostly dev", so they carry a Small scope.
-- **Trading has three sub-areas: Trading, Charts and API** (Sujith). API Dashboard
+- **Trading has three sub-areas: Trading, Charts and API** (Sujith). Every
+  Trading card carries `data-sub` and names its sub-area in the top line
+  ("Trading · Trading", "Trading · Charts", "Trading · API"). Picking the Trading
+  chip shows a smaller "In Trading" chip row (All 14 · Trading 8 · Charts 5 ·
+  API 1); leaving Trading hides it and resets it. Its counts are static, so
+  update them with the cards. API Dashboard
   is the one API card so far; it has no FYERS walkthrough video, and its
   description, scope and launch month are still to come from him. FYERS
   Professional is the other card without a video. The count (35) appears in
