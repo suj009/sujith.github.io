@@ -247,7 +247,8 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   ownership claim stays disputed.
 - **IC view** has seven cards, each opening a page in `v3/work/` (Orders, Wealth
   Tracker, Agentic Design Framework, NRI onboarding, Nexter Finance, Airtel TV
-  Africa, Reach Mobile). Pages are generated from one template; `[[...]]`-style gaps render as
+  Africa, Reach Mobile). Airtel TV Africa and Reach Mobile are two separate projects from his time at
+  Datami Mobile Solutions Pvt Ltd; each keeps its own page. Pages are generated from one template; `[[...]]`-style gaps render as
   "To add" highlights and dashed boxes mark screenshot slots for Sujith to fill.
 - **Essays** live in `v3/writing/`. Two are ports of the live articles with the
   FDSG and Lab references removed; *Trust is a design material* and *Zero to one,
