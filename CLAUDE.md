@@ -167,7 +167,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 
 ## v3 Work, case studies and essays
 
-- **Manager wall** (`#viewMgr` in `v3/hero-replica.html`) lists 34 FYERS
+- **Manager wall** (`#viewMgr` in `v3/hero-replica.html`) lists 35 FYERS
   features shipped since February 2024. Sujith reviewed the list card by card;
   the source of truth is `wall.tsv` (video id, name, area, sub-area, design
   scope S/M/L, launch month), which `wall.py` turns into the cards. Both live in
@@ -178,6 +178,12 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   "Reports & portfolio" card (Reports is a vertical; portfolio sits under
   Trading). Chart features are
   "minimal design, mostly dev", so they carry a Small scope.
+- **Trading has three sub-areas: Trading, Charts and API** (Sujith). API Dashboard
+  is the one API card so far; it has no FYERS walkthrough video, and its
+  description, scope and launch month are still to come from him. FYERS
+  Professional is the other card without a video. The count (35) appears in
+  the lede, the All chip, the phone sheet's Done button and Leadership
+  ("Thirty-five", "35 features shipped"); move them together.
 - Cards are the big cards again (area and month, a panel in the card's own colour, never a
   black box, then the title with
   its scope word and "Watch the walkthrough"). The panel holds a one-line
