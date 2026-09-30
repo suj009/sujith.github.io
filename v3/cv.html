@@ -202,6 +202,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .js .tl.in .seg:nth-child(4){transition-delay:.24s}.js .tl.in .seg:nth-child(5){transition-delay:.32s}
 .tl-axis{position:relative;height:1.6rem;margin-top:.5rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
 .tl-axis span{position:absolute;top:0;transform:translateX(-50%)}
+/* the first year sits on the chart's left edge, so its label starts there instead of centring past the margin */
+.tl-axis span:first-child{transform:none}
+.tl-axis span:first-child::before{left:0}
 .tl-axis span::before{content:"";position:absolute;left:50%;top:-.5rem;width:1px;height:.35rem;background:var(--rule)}
 .tl-labels{position:relative;height:1.4rem}
 .tip{position:absolute;z-index:3;pointer-events:none;background:var(--ink);color:var(--ground);padding:.55rem .7rem;border-radius:2px;
@@ -404,7 +407,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
           <span class="idx c2">05</span><span class="org">Two Roads Tech (Qplum)</span><span class="yr c2">2017 — Mar 18</span>
           <div class="what"><p class="rl">Product Designer</p>
             <ul class="pts"><li>Owned all web journeys for Qplum, an AI-based portfolio-investment platform for US investors.</li></ul></div>
-        </li></ul></div>
         </li>
         <li class="row rv">
           <span class="idx c2">06</span><span class="org">Onetech Ventures</span><span class="yr c2">Oct 2016 — Apr 17</span>

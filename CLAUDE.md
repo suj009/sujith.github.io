@@ -182,8 +182,10 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   "Trading · Charts" and "Trading · API"; plain Trading cards just say
   "Trading". He tried sub-area chips under Trading and dropped them as
   unnecessary; don't bring them back unless he asks. API Dashboard
-  is the one API card so far; it has no FYERS walkthrough video, and its
-  description, scope and launch month are still to come from him. FYERS
+  is the one API card so far (Feature, March 2026, per Sujith); it has no FYERS
+  walkthrough video, and its one-line description is still to come from him.
+  Newest-first order is `data-order`, not the date, so a card added later must
+  be slotted into the sequence by its month. FYERS
   Professional is the other card without a video. The count (35) appears in
   the lede, the All chip, the phone sheet's Done button and Leadership
   ("Thirty-five", "35 features shipped"); move them together.
