@@ -146,14 +146,23 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 
 ## The mark, favicon and SEO (v3)
 
-- **The mark** is option I from the S marks sheet: the Archivo Expanded ExtraBold
-  S from the wordmark, with an A cut through it (legs from an apex above the S,
-  bar at y=470 in glyph units). It replaces the nav dot in `v3/hero-replica.html`
-  and the CV rail. Small sizes use a thicker cut (stroke 62–66) than the large
-  mark (44) so the A survives at 16–20px.
-- **Favicons** live in `v3/img/` (`favicon.svg` flips for dark browser chrome;
-  `.ico`, 16/32 PNG, 180 apple-touch, 192/512 manifest icons) with
-  `v3/site.webmanifest`. On merge they move to the root and replace the old
+- **The mark is the Blocks S** (Sujith's pick, replacing the A-cut S): an S of eleven
+  unit blocks on a 3 by 5 grid, drawn in real 3D at a resting isometric angle (turn -45 degrees,
+  tip 35.26 degrees). It sits in the nav of `v3/hero-replica.html` and in the centre of the
+  CV page's top bar (linking home; "Back to portfolio" stays, as he asked for earlier). Each
+  page carries the same small inline script: hover leans the mark toward the pointer, dragging
+  turns it to any angle and a flick keeps it spinning, and left alone it settles back to the
+  resting angle. A drag never fires the link; a plain click does. It only animates while
+  moving, and reduced motion snaps instead of easing. The static markup is the resting render,
+  so it shows without JavaScript. Faces are `currentColor` mixed toward `--bg`: black in the
+  difference-blended nav, the ground once the nav is solid or on the CV bar. The light is
+  fixed while the S turns. A squared S reads like a "5" head-on or a "2" from behind, which is
+  why it always settles back to the resting angle. Working files (generator `gen.mjs`, `mark.js`)
+  are in the session scratchpad under `blocksmark/`; the 3D sheet is on the artifact
+  "Blocks S Tilt".
+- **Favicons** live in `v3/img/`: the Blocks S at its resting angle on the site's light
+  ground (`favicon.svg` flips to a dark tile in dark browser chrome; `.ico` with 16/32/48,
+  16/32 PNG, 180 apple-touch, 192/512 manifest icons), with `v3/site.webmanifest`. On merge they move to the root and replace the old
   `img/logo-s*` / `favicon.ico` set.
 - **Titles** put the name first (tabs cut at ~25 characters): home is
   "Sujith Kumar Anand — Senior Product Design Manager" (Sujith's wording); other pages are
