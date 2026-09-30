@@ -375,7 +375,7 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:8rem;clip-p
 /* wall controls: filter by area, sort by date or design scope */
 /* desktop: the filter is one sentence with two choices in it (option B) */
 .w-filter{margin:-3rem 0 2.5rem}
-.w-sent{margin:0;font-size:clamp(1.35rem,2.6vw,2rem);letter-spacing:-.04em;line-height:1.25;text-wrap:balance}
+.w-sent{margin:0;font-size:clamp(1.0625rem,1.5vw,1.3125rem);letter-spacing:-.04em;line-height:1.25;text-wrap:balance}
 .w-sent .dim{color:var(--ink-2)}
 .w-sent #wCount{font-variant-numeric:tabular-nums}
 .pick{position:relative;display:inline-flex;align-items:baseline;border-bottom:1px solid var(--ink)}
@@ -442,6 +442,10 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:8rem;clip-p
 .plate.ic{text-decoration:none}
 .plate.ic .nm{font-size:1.75rem;max-width:16ch}
 .plate.ic .role{opacity:.6}
+/* the company's logo leads each hands-on card, drawn in the card's own text colour */
+.plate .co{display:inline-flex;align-items:center;gap:.4rem}
+.plate .co-logo{display:inline-block;height:.8125rem;aspect-ratio:var(--ar);background:currentColor;
+  -webkit-mask:var(--logo) no-repeat left center / contain;mask:var(--logo) no-repeat left center / contain}
 .plate.ic .bot{gap:.5rem}
 .plate.ic .go{display:inline-flex;gap:.4rem;align-items:center;margin-top:.4rem}
 .plate.ic .go.dim{opacity:.5}
@@ -807,8 +811,8 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     <div class="w-view" id="viewMgr" role="tabpanel" aria-labelledby="tabMgr">
       <p class="w-lede p1">35 features the team shipped at FYERS since February 2024. Direction, review and delivery oversight mine; execution the team&rsquo;s. Most open FYERS&rsquo;s own walkthrough.</p>
       <div class="w-filter" id="wFilter" hidden>
-        <p class="w-sent" id="wSent">Showing <span id="wCount">35 features</span> <span class="dim">in</span> <span class="pick"><select id="wArea" aria-label="Area"><option value="all">every area</option><option value="Trading">Trading</option><option value="Options">Options</option><option value="Markets">Markets</option><option value="FIA">FIA</option><option value="Automate">Automate</option><option value="Reports">Reports</option><option value="Mutual funds">Mutual funds</option><option value="Onboarding">Onboarding</option><option value="Institutional">Institutional</option><option value="Platform">Platform</option></select></span><span class="dim">,</span> <span class="pick"><select id="wSort" aria-label="Order"><option value="new">newest first</option><option value="scope">flagship work first</option></select></span></p>
-        <div class="w-strip c2" id="wStrip" role="group" aria-label="Filter and sort features"><button class="chip" type="button" data-area="all" aria-pressed="true">All <span>35</span></button><button class="chip" type="button" data-area="Trading" aria-pressed="false">Trading <span>14</span></button><button class="chip" type="button" data-area="Options" aria-pressed="false">Options <span>4</span></button><button class="chip" type="button" data-area="Markets" aria-pressed="false">Markets <span>5</span></button><button class="chip" type="button" data-area="FIA" aria-pressed="false">FIA <span>4</span></button><button class="chip" type="button" data-area="Automate" aria-pressed="false">Automate <span>3</span></button><button class="chip" type="button" data-area="Reports" aria-pressed="false">Reports <span>1</span></button><button class="chip" type="button" data-area="Mutual funds" aria-pressed="false">Mutual funds <span>1</span></button><button class="chip" type="button" data-area="Onboarding" aria-pressed="false">Onboarding <span>1</span></button><button class="chip" type="button" data-area="Institutional" aria-pressed="false">Institutional <span>1</span></button><button class="chip" type="button" data-area="Platform" aria-pressed="false">Platform <span>1</span></button><span class="div" aria-hidden="true"></span><button class="chip" type="button" data-sort="new" aria-pressed="true">Newest</button><button class="chip" type="button" data-sort="scope" aria-pressed="false">Flagship first</button></div>
+        <p class="w-sent" id="wSent">Showing <span id="wCount">35 features</span> <span class="dim">in</span> <span class="pick"><select id="wArea" aria-label="Area"><option value="all">every area</option><option value="Trading">Trading</option><option value="Options">Options</option><option value="Markets">Markets</option><option value="FIA">FIA</option><option value="Automate">Automate</option><option value="Reports">Reports</option><option value="Mutual funds">Mutual funds</option><option value="Onboarding">Onboarding</option><option value="Institutional">Institutional</option><option value="Platform">Platform</option></select></span><span class="dim">,</span> <span class="pick"><select id="wSort" aria-label="Order"><option value="scope" selected>flagship work first</option><option value="new">newest first</option></select></span></p>
+        <div class="w-strip c2" id="wStrip" role="group" aria-label="Filter and sort features"><button class="chip" type="button" data-area="all" aria-pressed="true">All <span>35</span></button><button class="chip" type="button" data-area="Trading" aria-pressed="false">Trading <span>14</span></button><button class="chip" type="button" data-area="Options" aria-pressed="false">Options <span>4</span></button><button class="chip" type="button" data-area="Markets" aria-pressed="false">Markets <span>5</span></button><button class="chip" type="button" data-area="FIA" aria-pressed="false">FIA <span>4</span></button><button class="chip" type="button" data-area="Automate" aria-pressed="false">Automate <span>3</span></button><button class="chip" type="button" data-area="Reports" aria-pressed="false">Reports <span>1</span></button><button class="chip" type="button" data-area="Mutual funds" aria-pressed="false">Mutual funds <span>1</span></button><button class="chip" type="button" data-area="Onboarding" aria-pressed="false">Onboarding <span>1</span></button><button class="chip" type="button" data-area="Institutional" aria-pressed="false">Institutional <span>1</span></button><button class="chip" type="button" data-area="Platform" aria-pressed="false">Platform <span>1</span></button><span class="div" aria-hidden="true"></span><button class="chip" type="button" data-sort="scope" aria-pressed="true">Flagship first</button><button class="chip" type="button" data-sort="new" aria-pressed="false">Newest</button></div>
       </div>
       <ul class="plates">
         <li class="plate d vid" data-area="Trading" data-scope="1" data-date="2026-09" data-order="0"><a class="pl-link" href="https://www.youtube.com/watch?v=vfW_KMU-AFU" target="_blank" rel="noopener" aria-label="Order Flow on Smart Charts: play FYERS&rsquo;s walkthrough" aria-describedby="sum-vfW_KMU-AFU">
@@ -1030,7 +1034,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
       <p class="w-lede p1">Seven pieces of hands-on work across three companies. Each opens its case study.</p>
       <div class="plates ic">
         <a class="plate ic d" href="work/orders.html">
-          <span class="top c2"><span>FYERS · Trading</span><span>2024</span></span>
+          <span class="top c2"><span class="co"><span class="co-logo" role="img" aria-label="FYERS" style="--logo:url(img/co/fyers.svg);--ar:3.633"></span><span aria-hidden="true">·</span> Trading</span><span>2024</span></span>
           <span class="ttl"><span class="nm">Orders</span><span class="tier c2">Hands-on</span></span>
           <span class="role c2">Design manager, and individual contributor</span>
           <span class="shot"><span class="info"><span class="sum p1">Delivered the Orders section myself, straight into a high-fidelity model built on reusable local components. Changing a shared pattern stopped meaning changing every screen.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span></span>
@@ -1039,7 +1043,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
           </span>
         </a>
         <a class="plate ic l" href="work/wealth-tracker.html">
-          <span class="top c2"><span>FYERS · Reports</span><span>2026</span></span>
+          <span class="top c2"><span class="co"><span class="co-logo" role="img" aria-label="FYERS" style="--logo:url(img/co/fyers.svg);--ar:3.633"></span><span aria-hidden="true">·</span> Reports</span><span>2026</span></span>
           <span class="ttl"><span class="nm">Wealth Tracker</span><span class="tier c2">End to end</span></span>
           <span class="role c2">End-to-end ownership</span>
           <span class="shot"><span class="info"><span class="sum p1">A PRD and an AI-generated concept in; Flutter-ready web and mobile out. Taken through approval with the AVP, CPO and CTO, then built myself. The front-end team estimated roughly 70% less implementation effort.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span></span>
@@ -1048,7 +1052,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
           </span>
         </a>
         <a class="plate ic m" href="work/agentic-design-framework.html">
-          <span class="top c2"><span>FYERS · Platform</span><span>Now</span></span>
+          <span class="top c2"><span class="co"><span class="co-logo" role="img" aria-label="FYERS" style="--logo:url(img/co/fyers.svg);--ar:3.633"></span><span aria-hidden="true">·</span> Platform</span><span>Now</span></span>
           <span class="ttl"><span class="nm">Agentic Design Framework</span><span class="tier c2">In progress</span></span>
           <span class="role c2">No impact claims until it ships</span>
           <span class="shot"><span class="info"><span class="sum p1">Wealth Tracker was the proof point. Now leading an internal framework that takes product teams from requirement to implementation-ready output, with product, design and engineering review kept in the loop.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span></span>
@@ -1057,7 +1061,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
           </span>
         </a>
         <a class="plate ic g" href="work/nri-onboarding.html">
-          <span class="top c2"><span>FYERS · Onboarding</span><span></span></span>
+          <span class="top c2"><span class="co"><span class="co-logo" role="img" aria-label="FYERS" style="--logo:url(img/co/fyers.svg);--ar:3.633"></span><span aria-hidden="true">·</span> Onboarding</span><span></span></span>
           <span class="ttl"><span class="nm">NRI onboarding</span><span class="tier c2">Hands-on</span></span>
           <span class="role c2">My own hands-on work</span>
           <span class="shot"><span class="info"><span class="sum p1">Account opening for Indians living abroad who want to invest and trade in India.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span></span>
@@ -1075,7 +1079,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
           </span>
         </a>
         <a class="plate ic l" href="work/airtel-tv-africa.html">
-          <span class="top c2"><span>Datami · Streaming</span><span>2018–21</span></span>
+          <span class="top c2"><span class="co"><span class="co-logo" role="img" aria-label="Datami" style="--logo:url(img/co/datami.png);--ar:4.412"></span><span aria-hidden="true">·</span> Streaming</span><span>2018–21</span></span>
           <span class="ttl"><span class="nm">Airtel TV Africa</span><span class="tier c2">0&#8239;&rarr;&#8239;1</span></span>
           <span class="role c2">Lead Product Designer</span>
           <span class="shot"><span class="info"><span class="sum p1">Designed the Airtel TV streaming app end to end for the African market.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span></span>
@@ -1084,7 +1088,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
           </span>
         </a>
         <a class="plate ic m" href="work/reach-mobile.html">
-          <span class="top c2"><span>Datami · Web</span><span>2018–21</span></span>
+          <span class="top c2"><span class="co"><span class="co-logo" role="img" aria-label="Datami" style="--logo:url(img/co/datami.png);--ar:4.412"></span><span aria-hidden="true">·</span> Web</span><span>2018–21</span></span>
           <span class="ttl"><span class="nm">Reach Mobile</span><span class="tier c2">Hands-on</span></span>
           <span class="role c2">Product Designer</span>
           <span class="shot"><span class="info"><span class="sum p1">Designed the Reach Mobile web journeys.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span></span>
@@ -1453,7 +1457,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   // first), and "Load more" opens the rest of an unfiltered wall.
   var mgrBox = document.querySelector('#viewMgr .plates');
   var mgrAll = Array.from(mgrBox.querySelectorAll('.plate'));
-  var wall = {area: 'all', sort: 'new', open: false};
+  var wall = {area: 'all', sort: 'scope', open: false};
   function arrange(animate){
     var list = mgrAll.filter(function(p){ return wall.area === 'all' || p.dataset.area === wall.area; });
     list.sort(function(a, b){
@@ -1479,11 +1483,25 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     wall[key] = val;
     if(key === 'area') wall.open = false;
     (key === 'area' ? selArea : selSort).value = val;
+    if(typeof fit === 'function') fit(key === 'area' ? selArea : selSort);
     strip.querySelectorAll('.chip[data-' + key + ']').forEach(function(c){ c.setAttribute('aria-pressed', c.dataset[key] === val); });
     arrange(true);
   }
-  selArea.addEventListener('change', function(){ setWall('area', selArea.value); });
-  selSort.addEventListener('change', function(){ setWall('sort', selSort.value); });
+  // each dropdown is only as wide as the choice it shows, so the sentence reads without gaps
+  var ruler = document.createElement('canvas').getContext('2d');
+  function fit(sel){
+    var cs = getComputedStyle(sel);
+    ruler.font = cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+    var txt = sel.options[sel.selectedIndex].text, em = parseFloat(cs.fontSize);
+    var w = ruler.measureText(txt).width + txt.length * (parseFloat(cs.letterSpacing) || 0);
+    sel.style.width = Math.ceil(w + 1.25 * em) + 'px';
+  }
+  function fitBoth(){ fit(selArea); fit(selSort); }
+  fitBoth();
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitBoth);
+  addEventListener('resize', fitBoth);
+  selArea.addEventListener('change', function(){ setWall('area', selArea.value); fit(selArea); });
+  selSort.addEventListener('change', function(){ setWall('sort', selSort.value); fit(selSort); });
   strip.addEventListener('click', function(e){
     var b = e.target.closest('.chip');
     if(!b) return;

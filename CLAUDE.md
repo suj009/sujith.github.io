@@ -219,7 +219,15 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   first]", with two native dropdowns (option B); below 1024px it is one strip of
   area and sort chips that swipes sideways, with no sheet (option F). Both drive
   the same state and stay in step; the count in the sentence updates as you
-  filter. Design scope shows as a word beside each card's title, in Sujith's
+  filter. **Flagship work first is the default order** (Sujith), on both. The
+  sentence is set small (about 1.06 to 1.31rem) and each dropdown is sized to the
+  choice it shows, so the line reads without gaps.
+- **Company logos on the hands-on cards** lead the top line in place of the
+  company name: FYERS (`v3/img/co/fyers.svg`, from fyers.in) and Datami
+  (`v3/img/co/datami.png`, from datami.com), drawn as a CSS mask in the card's text
+  colour, with the name as the accessible label. Nexter Finance's site no longer
+  resolves, so it keeps its name as text until Sujith supplies a logo. The manager
+  wall is all FYERS, so it carries no logos. Design scope shows as a word beside each card's title, in Sujith's
   chosen wording: Large = Flagship, Medium = Feature, Small = Enhancement.
 - **Work → Leadership spacing.** Leadership's panel wipes up at exactly the speed
   Work's last row scrolls away (its own ScrollTrigger, `top top` to `top -100%`),
