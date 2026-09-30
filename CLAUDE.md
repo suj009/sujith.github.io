@@ -178,23 +178,23 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   "Reports & portfolio" card (Reports is a vertical; portfolio sits under
   Trading). Chart features are
   "minimal design, mostly dev", so they carry a Small scope.
-- **Trading has three sub-areas: Trading, Charts and API** (Sujith). Every
-  Trading card carries `data-sub` and names its sub-area in the top line
-  ("Trading · Trading", "Trading · Charts", "Trading · API"). Picking the Trading
-  chip shows a smaller "In Trading" chip row (All 14 · Trading 8 · Charts 5 ·
-  API 1); leaving Trading hides it and resets it. Its counts are static, so
-  update them with the cards. API Dashboard
+- **Trading has three sub-areas: Trading, Charts and API** (Sujith). Cards show
+  "Trading · Charts" and "Trading · API"; plain Trading cards just say
+  "Trading". He tried sub-area chips under Trading and dropped them as
+  unnecessary; don't bring them back unless he asks. API Dashboard
   is the one API card so far; it has no FYERS walkthrough video, and its
   description, scope and launch month are still to come from him. FYERS
   Professional is the other card without a video. The count (35) appears in
   the lede, the All chip, the phone sheet's Done button and Leadership
   ("Thirty-five", "35 features shipped"); move them together.
-- Cards are the big cards again (area and month, a panel in the card's own colour, never a
-  black box, then the title with
-  its scope word and "Watch the walkthrough"). The panel holds a one-line
-  description, written from FYERS's own video description, and two end-user
-  analytics slots, Adoption and Impact. Every slot reads "To add" until Sujith
-  supplies a figure. Fill a slot as `<span class="kpi"><b>value</b>label</span>`,
+- Cards use **layout H, "Before and after"** (Sujith's pick from the card
+  options page): area and month, then the title with its scope word, then a
+  panel in the card's own colour (never a black box) holding a one-line
+  description written from FYERS's own video description, the Impact figure as
+  a before-and-after pair, and the Adoption figure. The panel is as tall as its
+  content. Every figure reads "To add" until Sujith supplies it. Fill Impact as
+  `<span class="ba"><b class="was">old</b><span class="arr">&rarr;</span><b>new</b></span>`
+  with its label in `.ba-l`, and Adoption as `<span class="kpi"><b>value</b>label</span>`,
   only with verified, publishable figures that have a source and date. **No
   YouTube figures (views, length) on the page: he asked for end-user analytics
   only.** On hover (fine pointers) or keyboard focus, the panel gives way to the
