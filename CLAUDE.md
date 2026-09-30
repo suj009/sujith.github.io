@@ -222,12 +222,15 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   filter. **Flagship work first is the default order** (Sujith), on both. The
   sentence is set small (about 1.06 to 1.31rem) and each dropdown is sized to the
   choice it shows, so the line reads without gaps.
-- **Company logos on the hands-on cards** lead the top line in place of the
-  company name: FYERS (`v3/img/co/fyers.svg`, from fyers.in) and Datami
-  (`v3/img/co/datami.png`, from datami.com), drawn as a CSS mask in the card's text
-  colour, with the name as the accessible label. Nexter Finance's site no longer
-  resolves, so it keeps its name as text until Sujith supplies a logo. The manager
-  wall is all FYERS, so it carries no logos. Design scope shows as a word beside each card's title, in Sujith's
+- **Company marks sit in each card's bottom-right corner** (option D, Sujith's pick
+  from the logo options page), opposite "Watch the walkthrough" or "Read the case
+  study", on both views. The top line carries the area alone. Manager cards carry
+  the FYERS "F" symbol (`v3/img/co/fyers-f.svg`, cut from `fyers.svg`, which comes
+  from fyers.in); hands-on cards carry their company's mark: the FYERS F, the Datami
+  wordmark (`v3/img/co/datami.png`, from datami.com). All are drawn as a CSS mask in
+  the card's text colour at 72%, with the name as the accessible label. Nexter
+  Finance's site no longer resolves, so it shows its name as text in that spot until
+  Sujith supplies a logo. Design scope shows as a word beside each card's title, in Sujith's
   chosen wording: Large = Flagship, Medium = Feature, Small = Enhancement.
 - **Work → Leadership spacing.** Leadership's panel wipes up at exactly the speed
   Work's last row scrolls away (its own ScrollTrigger, `top top` to `top -100%`),

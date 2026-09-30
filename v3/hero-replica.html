@@ -442,10 +442,14 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:8rem;clip-p
 .plate.ic{text-decoration:none}
 .plate.ic .nm{font-size:1.75rem;max-width:16ch}
 .plate.ic .role{opacity:.6}
-/* the company's logo leads each hands-on card, drawn in the card's own text colour */
-.plate .co{display:inline-flex;align-items:center;gap:.4rem}
-.plate .co-logo{display:inline-block;height:.8125rem;aspect-ratio:var(--ar);background:currentColor;
-  -webkit-mask:var(--logo) no-repeat left center / contain;mask:var(--logo) no-repeat left center / contain}
+/* the company's mark closes each card, opposite its link, drawn in the card's own text colour */
+.plate .bot.row{flex-direction:row;justify-content:space-between;align-items:center;gap:1rem}
+.plate .seal{flex:none;display:inline-block;height:.875rem;aspect-ratio:var(--ar);background:currentColor;opacity:.72;
+  -webkit-mask:var(--logo) no-repeat right center / contain;mask:var(--logo) no-repeat right center / contain}
+.plate .seal.wide{height:.8125rem}
+.plate .seal-t{flex:none;opacity:.72}
+.plate.ic .bot.row{padding-top:.4rem}
+.plate.ic .bot.row .go{margin-top:0}
 .plate.ic .bot{gap:.5rem}
 .plate.ic .go{display:inline-flex;gap:.4rem;align-items:center;margin-top:.4rem}
 .plate.ic .go.dim{opacity:.5}
@@ -819,209 +823,211 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
           <span class="top c2"><span>Trading · Charts</span><span>Sep 2026</span></span>
           <span class="ttl"><span class="nm">Order Flow on Smart Charts</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-vfW_KMU-AFU">Shows the buying and selling inside every candle, so traders can see which side is in control.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/vfW_KMU-AFU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate l vid" data-area="Trading" data-scope="1" data-date="2026-09" data-order="1"><a class="pl-link" href="https://www.youtube.com/watch?v=bUF2rhsrwQw" target="_blank" rel="noopener" aria-label="Build your own indicators: play FYERS&rsquo;s walkthrough" aria-describedby="sum-bUF2rhsrwQw">
           <span class="top c2"><span>Trading · Charts</span><span>Sep 2026</span></span>
           <span class="ttl"><span class="nm">Build your own indicators</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-bUF2rhsrwQw">Traders build their own indicators and use them directly on FYERS Smart Charts.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/bUF2rhsrwQw.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate m vid" data-area="Automate" data-scope="3" data-date="2026-09" data-order="2"><a class="pl-link" href="https://www.youtube.com/watch?v=LXug2VUWf4A" target="_blank" rel="noopener" aria-label="Backtest strategies with AI: play FYERS&rsquo;s walkthrough" aria-describedby="sum-LXug2VUWf4A">
           <span class="top c2"><span>Automate</span><span>Sep 2026</span></span>
           <span class="ttl"><span class="nm">Backtest strategies with AI</span><span class="tier c2">Flagship</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-LXug2VUWf4A">Describe a strategy in plain English. FIA builds the automation and backtests it before it goes live.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/LXug2VUWf4A.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate g vid" data-area="Automate" data-scope="3" data-date="2026-08" data-order="3"><a class="pl-link" href="https://www.youtube.com/watch?v=adhEOlA5UFA" target="_blank" rel="noopener" aria-label="FYERS Automate with FIA: play FYERS&rsquo;s walkthrough" aria-describedby="sum-adhEOlA5UFA">
           <span class="top c2"><span>Automate · FIA</span><span>Aug 2026</span></span>
           <span class="ttl"><span class="nm">FYERS Automate with FIA</span><span class="tier c2">Flagship</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-adhEOlA5UFA">Create, change and explain automations in natural language, then backtest and deploy them.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/adhEOlA5UFA.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate d vid" data-area="Options" data-scope="3" data-date="2026-07" data-order="4"><a class="pl-link" href="https://www.youtube.com/watch?v=tByaoXgEYvI" target="_blank" rel="noopener" aria-label="Strategy Builder: play FYERS&rsquo;s walkthrough" aria-describedby="sum-tByaoXgEYvI">
           <span class="top c2"><span>Options</span><span>Jul 2026</span></span>
           <span class="ttl"><span class="nm">Strategy Builder</span><span class="tier c2">Flagship</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-tByaoXgEYvI">Moves traders from one-way option bets to planned strategies, with payoff, risk and execution in one flow.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/tByaoXgEYvI.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate l vid" data-area="Options" data-scope="3" data-date="2026-06" data-order="5"><a class="pl-link" href="https://www.youtube.com/watch?v=aOt4ySZRAJg" target="_blank" rel="noopener" aria-label="Options Analytics: play FYERS&rsquo;s walkthrough" aria-describedby="sum-aOt4ySZRAJg">
           <span class="top c2"><span>Options</span><span>Jun 2026</span></span>
           <span class="ttl"><span class="nm">Options Analytics</span><span class="tier c2">Flagship</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-aOt4ySZRAJg">The options platform on FYERS Web: read the market, build a strategy, and automate the trade end to end.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/aOt4ySZRAJg.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate m vid" data-area="Mutual funds" data-scope="3" data-date="2026-06" data-order="6"><a class="pl-link" href="https://www.youtube.com/watch?v=93cDp9T3NeU" target="_blank" rel="noopener" aria-label="Fixed Deposits: play FYERS&rsquo;s walkthrough" aria-describedby="sum-93cDp9T3NeU">
           <span class="top c2"><span>Mutual funds</span><span>Jun 2026</span></span>
           <span class="ttl"><span class="nm">Fixed Deposits</span><span class="tier c2">Flagship</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-93cDp9T3NeU">Compare fixed deposits across banks and NBFCs, book one, and track it from Portfolio.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/93cDp9T3NeU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate g vid" data-area="Trading" data-scope="1" data-date="2026-05" data-order="7"><a class="pl-link" href="https://www.youtube.com/watch?v=oQ24N3rVlQc" target="_blank" rel="noopener" aria-label="Bar Replay: play FYERS&rsquo;s walkthrough" aria-describedby="sum-oQ24N3rVlQc">
           <span class="top c2"><span>Trading · Charts</span><span>May 2026</span></span>
           <span class="ttl"><span class="nm">Bar Replay</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-oQ24N3rVlQc">Replay any chart candle by candle and practise trades on history, without real money.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/oQ24N3rVlQc.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate d vid" data-area="Trading" data-scope="1" data-date="2026-05" data-order="8"><a class="pl-link" href="https://www.youtube.com/watch?v=mxeN6i0_nvE" target="_blank" rel="noopener" aria-label="Dual Chart Mode: play FYERS&rsquo;s walkthrough" aria-describedby="sum-mxeN6i0_nvE">
           <span class="top c2"><span>Trading · Charts</span><span>May 2026</span></span>
           <span class="ttl"><span class="nm">Dual Chart Mode</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-mxeN6i0_nvE">Index and option charts side by side in Mobile Scalper, so a scalp needs no switching between screens.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/mxeN6i0_nvE.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate l vid" data-area="Trading" data-scope="1" data-date="2026-04" data-order="9"><a class="pl-link" href="https://www.youtube.com/watch?v=xa2i-PPdhG8" target="_blank" rel="noopener" aria-label="Smart Exit: play FYERS&rsquo;s walkthrough" aria-describedby="sum-xa2i-PPdhG8">
           <span class="top c2"><span>Trading</span><span>Apr 2026</span></span>
           <span class="ttl"><span class="nm">Smart Exit</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-xa2i-PPdhG8">One portfolio-level stop-loss and target that exits every open position automatically.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/xa2i-PPdhG8.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate m vid" data-area="Markets" data-scope="3" data-date="2026-03" data-order="10"><a class="pl-link" href="https://www.youtube.com/watch?v=KoaFje9nRxk" target="_blank" rel="noopener" aria-label="Stock Screeners: play FYERS&rsquo;s walkthrough" aria-describedby="sum-KoaFje9nRxk">
           <span class="top c2"><span>Markets</span><span>Mar 2026</span></span>
           <span class="ttl"><span class="nm">Stock Screeners</span><span class="tier c2">Flagship</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-KoaFje9nRxk">130+ ready-made screeners for stocks, F&amp;O, commodities and ETFs, plus custom screens built with FIA.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/KoaFje9nRxk.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate g vid" data-area="Markets" data-scope="2" data-date="2026-03" data-order="11"><a class="pl-link" href="https://www.youtube.com/watch?v=4dja7bZh2sk" target="_blank" rel="noopener" aria-label="Market Analytics: play FYERS&rsquo;s walkthrough" aria-describedby="sum-4dja7bZh2sk">
           <span class="top c2"><span>Markets</span><span>Mar 2026</span></span>
           <span class="ttl"><span class="nm">Market Analytics</span><span class="tier c2">Feature</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-4dja7bZh2sk">Market-wide analytics in one place: heatmaps, bubble charts, and FII and DII activity.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/4dja7bZh2sk.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate d vid extra" data-area="Reports" data-scope="2" data-date="2026-02" data-order="13"><a class="pl-link" href="https://www.youtube.com/watch?v=siPihI_016s" target="_blank" rel="noopener" aria-label="Positions P&amp;L Curve: play FYERS&rsquo;s walkthrough" aria-describedby="sum-siPihI_016s">
           <span class="top c2"><span>Reports</span><span>Feb 2026</span></span>
           <span class="ttl"><span class="nm">Positions P&amp;L Curve</span><span class="tier c2">Feature</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-siPihI_016s">A minute-by-minute curve of intraday P&amp;L across open positions.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/siPihI_016s.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate l vid extra" data-area="Trading" data-scope="2" data-date="2026-02" data-order="14"><a class="pl-link" href="https://www.youtube.com/watch?v=A_X6D5vVlfQ" target="_blank" rel="noopener" aria-label="Mobile Scalper: play FYERS&rsquo;s walkthrough" aria-describedby="sum-A_X6D5vVlfQ">
           <span class="top c2"><span>Trading</span><span>Feb 2026</span></span>
           <span class="ttl"><span class="nm">Mobile Scalper</span><span class="tier c2">Feature</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-A_X6D5vVlfQ">A mobile screen for scalpers: one-tap orders, with stop-loss and target dragged on the chart.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/A_X6D5vVlfQ.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate m vid extra" data-area="Automate" data-scope="3" data-date="2026-01" data-order="15"><a class="pl-link" href="https://www.youtube.com/watch?v=M-ivZx7xm2c" target="_blank" rel="noopener" aria-label="FYERS Automate: play FYERS&rsquo;s walkthrough" aria-describedby="sum-M-ivZx7xm2c">
           <span class="top c2"><span>Automate</span><span>Jan 2026</span></span>
           <span class="ttl"><span class="nm">FYERS Automate</span><span class="tier c2">Flagship</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-M-ivZx7xm2c">No-code automated trading: traders set triggers, conditions and actions, and the plan runs exactly as set.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/M-ivZx7xm2c.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate g vid extra" data-area="Markets" data-scope="2" data-date="2026-01" data-order="16"><a class="pl-link" href="https://www.youtube.com/watch?v=bwe6kX_ENKE" target="_blank" rel="noopener" aria-label="Budget Dashboard: play FYERS&rsquo;s walkthrough" aria-describedby="sum-bwe6kX_ENKE">
           <span class="top c2"><span>Markets</span><span>Jan 2026</span></span>
           <span class="ttl"><span class="nm">Budget Dashboard</span><span class="tier c2">Feature</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-bwe6kX_ENKE">A live dashboard for tracking the market through the Union Budget 2026 announcement.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/bwe6kX_ENKE.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate d vid extra" data-area="FIA" data-scope="1" data-date="2026-01" data-order="17"><a class="pl-link" href="https://www.youtube.com/watch?v=6f0q8l3-HvA" target="_blank" rel="noopener" aria-label="Chart &amp; options analysis with FIA: play FYERS&rsquo;s walkthrough" aria-describedby="sum-6f0q8l3-HvA">
           <span class="top c2"><span>FIA</span><span>Jan 2026</span></span>
           <span class="ttl"><span class="nm">Chart &amp; options analysis with FIA</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-6f0q8l3-HvA">FIA reads the live option chain and chart patterns, and plots the reason behind a move on the chart.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/6f0q8l3-HvA.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate l vid extra" data-area="FIA" data-scope="1" data-date="2026-01" data-order="18"><a class="pl-link" href="https://www.youtube.com/watch?v=58wtc8hOhMU" target="_blank" rel="noopener" aria-label="Portfolio analysis with FIA: play FYERS&rsquo;s walkthrough" aria-describedby="sum-58wtc8hOhMU">
           <span class="top c2"><span>FIA</span><span>Jan 2026</span></span>
           <span class="ttl"><span class="nm">Portfolio analysis with FIA</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-58wtc8hOhMU">FIA analyses a trader’s portfolio, with stock analysis and sector insights.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/58wtc8hOhMU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate m vid extra" data-area="Markets" data-scope="1" data-date="2026-01" data-order="19"><a class="pl-link" href="https://www.youtube.com/watch?v=X0eSU9I-sOI" target="_blank" rel="noopener" aria-label="Smart News: play FYERS&rsquo;s walkthrough" aria-describedby="sum-X0eSU9I-sOI">
           <span class="top c2"><span>Markets</span><span>Jan 2026</span></span>
           <span class="ttl"><span class="nm">Smart News</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-X0eSU9I-sOI">Real-time market news, filtered to the stocks in a trader’s own portfolio.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/X0eSU9I-sOI.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate g vid extra" data-area="Markets" data-scope="1" data-date="2026-01" data-order="20"><a class="pl-link" href="https://www.youtube.com/watch?v=410VrVUGmJI" target="_blank" rel="noopener" aria-label="Smart Watchlist: play FYERS&rsquo;s walkthrough" aria-describedby="sum-410VrVUGmJI">
           <span class="top c2"><span>Markets</span><span>Jan 2026</span></span>
           <span class="ttl"><span class="nm">Smart Watchlist</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-410VrVUGmJI">Watchlists of up to 250 stocks each, with instant market alerts.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/410VrVUGmJI.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate d vid extra" data-area="Trading" data-scope="1" data-date="2026-01" data-order="21"><a class="pl-link" href="https://www.youtube.com/watch?v=T3_fF80Qebg" target="_blank" rel="noopener" aria-label="Smart SIP in stocks: play FYERS&rsquo;s walkthrough" aria-describedby="sum-T3_fF80Qebg">
           <span class="top c2"><span>Trading</span><span>Jan 2026</span></span>
           <span class="ttl"><span class="nm">Smart SIP in stocks</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-T3_fF80Qebg">Daily, weekly or monthly SIPs in stocks and mutual funds, in a beginner-friendly flow.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/T3_fF80Qebg.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate l vid extra" data-area="Options" data-scope="1" data-date="2026-01" data-order="22"><a class="pl-link" href="https://www.youtube.com/watch?v=YesILLiBhOU" target="_blank" rel="noopener" aria-label="Advanced Option Chain: play FYERS&rsquo;s walkthrough" aria-describedby="sum-YesILLiBhOU">
           <span class="top c2"><span>Options · Option Chain</span><span>Jan 2026</span></span>
           <span class="ttl"><span class="nm">Advanced Option Chain</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-YesILLiBhOU">An option chain with 50-level market depth, for reading liquidity and price action.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/YesILLiBhOU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate m vid extra" data-area="Trading" data-scope="1" data-date="2026-01" data-order="23"><a class="pl-link" href="https://www.youtube.com/watch?v=ttbSwAnuyvw" target="_blank" rel="noopener" aria-label="Trade from Advanced Charts: play FYERS&rsquo;s walkthrough" aria-describedby="sum-ttbSwAnuyvw">
           <span class="top c2"><span>Trading · Charts</span><span>Jan 2026</span></span>
           <span class="ttl"><span class="nm">Trade from Advanced Charts</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-ttbSwAnuyvw">Spot patterns with indicators and place trades straight from the chart.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/ttbSwAnuyvw.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate g vid extra" data-area="Trading" data-scope="1" data-date="2025-10" data-order="24"><a class="pl-link" href="https://www.youtube.com/watch?v=hkJi80v1kRk" target="_blank" rel="noopener" aria-label="Margin Trading Facility: play FYERS&rsquo;s walkthrough" aria-describedby="sum-hkJi80v1kRk">
           <span class="top c2"><span>Trading</span><span>Oct 2025</span></span>
           <span class="ttl"><span class="nm">Margin Trading Facility</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-hkJi80v1kRk">Trade now, pay later: up to 4x leverage on stocks held for up to 12 months.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/hkJi80v1kRk.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate d vid extra" data-area="Platform" data-scope="3" data-date="2025-08" data-order="25"><a class="pl-link" href="https://www.youtube.com/watch?v=rg_CDasn0_o" target="_blank" rel="noopener" aria-label="The all-new FYERS experience: play FYERS&rsquo;s walkthrough" aria-describedby="sum-rg_CDasn0_o">
           <span class="top c2"><span>Platform · Design system</span><span>Aug 2025</span></span>
           <span class="ttl"><span class="nm">The all-new FYERS experience</span><span class="tier c2">Flagship</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-rg_CDasn0_o">FYERS’s first push to unify web and app on one design system, replacing scattered standalone views.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/rg_CDasn0_o.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="note p1">Part of the design team, leading three verticals under the CXO.</span><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot"><span class="note p1">Part of the design team, leading three verticals under the CXO.</span><span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span></span>
         </a></li>
         <li class="plate l vid extra" data-area="FIA" data-scope="1" data-date="2025-06" data-order="26"><a class="pl-link" href="https://www.youtube.com/watch?v=Fv0s2AgVwt4" target="_blank" rel="noopener" aria-label="AI Screener: play FYERS&rsquo;s walkthrough" aria-describedby="sum-Fv0s2AgVwt4">
           <span class="top c2"><span>FIA</span><span>Jun 2025</span></span>
           <span class="ttl"><span class="nm">AI Screener</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-Fv0s2AgVwt4">Find stocks by describing what you want in plain text. FIA builds the screen.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/Fv0s2AgVwt4.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate m vid extra" data-area="Options" data-scope="2" data-date="2025-04" data-order="27"><a class="pl-link" href="https://www.youtube.com/watch?v=xZ06dasa1_8" target="_blank" rel="noopener" aria-label="Options Scalper Terminal: play FYERS&rsquo;s walkthrough" aria-describedby="sum-xZ06dasa1_8">
           <span class="top c2"><span>Options</span><span>Apr 2025</span></span>
           <span class="ttl"><span class="nm">Options Scalper Terminal</span><span class="tier c2">Feature</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-xZ06dasa1_8">A terminal built for options scalping, so traders execute in seconds.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/xZ06dasa1_8.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate g vid extra" data-area="FIA" data-scope="2" data-date="2025-03" data-order="28"><a class="pl-link" href="https://www.youtube.com/watch?v=j9hevhoHrKU" target="_blank" rel="noopener" aria-label="FIA, FYERS Intelligent Assistant: play FYERS&rsquo;s walkthrough" aria-describedby="sum-j9hevhoHrKU">
           <span class="top c2"><span>FIA</span><span>Mar 2025</span></span>
           <span class="ttl"><span class="nm">FIA, FYERS Intelligent Assistant</span><span class="tier c2">Feature</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-j9hevhoHrKU">FYERS’s AI assistant, built from zero: no-code screeners, real-time alerts and one-click saved strategies.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/j9hevhoHrKU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate d vid extra" data-area="Trading" data-scope="1" data-date="2024-12" data-order="29"><a class="pl-link" href="https://www.youtube.com/watch?v=6mKK6bzzzBI" target="_blank" rel="noopener" aria-label="Instant Withdrawal: play FYERS&rsquo;s walkthrough" aria-describedby="sum-6mKK6bzzzBI">
           <span class="top c2"><span>Trading</span><span>Dec 2024</span></span>
           <span class="ttl"><span class="nm">Instant Withdrawal</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-6mKK6bzzzBI">Move up to ₹100,000 from the trading account to a bank in about 60 seconds, during market hours.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/6mKK6bzzzBI.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate l vid extra" data-area="Trading" data-scope="1" data-date="2024-12" data-order="30"><a class="pl-link" href="https://www.youtube.com/watch?v=ScchXOh0UXw" target="_blank" rel="noopener" aria-label="Payment mandates: play FYERS&rsquo;s walkthrough" aria-describedby="sum-ScchXOh0UXw">
           <span class="top c2"><span>Trading</span><span>Dec 2024</span></span>
           <span class="ttl"><span class="nm">Payment mandates</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-ScchXOh0UXw">Automatic weekly or monthly top-ups to the trading account through a UPI mandate.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/ScchXOh0UXw.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate m vid extra" data-area="Trading" data-scope="3" data-date="2024-12" data-order="31"><a class="pl-link" href="https://www.youtube.com/watch?v=Xk8_NDtETRY" target="_blank" rel="noopener" aria-label="Smart Orders: play FYERS&rsquo;s walkthrough" aria-describedby="sum-Xk8_NDtETRY">
           <span class="top c2"><span>Trading</span><span>Dec 2024</span></span>
           <span class="ttl"><span class="nm">Smart Orders</span><span class="tier c2">Flagship</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-Xk8_NDtETRY">Step, Trail, Limit and Exit orders that automate averaging and exits.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/Xk8_NDtETRY.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate g vid extra" data-area="Trading" data-scope="1" data-date="2024-07" data-order="32"><a class="pl-link" href="https://www.youtube.com/watch?v=k3RI_PjwZ08" target="_blank" rel="noopener" aria-label="DDPI: play FYERS&rsquo;s walkthrough" aria-describedby="sum-k3RI_PjwZ08">
           <span class="top c2"><span>Trading</span><span>Jul 2024</span></span>
           <span class="ttl"><span class="nm">DDPI</span><span class="tier c2">Enhancement</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-k3RI_PjwZ08">Sell holdings without an OTP or T-PIN every time, by enabling DDPI once.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/k3RI_PjwZ08.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate d vid extra" data-area="Onboarding" data-scope="2" data-date="2024-06" data-order="33"><a class="pl-link" href="https://www.youtube.com/watch?v=bNzlxoC_Nxk" target="_blank" rel="noopener" aria-label="Account opening: play FYERS&rsquo;s walkthrough" aria-describedby="sum-bNzlxoC_Nxk">
           <span class="top c2"><span>Onboarding</span><span>Jun 2024</span></span>
           <span class="ttl"><span class="nm">Account opening</span><span class="tier c2">Feature</span></span>
           <span class="shot"><span class="info"><span class="sum p1" id="sum-bNzlxoC_Nxk">A simpler account opening: pick an account type, verify live, and start with just PAN and Aadhaar.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span><img src="img/work/bNzlxoC_Nxk.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
-          <span class="bot"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span></span>
+          <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate l extra" data-area="Institutional" data-scope="2" data-date="0000-00" data-order="34">
           <span class="top c2"><span>Institutional</span><span></span></span>
           <span class="ttl"><span class="nm">FYERS Professional</span><span class="tier c2">Feature</span></span>
           <span class="shot"><span class="info"><span class="sum p1">FYERS&rsquo;s platform for institutional clients.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span></span>
+          <span class="bot row"><span class="seal" role="img" aria-label="FYERS" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447;margin-left:auto"></span></span>
         </li>
         <li class="plate m extra" data-area="Trading" data-scope="2" data-date="2026-03" data-order="12">
           <span class="top c2"><span>Trading · API</span><span>Mar 2026</span></span>
           <span class="ttl"><span class="nm">API Dashboard</span><span class="tier c2">Feature</span></span>
           <span class="shot"><span class="info"><span class="sum p1"><span class="todo">Description to add</span></span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span></span>
+          <span class="bot row"><span class="seal" role="img" aria-label="FYERS" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447;margin-left:auto"></span></span>
         </li>
       </ul>
       <button class="more c2" type="button" id="more" hidden>
@@ -1034,66 +1040,73 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
       <p class="w-lede p1">Seven pieces of hands-on work across three companies. Each opens its case study.</p>
       <div class="plates ic">
         <a class="plate ic d" href="work/orders.html">
-          <span class="top c2"><span class="co"><span class="co-logo" role="img" aria-label="FYERS" style="--logo:url(img/co/fyers.svg);--ar:3.633"></span><span aria-hidden="true">·</span> Trading</span><span>2024</span></span>
+          <span class="top c2"><span>Trading</span><span>2024</span></span>
           <span class="ttl"><span class="nm">Orders</span><span class="tier c2">Hands-on</span></span>
           <span class="role c2">Design manager, and individual contributor</span>
           <span class="shot"><span class="info"><span class="sum p1">Delivered the Orders section myself, straight into a high-fidelity model built on reusable local components. Changing a shared pattern stopped meaning changing every screen.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span></span>
-          <span class="bot">
+          <span class="bot row">
             <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+            <span class="seal" role="img" aria-label="FYERS" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span>
           </span>
         </a>
         <a class="plate ic l" href="work/wealth-tracker.html">
-          <span class="top c2"><span class="co"><span class="co-logo" role="img" aria-label="FYERS" style="--logo:url(img/co/fyers.svg);--ar:3.633"></span><span aria-hidden="true">·</span> Reports</span><span>2026</span></span>
+          <span class="top c2"><span>Reports</span><span>2026</span></span>
           <span class="ttl"><span class="nm">Wealth Tracker</span><span class="tier c2">End to end</span></span>
           <span class="role c2">End-to-end ownership</span>
           <span class="shot"><span class="info"><span class="sum p1">A PRD and an AI-generated concept in; Flutter-ready web and mobile out. Taken through approval with the AVP, CPO and CTO, then built myself. The front-end team estimated roughly 70% less implementation effort.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span></span>
-          <span class="bot">
+          <span class="bot row">
             <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+            <span class="seal" role="img" aria-label="FYERS" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span>
           </span>
         </a>
         <a class="plate ic m" href="work/agentic-design-framework.html">
-          <span class="top c2"><span class="co"><span class="co-logo" role="img" aria-label="FYERS" style="--logo:url(img/co/fyers.svg);--ar:3.633"></span><span aria-hidden="true">·</span> Platform</span><span>Now</span></span>
+          <span class="top c2"><span>Platform</span><span>Now</span></span>
           <span class="ttl"><span class="nm">Agentic Design Framework</span><span class="tier c2">In progress</span></span>
           <span class="role c2">No impact claims until it ships</span>
           <span class="shot"><span class="info"><span class="sum p1">Wealth Tracker was the proof point. Now leading an internal framework that takes product teams from requirement to implementation-ready output, with product, design and engineering review kept in the loop.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span></span>
-          <span class="bot">
+          <span class="bot row">
             <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+            <span class="seal" role="img" aria-label="FYERS" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span>
           </span>
         </a>
         <a class="plate ic g" href="work/nri-onboarding.html">
-          <span class="top c2"><span class="co"><span class="co-logo" role="img" aria-label="FYERS" style="--logo:url(img/co/fyers.svg);--ar:3.633"></span><span aria-hidden="true">·</span> Onboarding</span><span></span></span>
+          <span class="top c2"><span>Onboarding</span><span></span></span>
           <span class="ttl"><span class="nm">NRI onboarding</span><span class="tier c2">Hands-on</span></span>
           <span class="role c2">My own hands-on work</span>
           <span class="shot"><span class="info"><span class="sum p1">Account opening for Indians living abroad who want to invest and trade in India.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span></span>
-          <span class="bot">
+          <span class="bot row">
             <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+            <span class="seal" role="img" aria-label="FYERS" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span>
           </span>
         </a>
         <a class="plate ic d" href="work/nexter-finance.html">
-          <span class="top c2"><span>Nexter · DeFi</span><span>2022–24</span></span>
+          <span class="top c2"><span>DeFi</span><span>2022–24</span></span>
           <span class="ttl"><span class="nm">Nexter Finance</span><span class="tier c2">0&#8239;&rarr;&#8239;1</span></span>
           <span class="role c2">Design Lead</span>
           <span class="shot"><span class="info"><span class="sum p1">Led and personally designed a decentralised prediction market for desktop and mobile web, tested it with six users, and called the phased release that let the team ship while the scope was still moving.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span></span>
-          <span class="bot">
+          <span class="bot row">
             <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+            <span class="seal-t c2">Nexter Finance</span>
           </span>
         </a>
         <a class="plate ic l" href="work/airtel-tv-africa.html">
-          <span class="top c2"><span class="co"><span class="co-logo" role="img" aria-label="Datami" style="--logo:url(img/co/datami.png);--ar:4.412"></span><span aria-hidden="true">·</span> Streaming</span><span>2018–21</span></span>
+          <span class="top c2"><span>Streaming</span><span>2018–21</span></span>
           <span class="ttl"><span class="nm">Airtel TV Africa</span><span class="tier c2">0&#8239;&rarr;&#8239;1</span></span>
           <span class="role c2">Lead Product Designer</span>
           <span class="shot"><span class="info"><span class="sum p1">Designed the Airtel TV streaming app end to end for the African market.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span></span>
-          <span class="bot">
+          <span class="bot row">
             <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+            <span class="seal wide" role="img" aria-label="Datami" style="--logo:url(img/co/datami.png);--ar:4.412"></span>
           </span>
         </a>
         <a class="plate ic m" href="work/reach-mobile.html">
-          <span class="top c2"><span class="co"><span class="co-logo" role="img" aria-label="Datami" style="--logo:url(img/co/datami.png);--ar:4.412"></span><span aria-hidden="true">·</span> Web</span><span>2018–21</span></span>
+          <span class="top c2"><span>Web</span><span>2018–21</span></span>
           <span class="ttl"><span class="nm">Reach Mobile</span><span class="tier c2">Hands-on</span></span>
           <span class="role c2">Product Designer</span>
           <span class="shot"><span class="info"><span class="sum p1">Designed the Reach Mobile web journeys.</span><span class="ba-w"><span class="ba"><b class="todo">Before</b><span class="arr" aria-hidden="true">&rarr;</span><b class="todo">After</b></span><span class="ba-l c2">Impact</span></span><span class="kpis c2"><span class="kpi"><b class="todo">To add</b>Adoption</span></span></span></span>
-          <span class="bot">
+          <span class="bot row">
             <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+            <span class="seal wide" role="img" aria-label="Datami" style="--logo:url(img/co/datami.png);--ar:4.412"></span>
           </span>
         </a>
       </div>
