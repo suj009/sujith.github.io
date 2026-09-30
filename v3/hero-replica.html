@@ -1522,17 +1522,24 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   });
   moreBtn.addEventListener('click', function(){ wall.open = true; arrange(true); });
 
-  // Click: play the walkthrough in an overlay on this page. The link still points at
-  // YouTube, so a modified click, a new-tab open or no script keeps working.
+  // Click: play the walkthrough in an overlay on this page. Without script the cards stay
+  // plain YouTube links. With it, the address moves to data-yt so no host or browser treats
+  // the card as an outbound link and opens a new tab; a modified or middle click still does.
   var vo = document.getElementById('vo'), voFrame = document.getElementById('voFrame');
   var voExt = document.getElementById('voExt'), voLast = null;
+  mgrBox.querySelectorAll('a.pl-link[href]').forEach(function(a){
+    a.setAttribute('data-yt', a.getAttribute('href'));
+    a.removeAttribute('href'); a.removeAttribute('target');
+    a.setAttribute('role', 'button'); a.tabIndex = 0;
+  });
+  function ytUrl(link){ return link.getAttribute('data-yt') || link.getAttribute('href') || ''; }
   function openVideo(link){
-    var id = (link.getAttribute('href').match(/[?&]v=([^&]+)/) || [])[1];
+    var id = (ytUrl(link).match(/[?&]v=([^&]+)/) || [])[1];
     if(!id) return false;
     voLast = link;
     document.getElementById('voMeta').textContent = link.querySelector('.top span').textContent;
     document.getElementById('voTitle').textContent = link.querySelector('.nm').textContent;
-    voExt.href = link.getAttribute('href');
+    voExt.href = ytUrl(link);
     voFrame.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
     vo.hidden = false;
     requestAnimationFrame(function(){ vo.classList.add('on'); });
@@ -1551,8 +1558,18 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   }
   mgrBox.addEventListener('click', function(e){
     var link = e.target.closest('a.pl-link');
-    if(!link || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
-    if(openVideo(link)) e.preventDefault();
+    if(!link || e.button) return;
+    e.preventDefault();
+    if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey){ window.open(ytUrl(link), '_blank', 'noopener'); return; }
+    openVideo(link);
+  });
+  mgrBox.addEventListener('auxclick', function(e){
+    var link = e.target.closest('a.pl-link');
+    if(link && e.button === 1){ e.preventDefault(); window.open(ytUrl(link), '_blank', 'noopener'); }
+  });
+  mgrBox.addEventListener('keydown', function(e){
+    var link = e.target.closest('a.pl-link');
+    if(link && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); openVideo(link); }
   });
   document.getElementById('voClose').addEventListener('click', closeVideo);
   document.getElementById('voScrim').addEventListener('click', closeVideo);
