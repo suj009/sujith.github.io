@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Nexter Finance case study — Sujith Kumar Anand</title>
-<meta name="description" content="How Sujith Kumar Anand led and designed Nexter Finance, a decentralised prediction market, from zero to launch with a phased release.">
+<meta name="description" content="How Sujith Kumar Anand led the design of Nexter Finance, a decentralised prediction market, from zero to launch: a phased release, a way in for people without a crypto wallet, and 1.7 million predictions.">
 <meta name="author" content="Sujith Kumar Anand">
 <link rel="canonical" href="https://sujith.design/work/nexter-finance.html">
 <link rel="icon" href="../img/favicon.ico" sizes="48x48">
@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nexter Finance case study — Sujith Kumar Anand">
-<meta property="og:description" content="How Sujith Kumar Anand led and designed Nexter Finance, a decentralised prediction market, from zero to launch with a phased release.">
+<meta property="og:description" content="How Sujith Kumar Anand led the design of Nexter Finance, a decentralised prediction market, from zero to launch: a phased release, a way in for people without a crypto wallet, and 1.7 million predictions.">
 <meta property="og:image" content="https://sujith.design/img/og-sujith.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <script>document.documentElement.classList.add('js')</script>
@@ -73,12 +73,20 @@ figure{margin:0}
 .ph .ic{justify-self:center;width:2rem;height:1.5rem;border:1px solid currentColor;border-radius:3px;position:relative;margin-bottom:.3rem}
 .ph .ic::after{content:"";position:absolute;left:.35rem;bottom:.3rem;width:.7rem;height:.45rem;border-left:1px solid currentColor;border-bottom:1px solid currentColor;transform:skewX(-30deg)}
 figcaption{margin-top:.6rem;color:var(--ink-2)}
+.shot{display:block;width:100%;height:auto;background:var(--tint)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start}
+.pair .fig{margin:0;grid-column:auto}
+.stats{list-style:none;margin:.4rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(7.5rem,100%),1fr));gap:1.25rem 1rem;max-width:none}
+.stats li{display:flex;flex-direction:column;gap:.35rem;padding-top:.7rem;border-top:1px solid var(--ink)}
+.stats b{font-weight:400;font-size:clamp(1.9rem,3.4vw,2.6rem);letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.stats span{color:var(--ink-2)}
+.sec-b p.src{color:var(--ink-2);font-size:.75rem;line-height:1.3}
 
 .sec{padding:clamp(40px,6vw,80px) 0 0}
 .sec-h{grid-column:1 / 3;align-self:start;position:sticky;top:4.25rem;display:flex;flex-direction:column;gap:.4rem;padding-top:.9rem}
 .sec-h .n{color:var(--ink-2)}
 .sec-h h2{margin:0;font-size:1.5rem;font-weight:400;letter-spacing:-.035em;line-height:1.05}
-.sec-b{grid-column:3 / 8;border-top:1px solid var(--ink);padding-top:.9rem;display:grid;gap:1.1rem}
+.sec-b{grid-column:3 / 8;border-top:1px solid var(--ink);padding-top:.9rem;display:grid;grid-template-columns:minmax(0,1fr);gap:1.1rem}
 .sec-b p{margin:0;font-size:1.125rem;line-height:1.55;letter-spacing:-.01em;max-width:40rem;text-wrap:pretty}
 .sec-b ul.pts{margin:0;padding:0;list-style:none;display:grid;gap:.55rem;max-width:40rem}
 .sec-b ul.pts li{position:relative;padding-left:1.25rem;font-size:1.0625rem;line-height:1.5}
@@ -86,7 +94,7 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
 .sec-b .fig{margin:.6rem 0 0}
 
 .pull{grid-column:1 / -1;margin:clamp(48px,7vw,96px) 0 0;padding:clamp(28px,4vw,48px) 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
-.pull p{margin:0;max-width:22ch;font-size:clamp(1.9rem,4.4vw,3.75rem);letter-spacing:-.045em;line-height:1.02;text-wrap:balance}
+.pull p{grid-column:1 / -1;margin:0;max-width:22ch;font-size:clamp(1.9rem,4.4vw,3.75rem);letter-spacing:-.045em;line-height:1.02;text-wrap:balance}
 
 .todo{background:var(--todo);border-bottom:1px dashed var(--ink-2);padding:0 .2em;color:var(--ink)}
 .todo::before{content:"To add: ";font-size:.75em;font-weight:500;letter-spacing:.02em;color:var(--ink-2)}
@@ -106,8 +114,9 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
 @media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
 
 @media (max-width:860px){
-  .grid8,.next a{grid-template-columns:1fr}
+  .grid8,.next a{grid-template-columns:minmax(0,1fr)}
   h1,.lede,.sec-h,.sec-b,.fig,.fig.half,.next .k,.next .t,.next .s{grid-column:1}
+  .pair{grid-template-columns:1fr}
   .facts{grid-template-columns:1fr 1fr;row-gap:1rem}
   .sec-h{position:static;flex-direction:row;justify-content:space-between;align-items:baseline;padding:0 0 1rem}
   .rail .here{display:none}
@@ -124,32 +133,40 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
   <main>
     <header class="hero grid8">
       <p class="kicker c2 rv" style="margin:0"><span>Nexter Finance · DeFi · 2022–24</span><span class="tag">0 → 1</span><span class="tag">Hands-on</span></p>
-      <h1 class="rv">Nexter Finance: taking a prediction market from zero</h1>
-      <p class="lede rv">A decentralised prediction-market product spanning crypto, stocks, commodities and real-world events. I led and personally designed the desktop and mobile web product, and called the phased release that let the team ship while the scope was still moving.</p>
-      <ul class="facts rv"><li><span class="k c2">Role</span><span class="v">Design Lead, hands-on</span></li><li><span class="k c2">Platforms</span><span class="v">Desktop and mobile web</span></li><li><span class="k c2">Research</span><span class="v">Usability testing with six users</span></li><li><span class="k c2">Stage</span><span class="v">0 → 1</span></li></ul>
+      <h1 class="rv">Nexter Finance: from zero to 1.7 million predictions</h1>
+      <p class="lede rv">A decentralised prediction market for crypto, stocks, commodities and real-world events. I led its design from the ground up on desktop and mobile web, and proposed the phased launch that let the team ship while the scope was still moving.</p>
+      <ul class="facts rv"><li><span class="k c2">Role</span><span class="v">Design Lead, managing a team of three</span></li><li><span class="k c2">Platforms</span><span class="v">Desktop and mobile web, on six networks</span></li><li><span class="k c2">Users (Jan 2024)</span><span class="v">10K+ in total, 1K+ weekly active</span></li><li><span class="k c2">Volume (Jan 2024)</span><span class="v">$19M+ across 1.7M+ predictions</span></li></ul>
       
-      <figure class="fig rv"><div class="ph" role="img" aria-label="Screenshot to add: Nexter Finance, the product"><div class="in c2"><span class="ic" aria-hidden="true"></span><b>Nexter Finance, the product</b><span>The main prediction-market screen on desktop</span></div></div><figcaption class="c2">Screenshot to add</figcaption></figure>
+      <figure class="fig rv"><img class="shot" src="../img/work/nexter/overview.webp" alt="Nexter Finance on mobile and desktop: the landing page and the predictions screen" width="1600" height="939" loading="lazy" decoding="async"></figure>
     </header>
     <section class="sec grid8" aria-labelledby="s1">
       <div class="sec-h"><span class="n c2">01</span><h2 id="s1">The challenge</h2></div>
-      <div class="sec-b rv"><p>Nexter set out to let people take positions on outcomes across crypto, stocks, commodities and real-world events, in a decentralised product. The scope was broad and still moving, and most of the people it was for were not DeFi experts.</p><p><span class="todo">The main problem you had to solve for users, in one or two sentences</span></p></div>
+      <div class="sec-b rv"><p>Nexter, formerly Bhavish Finance, set out to launch a decentralised prediction market in two forms. In <em>Lossy</em> predictions, people commit crypto on whether an asset will go up or down within a round, and the winners are paid from the pool. In <em>No-loss</em> predictions, they deposit stablecoins and predict with game tokens that earn yield, so the deposit itself is not at stake.</p><p>The first launch covered crypto, stocks, commodities, automated prediction vaults and real-world event quests, across six blockchain networks. The brief was incomplete, the scope kept moving, and the time for design was short.</p><p>Research showed real demand, and the category’s weak spots: prediction markets are zero-sum for participants, liquidity is thin, and most products gave people little reason to stay. A poll of close to 50 people on Twitter and Telegram put the strongest interest in crypto predictions, from people who already knew how prediction markets work.</p></div>
     </section>
     <section class="sec grid8" aria-labelledby="s2">
       <div class="sec-h"><span class="n c2">02</span><h2 id="s2">My role</h2></div>
-      <div class="sec-b rv"><p>I set the design direction from the ground up and personally designed the desktop and mobile web product. I owned the experience end to end, from the first flows to the shipped screens.</p></div>
+      <div class="sec-b rv"><p>I led design from the ground up across desktop and mobile web, and designed the product myself. I managed a team of three, a visual designer, a motion designer and an intern I trained, inside a fully remote, cross-functional team.</p><p>The remit went beyond the app: motion, marketing campaigns and the landing page sat with design too. As engineering built each release, I reviewed every screen against the design and logged the gaps for the developers.</p></div>
     </section>
     <section class="sec grid8" aria-labelledby="s3">
       <div class="sec-h"><span class="n c2">03</span><h2 id="s3">Shipping while the scope moved</h2></div>
-      <div class="sec-b rv"><p>Waiting for a settled scope would have meant not shipping. I proposed launching Lossy Predictions first and releasing in phases, so the team could put a real product in people’s hands while the rest was still being decided.</p><figure class="fig rv"><div class="ph" role="img" aria-label="Screenshot to add: Lossy Predictions"><div class="in c2"><span class="ic" aria-hidden="true"></span><b>Lossy Predictions</b><span>The first released flow</span></div></div><figcaption class="c2">Screenshot to add</figcaption></figure></div>
+      <div class="sec-b rv"><p>No-loss was blocked: its requirements weren’t ready. Rather than wait, I proposed launching Lossy predictions first, and leadership agreed. It put a real product in front of users, tested whether Lossy had a market, and gave leadership time to get No-loss right.</p><p>I then argued against launching everything in Lossy at once. A phased release let me finish every use case for one market before starting the next, and the development team backed it. Crypto, stocks and commodities shipped first, then vaults, then quests, with No-loss in the final phase.</p><figure class="fig rv"><img class="shot" src="../img/work/nexter/lossy-flow.webp" alt="Flow diagram of Lossy predictions, from wallet balances to the prediction markets and their funding pools" width="1497" height="600" loading="lazy" decoding="async"><figcaption class="c2">The Lossy predictions flow I drew to align stakeholders before design began</figcaption></figure><div class="pair"><figure class="fig rv"><img class="shot" src="../img/work/nexter/vaults.webp" alt="The vaults screen, each automated vault shown as a card" width="1600" height="750" loading="lazy" decoding="async"><figcaption class="c2">Vaults, the second release</figcaption></figure><figure class="fig rv"><img class="shot" src="../img/work/nexter/quests.webp" alt="The quests screen, real-world event predictions shown as cards" width="1600" height="670" loading="lazy" decoding="async"><figcaption class="c2">Quests, the third release</figcaption></figure></div></div>
     </section>
     <blockquote class="pull grid8 rv" style="margin-inline:0"><p>Waiting for a settled scope would have meant not shipping.</p></blockquote>
     <section class="sec grid8" aria-labelledby="s4">
-      <div class="sec-h"><span class="n c2">04</span><h2 id="s4">Testing with people</h2></div>
-      <div class="sec-b rv"><p>I ran usability testing with six users to check that the core flows made sense to people who were not crypto natives.</p><p><span class="todo">What the testing showed, and what you changed because of it</span></p><figure class="fig rv"><div class="ph" role="img" aria-label="Screenshot to add: Before and after testing"><div class="in c2"><span class="ic" aria-hidden="true"></span><b>Before and after testing</b><span>A flow before and after the changes from usability testing</span></div></div><figcaption class="c2">Screenshot to add</figcaption></figure></div>
+      <div class="sec-h"><span class="n c2">04</span><h2 id="s4">Designing for two kinds of user</h2></div>
+      <div class="sec-b rv"><p>The people most likely to use Nexter already knew web3, so the design stays out of their way: the round, the asset and the time left are visible at a glance, and a prediction is a choice of up or down and an amount.</p><p>But a wallet is the first wall a newcomer hits. Alongside the usual wallet connection, people without a web3 wallet can sign in with email or a social account, through MagicLink. First-time visitors get coach marks that point out the key actions.</p><figure class="fig rv"><img class="shot" src="../img/work/nexter/markets.webp" alt="The predictions screen on desktop and mobile, annotated: market tabs, asset selection, round timer, currency, network and wallet, and the prediction cards" width="1600" height="938" loading="lazy" decoding="async"><figcaption class="c2">The predictions screen, desktop and mobile</figcaption></figure><figure class="fig rv"><img class="shot" src="../img/work/nexter/wallet.webp" alt="The network dropdown and the connect-wallet modal, offering a wallet, email or a social account" width="1436" height="664" loading="lazy" decoding="async"><figcaption class="c2">Six networks, and sign-in by wallet, email or social account</figcaption></figure></div>
     </section>
     <section class="sec grid8" aria-labelledby="s5">
-      <div class="sec-h"><span class="n c2">05</span><h2 id="s5">Outcome</h2></div>
-      <div class="sec-b rv"><p><span class="todo">What launched, and any results you can share</span></p></div>
+      <div class="sec-h"><span class="n c2">05</span><h2 id="s5">Adding No-loss without breaking what worked</h2></div>
+      <div class="sec-b rv"><p>By the time No-loss was ready, Nexter was integrated with Quickswap, and a lot of people were using it through both Quickswap and the Nexter app. I was asked not to change the interface they had learned.</p><p>So No-loss arrived without disturbing Lossy. It sits behind the currency selector as Nexter’s own token, a guided walkthrough explains it the first time, and deposits, withdrawals, reinvesting and claiming rewards all live in the portfolio.</p><div class="pair"><figure class="fig rv"><img class="shot" src="../img/work/nexter/noloss-entry.webp" alt="The currency dropdown, with Nexter’s own token added below the existing currency" width="1600" height="577" loading="lazy" decoding="async"><figcaption class="c2">The way in: one new option in the currency selector</figcaption></figure><figure class="fig rv"><img class="shot" src="../img/work/nexter/noloss-guide.webp" alt="A guided walkthrough introducing No-loss predictions" width="1600" height="693" loading="lazy" decoding="async"><figcaption class="c2">A walkthrough explains No-loss the first time</figcaption></figure></div></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s6">
+      <div class="sec-h"><span class="n c2">06</span><h2 id="s6">Testing with six people</h2></div>
+      <div class="sec-b rv"><p>With Lossy and No-loss designed, I ran in-house usability testing with six people: three who knew prediction platforms and three who had never used one.</p><ul class="pts"><li>People who knew the category finished tasks much faster. Newcomers couldn’t finish unaided, but could with guidance.</li><li>Both groups struggled to understand how No-loss worked.</li><li>Both wanted the key facts on every market card, so they could compare options and decide.</li></ul><p><span class="todo">What you changed in the product after the testing</span></p><p>The limits are worth stating: the timeline meant testing happened after design, and not with Nexter’s own users before development began.</p></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s7">
+      <div class="sec-h"><span class="n c2">07</span><h2 id="s7">Outcome</h2></div>
+      <div class="sec-b rv"><p>After launch I tracked behaviour in Google Analytics and Hotjar to see how people were really using the app. Partnerships with decentralised exchanges such as Quickswap, Zeroswap, Nautilus Chain and Heliswap, leaderboard campaigns and community building brought people in.</p><ul class="stats"><li><b>10K+</b><span class="c2">Total users</span></li><li><b>1K+</b><span class="c2">Weekly active users</span></li><li><b>1.7M+</b><span class="c2">Predictions made</span></li><li><b>$19M+</b><span class="c2">Total volume (USD)</span></li><li><b>$242K</b><span class="c2">Fees collected</span></li></ul><p class="src c2">Nexter’s figures, as published in my case study in January 2024.</p></div>
     </section>
   </main>
   <nav class="next" aria-label="Next case study">

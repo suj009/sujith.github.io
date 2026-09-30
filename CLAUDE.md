@@ -250,6 +250,14 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Africa, Reach Mobile). Airtel TV Africa and Reach Mobile are two separate projects from his time at
   Datami Mobile Solutions Pvt Ltd; each keeps its own page. Pages are generated from one template; `[[...]]`-style gaps render as
   "To add" highlights and dashed boxes mark screenshot slots for Sujith to fill.
+- **Nexter Finance case study** is written from Sujith's own Medium case study
+  ("Designing Nexter Finance", 27 Jan 2024, medium.com/@suj009; the article page
+  blocks fetching, but his RSS feed at medium.com/feed/@suj009 carries the full text).
+  Its screenshots are his, in `v3/img/work/nexter/`. The growth figures (10K+ users,
+  1K+ weekly active, 1.7M+ predictions, $19M+ volume, $242K fees) are Nexter's, as
+  published in that article in January 2024; always date them. Target users were
+  people who already knew web3 prediction markets, not newcomers. The one remaining
+  gap is what changed after the six-user test: the article doesn't say.
 - **Essays** live in `v3/writing/`. Two are ports of the live articles with the
   FDSG and Lab references removed; *Trust is a design material* and *Zero to one,
   three times* are new drafts written from facts already in the repo.

@@ -73,12 +73,20 @@ figure{margin:0}
 .ph .ic{justify-self:center;width:2rem;height:1.5rem;border:1px solid currentColor;border-radius:3px;position:relative;margin-bottom:.3rem}
 .ph .ic::after{content:"";position:absolute;left:.35rem;bottom:.3rem;width:.7rem;height:.45rem;border-left:1px solid currentColor;border-bottom:1px solid currentColor;transform:skewX(-30deg)}
 figcaption{margin-top:.6rem;color:var(--ink-2)}
+.shot{display:block;width:100%;height:auto;background:var(--tint)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start}
+.pair .fig{margin:0;grid-column:auto}
+.stats{list-style:none;margin:.4rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(7.5rem,100%),1fr));gap:1.25rem 1rem;max-width:none}
+.stats li{display:flex;flex-direction:column;gap:.35rem;padding-top:.7rem;border-top:1px solid var(--ink)}
+.stats b{font-weight:400;font-size:clamp(1.9rem,3.4vw,2.6rem);letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.stats span{color:var(--ink-2)}
+.sec-b p.src{color:var(--ink-2);font-size:.75rem;line-height:1.3}
 
 .sec{padding:clamp(40px,6vw,80px) 0 0}
 .sec-h{grid-column:1 / 3;align-self:start;position:sticky;top:4.25rem;display:flex;flex-direction:column;gap:.4rem;padding-top:.9rem}
 .sec-h .n{color:var(--ink-2)}
 .sec-h h2{margin:0;font-size:1.5rem;font-weight:400;letter-spacing:-.035em;line-height:1.05}
-.sec-b{grid-column:3 / 8;border-top:1px solid var(--ink);padding-top:.9rem;display:grid;gap:1.1rem}
+.sec-b{grid-column:3 / 8;border-top:1px solid var(--ink);padding-top:.9rem;display:grid;grid-template-columns:minmax(0,1fr);gap:1.1rem}
 .sec-b p{margin:0;font-size:1.125rem;line-height:1.55;letter-spacing:-.01em;max-width:40rem;text-wrap:pretty}
 .sec-b ul.pts{margin:0;padding:0;list-style:none;display:grid;gap:.55rem;max-width:40rem}
 .sec-b ul.pts li{position:relative;padding-left:1.25rem;font-size:1.0625rem;line-height:1.5}
@@ -86,7 +94,7 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
 .sec-b .fig{margin:.6rem 0 0}
 
 .pull{grid-column:1 / -1;margin:clamp(48px,7vw,96px) 0 0;padding:clamp(28px,4vw,48px) 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
-.pull p{margin:0;max-width:22ch;font-size:clamp(1.9rem,4.4vw,3.75rem);letter-spacing:-.045em;line-height:1.02;text-wrap:balance}
+.pull p{grid-column:1 / -1;margin:0;max-width:22ch;font-size:clamp(1.9rem,4.4vw,3.75rem);letter-spacing:-.045em;line-height:1.02;text-wrap:balance}
 
 .todo{background:var(--todo);border-bottom:1px dashed var(--ink-2);padding:0 .2em;color:var(--ink)}
 .todo::before{content:"To add: ";font-size:.75em;font-weight:500;letter-spacing:.02em;color:var(--ink-2)}
@@ -106,8 +114,9 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
 @media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
 
 @media (max-width:860px){
-  .grid8,.next a{grid-template-columns:1fr}
+  .grid8,.next a{grid-template-columns:minmax(0,1fr)}
   h1,.lede,.sec-h,.sec-b,.fig,.fig.half,.next .k,.next .t,.next .s{grid-column:1}
+  .pair{grid-template-columns:1fr}
   .facts{grid-template-columns:1fr 1fr;row-gap:1rem}
   .sec-h{position:static;flex-direction:row;justify-content:space-between;align-items:baseline;padding:0 0 1rem}
   .rail .here{display:none}
@@ -148,7 +157,7 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
     </section>
   </main>
   <nav class="next" aria-label="Next case study">
-    <a href="nexter-finance.html"><span class="k c2">Next case study</span><span class="t">Nexter Finance <span class="ar" aria-hidden="true">&rarr;</span></span><span class="s p">A decentralised prediction market, designed and shipped from zero.</span></a>
+    <a href="nexter-finance.html"><span class="k c2">Next case study</span><span class="t">Nexter Finance <span class="ar" aria-hidden="true">&rarr;</span></span><span class="s p">A decentralised prediction market, designed from zero and launched in phases.</span></a>
   </nav>
   <footer class="foot c2"><span>&copy; <span id="yr">2026</span> Sujith Kumar Anand · Senior Product Design Manager</span><span>Open to Head of Design / Sr Design Manager roles · Bengaluru or remote</span></footer>
 </div>
