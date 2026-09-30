@@ -211,7 +211,12 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   only.** On hover (fine pointers) or keyboard focus, the panel gives way to the
   walkthrough's still (`v3/img/work/<videoId>.webp`). A plain click plays FYERS's
   walkthrough (@FYERS-Platforms) straight away in an overlay on the same page
-  (youtube-nocookie embed). Modified clicks and no-JS still go to YouTube.
+  (youtube-nocookie embed). Once script runs, the cards keep the YouTube address in
+  `data-yt` rather than `href`, because the claude.ai preview intercepts outbound links
+  and opened them in a new tab. Ctrl/Cmd and middle clicks and no-JS still go to YouTube.
+  The preview also blocks YouTube embeds (CSP): a `securitypolicyviolation` listener
+  swaps the frame for the still and a "Play on YouTube" button. On GitHub Pages the
+  video plays in the overlay.
   Phones below 640px get one card per row. Hands-on cards use the same anatomy:
   their description sits in the panel with the same two slots, and there is no
   hover still. **The filter** (Sujith's picks from the filter options page): on

@@ -423,6 +423,12 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:8rem;clip-p
 .vo-x{color:#F0F0F0;font-size:1.75rem;line-height:1;width:2rem;height:2rem;margin-right:-.4rem}
 .vo-frame{position:relative;aspect-ratio:16 / 9;background:#000}
 .vo-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vo-frame iframe[hidden]{display:none}
+.vo-fb{position:absolute;inset:0;display:grid;place-items:center}
+.vo-fb[hidden]{display:none}
+.vo-fb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5}
+.vo-fb a{position:relative;display:inline-flex;align-items:center;gap:.6rem;padding:.95rem 1.4rem;border-radius:999px;background:#F0F0F0;color:#0F0F0F;text-decoration:none}
+.vo-fb .pi{width:0;height:0;border-style:solid;border-width:.35rem 0 .35rem .6rem;border-color:transparent transparent transparent currentColor}
 @media (max-width:639px){
   .vo{padding:0}
   .vo-bar{padding:0 1rem .75rem}
@@ -1308,7 +1314,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   <div class="vo-scrim" id="voScrim"></div>
   <div class="vo-box">
     <div class="vo-bar"><span class="vo-h"><span class="vo-meta c2" id="voMeta"></span><span class="vo-t" id="voTitle"></span></span><span class="vo-acts c2"><a id="voExt" href="#" target="_blank" rel="noopener">Open on YouTube &#8599;</a><button class="vo-x" type="button" id="voClose" aria-label="Close video">&times;</button></span></div>
-    <div class="vo-frame"><iframe id="voFrame" title="Walkthrough video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="vo-frame"><iframe id="voFrame" title="Walkthrough video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe><div class="vo-fb" id="voFb" hidden><img alt=""><a class="c1" target="_blank" rel="noopener" href="#"><span class="pi" aria-hidden="true"></span>Play on YouTube &#8599;</a></div></div>
   </div>
 </div>
 <button class="invert c1" type="button" id="invert"><u>Invert colour</u></button>
@@ -1527,6 +1533,12 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   // the card as an outbound link and opens a new tab; a modified or middle click still does.
   var vo = document.getElementById('vo'), voFrame = document.getElementById('voFrame');
   var voExt = document.getElementById('voExt'), voLast = null;
+  var voFb = document.getElementById('voFb'), voFbImg = voFb.querySelector('img'), voFbLink = voFb.querySelector('a');
+  // A host that forbids embedding YouTube (the claude.ai preview does) would show a
+  // "content is blocked" page in the frame. Show the still and a way out instead.
+  document.addEventListener('securitypolicyviolation', function(e){
+    if(!vo.hidden && /youtube/.test(e.blockedURI || '')){ voFrame.hidden = true; voFb.hidden = false; }
+  });
   mgrBox.querySelectorAll('a.pl-link[href]').forEach(function(a){
     a.setAttribute('data-yt', a.getAttribute('href'));
     a.removeAttribute('href'); a.removeAttribute('target');
@@ -1539,7 +1551,10 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     voLast = link;
     document.getElementById('voMeta').textContent = link.querySelector('.top span').textContent;
     document.getElementById('voTitle').textContent = link.querySelector('.nm').textContent;
-    voExt.href = ytUrl(link);
+    voExt.href = voFbLink.href = ytUrl(link);
+    var still = link.querySelector('.shot img');
+    if(still) voFbImg.src = still.currentSrc || still.src; else voFbImg.removeAttribute('src');
+    voFb.hidden = true; voFrame.hidden = false;
     voFrame.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
     vo.hidden = false;
     requestAnimationFrame(function(){ vo.classList.add('on'); });
