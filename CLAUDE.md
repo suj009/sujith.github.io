@@ -255,7 +255,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   blocks fetching, but his RSS feed at medium.com/feed/@suj009 carries the full text).
   Its screenshots are his, in `v3/img/work/nexter/`. The growth figures (10K+ users,
   1K+ weekly active, 1.7M+ predictions, $19M+ volume, $242K fees) are Nexter's, as
-  published in that article in January 2024; always date them. Target users were
+  published in that article in January 2024; Sujith confirmed they are fine to show.
+  Always date them. The Nexter card on the home page carries "10K+ Users, by January 2024"
+  as its Adoption figure. Target users were
   people who already knew web3 prediction markets, not newcomers. The one remaining
   gap is what changed after the six-user test: the article doesn't say.
 - **Essays** live in `v3/writing/`. Two are ports of the live articles with the
