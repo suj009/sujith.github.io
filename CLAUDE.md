@@ -234,8 +234,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   from fyers.in); hands-on cards carry their company's mark: the FYERS F, the Datami
   wordmark (`v3/img/co/datami.png`, from datami.com). All are drawn as a CSS mask in
   the card's text colour at 72%, with the name as the accessible label. Nexter
-  Finance's site no longer resolves, so it shows its name as text in that spot until
-  Sujith supplies a logo. Design scope shows as a word beside each card's title, in Sujith's
+  Finance's site no longer resolves, so its mark (`v3/img/co/nexter.png`) was cut from the
+  cover image of his own case study, with his OK: the symbol and "nexter" set side by side,
+  as in the app's own nav. Design scope shows as a word beside each card's title, in Sujith's
   chosen wording: Large = Flagship, Medium = Feature, Small = Enhancement.
 - **Work → Leadership spacing.** Leadership's panel wipes up at exactly the speed
   Work's last row scrolls away (its own ScrollTrigger, `top top` to `top -100%`),
@@ -259,8 +260,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Always date them. The Nexter card on the home page carries "1.7M+ Predictions made, Jan 2024"
   as its Impact figure (no before/after for a 0 → 1 product) and "10K+ Users, Jan 2024" as
   its Adoption figure. Target users were
-  people who already knew web3 prediction markets, not newcomers. The one remaining
-  gap is what changed after the six-user test: the article doesn't say.
+  people who already knew web3 prediction markets, not newcomers. He moved on from Nexter soon
+  after the six-user test, so the page says the findings were left to the team; don't invent
+  changes that followed it.
 - **Essays** live in `v3/writing/`. Two are ports of the live articles with the
   FDSG and Lab references removed; *Trust is a design material* and *Zero to one,
   three times* are new drafts written from facts already in the repo.
