@@ -269,7 +269,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   straight: Airtel TV Africa started from the existing Indian Airtel TV app, not a blank page
   (it is still tagged 0 → 1 as a new-market launch, Sujith's earlier call); he was its only
   designer (Design Lead) with 30+ engineers. 450,000+ registered users in Nigeria, Zambia and
-  Uganda comes from that PDF; its date is still to come from him. On Reach Mobile he was Design
+  Uganda comes from that PDF and is as of 2020 (Sujith); Sujith confirmed the 0 → 1 tag
+  stays. The Airtel card carries "450K+ Registered users, 2020" (Impact) and "3 African
+  countries live, 2020" (Adoption). On Reach Mobile he was Design
   Lead (his manager was the Design Manager), the first designers on the product; the fast
   social/ads purchase flow was "we", not "I"; visual artwork was a teammate's. Its outcome
   figures (3,000+ paid monthly users, hit by COVID) are not on the page until he decides.
