@@ -263,6 +263,16 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   people who already knew web3 prediction markets, not newcomers. He moved on from Nexter soon
   after the six-user test, so the page says the findings were left to the team; don't invent
   changes that followed it.
+- **Airtel TV Africa and Reach Mobile case studies** are written from Sujith's own
+  portfolio PDF ("Portfolio_Sujith_2023.pdf", uploaded in session; not in the repo). Screens
+  are cropped from it into `v3/img/work/airtel/` and `v3/img/work/reach/`. Facts to keep
+  straight: Airtel TV Africa started from the existing Indian Airtel TV app, not a blank page
+  (it is still tagged 0 → 1 as a new-market launch, Sujith's earlier call); he was its only
+  designer (Design Lead) with 30+ engineers. 450,000+ registered users in Nigeria, Zambia and
+  Uganda comes from that PDF; its date is still to come from him. On Reach Mobile he was Design
+  Lead (his manager was the Design Manager), the first designers on the product; the fast
+  social/ads purchase flow was "we", not "I"; visual artwork was a teammate's. Its outcome
+  figures (3,000+ paid monthly users, hit by COVID) are not on the page until he decides.
 - **Essays** live in `v3/writing/`. Two are ports of the live articles with the
   FDSG and Lab references removed; *Trust is a design material* and *Zero to one,
   three times* are new drafts written from facts already in the repo.
