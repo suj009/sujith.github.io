@@ -97,14 +97,14 @@ in the design yet.
 
 Claims on this site are checkable by the people being persuaded, so:
 
-- **No FYERS figures anywhere on the site** (Sujith, Oct 2026: he still works there). No
-  impact, adoption or effort numbers for FYERS work, on the manager wall, the hands-on cards,
-  case studies, Leadership, About or the CV. The Wealth Tracker "~70% less front-end effort"
-  estimate was removed everywhere for this reason. Figures from past employers (Nexter, Datami)
-  are fine when dated and confirmed. Still open with him: the public scale line ("top-20 Indian
-  retail brokerage", "over a million active clients") and team/feature counts.
+- **No FYERS performance figures** (Sujith, Oct 2026: he still works there). No impact or
+  adoption numbers for FYERS work on the manager wall, the FYERS hands-on cards or elsewhere.
+  Allowed, by his say-so: the Wealth Tracker "~70% less front-end effort" estimate (the front-end
+  team's, always called an estimate), the public scale line ("top-20 Indian retail brokerage",
+  "over a million active clients"), team size, verticals and the feature count. Figures from past
+  employers (Nexter, Datami) are fine when dated and confirmed.
 - **Only live projects go on the site** (Sujith). The Agentic Design Framework was removed
-  (card and page) because it hasn't shipped.
+  (card and page) because it hasn't shipped. Orders, Wealth Tracker and NRI onboarding are live.
 - **Never publish a number or ranking that has not been verified**, and never
   invent one to fill a sentence. Ask instead.
 - **Rankings decay.** "Top-20 Indian retail brokerage" was verified against the
