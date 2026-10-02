@@ -93,6 +93,26 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
 .sec-b ul.pts li::before{content:"";position:absolute;left:0;top:.72em;width:.6rem;height:1px;background:currentColor}
 .sec-b .fig{margin:.6rem 0 0}
 
+/* v2: results first, an executive summary, decisions called out, screenshots on a stage */
+.results{grid-column:1 / -1;list-style:none;margin:1.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(10rem,100%),1fr));gap:1.25rem 1rem}
+.results li{display:flex;flex-direction:column;gap:.4rem;padding-top:.8rem;border-top:1px solid var(--ink)}
+.results b{font-weight:400;font-size:clamp(2.4rem,4.6vw,4rem);letter-spacing:-.055em;line-height:.95;font-variant-numeric:tabular-nums}
+.results span{color:var(--ink-2)}
+.results-src{grid-column:1 / -1;margin:-.4rem 0 0;color:var(--ink-2)}
+.glance{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin:1.25rem 0 0;padding:1.25rem;background:var(--tint);border:1px solid var(--rule)}
+.glance div{display:flex;flex-direction:column;gap:.5rem}
+.glance dt{color:var(--ink-2)}
+.glance dd{margin:0;font-size:1rem;line-height:1.4;letter-spacing:-.01em;text-wrap:pretty}
+.stage{display:block;background:var(--stage,var(--tint));padding:clamp(12px,3vw,40px);border-radius:3px}
+.stage .shot{background:transparent}
+.call{margin:.4rem 0;padding:1.1rem 1.25rem 1.2rem;border:1px solid var(--ink);display:grid;gap:.85rem;max-width:44rem}
+.call .lbl{color:var(--ink-2)}
+.call .what{margin:0;font-size:1.3rem;line-height:1.25;letter-spacing:-.025em;text-wrap:balance}
+.call dl{margin:0;display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:.55rem 1rem;padding-top:.85rem;border-top:1px solid var(--rule)}
+.call dt{color:var(--ink-2);padding-top:.2em}
+.call dd{margin:0;font-size:1rem;line-height:1.5}
+.sec.reflect .sec-b{border-top-style:dashed}
+.kicker .rt{margin-left:auto}
 .pull{grid-column:1 / -1;margin:clamp(48px,7vw,96px) 0 0;padding:clamp(28px,4vw,48px) 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
 .pull p{grid-column:1 / -1;margin:0;max-width:22ch;font-size:clamp(1.9rem,4.4vw,3.75rem);letter-spacing:-.045em;line-height:1.02;text-wrap:balance}
 
@@ -111,12 +131,17 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
 
 .js .rv{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
 .js .rv.in{opacity:1;transform:none}
+@media (max-width:639px){.glance{grid-template-columns:1fr;gap:1.1rem}}
 @media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
 
 @media (max-width:860px){
   .grid8,.next a{grid-template-columns:minmax(0,1fr)}
   h1,.lede,.sec-h,.sec-b,.fig,.fig.half,.next .k,.next .t,.next .s{grid-column:1}
   .pair{grid-template-columns:1fr}
+  .glance{grid-template-columns:1fr 1fr}
+  .call dl{grid-template-columns:1fr;gap:.2rem}
+  .call dd{margin-bottom:.5rem}
+  .kicker .rt{margin-left:0}
   .facts{grid-template-columns:1fr 1fr;row-gap:1rem}
   .sec-h{position:static;flex-direction:row;justify-content:space-between;align-items:baseline;padding:0 0 1rem}
   .rail .here{display:none}
@@ -132,12 +157,13 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
   </header>
   <main>
     <header class="hero grid8">
-      <p class="kicker c2 rv" style="margin:0"><span>Datami · Streaming · 2018–21</span><span class="tag">0 → 1</span><span class="tag">Hands-on</span></p>
+      <p class="kicker c2 rv" style="margin:0"><span>Datami · Streaming · 2018–21</span><span class="tag">0 → 1</span><span class="tag">Hands-on</span><span class="rt">2 min read</span></p>
       <h1 class="rv">Airtel TV Africa: launching a streaming app across a continent</h1>
       <p class="lede rv">Airtel wanted its video streaming app in 14 African countries. As the only designer on a team of more than 30 engineers, I led the app experience on Android and iOS, and designed the analytics portal Airtel’s own teams ran on.</p>
+      
       <ul class="facts rv"><li><span class="k c2">Role</span><span class="v">Design Lead, the only designer</span></li><li><span class="k c2">Team</span><span class="v">30+ engineers, a product manager and country leads</span></li><li><span class="k c2">Markets</span><span class="v">Airtel subscribers in 14 African countries</span></li><li><span class="k c2">Registered users (2020)</span><span class="v">450,000+ in Nigeria, Zambia and Uganda</span></li></ul>
       
-      <figure class="fig rv"><img class="shot" src="../img/work/airtel/app.webp" alt="Twelve Airtel TV app screens in the dark theme: onboarding, sign-up, the home feed, the side menu, live TV, the watchlist and the player" width="1600" height="1001" loading="lazy" decoding="async"><figcaption class="c2">The Airtel TV app in its dark theme</figcaption></figure>
+      <figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/airtel/app.webp" alt="Twelve Airtel TV app screens in the dark theme: onboarding, sign-up, the home feed, the side menu, live TV, the watchlist and the player" width="1600" height="1001" loading="lazy" decoding="async"></span><figcaption class="c2">The Airtel TV app in its dark theme</figcaption></figure>
     </header>
     <section class="sec grid8" aria-labelledby="s1">
       <div class="sec-h"><span class="n c2">01</span><h2 id="s1">The brief</h2></div>
@@ -153,7 +179,7 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
     </section>
     <section class="sec grid8" aria-labelledby="s4">
       <div class="sec-h"><span class="n c2">04</span><h2 id="s4">Fewer emails, faster partners</h2></div>
-      <div class="sec-b rv"><p>Two problems sat outside the app. Content partners sent logos and artwork in whatever size they had, and much of it was unusable, so every new title meant another round of emails. I wrote one set of guidelines for logos and artwork, shared with existing and new partners, to cut that back and forth.</p><p>Inside Airtel, every report on the app went out by email, assembled by hand. I designed an analytics portal so Airtel’s stakeholders could check users, content ingestion and other metrics themselves. The first version showed too much at once; both our team and Airtel said it would confuse people. I rebuilt it around cards with headline figures and charts. That version was agreed, built, and used by Airtel’s team.</p><div class="pair"><figure class="fig rv"><img class="shot" src="../img/work/airtel/analytics-v1.webp" alt="The first version of the Airtel TV analytics portal, dense with bar charts" width="1600" height="892" loading="lazy" decoding="async"><figcaption class="c2">First version: everything at once</figcaption></figure><figure class="fig rv"><img class="shot" src="../img/work/airtel/analytics-v2.webp" alt="The second version of the analytics portal, with summary cards, headline figures and trend charts" width="1600" height="1290" loading="lazy" decoding="async"><figcaption class="c2">Second version: cards with figures and charts</figcaption></figure></div></div>
+      <div class="sec-b rv"><p>Two problems sat outside the app. Content partners sent logos and artwork in whatever size they had, and much of it was unusable, so every new title meant another round of emails. I wrote one set of guidelines for logos and artwork, shared with existing and new partners, to cut that back and forth.</p><p>Inside Airtel, every report on the app went out by email, assembled by hand. I designed an analytics portal so Airtel’s stakeholders could check users, content ingestion and other metrics themselves. The first version showed too much at once; both our team and Airtel said it would confuse people. I rebuilt it around cards with headline figures and charts. That version was agreed, built, and used by Airtel’s team.</p><div class="pair"><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/airtel/analytics-v1.webp" alt="The first version of the Airtel TV analytics portal, dense with bar charts" width="1600" height="892" loading="lazy" decoding="async"></span><figcaption class="c2">First version: everything at once</figcaption></figure><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/airtel/analytics-v2.webp" alt="The second version of the analytics portal, with summary cards, headline figures and trend charts" width="1600" height="1290" loading="lazy" decoding="async"></span><figcaption class="c2">Second version: cards with figures and charts</figcaption></figure></div></div>
     </section>
     <section class="sec grid8" aria-labelledby="s5">
       <div class="sec-h"><span class="n c2">05</span><h2 id="s5">Outcome</h2></div>

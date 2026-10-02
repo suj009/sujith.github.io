@@ -275,6 +275,13 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Lead (his manager was the Design Manager), the first designers on the product; the fast
   social/ads purchase flow was "we", not "I"; visual artwork was a teammate's. Its outcome
   figures (3,000+ paid monthly users, hit by COVID) are not on the page until he decides.
+- **Case study template v2** (Nexter is the pilot, pending Sujith's sign-off before the
+  others are rewritten): results strip first (`results=`), an "at a glance" summary of
+  problem / role / the call / result (`glance=`), decisions as call-outs with Why and The
+  trade-off (`{{call:what||why||trade-off}}`), screenshots on a stage in the product's colour
+  (`stage=`), reading time in the kicker, and a closing "What I’d do differently" section.
+  Reflections must come from his own stated learnings, never invented. The generator is
+  `cs/build.py` in the session scratchpad; `build.v1.py` is the pre-v2 copy.
 - **Essays** live in `v3/writing/`. Two are ports of the live articles with the
   FDSG and Lab references removed; *Trust is a design material* and *Zero to one,
   three times* are new drafts written from facts already in the repo.

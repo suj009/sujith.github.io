@@ -93,6 +93,26 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
 .sec-b ul.pts li::before{content:"";position:absolute;left:0;top:.72em;width:.6rem;height:1px;background:currentColor}
 .sec-b .fig{margin:.6rem 0 0}
 
+/* v2: results first, an executive summary, decisions called out, screenshots on a stage */
+.results{grid-column:1 / -1;list-style:none;margin:1.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(10rem,100%),1fr));gap:1.25rem 1rem}
+.results li{display:flex;flex-direction:column;gap:.4rem;padding-top:.8rem;border-top:1px solid var(--ink)}
+.results b{font-weight:400;font-size:clamp(2.4rem,4.6vw,4rem);letter-spacing:-.055em;line-height:.95;font-variant-numeric:tabular-nums}
+.results span{color:var(--ink-2)}
+.results-src{grid-column:1 / -1;margin:-.4rem 0 0;color:var(--ink-2)}
+.glance{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin:1.25rem 0 0;padding:1.25rem;background:var(--tint);border:1px solid var(--rule)}
+.glance div{display:flex;flex-direction:column;gap:.5rem}
+.glance dt{color:var(--ink-2)}
+.glance dd{margin:0;font-size:1rem;line-height:1.4;letter-spacing:-.01em;text-wrap:pretty}
+.stage{display:block;background:var(--stage,var(--tint));padding:clamp(12px,3vw,40px);border-radius:3px}
+.stage .shot{background:transparent}
+.call{margin:.4rem 0;padding:1.1rem 1.25rem 1.2rem;border:1px solid var(--ink);display:grid;gap:.85rem;max-width:44rem}
+.call .lbl{color:var(--ink-2)}
+.call .what{margin:0;font-size:1.3rem;line-height:1.25;letter-spacing:-.025em;text-wrap:balance}
+.call dl{margin:0;display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:.55rem 1rem;padding-top:.85rem;border-top:1px solid var(--rule)}
+.call dt{color:var(--ink-2);padding-top:.2em}
+.call dd{margin:0;font-size:1rem;line-height:1.5}
+.sec.reflect .sec-b{border-top-style:dashed}
+.kicker .rt{margin-left:auto}
 .pull{grid-column:1 / -1;margin:clamp(48px,7vw,96px) 0 0;padding:clamp(28px,4vw,48px) 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
 .pull p{grid-column:1 / -1;margin:0;max-width:22ch;font-size:clamp(1.9rem,4.4vw,3.75rem);letter-spacing:-.045em;line-height:1.02;text-wrap:balance}
 
@@ -111,12 +131,17 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
 
 .js .rv{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
 .js .rv.in{opacity:1;transform:none}
+@media (max-width:639px){.glance{grid-template-columns:1fr;gap:1.1rem}}
 @media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
 
 @media (max-width:860px){
   .grid8,.next a{grid-template-columns:minmax(0,1fr)}
   h1,.lede,.sec-h,.sec-b,.fig,.fig.half,.next .k,.next .t,.next .s{grid-column:1}
   .pair{grid-template-columns:1fr}
+  .glance{grid-template-columns:1fr 1fr}
+  .call dl{grid-template-columns:1fr;gap:.2rem}
+  .call dd{margin-bottom:.5rem}
+  .kicker .rt{margin-left:0}
   .facts{grid-template-columns:1fr 1fr;row-gap:1rem}
   .sec-h{position:static;flex-direction:row;justify-content:space-between;align-items:baseline;padding:0 0 1rem}
   .rail .here{display:none}
@@ -132,9 +157,10 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
   </header>
   <main>
     <header class="hero grid8">
-      <p class="kicker c2 rv" style="margin:0"><span>FYERS · Trading · 2024</span><span class="tag">Hands-on</span></p>
+      <p class="kicker c2 rv" style="margin:0"><span>FYERS · Trading · 2024</span><span class="tag">Hands-on</span><span class="rt">2 min read</span></p>
       <h1 class="rv">Orders: making iteration cheap</h1>
       <p class="lede rv">A multi-screen product area where every piece of feedback used to cost a sweep across screens. I moved it into a high-fidelity model built on reusable local components, so the unit of change became the pattern instead of the screen.</p>
+      
       <ul class="facts rv"><li><span class="k c2">Role</span><span class="v">Design manager, and individual contributor</span></li><li><span class="k c2">Vertical</span><span class="v">Trading</span></li><li><span class="k c2">Built on</span><span class="v">The FYERS design system, plus local components</span></li><li><span class="k c2">The shift</span><span class="v">The unit of iteration moved from screen to pattern</span></li></ul>
       
       <figure class="fig rv"><div class="ph" role="img" aria-label="Screenshot to add: Orders, final experience"><div class="in c2"><span class="ic" aria-hidden="true"></span><b>Orders, final experience</b><span>The Orders screens on web, showing orders across several states</span></div></div><figcaption class="c2">Screenshot to add</figcaption></figure>
