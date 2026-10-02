@@ -97,6 +97,14 @@ in the design yet.
 
 Claims on this site are checkable by the people being persuaded, so:
 
+- **No FYERS figures anywhere on the site** (Sujith, Oct 2026: he still works there). No
+  impact, adoption or effort numbers for FYERS work, on the manager wall, the hands-on cards,
+  case studies, Leadership, About or the CV. The Wealth Tracker "~70% less front-end effort"
+  estimate was removed everywhere for this reason. Figures from past employers (Nexter, Datami)
+  are fine when dated and confirmed. Still open with him: the public scale line ("top-20 Indian
+  retail brokerage", "over a million active clients") and team/feature counts.
+- **Only live projects go on the site** (Sujith). The Agentic Design Framework was removed
+  (card and page) because it hasn't shipped.
 - **Never publish a number or ranking that has not been verified**, and never
   invent one to fill a sentence. Ask instead.
 - **Rankings decay.** "Top-20 Indian retail brokerage" was verified against the
@@ -198,6 +206,10 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Professional is the other card without a video. The count (35) appears in
   the lede, the All chip, the phone sheet's Done button and Leadership
   ("Thirty-five", "35 features shipped"); move them together.
+- **Manager wall cards carry no figures** (no FYERS numbers): the panel holds the one-line
+  description only. For fine pointers the panel keeps a 2.5:1 frame so the hover still has
+  room; on touch it is as tall as the text. The layout-H figure slots below apply to past
+  employers' cards only.
 - Cards use **layout H, "Before and after"** (Sujith's pick from the card
   options page): area and month, then the title with its scope word, then a
   panel in the card's own colour (never a black box) holding a one-line
@@ -246,8 +258,8 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   unify web and app on one design system. Sujith was part of the design team,
   leading three verticals at the time under the CXO. Say "part of"; the FDSG
   ownership claim stays disputed.
-- **IC view** has seven cards, each opening a page in `v3/work/` (Orders, Wealth
-  Tracker, Agentic Design Framework, NRI onboarding, Nexter Finance, Airtel TV
+- **IC view** has six cards, each opening a page in `v3/work/` (Orders, Wealth
+  Tracker, NRI onboarding, Nexter Finance, Airtel TV
   Africa, Reach Mobile). Airtel TV Africa and Reach Mobile are two separate projects from his time at
   Datami Mobile Solutions Pvt Ltd; each keeps its own page. Pages are generated from one template; `[[...]]`-style gaps render as
   "To add" highlights and dashed boxes mark screenshot slots for Sujith to fill.
