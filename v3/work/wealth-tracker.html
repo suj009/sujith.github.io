@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wealth Tracker case study — Sujith Kumar Anand</title>
+<meta name="description" content="How Sujith Kumar Anand took FYERS Wealth Tracker from a PRD and an AI-generated concept to approved, Flutter-ready web and mobile, cutting front-end effort by an estimated 70%.">
+<meta name="author" content="Sujith Kumar Anand">
+<link rel="canonical" href="https://sujith.design/work/wealth-tracker.html">
+<link rel="icon" href="../img/favicon.ico" sizes="48x48">
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wealth Tracker case study — Sujith Kumar Anand">
+<meta property="og:description" content="How Sujith Kumar Anand took FYERS Wealth Tracker from a PRD and an AI-generated concept to approved, Flutter-ready web and mobile, cutting front-end effort by an estimated 70%.">
+<meta property="og:image" content="https://sujith.design/img/og-sujith.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  color-scheme:light;
+  --ground:#F0F0F0;--ink:#0F0F0F;--ink-2:#0F0F0F8C;--rule:#0F0F0F1F;--tint:#0F0F0F08;
+  --todo:#0F0F0F12;
+  --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.25,1,.5,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F08C;--rule:#F2F0F024;--tint:#F2F0F00A;--todo:#F2F0F01A}
+}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F08C;--rule:#F2F0F024;--tint:#F2F0F00A;--todo:#F2F0F01A}
+*{box-sizing:border-box}
+html{background:var(--ground)}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;transition:background-color .5s var(--ease),color .5s var(--ease)}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+.c2{font-size:.75rem;font-weight:500;letter-spacing:-.02em;line-height:1.2}
+.page{max-width:1320px;margin:0 auto;padding:0 clamp(16px,2.5vw,32px) 40px}
+.grid8{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem}
+
+.rail{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  padding:calc(14px + env(safe-area-inset-top,0px)) 0 12px;background:var(--ground);border-bottom:1px solid var(--rule);
+  transition:background-color .5s var(--ease)}
+.rail a{text-decoration:none}
+.u{position:relative;padding-bottom:2px}
+.u::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.u:hover::after{transform:scaleX(1)}
+.back{display:inline-flex;align-items:center;gap:.5rem}
+.back .ar{display:inline-block;transition:transform .4s var(--ease)}
+.back:hover .ar{transform:translateX(-.25rem)}
+.rail .here{color:var(--ink-2)}
+
+.hero{padding:clamp(40px,7vw,96px) 0 clamp(28px,4vw,48px);row-gap:2rem}
+.kicker{grid-column:1 / -1;color:var(--ink-2);display:flex;gap:.75rem;flex-wrap:wrap}
+.kicker .tag{border:1px solid currentColor;border-radius:999px;padding:.15rem .55rem}
+h1{grid-column:1 / 8;margin:0;font-weight:400;font-size:clamp(2.6rem,6.4vw,6rem);letter-spacing:-.055em;line-height:.92;text-wrap:balance}
+.lede{grid-column:1 / 6;margin:0;font-size:clamp(1.15rem,1.8vw,1.5rem);letter-spacing:-.025em;line-height:1.3;text-wrap:pretty}
+.facts{grid-column:1 / -1;list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:1rem}
+.facts li{display:flex;flex-direction:column;gap:.35rem;padding-top:.8rem;border-top:1px solid var(--ink)}
+.facts .k{color:var(--ink-2)}
+.facts .v{font-size:1.05rem;letter-spacing:-.02em;line-height:1.3}
+
+figure{margin:0}
+.fig{grid-column:1 / -1;margin:clamp(24px,4vw,48px) 0}
+.fig.half{grid-column:span 4}
+.ph{position:relative;display:grid;place-items:center;aspect-ratio:16 / 9;background:var(--tint);
+  border:1px dashed var(--ink-2);color:var(--ink-2);text-align:center;padding:1.5rem}
+.ph.tall{aspect-ratio:4 / 5}
+.ph .in{display:grid;gap:.4rem;max-width:26rem}
+.ph .in b{color:var(--ink);font-weight:500;font-size:.95rem;letter-spacing:-.01em}
+.ph .ic{justify-self:center;width:2rem;height:1.5rem;border:1px solid currentColor;border-radius:3px;position:relative;margin-bottom:.3rem}
+.ph .ic::after{content:"";position:absolute;left:.35rem;bottom:.3rem;width:.7rem;height:.45rem;border-left:1px solid currentColor;border-bottom:1px solid currentColor;transform:skewX(-30deg)}
+figcaption{margin-top:.6rem;color:var(--ink-2)}
+.shot{display:block;width:100%;height:auto;background:var(--tint)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start}
+.pair .fig{margin:0;grid-column:auto}
+.stats{list-style:none;margin:.4rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(7.5rem,100%),1fr));gap:1.25rem 1rem;max-width:none}
+.stats li{display:flex;flex-direction:column;gap:.35rem;padding-top:.7rem;border-top:1px solid var(--ink)}
+.stats b{font-weight:400;font-size:clamp(1.9rem,3.4vw,2.6rem);letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.stats span{color:var(--ink-2)}
+.sec-b p.src{color:var(--ink-2);font-size:.75rem;line-height:1.3}
+
+.sec{padding:clamp(40px,6vw,80px) 0 0}
+.sec-h{grid-column:1 / 3;align-self:start;position:sticky;top:4.25rem;display:flex;flex-direction:column;gap:.4rem;padding-top:.9rem}
+.sec-h .n{color:var(--ink-2)}
+.sec-h h2{margin:0;font-size:1.5rem;font-weight:400;letter-spacing:-.035em;line-height:1.05}
+.sec-b{grid-column:3 / 8;border-top:1px solid var(--ink);padding-top:.9rem;display:grid;grid-template-columns:minmax(0,1fr);gap:1.1rem}
+.sec-b p{margin:0;font-size:1.125rem;line-height:1.55;letter-spacing:-.01em;max-width:40rem;text-wrap:pretty}
+.sec-b ul.pts{margin:0;padding:0;list-style:none;display:grid;gap:.55rem;max-width:40rem}
+.sec-b ul.pts li{position:relative;padding-left:1.25rem;font-size:1.0625rem;line-height:1.5}
+.sec-b ul.pts li::before{content:"";position:absolute;left:0;top:.72em;width:.6rem;height:1px;background:currentColor}
+.sec-b .fig{margin:.6rem 0 0}
+
+/* v2: results first, an executive summary, decisions called out, screenshots on a stage */
+.results{grid-column:1 / -1;list-style:none;margin:1.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(10rem,100%),1fr));gap:1.25rem 1rem}
+.results li{display:flex;flex-direction:column;gap:.4rem;padding-top:.8rem;border-top:1px solid var(--ink)}
+.results b{font-weight:400;font-size:clamp(2.4rem,4.6vw,4rem);letter-spacing:-.055em;line-height:.95;font-variant-numeric:tabular-nums}
+.results span{color:var(--ink-2)}
+.results-src{grid-column:1 / -1;margin:-.4rem 0 0;color:var(--ink-2)}
+.glance{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin:1.25rem 0 0;padding:1.25rem;background:var(--tint);border:1px solid var(--rule)}
+.glance div{display:flex;flex-direction:column;gap:.5rem}
+.glance dt{color:var(--ink-2)}
+.glance dd{margin:0;font-size:1rem;line-height:1.4;letter-spacing:-.01em;text-wrap:pretty}
+.stage{display:block;background:var(--stage,var(--tint));padding:clamp(12px,3vw,40px);border-radius:3px}
+.stage .shot{background:transparent}
+.call{margin:.4rem 0;padding:1.1rem 1.25rem 1.2rem;border:1px solid var(--ink);display:grid;gap:.85rem;max-width:44rem}
+.call .lbl{color:var(--ink-2)}
+.call .what{margin:0;font-size:1.3rem;line-height:1.25;letter-spacing:-.025em;text-wrap:balance}
+.call dl{margin:0;display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:.55rem 1rem;padding-top:.85rem;border-top:1px solid var(--rule)}
+.call dt{color:var(--ink-2);padding-top:.2em}
+.call dd{margin:0;font-size:1rem;line-height:1.5}
+.sec.reflect .sec-b{border-top-style:dashed}
+.kicker .rt{margin-left:auto}
+.pull{grid-column:1 / -1;margin:clamp(48px,7vw,96px) 0 0;padding:clamp(28px,4vw,48px) 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
+.pull p{grid-column:1 / -1;margin:0;max-width:22ch;font-size:clamp(1.9rem,4.4vw,3.75rem);letter-spacing:-.045em;line-height:1.02;text-wrap:balance}
+
+.todo{background:var(--todo);border-bottom:1px dashed var(--ink-2);padding:0 .2em;color:var(--ink)}
+.todo::before{content:"To add: ";font-size:.75em;font-weight:500;letter-spacing:.02em;color:var(--ink-2)}
+.status{grid-column:1 / -1;display:flex;gap:.6rem;align-items:baseline;padding:.8rem 1rem;background:var(--tint);border:1px solid var(--rule);color:var(--ink-2)}
+
+.next{margin-top:clamp(64px,9vw,120px);border-top:1px solid var(--ink)}
+.next a{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem;padding:1.5rem 0 1rem;text-decoration:none}
+.next .k{grid-column:1 / 3;color:var(--ink-2)}
+.next .t{grid-column:3 / 8;font-size:clamp(2rem,5vw,4.5rem);letter-spacing:-.05em;line-height:.95}
+.next .s{grid-column:3 / 7;margin-top:.8rem;color:var(--ink-2)}
+.next .ar{display:inline-block;transition:transform .5s var(--ease)}
+.next a:hover .ar{transform:translateX(.4rem)}
+.foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:clamp(40px,6vw,72px);padding-top:1rem;border-top:1px solid var(--rule);color:var(--ink-2)}
+
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+@media (max-width:639px){.glance{grid-template-columns:1fr;gap:1.1rem}}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+@media (max-width:860px){
+  .grid8,.next a{grid-template-columns:minmax(0,1fr)}
+  h1,.lede,.sec-h,.sec-b,.fig,.fig.half,.next .k,.next .t,.next .s{grid-column:1}
+  .pair{grid-template-columns:1fr}
+  .glance{grid-template-columns:1fr 1fr}
+  .call dl{grid-template-columns:1fr;gap:.2rem}
+  .call dd{margin-bottom:.5rem}
+  .kicker .rt{margin-left:0}
+  .facts{grid-template-columns:1fr 1fr;row-gap:1rem}
+  .sec-h{position:static;flex-direction:row;justify-content:space-between;align-items:baseline;padding:0 0 1rem}
+  .rail .here{display:none}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="rail c2">
+    <a class="back u" href="../hero-replica.html#work"><span class="ar" aria-hidden="true">&larr;</span>Back to work</a>
+    <span class="here">Case study · FYERS</span>
+    <button class="u" type="button" id="invert">Invert colour</button>
+  </header>
+  <main>
+    <header class="hero grid8">
+      <p class="kicker c2 rv" style="margin:0"><span>FYERS · Reports · 2026</span><span class="tag">Hands-on</span><span class="tag">End to end</span><span class="rt">2 min read</span></p>
+      <h1 class="rv">Wealth Tracker: from PRD to Flutter-ready</h1>
+      <p class="lede rv">A PRD and an AI-generated concept in; approved, Flutter-ready web and mobile out. I took it end to end, into the repository and the environment, to close the gap between what design intends and what ships.</p>
+      
+      <ul class="facts rv"><li><span class="k c2">Role</span><span class="v">End-to-end product and implementation ownership</span></li><li><span class="k c2">Platforms</span><span class="v">Web and mobile, Flutter-ready</span></li><li><span class="k c2">Front-end effort</span><span class="v">About 70% less, the front-end team’s estimate</span></li><li><span class="k c2">Approved by</span><span class="v">The AVP of Product, the CPO and the CTO</span></li></ul>
+      
+      <figure class="fig rv"><div class="ph" role="img" aria-label="Screenshot to add: Wealth Tracker overview"><div class="in c2"><span class="ic" aria-hidden="true"></span><b>Wealth Tracker overview</b><span>The overall wealth and asset-allocation view, web</span></div></div><figcaption class="c2">Screenshot to add</figcaption></figure>
+    </header>
+    <section class="sec grid8" aria-labelledby="s1">
+      <div class="sec-h"><span class="n c2">01</span><h2 id="s1">The starting point</h2></div>
+      <div class="sec-b rv"><p>Wealth Tracker came from FYERS product leadership. The Product Owner shared a PRD and an early concept that already existed as an HTML output generated with AI. My starting point was an AI-generated representation that needed to be evaluated, challenged and turned into a coherent FYERS product.</p><p>The product consolidates a person’s investment picture: overall wealth, asset allocation, portfolio performance, holdings, and the insights that sit on top of them.</p></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s2">
+      <div class="sec-h"><span class="n c2">02</span><h2 id="s2">Review, challenge, refine</h2></div>
+      <div class="sec-b rv"><p>I read the PRD against the concept and asked the ordinary questions. Did it meet the requirement? Where were the UX and UI gaps? Did the hierarchy and interactions hold? What needed clarifying with the PO, and where did it diverge from FYERS patterns?</p><p>Then I worked the loop: find a gap, resolve the decision with the PO, direct the change, review the output, repeat. Execution got fast enough that judgement became the bottleneck, which is the right bottleneck.</p><p>The refined experience went through product review with the AVP of Product, the CPO and the CTO, and one more round of iteration before approval.</p></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s3">
+      <div class="sec-h"><span class="n c2">03</span><h2 id="s3">Changing my role in delivery</h2></div>
+      <div class="sec-b rv"><p>A normal workflow ends at handoff and picks up again at design review. After approval I went the other way. I joined the development environment, met the developers who owned the UI system, set up a separate repository for the implementation work, and set up the local environment myself.</p><p>I delivered the web experience first, reviewing a running product rather than static screens. Once the web workflow was done and I had analysed how it went, I did mobile the same way.</p><figure class="fig rv"><div class="ph" role="img" aria-label="Screenshot to add: Web output"><div class="in c2"><span class="ic" aria-hidden="true"></span><b>Web output</b><span>The delivered web experience, running</span></div></div><figcaption class="c2">Screenshot to add</figcaption></figure><figure class="fig rv"><div class="ph tall" role="img" aria-label="Screenshot to add: Mobile output"><div class="in c2"><span class="ic" aria-hidden="true"></span><b>Mobile output</b><span>The delivered mobile experience</span></div></div><figcaption class="c2">Screenshot to add</figcaption></figure></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s4">
+      <div class="sec-h"><span class="n c2">04</span><h2 id="s4">The outcome</h2></div>
+      <div class="sec-b rv"><p>Based on feedback from the front-end team, the approach was estimated to cut around 70% of the front-end implementation effort for this work. That is their estimate, not a measured benchmark, and I state it that way on purpose.</p><p>The saving was not only hours. The old process ran design and implementation reviews roughly every two weeks, and each round risked the design drifting in interpretation. Working closer to implementation removed most of the places where intent could change on its way to the user.</p></div>
+    </section>
+    <blockquote class="pull grid8 rv" style="margin-inline:0"><p>I didn’t open by proposing a framework. I did the work myself first, and the work made the argument.</p></blockquote>
+    <section class="sec grid8" aria-labelledby="s5">
+      <div class="sec-h"><span class="n c2">05</span><h2 id="s5">Why it mattered beyond the feature</h2></div>
+      <div class="sec-b rv"><p>Taking one product from requirement to Flutter-ready output gave stakeholders enough confidence to ask a bigger question. It moved from <em>can a designer do this?</em> to <em>can we make it repeatable?</em></p><p>The hard part was never generating an interface. It was deciding what should change, what should stay, what was missing and what met the bar. AI output is a starting point; the judgement is the job.</p></div>
+    </section>
+  </main>
+  <nav class="next" aria-label="Next case study">
+    <a href="nri-onboarding.html"><span class="k c2">Next case study</span><span class="t">NRI onboarding <span class="ar" aria-hidden="true">&rarr;</span></span><span class="s p">Account opening for Indians living abroad, designed hands-on.</span></a>
+  </nav>
+  <footer class="foot c2"><span>&copy; <span id="yr">2026</span> Sujith Kumar Anand · Senior Product Design Manager</span><span>Open to Head of Design / Sr Design Manager roles · Bengaluru or remote</span></footer>
+</div>
+<script>
+(function(){
+  var root = document.documentElement;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  document.getElementById('invert').addEventListener('click', function(){
+    var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+  });
+  var items = document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){ items.forEach(function(e){ e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -6% 0px'});
+  items.forEach(function(e, i){ if(e.closest('.hero')) e.style.transitionDelay = (i * 90) + 'ms'; io.observe(e); });
+})();
+</script>
+</body>
+</html>

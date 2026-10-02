@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reach Mobile case study — Sujith Kumar Anand</title>
+<meta name="description" content="How Sujith Kumar Anand led the web and mobile web design for Reach Mobile, a US phone service sold online, and rebuilt its purchase flow using analytics and customer feedback.">
+<meta name="author" content="Sujith Kumar Anand">
+<link rel="canonical" href="https://sujith.design/work/reach-mobile.html">
+<link rel="icon" href="../img/favicon.ico" sizes="48x48">
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reach Mobile case study — Sujith Kumar Anand">
+<meta property="og:description" content="How Sujith Kumar Anand led the web and mobile web design for Reach Mobile, a US phone service sold online, and rebuilt its purchase flow using analytics and customer feedback.">
+<meta property="og:image" content="https://sujith.design/img/og-sujith.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  color-scheme:light;
+  --ground:#F0F0F0;--ink:#0F0F0F;--ink-2:#0F0F0F8C;--rule:#0F0F0F1F;--tint:#0F0F0F08;
+  --todo:#0F0F0F12;
+  --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.25,1,.5,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F08C;--rule:#F2F0F024;--tint:#F2F0F00A;--todo:#F2F0F01A}
+}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F08C;--rule:#F2F0F024;--tint:#F2F0F00A;--todo:#F2F0F01A}
+*{box-sizing:border-box}
+html{background:var(--ground)}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;transition:background-color .5s var(--ease),color .5s var(--ease)}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+.c2{font-size:.75rem;font-weight:500;letter-spacing:-.02em;line-height:1.2}
+.page{max-width:1320px;margin:0 auto;padding:0 clamp(16px,2.5vw,32px) 40px}
+.grid8{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem}
+
+.rail{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  padding:calc(14px + env(safe-area-inset-top,0px)) 0 12px;background:var(--ground);border-bottom:1px solid var(--rule);
+  transition:background-color .5s var(--ease)}
+.rail a{text-decoration:none}
+.u{position:relative;padding-bottom:2px}
+.u::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.u:hover::after{transform:scaleX(1)}
+.back{display:inline-flex;align-items:center;gap:.5rem}
+.back .ar{display:inline-block;transition:transform .4s var(--ease)}
+.back:hover .ar{transform:translateX(-.25rem)}
+.rail .here{color:var(--ink-2)}
+
+.hero{padding:clamp(40px,7vw,96px) 0 clamp(28px,4vw,48px);row-gap:2rem}
+.kicker{grid-column:1 / -1;color:var(--ink-2);display:flex;gap:.75rem;flex-wrap:wrap}
+.kicker .tag{border:1px solid currentColor;border-radius:999px;padding:.15rem .55rem}
+h1{grid-column:1 / 8;margin:0;font-weight:400;font-size:clamp(2.6rem,6.4vw,6rem);letter-spacing:-.055em;line-height:.92;text-wrap:balance}
+.lede{grid-column:1 / 6;margin:0;font-size:clamp(1.15rem,1.8vw,1.5rem);letter-spacing:-.025em;line-height:1.3;text-wrap:pretty}
+.facts{grid-column:1 / -1;list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:1rem}
+.facts li{display:flex;flex-direction:column;gap:.35rem;padding-top:.8rem;border-top:1px solid var(--ink)}
+.facts .k{color:var(--ink-2)}
+.facts .v{font-size:1.05rem;letter-spacing:-.02em;line-height:1.3}
+
+figure{margin:0}
+.fig{grid-column:1 / -1;margin:clamp(24px,4vw,48px) 0}
+.fig.half{grid-column:span 4}
+.ph{position:relative;display:grid;place-items:center;aspect-ratio:16 / 9;background:var(--tint);
+  border:1px dashed var(--ink-2);color:var(--ink-2);text-align:center;padding:1.5rem}
+.ph.tall{aspect-ratio:4 / 5}
+.ph .in{display:grid;gap:.4rem;max-width:26rem}
+.ph .in b{color:var(--ink);font-weight:500;font-size:.95rem;letter-spacing:-.01em}
+.ph .ic{justify-self:center;width:2rem;height:1.5rem;border:1px solid currentColor;border-radius:3px;position:relative;margin-bottom:.3rem}
+.ph .ic::after{content:"";position:absolute;left:.35rem;bottom:.3rem;width:.7rem;height:.45rem;border-left:1px solid currentColor;border-bottom:1px solid currentColor;transform:skewX(-30deg)}
+figcaption{margin-top:.6rem;color:var(--ink-2)}
+.shot{display:block;width:100%;height:auto;background:var(--tint)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start}
+.pair .fig{margin:0;grid-column:auto}
+.stats{list-style:none;margin:.4rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(7.5rem,100%),1fr));gap:1.25rem 1rem;max-width:none}
+.stats li{display:flex;flex-direction:column;gap:.35rem;padding-top:.7rem;border-top:1px solid var(--ink)}
+.stats b{font-weight:400;font-size:clamp(1.9rem,3.4vw,2.6rem);letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.stats span{color:var(--ink-2)}
+.sec-b p.src{color:var(--ink-2);font-size:.75rem;line-height:1.3}
+
+.sec{padding:clamp(40px,6vw,80px) 0 0}
+.sec-h{grid-column:1 / 3;align-self:start;position:sticky;top:4.25rem;display:flex;flex-direction:column;gap:.4rem;padding-top:.9rem}
+.sec-h .n{color:var(--ink-2)}
+.sec-h h2{margin:0;font-size:1.5rem;font-weight:400;letter-spacing:-.035em;line-height:1.05}
+.sec-b{grid-column:3 / 8;border-top:1px solid var(--ink);padding-top:.9rem;display:grid;grid-template-columns:minmax(0,1fr);gap:1.1rem}
+.sec-b p{margin:0;font-size:1.125rem;line-height:1.55;letter-spacing:-.01em;max-width:40rem;text-wrap:pretty}
+.sec-b ul.pts{margin:0;padding:0;list-style:none;display:grid;gap:.55rem;max-width:40rem}
+.sec-b ul.pts li{position:relative;padding-left:1.25rem;font-size:1.0625rem;line-height:1.5}
+.sec-b ul.pts li::before{content:"";position:absolute;left:0;top:.72em;width:.6rem;height:1px;background:currentColor}
+.sec-b .fig{margin:.6rem 0 0}
+
+/* v2: results first, an executive summary, decisions called out, screenshots on a stage */
+.results{grid-column:1 / -1;list-style:none;margin:1.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(10rem,100%),1fr));gap:1.25rem 1rem}
+.results li{display:flex;flex-direction:column;gap:.4rem;padding-top:.8rem;border-top:1px solid var(--ink)}
+.results b{font-weight:400;font-size:clamp(2.4rem,4.6vw,4rem);letter-spacing:-.055em;line-height:.95;font-variant-numeric:tabular-nums}
+.results span{color:var(--ink-2)}
+.results-src{grid-column:1 / -1;margin:-.4rem 0 0;color:var(--ink-2)}
+.glance{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin:1.25rem 0 0;padding:1.25rem;background:var(--tint);border:1px solid var(--rule)}
+.glance div{display:flex;flex-direction:column;gap:.5rem}
+.glance dt{color:var(--ink-2)}
+.glance dd{margin:0;font-size:1rem;line-height:1.4;letter-spacing:-.01em;text-wrap:pretty}
+.stage{display:block;background:var(--stage,var(--tint));padding:clamp(12px,3vw,40px);border-radius:3px}
+.stage .shot{background:transparent}
+.call{margin:.4rem 0;padding:1.1rem 1.25rem 1.2rem;border:1px solid var(--ink);display:grid;gap:.85rem;max-width:44rem}
+.call .lbl{color:var(--ink-2)}
+.call .what{margin:0;font-size:1.3rem;line-height:1.25;letter-spacing:-.025em;text-wrap:balance}
+.call dl{margin:0;display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:.55rem 1rem;padding-top:.85rem;border-top:1px solid var(--rule)}
+.call dt{color:var(--ink-2);padding-top:.2em}
+.call dd{margin:0;font-size:1rem;line-height:1.5}
+.sec.reflect .sec-b{border-top-style:dashed}
+.kicker .rt{margin-left:auto}
+.pull{grid-column:1 / -1;margin:clamp(48px,7vw,96px) 0 0;padding:clamp(28px,4vw,48px) 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
+.pull p{grid-column:1 / -1;margin:0;max-width:22ch;font-size:clamp(1.9rem,4.4vw,3.75rem);letter-spacing:-.045em;line-height:1.02;text-wrap:balance}
+
+.todo{background:var(--todo);border-bottom:1px dashed var(--ink-2);padding:0 .2em;color:var(--ink)}
+.todo::before{content:"To add: ";font-size:.75em;font-weight:500;letter-spacing:.02em;color:var(--ink-2)}
+.status{grid-column:1 / -1;display:flex;gap:.6rem;align-items:baseline;padding:.8rem 1rem;background:var(--tint);border:1px solid var(--rule);color:var(--ink-2)}
+
+.next{margin-top:clamp(64px,9vw,120px);border-top:1px solid var(--ink)}
+.next a{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem;padding:1.5rem 0 1rem;text-decoration:none}
+.next .k{grid-column:1 / 3;color:var(--ink-2)}
+.next .t{grid-column:3 / 8;font-size:clamp(2rem,5vw,4.5rem);letter-spacing:-.05em;line-height:.95}
+.next .s{grid-column:3 / 7;margin-top:.8rem;color:var(--ink-2)}
+.next .ar{display:inline-block;transition:transform .5s var(--ease)}
+.next a:hover .ar{transform:translateX(.4rem)}
+.foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:clamp(40px,6vw,72px);padding-top:1rem;border-top:1px solid var(--rule);color:var(--ink-2)}
+
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+@media (max-width:639px){.glance{grid-template-columns:1fr;gap:1.1rem}}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+@media (max-width:860px){
+  .grid8,.next a{grid-template-columns:minmax(0,1fr)}
+  h1,.lede,.sec-h,.sec-b,.fig,.fig.half,.next .k,.next .t,.next .s{grid-column:1}
+  .pair{grid-template-columns:1fr}
+  .glance{grid-template-columns:1fr 1fr}
+  .call dl{grid-template-columns:1fr;gap:.2rem}
+  .call dd{margin-bottom:.5rem}
+  .kicker .rt{margin-left:0}
+  .facts{grid-template-columns:1fr 1fr;row-gap:1rem}
+  .sec-h{position:static;flex-direction:row;justify-content:space-between;align-items:baseline;padding:0 0 1rem}
+  .rail .here{display:none}
+}
+</style>
+</head>
+<body style="--stage:#E3EDEB">
+<div class="page">
+  <header class="rail c2">
+    <a class="back u" href="../hero-replica.html#work"><span class="ar" aria-hidden="true">&larr;</span>Back to work</a>
+    <span class="here">Case study · Datami</span>
+    <button class="u" type="button" id="invert">Invert colour</button>
+  </header>
+  <main>
+    <header class="hero grid8">
+      <p class="kicker c2 rv" style="margin:0"><span>Datami · Mobile service · 2018–21</span><span class="tag">Hands-on</span><span class="rt">3 min read</span></p>
+      <h1 class="rv">Reach Mobile: cutting the purchase flow until people finished it</h1>
+      <p class="lede rv">A US phone service sold and activated entirely online. My manager and I were hired as its first designers. I led the website and mobile web, where 98% of sales happened, and rebuilt the purchase flow around the version people actually finished.</p>
+      
+      <dl class="glance rv"><div><dt class="c2">The problem</dt><dd>Sell, activate and support a US phone plan entirely online, for people used to doing all of that in a store.</dd></div><div><dt class="c2">My role</dt><dd>Design Lead for the website and mobile web. With my manager, one of the product’s first two designers.</dd></div><div><dt class="c2">The call</dt><dd>When the long purchase flow kept losing people, replace it with the short campaign flow people were already finishing.</dd></div><div><dt class="c2">The result</dt><dd>The flow people finished became the flow for everyone, on the website and mobile web that carried 98% of sales.</dd></div></dl>
+      
+      <figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/reach/home.webp" alt="The Reach Mobile home page on desktop and on mobile web, with plans, a coverage map and illustrations" width="1600" height="992" loading="lazy" decoding="async"></span><figcaption class="c2">The Reach Mobile home page, desktop and mobile web. Illustrations by a teammate.</figcaption></figure>
+    </header>
+    <section class="sec grid8" aria-labelledby="s1">
+      <div class="sec-h"><span class="n c2">01</span><h2 id="s1">The situation</h2></div>
+      <div class="sec-b rv"><p>Reach Mobile is a mobile virtual network operator: it sells phone plans and SIM cards in the US over another carrier’s network. The idea was a service young people could buy, set up and manage from their phones, without ever visiting a store.</p><p>Research run by the marketing team in the US, 15 interviews and two surveys with more than 600 people aged 18 to 34 across all 50 states, showed what that had to fix. People went to a store to buy a SIM, to switch operators and to sort out problems; friends sharing a plan had to find a time to go together; and many felt their unused data was wasted.</p><p>The product had to be designed from scratch, cover a lot of features, and ship quickly, with a design team of two.</p></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s2">
+      <div class="sec-h"><span class="n c2">02</span><h2 id="s2">My role</h2></div>
+      <div class="sec-b rv"><p>There were no full-time designers before us. My manager and I were hired to start the product, later joined by a visual designer. I led the experience on the website and mobile web, and designed journeys in the mobile app when needed.</p><p>I ran a daily check-in with the design team, walked the 20-person engineering team through each design, reviewed what they built and made sure anything we let slip in one sprint was fixed in the next. Twice a week I reviewed the work with the product manager.</p></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s3">
+      <div class="sec-h"><span class="n c2">03</span><h2 id="s3">Shipping the part that sells</h2></div>
+      <div class="sec-b rv"><p>Engineering couldn’t build every flow for launch, so the first release covered the pages that explain the service and the SIM purchase flow. It was the right place to start: analytics later showed that 98% of conversions came through the website and mobile web.</p><p>Reviews were the other early bottleneck. Stakeholders found sketches and wireframes hard to follow, and feedback was slow to come.</p><aside class="call"><span class="lbl c2">The call</span><p class="what">Take finished UI to stakeholder reviews, and keep sketches and wireframes inside the design team.</p><dl><dt class="c2">Why</dt><dd>Stakeholders responded to real screens far more than to sketches. With finished UI in front of them, feedback came quickly and decisions closed fast.</dd><dt class="c2">The trade-off</dt><dd>Early exploration got less scrutiny from outside, so the design team had to challenge its own work harder before each review.</dd></dl></aside></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s4">
+      <div class="sec-h"><span class="n c2">04</span><h2 id="s4">Cutting the purchase flow until it worked</h2></div>
+      <div class="sec-b rv"><p>About three months after launch the business moved its network from AT&amp;T to Verizon. At the same time I gathered feedback on the purchase flow through customer support. People kept saying it was too long, and analytics showed many dropping out partway. We shortened it.</p><p>Drop-offs and complaints continued. Meanwhile, a fast purchase flow we had built for people arriving from social media and ads was losing very few of them and drawing no complaints.</p><aside class="call"><span class="lbl c2">The call</span><p class="what">Replace the regular purchase flow with the campaign flow people were already finishing.</p><dl><dt class="c2">Why</dt><dd>Two rounds of feedback and analytics said the long flow lost people. The campaign flow was the evidence of what worked.</dd><dt class="c2">The trade-off</dt><dd>Two rebuilds of the most important flow in the product within months of launch.</dd></dl></aside><p>We also started asking for feedback right after payment, so we heard from people in the moment rather than through support tickets.</p><div class="pair"><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/reach/flow-long.webp" alt="The original purchase flow, from the website through plans, login, adding lines, number choice, shipping, order summary and payment" width="741" height="1538" loading="lazy" decoding="async"></span><figcaption class="c2">The flow at launch</figcaption></figure><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/reach/flow-short.webp" alt="The final purchase flow: five steps, from the home page with plans to checkout, payment, IMEI check and feedback" width="741" height="646" loading="lazy" decoding="async"></span><figcaption class="c2">The flow everyone uses now, taken from the campaign journey</figcaption></figure></div></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s5">
+      <div class="sec-h"><span class="n c2">05</span><h2 id="s5">Outcome</h2></div>
+      <div class="sec-b rv"><p>The site kept evolving after launch. I designed app journeys still in use, including notifications, troubleshooting, setting a later payment date and updating a card. The business then began turning Reach Mobile into Reach Platform, offering the same service to other companies, and I led the design for that business-to-business side.</p><p><span class="todo">Any outcome figures you are comfortable sharing, with the month and year</span></p></div>
+    </section>
+    <section class="sec grid8 reflect" aria-labelledby="s6">
+      <div class="sec-h"><span class="n c2">06</span><h2 id="s6">What I learned</h2></div>
+      <div class="sec-b rv"><ul class="pts"><li><em>Show stakeholders the real thing.</em> Sketches and wireframes drew almost no feedback; finished UI drew plenty, and decisions got faster.</li><li><em>Know who is really buying.</em> Soon after launch the audience shifted from people in their twenties to people over 35, and the site had to be redesigned for them.</li></ul></div>
+    </section>
+  </main>
+  <nav class="next" aria-label="Next case study">
+    <a href="orders.html"><span class="k c2">Next case study</span><span class="t">Orders <span class="ar" aria-hidden="true">&rarr;</span></span><span class="s p">Reusable local components, and iteration priced by the pattern rather than the screen.</span></a>
+  </nav>
+  <footer class="foot c2"><span>&copy; <span id="yr">2026</span> Sujith Kumar Anand · Senior Product Design Manager</span><span>Open to Head of Design / Sr Design Manager roles · Bengaluru or remote</span></footer>
+</div>
+<script>
+(function(){
+  var root = document.documentElement;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  document.getElementById('invert').addEventListener('click', function(){
+    var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+  });
+  var items = document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){ items.forEach(function(e){ e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -6% 0px'});
+  items.forEach(function(e, i){ if(e.closest('.hero')) e.style.transitionDelay = (i * 90) + 'ms'; io.observe(e); });
+})();
+</script>
+</body>
+</html>

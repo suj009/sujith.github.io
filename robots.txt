@@ -1,0 +1,9 @@
+# sujith.design
+User-agent: *
+Allow: /
+# Earlier and in-progress versions of the portfolio; the live pages are at the root.
+Disallow: /v2/
+Disallow: /v3/
+Disallow: /zohoverify/
+
+Sitemap: https://sujith.design/sitemap.xml

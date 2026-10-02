@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trust is a design material — Sujith Kumar Anand</title>
+<meta name="description" content="When the screen moves someone’s money, trust isn’t a brand value you add at the end. It is built, or lost, in the smallest interactions.">
+<meta name="author" content="Sujith Kumar Anand">
+<link rel="canonical" href="https://sujith.design/writing/trust-is-a-design-material.html">
+<link rel="icon" href="../img/favicon.ico" sizes="48x48">
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Trust is a design material — Sujith Kumar Anand">
+<meta property="og:description" content="When the screen moves someone’s money, trust isn’t a brand value you add at the end. It is built, or lost, in the smallest interactions.">
+<meta property="og:image" content="https://sujith.design/img/og-sujith.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  color-scheme:light;
+  --ground:#F0F0F0;--ink:#0F0F0F;--ink-2:#0F0F0F8C;--rule:#0F0F0F1F;--tint:#0F0F0F08;
+  --todo:#0F0F0F12;
+  --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.25,1,.5,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F08C;--rule:#F2F0F024;--tint:#F2F0F00A;--todo:#F2F0F01A}
+}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F08C;--rule:#F2F0F024;--tint:#F2F0F00A;--todo:#F2F0F01A}
+*{box-sizing:border-box}
+html{background:var(--ground)}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;transition:background-color .5s var(--ease),color .5s var(--ease)}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+.c2{font-size:.75rem;font-weight:500;letter-spacing:-.02em;line-height:1.2}
+.page{max-width:1320px;margin:0 auto;padding:0 clamp(16px,2.5vw,32px) 40px}
+.grid8{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem}
+
+.rail{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  padding:calc(14px + env(safe-area-inset-top,0px)) 0 12px;background:var(--ground);border-bottom:1px solid var(--rule);
+  transition:background-color .5s var(--ease)}
+.rail a{text-decoration:none}
+.u{position:relative;padding-bottom:2px}
+.u::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.u:hover::after{transform:scaleX(1)}
+.back{display:inline-flex;align-items:center;gap:.5rem}
+.back .ar{display:inline-block;transition:transform .4s var(--ease)}
+.back:hover .ar{transform:translateX(-.25rem)}
+.rail .here{color:var(--ink-2)}
+
+.hero{padding:clamp(40px,7vw,96px) 0 clamp(28px,4vw,48px);row-gap:2rem}
+.kicker{grid-column:1 / -1;color:var(--ink-2);display:flex;gap:.75rem;flex-wrap:wrap}
+.kicker .tag{border:1px solid currentColor;border-radius:999px;padding:.15rem .55rem}
+h1{grid-column:1 / 8;margin:0;font-weight:400;font-size:clamp(2.6rem,6.4vw,6rem);letter-spacing:-.055em;line-height:.92;text-wrap:balance}
+.lede{grid-column:1 / 6;margin:0;font-size:clamp(1.15rem,1.8vw,1.5rem);letter-spacing:-.025em;line-height:1.3;text-wrap:pretty}
+.facts{grid-column:1 / -1;list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:1rem}
+.facts li{display:flex;flex-direction:column;gap:.35rem;padding-top:.8rem;border-top:1px solid var(--ink)}
+.facts .k{color:var(--ink-2)}
+.facts .v{font-size:1.05rem;letter-spacing:-.02em;line-height:1.3}
+
+figure{margin:0}
+.fig{grid-column:1 / -1;margin:clamp(24px,4vw,48px) 0}
+.fig.half{grid-column:span 4}
+.ph{position:relative;display:grid;place-items:center;aspect-ratio:16 / 9;background:var(--tint);
+  border:1px dashed var(--ink-2);color:var(--ink-2);text-align:center;padding:1.5rem}
+.ph.tall{aspect-ratio:4 / 5}
+.ph .in{display:grid;gap:.4rem;max-width:26rem}
+.ph .in b{color:var(--ink);font-weight:500;font-size:.95rem;letter-spacing:-.01em}
+.ph .ic{justify-self:center;width:2rem;height:1.5rem;border:1px solid currentColor;border-radius:3px;position:relative;margin-bottom:.3rem}
+.ph .ic::after{content:"";position:absolute;left:.35rem;bottom:.3rem;width:.7rem;height:.45rem;border-left:1px solid currentColor;border-bottom:1px solid currentColor;transform:skewX(-30deg)}
+figcaption{margin-top:.6rem;color:var(--ink-2)}
+
+.sec{padding:clamp(40px,6vw,80px) 0 0}
+.sec-h{grid-column:1 / 3;align-self:start;position:sticky;top:4.25rem;display:flex;flex-direction:column;gap:.4rem;padding-top:.9rem}
+.sec-h .n{color:var(--ink-2)}
+.sec-h h2{margin:0;font-size:1.5rem;font-weight:400;letter-spacing:-.035em;line-height:1.05}
+.sec-b{grid-column:3 / 8;border-top:1px solid var(--ink);padding-top:.9rem;display:grid;gap:1.1rem}
+.sec-b p{margin:0;font-size:1.125rem;line-height:1.55;letter-spacing:-.01em;max-width:40rem;text-wrap:pretty}
+.sec-b ul.pts{margin:0;padding:0;list-style:none;display:grid;gap:.55rem;max-width:40rem}
+.sec-b ul.pts li{position:relative;padding-left:1.25rem;font-size:1.0625rem;line-height:1.5}
+.sec-b ul.pts li::before{content:"";position:absolute;left:0;top:.72em;width:.6rem;height:1px;background:currentColor}
+.sec-b .fig{margin:.6rem 0 0}
+
+.pull{grid-column:1 / -1;margin:clamp(48px,7vw,96px) 0 0;padding:clamp(28px,4vw,48px) 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
+.pull p{margin:0;max-width:22ch;font-size:clamp(1.9rem,4.4vw,3.75rem);letter-spacing:-.045em;line-height:1.02;text-wrap:balance}
+
+.todo{background:var(--todo);border-bottom:1px dashed var(--ink-2);padding:0 .2em;color:var(--ink)}
+.todo::before{content:"To add: ";font-size:.75em;font-weight:500;letter-spacing:.02em;color:var(--ink-2)}
+.status{grid-column:1 / -1;display:flex;gap:.6rem;align-items:baseline;padding:.8rem 1rem;background:var(--tint);border:1px solid var(--rule);color:var(--ink-2)}
+
+.next{margin-top:clamp(64px,9vw,120px);border-top:1px solid var(--ink)}
+.next a{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem;padding:1.5rem 0 1rem;text-decoration:none}
+.next .k{grid-column:1 / 3;color:var(--ink-2)}
+.next .t{grid-column:3 / 8;font-size:clamp(2rem,5vw,4.5rem);letter-spacing:-.05em;line-height:.95}
+.next .s{grid-column:3 / 7;margin-top:.8rem;color:var(--ink-2)}
+.next .ar{display:inline-block;transition:transform .5s var(--ease)}
+.next a:hover .ar{transform:translateX(.4rem)}
+.foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:clamp(40px,6vw,72px);padding-top:1rem;border-top:1px solid var(--rule);color:var(--ink-2)}
+
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+@media (max-width:860px){
+  .grid8,.next a{grid-template-columns:1fr}
+  h1,.lede,.sec-h,.sec-b,.fig,.fig.half,.next .k,.next .t,.next .s{grid-column:1}
+  .facts{grid-template-columns:1fr 1fr;row-gap:1rem}
+  .sec-h{position:static;flex-direction:row;justify-content:space-between;align-items:baseline;padding:0 0 1rem}
+  .rail .here{display:none}
+}
+
+.a-head{padding:clamp(40px,7vw,96px) 0 clamp(28px,4vw,40px);row-gap:1.5rem;border-bottom:1px solid var(--ink)}
+.a-head h1{grid-column:1 / 8}
+.a-head .dek{grid-column:1 / 6;margin:0;font-size:clamp(1.15rem,1.8vw,1.5rem);letter-spacing:-.025em;line-height:1.3;color:var(--ink-2)}
+.byline{grid-column:1 / -1;display:flex;gap:1.5rem;color:var(--ink-2)}
+.a-body{padding-top:clamp(32px,5vw,64px)}
+.a-body > *{grid-column:3 / 8}
+.a-body p{margin:0 0 1.25rem;font-size:1.1875rem;line-height:1.6;letter-spacing:-.012em;text-wrap:pretty}
+.a-body h2{margin:2.75rem 0 1rem;font-size:1.75rem;font-weight:400;letter-spacing:-.035em;line-height:1.1;padding-top:.9rem;border-top:1px solid var(--rule)}
+.a-body blockquote{margin:1.5rem 0 2rem;padding:0 0 0 1.25rem;border-left:1px solid var(--ink)}
+.a-body blockquote p{font-size:clamp(1.4rem,2.4vw,1.9rem);letter-spacing:-.035em;line-height:1.2;margin:0}
+.a-body .q{font-weight:500}
+.a-body ol{margin:0 0 1.5rem;padding-left:1.25rem}
+.a-body ol li{font-size:1.1875rem;line-height:1.6;margin-bottom:.75rem;padding-left:.25rem}
+.more{margin-top:clamp(56px,8vw,104px);border-top:1px solid var(--ink)}
+.more-h{padding:1rem 0;color:var(--ink-2)}
+.more a{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem;padding:1.1rem 0;border-top:1px solid var(--rule);text-decoration:none}
+.more .k{grid-column:1 / 3;color:var(--ink-2)}
+.more .t{grid-column:3 / 7;font-size:clamp(1.4rem,2.6vw,2.1rem);letter-spacing:-.035em;line-height:1.05}
+.more .ar{grid-column:8;justify-self:end;transition:transform .4s var(--ease)}
+.more a:hover .ar{transform:translateX(.3rem)}
+@media (max-width:860px){
+  .a-head h1,.a-head .dek,.a-body > *{grid-column:1}
+  .more a{grid-template-columns:1fr auto}
+  .more .k{grid-column:1 / -1}.more .t{grid-column:1}.more .ar{grid-column:2}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="rail c2">
+    <a class="back u" href="../hero-replica.html#writing"><span class="ar" aria-hidden="true">&larr;</span>Back to writing</a>
+    <span class="here">Essay · Fintech</span>
+    <button class="u" type="button" id="invert">Invert colour</button>
+  </header>
+  <main>
+    <header class="a-head grid8">
+      <p class="kicker c2 rv" style="margin:0"><span>Essay · Fintech</span></p>
+      <h1 class="rv">Trust is a design material</h1>
+      <p class="dek rv">When the screen moves someone’s money, trust isn’t a brand value you add at the end. It is built, or lost, in the smallest interactions.</p>
+      <p class="byline c2 rv" style="margin:0"><span>Sujith Kumar Anand</span><span>About 5 min read</span></p>
+    </header>
+    <article class="a-body grid8">
+      <p>Most products can afford to be a little wrong. A music app that queues the wrong song costs you ten seconds. A trading app that places the wrong order costs you money, and the person who lost it will remember the screen that let it happen.</p>
+      <p>I have spent much of my career on products where people put money at risk: a brokerage, decentralised finance, portfolio investing. The lesson I keep relearning is that trust is not a layer of reassuring copy on top of the design. It is a material the design is made from, and it is spent or earned in the smallest interactions.</p>
+      <h2>Speed and safety are not opposites</h2>
+      <p>The usual framing is a trade-off: add friction to make things safe, remove it to make them fast. For someone who trades in seconds, that framing fails in both directions. A confirmation modal slows them down <em>and</em> trains them to click through it without reading, which makes it neither fast nor safe.</p>
+      <p>The better question is where the check should live. When I built an order ticket for fast traders, the answer was to put the confirmation where the hand already was, not in a dialog that interrupts it. A deliberate gesture under a moving thumb is both quicker and harder to trigger by accident than a box that asks "Are you sure?"</p>
+      <blockquote><p>Friction is not a safety feature. Friction in the right place is.</p></blockquote>
+      <h2>Show the state, always</h2>
+      <p>Money makes uncertainty expensive. If someone can't tell whether their order is pending, partly filled, executed or rejected, they will act on a guess, and a guess placed twice is a duplicated position.</p>
+      <p>So every state gets designed, not just the happy path. In Orders at FYERS, the unglamorous work was making each state unmistakable across every screen it appeared on, and making sure they all behaved the same way. Consistency here is not polish. It is how people learn to believe what the screen tells them.</p>
+      <h2>Say what will happen before it happens</h2>
+      <p>People forgive outcomes they were told about. They don't forgive surprises. Costs, margin, what an exit will close, what an automation will do when its trigger fires: all of it belongs on the screen <em>before</em> the tap, in plain words, not in a help article after.</p>
+      <p>This matters even more as products get smarter. When an AI assistant analyses a portfolio or an automation places an order on a signal, the person needs to see what it is going to do and why, and keep the final say. Automation earns trust by being legible, not by being clever.</p>
+      <h2>Make the exit as easy as the entry</h2>
+      <p>Many products design the way in with care and the way out as an afterthought. In trading the way out is often the moment of highest stress: a position is moving against you and you need to act now. A single, obvious way to close everything is a trust feature, not a convenience. It tells people they are never trapped.</p>
+      <h2>Trust compounds</h2>
+      <p>None of these decisions is dramatic on its own. A confirmation in the right place, a state that is never ambiguous, a cost shown up front, an exit that is always one step away. But people notice all of them, mostly without knowing they have, and they add up to a feeling: this product is on my side.</p>
+      <p>That feeling is the real product. The features are how you earn it.</p>
+    </article>
+  </main>
+  <nav class="more" aria-label="Keep reading"><div class="more-h c2">Keep reading</div><a href="the-handoff-is-dead.html"><span class="k c2">Design + AI</span><span class="t">The handoff is dead</span><span class="ar" aria-hidden="true">&rarr;</span></a><a href="one-designer-whole-problem.html"><span class="k c2">Team &amp; craft</span><span class="t">One designer, whole problem</span><span class="ar" aria-hidden="true">&rarr;</span></a><a href="zero-to-one-three-times.html"><span class="k c2">Product</span><span class="t">Zero to one, three times</span><span class="ar" aria-hidden="true">&rarr;</span></a></nav>
+  <footer class="foot c2"><span>&copy; <span id="yr">2026</span> Sujith Kumar Anand · Senior Product Design Manager</span><span>Open to Head of Design / Sr Design Manager roles · Bengaluru or remote</span></footer>
+</div>
+<script>
+(function(){
+  var root = document.documentElement;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  document.getElementById('invert').addEventListener('click', function(){
+    var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+  });
+  var items = document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){ items.forEach(function(e){ e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); });
+  items.forEach(function(e, i){ e.style.transitionDelay = (i * 90) + 'ms'; io.observe(e); });
+})();
+</script>
+</body>
+</html>
