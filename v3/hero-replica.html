@@ -202,9 +202,10 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
 .tag-wrap{position:sticky;top:0;height:100svh;margin-bottom:-100svh;overflow:hidden;pointer-events:none;z-index:1;
 }
 /* as in the source: no mask at rest, so the description is never cut; once the page has moved,
-   the diagonal splits the layer and the visible half turns with the line */
-.tag-wrap.masked{-webkit-mask-image:linear-gradient(var(--angle),#000 50%,transparent 50%);
-          mask-image:linear-gradient(var(--angle),#000 50%,transparent 50%)}
+   the diagonal splits the layer and the visible side turns with the line, widening as you scroll
+   so the tagline is whole by the time it reaches the middle of the screen */
+.tag-wrap.masked{-webkit-mask-image:linear-gradient(var(--angle),#000 var(--cut,50%),transparent var(--cut,50%));
+          mask-image:linear-gradient(var(--angle),#000 var(--cut,50%),transparent var(--cut,50%))}
 /* without script nothing moves the pinned layer, so let the headline sit in the hero's flow instead */
 html:not(.js) .tag-wrap{position:absolute;left:0;right:0;top:0;height:auto;margin:0;overflow:visible;
   -webkit-mask-image:none;mask-image:none}
@@ -1346,6 +1347,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     tagBox.style.transform = 'translate3d(0,' + (-y) + 'px,0)';
     var p = range > 0 ? y / range : 0;
     tagWrap.classList.toggle('masked', y > innerHeight * .12);
+    hero.style.setProperty('--cut', (50 + 50 * Math.min(p * 1.6, 1)) + '%');
     setAngle();
   }
 

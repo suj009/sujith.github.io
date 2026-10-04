@@ -189,6 +189,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   (`angle × (1 − progress)`). On load the three lines draw down in turn (clip-path, 1.2s,
   0.2s stagger); no angle swing. The tagline layer is masked by the line only once the page
   has moved 12% of the viewport (`.tag-wrap.masked`), so the description is never cut at rest.
+  Unlike the source, the visible side widens as you scroll (`--cut` 50% → 100% by 62.5% of the
+  hero's range), because the line only reaches about 45° by the end of our hero and would
+  otherwise cut the tagline in half at its reading position (Sujith flagged it).
 - **The hero description is one lighter colour** (`--ink-2`), with no darker emphasis, on
   desktop and phone (Sujith).
 
@@ -294,7 +297,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   countries live, 2020" (Adoption). On Reach Mobile he was Design
   Lead (his manager was the Design Manager), the first designers on the product; the fast
   social/ads purchase flow was "we", not "I"; visual artwork was a teammate's. Its outcome
-  figures (3,000+ paid monthly users, hit by COVID) are not on the page until he decides.
+  figures (3,000+ paid monthly users, hit by COVID) stay off the site (Sujith).
 - **Case study template v2** (Nexter, Airtel TV Africa and Reach Mobile are on it; Orders,
   Wealth Tracker and NRI onboarding still need screenshots and notes from Sujith): results strip first (`results=`), an "at a glance" summary of
   problem / role / the call / result (`glance=`), decisions as call-outs with Why and The
