@@ -184,7 +184,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 
 ## v3 Work, case studies and essays
 
-- **Manager wall** (`#viewMgr` in `v3/hero-replica.html`) lists 35 FYERS
+- **Manager wall** (`#viewMgr` in `v3/hero-replica.html`) lists 34 FYERS
   features shipped since February 2024. Sujith reviewed the list card by card;
   the source of truth is `wall.tsv` (video id, name, area, sub-area, design
   scope S/M/L, launch month), which `wall.py` turns into the cards. Both live in
@@ -193,19 +193,17 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   design), four Automate triggers and FIA IPO analysis (dev work), and NRI
   onboarding (his own hands-on work, now an IC case study) and the generic
   "Reports & portfolio" card (Reports is a vertical; portfolio sits under
-  Trading). Chart features are
+  Trading), and API Dashboard (Sujith, Oct 2026). Chart features are
   "minimal design, mostly dev", so they carry a Small scope.
 - **Trading has three sub-areas: Trading, Charts and API** (Sujith). Cards show
   "Trading · Charts" and "Trading · API"; plain Trading cards just say
   "Trading". He tried sub-area chips under Trading and dropped them as
-  unnecessary; don't bring them back unless he asks. API Dashboard
-  is the one API card so far (Feature, March 2026, per Sujith); it has no FYERS
-  walkthrough video, and its one-line description is still to come from him.
-  Newest-first order is `data-order`, not the date, so a card added later must
+  unnecessary; don't bring them back unless he asks. No API card is on the wall
+  now: API Dashboard was removed at his request. Newest-first order is `data-order`, not the date, so a card added later must
   be slotted into the sequence by its month. FYERS
-  Professional is the other card without a video. The count (35) appears in
-  the lede, the All chip, the phone sheet's Done button and Leadership
-  ("Thirty-five", "35 features shipped"); move them together.
+  Professional is the one card without a video. The count (34) appears in
+  the lede, the filter sentence, the All chip, the Trading chip (13) and Leadership
+  ("Thirty-four", "34 features shipped"); move them together.
 - **Manager wall cards carry no figures** (no FYERS numbers): the panel holds the one-line
   description only. For fine pointers the panel keeps a 2.5:1 frame so the hover still has
   room; on touch it is as tall as the text. The layout-H figure slots below apply to past
@@ -232,7 +230,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Phones below 640px get one card per row. Hands-on cards use the same anatomy:
   their description sits in the panel with the same two slots, and there is no
   hover still. **The filter** (Sujith's picks from the filter options page): on
-  desktop it is one sentence, "Showing 35 features in [every area], [newest
+  desktop it is one sentence, "Showing 34 features in [every area], [newest
   first]", with two native dropdowns (option B); below 1024px it is one strip of
   area and sort chips that swipes sideways, with no sheet (option F). Both drive
   the same state and stay in step; the count in the sentence updates as you
