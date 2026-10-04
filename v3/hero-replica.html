@@ -140,7 +140,6 @@
   --nav-h:2.4375rem;
   --logo-offset:calc(13.5vw + 1rem);
   --angle:-143.5deg;
-  --cut:50%;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F066;--plate-d:#1C1C1C;--plate-m:#2A2A2A;--inv-bg:#F0F0F0;--inv-fg:#0F0F0F}
@@ -201,8 +200,11 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
 .grid .g3{inset:0;background:linear-gradient(var(--angle),transparent calc(50% - .5px),var(--hair) calc(50% - .5px),var(--hair) calc(50% + .5px),transparent calc(50% + .5px))}
 
 .tag-wrap{position:sticky;top:0;height:100svh;margin-bottom:-100svh;overflow:hidden;pointer-events:none;z-index:1;
-  -webkit-mask-image:linear-gradient(var(--angle),#000 var(--cut),transparent var(--cut));
-          mask-image:linear-gradient(var(--angle),#000 var(--cut),transparent var(--cut))}
+}
+/* as in the source: no mask at rest, so the description is never cut; once the page has moved,
+   the diagonal splits the layer and the visible half turns with the line */
+.tag-wrap.masked{-webkit-mask-image:linear-gradient(var(--angle),#000 50%,transparent 50%);
+          mask-image:linear-gradient(var(--angle),#000 50%,transparent 50%)}
 /* without script nothing moves the pinned layer, so let the headline sit in the hero's flow instead */
 html:not(.js) .tag-wrap{position:absolute;left:0;right:0;top:0;height:auto;margin:0;overflow:visible;
   -webkit-mask-image:none;mask-image:none}
@@ -211,7 +213,6 @@ html:not(.js) .tag-wrap{position:absolute;left:0;right:0;top:0;height:auto;margi
 .desc{grid-column:6 / 9;height:calc(406 / 800 * 100svh);padding:0 1rem 0 0;
   display:flex;flex-direction:column;gap:1.5rem}
 .desc .p1{max-width:32rem;color:var(--ink-2)}
-.desc .p1 b{font-weight:500;color:var(--ink)}
 .tagline{grid-column:1 / 6;grid-row:2;margin:9.75rem .5rem 0 0;text-align:end}
 .tagline span{display:block}
 
@@ -649,7 +650,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   .hero::after{height:calc(50svh + 14rem)}
   .hero-body{padding:4.5625rem 0 1.25rem}
   .content{height:calc(50svh - .25rem);grid-template-columns:repeat(4,minmax(0,1fr));align-content:space-between;padding:0 1rem}
-  .desc-m{display:block;grid-column:1 / -1;grid-row:1;text-align:center;font-size:.875rem;font-weight:500;
+  .desc-m{display:block;grid-column:1 / -1;grid-row:1;text-align:center;font-size:.875rem;font-weight:500;color:var(--ink-2);
     letter-spacing:-.02em;line-height:115%;padding-top:1rem}
   .caption{grid-column:3 / -1;grid-row:2;align-self:end;max-width:12rem;padding-left:.5rem}
   .scroll-cap,.drip{display:none}
@@ -762,7 +763,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
         <div class="desc">
           <p class="h4 words" style="margin:0">Eleven years in product design, with multiple products launched 0&#8239;&rarr;&#8239;1.</p>
           <p class="p1 words" style="margin:0">Today I lead five designers across six verticals at a
-            <b>top-20 Indian retail brokerage serving over a million active clients</b>, and I still ship front-end.</p>
+            top-20 Indian retail brokerage serving over a million active clients, and I still ship front-end.</p>
         </div>
         <h1 class="tagline h2" id="tagline"><span class="sr">Sujith Kumar Anand, Senior Product Design Manager: </span><span>Designing fintech</span><span>people trust</span><span>with money</span></h1>
       </div>
@@ -1316,6 +1317,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hero = document.querySelector('.hero');
   var tagBox = document.getElementById('tagBox');
+  var tagWrap = document.querySelector('.tag-wrap');
   var mark = document.getElementById('wordmark');
 
 
@@ -1329,11 +1331,13 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     root.style.setProperty('--logo-offset', (h + parseFloat(getComputedStyle(root).fontSize)) + 'px');
   }
 
+  var restAngle = -150;
   function fitAngle(){
-    var w = innerWidth, h = innerHeight;
-    var run = innerWidth < 1024 ? w / 2 : w * .375;
-    var line = 90 + Math.atan((h / 2) / run) * 180 / Math.PI;
-    hero.style.setProperty('--angle', (line + 90 - 360) + 'deg');
+    restAngle = Math.atan2(tagWrap.clientHeight || innerHeight, tagWrap.clientWidth || innerWidth) * 180 / Math.PI - 180;
+  }
+  function setAngle(){
+    var p = Math.min(Math.max((scrollY - hero.offsetTop) / (hero.offsetHeight * .65), 0), 1);
+    hero.style.setProperty('--angle', (restAngle - restAngle * p) + 'deg');
   }
 
   function onScroll(){
@@ -1341,7 +1345,8 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     var y = Math.min(Math.max(scrollY - hero.offsetTop, 0), range);
     tagBox.style.transform = 'translate3d(0,' + (-y) + 'px,0)';
     var p = range > 0 ? y / range : 0;
-    hero.style.setProperty('--cut', (50 + 50 * Math.min(p * 1.15, 1)) + '%');
+    tagWrap.classList.toggle('masked', y > innerHeight * .12);
+    setAngle();
   }
 
   function layout(){ fitMark(); fitAngle(); onScroll(); }
@@ -1645,14 +1650,9 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     walk(p);
   });
 
-  var o = {a: 0};
-  var finalAngle = parseFloat(getComputedStyle(hero).getPropertyValue('--angle'));
   var tl = gsap.timeline({defaults:{ease:'expo.out'}});
-  tl.from('.grid .g1, .grid .g2', {clipPath:'inset(0 0 100% 0)', duration:1.6, stagger:.12, ease:'power3.inOut'}, 0)
-    .fromTo(o, {a: 36}, {a: 0, duration:1.8, ease:'power3.inOut',
-      onUpdate:function(){ hero.style.setProperty('--angle', (finalAngle + o.a) + 'deg'); },
-      onComplete:fitAngle}, 0)
-    .from('.grid .g3', {opacity:0, duration:1.2}, 0)
+  // as in the source: the three lines, diagonal included, draw down in turn
+  tl.from('.grid .g1, .grid .g2, .grid .g3', {clipPath:'inset(0% 0% 100% 0%)', duration:1.2, stagger:.2, ease:'power1.out', delay:.1}, 0)
     .from('.wordmark .l > span', {yPercent:105, duration:1.4, stagger:.07}, .35)
     .from('.nav .mark .logo, .nav .slide', {y:14, opacity:0, duration:1, stagger:.06}, .8)
     .from('.hero .w', {y:'0.6em', opacity:0, duration:1, stagger:.012}, 1)

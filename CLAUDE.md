@@ -182,6 +182,16 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   `case-study-fdsg.html` and `article-scaling-design-system.html` while the FDSG
   claim is disputed; robots blocks `/v2/` and `/v3/` as duplicate versions.
 
+## v3 hero (hero-replica.html)
+
+- **The diagonal line follows the source (santalarch.com)**: at rest it runs corner to corner
+  (`atan2(height, width) − 180°`), and over the first 65% of the hero's scroll it turns to flat
+  (`angle × (1 − progress)`). On load the three lines draw down in turn (clip-path, 1.2s,
+  0.2s stagger); no angle swing. The tagline layer is masked by the line only once the page
+  has moved 12% of the viewport (`.tag-wrap.masked`), so the description is never cut at rest.
+- **The hero description is one lighter colour** (`--ink-2`), with no darker emphasis, on
+  desktop and phone (Sujith).
+
 ## v3 Work, case studies and essays
 
 - **Manager wall** (`#viewMgr` in `v3/hero-replica.html`) lists 34 FYERS
