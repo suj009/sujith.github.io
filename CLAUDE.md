@@ -195,6 +195,11 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 - **The hero description is one lighter colour** (`--ink-2`), with no darker emphasis, on
   desktop and phone (Sujith).
 
+- **About (Lead / Launch / Ship) runs on a 520svh pinned stage** (was 600). The photo starts
+  fading in while the curtain is still closing (curtain 0–0.9, photo from 0.5), and "Lead"
+  arrives at 1.3 of an 8.8-unit timeline, so there is no empty dark screen after the hero
+  (Sujith: "why empty, move bit faster").
+
 ## v3 Work, case studies and essays
 
 - **Manager wall** (`#viewMgr` in `v3/hero-replica.html`) lists 34 FYERS

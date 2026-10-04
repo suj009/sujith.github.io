@@ -274,7 +274,7 @@ html:not(.js) .tag-wrap{position:absolute;left:0;right:0;top:0;height:auto;margi
 .stmt .d{grid-column:2 / 5;grid-row:2;max-width:22rem;margin:1.75rem 0 0}
 .stmt .d b{font-weight:500}
 
-html.anim .about{background:none;margin-top:-100svh;height:600svh}
+html.anim .about{background:none;margin-top:-100svh;height:520svh}
 html.anim .about .layer{position:sticky;top:0;height:100svh;margin-bottom:-100svh;overflow:hidden;pointer-events:none}
 html.anim .curtain,html.anim .cross{display:block}
 html.anim .about-nav{display:grid}
@@ -1680,19 +1680,20 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
       tl.to(sel + ' .t, ' + sel + ' .d .w', {opacity:0, y:-30, duration:.4, ease:'power2.in'}, at);
     }
 
-    tl.to('.curtain .t, .curtain .b', {scaleY:1, duration:1.2, ease:'power2.inOut'}, 0)
-      .fromTo('.photo', {opacity:0}, {opacity:1, duration:1, ease:'power1.inOut'}, 1.2)
-      .fromTo('.photo .cut', {opacity:0, yPercent:4, scale:1.06}, {opacity:1, yPercent:0, scale:1, duration:1.6, ease:'power2.out'}, 1.5)
-      .to('.photo .cut', {scale:1.04, duration:6, ease:'none'}, 3.1)
-      .to('.cross, .about-nav', {opacity:1, duration:.6}, 2.2);
-    show('.s1', 2.5);
-    hide('.s1', 4.1);
-    tl.to('.about-nav .roll', {yPercent:-100/3, duration:.4, ease:'power2.inOut'}, 4.4);
-    show('.s2', 4.6);
-    hide('.s2', 6.4);
-    tl.to('.about-nav .roll', {yPercent:-200/3, duration:.4, ease:'power2.inOut'}, 6.9);
-    show('.s3', 7.3);
-    tl.to({}, {duration:1.6}, 8.4);
+    // the photo starts fading in while the curtain is still closing, so the stage is never empty for long
+    tl.to('.curtain .t, .curtain .b', {scaleY:1, duration:.9, ease:'power2.inOut'}, 0)
+      .fromTo('.photo', {opacity:0}, {opacity:1, duration:.6, ease:'power1.inOut'}, .5)
+      .fromTo('.photo .cut', {opacity:0, yPercent:4, scale:1.06}, {opacity:1, yPercent:0, scale:1, duration:1.2, ease:'power2.out'}, .6)
+      .to('.photo .cut', {scale:1.04, duration:6, ease:'none'}, 1.8)
+      .to('.cross, .about-nav', {opacity:1, duration:.5}, 1);
+    show('.s1', 1.3);
+    hide('.s1', 2.9);
+    tl.to('.about-nav .roll', {yPercent:-100/3, duration:.4, ease:'power2.inOut'}, 3.2);
+    show('.s2', 3.4);
+    hide('.s2', 5.2);
+    tl.to('.about-nav .roll', {yPercent:-200/3, duration:.4, ease:'power2.inOut'}, 5.7);
+    show('.s3', 6.1);
+    tl.to({}, {duration:1.6}, 7.2);
   });
 
   gsap.fromTo('.works', {clipPath:'inset(0% 50% 0% 50%)'}, {clipPath:'inset(0% 0% 0% 0%)', ease:'none',
