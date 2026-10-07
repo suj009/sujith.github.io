@@ -437,6 +437,21 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:8rem;clip-p
   .vo-bar{padding:0 1rem .75rem}
 }
 @media (prefers-reduced-motion:reduce){.vo-scrim,.vo-box,.plate .info,.plate .play{transition:none}}
+/* password-protected case: a lock on the card, and a small password panel on the same scrim as the video */
+.plate .lockb{display:inline-flex;align-items:center;gap:.3rem}
+.plate .lockb svg,.po-k svg{width:.72rem;height:.72rem;flex:none}
+.po-box{width:min(100%,28rem);background:var(--ground);color:var(--ink);padding:clamp(1.5rem,4vw,2.25rem);border-radius:4px}
+.po-x{position:absolute;top:.6rem;right:.75rem;font-size:1.6rem;line-height:1;width:2rem;height:2rem;color:inherit}
+.po-k{display:flex;align-items:center;gap:.35rem;margin:0;color:var(--ink-2)}
+.po-t{margin:.6rem 0 0;font-size:2.0625rem;font-weight:400;letter-spacing:-.03em;line-height:1.08}
+.po-d{margin:.75rem 0 1.25rem;color:var(--ink-2)}
+.po-d a{color:var(--ink)}
+#poForm{display:flex;flex-direction:column;gap:.4rem}
+.po-row{display:flex;gap:.5rem}
+.po-row input{flex:1;min-width:0;font:inherit;font-size:1rem;padding:.7rem .85rem;border:1px solid color-mix(in srgb,var(--ink) 30%,transparent);border-radius:3px;background:transparent;color:var(--ink)}
+.po-row input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.po-row button{padding:.7rem 1.15rem;border-radius:3px;background:var(--ink);color:var(--ground)}
+.po-msg{min-height:1.2em}
 @media (max-width:1023px){
   .plate.vid .pl-link{gap:.75rem;padding:.75rem}
   .plate.vid .nm{font-size:1.25rem}
@@ -796,11 +811,11 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
       </div>
       <div class="stmt s2">
         <h3 class="t h2">Launch</h3>
-        <p class="d p1 words">Multiple products taken 0&#8239;&rarr;&#8239;1: FIA at FYERS, Nexter Finance in decentralised finance, and the Airtel TV Africa streaming app.</p>
+        <p class="d p1 words">Two products taken 0&#8239;&rarr;&#8239;1: Airtel TV Africa, a streaming app live in all 14 of its markets, and Nexter Finance, a prediction market with $19M+ in volume by January 2024.</p>
       </div>
       <div class="stmt s3">
         <h3 class="t h2">Ship</h3>
-        <p class="d p1 words">Still hands-on. Wealth 360 went from brief to Flutter-ready web and mobile, built with AI. The front-end team estimated roughly 70% less implementation effort.</p>
+        <p class="d p1 words">Still hands-on, and turning it into leverage. Wealth 360 went from brief to Flutter-ready web and mobile with an estimated 70% less front-end effort, and became AIDA, a way of working now rolling out across design and product.</p>
       </div>
     </div>
     <div class="layer about-nav" aria-hidden="true">
@@ -993,7 +1008,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
         <li class="plate g vid extra" data-area="FIA" data-scope="2" data-date="2025-03" data-order="28"><a class="pl-link" href="https://www.youtube.com/watch?v=j9hevhoHrKU" target="_blank" rel="noopener" aria-label="FIA, FYERS Intelligent Assistant: play FYERS&rsquo;s walkthrough" aria-describedby="sum-j9hevhoHrKU">
           <span class="top c2"><span>FIA</span><span>Mar 2025</span></span>
           <span class="ttl"><span class="nm">FIA, FYERS Intelligent Assistant</span><span class="tier c2">Feature</span></span>
-          <span class="shot"><span class="info"><span class="sum p1" id="sum-j9hevhoHrKU">FYERS’s AI assistant, built from zero: no-code screeners, real-time alerts and one-click saved strategies.</span></span><img src="img/work/j9hevhoHrKU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
+          <span class="shot"><span class="info"><span class="sum p1" id="sum-j9hevhoHrKU">FYERS’s AI assistant: no-code screeners, real-time alerts and one-click saved strategies.</span></span><img src="img/work/j9hevhoHrKU.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></span>
           <span class="bot row"><span class="watch c2"><span class="pi" aria-hidden="true"></span>Watch the walkthrough</span><span class="seal" aria-hidden="true" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span></span>
         </a></li>
         <li class="plate d vid extra" data-area="Trading" data-scope="1" data-date="2024-12" data-order="29"><a class="pl-link" href="https://www.youtube.com/watch?v=6mKK6bzzzBI" target="_blank" rel="noopener" aria-label="Instant Withdrawal: play FYERS&rsquo;s walkthrough" aria-describedby="sum-6mKK6bzzzBI">
@@ -1053,13 +1068,13 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
             <span class="seal" role="img" aria-label="FYERS" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span>
           </span>
         </a>
-        <a class="plate ic l" href="work/wealth-360.html">
-          <span class="top c2"><span>Reports</span><span>2026</span></span>
+        <a class="plate ic l locked" href="work/wealth-360.html" data-lock="wealth-360.html">
+          <span class="top c2"><span>Reports</span><span class="lockb"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7.5" rx="1.5" fill="currentColor"/><path d="M5.3 7V5.2a2.7 2.7 0 0 1 5.4 0V7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Password protected</span></span>
           <span class="ttl"><span class="nm">Wealth 360</span><span class="tier c2">End to end</span></span>
-          <span class="role c2">End-to-end ownership &middot; Password protected</span>
-          <span class="shot"><span class="info"><span class="sum p1">A PRD and an AI-generated concept in; Flutter-ready web and mobile out. Taken through approval with the AVP, CPO and CTO, then built myself. The front-end team estimated roughly 70% less implementation effort.</span></span></span>
+          <span class="role c2">End-to-end ownership &middot; 2026</span>
+          <span class="shot"><span class="info"><span class="sum p1">A PRD and an AI-generated concept in; Flutter-ready web and mobile out. Taken through approval with the AVP of Product, the CPO and the CTO, then built myself. The front-end team estimated roughly 70% less implementation effort.</span></span></span>
           <span class="bot row">
-            <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
+            <span class="go c1"><span class="slide"><span>Unlock the case study</span><span aria-hidden="true">Unlock the case study</span></span><span aria-hidden="true">&rarr;</span></span>
             <span class="seal" role="img" aria-label="FYERS" style="--logo:url(img/co/fyers-f.svg);--ar:1.2447"></span>
           </span>
         </a>
@@ -1067,7 +1082,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
           <span class="top c2"><span>DeFi</span><span>2022–24</span></span>
           <span class="ttl"><span class="nm">Nexter Finance</span><span class="tier c2">0&#8239;&rarr;&#8239;1</span></span>
           <span class="role c2">Design Lead</span>
-          <span class="shot"><span class="info"><span class="sum p1">Led and personally designed a decentralised prediction market for desktop and mobile web, tested it with six users, and called the phased release that let the team ship while the scope was still moving.</span><span class="ba-w"><span class="ba"><b>1.7M+</b></span><span class="ba-l c2">Predictions made, Jan 2024</span></span><span class="kpis c2"><span class="kpi"><b>10K+</b>Users, Jan 2024</span></span></span></span>
+          <span class="shot"><span class="info"><span class="sum p1">Led the design of a decentralised prediction market from the first flow, and called the phased release that let it ship before the scope was settled. By January 2024: $19M+ in volume and $242K in fees.</span><span class="ba-w"><span class="ba"><b>1.7M+</b></span><span class="ba-l c2">Predictions made, Jan 2024</span></span><span class="kpis c2"><span class="kpi"><b>10K+</b>Users, Jan 2024</span></span></span></span>
           <span class="bot row">
             <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
             <span class="seal wide" role="img" aria-label="Nexter Finance" style="--logo:url(img/co/nexter.png);--ar:5.914"></span>
@@ -1077,7 +1092,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
           <span class="top c2"><span>Streaming</span><span>2018–21</span></span>
           <span class="ttl"><span class="nm">Airtel TV Africa</span><span class="tier c2">0&#8239;&rarr;&#8239;1</span></span>
           <span class="role c2">Lead Product Designer</span>
-          <span class="shot"><span class="info"><span class="sum p1">Led the Airtel TV app for 14 African markets as its only designer: a dark theme for long viewing, the features each market asked for, and an analytics portal for Airtel&rsquo;s teams.</span><span class="ba-w"><span class="ba"><b>450K+</b></span><span class="ba-l c2">Registered users, 2020</span></span><span class="kpis c2"><span class="kpi"><b>3</b>African countries live, 2020</span></span></span></span>
+          <span class="shot"><span class="info"><span class="sum p1">Led the Airtel TV app for 14 African markets as its only designer: a dark theme for long viewing, the features each market asked for, and an analytics portal for Airtel&rsquo;s teams.</span><span class="ba-w"><span class="ba"><b>450K+</b></span><span class="ba-l c2">Registered users, 2020</span></span><span class="kpis c2"><span class="kpi"><b>14</b>African countries reached</span></span></span></span>
           <span class="bot row">
             <span class="go c1"><span class="slide"><span>Read the case study</span><span aria-hidden="true">Read the case study</span></span><span aria-hidden="true">&rarr;</span></span>
             <span class="seal wide" role="img" aria-label="Datami" style="--logo:url(img/co/datami.png);--ar:4.412"></span>
@@ -1123,7 +1138,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
       <div class="ld-progress" aria-hidden="true"><i></i></div>
       <div class="ld-st ld1">
         <h3 class="ld-t">A team of five, eight at its largest</h3>
-        <p class="ld-d p1 words">Five designers today and eight at the team&rsquo;s largest, led through two organisational changes across six verticals at a top-20 Indian retail brokerage.</p>
+        <p class="ld-d p1 words">Five designers today and eight at the team&rsquo;s largest, led through two organisational changes across six verticals at a top-20 Indian retail brokerage. We ran two in-house hiring drives as the design organisation grew to 28 people.</p>
       </div>
       <div class="ld-st ld2">
         <h3 class="ld-t">One designer, whole problem</h3>
@@ -1135,11 +1150,12 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
         <p class="ld-d p1 words">Thirty-four features shipped since February 2024. I set direction, run review and hold delivery oversight; the team owns execution.</p>
       </div>
       <div class="ld-st ld4">
-        <h3 class="ld-t">Close to the work</h3>
-        <p class="ld-d p1 words">I still deliver selected work myself. Wealth 360 went from PRD to Flutter-ready code with an estimated 70% less front-end effort. It is how I know what I am asking for when I ask for it.</p>
+        <h3 class="ld-t">From my hands to the team&rsquo;s</h3>
+        <p class="ld-d p1"><span class="words">I proved it on my own work first: Wealth 360 went from PRD to Flutter-ready code with an estimated 70% less front-end effort. That way of working is now AIDA, the agentic design framework I lead, rolling out to every product designer and product manager.</span>
+          <a class="ld-link c1" href="writing/aida-ideation-to-code.html"><span class="slide"><span>Read the essay</span><span aria-hidden="true">Read the essay</span></span><span aria-hidden="true">&rarr;</span></a></p>
       </div>
       <div class="ld-nav c2" aria-hidden="true">
-        <span class="mask"><span class="caps"><span>Team</span><span>Ownership</span><span>Oversight</span><span>Hands-on</span></span></span>
+        <span class="mask"><span class="caps"><span>Team</span><span>Ownership</span><span>Oversight</span><span>Leverage</span></span></span>
         <span class="idx"><span class="mask"><span class="roll"><span>01</span><span>02</span><span>03</span><span>04</span></span></span><span>/ 04</span></span>
       </div>
     </div>
@@ -1152,19 +1168,39 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
         <ul class="acc">
           <li class="acc-item open">
             <span class="acc-line" aria-hidden="true"></span>
-            <button class="acc-head" type="button" aria-expanded="true" aria-controls="acc1">
-              <h3 class="acc-title h4">The handoff is dead</h3><span class="acc-icon" aria-hidden="true"></span>
+            <button class="acc-head" type="button" aria-expanded="true" aria-controls="acc0">
+              <h3 class="acc-title h4">AIDA: from one designer to a whole team</h3><span class="acc-icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc-body" id="acc0"><div>
+              <div class="acc-content">
+                <div class="acc-main">
+                  <span class="acc-meta c2">Design leadership · about 4 min read</span>
+                  <p class="acc-desc p1">Wealth 360 proved one designer could take a product from idea to Flutter code. AIDA is how I am making that the way a whole design and product team works.</p>
+                  <a class="ld-link c1" href="writing/aida-ideation-to-code.html"><span class="slide"><span>Read the essay</span><span aria-hidden="true">Read the essay</span></span><span aria-hidden="true">&rarr;</span></a>
+                </div>
+                <div class="acc-scope">
+                  <span class="c2 acc-cap">In this essay</span>
+                  <ul class="c2"><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>Why a framework, not a tool</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>Designers and product managers, on purpose</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>Rolling it out slowly, on purpose</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>What I would tell another design leader</span></li></ul>
+                </div>
+              </div>
+            </div></div>
+          </li>
+          
+          <li class="acc-item">
+            <span class="acc-line" aria-hidden="true"></span>
+            <button class="acc-head" type="button" aria-expanded="false" aria-controls="acc1">
+              <h3 class="acc-title h4">Designing past the handoff</h3><span class="acc-icon" aria-hidden="true"></span>
             </button>
             <div class="acc-body" id="acc1"><div>
               <div class="acc-content">
                 <div class="acc-main">
                   <span class="acc-meta c2">Design + AI · about 6 min read</span>
-                  <p class="acc-desc p1">I designed a product and then shipped the front-end myself, working with AI as a pair. It changed how I think about what a designer is.</p>
-                  <a class="ld-link c1" href="writing/the-handoff-is-dead.html"><span class="slide"><span>Read the essay</span><span aria-hidden="true">Read the essay</span></span><span aria-hidden="true">&rarr;</span></a>
+                  <p class="acc-desc p1">I took a product from a PRD to its front-end myself, working with AI as a pair. It changed what I think a designer, and a design team, can own.</p>
+                  <a class="ld-link c1" href="writing/designing-past-the-handoff.html"><span class="slide"><span>Read the essay</span><span aria-hidden="true">Read the essay</span></span><span aria-hidden="true">&rarr;</span></a>
                 </div>
                 <div class="acc-scope">
                   <span class="c2 acc-cap">In this essay</span>
-                  <ul class="c2"><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>What actually changed</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>My workflow</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>What it means for design teams</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>The honest limits</span></li></ul>
+                  <ul class="c2"><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>What actually changed</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>How the work actually ran</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>What it means for design teams</span></li><li><svg class="acc-ar" viewBox="0 0 10 14" aria-hidden="true"><path d="M1 0v9h8M5.5 5.5 9 9l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg><span>The honest limits</span></li></ul>
                 </div>
               </div>
             </div></div>
@@ -1191,14 +1227,14 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
           <li class="acc-item">
             <span class="acc-line" aria-hidden="true"></span>
             <button class="acc-head" type="button" aria-expanded="false" aria-controls="acc3">
-              <h3 class="acc-title h4">Zero to one, three times</h3><span class="acc-icon" aria-hidden="true"></span>
+              <h3 class="acc-title h4">Zero to one, twice</h3><span class="acc-icon" aria-hidden="true"></span>
             </button>
             <div class="acc-body" id="acc3"><div>
               <div class="acc-content">
                 <div class="acc-main">
                   <span class="acc-meta c2">Product · about 5 min read</span>
-                  <p class="acc-desc p1">Three launches from nothing: a streaming app, a DeFi prediction market and an AI assistant. The lessons that held across all three.</p>
-                  <a class="ld-link c1" href="writing/zero-to-one-three-times.html"><span class="slide"><span>Read the essay</span><span aria-hidden="true">Read the essay</span></span><span aria-hidden="true">&rarr;</span></a>
+                  <p class="acc-desc p1">Two launches from nothing: a streaming app for Africa and a DeFi prediction market. The lessons that held both times.</p>
+                  <a class="ld-link c1" href="writing/zero-to-one-twice.html"><span class="slide"><span>Read the essay</span><span aria-hidden="true">Read the essay</span></span><span aria-hidden="true">&rarr;</span></a>
                 </div>
                 <div class="acc-scope">
                   <span class="c2 acc-cap">In this essay</span>
@@ -1260,13 +1296,13 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
         <p class="h4 cv-lede words">Eleven years of product design, the most recent in fintech, turning complex products into ones people trust.</p>
       </div>
       <ul class="cv-list">
-        <li class="cv-row"><span class="cv-yr c2">2024 — Present</span><span class="cv-org">FYERS</span><span class="cv-role p1">Senior Product Design Manager</span><span class="cv-note c2">Product design across six verticals at a top-20 Indian retail brokerage. A team of five designers today; eight at its largest.</span></li>
+        <li class="cv-row"><span class="cv-yr c2">2024 — Present</span><span class="cv-org">FYERS</span><span class="cv-role p1">Senior Product Design Manager</span><span class="cv-note c2">Product design across six verticals at a top-20 Indian retail brokerage. A team of five designers today, eight at its largest. Leading AIDA, the team&rsquo;s ideation-to-code framework.</span></li>
         <li class="cv-row"><span class="cv-yr c2">2022 — 24</span><span class="cv-org">Nexter Finance</span><span class="cv-role p1">Design Lead · decentralised finance</span><span class="cv-note c2">Took a decentralised prediction market from zero to launch, with a phased release.</span></li>
         <li class="cv-row"><span class="cv-yr c2">2021 — 22</span><span class="cv-org">Oddz Finance</span><span class="cv-role p1">Design Lead · decentralised finance</span><span class="cv-note c2">Complex trading and options flows for non-expert users.</span></li>
-        <li class="cv-row"><span class="cv-yr c2">2018 — 21</span><span class="cv-org">Datami</span><span class="cv-role p1">Lead Product Designer &rarr; Product Designer</span><span class="cv-note c2">Airtel TV Africa, the streaming app designed end to end for the African market. Reach Mobile web journeys.</span></li>
+        <li class="cv-row"><span class="cv-yr c2">2018 — 21</span><span class="cv-org">Datami</span><span class="cv-role p1">Senior Product Designer &rarr; Lead Product Designer</span><span class="cv-note c2">Airtel TV Africa as its only designer, taken to 14 African markets. Reach Mobile&rsquo;s website and mobile web.</span></li>
         <li class="cv-row"><span class="cv-yr c2">2014 — 18</span><span class="cv-org">Earlier</span><span class="cv-role p1">Product design and UX research</span><span class="cv-note c2">Two Roads Tech (Qplum), Onetech Ventures, IBM Studios Böblingen, emocial, and field research with Microsoft in the UK.</span></li>
         <li class="cv-row"><span class="cv-yr c2">2006 — 15</span><span class="cv-org">Education</span><span class="cv-role p1">MSc, Human-Computer Interaction &amp; Design</span><span class="cv-note c2">KTH Stockholm, then UCL London. Also MSc, Advanced Computer Science, Newcastle University, and BE, BMS College of Engineering.</span></li>
-        <li class="cv-row"><span class="cv-yr c2">Certified</span><span class="cv-org">NISM</span><span class="cv-role p1">Series 7</span><span class="cv-note c2">Series 8 in progress.</span></li>
+        <li class="cv-row"><span class="cv-yr c2">Certified</span><span class="cv-org">NISM, India</span><span class="cv-role p1">Series VII, Securities Operations and Risk Management</span><span class="cv-note c2">Series VIII, Equity Derivatives, in progress.</span></li>
       </ul>
       <a class="ld-link c1 cv-full" href="cv.html"><span class="slide"><span>Full CV</span><span aria-hidden="true">Full CV</span></span><span aria-hidden="true">&rarr;</span></a>
     </div>
@@ -1293,6 +1329,20 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   <div class="vo-box">
     <div class="vo-bar"><span class="vo-h"><span class="vo-meta c2" id="voMeta"></span><span class="vo-t" id="voTitle"></span></span><span class="vo-acts c2"><a id="voExt" href="#" target="_blank" rel="noopener">Open on YouTube &#8599;</a><button class="vo-x" type="button" id="voClose" aria-label="Close video">&times;</button></span></div>
     <div class="vo-frame"><iframe id="voFrame" title="Walkthrough video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe><div class="vo-fb" id="voFb" hidden><img alt=""><a class="c1" target="_blank" rel="noopener" href="#"><span class="pi" aria-hidden="true"></span>Play on YouTube &#8599;</a></div></div>
+  </div>
+</div>
+<div class="vo po" id="po" role="dialog" aria-modal="true" aria-labelledby="poTitle" hidden>
+  <div class="vo-scrim" id="poScrim"></div>
+  <div class="vo-box po-box">
+    <button class="po-x" type="button" id="poClose" aria-label="Close">&times;</button>
+    <p class="po-k c2"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7.5" rx="1.5" fill="currentColor"/><path d="M5.3 7V5.2a2.7 2.7 0 0 1 5.4 0V7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Password protected</p>
+    <h2 class="po-t" id="poTitle">Wealth 360</h2>
+    <p class="po-d p1">Enter the password to read the case study. No password? Write to me at <a href="mailto:suj009@gmail.com?subject=Wealth%20360%20case%20study">suj009@gmail.com</a>.</p>
+    <form id="poForm" autocomplete="off">
+      <label class="c2" for="poPw">Password</label>
+      <span class="po-row"><input id="poPw" type="password" autocomplete="current-password" required><button class="c1" type="submit">Unlock</button></span>
+      <span class="po-msg c2" id="poMsg" role="status" aria-live="polite"></span>
+    </form>
   </div>
 </div>
 <button class="invert c1" type="button" id="invert"><u>Invert colour</u></button>
@@ -1576,6 +1626,62 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   document.getElementById('voScrim').addEventListener('click', closeVideo);
   addEventListener('keydown', function(e){ if(e.key === 'Escape') closeVideo(); });
   arrange(false);
+
+  // A locked case: the card shows a lock, and a click asks for the password here, checks it
+  // against the case page's sealed text, then opens the case already unlocked for this tab.
+  var po = document.getElementById('po'), poForm = document.getElementById('poForm');
+  var poPw = document.getElementById('poPw'), poMsg = document.getElementById('poMsg'), poLink = null;
+  function poKey(link){ return 'unlock:' + link.getAttribute('data-lock'); }
+  function poSaved(link){ try{ return sessionStorage.getItem(poKey(link)); }catch(e){ return null; } }
+  function poOpen(link){
+    poLink = link; poMsg.textContent = ''; poPw.value = '';
+    po.hidden = false; requestAnimationFrame(function(){ po.classList.add('on'); });
+    if(lenis) lenis.stop();
+    document.documentElement.style.overflow = 'hidden';
+    poPw.focus({preventScroll:true});
+  }
+  function poClose(){
+    if(po.hidden) return;
+    po.classList.remove('on'); setTimeout(function(){ po.hidden = true; }, 350);
+    if(lenis) lenis.start();
+    document.documentElement.style.overflow = '';
+    if(poLink) poLink.focus({preventScroll:true});
+  }
+  function poCheck(url, pw){
+    return fetch(url).then(function(r){ return r.text(); }).then(function(t){
+      var m = t.match(/<script type="application\/json" id="sealed">([\s\S]*?)<\/script>/);
+      if(!m) throw new Error('nosealed');
+      var s = JSON.parse(m[1]);
+      var b = function(x){ return Uint8Array.from(atob(x), function(c){ return c.charCodeAt(0); }); };
+      return crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey'])
+        .then(function(k){ return crypto.subtle.deriveKey({name:'PBKDF2', salt:b(s.s), iterations:s.n, hash:'SHA-256'}, k, {name:'AES-GCM', length:256}, false, ['decrypt']); })
+        .then(function(key){ return crypto.subtle.decrypt({name:'AES-GCM', iv:b(s.i)}, key, b(s.c)); });
+    });
+  }
+  document.querySelectorAll('a.plate[data-lock]').forEach(function(link){
+    link.addEventListener('click', function(e){
+      if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+      if(poSaved(link)) return;
+      e.preventDefault(); poOpen(link);
+    });
+  });
+  poForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var link = poLink, pw = poPw.value, url = link.getAttribute('href');
+    poMsg.textContent = 'Checking…';
+    poCheck(url, pw).then(function(){
+      try{ sessionStorage.setItem(poKey(link), pw); }catch(err){}
+      location.href = url;
+    }, function(err){
+      if(err && (err.name === 'OperationError')){ poMsg.textContent = 'That password didn’t work. Try again.'; poPw.select(); return; }
+      // the page could not be checked from here (offline or a strict host): let the case page ask instead
+      try{ sessionStorage.setItem(poKey(link), pw); }catch(err2){}
+      location.href = url;
+    });
+  });
+  document.getElementById('poClose').addEventListener('click', poClose);
+  document.getElementById('poScrim').addEventListener('click', poClose);
+  addEventListener('keydown', function(e){ if(e.key === 'Escape') poClose(); });
 
   var tabs = document.querySelector('.w-tabs');
   var views = {tabMgr: document.getElementById('viewMgr'), tabIc: document.getElementById('viewIc')};

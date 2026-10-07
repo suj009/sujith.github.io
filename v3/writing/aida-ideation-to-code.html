@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>The handoff is dead — Sujith Kumar Anand</title>
-<meta name="description" content="I designed a product and then shipped the front-end myself, working with AI as a pair. It changed how I think about what a designer is.">
+<title>AIDA: from one designer to a whole team — Sujith Kumar Anand</title>
+<meta name="description" content="Wealth 360 proved one designer could take a product from idea to Flutter code. AIDA is how I am making that the way a whole design and product team works.">
 <meta name="author" content="Sujith Kumar Anand">
-<link rel="canonical" href="https://sujith.design/writing/the-handoff-is-dead.html">
+<link rel="canonical" href="https://sujith.design/writing/aida-ideation-to-code.html">
 <link rel="icon" href="../img/favicon.ico" sizes="48x48">
 <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="The handoff is dead — Sujith Kumar Anand">
-<meta property="og:description" content="I designed a product and then shipped the front-end myself, working with AI as a pair. It changed how I think about what a designer is.">
+<meta property="og:title" content="AIDA: from one designer to a whole team — Sujith Kumar Anand">
+<meta property="og:description" content="Wealth 360 proved one designer could take a product from idea to Flutter code. AIDA is how I am making that the way a whole design and product team works.">
 <meta property="og:image" content="https://sujith.design/img/og-sujith.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <script>document.documentElement.classList.add('js')</script>
@@ -144,37 +144,39 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
 <div class="page">
   <header class="rail c2">
     <a class="back u" href="../hero-replica.html#writing"><span class="ar" aria-hidden="true">&larr;</span>Back to writing</a>
-    <span class="here">Essay · Design + AI</span>
+    <span class="here">Essay · Product</span>
     <button class="u" type="button" id="invert">Invert colour</button>
   </header>
   <main>
     <header class="a-head grid8">
-      <p class="kicker c2 rv" style="margin:0"><span>Essay · Design + AI</span></p>
-      <h1 class="rv">The handoff is dead</h1>
-      <p class="dek rv">I designed a product and then shipped the front-end myself, working with AI as a pair. It changed how I think about what a designer is.</p>
-      <p class="byline c2 rv" style="margin:0"><span>Sujith Kumar Anand</span><span>About 6 min read</span></p>
+      <p class="kicker c2 rv" style="margin:0"><span>Essay · Design leadership</span></p>
+      <h1 class="rv">AIDA: from one designer to a whole team</h1>
+      <p class="dek rv">Wealth 360 proved one designer could take a product from idea to Flutter code. AIDA is how I am making that the way a whole design and product team works.</p>
+      <p class="byline c2 rv" style="margin:0"><span>Sujith Kumar Anand</span><span>About 4 min read</span></p>
     </header>
     <article class="a-body grid8">
-      <p>For most of my career, design ended at a line. You did the thinking, built the screens, wrote the spec, and then handed it across a wall to engineering and hoped what came back resembled what you drew.</p>
-      <p>At FYERS, that wall used to be inside the design team itself. We ran a relay: a UX designer picked up a requirement, handed it to a UI designer for finesse, who handed it to front-end for the build. Three handoffs, three chances to lose intent. Even after we unified those roles and built a real design system, the wall didn't fully disappear. When engineering turned the design system into a coded component library, we couldn't get a perfect match between design and code. Not because anyone did poor work, but because the gap between "designed" and "built" is real, and it has always needed a translator.</p>
-      <p>I recently stopped waiting for the translator. I designed a product called Wealth 360, one consolidated view of everything an investor holds, and then took it all the way to front-end myself, working with Claude as an AI pair. Nine working days, start to finish.</p>
-      <p>That changed how I think about what a designer is.</p>
-      <h2>What actually changed</h2>
-      <p>The old constraint was never imagination. It was translation. I could always picture the interaction; I couldn't always produce the production code, and the moment my design left my hands, some of the intent leaked out. AI collapses that translation step. The thing I designed and the thing that ships can now be the same thing, made by the same person, because the hardest part of writing front-end, the syntax and the boilerplate, is exactly what an AI pair is good at.</p>
-      <blockquote><p>The question stops being "can a designer code?" and becomes "does the designer understand the system well enough to direct the build?"</p></blockquote>
-      <p>That's a judgement problem, not a syntax problem, and judgement is what senior designers already have.</p>
-      <h2>My workflow</h2>
-      <ol><li><b>Start from the system, not a blank page.</b> I anchor the AI in the design system first, the tokens, spacing and component rules, so everything it generates speaks the same language as the rest of the product. The system is the constraint that keeps AI output from drifting.</li><li><b>Work in components, then compose.</b> I build the smallest pieces first and get each one right, an order row, a price cell, a button state, then assemble screens from parts I trust.</li><li><b>Describe intent, not just appearance.</b> I tell the AI what an interaction is for: "this confirms an order, so it must be impossible to trigger by accident." Intent is where design judgement lives.</li><li><b>Stay in the loop on the hard parts.</b> The AI carries the boilerplate. I step in by hand on timing, spacing, edge cases and the states most people forget.</li><li><b>Review like a designer, test like an engineer.</b> Every pass gets checked against the design intent and run in the browser, with real states and real edge cases.</li></ol>
-      <h2>What it means for design teams</h2>
-      <p>If one person can carry a problem from user need to shipped screen, the org chart should stop pretending those are separate jobs. It is the same conviction behind my case for the Product Designer role over a split between UX and UI: fewer handoffs, less lost intent, more ownership. AI extends that logic one step further. The handoff to front-end becomes one more seam a single owner can close.</p>
-      <p>This doesn't make engineers redundant; it makes the boundary negotiable. Architecture, performance and the genuinely hard systems problems still belong to engineering. But the long tail of "design it, then wait weeks to see it built roughly right" is going away.</p>
-      <h2>The honest limits</h2>
-      <p>AI doesn't replace understanding. It amplified me because I already knew the system, the interaction, and what "correct" looked like. I once asked for a confirmation step on an order action and got a textbook modal dialog: clean, accessible, correctly built, and completely wrong. A modal is what you use when you want someone to stop and think. This was a screen for people who trade in seconds. The confirmation had to live under the thumb that was already moving, so it became a hold-to-confirm. The AI answered the question I typed; it couldn't know the question I meant.</p>
-      <p>The last mile is still craft. The timing of a transition, the states nobody remembers, accessibility, fidelity to the design: that is where I spent my own hands. AI closes the distance; taste closes the gap.</p>
-      <p>Design has spent years arguing about whether designers should code. I think AI quietly ended the argument, not by making everyone an engineer, but by making the wall between designing something and shipping it low enough to step over. I stepped over it with Wealth 360. I don't plan to step back.</p>
+      <p>When I took Wealth 360 from a PRD to Flutter-ready web and mobile myself, working with an AI pair, the front-end team estimated it cut around 70% of the front-end effort. It was a good result and a poor template. A result that depends on one person is a story, not a capability.</p>
+      <p>So the question I took back to the team was not "can a designer do this?" but "can we make it repeatable?" AIDA is my answer: an internal agentic design framework I am leading, which gives designers and product managers the ability to go from ideation to Flutter code.</p>
+      <h2>Why a framework, not a tool</h2>
+      <p>Hand people an AI model and tell them to go faster, and you get fast inconsistency. What made Wealth 360 work was never the model. It was the judgement around it: a clear requirement, decisions settled with the product owner, approval from product and technology leadership before anything was built, and review against a running product instead of a picture of one.</p>
+      <blockquote><p>A framework is how judgement travels to people who were not in the room.</p></blockquote>
+      <h2>Designers and product managers, on purpose</h2>
+      <p>AIDA is for both. The handoff between product and design is as old, and as leaky, as the one between design and engineering. When a product manager can turn an idea into something real enough to test, the first design conversation starts from evidence instead of a document. When a designer can carry a decision into code, intent stops leaking on its way to the user.</p>
+      <p>It does not replace engineering. Architecture, performance and the hard systems problems stay where they belong. What changes is how much of the product arrives at engineering already decided.</p>
+      <h2>Rolling it out slowly, on purpose</h2>
+      <p>The temptation with a new way of working is to announce it to everyone at once. I am doing the opposite. AIDA was proven on one product first, Wealth 360. One product manager now uses it on their own work. From there it is moving, person by person, to every product designer and product manager.</p>
+      <p>Slow is the point. Each new person finds the places where the framework assumes too much, and each fix makes it sturdier for the next. A way of working that survives contact with many different people is worth more than one that impressed a room once.</p>
+      <h2>What I would tell another design leader</h2>
+      <ol>
+        <li><b>Prove it on real work before you name it.</b> Wealth 360 came first and AIDA was named after it. The work made the argument; the framework followed.</li>
+        <li><b>Keep the judgement human.</b> AI output is a starting point. Deciding what should change, what should stay and what meets the bar is still the job.</li>
+        <li><b>Bring product with you.</b> A framework only designers use just moves the handoff somewhere else.</li>
+        <li><b>Let the people who build do the measuring.</b> The 70% figure is the front-end team&rsquo;s estimate, not mine, and I call it an estimate. That is the only kind of number worth trusting.</li>
+      </ol>
+      <p>AIDA is early: one product, one product manager, and a team on the way. But the question has already moved, from whether a designer can do this to how quickly a whole team can.</p>
     </article>
   </main>
-  <nav class="more" aria-label="Keep reading"><div class="more-h c2">Keep reading</div><a href="one-designer-whole-problem.html"><span class="k c2">Team &amp; craft</span><span class="t">One designer, whole problem</span><span class="ar" aria-hidden="true">&rarr;</span></a><a href="trust-is-a-design-material.html"><span class="k c2">Fintech</span><span class="t">Trust is a design material</span><span class="ar" aria-hidden="true">&rarr;</span></a><a href="zero-to-one-three-times.html"><span class="k c2">Product</span><span class="t">Zero to one, three times</span><span class="ar" aria-hidden="true">&rarr;</span></a></nav>
+  <nav class="more" aria-label="Keep reading"><div class="more-h c2">Keep reading</div><a href="designing-past-the-handoff.html"><span class="k c2">Design + AI</span><span class="t">Designing past the handoff</span><span class="ar" aria-hidden="true">&rarr;</span></a><a href="one-designer-whole-problem.html"><span class="k c2">Team &amp; craft</span><span class="t">One designer, whole problem</span><span class="ar" aria-hidden="true">&rarr;</span></a><a href="trust-is-a-design-material.html"><span class="k c2">Fintech</span><span class="t">Trust is a design material</span><span class="ar" aria-hidden="true">&rarr;</span></a></nav>
   <footer class="foot c2"><span>&copy; <span id="yr">2026</span> Sujith Kumar Anand · Senior Product Design Manager</span><span>Open to Head of Design / Sr Design Manager roles · Bengaluru or remote</span></footer>
 </div>
 <script>

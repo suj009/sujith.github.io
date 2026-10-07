@@ -116,7 +116,18 @@ Claims on this site are checkable by the people being persuaded, so:
   The live root site still has a public `case-study-wealth-tracker.html`; the v3 merge replaces it.
 - **AIDA** is the internal agentic design framework Sujith leads: designers and PMs go from ideation
   to Flutter code. Proven on Wealth 360, now used by one PM and being rolled out to all of PD and PM
-  (Sujith, 7 Oct 2026). It is named only inside the locked Wealth 360 page until he OKs a public mention.
+  (Sujith, 7 Oct 2026). Public, at his request: the essay `writing/aida-ideation-to-code.html`, the
+  Leadership step "From my hands to the team's" (caption Leverage), the About "Ship" line and the CV.
+  Don't expand the acronym or describe how it works inside: nothing beyond the facts above is known.
+- **The Wealth 360 card** shows a lock and "Password protected" and says "Unlock the case study". A
+  click opens a password panel on the home page (same scrim as the video overlay) that checks the
+  password against the case page's sealed text, then opens the case already unlocked for the tab.
+  Password: `Wealth360_2026` (Sujith).
+- **Leadership facts (Sujith):** two in-house hiring drives; the design organisation peaked at 28
+  people (his own team: five today, eight at its largest). Say "we ran" for the hiring drives.
+- **Titles:** at Datami he was Senior Product Designer, then Lead Product Designer. On Airtel TV
+  Africa he was Lead Product Designer and the only designer, handling design end to end with his
+  manager's approval; Airtel TV went on to reach all 14 African markets (no date given).
 - **Never publish a number or ranking that has not been verified**, and never
   invent one to fill a sentence. Ask instead.
 - **Rankings decay.** "Top-20 Indian retail brokerage" was verified against the
@@ -126,8 +137,10 @@ Claims on this site are checkable by the people being persuaded, so:
 - **Write numbers for a global reader.** Lakh and crore do not parse outside
   India, and the site is written for both Indian and international readers:
   10L → "over a million".
-- **Confirmed by Sujith:** at least three products launched 0→1 — FIA (FYERS),
-  Nexter Finance, and Airtel TV Africa (Datami). The hero says "multiple"
+- **0→1 products: Nexter Finance and Airtel TV Africa (Datami), two in all.** FIA is NOT 0→1
+  (Sujith, 7 Oct 2026: it is a feature / flagship work); every FIA 0→1 mention was removed and the
+  essay became "Zero to one, twice" (`writing/zero-to-one-twice.html`). Earlier note, now wrong:
+  "at least three products launched 0→1 — FIA (FYERS), Nexter Finance, and Airtel TV Africa (Datami)." The hero says "multiple"
   rather than a count, by his choice. Only FIA is labelled `0 → 1` on the page;
   the other two read as scope, so the claim is under-evidenced on the page
   itself.
@@ -349,10 +362,19 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   "Learnings".
   Reflections must come from his own stated learnings, never invented. The generator is
   `cs/build.py` in the session scratchpad; `build.v1.py` is the pre-v2 copy.
-- **Essays** live in `v3/writing/`. Two are ports of the live articles with the
-  FDSG and Lab references removed; *Trust is a design material* and *Zero to one,
-  three times* are new drafts written from facts already in the repo.
+- **Essays** live in `v3/writing/`: *AIDA: from one designer to a whole team*, *Designing past the
+  handoff* (was "The handoff is dead", retitled for enterprise readers), *Trust is a design material*,
+  *Zero to one, twice* and *One designer, whole problem*. The handoff essay's original carried
+  author notes saying its workflow section was assumed and its anecdote "did not happen"; both were
+  removed and the workflow rebuilt from the Wealth 360 case facts. Never reintroduce them. In *Trust*,
+  the order ticket is the Lab prototype, so it says "prototyped", not "built".
+- **One idea, one home:** "show leaders finished screens, not wireframes" lives in Orders only.
+  Reach Mobile's decision is now the launch scope (explain pages + SIM purchase first), and its
+  story closes with the short flow becoming the only purchase flow.
 - **Team size:** five designers today, eight at the team's largest. Never "5–8".
 - **The detailed CV** (`v3/cv.html`) has a pre-rendered
   `v3/Sujith-Kumar-Anand-CV.pdf` for its Download button. Regenerate it
-  whenever the CV changes.
+  whenever the CV changes (`cvpdf.mjs` in the scratchpad, A4 at scale 0.9 to hold two pages). The
+  row numbers are hidden in print: Chrome's PDF stacked them all over the name.
+- **Audience reminder (Sujith, Oct 2026):** primarily Head of Design roles; readers are C-suite and
+  heads of design. Recheck every word against them.
