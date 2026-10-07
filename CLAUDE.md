@@ -328,8 +328,14 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   slots stay "To add" until he sends exports or a recording. The context is public: FYERS's NRI
   help articles, the fyers.in/nri-account three-step description (international number, account
   type, documents), FYERS's NRI community posts on KYC mismatches, and a Feb 2026 community post
-  from a seafarer about the NRI PDF form. Still to add: when it shipped, who he worked with, and a
-  third decision from the screens. The two decisions written are structural, from the public flow.
+  from a seafarer about the NRI PDF form (not used: it postdates the digital path). Public evidence
+  of the flow: help articles say NRIs fill the signup form and upload documents in onboarding; a Sept
+  2025 community post shows "Select your Account Type" (Demat / NRI / Corporate) after the OTP; an
+  Oct 2025 staff reply mentions a CP code opt-in during onboarding; Tejas Khoday's 2022 community
+  reply (quoted verbatim) on why NRI opening was offline. Nothing anywhere shows the screens: all 31
+  NRI help articles, the NRI community category with replies, and What's new (Jul 2023 to Oct 2026)
+  were checked. Still to add: when it shipped, who he worked with, screens. The three decisions are
+  written from that public flow.
   The landing page's FYERS figures (customers, countries) stay off the page.
 - **Case study template v2** (Nexter, Airtel TV Africa, Reach Mobile, Orders and NRI onboarding
   are on it; Wealth Tracker waits for its release): results strip first (`results=`), an "at a glance" summary of
