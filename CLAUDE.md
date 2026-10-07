@@ -200,6 +200,10 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   arrives at 1.3 of an 8.8-unit timeline, so there is no empty dark screen after the hero
   (Sujith: "why empty, move bit faster").
 
+- **The nav takes its solid ground over the hero copy** once the rail has stuck, as it does over
+  Work, so the description and "Scroll to discover" slide under it instead of through the links. It
+  goes back to the difference blend once About's curtain has closed over the hero (Sujith).
+
 - **The space above "Selected Work" stays at 55svh (40svh on phones).** It was cut to 20/16svh
   once and Sujith asked for it back.
 

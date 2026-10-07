@@ -237,8 +237,8 @@ html:not(.js) .tag-wrap{position:absolute;left:0;right:0;top:0;height:auto;margi
   color:var(--blend);mix-blend-mode:difference;display:flex;align-items:center;gap:.35rem}
 .invert::before{content:"";width:.25rem;height:.25rem;border-radius:50%;background:currentColor}
 .invert u{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
-/* Over the image-heavy Work wall, blending alone can't keep the nav and the invert
-   control readable, so there (and only there) they take a solid ground. */
+/* Over the image-heavy Work wall, and over the hero copy once the rail has stuck, blending alone
+   can't keep the nav readable, so there it takes a solid ground (the invert control only over Work). */
 .nav,.invert{transition:background-color .35s var(--ease),box-shadow .35s var(--ease)}
 .nav.solid,.invert.solid{mix-blend-mode:normal;color:var(--ink);background:var(--ground)}
 .invert.solid{box-shadow:0 0 0 .45rem var(--ground)}
@@ -1385,11 +1385,16 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
       starts.push(max);
       draw();
     }
-    var navEl = document.querySelector('.nav'), invEl = document.getElementById('invert'), busy = document.getElementById('work');
+    var navEl = document.querySelector('.nav'), invEl = document.getElementById('invert'), busy = document.getElementById('work'),
+        aboutEl = document.getElementById('about'), capEl = document.querySelector('.scroll-cap');
     function draw(){
       queued = false;
-      var y = scrollY, r = busy.getBoundingClientRect();
-      navEl.classList.toggle('solid', r.top < navEl.offsetHeight && r.bottom > 0);
+      var y = scrollY, r = busy.getBoundingClientRect(), nh = navEl.offsetHeight;
+      // the hero's copy scrolls up through the rail once it has stuck, so it takes the solid ground there
+      // too, until the About stage closes over it and the last line ("Scroll to discover") has passed
+      var overHero = y > 0 && navEl.getBoundingClientRect().top <= 0 &&
+        (aboutEl.getBoundingClientRect().top > nh || capEl.getBoundingClientRect().bottom > 0);
+      navEl.classList.toggle('solid', overHero || (r.top < nh && r.bottom > 0));
       invEl.classList.toggle('solid', r.top < innerHeight && r.bottom > innerHeight - 64);
       bars.forEach(function(b, i){
         var p;
