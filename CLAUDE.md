@@ -310,11 +310,20 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Lead (his manager was the Design Manager), the first designers on the product; the fast
   social/ads purchase flow was "we", not "I"; visual artwork was a teammate's. Its outcome
   figures (3,000+ paid monthly users, hit by COVID) stay off the site (Sujith).
-- **Case study template v2** (Nexter, Airtel TV Africa and Reach Mobile are on it; Orders,
+- **Orders case study (v2)**: FYERS's first unified Orders section, web and app, every screen
+  designed by Sujith with the PM and developers, shipped January 2025 (Sujith). Before it, orders
+  were a tab in the Account Manager; FYERS Trader still uses that pattern, so a Trader crop stands in
+  as "the pattern Orders replaced" (cropped to drop a customer's name and account number). Screens and
+  the two looping videos come from FYERS's public help-centre article "How can I view and manage my
+  orders in FYERS?" (Zoho WorkDrive embeds; the Trader videos were not used), trimmed to start on
+  Orders, as MP4 plus WebM in `v3/img/work/orders/`. They show Orders as of March 2026, so captions
+  say "today". The decisions are written from the shipped product with Sujith's go-ahead; the
+  "What I learned" points are his own, from the live `case-study-orders.html`. No figures.
+- **Case study template v2** (Nexter, Airtel TV Africa, Reach Mobile and Orders are on it;
   Wealth Tracker and NRI onboarding still need screenshots and notes from Sujith): results strip first (`results=`), an "at a glance" summary of
   problem / role / the call / result (`glance=`), decisions as call-outs with Why and The
   trade-off (`{{call:what||why||trade-off}}`), screenshots on a stage in the product's colour
-  (`stage=`), reading time in the kicker, and a closing "What I’d do differently" (or "What I learned") section. Airtel has no
+  (`stage=`), looping videos (`vid:video.mp4|poster|alt|caption`, with a `.webm` beside it; paused with controls under reduced motion), reading time in the kicker, and a closing "What I’d do differently" (or "What I learned") section. Airtel has no
   reflection because his portfolio states no learnings for it; Reach's comes from his own
   "Learnings".
   Reflections must come from his own stated learnings, never invented. The generator is

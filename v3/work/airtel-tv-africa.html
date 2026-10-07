@@ -105,6 +105,9 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
 .glance dd{margin:0;font-size:1rem;line-height:1.4;letter-spacing:-.01em;text-wrap:pretty}
 .stage{display:block;background:var(--stage,var(--tint));padding:clamp(12px,3vw,40px);border-radius:3px}
 .stage .shot{background:transparent}
+video.shot{object-fit:contain}
+.fig.port .stage{display:flex;justify-content:center}
+.fig.port .shot{width:auto;max-width:100%;max-height:min(72svh,640px)}
 .call{margin:.4rem 0;padding:1.1rem 1.25rem 1.2rem;border:1px solid var(--ink);display:grid;gap:.85rem;max-width:44rem}
 .call .lbl{color:var(--ink-2)}
 .call .what{margin:0;font-size:1.3rem;line-height:1.25;letter-spacing:-.025em;text-wrap:balance}
@@ -199,6 +202,7 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
     var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
     root.dataset.theme = dark ? 'light' : 'dark';
   });
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('video').forEach(function(v){ v.pause(); v.removeAttribute('autoplay'); v.controls = true; });
   var items = document.querySelectorAll('.rv');
   if(!('IntersectionObserver' in window)){ items.forEach(function(e){ e.classList.add('in'); }); return; }
   var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -6% 0px'});
