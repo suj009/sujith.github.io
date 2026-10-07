@@ -322,8 +322,17 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Orders, as MP4 plus WebM in `v3/img/work/orders/`. They show Orders as of March 2026, so captions
   say "today". The decisions are written from the shipped product with Sujith's go-ahead; the
   "What I learned" points are his own, from the live `case-study-orders.html`. No figures.
-- **Case study template v2** (Nexter, Airtel TV Africa, Reach Mobile and Orders are on it;
-  Wealth Tracker and NRI onboarding still need screenshots and notes from Sujith): results strip first (`results=`), an "at a glance" summary of
+- **NRI onboarding case study (v2, partly filled)**: Sujith designed the NRI path inside FYERS
+  sign-up, web and app; before it, NRIs began on a paper form (Sujith). Nothing public shows the
+  screens (no help-centre media, no community screenshots, and the flow sits behind an OTP), so the
+  slots stay "To add" until he sends exports or a recording. The context is public: FYERS's NRI
+  help articles, the fyers.in/nri-account three-step description (international number, account
+  type, documents), FYERS's NRI community posts on KYC mismatches, and a Feb 2026 community post
+  from a seafarer about the NRI PDF form. Still to add: when it shipped, who he worked with, and a
+  third decision from the screens. The two decisions written are structural, from the public flow.
+  The landing page's FYERS figures (customers, countries) stay off the page.
+- **Case study template v2** (Nexter, Airtel TV Africa, Reach Mobile, Orders and NRI onboarding
+  are on it; Wealth Tracker waits for its release): results strip first (`results=`), an "at a glance" summary of
   problem / role / the call / result (`glance=`), decisions as call-outs with Why and The
   trade-off (`{{call:what||why||trade-off}}`), screenshots on a stage in the product's colour
   (`stage=`), looping videos (`vid:video.mp4|poster|alt|caption`, with a `.webm` beside it; paused with controls under reduced motion), reading time in the kicker, and a closing "What I’d do differently" (or "What I learned") section. Airtel has no
