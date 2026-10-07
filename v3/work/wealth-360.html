@@ -3,16 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Wealth Tracker case study — Sujith Kumar Anand</title>
-<meta name="description" content="How Sujith Kumar Anand took FYERS Wealth Tracker from a PRD and an AI-generated concept to approved, Flutter-ready web and mobile, cutting front-end effort by an estimated 70%.">
+<title>Wealth 360 case study — Sujith Kumar Anand</title>
+<meta name="description" content="A password-protected case study by Sujith Kumar Anand.">
+<meta name="robots" content="noindex, nofollow">
 <meta name="author" content="Sujith Kumar Anand">
-<link rel="canonical" href="https://sujith.design/work/wealth-tracker.html">
+<link rel="canonical" href="https://sujith.design/work/wealth-360.html">
 <link rel="icon" href="../img/favicon.ico" sizes="48x48">
 <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Wealth Tracker case study — Sujith Kumar Anand">
-<meta property="og:description" content="How Sujith Kumar Anand took FYERS Wealth Tracker from a PRD and an AI-generated concept to approved, Flutter-ready web and mobile, cutting front-end effort by an estimated 70%.">
+<meta property="og:title" content="Wealth 360 case study — Sujith Kumar Anand">
+<meta property="og:description" content="A password-protected case study by Sujith Kumar Anand.">
 <meta property="og:image" content="https://sujith.design/img/og-sujith.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <script>document.documentElement.classList.add('js')</script>
@@ -150,6 +151,14 @@ video.shot{object-fit:contain}
   .rail .here{display:none}
 }
 </style>
+<style>
+.unlock{grid-column:1 / -1;max-width:30rem;margin-top:1rem}
+.unlock .row{display:flex;gap:.5rem;margin-top:.4rem}
+.unlock input{flex:1;min-width:0;font:inherit;font-size:1rem;padding:.7rem .85rem;border:1px solid color-mix(in srgb,var(--ink) 30%,transparent);border-radius:3px;background:transparent;color:var(--ink)}
+.unlock input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.unlock button{font:inherit;font-size:1rem;padding:.7rem 1.2rem;border:0;border-radius:3px;background:var(--ink);color:var(--ground);cursor:pointer}
+.unlock .msg{min-height:1.2em;margin:.6rem 0 0}
+</style>
 </head>
 <body>
 <div class="page">
@@ -159,36 +168,17 @@ video.shot{object-fit:contain}
     <button class="u" type="button" id="invert">Invert colour</button>
   </header>
   <main>
-    <header class="hero grid8">
-      <p class="kicker c2 rv" style="margin:0"><span>FYERS · Reports · 2026</span><span class="tag">Hands-on</span><span class="tag">End to end</span><span class="rt">2 min read</span></p>
-      <h1 class="rv">Wealth Tracker: from PRD to Flutter-ready</h1>
-      <p class="lede rv">A PRD and an AI-generated concept in; approved, Flutter-ready web and mobile out. I took it end to end, into the repository and the environment, to close the gap between what design intends and what ships.</p>
-      
-      <ul class="facts rv"><li><span class="k c2">Role</span><span class="v">End-to-end product and implementation ownership</span></li><li><span class="k c2">Platforms</span><span class="v">Web and mobile, Flutter-ready</span></li><li><span class="k c2">Front-end effort</span><span class="v">About 70% less, the front-end team’s estimate</span></li><li><span class="k c2">Approved by</span><span class="v">The AVP of Product, the CPO and the CTO</span></li></ul>
-      
-      <figure class="fig rv"><div class="ph" role="img" aria-label="Screenshot to add: Wealth Tracker overview"><div class="in c2"><span class="ic" aria-hidden="true"></span><b>Wealth Tracker overview</b><span>The overall wealth and asset-allocation view, web</span></div></div><figcaption class="c2">Screenshot to add</figcaption></figure>
+    <header class="hero grid8" id="lockbox">
+      <p class="kicker c2" style="margin:0"><span>FYERS · Reports · 2026</span><span class="tag">Password protected</span></p>
+      <h1>Wealth 360</h1>
+      <p class="lede">This case study is password protected. If you don&rsquo;t have the password, write to me at <a class="u" href="mailto:suj009@gmail.com?subject=Wealth%20360%20case%20study">suj009@gmail.com</a>.</p>
+      <form class="unlock" id="unlock" autocomplete="off">
+        <label class="c2" for="pw">Password</label>
+        <div class="row"><input id="pw" name="pw" type="password" autocomplete="current-password" required><button type="submit">Unlock</button></div>
+        <p class="msg c2" id="msg" role="status" aria-live="polite"></p>
+      </form>
     </header>
-    <section class="sec grid8" aria-labelledby="s1">
-      <div class="sec-h"><span class="n c2">01</span><h2 id="s1">The starting point</h2></div>
-      <div class="sec-b rv"><p>Wealth Tracker came from FYERS product leadership. The Product Owner shared a PRD and an early concept that already existed as an HTML output generated with AI. My starting point was an AI-generated representation that needed to be evaluated, challenged and turned into a coherent FYERS product.</p><p>The product consolidates a person’s investment picture: overall wealth, asset allocation, portfolio performance, holdings, and the insights that sit on top of them.</p></div>
-    </section>
-    <section class="sec grid8" aria-labelledby="s2">
-      <div class="sec-h"><span class="n c2">02</span><h2 id="s2">Review, challenge, refine</h2></div>
-      <div class="sec-b rv"><p>I read the PRD against the concept and asked the ordinary questions. Did it meet the requirement? Where were the UX and UI gaps? Did the hierarchy and interactions hold? What needed clarifying with the PO, and where did it diverge from FYERS patterns?</p><p>Then I worked the loop: find a gap, resolve the decision with the PO, direct the change, review the output, repeat. Execution got fast enough that judgement became the bottleneck, which is the right bottleneck.</p><p>The refined experience went through product review with the AVP of Product, the CPO and the CTO, and one more round of iteration before approval.</p></div>
-    </section>
-    <section class="sec grid8" aria-labelledby="s3">
-      <div class="sec-h"><span class="n c2">03</span><h2 id="s3">Changing my role in delivery</h2></div>
-      <div class="sec-b rv"><p>A normal workflow ends at handoff and picks up again at design review. After approval I went the other way. I joined the development environment, met the developers who owned the UI system, set up a separate repository for the implementation work, and set up the local environment myself.</p><p>I delivered the web experience first, reviewing a running product rather than static screens. Once the web workflow was done and I had analysed how it went, I did mobile the same way.</p><figure class="fig rv"><div class="ph" role="img" aria-label="Screenshot to add: Web output"><div class="in c2"><span class="ic" aria-hidden="true"></span><b>Web output</b><span>The delivered web experience, running</span></div></div><figcaption class="c2">Screenshot to add</figcaption></figure><figure class="fig rv"><div class="ph tall" role="img" aria-label="Screenshot to add: Mobile output"><div class="in c2"><span class="ic" aria-hidden="true"></span><b>Mobile output</b><span>The delivered mobile experience</span></div></div><figcaption class="c2">Screenshot to add</figcaption></figure></div>
-    </section>
-    <section class="sec grid8" aria-labelledby="s4">
-      <div class="sec-h"><span class="n c2">04</span><h2 id="s4">The outcome</h2></div>
-      <div class="sec-b rv"><p>Based on feedback from the front-end team, the approach was estimated to cut around 70% of the front-end implementation effort for this work. That is their estimate, not a measured benchmark, and I state it that way on purpose.</p><p>The saving was not only hours. The old process ran design and implementation reviews roughly every two weeks, and each round risked the design drifting in interpretation. Working closer to implementation removed most of the places where intent could change on its way to the user.</p></div>
-    </section>
-    <blockquote class="pull grid8 rv" style="margin-inline:0"><p>I didn’t open by proposing a framework. I did the work myself first, and the work made the argument.</p></blockquote>
-    <section class="sec grid8" aria-labelledby="s5">
-      <div class="sec-h"><span class="n c2">05</span><h2 id="s5">Why it mattered beyond the feature</h2></div>
-      <div class="sec-b rv"><p>Taking one product from requirement to Flutter-ready output gave stakeholders enough confidence to ask a bigger question. It moved from <em>can a designer do this?</em> to <em>can we make it repeatable?</em></p><p>The hard part was never generating an interface. It was deciding what should change, what should stay, what was missing and what met the bar. AI output is a starting point; the judgement is the job.</p></div>
-    </section>
+    <script type="application/json" id="sealed">{"s": "4V/5uymPRnZkZqpcKsq9Tw==", "i": "icNlSYLbwwQRjLjn", "c": "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", "n": 250000}</script>
   </main>
   <nav class="next" aria-label="Next case study">
     <a href="nexter-finance.html"><span class="k c2">Next case study</span><span class="t">Nexter Finance <span class="ar" aria-hidden="true">&rarr;</span></span><span class="s p">A decentralised prediction market, designed from zero and launched in phases.</span></a>
@@ -208,6 +198,33 @@ video.shot{object-fit:contain}
   if(!('IntersectionObserver' in window)){ items.forEach(function(e){ e.classList.add('in'); }); return; }
   var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -6% 0px'});
   items.forEach(function(e, i){ if(e.closest('.hero')) e.style.transitionDelay = (i * 90) + 'ms'; io.observe(e); });
+})();
+</script>
+<script>
+(function(){
+  var form = document.getElementById('unlock'); if(!form) return;
+  var box = document.getElementById('lockbox'), msg = document.getElementById('msg'), input = document.getElementById('pw');
+  var sealed = JSON.parse(document.getElementById('sealed').textContent);
+  var KEY = 'unlock:' + location.pathname.split('/').pop();
+  function b(s){ return Uint8Array.from(atob(s), function(ch){ return ch.charCodeAt(0); }); }
+  function open(pw, quiet){
+    if(!(window.crypto && crypto.subtle)){ msg.textContent = 'This browser cannot open the case study.'; return; }
+    if(!quiet) msg.textContent = 'Checking\u2026';
+    crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey'])
+      .then(function(base){ return crypto.subtle.deriveKey({name:'PBKDF2', salt:b(sealed.s), iterations:sealed.n, hash:'SHA-256'}, base, {name:'AES-GCM', length:256}, false, ['decrypt']); })
+      .then(function(key){ return crypto.subtle.decrypt({name:'AES-GCM', iv:b(sealed.i)}, key, b(sealed.c)); })
+      .then(function(buf){
+        try{ sessionStorage.setItem(KEY, pw); }catch(e){}
+        var main = box.parentNode; main.innerHTML = new TextDecoder().decode(buf);
+        main.querySelectorAll('.rv').forEach(function(e){ e.classList.add('in'); });
+        if(matchMedia('(prefers-reduced-motion: reduce)').matches) main.querySelectorAll('video').forEach(function(v){ v.pause(); v.removeAttribute('autoplay'); v.controls = true; });
+        var h = main.querySelector('h1'); if(h){ h.setAttribute('tabindex','-1'); if(!quiet) h.focus(); }
+      })
+      .catch(function(){ if(!quiet){ msg.textContent = 'That password didn\u2019t work. Try again.'; input.select(); } });
+  }
+  form.addEventListener('submit', function(e){ e.preventDefault(); open(input.value, false); });
+  var saved = null; try{ saved = sessionStorage.getItem(KEY); }catch(e){}
+  if(saved) open(saved, true);
 })();
 </script>
 </body>

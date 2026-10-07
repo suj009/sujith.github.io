@@ -105,10 +105,18 @@ Claims on this site are checkable by the people being persuaded, so:
   employers (Nexter, Datami) are fine when dated and confirmed.
 - **Only live projects go on the site** (Sujith). The Agentic Design Framework was removed
   (card and page) because it hasn't shipped. Orders is live. NRI onboarding was removed (card and page) at Sujith's
-  request, 7 Oct 2026: no public screens could be found for it. Wealth Tracker is
-  not yet: Sujith (7 Oct 2026) says it releases on web and mobile on Friday 9 Oct 2026. It stays in
-  the preview, but the site must not merge to the root with it until it is out; once it is, its case
-  study gets real screens from the release (FYERS had no public material on it before then).
+  request, 7 Oct 2026: no public screens could be found for it. **Wealth Tracker is now called Wealth 360** (Sujith, 7 Oct 2026)
+  and its case study (`v3/work/wealth-360.html`) is **password protected**. It releases on web and
+  mobile on Friday 9 Oct 2026; the site must not merge to the root with it until it is out. The page
+  body is encrypted at build time (AES-GCM, key from PBKDF2-SHA256, 250k iterations) by `lock()` in
+  `cs/build.py`; the password and salt live in the scratchpad (`cs/.w360pass`, `cs/.w360salt`), never in
+  the repo. Screens added later must go inside the encrypted body (as data URIs), or their public URLs
+  would leak them. The page is `noindex`; keep it out of the sitemap on merge. Its public card, the
+  About "Ship" line and Leadership's "Close to the work" keep their text and the 70% estimate (Sujith).
+  The live root site still has a public `case-study-wealth-tracker.html`; the v3 merge replaces it.
+- **AIDA** is the internal agentic design framework Sujith leads: designers and PMs go from ideation
+  to Flutter code. Proven on Wealth 360, now used by one PM and being rolled out to all of PD and PM
+  (Sujith, 7 Oct 2026). It is named only inside the locked Wealth 360 page until he OKs a public mention.
 - **Never publish a number or ranking that has not been verified**, and never
   invent one to fill a sentence. Ask instead.
 - **Rankings decay.** "Top-20 Indian retail brokerage" was verified against the
