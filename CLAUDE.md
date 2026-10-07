@@ -104,7 +104,10 @@ Claims on this site are checkable by the people being persuaded, so:
   "over a million active clients"), team size, verticals and the feature count. Figures from past
   employers (Nexter, Datami) are fine when dated and confirmed.
 - **Only live projects go on the site** (Sujith). The Agentic Design Framework was removed
-  (card and page) because it hasn't shipped. Orders, Wealth Tracker and NRI onboarding are live.
+  (card and page) because it hasn't shipped. Orders and NRI onboarding are live. Wealth Tracker is
+  not yet: Sujith (7 Oct 2026) says it releases on web and mobile on Friday 9 Oct 2026. It stays in
+  the preview, but the site must not merge to the root with it until it is out; once it is, its case
+  study gets real screens from the release (FYERS had no public material on it before then).
 - **Never publish a number or ranking that has not been verified**, and never
   invent one to fill a sentence. Ask instead.
 - **Rankings decay.** "Top-20 Indian retail brokerage" was verified against the
