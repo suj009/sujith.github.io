@@ -200,8 +200,8 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   arrives at 1.3 of an 8.8-unit timeline, so there is no empty dark screen after the hero
   (Sujith: "why empty, move bit faster").
 
-- **Work starts close to the top**: `html.anim .works` pads 20svh above "Selected Work"
-  (16svh on phones), down from 55/40svh, at Sujith's request.
+- **The space above "Selected Work" stays at 55svh (40svh on phones).** It was cut to 20/16svh
+  once and Sujith asked for it back.
 
 ## v3 Work, case studies and essays
 
