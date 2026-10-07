@@ -302,6 +302,13 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   people who already knew web3 prediction markets, not newcomers. He moved on from Nexter soon
   after the six-user test, so the page says the findings were left to the team; don't invent
   changes that followed it.
+  Revised Oct 2026 for the C-suite reader: the headline leads with the outcome ("1.7 million
+  predictions from an unfinished brief"), the results strip leads with volume and fees, and the
+  page adds what the article had but the page didn't: the ~50-person Twitter/Telegram poll, his
+  earlier Oddz Finance role, the competitor matrix ("from my research at the time"), the design
+  review log, and a section on retention (portfolio, history and leaderboard; collect earnings;
+  leaderboard campaigns). Left out on purpose: the TAM chart (third-party projections) and the
+  analytics dashboard screenshot (unverified internal numbers).
 - **Airtel TV Africa and Reach Mobile case studies** are written from Sujith's own
   portfolio PDF ("Portfolio_Sujith_2023.pdf", uploaded in session; not in the repo). Screens
   are cropped from it into `v3/img/work/airtel/` and `v3/img/work/reach/`. Facts to keep
