@@ -104,7 +104,8 @@ Claims on this site are checkable by the people being persuaded, so:
   "over a million active clients"), team size, verticals and the feature count. Figures from past
   employers (Nexter, Datami) are fine when dated and confirmed.
 - **Only live projects go on the site** (Sujith). The Agentic Design Framework was removed
-  (card and page) because it hasn't shipped. Orders and NRI onboarding are live. Wealth Tracker is
+  (card and page) because it hasn't shipped. Orders is live. NRI onboarding was removed (card and page) at Sujith's
+  request, 7 Oct 2026: no public screens could be found for it. Wealth Tracker is
   not yet: Sujith (7 Oct 2026) says it releases on web and mobile on Friday 9 Oct 2026. It stays in
   the preview, but the site must not merge to the root with it until it is out; once it is, its case
   study gets real screens from the release (FYERS had no public material on it before then).
@@ -219,7 +220,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   the session scratchpad under `yt/`. Removed on his review: FYERS Prime (he
   didn't work on it), the FYERS Web explainer (not a feature), FIA GPT (no
   design), four Automate triggers and FIA IPO analysis (dev work), and NRI
-  onboarding (his own hands-on work, now an IC case study) and the generic
+  onboarding (his own hands-on work; it later had an IC case study, since removed too) and the generic
   "Reports & portfolio" card (Reports is a vertical; portfolio sits under
   Trading), and API Dashboard (Sujith, Oct 2026). Chart features are
   "minimal design, mostly dev", so they carry a Small scope.
@@ -284,9 +285,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   unify web and app on one design system. Sujith was part of the design team,
   leading three verticals at the time under the CXO. Say "part of"; the FDSG
   ownership claim stays disputed.
-- **IC view** has six cards, each opening a page in `v3/work/` (Orders, Wealth
-  Tracker, NRI onboarding, Nexter Finance, Airtel TV
-  Africa, Reach Mobile). Airtel TV Africa and Reach Mobile are two separate projects from his time at
+- **IC view** has five cards, each opening a page in `v3/work/` (Orders, Wealth
+  Tracker, Nexter Finance, Airtel TV Africa, Reach Mobile); the lede says "Five pieces of
+  hands-on work across three companies". Airtel TV Africa and Reach Mobile are two separate projects from his time at
   Datami Mobile Solutions Pvt Ltd; each keeps its own page. Pages are generated from one template; `[[...]]`-style gaps render as
   "To add" highlights and dashed boxes mark screenshot slots for Sujith to fill.
 - **Nexter Finance case study** is written from Sujith's own Medium case study
@@ -322,23 +323,10 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Orders, as MP4 plus WebM in `v3/img/work/orders/`. They show Orders as of March 2026, so captions
   say "today". The decisions are written from the shipped product with Sujith's go-ahead; the
   "What I learned" points are his own, from the live `case-study-orders.html`. No figures.
-- **NRI onboarding case study (v2, partly filled)**: Sujith designed the NRI path inside FYERS
-  sign-up, web and app; before it, NRIs began on a paper form (Sujith). Nothing public shows the
-  screens (no help-centre media, no community screenshots, and the flow sits behind an OTP), so the
-  slots stay "To add" until he sends exports or a recording. The context is public: FYERS's NRI
-  help articles, the fyers.in/nri-account three-step description (international number, account
-  type, documents), FYERS's NRI community posts on KYC mismatches, and a Feb 2026 community post
-  from a seafarer about the NRI PDF form (not used: it postdates the digital path). Public evidence
-  of the flow: help articles say NRIs fill the signup form and upload documents in onboarding; a Sept
-  2025 community post shows "Select your Account Type" (Demat / NRI / Corporate) after the OTP; an
-  Oct 2025 staff reply mentions a CP code opt-in during onboarding; Tejas Khoday's 2022 community
-  reply (quoted verbatim) on why NRI opening was offline. Nothing anywhere shows the screens: all 31
-  NRI help articles, the NRI community category with replies, and What's new (Jul 2023 to Oct 2026)
-  were checked. Still to add: when it shipped, who he worked with, screens. The three decisions are
-  written from that public flow.
-  The landing page's FYERS figures (customers, countries) stay off the page.
-- **Case study template v2** (Nexter, Airtel TV Africa, Reach Mobile, Orders and NRI onboarding
-  are on it; Wealth Tracker waits for its release): results strip first (`results=`), an "at a glance" summary of
+- **NRI onboarding was killed** (Sujith, 7 Oct 2026) after a full search of FYERS's help centre,
+  community and What's new found no public screens of the flow. Don't bring it back unless he asks
+  and supplies screens. Its draft entry lives in the scratchpad as `cs/nri_v2.py`.
+- **Case study template v2** (Nexter, Airtel TV Africa, Reach Mobile and Orders are on it; Wealth Tracker waits for its release): results strip first (`results=`), an "at a glance" summary of
   problem / role / the call / result (`glance=`), decisions as call-outs with Why and The
   trade-off (`{{call:what||why||trade-off}}`), screenshots on a stage in the product's colour
   (`stage=`), looping videos (`vid:video.mp4|poster|alt|caption`, with a `.webm` beside it; paused with controls under reduced motion), reading time in the kicker, and a closing "What I’d do differently" (or "What I learned") section. Airtel has no
