@@ -184,14 +184,14 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 
 ## v3 hero (hero-replica.html)
 
-- **The diagonal line follows the source (santalarch.com)**: at rest it runs corner to corner
-  (`atan2(height, width) − 180°`), and over the first 65% of the hero's scroll it turns to flat
-  (`angle × (1 − progress)`). On load the three lines draw down in turn (clip-path, 1.2s,
-  0.2s stagger); no angle swing. The tagline layer is masked by the line only once the page
-  has moved 12% of the viewport (`.tag-wrap.masked`), so the description is never cut at rest.
-  Unlike the source, the visible side widens as you scroll (`--cut` 50% → 100% by 62.5% of the
-  hero's range), because the line only reaches about 45° by the end of our hero and would
-  otherwise cut the tagline in half at its reading position (Sujith flagged it).
+- **The diagonal line is the original (Sujith chose it over the source's rotating line and six
+  other options on the "Tagline Motion Options" page).** It is fixed: through the centre, from
+  mid-screen to the wordmark's column (`run = w × .375`, `w / 2` below 1024px). On load the
+  verticals draw down (clip-path, 1.6s, 0.12s stagger) while the diagonal swings 36° into place
+  and fades in. As you scroll, the line stays put and the visible side of the tagline layer
+  widens (`--cut` 50% → 100% at `p × 1.15`). Kept from the later fix: the layer is masked only
+  once the page has moved 12% of the viewport (`.tag-wrap.masked`), so the description is never
+  cut at rest.
 - **The hero description is one lighter colour** (`--ink-2`), with no darker emphasis, on
   desktop and phone (Sujith).
 

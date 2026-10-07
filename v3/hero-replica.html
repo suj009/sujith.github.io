@@ -201,9 +201,8 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
 
 .tag-wrap{position:sticky;top:0;height:100svh;margin-bottom:-100svh;overflow:hidden;pointer-events:none;z-index:1;
 }
-/* as in the source: no mask at rest, so the description is never cut; once the page has moved,
-   the diagonal splits the layer and the visible side turns with the line, widening as you scroll
-   so the tagline is whole by the time it reaches the middle of the screen */
+/* no mask at rest, so the description is never cut; once the page has moved, the fixed diagonal
+   splits the layer and the visible side widens as you scroll until the whole tagline shows */
 .tag-wrap.masked{-webkit-mask-image:linear-gradient(var(--angle),#000 var(--cut,50%),transparent var(--cut,50%));
           mask-image:linear-gradient(var(--angle),#000 var(--cut,50%),transparent var(--cut,50%))}
 /* without script nothing moves the pinned layer, so let the headline sit in the hero's flow instead */
@@ -1332,13 +1331,12 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     root.style.setProperty('--logo-offset', (h + parseFloat(getComputedStyle(root).fontSize)) + 'px');
   }
 
-  var restAngle = -150;
+  // the original line: fixed through the centre, from the middle of the screen to the wordmark's column
   function fitAngle(){
-    restAngle = Math.atan2(tagWrap.clientHeight || innerHeight, tagWrap.clientWidth || innerWidth) * 180 / Math.PI - 180;
-  }
-  function setAngle(){
-    var p = Math.min(Math.max((scrollY - hero.offsetTop) / (hero.offsetHeight * .65), 0), 1);
-    hero.style.setProperty('--angle', (restAngle - restAngle * p) + 'deg');
+    var w = innerWidth, h = innerHeight;
+    var run = innerWidth < 1024 ? w / 2 : w * .375;
+    var line = 90 + Math.atan((h / 2) / run) * 180 / Math.PI;
+    hero.style.setProperty('--angle', (line + 90 - 360) + 'deg');
   }
 
   function onScroll(){
@@ -1347,8 +1345,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     tagBox.style.transform = 'translate3d(0,' + (-y) + 'px,0)';
     var p = range > 0 ? y / range : 0;
     tagWrap.classList.toggle('masked', y > innerHeight * .12);
-    hero.style.setProperty('--cut', (50 + 50 * Math.min(p * 1.6, 1)) + '%');
-    setAngle();
+    hero.style.setProperty('--cut', (50 + 50 * Math.min(p * 1.15, 1)) + '%');
   }
 
   function layout(){ fitMark(); fitAngle(); onScroll(); }
@@ -1652,9 +1649,15 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     walk(p);
   });
 
+  // the original intro: the verticals draw down while the diagonal swings 36 degrees into place
+  var o = {a: 0};
+  var finalAngle = parseFloat(getComputedStyle(hero).getPropertyValue('--angle'));
   var tl = gsap.timeline({defaults:{ease:'expo.out'}});
-  // as in the source: the three lines, diagonal included, draw down in turn
-  tl.from('.grid .g1, .grid .g2, .grid .g3', {clipPath:'inset(0% 0% 100% 0%)', duration:1.2, stagger:.2, ease:'power1.out', delay:.1}, 0)
+  tl.from('.grid .g1, .grid .g2', {clipPath:'inset(0 0 100% 0)', duration:1.6, stagger:.12, ease:'power3.inOut'}, 0)
+    .fromTo(o, {a: 36}, {a: 0, duration:1.8, ease:'power3.inOut',
+      onUpdate:function(){ hero.style.setProperty('--angle', (finalAngle + o.a) + 'deg'); },
+      onComplete:fitAngle}, 0)
+    .from('.grid .g3', {opacity:0, duration:1.2}, 0)
     .from('.wordmark .l > span', {yPercent:105, duration:1.4, stagger:.07}, .35)
     .from('.nav .mark .logo, .nav .slide', {y:14, opacity:0, duration:1, stagger:.06}, .8)
     .from('.hero .w', {y:'0.6em', opacity:0, duration:1, stagger:.012}, 1)
