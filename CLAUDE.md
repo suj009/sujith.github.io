@@ -242,7 +242,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 
 ## v3 Work, case studies and essays
 
-- **Manager wall** (`#viewMgr` in `v3/hero-replica.html`) lists 34 FYERS
+- **Manager wall** (`#viewMgr` in `v3/hero-replica.html`) lists 33 FYERS
   features shipped since February 2024. Sujith reviewed the list card by card;
   the source of truth is `wall.tsv` (video id, name, area, sub-area, design
   scope S/M/L, launch month), which `wall.py` turns into the cards. Both live in
@@ -251,13 +251,14 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   design), four Automate triggers and FIA IPO analysis (dev work), and NRI
   onboarding (his own hands-on work; it later had an IC case study, since removed too) and the generic
   "Reports & portfolio" card (Reports is a vertical; portfolio sits under
-  Trading), and API Dashboard (Sujith, Oct 2026). Chart features are
+  Trading), and API Dashboard (Sujith, Oct 2026), and AI Screener (Sujith, 8 Oct 2026: not his team's). Chart features are
   "minimal design, mostly dev", so they carry a Small scope.
   **Launch months come from FYERS's What's new timeline (fyers.in/whats-new), not video dates**
   (Sujith, 8 Oct 2026; FIA is July 2025). Re-dated then from the first matching entry; cards with no
-  clear entry kept their video month: Build your own indicators, Dual Chart Mode, Stock Screeners,
-  Portfolio analysis with FIA, Smart News, Advanced Option Chain, Trade from Advanced Charts, DDPI and
-  Account opening. The page is newer than `wall.tsv`, so edit dates in `v3/hero-replica.html`; the
+  clear entry kept their video month: Build your own indicators, Dual Chart Mode, Portfolio analysis
+  with FIA, Smart News, Advanced Option Chain, Trade from Advanced Charts and DDPI. Stock Screeners is
+  Dec 2025 (the upgrade his team designed, not the Nov 2024 launch). Account opening stays Jun 2024:
+  his team's redesign after he joined, not the Nov 2023 Sign Up 2.0 (Sujith). The page is newer than `wall.tsv`, so edit dates in `v3/hero-replica.html`; the
   parsed timeline is `scratchpad/wn/entries.tsv`. `.extra` marks every card outside the first 12 of the
   default (flagship-first) order.
 - **Trading has three sub-areas: Trading, Charts and API** (Sujith). Cards show
@@ -266,9 +267,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   unnecessary; don't bring them back unless he asks. No API card is on the wall
   now: API Dashboard was removed at his request. Newest-first order is `data-order`, not the date, so a card added later must
   be slotted into the sequence by its month. FYERS
-  Professional is the one card without a video. The count (34) appears in
-  the lede, the filter sentence, the All chip, the Trading chip (13) and Leadership
-  ("Thirty-four", "34 features shipped"); move them together.
+  Professional is the one card without a video. The count (33) appears in
+  the lede, the filter sentence, the All chip, the area chips (Trading 13, FIA 3), Leadership
+  ("Thirty-three", "33 features shipped") and the Leading design page; move them together.
 - **Manager wall cards carry no figures** (no FYERS numbers): the panel holds the one-line
   description only. For fine pointers the panel keeps a 2.5:1 frame so the hover still has
   room; on touch it is as tall as the text. The layout-H figure slots below apply to past
@@ -295,7 +296,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Phones below 640px get one card per row. Hands-on cards use the same anatomy:
   their description sits in the panel with the same two slots, and there is no
   hover still. **The filter** (Sujith's picks from the filter options page): on
-  desktop it is one sentence, "Showing 34 features in [every area], [newest
+  desktop it is one sentence, "Showing 33 features in [every area], [newest
   first]", with two native dropdowns (option B); below 1024px it is one strip of
   area and sort chips that swipes sideways, with no sheet (option F). Both drive
   the same state and stay in step; the count in the sentence updates as you
@@ -387,13 +388,20 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   from Leadership's Team step as "How I lead the team"): the manager-level case study. Built only from
   confirmed facts and his own essay lines (the relay, "I argued for", the UX Manager to Product Design
   Manager line, the org-chart pull quote). Opens on a diagram (relay, one owner, AIDA to code) drawn
-  in `scratchpad/model.svg`. The org changes and his hiring role are filled (section "Two organisational
-  changes"); two gaps stay To add until Sujith answers: his review routine, and one quality bar and
-  what changed. A quarterly cadence chart was drawn and dropped: launch months then came from video dates and made
-  2024 to 2025 look slow next to a 2026 spike. Wall counts: 9 Flagship, 8 Feature, 17 Enhancement.
+  in `scratchpad/model.svg`. No To add gaps remain (Sujith, 8 Oct 2026): the org changes and his hiring role (section "Two
+  organisational changes"); review runs two ways (blockers brought to him any time, a final review when
+  the design is done; a stand-up every other day), every design reviewed by its PM and then by him,
+  walkthroughs in person with feedback as Figma comments or notes for the next AI-generated version;
+  his quality bar is all four of every state designed, design-system components only, web and app
+  together, real data; since then fewer developer questions and faster reviews. A quarterly cadence chart was drawn and dropped: launch months then came from video dates and made
+  2024 to 2025 look slow next to a 2026 spike. Wall counts: 9 Flagship, 8 Feature, 16 Enhancement.
 - **One idea, one home:** "show leaders finished screens, not wireframes" lives in Orders only.
-  Reach Mobile's decision is now the launch scope (explain pages + SIM purchase first), and its
-  story closes with the short flow becoming the only purchase flow.
+  Reach Mobile's launch-scope section was removed (Sujith, 8 Oct 2026: not his call); its one decision
+  is the purchase-flow swap, and its story closes with the short flow becoming the only purchase flow.
+- **Checked by Sujith (8 Oct 2026):** the four Orders decisions are his (the PRD covered only the basics;
+  he did the IA, the PM approved it, the decisions followed, and the page says so); Nexter's retention
+  call is his; the CV line "A leading voice for moving from a split UX/UI relay to end-to-end Product
+  Designers" is accurate.
 - **Team size:** five designers today, eight at the team's largest. Never "5–8".
 - **The detailed CV** (`v3/cv.html`) has a pre-rendered
   `v3/Sujith-Kumar-Anand-CV.pdf` for its Download button. Regenerate it
