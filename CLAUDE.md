@@ -407,5 +407,10 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   `v3/Sujith-Kumar-Anand-CV.pdf` for its Download button. Regenerate it
   whenever the CV changes (`cvpdf.mjs` in the scratchpad, A4 at scale 0.9 to hold two pages). The
   row numbers are hidden in print: Chrome's PDF stacked them all over the name.
+- **On merge, retire the old root pages** (`article-*.html`, `case-study-*.html`): their source still
+  carries author comments (e.g. "ASSUMED CONTENT ... verify before this gets read in an interview")
+  that anyone can read with View Source. Delete them or redirect them to their v3 replacements.
+- **No present-tense claims about past employers' products** ("still in use", "customers use today")
+  unless re-verified: Reach Mobile's were cut on the Oct 2026 C-suite review.
 - **Audience reminder (Sujith, Oct 2026):** primarily Head of Design roles; readers are C-suite and
   heads of design. Recheck every word against them.
