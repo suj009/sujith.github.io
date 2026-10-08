@@ -130,12 +130,14 @@ Claims on this site are checkable by the people being persuaded, so:
   May 2025: design moved into Product; he moved with eight designers, took every vertical and reports
   to the CPO and co-founder (content moved too, under another manager). Six months later the visual
   designers followed; Onboarding and Mutual Funds went to another Design Manager, and he kept **seven
-  verticals: Trading, Options, Automate, FIA, Markets, Institutional and Reports**. The CXO then started an
-  Innovation Lab as Chief Innovation Officer. These are the "two organisational changes". Live root
+  verticals: Trading, Options, Automate, FIA, Markets, Institutional and Reports**. These are the "two
+  organisational changes". **He now reports to the AVP of Product** (earlier the CPO and co-founder;
+  Sujith, 8 Oct 2026): the site says so on the Leading page and the CV only, and keeps the CPO line as
+  history. The CXO's move to an Innovation Lab is internal and stays off the site (removed on his call). Live root
   `index.html`/`cv.html` still say six; the v3 merge replaces them (the root hero is frozen anyway).
 - **Titles:** at Datami he was Senior Product Designer, then Lead Product Designer. On Airtel TV
-  Africa he was Lead Product Designer and the only designer, handling design end to end with his
-  manager's approval; Airtel TV went on to reach all 14 African markets (no date given).
+  Africa he was Lead Product Designer and the only designer, and led design from start to end (Sujith:
+  "I wasn't a junior"; never write "with my manager's approval"); Airtel TV went on to reach all 14 African markets (no date given).
 - **Never publish a number or ranking that has not been verified**, and never
   invent one to fill a sentence. Ask instead.
 - **Rankings decay.** "Top-20 Indian retail brokerage" was verified against the
@@ -145,7 +147,9 @@ Claims on this site are checkable by the people being persuaded, so:
 - **Write numbers for a global reader.** Lakh and crore do not parse outside
   India, and the site is written for both Indian and international readers:
   10L → "over a million".
-- **0→1 products: Nexter Finance and Airtel TV Africa (Datami), two in all.** FIA is NOT 0→1
+- **0→1 products: Airtel TV Africa, Reach Mobile (both Datami) and Nexter Finance, three in all** (Reach
+  added by Sujith, 8 Oct 2026: About "Launch", the CV, the Reach card and case tag, and the essay
+  *Zero to one, three times* say three). Earlier wording: "Nexter Finance and Airtel TV Africa, two in all." FIA is NOT 0→1
   (Sujith, 7 Oct 2026: it is a feature / flagship work); every FIA 0→1 mention was removed and the
   essay became "Zero to one, twice" (`writing/zero-to-one-twice.html`). Earlier note, now wrong:
   "at least three products launched 0→1 — FIA (FYERS), Nexter Finance, and Airtel TV Africa (Datami)." The hero says "multiple"
@@ -268,7 +272,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   now: API Dashboard was removed at his request. Newest-first order is `data-order`, not the date, so a card added later must
   be slotted into the sequence by its month. FYERS
   Professional is the one card without a video. The count (33) appears in
-  the lede, the filter sentence, the All chip, the area chips (Trading 13, FIA 3), Leadership
+  the lede, the filter sentence, the All chip, the area chips (Trading 13, FIA 3), About "Lead", Leadership
   ("Thirty-three", "33 features shipped") and the Leading design page; move them together.
 - **Manager wall cards carry no figures** (no FYERS numbers): the panel holds the one-line
   description only. For fine pointers the panel keeps a 2.5:1 frame so the hover still has
@@ -378,9 +382,11 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   "Learnings".
   Reflections must come from his own stated learnings, never invented. The generator is
   `cs/build.py` in the session scratchpad; `build.v1.py` is the pre-v2 copy.
-- **Essays** live in `v3/writing/`: *AIDA: from one designer to a whole team*, *Designing past the
-  handoff* (was "The handoff is dead", retitled for enterprise readers), *Trust is a design material*,
-  *Zero to one, twice* and *One designer, whole problem*. The handoff essay's original carried
+- **Essays** live in `v3/writing/`, four since the Oct 2026 C-suite review: *AIDA: from one designer to
+  a whole team* (now also carries how Wealth 360 ran and the honest limits, folded in from *Designing
+  past the handoff*, which was deleted as a third essay on the same idea), *Trust is a design material*,
+  *Zero to one, three times* (`zero-to-one-three-times.html`, was *twice*; Reach Mobile added from its
+  case facts) and *One designer, whole problem*. Each essay's Keep reading lists the other three. The handoff essay's original carried
   author notes saying its workflow section was assumed and its anecdote "did not happen"; both were
   removed and the workflow rebuilt from the Wealth 360 case facts. Never reintroduce them. In *Trust*,
   the order ticket is the Lab prototype, so it says "prototyped", not "built".
@@ -412,5 +418,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   that anyone can read with View Source. Delete them or redirect them to their v3 replacements.
 - **No present-tense claims about past employers' products** ("still in use", "customers use today")
   unless re-verified: Reach Mobile's were cut on the Oct 2026 C-suite review.
+- **Contact line is "Open to Head of Design roles · Bengaluru or remote"** (Sujith, 8 Oct 2026: Sr Design
+  Manager dropped) on every v3 page.
+- **Business numbers are for interviews, not the site** (Sujith, 8 Oct 2026): FYERS outcomes stay as
+  scope and output on the page; he discloses results in person.
 - **Audience reminder (Sujith, Oct 2026):** primarily Head of Design roles; readers are C-suite and
   heads of design. Recheck every word against them.

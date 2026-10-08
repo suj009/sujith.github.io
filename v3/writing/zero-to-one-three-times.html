@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Designing past the handoff — Sujith Kumar Anand</title>
-<meta name="description" content="I took a product from a PRD to its front-end myself, working with AI as a pair. It changed what I think a designer, and a design team, can own.">
+<title>Zero to one, three times — Sujith Kumar Anand</title>
+<meta name="description" content="I have helped take three products from nothing to launch: a streaming app for Africa, a US phone service sold entirely online, and a DeFi prediction market. The lessons that held every time.">
 <meta name="author" content="Sujith Kumar Anand">
-<link rel="canonical" href="https://sujith.design/writing/designing-past-the-handoff.html">
+<link rel="canonical" href="https://sujith.design/writing/zero-to-one-three-times.html">
 <link rel="icon" href="../img/favicon.ico" sizes="48x48">
 <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Designing past the handoff — Sujith Kumar Anand">
-<meta property="og:description" content="I took a product from a PRD to its front-end myself, working with AI as a pair. It changed what I think a designer, and a design team, can own.">
+<meta property="og:title" content="Zero to one, three times — Sujith Kumar Anand">
+<meta property="og:description" content="I have helped take three products from nothing to launch: a streaming app for Africa, a US phone service sold entirely online, and a DeFi prediction market. The lessons that held every time.">
 <meta property="og:image" content="https://sujith.design/img/og-sujith.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <script>document.documentElement.classList.add('js')</script>
@@ -144,46 +144,39 @@ figcaption{margin-top:.6rem;color:var(--ink-2)}
 <div class="page">
   <header class="rail c2">
     <a class="back u" href="../hero-replica.html#writing"><span class="ar" aria-hidden="true">&larr;</span>Back to writing</a>
-    <span class="here">Essay · Design + AI</span>
+    <span class="here">Essay · Product</span>
     <button class="u" type="button" id="invert">Invert colour</button>
   </header>
   <main>
     <header class="a-head grid8">
-      <p class="kicker c2 rv" style="margin:0"><span>Essay · Design + AI</span></p>
-      <h1 class="rv">Designing past the handoff</h1>
-      <p class="dek rv">I took a product from a PRD to its front-end myself, working with AI as a pair. It changed what I think a designer, and a design team, can own.</p>
-      <p class="byline c2 rv" style="margin:0"><span>Sujith Kumar Anand</span><span>About 6 min read</span></p>
+      <p class="kicker c2 rv" style="margin:0"><span>Essay · Product</span></p>
+      <h1 class="rv">Zero to one, three times</h1>
+      <p class="dek rv">I have helped take three products from nothing to launch: a streaming app for Africa, a US phone service sold entirely online, and a DeFi prediction market. The lessons that held every time.</p>
+      <p class="byline c2 rv" style="margin:0"><span>Sujith Kumar Anand</span><span>About 5 min read</span></p>
     </header>
     <article class="a-body grid8">
-      <p>For most of my career, design ended at a line. You did the thinking, built the screens, wrote the spec, and then handed it across a wall to engineering and hoped what came back resembled what you drew.</p>
-      <p>At FYERS, that wall used to be inside the design team itself. We ran a relay: a UX designer picked up a requirement, handed it to a UI designer for finesse, who handed it to front-end for the build. Three handoffs, three chances to lose intent. Even after we unified those roles and built a real design system, the wall didn't fully disappear. When engineering turned the design system into a coded component library, we couldn't get a perfect match between design and code. Not because anyone did poor work, but because the gap between "designed" and "built" is real, and it has always needed a translator.</p>
-      <p>Recently I stopped waiting for the translator. I took a product called Wealth 360, one consolidated view of an investor's wealth, from a PRD and an early AI-generated concept all the way to its front-end myself, working with Claude as an AI pair. Nine working days, start to finish.</p>
-      <p>That changed how I think about what a designer is.</p>
-      <h2>What actually changed</h2>
-      <p>The old constraint was never imagination. It was translation. I could always picture the interaction; I couldn't always produce the production code, and the moment my design left my hands, some of the intent leaked out. AI collapses that translation step. The thing I designed and the thing that ships can now be the same thing, made by the same person, because the hardest part of writing front-end, the syntax and the boilerplate, is exactly what an AI pair is good at.</p>
-      <p>The question stops being "can a designer code?" and becomes "does the designer understand the system well enough to direct the build?"</p>
-      <blockquote><p>That's a judgement problem, not a syntax problem, and judgement is what senior designers already have.</p></blockquote>
-      <h2>How the work actually ran</h2>
-      <ol>
-        <li><b>Challenge the starting point.</b> The concept arrived as AI-generated HTML. I read it against the PRD and asked the ordinary questions: does it meet the requirement, where are the gaps, does the hierarchy hold, where does it break the product's own patterns?</li>
-        <li><b>Work the loop.</b> Find a gap, settle the decision with the product owner, direct the change, review the output, repeat. Execution got fast enough that judgement became the bottleneck, which is the right bottleneck.</li>
-        <li><b>Earn the approval first.</b> The refined product went through review with the AVP of Product, the CPO and the CTO before any of it was built.</li>
-        <li><b>Then cross the line.</b> I joined the development environment, met the developers who own the UI system, and set up the repository and local environment myself.</li>
-        <li><b>Review a running product, not a picture of one.</b> Web first, then mobile, each checked in the browser against the intent rather than against a static screen.</li>
-      </ol>
-      <p>The front-end team estimated the approach cut around 70% of the front-end implementation effort for this work. That is their estimate, not a benchmark, and I say so on purpose.</p>
-      <h2>What it means for design teams</h2>
-      <p>If one person can carry a problem from user need to shipped screen, the org chart should stop pretending those are separate jobs. It is the same conviction behind my case for the Product Designer role over a split between UX and UI: fewer handoffs, less lost intent, more ownership. AI extends that logic one step further. The handoff to front-end becomes one more seam a single owner can close.</p>
-      <p>So the way of working behind Wealth 360 became <a href="aida-ideation-to-code.html">AIDA</a>, the agentic design framework I now lead, so designers and product managers can go from idea to Flutter code without me in the room.</p>
-      <p>This doesn't make engineers redundant; it makes the boundary negotiable. Architecture, performance and the genuinely hard systems problems still belong to engineering. But the long tail of "design it, then wait weeks to see it built roughly right" is going away.</p>
-      <h2>The honest limits</h2>
-      <p>AI doesn't replace understanding. It amplified me because I already knew the system, the interaction, and what "correct" looked like. It answers the question you type; it cannot know the question you meant. Someone has to know the difference, and that someone is still the designer.</p>
-      <p>The last mile is still craft. The timing of a transition, the states nobody remembers, accessibility, fidelity to the design: that is where I spent my own hands. AI closes the distance; taste closes the gap.</p>
-      <p>Design has spent years arguing about whether designers should code. I think AI quietly ended the argument, not by making everyone an engineer, but by making the wall between designing something and shipping it low enough to step over. I stepped over it with Wealth 360. Now the job is to help the whole team step over it.</p>
+      <p>I have been part of three launches from zero: the Airtel TV streaming app for the African market and the Reach Mobile phone service in the US, both at Datami, and the Nexter Finance prediction market in decentralised finance. Three industries, three very different teams. A few things held true every time.</p>
+      <h2>Ship the smallest true thing</h2>
+      <p>At zero, the temptation is to design the whole vision so that nothing looks missing on launch day. The result is usually a product that launches late, or never.</p>
+      <p>At Nexter the scope was broad, predictions across crypto, stocks, commodities and real-world events, and it was still moving. Instead of waiting for it to settle, I proposed launching one mode first, Lossy Predictions, and releasing the rest in phases. The team shipped a real product while the rest of the scope was still being decided.</p>
+      <blockquote><p>The first version doesn't need to be complete. It needs to be true to the idea, and real enough to learn from.</p></blockquote>
+      <h2>Design for a scope that will move</h2>
+      <p>On a 0→1 product the requirements are guesses, however confident they sound. Designing as if they were fixed produces work that has to be thrown away the moment the first real users arrive.</p>
+      <p>What survives is structure: a small set of patterns that can absorb new features without a redesign, and flows built around the few decisions the product can't change. The rest you design to be replaced.</p>
+      <h2>Put it in front of a few real people early</h2>
+      <p>You don't need a large study to find out whether a first product makes sense. At Nexter I ran usability testing with six users. Six people will not tell you what the market thinks, but they will show you, very quickly, where the product doesn't make sense to someone who isn't in the room when it was designed.</p>
+      <p>For a product in a new category, that is most of the risk.</p>
+      <h2>Design for people who aren't like you</h2>
+      <p>All three were for people whose context wasn't the team's. A streaming app for a market I didn't live in. A US phone service for people used to buying one in a store. A DeFi product that had to serve people who already knew web3 without shutting out everyone else.</p>
+      <p>The discipline is the same each time: find out what the person already knows and fears, and start from there, not from what the team finds obvious.</p>
+      <h2>Let the launch be the beginning</h2>
+      <p>The day a 0→1 product ships is the day you finally get real evidence. The teams that do well treat launch as the start of the design process, not the end of it: watch what people actually do, keep what works, and change the rest quickly.</p>
+      <p>At Reach Mobile, launch is where we learned the most. Customer feedback and analytics showed people dropping out of the purchase flow, while a short flow we had built for social and ad campaigns was the one people finished, so it became the only one. Soon after, the audience shifted from people in their twenties to people over 35, and the site was redesigned for them.</p>
+      <p>Three launches in, that is the part I would tell anyone starting their first. Getting to launch is hard. What you do in the weeks after it decides whether the product lasts.</p>
     </article>
   </main>
-  <nav class="more" aria-label="Keep reading"><div class="more-h c2">Keep reading</div><a href="one-designer-whole-problem.html"><span class="k c2">Team &amp; craft</span><span class="t">One designer, whole problem</span><span class="ar" aria-hidden="true">&rarr;</span></a><a href="trust-is-a-design-material.html"><span class="k c2">Fintech</span><span class="t">Trust is a design material</span><span class="ar" aria-hidden="true">&rarr;</span></a><a href="zero-to-one-twice.html"><span class="k c2">Product</span><span class="t">Zero to one, twice</span><span class="ar" aria-hidden="true">&rarr;</span></a></nav>
-  <footer class="foot c2"><span>&copy; <span id="yr">2026</span> Sujith Kumar Anand · Senior Product Design Manager</span><span>Open to Head of Design / Sr Design Manager roles · Bengaluru or remote</span></footer>
+  <nav class="more" aria-label="Keep reading"><div class="more-h c2">Keep reading</div><a href="aida-ideation-to-code.html"><span class="k c2">Design leadership</span><span class="t">AIDA: from one designer to a whole team</span><span class="ar" aria-hidden="true">&rarr;</span></a><a href="one-designer-whole-problem.html"><span class="k c2">Team &amp; craft</span><span class="t">One designer, whole problem</span><span class="ar" aria-hidden="true">&rarr;</span></a><a href="trust-is-a-design-material.html"><span class="k c2">Fintech</span><span class="t">Trust is a design material</span><span class="ar" aria-hidden="true">&rarr;</span></a></nav>
+  <footer class="foot c2"><span>&copy; <span id="yr">2026</span> Sujith Kumar Anand · Senior Product Design Manager</span><span>Open to Head of Design roles · Bengaluru or remote</span></footer>
 </div>
 <script>
 (function(){
