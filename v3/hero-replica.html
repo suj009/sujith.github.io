@@ -4,6 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sujith Kumar Anand — Senior Product Design Manager</title>
+<script>
+// A reload starts the page from the top, with the intro, instead of where the reader left off.
+// Back, forward and links to a section (#work, #writing) still land where they point.
+(function(){
+  var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+  if(!nav || nav.type !== 'reload' || !('scrollRestoration' in history)) return;
+  history.scrollRestoration = 'manual';
+  if(location.hash) history.replaceState(null, '', location.pathname + location.search);
+  scrollTo(0, 0);
+  addEventListener('load', function(){ scrollTo(0, 0); });
+  addEventListener('pagehide', function(){ history.scrollRestoration = 'auto'; });
+})();
+</script>
 <meta name="description" content="Sujith Kumar Anand leads product design at FYERS, a top-20 Indian retail brokerage with over a million active clients. Eleven years in product design.">
 <meta name="author" content="Sujith Kumar Anand">
 <meta name="robots" content="index, follow, max-image-preview:large">
