@@ -1739,7 +1739,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
           var frag = document.createDocumentFragment();
           n.textContent.split(/(\s+)/).forEach(function(part){
             if(!part) return;
-            if(/^\s+$/.test(part)){ frag.appendChild(document.createTextNode(' ')); return; }
+            if(/^\s+$/.test(part)){ var g = document.createElement('span'); g.className = 'sp'; g.style.whiteSpace = 'pre-wrap'; g.textContent = ' '; frag.appendChild(g); return; }
             var s = document.createElement('span');
             s.className = 'w'; s.style.display = 'inline-block'; s.textContent = part;
             frag.appendChild(s);
