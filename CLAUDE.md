@@ -106,8 +106,8 @@ Claims on this site are checkable by the people being persuaded, so:
 - **Only live projects go on the site** (Sujith). The Agentic Design Framework was removed
   (card and page) because it hasn't shipped. Orders is live. NRI onboarding was removed (card and page) at Sujith's
   request, 7 Oct 2026: no public screens could be found for it. **Wealth Tracker is now called Wealth 360** (Sujith, 7 Oct 2026)
-  and its case study (`v3/work/wealth-360.html`) is **password protected**. It releases on web and
-  mobile on Friday 9 Oct 2026; the site must not merge to the root with it until it is out. The page
+  and its case study (`v3/work/wealth-360.html`) is **password protected**. It was due on web and
+  mobile on Friday 9 Oct 2026 and may slip to the week after (Sujith, 8 Oct); the site must not merge to the root with it until it is out. The page
   body is encrypted at build time (AES-GCM, key from PBKDF2-SHA256, 250k iterations) by `lock()` in
   `cs/build.py`; the password and salt live in the scratchpad (`cs/.w360pass`, `cs/.w360salt`), never in
   the repo. Screens added later must go inside the encrypted body (as data URIs), or their public URLs
@@ -124,7 +124,15 @@ Claims on this site are checkable by the people being persuaded, so:
   password against the case page's sealed text, then opens the case already unlocked for the tab.
   Password: `Wealth360_2026` (Sujith).
 - **Leadership facts (Sujith):** two in-house hiring drives; the design organisation peaked at 28
-  people (his own team: five today, eight at its largest). Say "we ran" for the hiring drives.
+  people (his own team: five today, eight at its largest). Say "we ran" for the hiring drives. His part:
+  he ran the second round; candidates he put forward went to a final round with the CXO, who made offers.
+- **Org history (Sujith, 8 Oct 2026):** he joined under the CXO, leading Trading, Options and Onboarding.
+  May 2025: design moved into Product; he moved with eight designers, took every vertical and reports
+  to the CPO and co-founder (content moved too, under another manager). Six months later the visual
+  designers followed; Onboarding and Mutual Funds went to another Design Manager, and he kept **seven
+  verticals: Trading, Options, Automate, FIA, Markets, Institutional and Reports**. The CXO then started an
+  Innovation Lab as Chief Innovation Officer. These are the "two organisational changes". Live root
+  `index.html`/`cv.html` still say six; the v3 merge replaces them (the root hero is frozen anyway).
 - **Titles:** at Datami he was Senior Product Designer, then Lead Product Designer. On Airtel TV
   Africa he was Lead Product Designer and the only designer, handling design end to end with his
   manager's approval; Airtel TV went on to reach all 14 African markets (no date given).
@@ -245,6 +253,13 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   "Reports & portfolio" card (Reports is a vertical; portfolio sits under
   Trading), and API Dashboard (Sujith, Oct 2026). Chart features are
   "minimal design, mostly dev", so they carry a Small scope.
+  **Launch months come from FYERS's What's new timeline (fyers.in/whats-new), not video dates**
+  (Sujith, 8 Oct 2026; FIA is July 2025). Re-dated then from the first matching entry; cards with no
+  clear entry kept their video month: Build your own indicators, Dual Chart Mode, Stock Screeners,
+  Portfolio analysis with FIA, Smart News, Advanced Option Chain, Trade from Advanced Charts, DDPI and
+  Account opening. The page is newer than `wall.tsv`, so edit dates in `v3/hero-replica.html`; the
+  parsed timeline is `scratchpad/wn/entries.tsv`. `.extra` marks every card outside the first 12 of the
+  default (flagship-first) order.
 - **Trading has three sub-areas: Trading, Charts and API** (Sujith). Cards show
   "Trading · Charts" and "Trading · API"; plain Trading cards just say
   "Trading". He tried sub-area chips under Trading and dropped them as
@@ -303,8 +318,8 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   so `.works` needs only an 8rem bottom pad. The old `100svh` pad left a blank
   screen after "Load more"; don't bring it back.
 - **The all-new FYERS experience** (Aug 2025, Large) was FYERS's first push to
-  unify web and app on one design system. Sujith was part of the design team,
-  leading three verticals at the time under the CXO. Say "part of"; the FDSG
+  unify web and app on one design system (app Aug 2025, web Sep 2025). Sujith was part of the design
+  team, by then leading product design across every vertical. Say "part of"; the FDSG
   ownership claim stays disputed.
 - **IC view** has five cards, each opening a page in `v3/work/` (Orders, Wealth
   Tracker, Nexter Finance, Airtel TV Africa, Reach Mobile); the lede says "Five pieces of
@@ -372,9 +387,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   from Leadership's Team step as "How I lead the team"): the manager-level case study. Built only from
   confirmed facts and his own essay lines (the relay, "I argued for", the UX Manager to Product Design
   Manager line, the org-chart pull quote). Opens on a diagram (relay, one owner, AIDA to code) drawn
-  in `scratchpad/model.svg`. Four gaps are marked To add until Sujith answers: the two organisational
-  changes, his review routine, one quality bar and what changed, his part in the hiring drives. A
-  quarterly cadence chart was drawn and dropped: launch months come from FYERS's video dates and made
+  in `scratchpad/model.svg`. The org changes and his hiring role are filled (section "Two organisational
+  changes"); two gaps stay To add until Sujith answers: his review routine, and one quality bar and
+  what changed. A quarterly cadence chart was drawn and dropped: launch months then came from video dates and made
   2024 to 2025 look slow next to a 2026 spike. Wall counts: 9 Flagship, 8 Feature, 17 Enhancement.
 - **One idea, one home:** "show leaders finished screens, not wireframes" lives in Orders only.
   Reach Mobile's decision is now the launch scope (explain pages + SIM purchase first), and its
