@@ -107,7 +107,9 @@ Claims on this site are checkable by the people being persuaded, so:
   (card and page) because it hasn't shipped. Orders is live. NRI onboarding was removed (card and page) at Sujith's
   request, 7 Oct 2026: no public screens could be found for it. **Wealth Tracker is now called Wealth 360** (Sujith, 7 Oct 2026)
   and its case study (`v3/work/wealth-360.html`) is **password protected**. It was due on web and
-  mobile on Friday 9 Oct 2026 and may slip to the week after (Sujith, 8 Oct); the site must not merge to the root with it until it is out. The page
+  mobile on Friday 9 Oct 2026; it hit a hurdle and is now expected the week after, date not fixed
+  (Sujith, 8 Oct). The site must not merge to the root until it is out. Until then no page may call it
+  live, released or shipped: "delivered" and "Flutter-ready" are the words in use. The page
   body is encrypted at build time (AES-GCM, key from PBKDF2-SHA256, 250k iterations) by `lock()` in
   `cs/build.py`; the password and salt live in the scratchpad (`cs/.w360pass`, `cs/.w360salt`), never in
   the repo. Screens added later must go inside the encrypted body (as data URIs), or their public URLs
