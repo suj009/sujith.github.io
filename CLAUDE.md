@@ -368,6 +368,14 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   author notes saying its workflow section was assumed and its anecdote "did not happen"; both were
   removed and the workflow rebuilt from the Wealth 360 case facts. Never reintroduce them. In *Trust*,
   the order ticket is the Lab prototype, so it says "prototyped", not "built".
+- **Leading design at FYERS** (`v3/work/leading-design-at-fyers.html`, first in the case chain, linked
+  from Leadership's Team step as "How I lead the team"): the manager-level case study. Built only from
+  confirmed facts and his own essay lines (the relay, "I argued for", the UX Manager to Product Design
+  Manager line, the org-chart pull quote). Opens on a diagram (relay, one owner, AIDA to code) drawn
+  in `scratchpad/model.svg`. Four gaps are marked To add until Sujith answers: the two organisational
+  changes, his review routine, one quality bar and what changed, his part in the hiring drives. A
+  quarterly cadence chart was drawn and dropped: launch months come from FYERS's video dates and made
+  2024 to 2025 look slow next to a 2026 spike. Wall counts: 9 Flagship, 8 Feature, 17 Enhancement.
 - **One idea, one home:** "show leaders finished screens, not wireframes" lives in Orders only.
   Reach Mobile's decision is now the launch scope (explain pages + SIM purchase first), and its
   story closes with the short flow becoming the only purchase flow.
