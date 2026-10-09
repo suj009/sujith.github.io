@@ -377,6 +377,8 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Lead (his manager was the Design Manager), the first designers on the product; the fast
   social/ads purchase flow was "we", not "I"; visual artwork was a teammate's. Its outcome
   figures (3,000+ paid monthly users, hit by COVID) stay off the site (Sujith).
+  **Reach Mobile is a SIM service, not a phone service** (Sujith, 9 Oct 2026): "a US SIM service sold
+  entirely online"; it sells SIM cards and plans. Never "phone service" or "phone plan".
 - **Orders case study (v2)**: FYERS's first unified Orders section, web and app, every screen
   designed by Sujith with the PM and developers, shipped January 2025 (Sujith). Before it, orders
   were a tab in the Account Manager; FYERS Trader still uses that pattern, so a Trader crop stands in
