@@ -343,6 +343,8 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   the Leading case is the section's only link. Step 1 is "Through two reorganisations" (May 2025 into Product, the visual
   designers six months later, three verticals to seven, the hiring drives); team size (5/8/28) lives in
   About "Lead" and the diagram labels, not here (Sujith, 9 Oct 2026: it was said three times). Don't reuse essay titles or teasers as Leadership steps.
+- **Every Leadership step keeps its text with its title** (Sujith, 9 Oct 2026): step 3's text sits right
+  under "Direction, review, delivery", right-aligned to the same edge, not in the opposite corner.
 - **Leadership step 4 ("From my hands to the team's") is split like step 2** (Sujith, 9 Oct 2026: it ran
   out of frame): title above the centre line, text and link below it. It used to be one block anchored
   above the centre, so on short windows the three-line title rose under the nav. `scratchpad/ldfit.mjs`
