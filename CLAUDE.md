@@ -269,7 +269,8 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   replacing "Designing fintech / people trust / with money": a manager's verb for Head of Design readers,
   keeping the trust idea. Three spans in `#tagline`; each holds one line at 390–1440px.
 - **The hero description is one lighter colour** (`--ink-2`), with no darker emphasis, on
-  desktop and phone (Sujith).
+  desktop and phone (Sujith). On phones (`.desc-m`) it is larger and stronger (Sujith, 9 Oct 2026: "colour and font
+  seem small on mobile"): 1.0625rem, ink at 72% (was .875rem at `--ink-2`, 40%), still one colour.
 
 - **About (Lead / Launch / Ship) runs on a 520svh pinned stage** (was 600). The photo starts
   fading in while the curtain is still closing (curtain 0–0.9, photo from 0.5), and "Lead"
