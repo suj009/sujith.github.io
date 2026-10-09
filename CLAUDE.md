@@ -244,6 +244,11 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   "Sujith Kumar Anand — Senior Product Design Manager" (Sujith's wording); other pages are
   "<page> — Sujith Kumar Anand". The description says "an Indian brokerage with over a million
   customers", so it moves with that claim.
+- **The link-preview image is `img/og-sujith-2.jpg`** (Sujith, 9 Oct 2026: WhatsApp showed the old A-cut S).
+  It is the old card with the Blocks S painted in (`scratchpad/og/`). The new file name beats WhatsApp and
+  LinkedIn caches; `img/og-sujith.jpg` holds the same image for old shares and for Wealth 360, which still
+  points at it. Every page but Wealth 360 also carries Article JSON-LD (author = `#person`) and `og:url`;
+  search descriptions stay under 160 characters. A root `favicon.ico` copies `img/favicon.ico`.
 - **Canonical, `og:url`, `og:image` and JSON-LD use absolute
   `https://sujith.design/` URLs**, live since the 9 Oct 2026 merge.
 - `robots.txt` and `sitemap.xml` are at the root. The sitemap lists the home page, the CV, five case
