@@ -474,7 +474,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   in `scratchpad/model.svg`. No To add gaps remain (Sujith, 8 Oct 2026): the org changes and his hiring role (section "Two
   organisational changes"); review runs two ways (blockers brought to him any time, a final review when
   the design is done; a stand-up every other day), every design reviewed by its PM and then by him,
-  walkthroughs in person with feedback as Figma comments or notes for the next AI-generated version;
+  walkthroughs in person with feedback as Figma comments or notes for the AI-generated version;
   his quality bar is all four of every state designed, design-system components only, web and app
   together, real data; since then fewer developer questions and faster reviews. A quarterly cadence chart was drawn and dropped: launch months then came from video dates and made
   2024 to 2025 look slow next to a 2026 spike. Wall counts: 9 Flagship, 8 Feature, 16 Enhancement.
