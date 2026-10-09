@@ -68,6 +68,11 @@ The frozen anatomy, top to bottom:
    the edge, which was a real shipped bug.
 2. **The toggle** — two pills, `As a manager` / `As an IC`. Not "IC" alone as a
    button label anywhere user-facing: that is design-internal vocabulary.
+   **v3 (Sujith, 9 Oct 2026): the labels are "As a manager" / "Hands-on"**, no counts on either
+   (33 already opens the intro). The unselected tab is ink at 68% with a faint hover underline so it
+   reads as a choice, not disabled. The manager intro ends "Five hands-on case studies, including three
+   0 → 1 launches, sit under Hands-on.", the last word a link (`.tab-go`) that switches tabs; "Most play
+   FYERS's own walkthrough" was cut (the cards say it).
 3. **The toggle drives the whole section**, not just the body. Switching also
    rewrites the kicker, both headline lines, the second line's colour
    (`--signal` → `--up`) and both side figures. This is the point of the design

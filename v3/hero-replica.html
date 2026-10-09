@@ -324,7 +324,10 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:8rem;clip-p
 .w-head{position:relative;display:flex;flex-direction:column;align-items:center;gap:1.5rem;text-align:center;padding:0 1rem 1.5rem}
 .w-title{margin:0}
 .w-tabs{display:flex;gap:2.5rem}
-.w-tab{position:relative;padding-bottom:.4rem;color:var(--ink-2);transition:color .3s var(--ease)}
+.w-tab{position:relative;padding-bottom:.4rem;color:color-mix(in srgb,var(--ink) 68%,transparent);transition:color .3s var(--ease)}
+@media (hover:hover){.w-tab:hover{color:var(--ink)}.w-tab:hover::after{transform:scaleX(1);opacity:.35}}
+.w-tab[aria-selected="true"]::after{opacity:1}
+.w-lede .tab-go{color:var(--ink);text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
 .w-tab::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;
   transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
 .w-tab[aria-selected="true"]{color:var(--ink)}
@@ -847,12 +850,12 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
       <h2 class="w-title c2" id="workTitle">Selected Work</h2>
       <div class="w-tabs c1" role="tablist" aria-label="Two readings of the same job" hidden>
         <button class="w-tab" type="button" role="tab" id="tabMgr" aria-controls="viewMgr" aria-selected="true">As a manager</button>
-        <button class="w-tab" type="button" role="tab" id="tabIc" aria-controls="viewIc" aria-selected="false">As an IC</button>
+        <button class="w-tab" type="button" role="tab" id="tabIc" aria-controls="viewIc" aria-selected="false">Hands-on</button>
       </div>
     </div>
 
     <div class="w-view" id="viewMgr" role="tabpanel" aria-labelledby="tabMgr">
-      <p class="w-lede p1">33 features shipped at FYERS since February 2024, about one a month, for over a million customers. I set the direction and saw each one to release; my team designed them. Most play FYERS&rsquo;s own walkthrough.</p>
+      <p class="w-lede p1">33 features shipped at FYERS since February 2024, about one a month, for over a million customers. I set the direction and saw each one to release; my team designed them. Five hands-on case studies, including three 0&#8239;&rarr;&#8239;1 launches, sit under <a class="tab-go" href="#viewIc">Hands-on</a>.</p>
       <div class="w-filter" id="wFilter" hidden>
         <p class="w-sent" id="wSent">Showing <span id="wCount">33 features</span> <span class="dim">in</span> <span class="pick"><select id="wArea" aria-label="Area"><option value="all">every area</option><option value="Trading">Trading</option><option value="Options">Options</option><option value="Markets">Markets</option><option value="FIA">FIA</option><option value="Automate">Automate</option><option value="Reports">Reports</option><option value="Mutual funds">Mutual funds</option><option value="Onboarding">Onboarding</option><option value="Institutional">Institutional</option><option value="Platform">Platform</option></select></span><span class="dim">,</span> <span class="pick"><select id="wSort" aria-label="Order"><option value="scope" selected>flagship work first</option><option value="new">newest first</option></select></span></p>
         <div class="w-strip c2" id="wStrip" role="group" aria-label="Filter and sort features"><button class="chip" type="button" data-area="all" aria-pressed="true">All <span>33</span></button><button class="chip" type="button" data-area="Trading" aria-pressed="false">Trading <span>13</span></button><button class="chip" type="button" data-area="Options" aria-pressed="false">Options <span>4</span></button><button class="chip" type="button" data-area="Markets" aria-pressed="false">Markets <span>5</span></button><button class="chip" type="button" data-area="FIA" aria-pressed="false">FIA <span>3</span></button><button class="chip" type="button" data-area="Automate" aria-pressed="false">Automate <span>3</span></button><button class="chip" type="button" data-area="Reports" aria-pressed="false">Reports <span>1</span></button><button class="chip" type="button" data-area="Mutual funds" aria-pressed="false">Mutual funds <span>1</span></button><button class="chip" type="button" data-area="Onboarding" aria-pressed="false">Onboarding <span>1</span></button><button class="chip" type="button" data-area="Institutional" aria-pressed="false">Institutional <span>1</span></button><button class="chip" type="button" data-area="Platform" aria-pressed="false">Platform <span>1</span></button><span class="div" aria-hidden="true"></span><button class="chip" type="button" data-sort="scope" aria-pressed="true">Flagship first</button><button class="chip" type="button" data-sort="new" aria-pressed="false">Newest</button></div>
@@ -1677,6 +1680,10 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   addEventListener('keydown', function(e){ if(e.key === 'Escape') poClose(); });
 
   var tabs = document.querySelector('.w-tabs');
+  // the intro's "Hands-on" link switches to that tab (without script it jumps to the cards)
+  document.querySelectorAll('.tab-go').forEach(function(a){
+    a.addEventListener('click', function(e){ e.preventDefault(); var t = document.getElementById('tabIc'); t.click(); t.focus({preventScroll:true}); });
+  });
   var views = {tabMgr: document.getElementById('viewMgr'), tabIc: document.getElementById('viewIc')};
   tabs.hidden = false;
   document.querySelector('.works').classList.add('js-tabs');
