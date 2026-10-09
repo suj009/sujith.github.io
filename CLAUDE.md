@@ -479,5 +479,12 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Manager dropped) on every v3 page.
 - **Business numbers are for interviews, not the site** (Sujith, 8 Oct 2026): FYERS outcomes stay as
   scope and output on the page; he discloses results in person.
+- **Plain words in case studies and essays; design metaphors are fine** (Sujith, 9 Oct 2026: "don't use
+  dictionary jargon"). Keep relay, handoff, seam, the wall, intent leaking. Cut words a busy reader would
+  look up: fidelity (say "polished", "finished-looking", "matching the design"), specialism, accountability,
+  ideation ("idea"), consolidated, amplified, zero-sum, traction, contested, learnable, iteration
+  ("rounds of changes"), operational/conversational, sturdier, inherited, cohesive, coherence,
+  unambiguously, unmistakable, legible, compounds, implementation ("the build"). Re-scan with the
+  word list in this note before publishing new copy. "Agentic design framework" stays: it is AIDA's name.
 - **Audience reminder (Sujith, Oct 2026):** primarily Head of Design roles; readers are C-suite and
   heads of design. Recheck every word against them.
