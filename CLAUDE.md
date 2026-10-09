@@ -360,7 +360,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   FYERS and shows the same habit earlier. 1 Building teams (Nexter's visual/motion designer and intern;
   FYERS reorganisations, three verticals to seven, second round of hiring), 2 One owner per problem (only
   designer with 30+ engineers at Airtel; argued for it at FYERS; UX Manager → Product Design Manager),
-  3 Direction, review, delivery (33 features, PM then him; screen-by-screen build checks at Nexter and
+  3 Review and quality bar (was "Direction, review, delivery"; caption Review, was Oversight) (33 features, PM then him; screen-by-screen build checks at Nexter and
   Reach), 4 From my hands to the team's (Airtel's component system; Wealth 360 → AIDA). All four use the
   same layout: title above the centre line, text under it. The diagram labels stay FYERS.
 - **The Leadership diagram is literal** (Sujith, 9 Oct 2026: "care to explain what is this?"): 7 columns
@@ -377,7 +377,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   designers six months later, three verticals to seven, the hiring drives); team size (5/8) lives in
   About "Lead" and the diagram labels, not here (Sujith, 9 Oct 2026: it was said three times). Don't reuse essay titles or teasers as Leadership steps.
 - **Every Leadership step keeps its text with its title** (Sujith, 9 Oct 2026): step 3's text sits right
-  under "Direction, review, delivery", right-aligned to the same edge, not in the opposite corner.
+  under "Review and quality bar", right-aligned to the same edge, not in the opposite corner.
 - **Leadership step 4 ("From my hands to the team's") is split like step 2** (Sujith, 9 Oct 2026: it ran
   out of frame): title above the centre line, text and link below it. It used to be one block anchored
   above the centre, so on short windows the three-line title rose under the nav. `scratchpad/ldfit.mjs`
@@ -388,12 +388,13 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   screen after "Load more"; don't bring it back.
 - **Three revamps in seven months** (Sujith, 9 Oct 2026), the Leading page's section 06: the all-new FYERS
   experience (app Aug 2025, web Sep 2025); a second complete revamp in Nov 2025 after a change to the product
-  brand; a web-only revamp of how certain sections look in Mar 2026. He was part of the design team on each
-  ("we"). None of the later two is on What's new; his word is the source, so no names or detail beyond this.
+  brand; a web-only revamp of how certain sections look in Mar 2026. **All three ran under his management and
+  his team did the design** (Sujith, 9 Oct 2026). The last two were silent pushes, not on What's new, so no
+  names or detail beyond this and no wall cards (his call). Don't cite FYERS community reactions unless checked.
 - **The all-new FYERS experience** (Aug 2025, Large) was FYERS's first push to
-  unify web and app on one design system (app Aug 2025, web Sep 2025). Sujith was part of the design
-  team, by then leading product design across every vertical. Say "part of"; the FDSG
-  ownership claim stays disputed.
+  unify web and app on one design system (app Aug 2025, web Sep 2025). It ran under Sujith's management and
+  his team designed it (his card: "Designed by my team, under my management, by then across every vertical").
+  The separate FDSG claim (owning the design system, a third less design effort) stays disputed.
 - **IC view** has five cards, each opening a page in `v3/work/` (Orders, Wealth
   Tracker, Nexter Finance, Airtel TV Africa, Reach Mobile); the lede says "Five pieces of
   hands-on work across three companies". Airtel TV Africa and Reach Mobile are two separate projects from his time at
@@ -493,6 +494,11 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   call is his; the CV line "A leading voice for moving from a split UX/UI relay to end-to-end Product
   Designers" is accurate.
 - **Team size:** five designers today, eight at the team's largest. Never "5–8".
+- **His role is the bar and the review, not "direction and delivery oversight"** (Sujith, 9 Oct 2026). Never
+  write "execution is the team's": it contradicts Orders and Wealth 360. Say each designer owns their problem
+  end to end; he sets the quality bar, reviews every design and stays hands-on where it counts.
+- **Fixed Deposits** (May 2026, Mutual funds) was his team's work (Sujith, 9 Oct 2026), though Mutual Funds
+  later moved to another Design Manager. It stays on the wall.
 - **The detailed CV** (`v3/cv.html`) has a pre-rendered
   `v3/Sujith-Kumar-Anand-CV.pdf` for its Download button. Regenerate it
   whenever the CV changes (`cvpdf.mjs` in the scratchpad, A4 at scale 0.9 to hold two pages). The
