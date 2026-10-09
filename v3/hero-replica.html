@@ -5,16 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sujith Kumar Anand — Senior Product Design Manager</title>
 <script>
-// A reload starts the page from the top, with the intro, instead of where the reader left off.
-// Back, forward and links to a section (#work, #writing) still land where they point.
+// Every fresh load or refresh starts at the hero, with the intro. A plain "reload" check wasn't enough:
+// the claude.ai preview loads the page fresh and carries the last scroll position over.
+// Back/Forward and links to a section (#work, #writing) still land where they point.
 (function(){
   var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
-  if(!nav || nav.type !== 'reload' || !('scrollRestoration' in history)) return;
-  history.scrollRestoration = 'manual';
+  var type = nav ? nav.type : 'navigate';
+  if(type === 'back_forward' || (location.hash && type !== 'reload')) return;
   if(location.hash) history.replaceState(null, '', location.pathname + location.search);
-  scrollTo(0, 0);
-  addEventListener('load', function(){ scrollTo(0, 0); });
-  addEventListener('pagehide', function(){ history.scrollRestoration = 'auto'; });
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.__toTop = true;
+  // Stop resetting once the reader starts scrolling, so a slow load never pulls them back up.
+  var moved = function(){ window.__toTop = false; };
+  ['wheel','touchstart','keydown'].forEach(function(e){ addEventListener(e, moved, {once:true, passive:true}); });
+  var top = function(){ if(window.__toTop) scrollTo(0, 0); };
+  top();
+  addEventListener('DOMContentLoaded', top);
+  addEventListener('load', function(){ top(); setTimeout(top, 60); });
+  addEventListener('pagehide', function(){ if('scrollRestoration' in history) history.scrollRestoration = 'auto'; });
 })();
 </script>
 <meta name="description" content="Sujith Kumar Anand leads product design at FYERS, an Indian brokerage with over a million customers. Eleven years in product design.">
@@ -1449,6 +1457,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   var lenis = null;
   if(!reduce && window.Lenis){
     lenis = new Lenis({lerp:.09});
+    if(window.__toTop){ lenis.scrollTo(0, {immediate:true}); addEventListener('load', function(){ if(window.__toTop) lenis.scrollTo(0, {immediate:true}); }); }
     function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   }

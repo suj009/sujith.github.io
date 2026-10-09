@@ -261,9 +261,11 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   showed a white chip over About). `.works` starts a screen early under a centre-out clip, so the test is
   the clip's left edge (`innerWidth/2 × top/innerHeight`) reaching the button, not the box's rect.
 
-- **A reload starts from the top** (Sujith, 8 Oct 2026): a small script after `<title>` sets
-  `history.scrollRestoration` to manual on reload only and drops any `#hash`, so the intro plays again.
-  Back/forward and section links (`#work`, `#writing`) still restore or jump as normal.
+- **Every refresh or fresh visit starts at the hero** (Sujith, 8 and 9 Oct 2026): a small script after
+  `<title>` sets `history.scrollRestoration` to manual and scrolls to the top (and Lenis, via
+  `window.__toTop`), dropping any `#hash` on a reload, so the intro plays again. It used to fire on
+  "reload" only, which the claude.ai preview never reports. It stops once the reader scrolls, so a slow
+  load can't pull them back up. Back/forward and section links (`#work`, `#writing`) behave as normal.
 
 - **About "Lead" is career-wide, not FYERS-only** (Sujith, 9 Oct 2026): "Design Lead at three startups
   (Datami, Oddz, Nexter), then managing design at an Indian brokerage with over a million customers: a team of five designers today,
