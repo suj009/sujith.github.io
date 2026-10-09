@@ -231,6 +231,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   widens (`--cut` 50% → 100% at `p × 1.15`). Kept from the later fix: the layer is masked only
   once the page has moved 12% of the viewport (`.tag-wrap.masked`), so the description is never
   cut at rest.
+- **The tagline reads "Leading design / for fintech people / trust with money"** (Sujith, 9 Oct 2026),
+  replacing "Designing fintech / people trust / with money": a manager's verb for Head of Design readers,
+  keeping the trust idea. Three spans in `#tagline`; each holds one line at 390–1440px.
 - **The hero description is one lighter colour** (`--ink-2`), with no darker emphasis, on
   desktop and phone (Sujith).
 
