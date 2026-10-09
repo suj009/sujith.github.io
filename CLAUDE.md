@@ -252,7 +252,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Back/forward and section links (`#work`, `#writing`) still restore or jump as normal.
 
 - **About "Lead" is career-wide, not FYERS-only** (Sujith, 9 Oct 2026): "Design Lead at three startups
-  (Datami, Oddz, Nexter), then managing design at a top-20 Indian brokerage: a team of five designers today,
+  (Datami, Oddz, Nexter), then managing design at an Indian brokerage with over a million customers: a team of five designers today,
   eight at its largest, in a design organisation that grew to 28." The reorganisations and the feature
   count live in Work, Leadership and the Leading page instead.
 
