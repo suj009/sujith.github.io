@@ -386,6 +386,10 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Work's last row scrolls away (its own ScrollTrigger, `top top` to `top -100%`),
   so `.works` needs only an 8rem bottom pad. The old `100svh` pad left a blank
   screen after "Load more"; don't bring it back.
+- **Three revamps in seven months** (Sujith, 9 Oct 2026), the Leading page's section 06: the all-new FYERS
+  experience (app Aug 2025, web Sep 2025); a second complete revamp in Nov 2025 after a change to the product
+  brand; a web-only revamp of how certain sections look in Mar 2026. He was part of the design team on each
+  ("we"). None of the later two is on What's new; his word is the source, so no names or detail beyond this.
 - **The all-new FYERS experience** (Aug 2025, Large) was FYERS's first push to
   unify web and app on one design system (app Aug 2025, web Sep 2025). Sujith was part of the design
   team, by then leading product design across every vertical. Say "part of"; the FDSG
