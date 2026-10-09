@@ -141,6 +141,12 @@ Claims on this site are checkable by the people being persuaded, so:
   (Sujith, 7 Oct 2026). Public, at his request: the essay `writing/aida-ideation-to-code.html`, the
   Leadership step "From my hands to the team's" (caption Leverage), the About "Ship" line and the CV.
   Don't expand the acronym or describe how it works inside: nothing beyond the facts above is known.
+- **Hands off Wealth 360 for now** (Sujith, 9 Oct 2026): leave its case page and home card exactly as they
+  went live, including the "Screenshot to add" slots and the card's "implementation effort", until he says
+  otherwise. `cs/build.py` re-encrypts it on every run, so after a rebuild restore it with
+  `git checkout -- work/wealth-360.html` unless the change is meant for it.
+- **The Orders pull quote** is "Showing only what is possible now avoids dead buttons and errors after a tap,
+  which matters when the action moves money." (it used to repeat the page's opening line).
 - **The Wealth 360 card** shows a lock and "Password protected" and says "Unlock the case study". A
   click opens a password panel on the home page (same scrim as the video overlay) that checks the
   password against the case page's sealed text, then opens the case already unlocked for the tab.
@@ -159,7 +165,7 @@ Claims on this site are checkable by the people being persuaded, so:
   organisational changes". **He now reports to the AVP of Product** (earlier the CPO and co-founder;
   Sujith, 8 Oct 2026): the site says so on the Leading page and the CV only, and keeps the CPO line as
   history. The CXO's move to an Innovation Lab is internal and stays off the site (removed on his call).
-- **Titles:** at Datami he was Senior Product Designer, then Lead Product Designer. On Airtel TV
+- **Titles:** at Datami he was Product Designer, then Lead Product Designer (Sujith, 9 Oct 2026; never "Senior Product Designer"). On Airtel TV
   Africa he was Lead Product Designer and the only designer, and led design from start to end (Sujith:
   "I wasn't a junior"; never write "with my manager's approval"); Airtel TV went on to reach all 14 African markets (no date given).
 - **Never publish a number or ranking that has not been verified**, and never
