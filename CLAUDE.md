@@ -137,7 +137,8 @@ Claims on this site are checkable by the people being persuaded, so:
   he ran the second round; candidates he put forward went to a final round with the CXO, who made offers.
 - **Org history (Sujith, 8 Oct 2026):** he joined under the CXO, leading Trading, Options and Onboarding.
   May 2025: design moved into Product; he moved with eight designers, took every vertical and reports
-  to the CPO and co-founder (content moved too, under another manager). Six months later the visual
+  to the CPO, who is also a co-founder (one person: write "the CPO, who is also one of FYERS's co-founders",
+  never "the CPO and co-founder", which reads as two; Sujith, 9 Oct 2026) (content moved too, under another manager). Six months later the visual
   designers followed; Onboarding and Mutual Funds went to another Design Manager, and he kept **seven
   verticals: Trading, Options, Automate, FIA, Markets, Institutional and Reports**. These are the "two
   organisational changes". **He now reports to the AVP of Product** (earlier the CPO and co-founder;
