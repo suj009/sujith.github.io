@@ -323,15 +323,14 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:8rem;clip-p
 .w-lines .y{left:0;top:50%;width:100%;height:1px}
 .w-head{position:relative;display:flex;flex-direction:column;align-items:center;gap:1.5rem;text-align:center;padding:0 1rem 1.5rem}
 .w-title{margin:0}
-.w-tabs{display:flex;gap:2.5rem}
-.w-tab{position:relative;padding-bottom:.4rem;color:color-mix(in srgb,var(--ink) 68%,transparent);transition:color .3s var(--ease)}
-@media (hover:hover){.w-tab:hover{color:var(--ink)}.w-tab:hover::after{transform:scaleX(1);opacity:.35}}
-.w-tab[aria-selected="true"]::after{opacity:1}
+/* the toggle is a split pill in the filter chips' own style: light outline, the chosen side filled */
+.w-tabs{display:inline-flex;border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);border-radius:999px;overflow:hidden}
+.w-tab{padding:.5rem 1.1rem;color:var(--ink);transition:background-color .3s var(--ease),color .3s var(--ease)}
+.w-tab + .w-tab{border-left:1px solid color-mix(in srgb,var(--ink) 22%,transparent)}
+@media (hover:hover){.w-tab:not([aria-selected="true"]):hover{background:color-mix(in srgb,var(--ink) 6%,transparent)}}
+.w-tab[aria-selected="true"]{background:var(--ink);color:var(--ground)}
+.w-tab:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .w-lede .tab-go{color:var(--ink);text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
-.w-tab::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;
-  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
-.w-tab[aria-selected="true"]{color:var(--ink)}
-.w-tab[aria-selected="true"]::after{transform:scaleX(1)}
 .w-view{position:relative;padding:0 1rem}
 .w-view + .w-view{margin-top:8rem}
 .js-tabs .w-view + .w-view{margin-top:0}
