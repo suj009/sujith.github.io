@@ -292,7 +292,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   be slotted into the sequence by its month. FYERS
   Professional is the one card without a video. The count (33) appears in
   the lede, the filter sentence, the All chip, the area chips (Trading 13, FIA 3), Leadership
-  ("Thirty-three", "33 features shipped") and the Leading design page; move them together.
+  (step 3 "33 features shipped at FYERS", the diagram's "33 features shipped") and the Leading design page; move them together.
 - **Manager wall cards carry no figures** (no FYERS numbers): the panel holds the one-line
   description only. For fine pointers the panel keeps a 2.5:1 frame so the hover still has
   room; on touch it is as tall as the text. The layout-H figure slots below apply to past
@@ -337,6 +337,13 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   cover image of his own case study, with his OK: the symbol and "nexter" set side by side,
   as in the app's own nav. Design scope shows as a word beside each card's title, in Sujith's
   chosen wording: Large = Flagship, Medium = Feature, Small = Enhancement.
+- **Leadership is career-wide** (Sujith, 9 Oct 2026: "speaks about FYERS only?"): each step leads with
+  FYERS and shows the same habit earlier. 1 Building teams (Nexter's visual/motion designer and intern;
+  FYERS reorganisations, three verticals to seven, second round of hiring), 2 One owner per problem (only
+  designer with 30+ engineers at Airtel; argued for it at FYERS; UX Manager → Product Design Manager),
+  3 Direction, review, delivery (33 features, PM then him; screen-by-screen build checks at Nexter and
+  Reach), 4 From my hands to the team's (Airtel's component system; Wealth 360 → AIDA). All four use the
+  same layout: title above the centre line, text under it. The diagram labels stay FYERS.
 - **Leadership shows what he did; Writing holds what he argues** (Sujith, 9 Oct 2026: they duplicated).
   Step 2 is "One owner per problem" (the model and his UX Manager → Product Design Manager move), step 4
   keeps the Wealth 360 → AIDA facts; neither links to an essay. Step 1's "How I lead the team" link to
