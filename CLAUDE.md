@@ -421,6 +421,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Orders, as MP4 plus WebM in `v3/img/work/orders/`. They show Orders as of March 2026, so captions
   say "today". The decisions are written from the shipped product with Sujith's go-ahead; the
   "What I learned" points are his own, from the live `case-study-orders.html`. No figures.
+  **His role reads "designed every screen myself while managing the team"**, never "Design manager, and
+  the designer on it" (Sujith, 9 Oct 2026): it read as two titles, and "design manager" was not his title
+  (UX Manager in Jan 2025). The home card says "Designed hands-on, while managing the team".
 - **NRI onboarding was killed** (Sujith, 7 Oct 2026) after a full search of FYERS's help centre,
   community and What's new found no public screens of the flow. Don't bring it back unless he asks
   and supplies screens. Its draft entry lives in the scratchpad as `cs/nri_v2.py`.
