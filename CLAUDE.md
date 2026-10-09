@@ -340,7 +340,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 - **Leadership shows what he did; Writing holds what he argues** (Sujith, 9 Oct 2026: they duplicated).
   Step 2 is "One owner per problem" (the model and his UX Manager → Product Design Manager move), step 4
   keeps the Wealth 360 → AIDA facts; neither links to an essay. Step 1's "How I lead the team" link to
-  the Leading case is the section's only link. Don't reuse essay titles or teasers as Leadership steps.
+  the Leading case is the section's only link. Step 1 is "Through two reorganisations" (May 2025 into Product, the visual
+  designers six months later, three verticals to seven, the hiring drives); team size (5/8/28) lives in
+  About "Lead" and the diagram labels, not here (Sujith, 9 Oct 2026: it was said three times). Don't reuse essay titles or teasers as Leadership steps.
 - **Leadership step 4 ("From my hands to the team's") is split like step 2** (Sujith, 9 Oct 2026: it ran
   out of frame): title above the centre line, text and link below it. It used to be one block anchored
   above the centre, so on short windows the three-line title rose under the nav. `scratchpad/ldfit.mjs`
