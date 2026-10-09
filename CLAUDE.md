@@ -242,6 +242,10 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   fading in while the curtain is still closing (curtain 0–0.9, photo from 0.5), and "Lead"
   arrives at 1.3 of an 8.8-unit timeline, so there is no empty dark screen after the hero
   (Sujith: "why empty, move bit faster").
+  Work slides up over About's last screen (`.works` has a -100svh top margin), which starts at about 6.7
+  of the 8.8 timeline, so every statement must be fully in before then: Lead 1.3–2.7, Launch 3.1–4.6,
+  Ship from 5.0 (done near 6.1), words staggered 0.015s (Sujith, 9 Oct 2026: white showed before the
+  last words). Re-check with `scratchpad/shipgap.mjs` after any change to the copy or timing.
 
 - **The nav takes its solid ground over the hero copy** once the rail has stuck, as it does over
   Work, so the description and "Scroll to discover" slide under it instead of through the links. It

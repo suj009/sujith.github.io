@@ -1767,7 +1767,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
 
     function show(sel, at){
       tl.fromTo(sel + ' .t', {opacity:0, y:40}, {opacity:1, y:0, duration:.6, ease:'power2.out'}, at)
-        .fromTo(sel + ' .d .w', {opacity:0, y:'0.5em'}, {opacity:1, y:0, duration:.35, stagger:.025, ease:'power2.out'}, at + .15);
+        .fromTo(sel + ' .d .w', {opacity:0, y:'0.5em'}, {opacity:1, y:0, duration:.35, stagger:.015, ease:'power2.out'}, at + .15);
     }
     function hide(sel, at){
       tl.to(sel + ' .t, ' + sel + ' .d .w', {opacity:0, y:-30, duration:.4, ease:'power2.in'}, at);
@@ -1779,13 +1779,15 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
       .fromTo('.photo .cut', {opacity:0, yPercent:4, scale:1.06}, {opacity:1, yPercent:0, scale:1, duration:1.2, ease:'power2.out'}, .6)
       .to('.photo .cut', {scale:1.04, duration:6, ease:'none'}, 1.8)
       .to('.cross, .about-nav', {opacity:1, duration:.5}, 1);
+    // Work slides up over About's last screen (from about 6.7 of 8.8), so "Ship" must be
+    // fully in by then: each statement reads for a beat, and the last one finishes near 6.1.
     show('.s1', 1.3);
-    hide('.s1', 2.9);
-    tl.to('.about-nav .roll', {yPercent:-100/3, duration:.4, ease:'power2.inOut'}, 3.2);
-    show('.s2', 3.4);
-    hide('.s2', 5.2);
-    tl.to('.about-nav .roll', {yPercent:-200/3, duration:.4, ease:'power2.inOut'}, 5.7);
-    show('.s3', 6.1);
+    hide('.s1', 2.7);
+    tl.to('.about-nav .roll', {yPercent:-100/3, duration:.4, ease:'power2.inOut'}, 2.9);
+    show('.s2', 3.1);
+    hide('.s2', 4.6);
+    tl.to('.about-nav .roll', {yPercent:-200/3, duration:.4, ease:'power2.inOut'}, 4.8);
+    show('.s3', 5.0);
     tl.to({}, {duration:1.6}, 7.2);
   });
 
