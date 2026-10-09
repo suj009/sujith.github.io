@@ -525,7 +525,7 @@ a.plate.ic:hover .go > span:last-child{transform:translateX(.35rem)}
 .ld-thesis{margin:0;max-width:24rem}
 .ld-figwrap{grid-column:4 / 6;grid-row:2 / span 4;display:flex;justify-content:center}
 .ld-fig{height:72svh;width:auto;max-width:100%;overflow:visible;color:inherit}
-.ld-fig line,.ld-fig rect{fill:none;stroke:currentColor;stroke-width:1;vector-effect:non-scaling-stroke}
+.ld-fig line,.ld-fig rect,.ld-fig path{fill:none;stroke:currentColor;stroke-width:1;vector-effect:non-scaling-stroke}
 /* Draw-in: paths are pathLength="100" (GSAP rounds dash offsets to whole pixels, so a length of 1 could
    only jump between drawn and hidden), and the dash overshoots to 110 so the frame always closes. */
 .ld-fig .fr{stroke-opacity:.5;stroke-dasharray:110 220;stroke-dashoffset:0}
@@ -722,10 +722,10 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   .ld-figwrap,.ld-st,.ld2,.ld4{grid-column:1;grid-row:auto}
   .ld-fig{height:60svh}
   .ld-t{font-size:2.25rem}
-  html.anim .ld-figwrap{top:calc(3.125rem + 24svh);transform:translate(-50%,-50%)}
-  html.anim .ld-fig{height:40svh}
+  html.anim .ld-figwrap{top:calc(3.125rem + 22svh);transform:translate(-50%,-50%)}
+  html.anim .ld-fig{height:36svh}
   .ld-fig .lbl{font-size:26px}
-  .ld-fig .lb-area{transform:translateY(34px)}
+  .ld-fig .lb-area{transform:translateY(8px)}
   .ld-fig .lb-own{transform:translateY(-10px)}
   html.anim .ld-open{top:auto;bottom:18svh;transform:none;padding:0 1rem}
   html.anim .ld-progress{display:block;position:absolute;left:0;right:0;top:54svh;height:1px;background:color-mix(in srgb,var(--inv-fg) 10%,transparent)}
@@ -1140,20 +1140,20 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
         <p class="h4 ld-thesis words">Leverage through people and systems, without losing connection to the work.</p>
       </div>
       <div class="ld-figwrap">
-        <svg class="ld-fig" viewBox="0 0 240 900" aria-hidden="true" focusable="false">
-          <rect class="fr" pathLength="100" x="0.5" y="0.5" width="239" height="899"/>
-          <g class="lanes"><line class="lane" x1="40" y1="0" x2="40" y2="900"/><line class="lane" x1="80" y1="0" x2="80" y2="900"/><line class="lane" x1="120" y1="0" x2="120" y2="900"/><line class="lane" x1="160" y1="0" x2="160" y2="900"/><line class="lane" x1="200" y1="0" x2="200" y2="900"/></g>
-          <g class="seams"><line class="seam" x1="0" y1="300" x2="240" y2="300"/><line class="seam" x1="0" y1="600" x2="240" y2="600"/></g>
-          <g class="owners"><line class="own" pathLength="100" x1="20" y1="100" x2="20" y2="872"/><line class="own" pathLength="100" x1="60" y1="100" x2="60" y2="872"/><line class="own" pathLength="100" x1="100" y1="100" x2="100" y2="872"/><line class="own" pathLength="100" x1="140" y1="100" x2="140" y2="872"/><line class="own" pathLength="100" x1="180" y1="100" x2="180" y2="872"/></g>
-          <g class="ticks"><line class="tick" x1="11" y1="170" x2="29" y2="170"/><line class="tick" x1="51" y1="230" x2="69" y2="230"/><line class="tick" x1="91" y1="140" x2="109" y2="140"/><line class="tick" x1="131" y1="260" x2="149" y2="260"/><line class="tick" x1="171" y1="190" x2="189" y2="190"/><line class="tick" x1="211" y1="320" x2="229" y2="320"/><line class="tick" x1="11" y1="410" x2="29" y2="410"/><line class="tick" x1="51" y1="470" x2="69" y2="470"/><line class="tick" x1="91" y1="380" x2="109" y2="380"/><line class="tick" x1="131" y1="520" x2="149" y2="520"/><line class="tick" x1="171" y1="440" x2="189" y2="440"/><line class="tick" x1="211" y1="560" x2="229" y2="560"/><line class="tick" x1="11" y1="650" x2="29" y2="650"/><line class="tick" x1="51" y1="700" x2="69" y2="700"/><line class="tick" x1="91" y1="610" x2="109" y2="610"/><line class="tick" x1="131" y1="760" x2="149" y2="760"/><line class="tick" x1="171" y1="680" x2="189" y2="680"/><line class="tick" x1="51" y1="820" x2="69" y2="820"/><line class="tick" x1="131" y1="850" x2="149" y2="850"/></g>
+        <svg class="ld-fig" viewBox="0 0 280 900" aria-hidden="true" focusable="false">
+          <rect class="fr" pathLength="100" x="0.5" y="0.5" width="279" height="899"/>
+          <g class="lanes"><line class="lane" x1="40" y1="0" x2="40" y2="900"/><line class="lane" x1="80" y1="0" x2="80" y2="900"/><line class="lane" x1="120" y1="0" x2="120" y2="900"/><line class="lane" x1="160" y1="0" x2="160" y2="900"/><line class="lane" x1="200" y1="0" x2="200" y2="900"/><line class="lane" x1="240" y1="0" x2="240" y2="900"/></g>
+          <g class="seams"><line class="seam" x1="0" y1="300" x2="280" y2="300"/><line class="seam" x1="0" y1="600" x2="280" y2="600"/></g>
+          <g class="owners"><line class="own" pathLength="100" x1="20" y1="100" x2="20" y2="872"/><line class="own" pathLength="100" x1="60" y1="100" x2="60" y2="872"/><line class="own" pathLength="100" x1="100" y1="100" x2="100" y2="872"/><line class="own" pathLength="100" x1="140" y1="100" x2="140" y2="872"/><line class="own" pathLength="100" x1="180" y1="100" x2="180" y2="872"/><path class="own" pathLength="100" d="M180 46V64H220V872"/></g>
+          <g class="ticks"><line class="tick" x1="11" y1="200" x2="29" y2="200"/><line class="tick" x1="11" y1="290" x2="29" y2="290"/><line class="tick" x1="11" y1="460" x2="29" y2="460"/><line class="tick" x1="11" y1="540" x2="29" y2="540"/><line class="tick" x1="11" y1="660" x2="29" y2="660"/><line class="tick" x1="11" y1="820" x2="29" y2="820"/><line class="tick" x1="51" y1="250" x2="69" y2="250"/><line class="tick" x1="51" y1="330" x2="69" y2="330"/><line class="tick" x1="51" y1="410" x2="69" y2="410"/><line class="tick" x1="51" y1="630" x2="69" y2="630"/><line class="tick" x1="51" y1="750" x2="69" y2="750"/><line class="tick" x1="51" y1="860" x2="69" y2="860"/><line class="tick" x1="91" y1="150" x2="109" y2="150"/><line class="tick" x1="91" y1="550" x2="109" y2="550"/><line class="tick" x1="91" y1="620" x2="109" y2="620"/><line class="tick" x1="91" y1="690" x2="109" y2="690"/><line class="tick" x1="91" y1="790" x2="109" y2="790"/><line class="tick" x1="131" y1="130" x2="149" y2="130"/><line class="tick" x1="131" y1="210" x2="149" y2="210"/><line class="tick" x1="131" y1="380" x2="149" y2="380"/><line class="tick" x1="131" y1="500" x2="149" y2="500"/><line class="tick" x1="131" y1="630" x2="149" y2="630"/><line class="tick" x1="131" y1="770" x2="149" y2="770"/><line class="tick" x1="171" y1="200" x2="189" y2="200"/><line class="tick" x1="171" y1="360" x2="189" y2="360"/><line class="tick" x1="171" y1="530" x2="189" y2="530"/><line class="tick" x1="171" y1="630" x2="189" y2="630"/><line class="tick" x1="171" y1="700" x2="189" y2="700"/><line class="tick" x1="211" y1="170" x2="229" y2="170"/><line class="tick" x1="211" y1="360" x2="229" y2="360"/><line class="tick" x1="211" y1="520" x2="229" y2="520"/><line class="tick" x1="211" y1="720" x2="229" y2="720"/><line class="tick" x1="211" y1="800" x2="229" y2="800"/></g>
           <g class="dots"><circle class="dot" cx="20" cy="40" r="6"/><circle class="dot" cx="60" cy="40" r="6"/><circle class="dot" cx="100" cy="40" r="6"/><circle class="dot" cx="140" cy="40" r="6"/><circle class="dot" cx="180" cy="40" r="6"/></g>
           <g class="hols"><circle class="hol" cx="20" cy="80" r="5.5"/><circle class="hol" cx="60" cy="80" r="5.5"/><circle class="hol" cx="100" cy="80" r="5.5"/></g>
-          <g class="me"><line class="me-ln" pathLength="100" x1="220" y1="380" x2="220" y2="560"/><circle class="me-ring" cx="220" cy="470" r="13"/><circle class="me-dot" cx="220" cy="470" r="6.5"/></g>
+          <g class="me"><line class="me-ln" pathLength="100" x1="260" y1="380" x2="260" y2="560"/><circle class="me-ring" cx="260" cy="470" r="13"/><circle class="me-dot" cx="260" cy="470" r="6.5"/></g>
           <text class="lbl lb-des" x="0" y="-18">5 designers · 8 at peak</text>
-          <text class="lbl lb-ver" x="0" y="930">7 verticals</text>
-          <text class="lbl lb-own" x="240" y="-44" text-anchor="end">one owner per problem</text>
-          <text class="lbl lb-area" x="240" y="930" text-anchor="end">33 features shipped</text>
-          <text class="lbl lb-me" x="262" y="474">hands-on</text>
+          <text class="lbl lb-ver" x="0" y="930">7 verticals, one per column</text>
+          <text class="lbl lb-own" x="280" y="-44" text-anchor="end">each line: one owner per problem</text>
+          <text class="lbl lb-area" x="0" y="956">each tick: a feature, 33 shipped</text>
+          <text class="lbl lb-me" x="302" y="474">me, hands-on</text>
         </svg>
       </div>
       <div class="ld-progress" aria-hidden="true"><i></i></div>
@@ -1863,7 +1863,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
    .to('.ld-progress i', {scaleX:.5, duration:.6}, 4.5);
   ldIn('.ld2', 4.6); ldOut('.ld2', 6.1);
   L.to('.ld-nav .roll, .ld-nav .caps', {yPercent:-stepH * 2, duration:.4, ease:'power2.inOut'}, 6.3)
-   .fromTo('.ld-fig .tick', {scaleX:0, transformOrigin:'50% 50%'}, {scaleX:1, duration:.25, stagger:.05, ease:'power2.out'}, 6.4)
+   .fromTo('.ld-fig .tick', {scaleX:0, transformOrigin:'50% 50%'}, {scaleX:1, duration:.25, stagger:.035, ease:'power2.out'}, 6.4)
    .fromTo('.ld-fig .lb-area', {opacity:0}, {opacity:.6, duration:.4}, 6.6)
    .to('.ld-progress i', {scaleX:.75, duration:.6}, 6.3);
   ldIn('.ld3', 6.4); ldOut('.ld3', 7.9);

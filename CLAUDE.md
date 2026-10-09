@@ -356,6 +356,13 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   3 Direction, review, delivery (33 features, PM then him; screen-by-screen build checks at Nexter and
   Reach), 4 From my hands to the team's (Airtel's component system; Wealth 360 → AIDA). All four use the
   same layout: title above the centre line, text under it. The diagram labels stay FYERS.
+- **The Leadership diagram is literal** (Sujith, 9 Oct 2026: "care to explain what is this?"): 7 columns
+  for 7 verticals, 5 dots for five designers and 3 hollow for eight at peak, one owner line per designer
+  (the fifth also owns the sixth column, drawn as an elbow), 33 ticks for 33 features, and the seventh
+  column is his own hands-on line. The labels are the key: "each line: one owner per problem", "7
+  verticals, one per column", "each tick: a feature, 33 shipped", "me, hands-on". If a count changes,
+  change the drawing with it. Draw-in paths use `pathLength="100"` with a 110 dash: GSAP rounds dash
+  offsets to whole pixels, so a length of 1 never animated and left the frame open at the top left.
 - **Leadership shows what he did; Writing holds what he argues** (Sujith, 9 Oct 2026: they duplicated).
   Step 2 is "One owner per problem" (the model and his UX Manager → Product Design Manager move), step 4
   keeps the Wealth 360 → AIDA facts; neither links to an essay. Step 1's "How I lead the team" link to
