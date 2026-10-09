@@ -307,6 +307,10 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Professional is the one card without a video. The count (33) appears in
   the lede, the filter sentence, the All chip, the area chips (Trading 13, FIA 3), Leadership
   (step 3 "33 features shipped at FYERS", the diagram's "33 features shipped") and the Leading design page; move them together.
+  **Most of the wall is post-May 2025** (Sujith, 9 Oct 2026): 24 of the 33 are dated May 2025 or later, when
+  he took on every vertical, and eight of the nine flagships (only Smart Orders, Sep 2024, is earlier;
+  FYERS Professional has no date). The Work intro, the Leading remit and its results strip say so; "about
+  one a month" was dropped because it hid that. Recount if a card's date or scope changes.
 - **Manager wall cards carry no figures** (no FYERS numbers): the panel holds the one-line
   description only. For fine pointers the panel keeps a 2.5:1 frame so the hover still has
   room; on touch it is as tall as the text. The layout-H figure slots below apply to past
