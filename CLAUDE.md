@@ -141,9 +141,6 @@ Claims on this site are checkable by the people being persuaded, so:
   (Sujith, 7 Oct 2026). Public, at his request: the essay `writing/aida-ideation-to-code.html`, the
   Leadership step "From my hands to the team's" (caption Leverage), the About "Ship" line and the CV.
   Don't expand the acronym or describe how it works inside: nothing beyond the facts above is known.
-- **Empty screenshot slots are hidden on the live site** (Sujith, 9 Oct 2026): `SHOW_PLACEHOLDERS = False` in
-  `cs/build.py` drops "Screenshot to add" boxes (Wealth 360 had three); the specs stay in the entry so real
-  screens slot in later. The Wealth 360 card now says "70% less front-end effort" (was "implementation").
 - **The Wealth 360 card** shows a lock and "Password protected" and says "Unlock the case study". A
   click opens a password panel on the home page (same scrim as the video overlay) that checks the
   password against the case page's sealed text, then opens the case already unlocked for the tab.
