@@ -131,7 +131,9 @@ Claims on this site are checkable by the people being persuaded, so:
   password against the case page's sealed text, then opens the case already unlocked for the tab.
   Password: `Wealth360_2026` (Sujith).
 - **Leadership facts (Sujith):** two in-house hiring drives; the design organisation peaked at 28
-  people (his own team: five today, eight at its largest). Say "we ran" for the hiring drives. His part:
+  people, **but that was the CXO's organisation, not his** (Sujith, 9 Oct 2026): 28 appears only beside
+  the hiring drives, as "the CXO's design organisation grew to 28 people" (Leading page, CV), never as
+  his scale (About, the Leading remit and results strip dropped it). His own team: five today, eight at its largest. Say "we ran" for the hiring drives. His part:
   he ran the second round; candidates he put forward went to a final round with the CXO, who made offers.
 - **Org history (Sujith, 8 Oct 2026):** he joined under the CXO, leading Trading, Options and Onboarding.
   May 2025: design moved into Product; he moved with eight designers, took every vertical and reports
@@ -269,7 +271,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 
 - **About "Lead" is career-wide, not FYERS-only** (Sujith, 9 Oct 2026): "Design Lead at three startups
   (Datami, Oddz, Nexter), then managing design at an Indian brokerage with over a million customers: a team of five designers today,
-  eight at its largest, in a design organisation that grew to 28." The reorganisations and the feature
+  eight at its largest." (The 28-person organisation was the CXO's and was cut here.) The reorganisations and the feature
   count live in Work, Leadership and the Leading page instead.
 
 - **The space above "Selected Work" stays at 55svh (40svh on phones).** It was cut to 20/16svh
@@ -367,7 +369,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Step 2 is "One owner per problem" (the model and his UX Manager → Product Design Manager move), step 4
   keeps the Wealth 360 → AIDA facts; neither links to an essay. Step 1's "How I lead the team" link to
   the Leading case is the section's only link. Step 1 is "Through two reorganisations" (May 2025 into Product, the visual
-  designers six months later, three verticals to seven, the hiring drives); team size (5/8/28) lives in
+  designers six months later, three verticals to seven, the hiring drives); team size (5/8) lives in
   About "Lead" and the diagram labels, not here (Sujith, 9 Oct 2026: it was said three times). Don't reuse essay titles or teasers as Leadership steps.
 - **Every Leadership step keeps its text with its title** (Sujith, 9 Oct 2026): step 3's text sits right
   under "Direction, review, delivery", right-aligned to the same edge, not in the opposite corner.
