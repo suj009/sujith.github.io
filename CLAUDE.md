@@ -250,6 +250,11 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   `history.scrollRestoration` to manual on reload only and drops any `#hash`, so the intro plays again.
   Back/forward and section links (`#work`, `#writing`) still restore or jump as normal.
 
+- **About "Lead" is career-wide, not FYERS-only** (Sujith, 9 Oct 2026): "Design Lead at three startups
+  (Datami, Oddz, Nexter), then managing design at a top-20 Indian brokerage: a team of five designers today,
+  eight at its largest, in a design organisation that grew to 28." The reorganisations and the feature
+  count live in Work, Leadership and the Leading page instead.
+
 - **The space above "Selected Work" stays at 55svh (40svh on phones).** It was cut to 20/16svh
   once and Sujith asked for it back.
 
@@ -281,7 +286,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   now: API Dashboard was removed at his request. Newest-first order is `data-order`, not the date, so a card added later must
   be slotted into the sequence by its month. FYERS
   Professional is the one card without a video. The count (33) appears in
-  the lede, the filter sentence, the All chip, the area chips (Trading 13, FIA 3), About "Lead", Leadership
+  the lede, the filter sentence, the All chip, the area chips (Trading 13, FIA 3), Leadership
   ("Thirty-three", "33 features shipped") and the Leading design page; move them together.
 - **Manager wall cards carry no figures** (no FYERS numbers): the panel holds the one-line
   description only. For fine pointers the panel keeps a 2.5:1 frame so the hover still has
