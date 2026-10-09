@@ -244,6 +244,11 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   "Sujith Kumar Anand — Senior Product Design Manager" (Sujith's wording); other pages are
   "<page> — Sujith Kumar Anand". The description says "an Indian brokerage with over a million
   customers", so it moves with that claim.
+- **The link-preview image is `img/og-sujith-2.jpg`** (Sujith, 9 Oct 2026: WhatsApp showed the old A-cut S).
+  It is the old card with the Blocks S painted in (`scratchpad/og/`). The new file name beats WhatsApp and
+  LinkedIn caches; `img/og-sujith.jpg` holds the same image for old shares and for Wealth 360, which still
+  points at it. Every page but Wealth 360 also carries Article JSON-LD (author = `#person`) and `og:url`;
+  search descriptions stay under 160 characters. A root `favicon.ico` copies `img/favicon.ico`.
 - **Canonical, `og:url`, `og:image` and JSON-LD use absolute
   `https://sujith.design/` URLs**, live since the 9 Oct 2026 merge.
 - `robots.txt` and `sitemap.xml` are at the root. The sitemap lists the home page, the CV, five case
@@ -264,7 +269,8 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   replacing "Designing fintech / people trust / with money": a manager's verb for Head of Design readers,
   keeping the trust idea. Three spans in `#tagline`; each holds one line at 390–1440px.
 - **The hero description is one lighter colour** (`--ink-2`), with no darker emphasis, on
-  desktop and phone (Sujith).
+  desktop and phone (Sujith). On phones (`.desc-m`) it is larger and stronger (Sujith, 9 Oct 2026: "colour and font
+  seem small on mobile"): 1.0625rem, ink at 72% (was .875rem at `--ink-2`, 40%), still one colour.
 
 - **About (Lead / Launch / Ship) runs on a 520svh pinned stage** (was 600). The photo starts
   fading in while the curtain is still closing (curtain 0–0.9, photo from 0.5), and "Lead"
