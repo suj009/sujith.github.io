@@ -453,7 +453,8 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   removed and the workflow rebuilt from the Wealth 360 case facts. Never reintroduce them. In *Trust*,
   the order ticket is the Lab prototype, so it says "prototyped", not "built".
 - **Leading design at FYERS** (`v3/work/leading-design-at-fyers.html`, first in the case chain, linked
-  from Leadership's Team step as "How I lead the team"): the manager-level case study. Built only from
+  from Leadership's Team step as "How I lead the team"): the manager-level case study. It has no card on the
+  home page, by Sujith's choice (9 Oct 2026): Leadership's link is its only way in. Built only from
   confirmed facts and his own essay lines (the relay, "I argued for", the UX Manager to Product Design
   Manager line, the org-chart pull quote). Opens on a diagram (relay, one owner, AIDA to code) drawn
   in `scratchpad/model.svg`. No To add gaps remain (Sujith, 8 Oct 2026): the org changes and his hiring role (section "Two
