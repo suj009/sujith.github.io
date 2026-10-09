@@ -486,6 +486,13 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 - **The relay's third step is "development"** (Sujith, 9 Oct 2026): UX, then UI, then development, in the
   Leading page, its diagram (`scratchpad/model.svg`, re-rendered by `rendermodel.mjs`) and *One designer,
   whole problem*. "Front-end" stays where it means front-end code (the 70% estimate, shipping front-end with AI).
+- **The Leading page states what happened; *One designer, whole problem* holds the argument** (Sujith,
+  9 Oct 2026: they repeated each other). Leading section 02 keeps the relay in one line, the call (fresh
+  wording), the title change and a link to the essay; the translation line, the objections and the
+  "serving the org chart" line live only in the essay, and the Leading page has no pull quote. Case
+  copy can link with `[text](url)` (added to `inline()` in `cs/build.py`). The essay's objections, as
+  checked by Sujith: "True before, less true now" on doing both well, and "At FYERS, five designers now
+  cover seven verticals this way" on scale.
 - **One idea, one home:** "show leaders finished screens, not wireframes" lives in Orders only.
   Reach Mobile's launch-scope section was removed (Sujith, 8 Oct 2026: not his call); its one decision
   is the purchase-flow swap, and its story closes with the short flow becoming the only purchase flow.
