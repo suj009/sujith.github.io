@@ -165,7 +165,7 @@ Claims on this site are checkable by the people being persuaded, so:
   organisational changes". **He now reports to the AVP of Product** (earlier the CPO and co-founder;
   Sujith, 8 Oct 2026): the site says so on the Leading page and the CV only, and keeps the CPO line as
   history. The CXO's move to an Innovation Lab is internal and stays off the site (removed on his call).
-- **Titles:** at Datami he was Senior Product Designer, then Lead Product Designer. On Airtel TV
+- **Titles:** at Datami he was Product Designer, then Lead Product Designer (Sujith, 9 Oct 2026; never "Senior Product Designer"). On Airtel TV
   Africa he was Lead Product Designer and the only designer, and led design from start to end (Sujith:
   "I wasn't a junior"; never write "with my manager's approval"); Airtel TV went on to reach all 14 African markets (no date given).
 - **Never publish a number or ranking that has not been verified**, and never
