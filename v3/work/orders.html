@@ -5,17 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Orders case study — Sujith Kumar Anand</title>
 <script>
-// Open at the top on a fresh visit. Some hosts (the claude.ai preview) carry the last page's scroll
-// position over to the next one; Back/Forward and #section links keep their usual behaviour.
+// Arriving from another page opens at the top: some hosts (the claude.ai preview) carry the last page's
+// scroll position over to the next one. A refresh stays where the reader was. The preview doesn't report
+// a refresh as a reload, so each page notes itself and its scroll as it unloads, and coming back to the
+// same page counts as a refresh. Back/Forward and #section links keep their usual behaviour.
 (function(){
   var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
   if((nav && nav.type === 'back_forward') || location.hash) return;
+  var y = 0, live = true;
+  try{ var last = JSON.parse(sessionStorage.getItem('lastPage') || 'null'); if(last && last.p === location.pathname) y = last.y || 0; }catch(e){}
   if('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  var top = function(){ scrollTo(0, 0); };
-  top();
-  addEventListener('DOMContentLoaded', top);
-  addEventListener('load', function(){ top(); setTimeout(top, 60); });
-  addEventListener('pagehide', function(){ if('scrollRestoration' in history) history.scrollRestoration = 'auto'; });
+  // Stop once the reader scrolls, so a slow load never moves them.
+  ['wheel','touchstart','keydown'].forEach(function(e){ addEventListener(e, function(){ live = false; }, {once:true, passive:true}); });
+  var go = function(){ if(live) scrollTo(0, y); };
+  go();
+  addEventListener('DOMContentLoaded', go);
+  // Retries cover late height changes, like a locked case study opening after its password check.
+  addEventListener('load', function(){ go(); [60, 400, 1200].forEach(function(t){ setTimeout(go, t); }); });
+  addEventListener('pagehide', function(){
+    try{ sessionStorage.setItem('lastPage', JSON.stringify({p: location.pathname, y: scrollY})); }catch(e){}
+    if('scrollRestoration' in history) history.scrollRestoration = 'auto';
+  });
 })();
 </script>
 <meta name="description" content="How Sujith Kumar Anand designed FYERS’s first unified Orders section on web and app: every order type in one place, one set of rules on both platforms, and actions decided by each order’s status.">

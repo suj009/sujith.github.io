@@ -24,6 +24,9 @@
   addEventListener('load', function(){ top(); setTimeout(top, 60); });
   addEventListener('pagehide', function(){ if('scrollRestoration' in history) history.scrollRestoration = 'auto'; });
 })();
+// Inner pages restore their scroll only on a refresh: noting the home page here as the last one left
+// tells them a later visit is a fresh arrival.
+addEventListener('pagehide', function(){ try{ sessionStorage.setItem('lastPage', JSON.stringify({p: location.pathname, y: 0})); }catch(e){} });
 </script>
 <meta name="description" content="Sujith Kumar Anand leads product design at FYERS, an Indian brokerage with over a million customers. Eleven years in product design.">
 <meta name="author" content="Sujith Kumar Anand">

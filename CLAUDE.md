@@ -477,6 +477,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   his quality bar is all four of every state designed, design-system components only, web and app
   together, real data; since then fewer developer questions and faster reviews. A quarterly cadence chart was drawn and dropped: launch months then came from video dates and made
   2024 to 2025 look slow next to a 2026 spike. Wall counts: 9 Flagship, 8 Feature, 16 Enhancement.
+- **The relay's third step is "development"** (Sujith, 9 Oct 2026): UX, then UI, then development, in the
+  Leading page, its diagram (`scratchpad/model.svg`, re-rendered by `rendermodel.mjs`) and *One designer,
+  whole problem*. "Front-end" stays where it means front-end code (the 70% estimate, shipping front-end with AI).
 - **One idea, one home:** "show leaders finished screens, not wireframes" lives in Orders only.
   Reach Mobile's launch-scope section was removed (Sujith, 8 Oct 2026: not his call); its one decision
   is the purchase-flow swap, and its story closes with the short flow becoming the only purchase flow.
@@ -489,10 +492,14 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   `v3/Sujith-Kumar-Anand-CV.pdf` for its Download button. Regenerate it
   whenever the CV changes (`cvpdf.mjs` in the scratchpad, A4 at scale 0.9 to hold two pages). The
   row numbers are hidden in print: Chrome's PDF stacked them all over the name.
-- **Every inner page opens at the top** (Sujith, 9 Oct 2026: the claude.ai preview carried the last
-  page's scroll over, so pages landed at the bottom). A small script after `<title>` in `cv.html`, each
-  essay and the case template (`TOPJS` in `cs/build.py`) scrolls to the top on a fresh visit or reload;
-  Back/Forward and #section links are left alone. Add it to any new inner page.
+- **Inner pages open at the top when you arrive, and a refresh keeps your place** (Sujith, 9 Oct 2026; only
+  the home page goes back to the top on refresh). The claude.ai preview carries the last page's scroll over
+  and doesn't report a refresh as a reload, so the script after `<title>` in `cv.html`, each essay and the
+  case template (`TOPJS` in `cs/build.py`) records `{page, scroll}` in sessionStorage (`lastPage`) as the
+  page unloads; loading the same page next counts as a refresh and restores it, anything else goes to
+  the top. The home page writes itself as `lastPage` on unload so it never looks like a refresh to an
+  inner page. Retries after load cover Wealth 360 opening after its password check. Back/Forward and
+  #section links are left alone. Add it to any new inner page; `scratchpad/innertop.mjs` tests it.
 - **On merge, retire the old root pages** (`article-*.html`, `case-study-*.html`): their source still
   carries author comments (e.g. "ASSUMED CONTENT ... verify before this gets read in an interview")
   that anyone can read with View Source. Delete them or redirect them to their v3 replacements.

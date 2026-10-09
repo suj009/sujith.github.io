@@ -5,17 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Leading design at FYERS case study — Sujith Kumar Anand</title>
 <script>
-// Open at the top on a fresh visit. Some hosts (the claude.ai preview) carry the last page's scroll
-// position over to the next one; Back/Forward and #section links keep their usual behaviour.
+// Arriving from another page opens at the top: some hosts (the claude.ai preview) carry the last page's
+// scroll position over to the next one. A refresh stays where the reader was. The preview doesn't report
+// a refresh as a reload, so each page notes itself and its scroll as it unloads, and coming back to the
+// same page counts as a refresh. Back/Forward and #section links keep their usual behaviour.
 (function(){
   var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
   if((nav && nav.type === 'back_forward') || location.hash) return;
+  var y = 0, live = true;
+  try{ var last = JSON.parse(sessionStorage.getItem('lastPage') || 'null'); if(last && last.p === location.pathname) y = last.y || 0; }catch(e){}
   if('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  var top = function(){ scrollTo(0, 0); };
-  top();
-  addEventListener('DOMContentLoaded', top);
-  addEventListener('load', function(){ top(); setTimeout(top, 60); });
-  addEventListener('pagehide', function(){ if('scrollRestoration' in history) history.scrollRestoration = 'auto'; });
+  // Stop once the reader scrolls, so a slow load never moves them.
+  ['wheel','touchstart','keydown'].forEach(function(e){ addEventListener(e, function(){ live = false; }, {once:true, passive:true}); });
+  var go = function(){ if(live) scrollTo(0, y); };
+  go();
+  addEventListener('DOMContentLoaded', go);
+  // Retries cover late height changes, like a locked case study opening after its password check.
+  addEventListener('load', function(){ go(); [60, 400, 1200].forEach(function(t){ setTimeout(go, t); }); });
+  addEventListener('pagehide', function(){
+    try{ sessionStorage.setItem('lastPage', JSON.stringify({p: location.pathname, y: scrollY})); }catch(e){}
+    if('scrollRestoration' in history) history.scrollRestoration = 'auto';
+  });
 })();
 </script>
 <meta name="description" content="How Sujith Kumar Anand leads product design at FYERS: seven verticals, 33 features shipped since February 2024, one owner per problem instead of a relay of handoffs, and AIDA, the framework taking designers and product managers from idea to Flutter code.">
@@ -178,9 +188,9 @@ video.shot{object-fit:contain}
       <h1 class="rv">Leading design at FYERS: from a relay to owners</h1>
       <p class="lede rv">I lead product design across seven verticals at an Indian brokerage with over a million customers. The job is less the screens than the system that produces them: who owns a problem, how work is reviewed, and how far one person can carry it.</p>
       <ul class="results rv"><li><b>33</b><span class="c2">Features shipped since Feb 2024</span></li><li><b>24</b><span class="c2">Of them since May 2025, across every vertical</span></li><li><b>9</b><span class="c2">Flagship launches, eight since May 2025</span></li><li><b>7</b><span class="c2">Verticals</span></li><li><b>8</b><span class="c2">Designers on my team at its largest</span></li></ul><p class="results-src c2 rv">Features as listed on this site from FYERS’s public walkthroughs; team figures as of October 2026.</p>
-      <dl class="glance rv"><div><dt class="c2">The problem</dt><dd>Seven verticals of a trading platform that ships fast, with design run as a relay: UX, then UI, then front-end, losing intent at every handoff.</dd></div><div><dt class="c2">My role</dt><dd>Senior Product Design Manager, reporting to the AVP of Product: direction, review and delivery oversight. A team of five designers today, eight at its largest.</dd></div><div><dt class="c2">The call</dt><dd>Organise around owners, not handoffs: one designer per problem, and now, with AIDA, one owner all the way to code.</dd></div><div><dt class="c2">The result</dt><dd>33 features shipped since February 2024, nine of them flagship launches, and AIDA rolling out to every product designer and product manager.</dd></div></dl>
+      <dl class="glance rv"><div><dt class="c2">The problem</dt><dd>Seven verticals of a trading platform that ships fast, with design run as a relay: UX, then UI, then development, losing intent at every handoff.</dd></div><div><dt class="c2">My role</dt><dd>Senior Product Design Manager, reporting to the AVP of Product: direction, review and delivery oversight. A team of five designers today, eight at its largest.</dd></div><div><dt class="c2">The call</dt><dd>Organise around owners, not handoffs: one designer per problem, and now, with AIDA, one owner all the way to code.</dd></div><div><dt class="c2">The result</dt><dd>33 features shipped since February 2024, nine of them flagship launches, and AIDA rolling out to every product designer and product manager.</dd></div></dl>
       
-      <figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/leading/model.webp" alt="Three rows. Before: a requirement passes from a UX designer to a UI designer to front-end to a shipped screen, with intent lost at each handoff. After: one product designer carries the requirement to a shipped screen. Now: a designer or product manager with AIDA goes from idea to Flutter code, then to engineering for architecture and performance." width="2400" height="1280" loading="lazy" decoding="async"></span><figcaption class="c2">How the work is organised: from a relay of handoffs, to one owner per problem, to one owner all the way to code</figcaption></figure>
+      <figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/leading/model.webp" alt="Three rows. Before: a requirement passes from a UX designer to a UI designer to development to a shipped screen, with intent lost at each handoff. After: one product designer carries the requirement to a shipped screen. Now: a designer or product manager with AIDA goes from idea to Flutter code, then to engineering for architecture and performance." width="2400" height="1280" loading="lazy" decoding="async"></span><figcaption class="c2">How the work is organised: from a relay of handoffs, to one owner per problem, to one owner all the way to code</figcaption></figure>
     </header>
     <section class="sec grid8" aria-labelledby="s1">
       <div class="sec-h"><span class="n c2">01</span><h2 id="s1">The remit</h2></div>
@@ -188,7 +198,7 @@ video.shot{object-fit:contain}
     </section>
     <section class="sec grid8" aria-labelledby="s2">
       <div class="sec-h"><span class="n c2">02</span><h2 id="s2">From a relay to owners</h2></div>
-      <div class="sec-b rv"><p>When I joined FYERS, design ran like a relay. A requirement went to a UX designer for structure and flows, then to a UI designer to make it look finished, then to front-end to build. Three roles, three handoffs, and a little of the original intent lost at every one.</p><aside class="call"><span class="lbl c2">The call</span><p class="what">Argue for one Product Designer role: one person carrying a problem from user need to a shipped screen, instead of a relay from UX to UI to front-end.</p><dl><dt class="c2">Why</dt><dd>Every handoff is a translation, and every translation loses something. One owner keeps the context in one head, and no one can say a problem was the other role’s job.</dd><dt class="c2">The trade-off</dt><dd>Less deep expertise at the edges. Designers grow into both structure and surface, and specialists are kept for the genuinely deep problems.</dd></dl></aside><p>I joined as a UX Manager and became a Product Design Manager as this model took hold.</p></div>
+      <div class="sec-b rv"><p>When I joined FYERS, design ran like a relay. A requirement went to a UX designer for structure and flows, then to a UI designer to make it look finished, then to development to build it. Three roles, three handoffs, and a little of the original intent lost at every one.</p><aside class="call"><span class="lbl c2">The call</span><p class="what">Argue for one Product Designer role: one person carrying a problem from user need to a shipped screen, instead of a relay from UX to UI to development.</p><dl><dt class="c2">Why</dt><dd>Every handoff is a translation, and every translation loses something. One owner keeps the context in one head, and no one can say a problem was the other role’s job.</dd><dt class="c2">The trade-off</dt><dd>Less deep expertise at the edges. Designers grow into both structure and surface, and specialists are kept for the genuinely deep problems.</dd></dl></aside><p>I joined as a UX Manager and became a Product Design Manager as this model took hold.</p></div>
     </section>
     <blockquote class="pull grid8 rv" style="margin-inline:0"><p>The relay race was never serving the user. It was serving the org chart.</p></blockquote>
     <section class="sec grid8" aria-labelledby="s3">
