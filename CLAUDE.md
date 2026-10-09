@@ -337,6 +337,10 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   cover image of his own case study, with his OK: the symbol and "nexter" set side by side,
   as in the app's own nav. Design scope shows as a word beside each card's title, in Sujith's
   chosen wording: Large = Flagship, Medium = Feature, Small = Enhancement.
+- **Leadership step 4 ("From my hands to the team's") is split like step 2** (Sujith, 9 Oct 2026: it ran
+  out of frame): title above the centre line, text and link below it. It used to be one block anchored
+  above the centre, so on short windows the three-line title rose under the nav. `scratchpad/ldfit.mjs`
+  checks every step against the nav and the bottom edge at short sizes.
 - **Work → Leadership spacing.** Leadership's panel wipes up at exactly the speed
   Work's last row scrolls away (its own ScrollTrigger, `top top` to `top -100%`),
   so `.works` needs only an 8rem bottom pad. The old `100svh` pad left a blank
