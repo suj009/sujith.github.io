@@ -391,6 +391,10 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   people who already knew web3 prediction markets, not newcomers. He moved on from Nexter soon
   after the six-user test, so the page says the findings were left to the team; don't invent
   changes that followed it.
+  **Nexter launched with Lossy only; No-loss came in a later phase** (Sujith, 9 Oct 2026). The brief covered
+  both and he proposed Lossy first. Don't call No-loss "the headline" or say the landing page promised it:
+  the landing page was designed after all the app UI. The main screen "skips the explaining and goes
+  straight to predicting" (was "stays out of their way", which he found unclear).
   Revised Oct 2026 for the C-suite reader: the headline leads with the outcome ("1.7 million
   predictions from an unfinished brief"), the results strip leads with volume and fees, and the
   page adds what the article had but the page didn't: the ~50-person Twitter/Telegram poll, his
@@ -410,6 +414,8 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Lead (his manager was the Design Manager), the first designers on the product; the fast
   social/ads purchase flow was "we", not "I"; visual artwork was a teammate's. Its outcome
   figures (3,000+ paid monthly users, hit by COVID) stay off the site (Sujith).
+  **Airtel's analytics portal shows only the second version** (Sujith, 9 Oct 2026), full body width; the
+  first version is described in the decision only (`analytics-v1.webp` stays unused in the repo).
   **Reach Mobile is a SIM service, not a phone service** (Sujith, 9 Oct 2026): "a US SIM service sold
   entirely online"; it sells SIM cards and plans. Never "phone service" or "phone plan".
 - **Orders case study (v2)**: FYERS's first unified Orders section, web and app, every screen
