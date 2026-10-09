@@ -100,8 +100,7 @@ Claims on this site are checkable by the people being persuaded, so:
 - **No FYERS performance figures** (Sujith, Oct 2026: he still works there). No impact or
   adoption numbers for FYERS work on the manager wall, the FYERS hands-on cards or elsewhere.
   Allowed, by his say-so: the Wealth Tracker "~70% less front-end effort" estimate (the front-end
-  team's, always called an estimate), the public scale line ("top-20 Indian retail brokerage",
-  "over a million active clients"), team size, verticals and the feature count. Figures from past
+  team's, always called an estimate), the public scale line ("an Indian brokerage with over a million customers"), team size, verticals and the feature count. Figures from past
   employers (Nexter, Datami) are fine when dated and confirmed.
 - **Only live projects go on the site** (Sujith). The Agentic Design Framework was removed
   (card and page) because it hasn't shipped. Orders is live. NRI onboarding was removed (card and page) at Sujith's
@@ -142,10 +141,12 @@ Claims on this site are checkable by the people being persuaded, so:
   "I wasn't a junior"; never write "with my manager's approval"); Airtel TV went on to reach all 14 African markets (no date given).
 - **Never publish a number or ranking that has not been verified**, and never
   invent one to fill a sentence. Ask instead.
-- **Rankings decay.** "Top-20 Indian retail brokerage" was verified against the
-  NSE active-client table — rank 18, 10,65,788 active clients — but #19 and #20
-  sit within ~15%. Re-check periodically. The hero's "over a million active
-  clients" comes from that same figure, so both claims move together.
+- **No ranking on the site; the scale line is "an Indian brokerage with over a million customers"**
+  (Sujith, 9 Oct 2026). "Top-20" went stale: FYERS was 21st on NSE active clients in September 2026 (his
+  figure) and 22nd in July (2,00,810 active clients, pocketful.in). The old "over a million active clients"
+  was wrong: NSE active clients are about 2 lakh. "Over a million customers" is FYERS's own published
+  figure (fyers.in: "1 Million+ Customers", crossed in 2025); always say customers, never active clients.
+  The old note claiming rank 18 with 10,65,788 active clients is not borne out by current data.
 - **Write numbers for a global reader.** Lakh and crore do not parse outside
   India, and the site is written for both Indian and international readers:
   10L → "over a million".
@@ -213,8 +214,8 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   `img/logo-s*` / `favicon.ico` set.
 - **Titles** put the name first (tabs cut at ~25 characters): home is
   "Sujith Kumar Anand — Senior Product Design Manager" (Sujith's wording); other pages are
-  "<page> — Sujith Kumar Anand". The description uses the top-20 ranking and
-  "over a million active clients", so it moves with those claims.
+  "<page> — Sujith Kumar Anand". The description says "an Indian brokerage with over a million
+  customers", so it moves with that claim.
 - **Canonical, `og:url`, `og:image` and JSON-LD use absolute
   `https://sujith.design/` URLs**, which assume v3 is merged to the root.
 - `robots.txt` and `sitemap.xml` are at the root. The sitemap leaves out
