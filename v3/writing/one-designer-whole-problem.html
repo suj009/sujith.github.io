@@ -4,6 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>One designer, whole problem — Sujith Kumar Anand</title>
+<script>
+// Open at the top on a fresh visit. Some hosts (the claude.ai preview) carry the last page's scroll
+// position over to the next one; Back/Forward and #section links keep their usual behaviour.
+(function(){
+  var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+  if((nav && nav.type === 'back_forward') || location.hash) return;
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  var top = function(){ scrollTo(0, 0); };
+  top();
+  addEventListener('DOMContentLoaded', top);
+  addEventListener('load', function(){ top(); setTimeout(top, 60); });
+  addEventListener('pagehide', function(){ if('scrollRestoration' in history) history.scrollRestoration = 'auto'; });
+})();
+</script>
 <meta name="description" content="Why I argued for closing the UX/UI split, and what happened to the work when one person carried a problem all the way through.">
 <meta name="author" content="Sujith Kumar Anand">
 <link rel="canonical" href="https://sujith.design/writing/one-designer-whole-problem.html">

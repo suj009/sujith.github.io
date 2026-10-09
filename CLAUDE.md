@@ -337,6 +337,10 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   cover image of his own case study, with his OK: the symbol and "nexter" set side by side,
   as in the app's own nav. Design scope shows as a word beside each card's title, in Sujith's
   chosen wording: Large = Flagship, Medium = Feature, Small = Enhancement.
+- **Leadership shows what he did; Writing holds what he argues** (Sujith, 9 Oct 2026: they duplicated).
+  Step 2 is "One owner per problem" (the model and his UX Manager → Product Design Manager move), step 4
+  keeps the Wealth 360 → AIDA facts; neither links to an essay. Step 1's "How I lead the team" link to
+  the Leading case is the section's only link. Don't reuse essay titles or teasers as Leadership steps.
 - **Leadership step 4 ("From my hands to the team's") is split like step 2** (Sujith, 9 Oct 2026: it ran
   out of frame): title above the centre line, text and link below it. It used to be one block anchored
   above the centre, so on short windows the three-line title rose under the nav. `scratchpad/ldfit.mjs`
@@ -438,6 +442,10 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   `v3/Sujith-Kumar-Anand-CV.pdf` for its Download button. Regenerate it
   whenever the CV changes (`cvpdf.mjs` in the scratchpad, A4 at scale 0.9 to hold two pages). The
   row numbers are hidden in print: Chrome's PDF stacked them all over the name.
+- **Every inner page opens at the top** (Sujith, 9 Oct 2026: the claude.ai preview carried the last
+  page's scroll over, so pages landed at the bottom). A small script after `<title>` in `cv.html`, each
+  essay and the case template (`TOPJS` in `cs/build.py`) scrolls to the top on a fresh visit or reload;
+  Back/Forward and #section links are left alone. Add it to any new inner page.
 - **On merge, retire the old root pages** (`article-*.html`, `case-study-*.html`): their source still
   carries author comments (e.g. "ASSUMED CONTENT ... verify before this gets read in an interview")
   that anyone can read with View Source. Delete them or redirect them to their v3 replacements.
