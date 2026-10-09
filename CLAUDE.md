@@ -251,6 +251,10 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   Work, so the description and "Scroll to discover" slide under it instead of through the links. It
   goes back to the difference blend once About's curtain has closed over the hero (Sujith).
 
+- **"Invert colour" takes its solid ground only under the visible Work panel** (Sujith, 9 Oct 2026: it
+  showed a white chip over About). `.works` starts a screen early under a centre-out clip, so the test is
+  the clip's left edge (`innerWidth/2 × top/innerHeight`) reaching the button, not the box's rect.
+
 - **A reload starts from the top** (Sujith, 8 Oct 2026): a small script after `<title>` sets
   `history.scrollRestoration` to manual on reload only and drops any `#hash`, so the intro plays again.
   Back/forward and section links (`#work`, `#writing`) still restore or jump as normal.

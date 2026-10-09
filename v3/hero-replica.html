@@ -1424,7 +1424,11 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
       var overHero = y > 0 && navEl.getBoundingClientRect().top <= 0 &&
         (aboutEl.getBoundingClientRect().top > nh || capEl.getBoundingClientRect().bottom > 0);
       navEl.classList.toggle('solid', overHero || (r.top < nh && r.bottom > 0));
-      invEl.classList.toggle('solid', r.top < innerHeight && r.bottom > innerHeight - 64);
+      // Work's box starts a screen early under a clip that opens from the centre, so "Invert colour"
+    // takes its solid ground only once the visible light panel has actually reached it.
+    var ib = invEl.getBoundingClientRect();
+    var edge = root.classList.contains('anim') ? innerWidth * .5 * Math.min(1, Math.max(0, r.top / innerHeight)) : 0;
+    invEl.classList.toggle('solid', r.top < ib.bottom && r.bottom > ib.top && edge < ib.right);
       bars.forEach(function(b, i){
         var p;
         if(narrow.matches) p = i ? 0 : y / max;
