@@ -3,6 +3,21 @@
 Personal portfolio for Sujith Kumar Anand, Senior Design Manager. Static HTML,
 no build step, served from GitHub Pages via `CNAME`.
 
+## Live since 9 Oct 2026: v3 is the site
+
+Sujith asked to merge v3 to the live site on 9 Oct 2026, ahead of Wealth 360's release (its case stays
+password protected and `noindex`, and no page may call it live until he says it is). What moved:
+
+- `v3/hero-replica.html` is now `index.html`; `cv.html`, the CV PDF, `site.webmanifest`, `work/`,
+  `writing/` and `img/` moved to the root. Paths in these notes that once read `v3/...` now mean the root.
+- The old root pages (`article-*.html`, `case-study-*.html`) and `v3/` are now small `noindex` redirect
+  stubs to their replacements, so the old source and its "ASSUMED CONTENT" author notes are gone.
+- `sitemap.xml` lists the home page, the CV, five case studies (not Wealth 360) and the four essays.
+- Scratchpad tools point at the root: `cs/build.py` writes `work/`, `cvpdf.mjs` writes the root PDF, and
+  the local server runs from the repo root (`localhost:8765/` is the home page).
+- The pre-v3 notes below (the frozen `index.html` hero, the Bourbon `css/`, the old tokens, the old
+  repeated-copy list and the Lab iframe) describe the site before the merge and no longer apply.
+
 ## Who reads this site
 
 **C-suite and founders.** Copy is written to persuade that audience, not other
@@ -24,7 +39,7 @@ Practical consequences:
   to enterprise C-suite, so scope always precedes it in the hero.
 - Recheck every word against this audience before shipping copy.
 
-## FROZEN: the hero section
+## (Pre-v3, historical) FROZEN: the hero section
 
 **Sujith froze the hero at `14db5ea`. Do not change any part of it — copy, layout,
 CSS or markup — unless he names the change explicitly.** "Improve the page",
@@ -111,16 +126,16 @@ Claims on this site are checkable by the people being persuaded, so:
 - **Only live projects go on the site** (Sujith). The Agentic Design Framework was removed
   (card and page) because it hasn't shipped. Orders is live. NRI onboarding was removed (card and page) at Sujith's
   request, 7 Oct 2026: no public screens could be found for it. **Wealth Tracker is now called Wealth 360** (Sujith, 7 Oct 2026)
-  and its case study (`v3/work/wealth-360.html`) is **password protected**. It was due on web and
+  and its case study (`work/wealth-360.html`) is **password protected**. It was due on web and
   mobile on Friday 9 Oct 2026; it hit a hurdle and is now expected the week after, date not fixed
-  (Sujith, 8 Oct). The site must not merge to the root until it is out. Until then no page may call it
+  (Sujith, 8 Oct). Sujith had the site merged to the root on 9 Oct anyway. Until it is out no page may call it
   live, released or shipped: "delivered" and "Flutter-ready" are the words in use. The page
   body is encrypted at build time (AES-GCM, key from PBKDF2-SHA256, 250k iterations) by `lock()` in
   `cs/build.py`; the password and salt live in the scratchpad (`cs/.w360pass`, `cs/.w360salt`), never in
   the repo. Screens added later must go inside the encrypted body (as data URIs), or their public URLs
   would leak them. The page is `noindex`; keep it out of the sitemap on merge. Its public card, the
   About "Ship" line and Leadership's "Close to the work" keep their text and the 70% estimate (Sujith).
-  The live root site still has a public `case-study-wealth-tracker.html`; the v3 merge replaces it.
+  The old public `case-study-wealth-tracker.html` is now a redirect to it.
 - **AIDA** is the internal agentic design framework Sujith leads: designers and PMs go from ideation
   to Flutter code. Proven on Wealth 360, now used by one PM and being rolled out to all of PD and PM
   (Sujith, 7 Oct 2026). Public, at his request: the essay `writing/aida-ideation-to-code.html`, the
@@ -143,8 +158,7 @@ Claims on this site are checkable by the people being persuaded, so:
   verticals: Trading, Options, Automate, FIA, Markets, Institutional and Reports**. These are the "two
   organisational changes". **He now reports to the AVP of Product** (earlier the CPO and co-founder;
   Sujith, 8 Oct 2026): the site says so on the Leading page and the CV only, and keeps the CPO line as
-  history. The CXO's move to an Innovation Lab is internal and stays off the site (removed on his call). Live root
-  `index.html`/`cv.html` still say six; the v3 merge replaces them (the root hero is frozen anyway).
+  history. The CXO's move to an Innovation Lab is internal and stays off the site (removed on his call).
 - **Titles:** at Datami he was Senior Product Designer, then Lead Product Designer. On Airtel TV
   Africa he was Lead Product Designer and the only designer, and led design from start to end (Sujith:
   "I wasn't a junior"; never write "with my manager's approval"); Airtel TV went on to reach all 14 African markets (no date given).
@@ -174,7 +188,7 @@ Claims on this site are checkable by the people being persuaded, so:
   and the FDSG case card in `index.html`. Do not reuse it in new copy until
   Sujith resolves it.
 
-## Structure worth knowing
+## Structure worth knowing (pre-v3, historical)
 
 - **Everything is inline.** `index.html` carries its own `<style>` block
   (tokens at `:root`) and `<script>`. The `css/` directory is a legacy Bourbon
@@ -205,7 +219,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 
 - **The mark is the Blocks S** (Sujith's pick, replacing the A-cut S): an S of eleven
   unit blocks on a 3 by 5 grid, drawn in real 3D at a resting isometric angle (turn -45 degrees,
-  tip 35.26 degrees). It sits in the nav of `v3/hero-replica.html` and in the centre of the
+  tip 35.26 degrees). It sits in the nav of `index.html` and in the centre of the
   CV page's top bar (linking home; "Back to portfolio" stays, as he asked for earlier). Each
   page carries the same small inline script: hover leans the mark toward the pointer, dragging
   turns it to any angle and a flick keeps it spinning, and left alone it settles back to the
@@ -217,19 +231,18 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   why it always settles back to the resting angle. Working files (generator `gen.mjs`, `mark.js`)
   are in the session scratchpad under `blocksmark/`; the 3D sheet is on the artifact
   "Blocks S Tilt".
-- **Favicons** live in `v3/img/`: the Blocks S at its resting angle on the site's light
+- **Favicons** live in `img/`: the Blocks S at its resting angle on the site's light
   ground (`favicon.svg` flips to a dark tile in dark browser chrome; `.ico` with 16/32/48,
-  16/32 PNG, 180 apple-touch, 192/512 manifest icons), with `v3/site.webmanifest`. On merge they move to the root and replace the old
-  `img/logo-s*` / `favicon.ico` set.
+  16/32 PNG, 180 apple-touch, 192/512 manifest icons), with `site.webmanifest`. They replaced the old `favicon.ico` set at the merge.
 - **Titles** put the name first (tabs cut at ~25 characters): home is
   "Sujith Kumar Anand — Senior Product Design Manager" (Sujith's wording); other pages are
   "<page> — Sujith Kumar Anand". The description says "an Indian brokerage with over a million
   customers", so it moves with that claim.
 - **Canonical, `og:url`, `og:image` and JSON-LD use absolute
-  `https://sujith.design/` URLs**, which assume v3 is merged to the root.
-- `robots.txt` and `sitemap.xml` are at the root. The sitemap leaves out
-  `case-study-fdsg.html` and `article-scaling-design-system.html` while the FDSG
-  claim is disputed; robots blocks `/v2/` and `/v3/` as duplicate versions.
+  `https://sujith.design/` URLs**, live since the 9 Oct 2026 merge.
+- `robots.txt` and `sitemap.xml` are at the root. The sitemap lists the home page, the CV, five case
+  studies (Wealth 360 stays out while it is password protected) and the four essays; robots blocks `/v2/`
+  and `/v3/` (now redirect stubs).
 
 ## v3 hero (hero-replica.html)
 
@@ -280,7 +293,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 
 ## v3 Work, case studies and essays
 
-- **Manager wall** (`#viewMgr` in `v3/hero-replica.html`) lists 33 FYERS
+- **Manager wall** (`#viewMgr` in `index.html`) lists 33 FYERS
   features shipped since February 2024. Sujith reviewed the list card by card;
   the source of truth is `wall.tsv` (video id, name, area, sub-area, design
   scope S/M/L, launch month), which `wall.py` turns into the cards. Both live in
@@ -296,7 +309,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   clear entry kept their video month: Build your own indicators, Dual Chart Mode, Portfolio analysis
   with FIA, Smart News, Advanced Option Chain, Trade from Advanced Charts and DDPI. Stock Screeners is
   Dec 2025 (the upgrade his team designed, not the Nov 2024 launch). Account opening stays Jun 2024:
-  his team's redesign after he joined, not the Nov 2023 Sign Up 2.0 (Sujith). The page is newer than `wall.tsv`, so edit dates in `v3/hero-replica.html`; the
+  his team's redesign after he joined, not the Nov 2023 Sign Up 2.0 (Sujith). The page is newer than `wall.tsv`, so edit dates in `index.html`; the
   parsed timeline is `scratchpad/wn/entries.tsv`. `.extra` marks every card outside the first 12 of the
   default (flagship-first) order.
 - **Trading has three sub-areas: Trading, Charts and API** (Sujith). Cards show
@@ -327,7 +340,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   only with verified, publishable figures that have a source and date. **No
   YouTube figures (views, length) on the page: he asked for end-user analytics
   only.** On hover (fine pointers) or keyboard focus, the panel gives way to the
-  walkthrough's still (`v3/img/work/<videoId>.webp`). A plain click plays FYERS's
+  walkthrough's still (`img/work/<videoId>.webp`). A plain click plays FYERS's
   walkthrough (@FYERS-Platforms) straight away in an overlay on the same page
   (youtube-nocookie embed). Once script runs, the cards keep the YouTube address in
   `data-yt` rather than `href`, because the claude.ai preview intercepts outbound links
@@ -348,11 +361,11 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 - **Company marks sit in each card's bottom-right corner** (option D, Sujith's pick
   from the logo options page), opposite "Watch the walkthrough" or "Read the case
   study", on both views. The top line carries the area alone. Manager cards carry
-  the FYERS "F" symbol (`v3/img/co/fyers-f.svg`, cut from `fyers.svg`, which comes
+  the FYERS "F" symbol (`img/co/fyers-f.svg`, cut from `fyers.svg`, which comes
   from fyers.in); hands-on cards carry their company's mark: the FYERS F, the Datami
-  wordmark (`v3/img/co/datami.png`, from datami.com). All are drawn as a CSS mask in
+  wordmark (`img/co/datami.png`, from datami.com). All are drawn as a CSS mask in
   the card's text colour at 72%, with the name as the accessible label. Nexter
-  Finance's site no longer resolves, so its mark (`v3/img/co/nexter.png`) was cut from the
+  Finance's site no longer resolves, so its mark (`img/co/nexter.png`) was cut from the
   cover image of his own case study, with his OK: the symbol and "nexter" set side by side,
   as in the app's own nav. Design scope shows as a word beside each card's title, in Sujith's
   chosen wording: Large = Flagship, Medium = Feature, Small = Enhancement.
@@ -395,7 +408,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   unify web and app on one design system (app Aug 2025, web Sep 2025). It ran under Sujith's management and
   his team designed it (his card: "Designed by my team, under my management, by then across every vertical").
   The separate FDSG claim (owning the design system, a third less design effort) stays disputed.
-- **IC view** has five cards, each opening a page in `v3/work/` (Orders, Wealth
+- **IC view** has five cards, each opening a page in `work/` (Orders, Wealth
   Tracker, Nexter Finance, Airtel TV Africa, Reach Mobile); the lede says "Five pieces of
   hands-on work across three companies". Airtel TV Africa and Reach Mobile are two separate projects from his time at
   Datami Mobile Solutions Pvt Ltd; each keeps its own page. Pages are generated from one template; `[[...]]`-style gaps render as
@@ -403,7 +416,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 - **Nexter Finance case study** is written from Sujith's own Medium case study
   ("Designing Nexter Finance", 27 Jan 2024, medium.com/@suj009; the article page
   blocks fetching, but his RSS feed at medium.com/feed/@suj009 carries the full text).
-  Its screenshots are his, in `v3/img/work/nexter/`. The growth figures (10K+ users,
+  Its screenshots are his, in `img/work/nexter/`. The growth figures (10K+ users,
   1K+ weekly active, 1.7M+ predictions, $19M+ volume, $242K fees) are Nexter's, as
   published in that article in January 2024; Sujith confirmed they are fine to show.
   Always date them. The Nexter card on the home page carries "1.7M+ Predictions made, Jan 2024"
@@ -425,7 +438,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   analytics dashboard screenshot (unverified internal numbers).
 - **Airtel TV Africa and Reach Mobile case studies** are written from Sujith's own
   portfolio PDF ("Portfolio_Sujith_2023.pdf", uploaded in session; not in the repo). Screens
-  are cropped from it into `v3/img/work/airtel/` and `v3/img/work/reach/`. Facts to keep
+  are cropped from it into `img/work/airtel/` and `img/work/reach/`. Facts to keep
   straight: Airtel TV Africa started from the existing Indian Airtel TV app, not a blank page
   (it is still tagged 0 → 1 as a new-market launch, Sujith's earlier call); he was its only
   designer (Design Lead) with 30+ engineers. 450,000+ registered users in Nigeria, Zambia and
@@ -446,7 +459,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   as "the pattern Orders replaced" (cropped to drop a customer's name and account number). Screens and
   the two looping videos come from FYERS's public help-centre article "How can I view and manage my
   orders in FYERS?" (Zoho WorkDrive embeds; the Trader videos were not used), trimmed to start on
-  Orders, as MP4 plus WebM in `v3/img/work/orders/`. They show Orders as of March 2026, so captions
+  Orders, as MP4 plus WebM in `img/work/orders/`. They show Orders as of March 2026, so captions
   say "today". The decisions are written from the shipped product with Sujith's go-ahead; the
   "What I learned" points are his own, from the live `case-study-orders.html`. No figures.
   **His role reads "designed every screen myself while managing the team"**, never "Design manager, and
@@ -463,7 +476,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   "Learnings".
   Reflections must come from his own stated learnings, never invented. The generator is
   `cs/build.py` in the session scratchpad; `build.v1.py` is the pre-v2 copy.
-- **Essays** live in `v3/writing/`, four since the Oct 2026 C-suite review: *AIDA: from one designer to
+- **Essays** live in `writing/`, four since the Oct 2026 C-suite review: *AIDA: from one designer to
   a whole team* (now also carries how Wealth 360 ran and the honest limits, folded in from *Designing
   past the handoff*, which was deleted as a third essay on the same idea), *Trust is a design material*,
   *Zero to one, three times* (`zero-to-one-three-times.html`, was *twice*; Reach Mobile added from its
@@ -471,7 +484,7 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   author notes saying its workflow section was assumed and its anecdote "did not happen"; both were
   removed and the workflow rebuilt from the Wealth 360 case facts. Never reintroduce them. In *Trust*,
   the order ticket is the Lab prototype, so it says "prototyped", not "built".
-- **Leading design at FYERS** (`v3/work/leading-design-at-fyers.html`, first in the case chain, linked
+- **Leading design at FYERS** (`work/leading-design-at-fyers.html`, first in the case chain, linked
   from Leadership's Team step as "How I lead the team"): the manager-level case study. It has no card on the
   home page, by Sujith's choice (9 Oct 2026): Leadership's link is its only way in. Built only from
   confirmed facts and his own essay lines (the relay, "I argued for", the UX Manager to Product Design
@@ -506,8 +519,8 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   end to end; he sets the quality bar, reviews every design and stays hands-on where it counts.
 - **Fixed Deposits** (May 2026, Mutual funds) was his team's work (Sujith, 9 Oct 2026), though Mutual Funds
   later moved to another Design Manager. It stays on the wall.
-- **The detailed CV** (`v3/cv.html`) has a pre-rendered
-  `v3/Sujith-Kumar-Anand-CV.pdf` for its Download button. Regenerate it
+- **The detailed CV** (`cv.html`) has a pre-rendered
+  `Sujith-Kumar-Anand-CV.pdf` for its Download button. Regenerate it
   whenever the CV changes (`cvpdf.mjs` in the scratchpad, A4 at scale 0.9 to hold two pages). The
   row numbers are hidden in print: Chrome's PDF stacked them all over the name.
 - **Inner pages open at the top when you arrive, and a refresh keeps your place** (Sujith, 9 Oct 2026; only
@@ -518,9 +531,8 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   the top. The home page writes itself as `lastPage` on unload so it never looks like a refresh to an
   inner page. Retries after load cover Wealth 360 opening after its password check. Back/Forward and
   #section links are left alone. Add it to any new inner page; `scratchpad/innertop.mjs` tests it.
-- **On merge, retire the old root pages** (`article-*.html`, `case-study-*.html`): their source still
-  carries author comments (e.g. "ASSUMED CONTENT ... verify before this gets read in an interview")
-  that anyone can read with View Source. Delete them or redirect them to their v3 replacements.
+- **The old root pages are retired** (`article-*.html`, `case-study-*.html`): done at the 9 Oct 2026 merge.
+  Each is a `noindex` redirect stub to its replacement; their old source with "ASSUMED CONTENT" notes is gone.
 - **No present-tense claims about past employers' products** ("still in use", "customers use today")
   unless re-verified: Reach Mobile's were cut on the Oct 2026 C-suite review.
 - **Contact line is "Open to Head of Design roles · Bengaluru or remote"** (Sujith, 8 Oct 2026: Sr Design
