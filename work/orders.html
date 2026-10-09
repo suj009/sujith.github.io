@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Orders case study — Sujith Kumar Anand</title>
+<script>
+// Arriving from another page opens at the top: some hosts (the claude.ai preview) carry the last page's
+// scroll position over to the next one. A refresh stays where the reader was. The preview doesn't report
+// a refresh as a reload, so each page notes itself and its scroll as it unloads, and coming back to the
+// same page counts as a refresh. Back/Forward and #section links keep their usual behaviour.
+(function(){
+  var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+  if((nav && nav.type === 'back_forward') || location.hash) return;
+  var y = 0, live = true;
+  try{ var last = JSON.parse(sessionStorage.getItem('lastPage') || 'null'); if(last && last.p === location.pathname) y = last.y || 0; }catch(e){}
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  // Stop once the reader scrolls, so a slow load never moves them.
+  ['wheel','touchstart','keydown'].forEach(function(e){ addEventListener(e, function(){ live = false; }, {once:true, passive:true}); });
+  var go = function(){ if(live) scrollTo(0, y); };
+  go();
+  addEventListener('DOMContentLoaded', go);
+  // Retries cover late height changes, like a locked case study opening after its password check.
+  addEventListener('load', function(){ go(); [60, 400, 1200].forEach(function(t){ setTimeout(go, t); }); });
+  addEventListener('pagehide', function(){
+    try{ sessionStorage.setItem('lastPage', JSON.stringify({p: location.pathname, y: scrollY})); }catch(e){}
+    if('scrollRestoration' in history) history.scrollRestoration = 'auto';
+  });
+})();
+</script>
+<meta name="description" content="How Sujith Kumar Anand designed FYERS’s first unified Orders section on web and app: every order type in one place, one set of rules on both platforms, and actions decided by each order’s status.">
+<meta name="author" content="Sujith Kumar Anand">
+<link rel="canonical" href="https://sujith.design/work/orders.html">
+<link rel="icon" href="../img/favicon.ico" sizes="48x48">
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Orders case study — Sujith Kumar Anand">
+<meta property="og:description" content="How Sujith Kumar Anand designed FYERS’s first unified Orders section on web and app: every order type in one place, one set of rules on both platforms, and actions decided by each order’s status.">
+<meta property="og:image" content="https://sujith.design/img/og-sujith.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  color-scheme:light;
+  --ground:#F0F0F0;--ink:#0F0F0F;--ink-2:#0F0F0F8C;--rule:#0F0F0F1F;--tint:#0F0F0F08;
+  --todo:#0F0F0F12;
+  --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.25,1,.5,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F08C;--rule:#F2F0F024;--tint:#F2F0F00A;--todo:#F2F0F01A}
+}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F08C;--rule:#F2F0F024;--tint:#F2F0F00A;--todo:#F2F0F01A}
+*{box-sizing:border-box}
+html{background:var(--ground)}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;transition:background-color .5s var(--ease),color .5s var(--ease)}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+.c2{font-size:.75rem;font-weight:500;letter-spacing:-.02em;line-height:1.2}
+.page{max-width:1320px;margin:0 auto;padding:0 clamp(16px,2.5vw,32px) 40px}
+.grid8{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem}
+
+.rail{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  padding:calc(14px + env(safe-area-inset-top,0px)) 0 12px;background:var(--ground);border-bottom:1px solid var(--rule);
+  transition:background-color .5s var(--ease)}
+.rail a{text-decoration:none}
+.u{position:relative;padding-bottom:2px}
+.u::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.u:hover::after{transform:scaleX(1)}
+.back{display:inline-flex;align-items:center;gap:.5rem}
+.back .ar{display:inline-block;transition:transform .4s var(--ease)}
+.back:hover .ar{transform:translateX(-.25rem)}
+.rail .here{color:var(--ink-2)}
+
+.hero{padding:clamp(40px,7vw,96px) 0 clamp(28px,4vw,48px);row-gap:2rem}
+.kicker{grid-column:1 / -1;color:var(--ink-2);display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+.kicker .tag{display:inline-flex;align-items:center;line-height:1;border:1px solid currentColor;border-radius:999px;padding:.3rem .6rem}
+h1{grid-column:1 / 8;margin:0;font-weight:400;font-size:clamp(2.6rem,6.4vw,6rem);letter-spacing:-.055em;line-height:.92;text-wrap:balance}
+.lede{grid-column:1 / 6;margin:0;font-size:clamp(1.15rem,1.8vw,1.5rem);letter-spacing:-.025em;line-height:1.3;text-wrap:pretty}
+.facts{grid-column:1 / -1;list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:1rem}
+.facts li{display:flex;flex-direction:column;gap:.35rem;padding-top:.8rem;border-top:1px solid var(--ink)}
+.facts .k{color:var(--ink-2)}
+.facts .v{font-size:1.05rem;letter-spacing:-.02em;line-height:1.3}
+
+figure{margin:0}
+.fig{grid-column:1 / -1;margin:clamp(24px,4vw,48px) 0}
+.fig.half{grid-column:span 4}
+.ph{position:relative;display:grid;place-items:center;aspect-ratio:16 / 9;background:var(--tint);
+  border:1px dashed var(--ink-2);color:var(--ink-2);text-align:center;padding:1.5rem}
+.ph.tall{aspect-ratio:4 / 5}
+.ph .in{display:grid;gap:.4rem;max-width:26rem}
+.ph .in b{color:var(--ink);font-weight:500;font-size:.95rem;letter-spacing:-.01em}
+.ph .ic{justify-self:center;width:2rem;height:1.5rem;border:1px solid currentColor;border-radius:3px;position:relative;margin-bottom:.3rem}
+.ph .ic::after{content:"";position:absolute;left:.35rem;bottom:.3rem;width:.7rem;height:.45rem;border-left:1px solid currentColor;border-bottom:1px solid currentColor;transform:skewX(-30deg)}
+figcaption{margin-top:.6rem;color:var(--ink-2)}
+.shot{display:block;width:100%;height:auto;background:var(--tint)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start}
+.pair .fig{margin:0;grid-column:auto}
+.stats{list-style:none;margin:.4rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(7.5rem,100%),1fr));gap:1.25rem 1rem;max-width:none}
+.stats li{display:flex;flex-direction:column;gap:.35rem;padding-top:.7rem;border-top:1px solid var(--ink)}
+.stats b{font-weight:400;font-size:clamp(1.9rem,3.4vw,2.6rem);letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.stats span{color:var(--ink-2)}
+.sec-b p.src{color:var(--ink-2);font-size:.75rem;line-height:1.3}
+
+.sec{padding:clamp(40px,6vw,80px) 0 0}
+.sec-h{grid-column:1 / 3;align-self:start;position:sticky;top:4.25rem;display:flex;flex-direction:column;gap:.4rem;padding-top:.9rem}
+.sec-h .n{color:var(--ink-2)}
+.sec-h h2{margin:0;font-size:1.5rem;font-weight:400;letter-spacing:-.035em;line-height:1.05}
+.sec-b{grid-column:3 / 8;border-top:1px solid var(--ink);padding-top:.9rem;display:grid;grid-template-columns:minmax(0,1fr);gap:1.1rem}
+.sec-b p{margin:0;font-size:1.125rem;line-height:1.55;letter-spacing:-.01em;max-width:40rem;text-wrap:pretty}
+.sec-b ul.pts{margin:0;padding:0;list-style:none;display:grid;gap:.55rem;max-width:40rem}
+.sec-b ul.pts li{position:relative;padding-left:1.25rem;font-size:1.0625rem;line-height:1.5}
+.sec-b ul.pts li::before{content:"";position:absolute;left:0;top:.72em;width:.6rem;height:1px;background:currentColor}
+.sec-b .fig{margin:.6rem 0 0}
+
+/* v2: results first, an executive summary, decisions called out, screenshots on a stage */
+.results{grid-column:1 / -1;list-style:none;margin:1.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(10rem,100%),1fr));gap:1.25rem 1rem}
+.results li{display:flex;flex-direction:column;gap:.4rem;padding-top:.8rem;border-top:1px solid var(--ink)}
+.results b{font-weight:400;font-size:clamp(2.4rem,4.6vw,4rem);letter-spacing:-.055em;line-height:.95;font-variant-numeric:tabular-nums}
+.results span{color:var(--ink-2)}
+.results-src{grid-column:1 / -1;margin:-.4rem 0 0;color:var(--ink-2)}
+.glance{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin:1.25rem 0 0;padding:1.25rem;background:var(--tint);border:1px solid var(--rule)}
+.glance div{display:flex;flex-direction:column;gap:.5rem}
+.glance dt{color:var(--ink-2)}
+.glance dd{margin:0;font-size:1rem;line-height:1.4;letter-spacing:-.01em;text-wrap:pretty}
+.stage{display:block;background:var(--stage,var(--tint));padding:clamp(12px,3vw,40px);border-radius:3px}
+.stage .shot{background:transparent}
+video.shot{object-fit:contain}
+.fig.port .stage{display:flex;justify-content:center}
+.fig.port .shot{width:auto;max-width:100%;max-height:min(72svh,640px)}
+.call{margin:.4rem 0;padding:1.1rem 1.25rem 1.2rem;border:1px solid var(--ink);display:grid;gap:.85rem;max-width:44rem}
+.call .lbl{color:var(--ink-2)}
+.call .what{margin:0;font-size:1.3rem;line-height:1.25;letter-spacing:-.025em;text-wrap:balance}
+.call dl{margin:0;display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:.55rem 1rem;padding-top:.85rem;border-top:1px solid var(--rule)}
+.call dt{color:var(--ink-2);padding-top:.2em}
+.call dd{margin:0;font-size:1rem;line-height:1.5}
+.sec.reflect .sec-b{border-top-style:dashed}
+.kicker .rt{margin-left:auto}
+.pull{grid-column:1 / -1;margin:clamp(48px,7vw,96px) 0 0;padding:clamp(28px,4vw,48px) 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
+.pull p{grid-column:1 / -1;margin:0;max-width:22ch;font-size:clamp(1.9rem,4.4vw,3.75rem);letter-spacing:-.045em;line-height:1.02;text-wrap:balance}
+
+.todo{background:var(--todo);border-bottom:1px dashed var(--ink-2);padding:0 .2em;color:var(--ink)}
+.todo::before{content:"To add: ";font-size:.75em;font-weight:500;letter-spacing:.02em;color:var(--ink-2)}
+.status{grid-column:1 / -1;display:flex;gap:.6rem;align-items:baseline;padding:.8rem 1rem;background:var(--tint);border:1px solid var(--rule);color:var(--ink-2)}
+
+.next{margin-top:clamp(64px,9vw,120px);border-top:1px solid var(--ink)}
+.next a{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem;padding:1.5rem 0 1rem;text-decoration:none}
+.next .k{grid-column:1 / 3;color:var(--ink-2)}
+.next .t{grid-column:3 / 8;font-size:clamp(2rem,5vw,4.5rem);letter-spacing:-.05em;line-height:.95}
+.next .s{grid-column:3 / 7;margin-top:.8rem;color:var(--ink-2)}
+.next .ar{display:inline-block;transition:transform .5s var(--ease)}
+.next a:hover .ar{transform:translateX(.4rem)}
+.foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:clamp(40px,6vw,72px);padding-top:1rem;border-top:1px solid var(--rule);color:var(--ink-2)}
+
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+@media (max-width:639px){.glance{grid-template-columns:1fr;gap:1.1rem}}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+@media (max-width:860px){
+  .grid8,.next a{grid-template-columns:minmax(0,1fr)}
+  h1,.lede,.sec-h,.sec-b,.fig,.fig.half,.next .k,.next .t,.next .s{grid-column:1}
+  .pair{grid-template-columns:1fr}
+  .glance{grid-template-columns:1fr 1fr}
+  .call dl{grid-template-columns:1fr;gap:.2rem}
+  .call dd{margin-bottom:.5rem}
+  .kicker .rt{margin-left:0}
+  .facts{grid-template-columns:1fr 1fr;row-gap:1rem}
+  .sec-h{position:static;flex-direction:row;justify-content:space-between;align-items:baseline;padding:0 0 1rem}
+  .rail .here{display:none}
+}
+</style>
+</head>
+<body style="--stage:#E9ECF5">
+<div class="page">
+  <header class="rail c2">
+    <a class="back u" href="../#work"><span class="ar" aria-hidden="true">&larr;</span>Back to work</a>
+    <span class="here">Case study · FYERS</span>
+    <button class="u" type="button" id="invert">Invert colour</button>
+  </header>
+  <main>
+    <header class="hero grid8">
+      <p class="kicker c2 rv" style="margin:0"><span>FYERS · Trading · 2024–25</span><span class="tag">Hands-on</span><span class="rt">4 min read</span></p>
+      <h1 class="rv">Orders: one home for every order</h1>
+      <p class="lede rv">Orders used to be one tab inside the Account Manager. I designed FYERS’s first unified Orders section, every screen on web and app myself, so every kind of order a trader places can be found, tracked and acted on in one place.</p>
+      
+      <dl class="glance rv"><div><dt class="c2">The problem</dt><dd>Orders had no home of their own. They sat in one tab of the Account Manager, while each order type, from GTT to smart orders to mutual funds, had its own states and rules.</dd></div><div><dt class="c2">My role</dt><dd>I designed every Orders screen myself, on web and app, while managing the team, working with the product manager and the developers.</dd></div><div><dt class="c2">The call</dt><dd>One Orders section for every order type, the same structure on web and app, and each order’s status deciding what you can do with it.</dd></div><div><dt class="c2">The result</dt><dd>Shipped on web and app in January 2025. FYERS’s help centre documents it today as one unified section, with the same rules on both.</dd></div></dl>
+      
+      <figure class="fig rv"><span class="stage"><video class="shot" poster="../img/work/orders/web-poster.webp" width="1440" height="480" autoplay muted loop playsinline preload="metadata" aria-label="FYERS Web Orders: moving between Open, Completed, GTT, Smart, Baskets and Alerts, then Mutual funds and IPO"><source src="../img/work/orders/web.webm" type="video/webm"><source src="../img/work/orders/web.mp4" type="video/mp4"></video></span><figcaption class="c2">Orders on FYERS Web today, from FYERS’s own help-centre walkthrough</figcaption></figure>
+    </header>
+    <section class="sec grid8" aria-labelledby="s1">
+      <div class="sec-h"><span class="n c2">01</span><h2 id="s1">The situation</h2></div>
+      <div class="sec-b rv"><p>After placing a trade, the next thing a trader wants to know is what happened to it. Is it still pending? Did it fill? Was it rejected? Can I still change it?</p><p>Yet orders had no home of their own. They lived as one tab inside the Account Manager, alongside positions, holdings and funds. And “an order” no longer meant one thing: limit and market orders, after-market orders, GTT, smart orders such as trail, step and SIP, mutual fund purchases and IPO applications each have their own states, and their own rules for what can still be done.</p><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/orders/before-trader.webp" alt="The FYERS Trader Account Manager: tabs for Positions, Orders, GTT Orders, All Positions, Holdings, Funds and Trades, with the orders table below" width="1240" height="208" loading="lazy" decoding="async"></span><figcaption class="c2">The pattern Orders replaced, still used in FYERS Trader: orders as one tab of the Account Manager</figcaption></figure></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s2">
+      <div class="sec-h"><span class="n c2">02</span><h2 id="s2">My role</h2></div>
+      <div class="sec-b rv"><p>While managing the team, I took Orders on as its designer: every screen, on web and in the app. I worked directly with the product manager and the developers, from the first structure to the release in January 2025.</p></div>
+    </section>
+    <blockquote class="pull grid8 rv" style="margin-inline:0"><p>After placing a trade, the next thing a trader wants to know is what happened to it.</p></blockquote>
+    <section class="sec grid8" aria-labelledby="s3">
+      <div class="sec-h"><span class="n c2">03</span><h2 id="s3">The decisions</h2></div>
+      <div class="sec-b rv"><p>There was a PRD, but it covered only the basics. I started with the information architecture, took it to the product manager for approval, and the decisions below came out of it.</p><aside class="call"><span class="lbl c2">The call</span><p class="what">Give Orders its own place in the main navigation: the bottom bar in the app, the top menu on web.</p><dl><dt class="c2">Why</dt><dd>Checking an order is something a trader does again and again through the day. It should be one tap from anywhere, not a detour into account management.</dd><dt class="c2">The trade-off</dt><dd>One more top-level item in a navigation with little room to spare, so Orders had to earn its place over everything else that wanted it.</dd></dl></aside><aside class="call"><span class="lbl c2">The call</span><p class="what">Organise by what the order is, then by where it stands: Stocks and F&amp;O, Mutual funds and IPO on top; Open, Completed, GTT and Smart beneath.</p><dl><dt class="c2">Why</dt><dd>A trader looking for an order knows what they bought before they know its state. Two levels keep every type findable without one endless list.</dd><dt class="c2">The trade-off</dt><dd>Two rows of tabs to scan, and the less common types sit a level down.</dd></dl></aside><aside class="call"><span class="lbl c2">The call</span><p class="what">Let each order’s status decide what you can do with it.</p><dl><dt class="c2">Why</dt><dd>A pending order offers Modify and Cancel; a mutual fund awaiting payment offers Retry payment; a smart SIP can be paused and resumed. Showing only what is possible now avoids dead buttons and errors after a tap, which matters when the action moves money.</dd><dt class="c2">The trade-off</dt><dd>The actions change from order to order, so they always sit in the same place, at the foot of the details, so they stay easy to learn.</dd></dl></aside><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/orders/app-states.webp" alt="Three app screens: a mutual fund order awaiting payment with a Retry payment button, smart orders marked Yet to start and Running, and a rejected GTT order" width="1322" height="851" loading="lazy" decoding="async"></span><figcaption class="c2">Status decides the action: Retry payment for a fund awaiting payment, live states for smart orders, a rejected GTT order</figcaption></figure><aside class="call"><span class="lbl c2">The call</span><p class="what">One structure and one set of rules on web and app, each in its own layout.</p><dl><dt class="c2">Why</dt><dd>Traders move between devices through the day. The same tabs, statuses and rules mean nothing has to be relearned. On web, a table with actions on each row and details in a side panel; in the app, a list with full-screen details.</dd><dt class="c2">The trade-off</dt><dd>Some platform conventions gave way to consistency, and every change had to be designed for both layouts.</dd></dl></aside><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/orders/app-flow.webp" alt="Three app screens: the Orders list on the Open tab, a pending order’s details with Modify and Cancel, and the modify sheet" width="1322" height="851" loading="lazy" decoding="async"></span><figcaption class="c2">In the app: find the order, open its details, modify it</figcaption></figure></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s4">
+      <div class="sec-h"><span class="n c2">04</span><h2 id="s4">Making change cheap</h2></div>
+      <div class="sec-b rv"><p>Orders spans many screens built from the same few patterns: an order row, a status, a details view, an action bar. Even on a shared design system, the usual workflow of wireframes, review, polished UI and more review made every piece of feedback expensive: find every affected screen, update each one, review the lot.</p><p>So I went straight to a polished working model, assembled from reusable components inside the project. A change to a shared pattern became one edit instead of a sweep across screens, and stakeholders reviewed something close to the real product, so their feedback was about the real thing.</p><ul class="pts"><li>Faster rounds of changes, with less repetitive screen-by-screen work</li><li>Stronger consistency across web and app</li><li>Feedback that landed on patterns, so it was easier to absorb</li></ul></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s5">
+      <div class="sec-h"><span class="n c2">05</span><h2 id="s5">Outcome</h2></div>
+      <div class="sec-b rv"><p>Orders shipped on web and app in January 2025, the first time FYERS had one section for every order a trader places. It is still the structure FYERS documents in its help centre: one place to view, track and manage stocks and F&amp;O, GTT, smart orders, mutual funds and IPO, where the web and the app follow the same rules.</p><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/orders/web-actions.webp" alt="The web Orders table with a pending order’s row actions open: modify, cancel, and a menu for symbol details, charts, option chain and market depth" width="1440" height="465" loading="lazy" decoding="async"></span><figcaption class="c2">On web, an order’s actions sit on its row</figcaption></figure><figure class="fig port rv"><span class="stage"><video class="shot" poster="../img/work/orders/app-poster.webp" width="414" height="851" autoplay muted loop playsinline preload="metadata" aria-label="FYERS app Orders: the Open tab, a pending order’s details, the modify sheet, then Completed, GTT, Smart, Mutual funds and IPO"><source src="../img/work/orders/app.webm" type="video/webm"><source src="../img/work/orders/app.mp4" type="video/mp4"></video></span><figcaption class="c2">Orders in the FYERS app today, from FYERS’s help-centre walkthrough</figcaption></figure></div>
+    </section>
+    <section class="sec grid8 reflect" aria-labelledby="s6">
+      <div class="sec-h"><span class="n c2">06</span><h2 id="s6">What I learned</h2></div>
+      <div class="sec-b rv"><ul class="pts"><li><em>How finished a design looks is a cost decision, not only a presentation one.</em> I had treated it as a way to control how much detail a review carried. For a connected experience with repeated patterns, a well-built, finished-looking model can be the cheaper place to make changes.</li><li><em>It is not a rule for everything.</em> The right level of finish depends on the problem, how mature the system underneath is, how much the UI repeats, and whether stakeholders need to see the final experience to give useful feedback.</li><li><em>Managing and making don’t pull against each other.</em> Designing a core product myself showed me what the systems and processes we were building actually cost the people using them every day.</li></ul></div>
+    </section>
+  </main>
+  <nav class="next" aria-label="Next case study">
+    <a href="wealth-360.html"><span class="k c2">Next case study</span><span class="t">Wealth 360 <span class="ar" aria-hidden="true">&rarr;</span></span><span class="s p">A PRD and an AI-generated concept in; approved, Flutter-ready web and mobile out.</span></a>
+  </nav>
+  <footer class="foot c2"><span>&copy; <span id="yr">2026</span> Sujith Kumar Anand · Senior Product Design Manager</span><span>Open to Head of Design roles · Bengaluru or remote</span></footer>
+</div>
+<script>
+(function(){
+  var root = document.documentElement;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  document.getElementById('invert').addEventListener('click', function(){
+    var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+  });
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('video').forEach(function(v){ v.pause(); v.removeAttribute('autoplay'); v.controls = true; });
+  var items = document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){ items.forEach(function(e){ e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -6% 0px'});
+  items.forEach(function(e, i){ if(e.closest('.hero')) e.style.transitionDelay = (i * 90) + 'ms'; io.observe(e); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Leading design at FYERS case study — Sujith Kumar Anand</title>
+<script>
+// Arriving from another page opens at the top: some hosts (the claude.ai preview) carry the last page's
+// scroll position over to the next one. A refresh stays where the reader was. The preview doesn't report
+// a refresh as a reload, so each page notes itself and its scroll as it unloads, and coming back to the
+// same page counts as a refresh. Back/Forward and #section links keep their usual behaviour.
+(function(){
+  var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+  if((nav && nav.type === 'back_forward') || location.hash) return;
+  var y = 0, live = true;
+  try{ var last = JSON.parse(sessionStorage.getItem('lastPage') || 'null'); if(last && last.p === location.pathname) y = last.y || 0; }catch(e){}
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  // Stop once the reader scrolls, so a slow load never moves them.
+  ['wheel','touchstart','keydown'].forEach(function(e){ addEventListener(e, function(){ live = false; }, {once:true, passive:true}); });
+  var go = function(){ if(live) scrollTo(0, y); };
+  go();
+  addEventListener('DOMContentLoaded', go);
+  // Retries cover late height changes, like a locked case study opening after its password check.
+  addEventListener('load', function(){ go(); [60, 400, 1200].forEach(function(t){ setTimeout(go, t); }); });
+  addEventListener('pagehide', function(){
+    try{ sessionStorage.setItem('lastPage', JSON.stringify({p: location.pathname, y: scrollY})); }catch(e){}
+    if('scrollRestoration' in history) history.scrollRestoration = 'auto';
+  });
+})();
+</script>
+<meta name="description" content="How Sujith Kumar Anand leads product design at FYERS: seven verticals, 33 features shipped since February 2024, one owner per problem instead of a relay of handoffs, and AIDA, the framework taking designers and product managers from idea to Flutter code.">
+<meta name="author" content="Sujith Kumar Anand">
+<link rel="canonical" href="https://sujith.design/work/leading-design-at-fyers.html">
+<link rel="icon" href="../img/favicon.ico" sizes="48x48">
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leading design at FYERS case study — Sujith Kumar Anand">
+<meta property="og:description" content="How Sujith Kumar Anand leads product design at FYERS: seven verticals, 33 features shipped since February 2024, one owner per problem instead of a relay of handoffs, and AIDA, the framework taking designers and product managers from idea to Flutter code.">
+<meta property="og:image" content="https://sujith.design/img/og-sujith.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  color-scheme:light;
+  --ground:#F0F0F0;--ink:#0F0F0F;--ink-2:#0F0F0F8C;--rule:#0F0F0F1F;--tint:#0F0F0F08;
+  --todo:#0F0F0F12;
+  --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.25,1,.5,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F08C;--rule:#F2F0F024;--tint:#F2F0F00A;--todo:#F2F0F01A}
+}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F08C;--rule:#F2F0F024;--tint:#F2F0F00A;--todo:#F2F0F01A}
+*{box-sizing:border-box}
+html{background:var(--ground)}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;transition:background-color .5s var(--ease),color .5s var(--ease)}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+.c2{font-size:.75rem;font-weight:500;letter-spacing:-.02em;line-height:1.2}
+.page{max-width:1320px;margin:0 auto;padding:0 clamp(16px,2.5vw,32px) 40px}
+.grid8{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem}
+
+.rail{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  padding:calc(14px + env(safe-area-inset-top,0px)) 0 12px;background:var(--ground);border-bottom:1px solid var(--rule);
+  transition:background-color .5s var(--ease)}
+.rail a{text-decoration:none}
+.u{position:relative;padding-bottom:2px}
+.u::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.u:hover::after{transform:scaleX(1)}
+.back{display:inline-flex;align-items:center;gap:.5rem}
+.back .ar{display:inline-block;transition:transform .4s var(--ease)}
+.back:hover .ar{transform:translateX(-.25rem)}
+.rail .here{color:var(--ink-2)}
+
+.hero{padding:clamp(40px,7vw,96px) 0 clamp(28px,4vw,48px);row-gap:2rem}
+.kicker{grid-column:1 / -1;color:var(--ink-2);display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+.kicker .tag{display:inline-flex;align-items:center;line-height:1;border:1px solid currentColor;border-radius:999px;padding:.3rem .6rem}
+h1{grid-column:1 / 8;margin:0;font-weight:400;font-size:clamp(2.6rem,6.4vw,6rem);letter-spacing:-.055em;line-height:.92;text-wrap:balance}
+.lede{grid-column:1 / 6;margin:0;font-size:clamp(1.15rem,1.8vw,1.5rem);letter-spacing:-.025em;line-height:1.3;text-wrap:pretty}
+.facts{grid-column:1 / -1;list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:1rem}
+.facts li{display:flex;flex-direction:column;gap:.35rem;padding-top:.8rem;border-top:1px solid var(--ink)}
+.facts .k{color:var(--ink-2)}
+.facts .v{font-size:1.05rem;letter-spacing:-.02em;line-height:1.3}
+
+figure{margin:0}
+.fig{grid-column:1 / -1;margin:clamp(24px,4vw,48px) 0}
+.fig.half{grid-column:span 4}
+.ph{position:relative;display:grid;place-items:center;aspect-ratio:16 / 9;background:var(--tint);
+  border:1px dashed var(--ink-2);color:var(--ink-2);text-align:center;padding:1.5rem}
+.ph.tall{aspect-ratio:4 / 5}
+.ph .in{display:grid;gap:.4rem;max-width:26rem}
+.ph .in b{color:var(--ink);font-weight:500;font-size:.95rem;letter-spacing:-.01em}
+.ph .ic{justify-self:center;width:2rem;height:1.5rem;border:1px solid currentColor;border-radius:3px;position:relative;margin-bottom:.3rem}
+.ph .ic::after{content:"";position:absolute;left:.35rem;bottom:.3rem;width:.7rem;height:.45rem;border-left:1px solid currentColor;border-bottom:1px solid currentColor;transform:skewX(-30deg)}
+figcaption{margin-top:.6rem;color:var(--ink-2)}
+.shot{display:block;width:100%;height:auto;background:var(--tint)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start}
+.pair .fig{margin:0;grid-column:auto}
+.stats{list-style:none;margin:.4rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(7.5rem,100%),1fr));gap:1.25rem 1rem;max-width:none}
+.stats li{display:flex;flex-direction:column;gap:.35rem;padding-top:.7rem;border-top:1px solid var(--ink)}
+.stats b{font-weight:400;font-size:clamp(1.9rem,3.4vw,2.6rem);letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.stats span{color:var(--ink-2)}
+.sec-b p.src{color:var(--ink-2);font-size:.75rem;line-height:1.3}
+
+.sec{padding:clamp(40px,6vw,80px) 0 0}
+.sec-h{grid-column:1 / 3;align-self:start;position:sticky;top:4.25rem;display:flex;flex-direction:column;gap:.4rem;padding-top:.9rem}
+.sec-h .n{color:var(--ink-2)}
+.sec-h h2{margin:0;font-size:1.5rem;font-weight:400;letter-spacing:-.035em;line-height:1.05}
+.sec-b{grid-column:3 / 8;border-top:1px solid var(--ink);padding-top:.9rem;display:grid;grid-template-columns:minmax(0,1fr);gap:1.1rem}
+.sec-b p{margin:0;font-size:1.125rem;line-height:1.55;letter-spacing:-.01em;max-width:40rem;text-wrap:pretty}
+.sec-b ul.pts{margin:0;padding:0;list-style:none;display:grid;gap:.55rem;max-width:40rem}
+.sec-b ul.pts li{position:relative;padding-left:1.25rem;font-size:1.0625rem;line-height:1.5}
+.sec-b ul.pts li::before{content:"";position:absolute;left:0;top:.72em;width:.6rem;height:1px;background:currentColor}
+.sec-b .fig{margin:.6rem 0 0}
+
+/* v2: results first, an executive summary, decisions called out, screenshots on a stage */
+.results{grid-column:1 / -1;list-style:none;margin:1.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(10rem,100%),1fr));gap:1.25rem 1rem}
+.results li{display:flex;flex-direction:column;gap:.4rem;padding-top:.8rem;border-top:1px solid var(--ink)}
+.results b{font-weight:400;font-size:clamp(2.4rem,4.6vw,4rem);letter-spacing:-.055em;line-height:.95;font-variant-numeric:tabular-nums}
+.results span{color:var(--ink-2)}
+.results-src{grid-column:1 / -1;margin:-.4rem 0 0;color:var(--ink-2)}
+.glance{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin:1.25rem 0 0;padding:1.25rem;background:var(--tint);border:1px solid var(--rule)}
+.glance div{display:flex;flex-direction:column;gap:.5rem}
+.glance dt{color:var(--ink-2)}
+.glance dd{margin:0;font-size:1rem;line-height:1.4;letter-spacing:-.01em;text-wrap:pretty}
+.stage{display:block;background:var(--stage,var(--tint));padding:clamp(12px,3vw,40px);border-radius:3px}
+.stage .shot{background:transparent}
+video.shot{object-fit:contain}
+.fig.port .stage{display:flex;justify-content:center}
+.fig.port .shot{width:auto;max-width:100%;max-height:min(72svh,640px)}
+.call{margin:.4rem 0;padding:1.1rem 1.25rem 1.2rem;border:1px solid var(--ink);display:grid;gap:.85rem;max-width:44rem}
+.call .lbl{color:var(--ink-2)}
+.call .what{margin:0;font-size:1.3rem;line-height:1.25;letter-spacing:-.025em;text-wrap:balance}
+.call dl{margin:0;display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:.55rem 1rem;padding-top:.85rem;border-top:1px solid var(--rule)}
+.call dt{color:var(--ink-2);padding-top:.2em}
+.call dd{margin:0;font-size:1rem;line-height:1.5}
+.sec.reflect .sec-b{border-top-style:dashed}
+.kicker .rt{margin-left:auto}
+.pull{grid-column:1 / -1;margin:clamp(48px,7vw,96px) 0 0;padding:clamp(28px,4vw,48px) 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
+.pull p{grid-column:1 / -1;margin:0;max-width:22ch;font-size:clamp(1.9rem,4.4vw,3.75rem);letter-spacing:-.045em;line-height:1.02;text-wrap:balance}
+
+.todo{background:var(--todo);border-bottom:1px dashed var(--ink-2);padding:0 .2em;color:var(--ink)}
+.todo::before{content:"To add: ";font-size:.75em;font-weight:500;letter-spacing:.02em;color:var(--ink-2)}
+.status{grid-column:1 / -1;display:flex;gap:.6rem;align-items:baseline;padding:.8rem 1rem;background:var(--tint);border:1px solid var(--rule);color:var(--ink-2)}
+
+.next{margin-top:clamp(64px,9vw,120px);border-top:1px solid var(--ink)}
+.next a{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem;padding:1.5rem 0 1rem;text-decoration:none}
+.next .k{grid-column:1 / 3;color:var(--ink-2)}
+.next .t{grid-column:3 / 8;font-size:clamp(2rem,5vw,4.5rem);letter-spacing:-.05em;line-height:.95}
+.next .s{grid-column:3 / 7;margin-top:.8rem;color:var(--ink-2)}
+.next .ar{display:inline-block;transition:transform .5s var(--ease)}
+.next a:hover .ar{transform:translateX(.4rem)}
+.foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:clamp(40px,6vw,72px);padding-top:1rem;border-top:1px solid var(--rule);color:var(--ink-2)}
+
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+@media (max-width:639px){.glance{grid-template-columns:1fr;gap:1.1rem}}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+@media (max-width:860px){
+  .grid8,.next a{grid-template-columns:minmax(0,1fr)}
+  h1,.lede,.sec-h,.sec-b,.fig,.fig.half,.next .k,.next .t,.next .s{grid-column:1}
+  .pair{grid-template-columns:1fr}
+  .glance{grid-template-columns:1fr 1fr}
+  .call dl{grid-template-columns:1fr;gap:.2rem}
+  .call dd{margin-bottom:.5rem}
+  .kicker .rt{margin-left:0}
+  .facts{grid-template-columns:1fr 1fr;row-gap:1rem}
+  .sec-h{position:static;flex-direction:row;justify-content:space-between;align-items:baseline;padding:0 0 1rem}
+  .rail .here{display:none}
+}
+</style>
+</head>
+<body style="--stage:#F4F5F9">
+<div class="page">
+  <header class="rail c2">
+    <a class="back u" href="../#work"><span class="ar" aria-hidden="true">&larr;</span>Back to work</a>
+    <span class="here">Case study · FYERS</span>
+    <button class="u" type="button" id="invert">Invert colour</button>
+  </header>
+  <main>
+    <header class="hero grid8">
+      <p class="kicker c2 rv" style="margin:0"><span>FYERS · Design leadership · 2024–present</span><span class="tag">Leadership</span><span class="rt">4 min read</span></p>
+      <h1 class="rv">Leading design at FYERS: from a relay to owners</h1>
+      <p class="lede rv">I lead product design across seven verticals at an Indian brokerage with over a million customers. The job is less the screens than the system that produces them: who owns a problem, how work is reviewed, and how far one person can carry it.</p>
+      <ul class="results rv"><li><b>33</b><span class="c2">Features shipped since Feb 2024</span></li><li><b>24</b><span class="c2">Of them since May 2025, across every vertical</span></li><li><b>9</b><span class="c2">Flagship launches, eight since May 2025</span></li><li><b>7</b><span class="c2">Verticals</span></li><li><b>8</b><span class="c2">Designers on my team at its largest</span></li></ul><p class="results-src c2 rv">Features as listed on this site from FYERS’s public walkthroughs; team figures as of October 2026.</p>
+      <dl class="glance rv"><div><dt class="c2">The problem</dt><dd>Seven verticals of a trading platform that ships fast, with design run as a relay: UX, then UI, then development, losing intent at every handoff.</dd></div><div><dt class="c2">My role</dt><dd>Senior Product Design Manager, reporting to the AVP of Product. I set the quality bar and review every design, and stay hands-on where it counts. A team of five designers today, eight at its largest.</dd></div><div><dt class="c2">The call</dt><dd>Organise around owners, not handoffs: one designer per problem, and now, with AIDA, one owner all the way to code.</dd></div><div><dt class="c2">The result</dt><dd>33 features shipped since February 2024, nine of them flagship launches, and AIDA rolling out to every product designer and product manager.</dd></div></dl>
+      
+      <figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/leading/model.webp" alt="Three rows. Before: a requirement passes from a UX designer to a UI designer to development to a shipped screen, with intent lost at each handoff. After: one product designer carries the requirement to a shipped screen. Now: a designer or product manager with AIDA goes from idea to Flutter code, then to engineering for architecture and performance." width="2400" height="1280" loading="lazy" decoding="async"></span><figcaption class="c2">How the work is organised: from a relay of handoffs, to one owner per problem, to one owner all the way to code</figcaption></figure>
+    </header>
+    <section class="sec grid8" aria-labelledby="s1">
+      <div class="sec-h"><span class="n c2">01</span><h2 id="s1">The remit</h2></div>
+      <div class="sec-b rv"><p>FYERS is an Indian brokerage with over a million customers. I lead product design across seven of its verticals as Senior Product Design Manager, reporting to the AVP of Product. My own team is five designers today and was eight at its largest.</p><p>Since February 2024 the team has shipped 33 features on web and app. Most came after May 2025, when design moved into Product and I took on every vertical: 24 of the 33, and eight of the nine flagship launches, among them FYERS Automate, Stock Screeners, Strategy Builder, Fixed Deposits and Backtest strategies with AI. I set the bar and review every design; each designer owns their problem end to end, and I still design hands-on where it counts, as on Orders.</p></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s2">
+      <div class="sec-h"><span class="n c2">02</span><h2 id="s2">From a relay to owners</h2></div>
+      <div class="sec-b rv"><p>When I joined FYERS, design ran like a relay: UX, then UI, then development, with a little of the original intent lost at every handoff.</p><aside class="call"><span class="lbl c2">The call</span><p class="what">Argue for one Product Designer role: one person carrying a problem from user need to a shipped screen.</p><dl><dt class="c2">Why</dt><dd>Fewer handoffs, so less gets lost, and every problem has a clear owner.</dd><dt class="c2">The trade-off</dt><dd>Less deep expertise at the edges. Specialists are kept for the genuinely deep problems.</dd></dl></aside><p>The model took hold, and my own title moved with it, from UX Manager to Product Design Manager. The full argument is in the essay <a href="../writing/one-designer-whole-problem.html">One designer, whole problem</a>.</p></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s3">
+      <div class="sec-h"><span class="n c2">03</span><h2 id="s3">Two organisational changes</h2></div>
+      <div class="sec-b rv"><p>I joined under the CXO, leading design for three verticals: Trading, Options and Onboarding.</p><p>The first change came in May 2025, when design moved into the Product organisation. I moved across with eight designers and took on every vertical, reporting directly to the CPO, who is also one of FYERS’s co-founders.</p><p>The second came six months later, when the visual designers joined Product too. To keep the load even, Onboarding and Mutual Funds went to another Design Manager, and I kept seven verticals: Trading, Options, Automate, FIA, Markets, Institutional and Reports. Today I report to the AVP of Product.</p></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s4">
+      <div class="sec-h"><span class="n c2">04</span><h2 id="s4">How work gets to release</h2></div>
+      <div class="sec-b rv"><p>Each designer owns their problem end to end. My part is the bar they work to and the review every design goes through.</p><p>Review runs two ways. Designers bring a blocker to me as soon as they hit it, so nothing waits for a meeting, and every piece of work gets a final review when the design is done. A stand-up every other day keeps me across where each designer stands.</p><p>Every design is reviewed twice: first by its product manager, then by me. I prefer the designer to walk me through it in person. The feedback goes into Figma as comments, or into notes for the AI-generated version.</p><p>I also set one bar every design has to clear before it reaches me:</p><ul class="pts"><li><em>Every state designed:</em> empty, loading, error and edge cases, not just the happy path.</li><li><em>Built from the design system:</em> shared components, no one-off styles.</li><li><em>Web and app together:</em> both platforms designed at once, not one after the other.</li><li><em>Real data:</em> real prices, symbols and long values, not placeholder text.</li></ul><p>Since then, developers come back with fewer questions during build, and reviews with me are faster, because the basics are already covered.</p></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s5">
+      <div class="sec-h"><span class="n c2">05</span><h2 id="s5">Growing the team</h2></div>
+      <div class="sec-b rv"><p>We ran two in-house hiring drives as the CXO’s design organisation grew to 28 people.</p><p>I ran the second round. The candidates I put forward went on to a final round with the CXO, who made the offers.</p></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s6">
+      <div class="sec-h"><span class="n c2">06</span><h2 id="s6">Three revamps in seven months</h2></div>
+      <div class="sec-b rv"><p>Alongside the features, FYERS reworked how the product looks three times in seven months. Each ran under my management, and my team did the design:</p><ul class="pts"><li><em>August 2025:</em> the all-new FYERS experience, on the app first and on the web in September. It was FYERS’s first push to unify web and app on one design system.</li><li><em>November 2025:</em> a second complete revamp, after a change to the product brand.</li><li><em>March 2026:</em> a web-only revamp of how certain sections look.</li></ul><p>The last two went out quietly, with no announcement.</p></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s7">
+      <div class="sec-h"><span class="n c2">07</span><h2 id="s7">Scaling myself</h2></div>
+      <div class="sec-b rv"><p>I still take on selected work myself. I designed FYERS’s first unified Orders section, every screen on web and app, and took Wealth 360 from a PRD to Flutter-ready web and mobile with around 70% less front-end effort, by the front-end team’s estimate. It is how I know what I am asking for when I ask for it.</p><aside class="call"><span class="lbl c2">The call</span><p class="what">Turn that way of working into AIDA, a framework the whole team can use, and roll it out person by person.</p><dl><dt class="c2">Why</dt><dd>One designer doing this is a story; a team doing it every week is a capability. AIDA takes designers and product managers from idea to Flutter code.</dd><dt class="c2">The trade-off</dt><dd>Slower than announcing it to everyone at once. It was proven on Wealth 360, one product manager uses it on their own work today, and it is moving to every product designer and product manager one person at a time.</dd></dl></aside></div>
+    </section>
+  </main>
+  <nav class="next" aria-label="Next case study">
+    <a href="orders.html"><span class="k c2">Next case study</span><span class="t">Orders <span class="ar" aria-hidden="true">&rarr;</span></span><span class="s p">FYERS’s first unified Orders section, on web and app, designed hands-on.</span></a>
+  </nav>
+  <footer class="foot c2"><span>&copy; <span id="yr">2026</span> Sujith Kumar Anand · Senior Product Design Manager</span><span>Open to Head of Design roles · Bengaluru or remote</span></footer>
+</div>
+<script>
+(function(){
+  var root = document.documentElement;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  document.getElementById('invert').addEventListener('click', function(){
+    var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+  });
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('video').forEach(function(v){ v.pause(); v.removeAttribute('autoplay'); v.controls = true; });
+  var items = document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){ items.forEach(function(e){ e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -6% 0px'});
+  items.forEach(function(e, i){ if(e.closest('.hero')) e.style.transitionDelay = (i * 90) + 'ms'; io.observe(e); });
+})();
+</script>
+</body>
+</html>

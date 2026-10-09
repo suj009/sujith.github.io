@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AIDA: from one designer to a whole team — Sujith Kumar Anand</title>
+<script>
+// Arriving from another page opens at the top: some hosts (the claude.ai preview) carry the last page's
+// scroll position over to the next one. A refresh stays where the reader was. The preview doesn't report
+// a refresh as a reload, so each page notes itself and its scroll as it unloads, and coming back to the
+// same page counts as a refresh. Back/Forward and #section links keep their usual behaviour.
+(function(){
+  var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+  if((nav && nav.type === 'back_forward') || location.hash) return;
+  var y = 0, live = true;
+  try{ var last = JSON.parse(sessionStorage.getItem('lastPage') || 'null'); if(last && last.p === location.pathname) y = last.y || 0; }catch(e){}
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  // Stop once the reader scrolls, so a slow load never moves them.
+  ['wheel','touchstart','keydown'].forEach(function(e){ addEventListener(e, function(){ live = false; }, {once:true, passive:true}); });
+  var go = function(){ if(live) scrollTo(0, y); };
+  go();
+  addEventListener('DOMContentLoaded', go);
+  // Retries cover late height changes, like a locked case study opening after its password check.
+  addEventListener('load', function(){ go(); [60, 400, 1200].forEach(function(t){ setTimeout(go, t); }); });
+  addEventListener('pagehide', function(){
+    try{ sessionStorage.setItem('lastPage', JSON.stringify({p: location.pathname, y: scrollY})); }catch(e){}
+    if('scrollRestoration' in history) history.scrollRestoration = 'auto';
+  });
+})();
+</script>
+<meta name="description" content="Wealth 360 proved one designer could take a product from idea to Flutter code. AIDA is how I am making that the way a whole design and product team works.">
+<meta name="author" content="Sujith Kumar Anand">
+<link rel="canonical" href="https://sujith.design/writing/aida-ideation-to-code.html">
+<link rel="icon" href="../img/favicon.ico" sizes="48x48">
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AIDA: from one designer to a whole team — Sujith Kumar Anand">
+<meta property="og:description" content="Wealth 360 proved one designer could take a product from idea to Flutter code. AIDA is how I am making that the way a whole design and product team works.">
+<meta property="og:image" content="https://sujith.design/img/og-sujith.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  color-scheme:light;
+  --ground:#F0F0F0;--ink:#0F0F0F;--ink-2:#0F0F0F8C;--rule:#0F0F0F1F;--tint:#0F0F0F08;
+  --todo:#0F0F0F12;
+  --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.25,1,.5,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F08C;--rule:#F2F0F024;--tint:#F2F0F00A;--todo:#F2F0F01A}
+}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F08C;--rule:#F2F0F024;--tint:#F2F0F00A;--todo:#F2F0F01A}
+*{box-sizing:border-box}
+html{background:var(--ground)}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;transition:background-color .5s var(--ease),color .5s var(--ease)}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+.c2{font-size:.75rem;font-weight:500;letter-spacing:-.02em;line-height:1.2}
+.page{max-width:1320px;margin:0 auto;padding:0 clamp(16px,2.5vw,32px) 40px}
+.grid8{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem}
+
+.rail{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  padding:calc(14px + env(safe-area-inset-top,0px)) 0 12px;background:var(--ground);border-bottom:1px solid var(--rule);
+  transition:background-color .5s var(--ease)}
+.rail a{text-decoration:none}
+.u{position:relative;padding-bottom:2px}
+.u::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.u:hover::after{transform:scaleX(1)}
+.back{display:inline-flex;align-items:center;gap:.5rem}
+.back .ar{display:inline-block;transition:transform .4s var(--ease)}
+.back:hover .ar{transform:translateX(-.25rem)}
+.rail .here{color:var(--ink-2)}
+
+.hero{padding:clamp(40px,7vw,96px) 0 clamp(28px,4vw,48px);row-gap:2rem}
+.kicker{grid-column:1 / -1;color:var(--ink-2);display:flex;gap:.75rem;flex-wrap:wrap}
+.kicker .tag{border:1px solid currentColor;border-radius:999px;padding:.15rem .55rem}
+h1{grid-column:1 / 8;margin:0;font-weight:400;font-size:clamp(2.6rem,6.4vw,6rem);letter-spacing:-.055em;line-height:.92;text-wrap:balance}
+.lede{grid-column:1 / 6;margin:0;font-size:clamp(1.15rem,1.8vw,1.5rem);letter-spacing:-.025em;line-height:1.3;text-wrap:pretty}
+.facts{grid-column:1 / -1;list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:1rem}
+.facts li{display:flex;flex-direction:column;gap:.35rem;padding-top:.8rem;border-top:1px solid var(--ink)}
+.facts .k{color:var(--ink-2)}
+.facts .v{font-size:1.05rem;letter-spacing:-.02em;line-height:1.3}
+
+figure{margin:0}
+.fig{grid-column:1 / -1;margin:clamp(24px,4vw,48px) 0}
+.fig.half{grid-column:span 4}
+.ph{position:relative;display:grid;place-items:center;aspect-ratio:16 / 9;background:var(--tint);
+  border:1px dashed var(--ink-2);color:var(--ink-2);text-align:center;padding:1.5rem}
+.ph.tall{aspect-ratio:4 / 5}
+.ph .in{display:grid;gap:.4rem;max-width:26rem}
+.ph .in b{color:var(--ink);font-weight:500;font-size:.95rem;letter-spacing:-.01em}
+.ph .ic{justify-self:center;width:2rem;height:1.5rem;border:1px solid currentColor;border-radius:3px;position:relative;margin-bottom:.3rem}
+.ph .ic::after{content:"";position:absolute;left:.35rem;bottom:.3rem;width:.7rem;height:.45rem;border-left:1px solid currentColor;border-bottom:1px solid currentColor;transform:skewX(-30deg)}
+figcaption{margin-top:.6rem;color:var(--ink-2)}
+
+.sec{padding:clamp(40px,6vw,80px) 0 0}
+.sec-h{grid-column:1 / 3;align-self:start;position:sticky;top:4.25rem;display:flex;flex-direction:column;gap:.4rem;padding-top:.9rem}
+.sec-h .n{color:var(--ink-2)}
+.sec-h h2{margin:0;font-size:1.5rem;font-weight:400;letter-spacing:-.035em;line-height:1.05}
+.sec-b{grid-column:3 / 8;border-top:1px solid var(--ink);padding-top:.9rem;display:grid;gap:1.1rem}
+.sec-b p{margin:0;font-size:1.125rem;line-height:1.55;letter-spacing:-.01em;max-width:40rem;text-wrap:pretty}
+.sec-b ul.pts{margin:0;padding:0;list-style:none;display:grid;gap:.55rem;max-width:40rem}
+.sec-b ul.pts li{position:relative;padding-left:1.25rem;font-size:1.0625rem;line-height:1.5}
+.sec-b ul.pts li::before{content:"";position:absolute;left:0;top:.72em;width:.6rem;height:1px;background:currentColor}
+.sec-b .fig{margin:.6rem 0 0}
+
+.pull{grid-column:1 / -1;margin:clamp(48px,7vw,96px) 0 0;padding:clamp(28px,4vw,48px) 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
+.pull p{margin:0;max-width:22ch;font-size:clamp(1.9rem,4.4vw,3.75rem);letter-spacing:-.045em;line-height:1.02;text-wrap:balance}
+
+.todo{background:var(--todo);border-bottom:1px dashed var(--ink-2);padding:0 .2em;color:var(--ink)}
+.todo::before{content:"To add: ";font-size:.75em;font-weight:500;letter-spacing:.02em;color:var(--ink-2)}
+.status{grid-column:1 / -1;display:flex;gap:.6rem;align-items:baseline;padding:.8rem 1rem;background:var(--tint);border:1px solid var(--rule);color:var(--ink-2)}
+
+.next{margin-top:clamp(64px,9vw,120px);border-top:1px solid var(--ink)}
+.next a{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem;padding:1.5rem 0 1rem;text-decoration:none}
+.next .k{grid-column:1 / 3;color:var(--ink-2)}
+.next .t{grid-column:3 / 8;font-size:clamp(2rem,5vw,4.5rem);letter-spacing:-.05em;line-height:.95}
+.next .s{grid-column:3 / 7;margin-top:.8rem;color:var(--ink-2)}
+.next .ar{display:inline-block;transition:transform .5s var(--ease)}
+.next a:hover .ar{transform:translateX(.4rem)}
+.foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:clamp(40px,6vw,72px);padding-top:1rem;border-top:1px solid var(--rule);color:var(--ink-2)}
+
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+@media (max-width:860px){
+  .grid8,.next a{grid-template-columns:1fr}
+  h1,.lede,.sec-h,.sec-b,.fig,.fig.half,.next .k,.next .t,.next .s{grid-column:1}
+  .facts{grid-template-columns:1fr 1fr;row-gap:1rem}
+  .sec-h{position:static;flex-direction:row;justify-content:space-between;align-items:baseline;padding:0 0 1rem}
+  .rail .here{display:none}
+}
+
+.a-head{padding:clamp(40px,7vw,96px) 0 clamp(28px,4vw,40px);row-gap:1.5rem;border-bottom:1px solid var(--ink)}
+.a-head h1{grid-column:1 / 8}
+.a-head .dek{grid-column:1 / 6;margin:0;font-size:clamp(1.15rem,1.8vw,1.5rem);letter-spacing:-.025em;line-height:1.3;color:var(--ink-2)}
+.byline{grid-column:1 / -1;display:flex;gap:1.5rem;color:var(--ink-2)}
+.a-body{padding-top:clamp(32px,5vw,64px)}
+.a-body > *{grid-column:3 / 8}
+.a-body p{margin:0 0 1.25rem;font-size:1.1875rem;line-height:1.6;letter-spacing:-.012em;text-wrap:pretty}
+.a-body h2{margin:2.75rem 0 1rem;font-size:1.75rem;font-weight:400;letter-spacing:-.035em;line-height:1.1;padding-top:.9rem;border-top:1px solid var(--rule)}
+.a-body blockquote{margin:1.5rem 0 2rem;padding:0 0 0 1.25rem;border-left:1px solid var(--ink)}
+.a-body blockquote p{font-size:clamp(1.4rem,2.4vw,1.9rem);letter-spacing:-.035em;line-height:1.2;margin:0}
+.a-body .q{font-weight:500}
+.a-body ol{margin:0 0 1.5rem;padding-left:1.25rem}
+.a-body ol li{font-size:1.1875rem;line-height:1.6;margin-bottom:.75rem;padding-left:.25rem}
+.more{margin-top:clamp(56px,8vw,104px);border-top:1px solid var(--ink)}
+.more-h{padding:1rem 0;color:var(--ink-2)}
+.more a{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem;padding:1.1rem 0;border-top:1px solid var(--rule);text-decoration:none}
+.more .k{grid-column:1 / 3;color:var(--ink-2)}
+.more .t{grid-column:3 / 7;font-size:clamp(1.4rem,2.6vw,2.1rem);letter-spacing:-.035em;line-height:1.05}
+.more .ar{grid-column:8;justify-self:end;transition:transform .4s var(--ease)}
+.more a:hover .ar{transform:translateX(.3rem)}
+@media (max-width:860px){
+  .a-head h1,.a-head .dek,.a-body > *{grid-column:1}
+  .more a{grid-template-columns:1fr auto}
+  .more .k{grid-column:1 / -1}.more .t{grid-column:1}.more .ar{grid-column:2}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="rail c2">
+    <a class="back u" href="../#writing"><span class="ar" aria-hidden="true">&larr;</span>Back to writing</a>
+    <span class="here">Essay · Design leadership</span>
+    <button class="u" type="button" id="invert">Invert colour</button>
+  </header>
+  <main>
+    <header class="a-head grid8">
+      <p class="kicker c2 rv" style="margin:0"><span>Essay · Design leadership</span></p>
+      <h1 class="rv">AIDA: from one designer to a whole team</h1>
+      <p class="dek rv">Wealth 360 proved one designer could take a product from idea to Flutter code. AIDA is how I am making that the way a whole design and product team works.</p>
+      <p class="byline c2 rv" style="margin:0"><span>Sujith Kumar Anand</span><span>About 6 min read</span></p>
+    </header>
+    <article class="a-body grid8">
+      <p>When I took Wealth 360, one view of everything an investor owns, from a PRD to Flutter-ready web and mobile myself, working with an AI pair, it took nine working days, and the front-end team estimated it cut around 70% of the front-end effort. It was a good result and a poor template. A result that depends on one person is a story, not a capability.</p>
+      <p>So the question I took back to the team was not "can a designer do this?" but "can we make it repeatable?" AIDA is my answer: an internal agentic design framework I am leading, which gives designers and product managers the ability to go from idea to Flutter code.</p>
+      <h2>How Wealth 360 actually ran</h2>
+      <p>For most of my career, design ended at a handoff: the screens went across a wall to engineering, and some of the intent never came back. On Wealth 360 I carried the work over the wall myself.</p>
+      <ol>
+        <li><b>Challenge the starting point.</b> The concept arrived as AI-generated HTML. I read it against the PRD and asked the ordinary questions: does it meet the requirement, where are the gaps, does the hierarchy hold, where does it break the product&rsquo;s own patterns?</li>
+        <li><b>Work the loop.</b> Find a gap, settle the decision with the product owner, direct the change, review the output, repeat. Execution got fast enough that judgement became the bottleneck, which is the right bottleneck.</li>
+        <li><b>Earn the approval first.</b> The refined product went through review with the AVP of Product, the CPO and the CTO before any of it was built.</li>
+        <li><b>Then cross the line.</b> I joined the development environment, met the developers who own the UI system, and set up the repository and local environment myself.</li>
+        <li><b>Review a running product, not a picture of one.</b> Web first, then mobile, each checked in the browser against the intent rather than against a static screen.</li>
+      </ol>
+      <p>The question stopped being "can a designer code?" and became "does the designer understand the system well enough to direct the build?" That is a judgement problem, not a syntax problem.</p>
+      <h2>Why a framework, not a tool</h2>
+      <p>Hand people an AI model and tell them to go faster, and you get fast inconsistency. What made Wealth 360 work was never the model. It was the judgement around it: every step above is a decision a person made, not something the model did.</p>
+      <blockquote><p>A framework is how judgement travels to people who were not in the room.</p></blockquote>
+      <h2>Designers and product managers, on purpose</h2>
+      <p>AIDA is for both. The handoff between product and design is as old, and as leaky, as the one between design and engineering. When a product manager can turn an idea into something real enough to test, the first design conversation starts from evidence instead of a document. When a designer can carry a decision into code, intent stops leaking on its way to the user.</p>
+      <p>It does not replace engineering. Architecture, performance and the hard systems problems stay where they belong. What changes is how much of the product arrives at engineering already decided.</p>
+      <h2>Rolling it out slowly, on purpose</h2>
+      <p>The temptation with a new way of working is to announce it to everyone at once. I am doing the opposite. AIDA was proven on one product first, Wealth 360. One product manager now uses it on their own work. From there it is moving, person by person, to every product designer and product manager.</p>
+      <p>Slow is the point. Each new person finds the places where the framework assumes too much, and each fix makes it stronger for the next. A way of working that survives contact with many different people is worth more than one that impressed a room once.</p>
+      <h2>The honest limits</h2>
+      <p>AI doesn&rsquo;t replace understanding. It made me faster because I already knew the system, the interaction and what "correct" looked like. It answers the question you type; it cannot know the question you meant. Someone has to know the difference, and that someone is still the designer.</p>
+      <p>The last mile is still craft: the timing of a transition, the states nobody remembers, accessibility, matching the design. AI closes the distance; taste closes the gap.</p>
+      <h2>What I would tell another design leader</h2>
+      <ol>
+        <li><b>Prove it on real work before you name it.</b> Wealth 360 came first and AIDA was named after it. The work made the argument; the framework followed.</li>
+        <li><b>Keep the judgement human.</b> AI output is a starting point. Deciding what should change, what should stay and what meets the bar is still the job.</li>
+        <li><b>Bring product with you.</b> A framework only designers use just moves the handoff somewhere else.</li>
+        <li><b>Let the people who build do the measuring.</b> The 70% figure is the front-end team&rsquo;s estimate, not mine, and I call it an estimate. That is the only kind of number worth trusting.</li>
+      </ol>
+      <p>AIDA is early: one product, one product manager, and a team on the way. But the question has already moved, from whether a designer can do this to how quickly a whole team can.</p>
+    </article>
+  </main>
+  <nav class="more" aria-label="Keep reading"><div class="more-h c2">Keep reading</div><a href="one-designer-whole-problem.html"><span class="k c2">Team &amp; craft</span><span class="t">One designer, whole problem</span><span class="ar" aria-hidden="true">&rarr;</span></a><a href="trust-is-a-design-material.html"><span class="k c2">Fintech</span><span class="t">Trust is a design material</span><span class="ar" aria-hidden="true">&rarr;</span></a><a href="zero-to-one-three-times.html"><span class="k c2">Product</span><span class="t">Zero to one, three times</span><span class="ar" aria-hidden="true">&rarr;</span></a></nav>
+  <footer class="foot c2"><span>&copy; <span id="yr">2026</span> Sujith Kumar Anand · Senior Product Design Manager</span><span>Open to Head of Design roles · Bengaluru or remote</span></footer>
+</div>
+<script>
+(function(){
+  var root = document.documentElement;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  document.getElementById('invert').addEventListener('click', function(){
+    var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+  });
+  var items = document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){ items.forEach(function(e){ e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); });
+  items.forEach(function(e, i){ e.style.transitionDelay = (i * 90) + 'ms'; io.observe(e); });
+})();
+</script>
+</body>
+</html>

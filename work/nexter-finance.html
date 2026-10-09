@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nexter Finance case study — Sujith Kumar Anand</title>
+<script>
+// Arriving from another page opens at the top: some hosts (the claude.ai preview) carry the last page's
+// scroll position over to the next one. A refresh stays where the reader was. The preview doesn't report
+// a refresh as a reload, so each page notes itself and its scroll as it unloads, and coming back to the
+// same page counts as a refresh. Back/Forward and #section links keep their usual behaviour.
+(function(){
+  var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+  if((nav && nav.type === 'back_forward') || location.hash) return;
+  var y = 0, live = true;
+  try{ var last = JSON.parse(sessionStorage.getItem('lastPage') || 'null'); if(last && last.p === location.pathname) y = last.y || 0; }catch(e){}
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  // Stop once the reader scrolls, so a slow load never moves them.
+  ['wheel','touchstart','keydown'].forEach(function(e){ addEventListener(e, function(){ live = false; }, {once:true, passive:true}); });
+  var go = function(){ if(live) scrollTo(0, y); };
+  go();
+  addEventListener('DOMContentLoaded', go);
+  // Retries cover late height changes, like a locked case study opening after its password check.
+  addEventListener('load', function(){ go(); [60, 400, 1200].forEach(function(t){ setTimeout(go, t); }); });
+  addEventListener('pagehide', function(){
+    try{ sessionStorage.setItem('lastPage', JSON.stringify({p: location.pathname, y: scrollY})); }catch(e){}
+    if('scrollRestoration' in history) history.scrollRestoration = 'auto';
+  });
+})();
+</script>
+<meta name="description" content="How Sujith Kumar Anand led the design of Nexter Finance, a decentralised prediction market, from zero to launch: a phased release, a way in for people without a crypto wallet, and 1.7 million predictions.">
+<meta name="author" content="Sujith Kumar Anand">
+<link rel="canonical" href="https://sujith.design/work/nexter-finance.html">
+<link rel="icon" href="../img/favicon.ico" sizes="48x48">
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nexter Finance case study — Sujith Kumar Anand">
+<meta property="og:description" content="How Sujith Kumar Anand led the design of Nexter Finance, a decentralised prediction market, from zero to launch: a phased release, a way in for people without a crypto wallet, and 1.7 million predictions.">
+<meta property="og:image" content="https://sujith.design/img/og-sujith.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  color-scheme:light;
+  --ground:#F0F0F0;--ink:#0F0F0F;--ink-2:#0F0F0F8C;--rule:#0F0F0F1F;--tint:#0F0F0F08;
+  --todo:#0F0F0F12;
+  --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.25,1,.5,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F08C;--rule:#F2F0F024;--tint:#F2F0F00A;--todo:#F2F0F01A}
+}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F0F0F;--ink:#F0F0F0;--ink-2:#F2F0F08C;--rule:#F2F0F024;--tint:#F2F0F00A;--todo:#F2F0F01A}
+*{box-sizing:border-box}
+html{background:var(--ground)}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;transition:background-color .5s var(--ease),color .5s var(--ease)}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+.c2{font-size:.75rem;font-weight:500;letter-spacing:-.02em;line-height:1.2}
+.page{max-width:1320px;margin:0 auto;padding:0 clamp(16px,2.5vw,32px) 40px}
+.grid8{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem}
+
+.rail{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  padding:calc(14px + env(safe-area-inset-top,0px)) 0 12px;background:var(--ground);border-bottom:1px solid var(--rule);
+  transition:background-color .5s var(--ease)}
+.rail a{text-decoration:none}
+.u{position:relative;padding-bottom:2px}
+.u::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.u:hover::after{transform:scaleX(1)}
+.back{display:inline-flex;align-items:center;gap:.5rem}
+.back .ar{display:inline-block;transition:transform .4s var(--ease)}
+.back:hover .ar{transform:translateX(-.25rem)}
+.rail .here{color:var(--ink-2)}
+
+.hero{padding:clamp(40px,7vw,96px) 0 clamp(28px,4vw,48px);row-gap:2rem}
+.kicker{grid-column:1 / -1;color:var(--ink-2);display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+.kicker .tag{display:inline-flex;align-items:center;line-height:1;border:1px solid currentColor;border-radius:999px;padding:.3rem .6rem}
+h1{grid-column:1 / 8;margin:0;font-weight:400;font-size:clamp(2.6rem,6.4vw,6rem);letter-spacing:-.055em;line-height:.92;text-wrap:balance}
+.lede{grid-column:1 / 6;margin:0;font-size:clamp(1.15rem,1.8vw,1.5rem);letter-spacing:-.025em;line-height:1.3;text-wrap:pretty}
+.facts{grid-column:1 / -1;list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:1rem}
+.facts li{display:flex;flex-direction:column;gap:.35rem;padding-top:.8rem;border-top:1px solid var(--ink)}
+.facts .k{color:var(--ink-2)}
+.facts .v{font-size:1.05rem;letter-spacing:-.02em;line-height:1.3}
+
+figure{margin:0}
+.fig{grid-column:1 / -1;margin:clamp(24px,4vw,48px) 0}
+.fig.half{grid-column:span 4}
+.ph{position:relative;display:grid;place-items:center;aspect-ratio:16 / 9;background:var(--tint);
+  border:1px dashed var(--ink-2);color:var(--ink-2);text-align:center;padding:1.5rem}
+.ph.tall{aspect-ratio:4 / 5}
+.ph .in{display:grid;gap:.4rem;max-width:26rem}
+.ph .in b{color:var(--ink);font-weight:500;font-size:.95rem;letter-spacing:-.01em}
+.ph .ic{justify-self:center;width:2rem;height:1.5rem;border:1px solid currentColor;border-radius:3px;position:relative;margin-bottom:.3rem}
+.ph .ic::after{content:"";position:absolute;left:.35rem;bottom:.3rem;width:.7rem;height:.45rem;border-left:1px solid currentColor;border-bottom:1px solid currentColor;transform:skewX(-30deg)}
+figcaption{margin-top:.6rem;color:var(--ink-2)}
+.shot{display:block;width:100%;height:auto;background:var(--tint)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start}
+.pair .fig{margin:0;grid-column:auto}
+.stats{list-style:none;margin:.4rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(7.5rem,100%),1fr));gap:1.25rem 1rem;max-width:none}
+.stats li{display:flex;flex-direction:column;gap:.35rem;padding-top:.7rem;border-top:1px solid var(--ink)}
+.stats b{font-weight:400;font-size:clamp(1.9rem,3.4vw,2.6rem);letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.stats span{color:var(--ink-2)}
+.sec-b p.src{color:var(--ink-2);font-size:.75rem;line-height:1.3}
+
+.sec{padding:clamp(40px,6vw,80px) 0 0}
+.sec-h{grid-column:1 / 3;align-self:start;position:sticky;top:4.25rem;display:flex;flex-direction:column;gap:.4rem;padding-top:.9rem}
+.sec-h .n{color:var(--ink-2)}
+.sec-h h2{margin:0;font-size:1.5rem;font-weight:400;letter-spacing:-.035em;line-height:1.05}
+.sec-b{grid-column:3 / 8;border-top:1px solid var(--ink);padding-top:.9rem;display:grid;grid-template-columns:minmax(0,1fr);gap:1.1rem}
+.sec-b p{margin:0;font-size:1.125rem;line-height:1.55;letter-spacing:-.01em;max-width:40rem;text-wrap:pretty}
+.sec-b ul.pts{margin:0;padding:0;list-style:none;display:grid;gap:.55rem;max-width:40rem}
+.sec-b ul.pts li{position:relative;padding-left:1.25rem;font-size:1.0625rem;line-height:1.5}
+.sec-b ul.pts li::before{content:"";position:absolute;left:0;top:.72em;width:.6rem;height:1px;background:currentColor}
+.sec-b .fig{margin:.6rem 0 0}
+
+/* v2: results first, an executive summary, decisions called out, screenshots on a stage */
+.results{grid-column:1 / -1;list-style:none;margin:1.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(10rem,100%),1fr));gap:1.25rem 1rem}
+.results li{display:flex;flex-direction:column;gap:.4rem;padding-top:.8rem;border-top:1px solid var(--ink)}
+.results b{font-weight:400;font-size:clamp(2.4rem,4.6vw,4rem);letter-spacing:-.055em;line-height:.95;font-variant-numeric:tabular-nums}
+.results span{color:var(--ink-2)}
+.results-src{grid-column:1 / -1;margin:-.4rem 0 0;color:var(--ink-2)}
+.glance{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin:1.25rem 0 0;padding:1.25rem;background:var(--tint);border:1px solid var(--rule)}
+.glance div{display:flex;flex-direction:column;gap:.5rem}
+.glance dt{color:var(--ink-2)}
+.glance dd{margin:0;font-size:1rem;line-height:1.4;letter-spacing:-.01em;text-wrap:pretty}
+.stage{display:block;background:var(--stage,var(--tint));padding:clamp(12px,3vw,40px);border-radius:3px}
+.stage .shot{background:transparent}
+video.shot{object-fit:contain}
+.fig.port .stage{display:flex;justify-content:center}
+.fig.port .shot{width:auto;max-width:100%;max-height:min(72svh,640px)}
+.call{margin:.4rem 0;padding:1.1rem 1.25rem 1.2rem;border:1px solid var(--ink);display:grid;gap:.85rem;max-width:44rem}
+.call .lbl{color:var(--ink-2)}
+.call .what{margin:0;font-size:1.3rem;line-height:1.25;letter-spacing:-.025em;text-wrap:balance}
+.call dl{margin:0;display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:.55rem 1rem;padding-top:.85rem;border-top:1px solid var(--rule)}
+.call dt{color:var(--ink-2);padding-top:.2em}
+.call dd{margin:0;font-size:1rem;line-height:1.5}
+.sec.reflect .sec-b{border-top-style:dashed}
+.kicker .rt{margin-left:auto}
+.pull{grid-column:1 / -1;margin:clamp(48px,7vw,96px) 0 0;padding:clamp(28px,4vw,48px) 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
+.pull p{grid-column:1 / -1;margin:0;max-width:22ch;font-size:clamp(1.9rem,4.4vw,3.75rem);letter-spacing:-.045em;line-height:1.02;text-wrap:balance}
+
+.todo{background:var(--todo);border-bottom:1px dashed var(--ink-2);padding:0 .2em;color:var(--ink)}
+.todo::before{content:"To add: ";font-size:.75em;font-weight:500;letter-spacing:.02em;color:var(--ink-2)}
+.status{grid-column:1 / -1;display:flex;gap:.6rem;align-items:baseline;padding:.8rem 1rem;background:var(--tint);border:1px solid var(--rule);color:var(--ink-2)}
+
+.next{margin-top:clamp(64px,9vw,120px);border-top:1px solid var(--ink)}
+.next a{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:1rem;padding:1.5rem 0 1rem;text-decoration:none}
+.next .k{grid-column:1 / 3;color:var(--ink-2)}
+.next .t{grid-column:3 / 8;font-size:clamp(2rem,5vw,4.5rem);letter-spacing:-.05em;line-height:.95}
+.next .s{grid-column:3 / 7;margin-top:.8rem;color:var(--ink-2)}
+.next .ar{display:inline-block;transition:transform .5s var(--ease)}
+.next a:hover .ar{transform:translateX(.4rem)}
+.foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:clamp(40px,6vw,72px);padding-top:1rem;border-top:1px solid var(--rule);color:var(--ink-2)}
+
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+@media (max-width:639px){.glance{grid-template-columns:1fr;gap:1.1rem}}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+@media (max-width:860px){
+  .grid8,.next a{grid-template-columns:minmax(0,1fr)}
+  h1,.lede,.sec-h,.sec-b,.fig,.fig.half,.next .k,.next .t,.next .s{grid-column:1}
+  .pair{grid-template-columns:1fr}
+  .glance{grid-template-columns:1fr 1fr}
+  .call dl{grid-template-columns:1fr;gap:.2rem}
+  .call dd{margin-bottom:.5rem}
+  .kicker .rt{margin-left:0}
+  .facts{grid-template-columns:1fr 1fr;row-gap:1rem}
+  .sec-h{position:static;flex-direction:row;justify-content:space-between;align-items:baseline;padding:0 0 1rem}
+  .rail .here{display:none}
+}
+</style>
+</head>
+<body style="--stage:#0D111C">
+<div class="page">
+  <header class="rail c2">
+    <a class="back u" href="../#work"><span class="ar" aria-hidden="true">&larr;</span>Back to work</a>
+    <span class="here">Case study · Nexter Finance</span>
+    <button class="u" type="button" id="invert">Invert colour</button>
+  </header>
+  <main>
+    <header class="hero grid8">
+      <p class="kicker c2 rv" style="margin:0"><span>Nexter Finance · DeFi · 2022–24</span><span class="tag">0 → 1</span><span class="tag">Hands-on</span><span class="rt">5 min read</span></p>
+      <h1 class="rv">Nexter Finance: 1.7 million predictions from an unfinished brief</h1>
+      <p class="lede rv">A decentralised prediction market for crypto, stocks, commodities and real-world events. I led its design from the first flow and changed the launch plan so it could ship before the full product was defined. By January 2024 it had handled $19M+ in volume and earned $242K in fees.</p>
+      <ul class="results rv"><li><b>$19M+</b><span class="c2">Volume traded (USD)</span></li><li><b>$242K</b><span class="c2">Fees collected</span></li><li><b>1.7M+</b><span class="c2">Predictions made</span></li><li><b>10K+</b><span class="c2">Users</span></li><li><b>1K+</b><span class="c2">Weekly active users</span></li></ul><p class="results-src c2 rv">Nexter’s figures, as published in my case study in January 2024.</p>
+      <dl class="glance rv"><div><dt class="c2">The problem</dt><dd>Two products, five markets and six networks to launch, with an incomplete brief, a moving scope and little time for design.</dd></div><div><dt class="c2">My role</dt><dd>Design Lead from zero on desktop and mobile web. I designed the product myself and managed a visual designer, a motion designer and an intern.</dd></div><div><dt class="c2">The call</dt><dd>Launch the simpler product first and release it market by market, instead of waiting for a complete scope.</dd></div><div><dt class="c2">The result</dt><dd>A live product that went on to $19M+ in volume, $242K in fees and 1.7M+ predictions by January 2024.</dd></div></dl>
+      
+      <figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/nexter/overview.webp" alt="Nexter Finance on mobile and desktop: the landing page and the predictions screen" width="1600" height="939" loading="lazy" decoding="async"></span></figure>
+    </header>
+    <section class="sec grid8" aria-labelledby="s1">
+      <div class="sec-h"><span class="n c2">01</span><h2 id="s1">The situation</h2></div>
+      <div class="sec-b rv"><p>Nexter, formerly Bhavish Finance, is a decentralised prediction market, and the brief covered two kinds of prediction. In <em>Lossy</em> predictions, people commit crypto on whether an asset will go up or down within a round, and the winners are paid from the pool. In <em>No-loss</em> predictions, they deposit stablecoins and predict with game tokens that earn yield, so the deposit itself is never at stake. Nexter launched with Lossy alone; No-loss followed in a later phase.</p><p>The first launch was meant to cover crypto, stocks, commodities, automated prediction vaults and real-world event quests, on six blockchain networks. The brief was incomplete, the scope kept moving, and the time set aside for design was short.</p><p>The research gave the product its bar. A poll the marketing team ran on Twitter and Telegram, with close to 50 people, showed real curiosity, above all for crypto predictions, and every interested person already knew how web3 prediction markets work. The category’s weaknesses were just as clear: one person’s win is another’s loss, liquidity is thin, and most products gave people little reason to come back.</p><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/nexter/competitors.webp" alt="A comparison table of Augur, Omen, Polymarket, Polkamarkets, PlotX and Nexter across low fees, play-to-earn, stock and commodity markets, no-loss predictions, fixed yield and prediction vaults; only Nexter has all six" width="1600" height="899" loading="lazy" decoding="async"></span><figcaption class="c2">Where Nexter set out to be different, from my research at the time: the only one with stocks and commodities, no-loss predictions, fixed yield and vaults</figcaption></figure></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s2">
+      <div class="sec-h"><span class="n c2">02</span><h2 id="s2">My role</h2></div>
+      <div class="sec-b rv"><p>I came to Nexter from leading the design of Oddz Finance, an on-chain options product. On Nexter I set the design direction from the first flow and designed the desktop and mobile web product myself. I managed a team of three, a visual designer, a motion designer and an intern I trained, inside a fully remote, cross-functional team.</p><p>Design also owned motion, the marketing campaigns and the landing page. As engineering built each release, I reviewed every screen against the design and logged the gaps for the developers, so what shipped matched what was agreed.</p><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/nexter/design-review.webp" alt="The design review log, a spreadsheet of issues found on each built screen, with notes and status" width="1600" height="853" loading="lazy" decoding="async"></span><figcaption class="c2">The review log: every built screen checked against the design, every gap written down for the developers</figcaption></figure></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s3">
+      <div class="sec-h"><span class="n c2">03</span><h2 id="s3">Shipping while the scope moved</h2></div>
+      <div class="sec-b rv"><p>No-loss was stuck: its requirements weren’t ready, and the flow diagram and architecture couldn’t be drawn without them. Waiting would have meant launching nothing.</p><aside class="call"><span class="lbl c2">The call</span><p class="what">Launch Lossy predictions first, and hold No-loss until its requirements were ready.</p><dl><dt class="c2">Why</dt><dd>Lossy could ship. It would put a real product in people’s hands, test whether Lossy had a market, and give leadership time to get No-loss right.</dd><dt class="c2">The trade-off</dt><dd>No-loss, the one thing no competitor offered, would arrive last, and Lossy had to carry the launch on its own.</dd></dl></aside><p>Leadership agreed. Then I argued against launching everything in Lossy at once.</p><aside class="call"><span class="lbl c2">The call</span><p class="what">Release Lossy market by market: crypto, stocks and commodities first, then vaults, then quests, with No-loss last.</p><dl><dt class="c2">Why</dt><dd>Each market could be finished, every use case covered, before the next began. The development team aligned with it.</dd><dt class="c2">The trade-off</dt><dd>People would see a narrower product at launch, and wait longer for the rest.</dd></dl></aside><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/nexter/lossy-flow.webp" alt="Flow diagram of Lossy predictions, from wallet balances to the prediction markets and their funding pools" width="1497" height="600" loading="lazy" decoding="async"></span><figcaption class="c2">The Lossy flow I drew to align stakeholders before any screen was designed</figcaption></figure><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/nexter/vaults.webp" alt="The vaults screen, each automated vault shown as a card" width="1600" height="750" loading="lazy" decoding="async"></span><figcaption class="c2">Vaults, the second release</figcaption></figure><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/nexter/quests.webp" alt="The quests screen, real-world event predictions shown as cards" width="1600" height="670" loading="lazy" decoding="async"></span><figcaption class="c2">Quests, the third release</figcaption></figure></div>
+    </section>
+    <blockquote class="pull grid8 rv" style="margin-inline:0"><p>Waiting for a settled scope would have meant not shipping.</p></blockquote>
+    <section class="sec grid8" aria-labelledby="s4">
+      <div class="sec-h"><span class="n c2">04</span><h2 id="s4">Designing for two kinds of user</h2></div>
+      <div class="sec-b rv"><p>The people most likely to use Nexter already knew web3 prediction markets, so the main screen skips the explaining and goes straight to predicting. The round, the asset and the time left are visible at a glance, and a prediction is two decisions: up or down, and how much.</p><p>A wallet, though, is the first wall a newcomer hits. Alongside the usual wallet connection, people without a web3 wallet can sign in with email or a social account, through MagicLink, and first-time visitors get coach marks on the key actions. The product serves the experts without shutting out everyone else.</p><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/nexter/markets.webp" alt="The predictions screen on desktop and mobile, annotated: market tabs, asset selection, round timer, currency, network and wallet, and the prediction cards" width="1600" height="938" loading="lazy" decoding="async"></span><figcaption class="c2">One screen for every market: the round, the asset and the time left at a glance</figcaption></figure><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/nexter/wallet.webp" alt="The network dropdown and the connect-wallet modal, offering a wallet, email or a social account" width="1436" height="664" loading="lazy" decoding="async"></span><figcaption class="c2">Six networks, and a way in by wallet, email or social account</figcaption></figure></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s5">
+      <div class="sec-h"><span class="n c2">05</span><h2 id="s5">Giving people a reason to come back</h2></div>
+      <div class="sec-b rv"><p>The research had warned that prediction products gave people little reason to return. A round lasts minutes; if nothing carries over from one to the next, every visit starts from zero.</p><aside class="call"><span class="lbl c2">The call</span><p class="what">Put portfolio, history and the leaderboard one tap from every market, in the bar above the predictions, rather than in an account area.</p><dl><dt class="c2">Why</dt><dd>Seeing your own record, and everyone else’s, turns one-off bets into a running game. It is also what makes a leaderboard campaign possible at all.</dd><dt class="c2">The trade-off</dt><dd>Three more controls on a screen whose job is to stay out of the way, so they sit as quiet icons beside the currency selector.</dd></dl></aside><p>Each round also closes its own loop: a confirmation the moment a prediction is placed, and an expired card with a Collect earnings button when the round ends, so a win is never left unclaimed in the history.</p><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/nexter/collect.webp" alt="A confirmation toast reading Prediction successful, next to an expired prediction card showing a win and a Collect earnings button" width="1328" height="808" loading="lazy" decoding="async"></span><figcaption class="c2">Every round closes its own loop: confirmed when placed, collected when won</figcaption></figure><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/nexter/pnl-history-leaderboard.webp" alt="Three desktop screens: a portfolio with profit and loss, a history of predictions with collect actions, and a leaderboard of top predictors" width="1400" height="1553" loading="lazy" decoding="async"></span><figcaption class="c2">Portfolio, history and leaderboard, one tap from every market</figcaption></figure><p>The leaderboard did more than retain people. Leaderboard campaigns on Twitter, Telegram and Discord became one of the ways Nexter brought new people in.</p></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s6">
+      <div class="sec-h"><span class="n c2">06</span><h2 id="s6">Adding No-loss without breaking what worked</h2></div>
+      <div class="sec-b rv"><p>By the time No-loss was ready, Nexter was integrated with Quickswap and a lot of people were using it through both Quickswap and the Nexter app. Leadership asked me not to change the interface they had learned.</p><aside class="call"><span class="lbl c2">The call</span><p class="what">Add No-loss behind the currency selector, as Nexter’s own token, rather than redesign the app around it.</p><dl><dt class="c2">Why</dt><dd>The people already trading had learned the Lossy interface, and many arrived through a partner’s app. Changing it on them risked losing the users the launch had won.</dd><dt class="c2">The trade-off</dt><dd>No-loss became harder to find than it deserved. A guided walkthrough explains it the first time, and deposits, withdrawals, reinvesting and claiming rewards all live in the portfolio.</dd></dl></aside><div class="pair"><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/nexter/noloss-entry.webp" alt="The currency dropdown, with Nexter’s own token added below the existing currency" width="1600" height="577" loading="lazy" decoding="async"></span><figcaption class="c2">The way in: one new option in the currency selector</figcaption></figure><figure class="fig rv"><span class="stage"><img class="shot" src="../img/work/nexter/noloss-guide.webp" alt="A guided walkthrough introducing No-loss predictions" width="1600" height="693" loading="lazy" decoding="async"></span><figcaption class="c2">A walkthrough explains No-loss the first time</figcaption></figure></div></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s7">
+      <div class="sec-h"><span class="n c2">07</span><h2 id="s7">Testing with six people</h2></div>
+      <div class="sec-b rv"><p>With both products designed, I ran in-house usability testing with six people: three who knew prediction platforms and three who had never used one.</p><ul class="pts"><li>People who knew the category finished tasks much faster. Newcomers couldn’t finish unaided, but could with guidance.</li><li>Both groups struggled to understand how No-loss worked.</li><li>Both wanted the key facts on every market card, so they could compare options and decide.</li></ul><p>The second finding is the one I would have acted on first. I moved on from Nexter soon after this round, so the findings were left to the team.</p></div>
+    </section>
+    <section class="sec grid8" aria-labelledby="s8">
+      <div class="sec-h"><span class="n c2">08</span><h2 id="s8">Outcome</h2></div>
+      <div class="sec-b rv"><p>Nexter launched, then grew release by release. After launch I watched Google Analytics and Hotjar to see how people really used the app. Partnerships with decentralised exchanges such as Quickswap, Zeroswap, Nautilus Chain and Heliswap, leaderboard campaigns and the community brought people in.</p><p>By January 2024, people had made more than 1.7 million predictions, worth over $19 million, and Nexter had collected $242K in fees, on a product that had started without a settled scope.</p></div>
+    </section>
+    <section class="sec grid8 reflect" aria-labelledby="s9">
+      <div class="sec-h"><span class="n c2">09</span><h2 id="s9">What I’d do differently</h2></div>
+      <div class="sec-b rv"><ul class="pts"><li><em>Test with real users before development, not after.</em> The timeline didn’t allow it. Earlier testing is exactly what would have caught the No-loss confusion while it was still cheap to fix.</li><li><em>Agree a minimum scope before agreeing dates.</em> The phased release protected the launch, but a scope that kept changing still moved the design timeline more than once.</li></ul></div>
+    </section>
+  </main>
+  <nav class="next" aria-label="Next case study">
+    <a href="airtel-tv-africa.html"><span class="k c2">Next case study</span><span class="t">Airtel TV Africa <span class="ar" aria-hidden="true">&rarr;</span></span><span class="s p">Airtel’s streaming app for 14 African markets, with one designer.</span></a>
+  </nav>
+  <footer class="foot c2"><span>&copy; <span id="yr">2026</span> Sujith Kumar Anand · Senior Product Design Manager</span><span>Open to Head of Design roles · Bengaluru or remote</span></footer>
+</div>
+<script>
+(function(){
+  var root = document.documentElement;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  document.getElementById('invert').addEventListener('click', function(){
+    var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+  });
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('video').forEach(function(v){ v.pause(); v.removeAttribute('autoplay'); v.controls = true; });
+  var items = document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){ items.forEach(function(e){ e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -6% 0px'});
+  items.forEach(function(e, i){ if(e.closest('.hero')) e.style.transitionDelay = (i * 90) + 'ms'; io.observe(e); });
+})();
+</script>
+</body>
+</html>
