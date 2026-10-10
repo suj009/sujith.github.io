@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -37,8 +37,7 @@ addEventListener('pagehide', function(){ try{ sessionStorage.setItem('lastPage',
 <link rel="icon" href="img/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#F0F0F0" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0F0F0F" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F0F0F0">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sujith Kumar Anand">
 <meta property="og:locale" content="en_IN">
@@ -217,11 +216,14 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
 .hero{position:relative}
 .hero::after{content:"";display:block;height:calc(50svh + 18rem)}
 
-.grid{position:sticky;top:0;height:100svh;margin-bottom:-100svh;mix-blend-mode:difference;pointer-events:none;z-index:2}
-.grid i{position:absolute;background:var(--hair)}
+.grid{position:sticky;top:0;height:100svh;margin-bottom:-100svh;pointer-events:none;z-index:2;
+  /* The lines are 5% of the text colour, drawn plainly. They used to be a light hairline with difference
+     blending, which looks the same but made every frame of the hero and About repaint the page under it. */
+  --line:color-mix(in srgb,var(--ink) 5%,transparent)}
+.grid i{position:absolute;background:var(--line)}
 .grid .g1{left:12.5%;top:0;width:1px;height:100%}
 .grid .g2{left:62.5%;top:0;width:1px;height:100%}
-.grid .g3{inset:0;background:linear-gradient(var(--angle),transparent calc(50% - .5px),var(--hair) calc(50% - .5px),var(--hair) calc(50% + .5px),transparent calc(50% + .5px))}
+.grid .g3{inset:0;background:linear-gradient(var(--angle),transparent calc(50% - .5px),var(--line) calc(50% - .5px),var(--line) calc(50% + .5px),transparent calc(50% + .5px))}
 
 .tag-wrap{position:sticky;top:0;height:100svh;margin-bottom:-100svh;overflow:hidden;pointer-events:none;z-index:1;
 }
@@ -251,9 +253,9 @@ html:not(.js) .tag-wrap{position:absolute;left:0;right:0;top:0;height:auto;margi
 .desc-m{display:none}
 
 .drip{position:absolute;left:62.5%;top:calc(100svh - 1rem - 4.875rem);width:1px;height:4.875rem;overflow:hidden;
-  mix-blend-mode:difference;z-index:3}
+  z-index:3}
 .drip::after{content:"";position:absolute;left:0;top:-100%;width:1px;height:100%;
-  background:linear-gradient(180deg,rgba(240,240,240,0),var(--blend));animation:drip 2.4s var(--ease) infinite}
+  background:linear-gradient(180deg,transparent,var(--ink));animation:drip 2.4s var(--ease) infinite}
 @keyframes drip{0%{top:-100%}70%,100%{top:100%}}
 
 /* ---------- Bits that sit over everything ---------- */
@@ -328,8 +330,8 @@ html.anim .about-nav{opacity:0}
   transition:background-color .5s var(--ease),color .5s var(--ease)}
 html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:8rem;clip-path:inset(0 50%)}
 .w-lines{position:absolute;inset:0;pointer-events:none}
-.w-lines div{position:sticky;top:0;height:100svh;mix-blend-mode:difference}
-.w-lines i{position:absolute;background:var(--hair)}
+.w-lines div{position:sticky;top:0;height:100svh}
+.w-lines i{position:absolute;background:color-mix(in srgb,var(--ink) 5%,transparent)}
 .w-lines .x{left:50%;top:0;width:1px;height:100%}
 .w-lines .y{left:0;top:50%;width:100%;height:1px}
 .w-head{position:relative;display:flex;flex-direction:column;align-items:center;gap:1.5rem;text-align:center;padding:0 1rem 1.5rem}
@@ -413,7 +415,7 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:8rem;clip-p
   transform:translateY(-75%) rotate(45deg);pointer-events:none}
 .pick select option{font-size:1rem;color:var(--ink);background:var(--ground)}
 .pick:hover{border-bottom-width:2px;margin-bottom:-1px}
-/* phones: area and sort chips in one strip you swipe sideways (option F) */
+/* the chip strip (option F), no longer shown: phones use the sentence since 10 Oct 2026 */
 .w-strip{display:none}
 .chip{flex:none;border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);border-radius:999px;padding:.42rem .8rem;color:var(--ink);
   transition:background-color .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease)}
@@ -421,11 +423,11 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:8rem;clip-p
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
 .w-strip .div{flex:none;width:1px;background:color-mix(in srgb,var(--ink) 22%,transparent);margin:.3rem .2rem}
 @media (max-width:1023px){
+  /* Phones use the desktop sentence too, centred under the intro (Sujith's option C, 10 Oct 2026).
+     The swipe strip of chips is kept in the markup but hidden. */
   .w-filter{margin:-2rem -1rem 1.5rem}
-  .w-sent{display:none}
-  .w-strip{display:flex;gap:.4rem;overflow-x:auto;padding:0 1rem .25rem;scrollbar-width:none;scroll-snap-type:x proximity;overscroll-behavior-x:contain}
-  .w-strip::-webkit-scrollbar{display:none}
-  .w-strip .chip{scroll-snap-align:start}
+  .w-sent{padding:0 1rem;text-align:center;font-size:1.0625rem}
+  .w-strip{display:none}
 }
 .plate .note{opacity:.8;max-width:30ch;margin:-.2rem 0 .1rem}
 /* design scope as a word beside the title: Flagship, Feature or Enhancement */
@@ -1600,7 +1602,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     var still = link.querySelector('.shot img');
     if(still) voFbImg.src = still.currentSrc || still.src; else voFbImg.removeAttribute('src');
     voFb.hidden = true; voFrame.hidden = false;
-    voFrame.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+    voFrame.src = 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0&modestbranding=1&playsinline=1';
     vo.hidden = false;
     requestAnimationFrame(function(){ vo.classList.add('on'); });
     if(lenis) lenis.stop();
