@@ -312,6 +312,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
 - **The phone menu (`.sheet`) has 1.5rem between its links** (Sujith, 10 Oct 2026: "add some more gaps"; was
   .75rem). Six 2.5rem links still fit a 375 by 667 screen.
 
+- **The phone footer puts "Designed & built by me, with AI" above the copyright** (Sujith, 10 Oct 2026), both lines
+  in the contact links' column (6.5rem in) and lifted 3.5rem clear of the fixed "Invert colour" button. Desktop unchanged.
+
 - **The space above "Selected Work" stays at 55svh (40svh on phones).** It was cut to 20/16svh
   once and Sujith asked for it back.
 
