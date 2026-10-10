@@ -272,6 +272,16 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   desktop and phone (Sujith). On phones (`.desc-m`) it is larger and stronger (Sujith, 9 Oct 2026: "colour and font
   seem small on mobile"): 1.0625rem, ink at 72% (was .875rem at `--ink-2`, 40%), still one colour.
 
+- **Light theme first** (Sujith, 10 Oct 2026): every page but Wealth 360 opens with `data-theme="light"` on
+  `<html>`, whatever the visitor's system setting; "Invert colour" still switches to dark for that page. The
+  theme-color meta is a single `#F0F0F0`. The dark CSS stays for the toggle.
+- **No autoplay** (Sujith, 10 Oct 2026): a wall card opens the YouTube player in the overlay without
+  `autoplay=1`, so the reader presses play.
+- **Scroll performance** (10 Oct 2026): difference blending on full-screen layers made every frame of the hero
+  and About repaint the page beneath (33ms frames at 1440px in headless Chromium). The hero grid lines, the
+  Work grid lines and the hero drip now draw at 5% / 100% of `--ink` with no blending: same look, measured at
+  16.7ms. Blending stays only where it carries meaning (nav, Invert colour, cursor, About's nav). Re-check with
+  `scratchpad/scrollperf.mjs` (per-section frame times) and `scratchpad/scrollab.mjs` (A/B a CSS change).
 - **About (Lead / Launch / Ship) runs on a 520svh pinned stage** (was 600). The photo starts
   fading in while the curtain is still closing (curtain 0–0.9, photo from 0.5), and "Lead"
   arrives at 1.3 of an 8.8-unit timeline, so there is no empty dark screen after the hero
