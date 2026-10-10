@@ -277,11 +277,10 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   theme-color meta is a single `#F0F0F0`. The dark CSS stays for the toggle.
 - **No autoplay** (Sujith, 10 Oct 2026): a wall card opens the YouTube player in the overlay without
   `autoplay=1`, so the reader presses play.
-- **Scroll performance** (10 Oct 2026): difference blending on full-screen layers made every frame of the hero
-  and About repaint the page beneath (33ms frames at 1440px in headless Chromium). The hero grid lines, the
-  Work grid lines and the hero drip now draw at 5% / 100% of `--ink` with no blending: same look, measured at
-  16.7ms. Blending stays only where it carries meaning (nav, Invert colour, cursor, About's nav). Re-check with
-  `scratchpad/scrollperf.mjs` (per-section frame times) and `scratchpad/scrollab.mjs` (A/B a CSS change).
+- **Scroll performance: rolled back** (Sujith, 10 Oct 2026). The hero grid lines, the Work grid lines and the
+  hero drip went back to difference blending (`--hair` / `--blend`), as before the 10 Oct change that drew them
+  at 5% / 100% of `--ink` without blending (33ms to 16.7ms frames through the hero and About at 1440px in headless
+  Chromium). Don't redo it unless he asks. `scratchpad/scrollperf.mjs` and `scratchpad/scrollab.mjs` still measure it.
 - **About (Lead / Launch / Ship) runs on a 520svh pinned stage** (was 600). The photo starts
   fading in while the curtain is still closing (curtain 0–0.9, photo from 0.5), and "Lead"
   arrives at 1.3 of an 8.8-unit timeline, so there is no empty dark screen after the hero

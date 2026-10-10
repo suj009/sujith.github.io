@@ -216,14 +216,11 @@ a,button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:po
 .hero{position:relative}
 .hero::after{content:"";display:block;height:calc(50svh + 18rem)}
 
-.grid{position:sticky;top:0;height:100svh;margin-bottom:-100svh;pointer-events:none;z-index:2;
-  /* The lines are 5% of the text colour, drawn plainly. They used to be a light hairline with difference
-     blending, which looks the same but made every frame of the hero and About repaint the page under it. */
-  --line:color-mix(in srgb,var(--ink) 5%,transparent)}
-.grid i{position:absolute;background:var(--line)}
+.grid{position:sticky;top:0;height:100svh;margin-bottom:-100svh;mix-blend-mode:difference;pointer-events:none;z-index:2}
+.grid i{position:absolute;background:var(--hair)}
 .grid .g1{left:12.5%;top:0;width:1px;height:100%}
 .grid .g2{left:62.5%;top:0;width:1px;height:100%}
-.grid .g3{inset:0;background:linear-gradient(var(--angle),transparent calc(50% - .5px),var(--line) calc(50% - .5px),var(--line) calc(50% + .5px),transparent calc(50% + .5px))}
+.grid .g3{inset:0;background:linear-gradient(var(--angle),transparent calc(50% - .5px),var(--hair) calc(50% - .5px),var(--hair) calc(50% + .5px),transparent calc(50% + .5px))}
 
 .tag-wrap{position:sticky;top:0;height:100svh;margin-bottom:-100svh;overflow:hidden;pointer-events:none;z-index:1;
 }
@@ -253,9 +250,9 @@ html:not(.js) .tag-wrap{position:absolute;left:0;right:0;top:0;height:auto;margi
 .desc-m{display:none}
 
 .drip{position:absolute;left:62.5%;top:calc(100svh - 1rem - 4.875rem);width:1px;height:4.875rem;overflow:hidden;
-  z-index:3}
+  mix-blend-mode:difference;z-index:3}
 .drip::after{content:"";position:absolute;left:0;top:-100%;width:1px;height:100%;
-  background:linear-gradient(180deg,transparent,var(--ink));animation:drip 2.4s var(--ease) infinite}
+  background:linear-gradient(180deg,rgba(240,240,240,0),var(--blend));animation:drip 2.4s var(--ease) infinite}
 @keyframes drip{0%{top:-100%}70%,100%{top:100%}}
 
 /* ---------- Bits that sit over everything ---------- */
@@ -330,8 +327,8 @@ html.anim .about-nav{opacity:0}
   transition:background-color .5s var(--ease),color .5s var(--ease)}
 html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:8rem;clip-path:inset(0 50%)}
 .w-lines{position:absolute;inset:0;pointer-events:none}
-.w-lines div{position:sticky;top:0;height:100svh}
-.w-lines i{position:absolute;background:color-mix(in srgb,var(--ink) 5%,transparent)}
+.w-lines div{position:sticky;top:0;height:100svh;mix-blend-mode:difference}
+.w-lines i{position:absolute;background:var(--hair)}
 .w-lines .x{left:50%;top:0;width:1px;height:100%}
 .w-lines .y{left:0;top:50%;width:100%;height:1px}
 .w-head{position:relative;display:flex;flex-direction:column;align-items:center;gap:1.5rem;text-align:center;padding:0 1rem 1.5rem}
