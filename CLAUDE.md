@@ -309,6 +309,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   eight at its largest." (The 28-person organisation was the CXO's and was cut here.) The reorganisations and the feature
   count live in Work, Leadership and the Leading page instead.
 
+- **The phone menu (`.sheet`) has 1.5rem between its links** (Sujith, 10 Oct 2026: "add some more gaps"; was
+  .75rem). Six 2.5rem links still fit a 375 by 667 screen.
+
 - **The space above "Selected Work" stays at 55svh (40svh on phones).** It was cut to 20/16svh
   once and Sujith asked for it back.
 
