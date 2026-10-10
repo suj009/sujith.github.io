@@ -415,7 +415,7 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:8rem;clip-p
   transform:translateY(-75%) rotate(45deg);pointer-events:none}
 .pick select option{font-size:1rem;color:var(--ink);background:var(--ground)}
 .pick:hover{border-bottom-width:2px;margin-bottom:-1px}
-/* phones: area and sort chips in one strip you swipe sideways (option F) */
+/* the chip strip (option F), no longer shown: phones use the sentence since 10 Oct 2026 */
 .w-strip{display:none}
 .chip{flex:none;border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);border-radius:999px;padding:.42rem .8rem;color:var(--ink);
   transition:background-color .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease)}
@@ -423,11 +423,11 @@ html.anim .works{margin-top:-100svh;padding-top:55svh;padding-bottom:8rem;clip-p
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
 .w-strip .div{flex:none;width:1px;background:color-mix(in srgb,var(--ink) 22%,transparent);margin:.3rem .2rem}
 @media (max-width:1023px){
+  /* Phones use the desktop sentence too, centred under the intro (Sujith's option C, 10 Oct 2026).
+     The swipe strip of chips is kept in the markup but hidden. */
   .w-filter{margin:-2rem -1rem 1.5rem}
-  .w-sent{display:none}
-  .w-strip{display:flex;gap:.4rem;overflow-x:auto;padding:0 1rem .25rem;scrollbar-width:none;scroll-snap-type:x proximity;overscroll-behavior-x:contain}
-  .w-strip::-webkit-scrollbar{display:none}
-  .w-strip .chip{scroll-snap-align:start}
+  .w-sent{padding:0 1rem;text-align:center;font-size:1.0625rem}
+  .w-strip{display:none}
 }
 .plate .note{opacity:.8;max-width:30ch;margin:-.2rem 0 .1rem}
 /* design scope as a word beside the title: Flagship, Feature or Enhancement */

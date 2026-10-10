@@ -374,8 +374,9 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   their description sits in the panel with the same two slots, and there is no
   hover still. **The filter** (Sujith's picks from the filter options page): on
   desktop it is one sentence, "Showing 33 features in [every area], [newest
-  first]", with two native dropdowns (option B); below 1024px it is one strip of
-  area and sort chips that swipes sideways, with no sheet (option F). Both drive
+  first]", with two native dropdowns (option B). **Phones use the same sentence, centred** (Sujith's option C,
+  10 Oct 2026: the chip strip's first chip sat on the screen edge); the old swipe strip of chips (option F)
+  stays in the markup, hidden. Both drive
   the same state and stay in step; the count in the sentence updates as you
   filter. **Flagship work first is the default order** (Sujith), on both. The
   sentence is set small (about 1.06 to 1.31rem) and each dropdown is sized to the
