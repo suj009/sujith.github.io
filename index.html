@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en" data-theme="light">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W87T86BN4X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W87T86BN4X');
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sujith Kumar Anand — Senior Product Design Manager</title>
@@ -762,8 +771,10 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   .ct-seek,.ct-list{grid-column:1;padding:0}
   .ct-row{grid-template-columns:5.5rem 1fr}
   .ct-v{font-size:1.125rem}
+  /* Phones: the credit line sits above the copyright, both in the links' column and clear of Invert colour. */
+  .ct-foot{flex-direction:column-reverse;align-items:flex-start;gap:.5rem;margin-top:6rem;padding:0 0 3.5rem 6.5rem}
   .sheet{position:fixed;inset:0;z-index:9;background:var(--ground);display:flex;flex-direction:column;justify-content:flex-end;
-    gap:.75rem;padding:5rem 1rem calc(4rem + env(safe-area-inset-bottom,0px))}
+    gap:1.5rem;padding:5rem 1rem calc(4rem + env(safe-area-inset-bottom,0px))}
   .sheet a{font-size:2.5rem;letter-spacing:-.04em;line-height:1}
 }
 @media (min-width:1024px){.sheet{display:none!important}}

@@ -251,6 +251,10 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   search descriptions stay under 160 characters. A root `favicon.ico` copies `img/favicon.ico`.
 - **Canonical, `og:url`, `og:image` and JSON-LD use absolute
   `https://sujith.design/` URLs**, live since the 9 Oct 2026 merge.
+- **Google Analytics** (Sujith, 15 Oct 2026): his gtag.js snippet, property `G-W87T86BN4X`, sits right after
+  `<head>` on the home page, `cv.html`, every essay and every case page except Wealth 360 (hands off). The case
+  template in `cs/build.py` carries it too, so a rebuild keeps it (and adds it to Wealth 360, which is restored
+  after a rebuild anyway). Add it to any new page. Redirect stubs don't carry it.
 - `robots.txt` and `sitemap.xml` are at the root. The sitemap lists the home page, the CV, five case
   studies (Wealth 360 stays out while it is password protected) and the four essays; robots blocks `/v2/`
   and `/v3/` (now redirect stubs).
@@ -308,6 +312,12 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   (Datami, Oddz, Nexter), then managing design at an Indian brokerage with over a million customers: a team of five designers today,
   eight at its largest." (The 28-person organisation was the CXO's and was cut here.) The reorganisations and the feature
   count live in Work, Leadership and the Leading page instead.
+
+- **The phone menu (`.sheet`) has 1.5rem between its links** (Sujith, 10 Oct 2026: "add some more gaps"; was
+  .75rem). Six 2.5rem links still fit a 375 by 667 screen.
+
+- **The phone footer puts "Designed & built by me, with AI" above the copyright** (Sujith, 10 Oct 2026), both lines
+  in the contact links' column (6.5rem in) and lifted 3.5rem clear of the fixed "Invert colour" button. Desktop unchanged.
 
 - **The space above "Selected Work" stays at 55svh (40svh on phones).** It was cut to 20/16svh
   once and Sujith asked for it back.
