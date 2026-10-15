@@ -2,6 +2,11 @@
 <html lang="en" data-theme="light">
 <head>
 <!-- Google tag (gtag.js) -->
+<script>
+  // ?notrack=1 stops Google Analytics on this browser (for the site's owner); ?notrack=0 turns it back on.
+  try{ var nt = location.search.match(/[?&]notrack=([01])/); if(nt) localStorage.setItem('notrack', nt[1]);
+    if(localStorage.getItem('notrack') === '1') window['ga-disable-G-W87T86BN4X'] = true; }catch(e){}
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W87T86BN4X"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -10,6 +15,7 @@
 
   gtag('config', 'G-W87T86BN4X');
 </script>
+<script src="js/track.js" defer></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sujith Kumar Anand — Senior Product Design Manager</title>
@@ -607,10 +613,6 @@ html.anim .ld-nav{display:flex;gap:2.5rem;position:absolute;right:1rem;bottom:1r
 .acc-icon.ext::after{top:30%;bottom:30%;left:auto;right:30%;width:1px}
 .acc-icon.ext{background:linear-gradient(135deg,transparent calc(50% - .5px),currentColor calc(50% - .5px),currentColor calc(50% + .5px),transparent calc(50% + .5px)) center/40% 40% no-repeat}
 .acc-body{display:grid;grid-template-rows:1fr}
-.wr-more{margin:1.75rem 0 0;opacity:.55;transition:opacity .3s var(--ease)}
-.wr-more:hover{opacity:1}
-.wr-more a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s var(--ease)}
-.wr-more a:hover{border-bottom-color:currentColor}
 .acc-body > div{overflow:hidden;min-height:0}
 .js-acc .acc-body{transition:grid-template-rows .7s var(--ease)}
 .js-acc .acc-item:not(.open) .acc-body{grid-template-rows:0fr}
@@ -1277,7 +1279,6 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
             </div></div>
           </li>
         </ul>
-        <p class="wr-more c2"><a href="https://medium.com/@suj009" target="_blank" rel="noopener">Older posts on Medium <span aria-hidden="true">&#8599;</span></a></p>
     </div>
   </section>
 
@@ -1587,7 +1588,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   // plain YouTube links. With it, the address moves to data-yt so no host or browser treats
   // the card as an outbound link and opens a new tab; a modified or middle click still does.
   var vo = document.getElementById('vo'), voFrame = document.getElementById('voFrame');
-  var voExt = document.getElementById('voExt'), voLast = null;
+  var voExt = document.getElementById('voExt'), voLast = null, voAt = 0;
   var voFb = document.getElementById('voFb'), voFbImg = voFb.querySelector('img'), voFbLink = voFb.querySelector('a');
   // A host that forbids embedding YouTube (the claude.ai preview does) would show a
   // "content is blocked" page in the frame. Show the still and a way out instead.
@@ -1603,7 +1604,7 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   function openVideo(link){
     var id = (ytUrl(link).match(/[?&]v=([^&]+)/) || [])[1];
     if(!id) return false;
-    voLast = link;
+    voLast = link; voAt = Date.now();
     document.getElementById('voMeta').textContent = link.querySelector('.top span').textContent;
     document.getElementById('voTitle').textContent = link.querySelector('.nm').textContent;
     voExt.href = voFbLink.href = ytUrl(link);
@@ -1620,6 +1621,8 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
   }
   function closeVideo(){
     if(vo.hidden) return;
+    // how long the walkthrough stayed open (YouTube's own watch time isn't visible to the page)
+    if(window.track && voLast) track('video_close', {card_name: voLast.querySelector('.nm').textContent, seconds_open: Math.round((Date.now() - voAt) / 1000)});
     vo.classList.remove('on');
     setTimeout(function(){ vo.hidden = true; voFrame.src = 'about:blank'; }, 350);
     if(lenis) lenis.start();
@@ -1689,9 +1692,11 @@ a.ct-v:hover{text-decoration:underline;text-underline-offset:.2em;text-decoratio
     var link = poLink, pw = poPw.value, url = link.getAttribute('href');
     poMsg.textContent = 'Checking…';
     poCheck(url, pw).then(function(){
+      if(window.track) track('w360_unlock', {result: 'success'});
       try{ sessionStorage.setItem(poKey(link), pw); }catch(err){}
       location.href = url;
     }, function(err){
+      if(window.track) track('w360_unlock', {result: err && err.name === 'OperationError' ? 'wrong_password' : 'not_checked'});
       if(err && (err.name === 'OperationError')){ poMsg.textContent = 'That password didn’t work. Try again.'; poPw.select(); return; }
       // the page could not be checked from here (offline or a strict host): let the case page ask instead
       try{ sessionStorage.setItem(poKey(link), pw); }catch(err2){}
