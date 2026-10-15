@@ -251,6 +251,10 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   search descriptions stay under 160 characters. A root `favicon.ico` copies `img/favicon.ico`.
 - **Canonical, `og:url`, `og:image` and JSON-LD use absolute
   `https://sujith.design/` URLs**, live since the 9 Oct 2026 merge.
+- **Google Analytics** (Sujith, 15 Oct 2026): his gtag.js snippet, property `G-W87T86BN4X`, sits right after
+  `<head>` on the home page, `cv.html`, every essay and every case page except Wealth 360 (hands off). The case
+  template in `cs/build.py` carries it too, so a rebuild keeps it (and adds it to Wealth 360, which is restored
+  after a rebuild anyway). Add it to any new page. Redirect stubs don't carry it.
 - `robots.txt` and `sitemap.xml` are at the root. The sitemap lists the home page, the CV, five case
   studies (Wealth 360 stays out while it is password protected) and the four essays; robots blocks `/v2/`
   and `/v3/` (now redirect stubs).
