@@ -2,6 +2,11 @@
 <html lang="en" data-theme="light">
 <head>
 <!-- Google tag (gtag.js) -->
+<script>
+  // ?notrack=1 stops Google Analytics on this browser (for the site's owner); ?notrack=0 turns it back on.
+  try{ var nt = location.search.match(/[?&]notrack=([01])/); if(nt) localStorage.setItem('notrack', nt[1]);
+    if(localStorage.getItem('notrack') === '1') window['ga-disable-G-W87T86BN4X'] = true; }catch(e){}
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W87T86BN4X"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -10,6 +15,7 @@
 
   gtag('config', 'G-W87T86BN4X');
 </script>
+<script src="js/track.js" defer></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CV — Sujith Kumar Anand, Senior Product Design Manager</title>

@@ -255,6 +255,24 @@ grepping for stale strings across all HTML files after any repeated-copy change.
   `<head>` on the home page, `cv.html`, every essay and every case page except Wealth 360 (hands off). The case
   template in `cs/build.py` carries it too, so a rebuild keeps it (and adds it to Wealth 360, which is restored
   after a rebuild anyway). Add it to any new page. Redirect stubs don't carry it.
+  A small script before it reads `?notrack=1` / `?notrack=0` into localStorage and sets `ga-disable-G-W87T86BN4X`,
+  so Sujith can stop counting his own visits per browser.
+- **Analytics events live in `js/track.js`** (Sujith, 15 Oct 2026), loaded with `defer` right after the gtag
+  snippet (`js/track.js` at the root, `../js/track.js` in `work/` and `writing/`). One delegated click listener
+  (capture phase) plus change, keydown, scroll and visibility listeners; no personal data (never the email
+  address or a password). Events: `work_view` (view, source toggle/intro_link), `work_filter` (filter_type,
+  filter_value), `work_card_click` (view, card_name, card_area, card_tier, company, locked), `work_load_more`,
+  `video_close` (card_name, seconds_open; sent from `closeVideo` in `index.html`), `video_youtube_open`,
+  `w360_unlock` (result success/wrong_password/not_checked; sent from the password form), `essay_preview`,
+  `essay_open` (essay_title, source home/keep_reading), `case_open` (next case link), `theme_toggle` (theme),
+  `email_copy`, `email_click`, `menu_toggle`, `nav_click` (nav_item), `cv_download`, `cta_click` (cta_name,
+  section, link_url: every other link, including Full CV, How I lead the team, contact and CV-page links),
+  `section_view` (home, once per section) and, on essays and case studies, `read_progress` (25/50/75/100) and
+  `read_time` (seconds on screen since the last report, sent each time the reader leaves). Every event carries
+  `page_type`. Readable labels skip `aria-hidden` duplicates and arrows. If markup classes change (`.plate`, `.nm`,
+  `.tier`, `.w-tab`, `#wArea`, `#wSort`, `#more`, `.acc-head`, `#invert`, `#copyMail`, `#dl`), update the script.
+  Test with `scratchpad/evchk.mjs`, which blocks hits from reaching the real property.
+- **No "Older posts on Medium" link under Writing** (Sujith, 15 Oct 2026); the Medium row in Contact stays.
 - `robots.txt` and `sitemap.xml` are at the root. The sitemap lists the home page, the CV, five case
   studies (Wealth 360 stays out while it is password protected) and the four essays; robots blocks `/v2/`
   and `/v3/` (now redirect stubs).
